@@ -3,13 +3,14 @@
   <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次搭建博客是我第一次搭建，总共花费了我两天两夜，过程很煎熬，遇到了不少挫折，不过还是很值得，我对此毫不后悔。</p>
+    <content><![CDATA[<p><img src="/images/Christina.png" alt="Elaina"></p>
 <span id="more"></span>
 
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次搭建博客是我第一次搭建，总共花费了我两天两夜，过程很煎熬，遇到了不少挫折，不过还是很值得，我对此毫不后悔。</p>
 <h1 id="关于域名"><a href="#关于域名" class="headerlink" title="关于域名"></a>关于域名</h1><p>本来想买域名的，但我重新审视了自己的内心之后，发现其实买域名只是为了满足自己的虚荣心。在现阶段根本不需要域名。于是最终放弃了购买域名。我想，等我发表了10篇<strong>有点内容</strong>的博客后我再购买域名吧。</p>
 <h1 id="想法萌芽"><a href="#想法萌芽" class="headerlink" title="想法萌芽"></a>想法萌芽</h1><p>搭建这个博客是因为想到要开始学web安全的技术，有很多知识点需要记录查阅。于是在网上查，看到了一篇名叫<a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a>的文章，正是因为看到了这篇文章我才知道搭建博客并没有我想象中那么难。从而开始了博客之旅。</p>
 <h1 id="所需能力"><a href="#所需能力" class="headerlink" title="所需能力"></a>所需能力</h1><p>搭完博客后，我认为如果只是想搭一个普通的博客，其中的技术含量并没有多少。困难之处通常是因为网上的文章过时或是与自己的配置不和而导致的出错等。唯一需要的是耐心与查阅资料的能力。<br><del>在搭建博客期间最擅长的代码</del>：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
 
 <h1 id="挫折点"><a href="#挫折点" class="headerlink" title="挫折点"></a>挫折点</h1><ol>
 <li><strong>git与GitHub连接</strong>。由于我自己的大意以及参考文章的不严谨导致第一天晚上多熬了一个多小时的夜。</li>
@@ -46,6 +47,8 @@
     <title>Hello World</title>
     <url>/2022/11/03/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
