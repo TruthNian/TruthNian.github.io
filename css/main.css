@@ -1169,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6c6ad0;
+  background: #2528af;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2742,7 +2742,6 @@ ul.breadcrumb li + li:last-child {
     margin: 8px 0 0;
   }
 }
-# 背景图片设置,
 body {
   background-image: url("/images/background.png");
   background-repeat: no-repeat;
