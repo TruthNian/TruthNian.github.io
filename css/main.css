@@ -1169,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a1ff2d;
+  background: #6c6ad0;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2749,22 +2749,4 @@ body {
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
-}
-# Custom styles,
-code {
-  color: #ff7600;
-  background: #fbf7f8;
-  margin: 2px;
-}
-# 大代码块的自定义样式,
-.highlight,
-pre {
-  margin: 5px 0;
-  padding: 5px;
-  border-radius: 3px;
-}
-.highlight,
-code,
-pre {
-  border: 1px solid #d6d6d6;
 }
