@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
     <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
@@ -64,6 +44,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>如何寻觅动画</title>
     <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
@@ -81,7 +81,7 @@
 <li>字幕样式比较丑，略影响观看</li>
 <li>老番资源较少</li>
 </ul>
-<p>使用方式：<br>手机端：需要港澳台版的app，并设置代理(特指安卓，iphone不清楚)<br>电脑端：需要将设备地区设置为台湾(特指Windows 10，其它不清楚)<br><a href="https://space.bilibili.com/11783021?spm_id_from=333.337.0.0">bilibili港澳台</a></p>
+<p>使用方式：<br>手机端：需要港澳台版的app，并设置代理(特指安卓，iphone不清楚)<br>电脑端：需要将设备地区设置为台湾(特指Windows 10，其它不清楚)<br><a href="https://www.bilibili.com/">bilibili港澳台</a></p>
 <ol start="2">
 <li><strong>巴哈姆特动画疯</strong><br>优点：</li>
 </ol>
@@ -159,12 +159,12 @@
 <li><strong>Age网站</strong><br>优点：<br>资源比较多<br>站内有分类，有人气排名<br>缺点：<br>画质不一定好<br>有广告</li>
 </ol>
 <p>观看方式：<br>手机端：下载app即可<br>电脑端：打开网站即可</p>
-<p><a href="age.tv">AGE</a></p>
+<p><a href="https://www.agemys.net/">AGE</a></p>
 <ol start="3">
 <li><strong>bt网站</strong><br>优点：<br>资源多<br>画质有的很好<br>缺点：<br>需要媒介下载后才能观看（比如迅雷，bit彗星），视情况等待时间较长</li>
 </ol>
 <p><a href="https://btbtt16.com/forum-index-fid-981-page-1.htm">BT动漫</a><br><a href="https://dongmanhuayuan.myheartsite.com/">动漫花园资源网</a></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>虽然使用非正版资源有时比正版资源还好，但我个人还是建议有足够经济能力的人至少为一个正版平台付费吧。尽管只有绵薄之力，本人也是在两个平台上付了年费的。<br>会为网络设置代理很重要，不仅是大陆地区。因为有些平台的资源是限制了在某个地区的。有些平台并没有每个地区都尝试过，如果某个地区没有想要的资源请更换地区。(代理一般选择<strong>新加坡，台湾，香港，马来西亚</strong>)</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>虽然使用非正版资源有时比正版资源还好，但我个人还是建议有足够经济能力的人至少为一个正版平台付费吧。尽管只有绵薄之力，本人也是在两个平台上付了年费的。<br>会为网络设置代理很重要，不仅是大陆地区。因为有些平台的资源是限制了在某个地区的。<br>有些平台并没有每个地区都尝试过，如果某个地区没有想要的资源请更换地区。(代理一般选择<strong>新加坡，台湾，香港，马来西亚</strong>)</p>
 ]]></content>
       <categories>
         <category>动画</category>
