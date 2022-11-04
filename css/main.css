@@ -1,15 +1,3 @@
-/* 圆角优化 */
-.highlight,
-#aside-content .card-info #card-info-btn,
-#aside-content #card-toc .toc-content .toc-link.active,
-#aside-content .card-archives ul.card-archive-list > .card-archive-list-item a,
-#aside-content .card-categories ul.card-category-list > .card-category-list-item a {
-  border-radius: 18px;
-}
-blockquote {
-  border-radius: 20px;
-  border-left: 20px solid #91a6b3;
-}
 :root {
   --body-bg-color: #eee;
   --content-bg-color: #fff;
@@ -1290,7 +1278,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f0d239;
+  background: #39f0d2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1595,39 +1583,6 @@ pre .javascript .function {
   }
   50%, 70% {
     transform: scale(1.1);
-  }
-}
-.back-to-top {
-  font-size: 12px;
-  text-align: center;
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-}
-.back-to-top {
-  background: #222;
-  bottom: -100px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  left: 30px;
-  opacity: 0.6;
-  padding: 0 6px;
-  position: fixed;
-  transition-property: bottom;
-  z-index: 1300;
-  width: initial;
-}
-.back-to-top:hover {
-  color: #fc6423;
-}
-.back-to-top.back-to-top-on {
-  bottom: 30px;
-}
-@media (max-width: 991px) {
-  .back-to-top {
-    left: 20px;
-    opacity: 0.8;
   }
 }
 .post-body {
@@ -2470,7 +2425,7 @@ ul.breadcrumb li + li:last-child {
 }
 .header-inner {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px 20px 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   overflow: hidden;
   padding: 0;
@@ -2503,7 +2458,7 @@ ul.breadcrumb li + li:last-child {
 }
 .content-wrap {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px 20px 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-sizing: border-box;
   padding: 40px;
@@ -2650,7 +2605,7 @@ ul.breadcrumb li + li:last-child {
 }
 .sidebar-inner {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   box-sizing: border-box;
   color: var(--text-color);
@@ -2742,18 +2697,18 @@ ul.breadcrumb li + li:last-child {
 }
 .post-block {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px 20px 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   padding: 40px;
 }
 .post-block + .post-block {
-  border-radius: initial;
+  border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin-top: 12px;
 }
 .comments {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin-top: 12px;
   padding: 40px;
@@ -2769,7 +2724,7 @@ ul.breadcrumb li + li:last-child {
 }
 .pagination {
   background: var(--content-bg-color);
-  border-radius: initial;
+  border-radius: 20px;
   border-top: initial;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   margin: 12px 0 0;
@@ -2820,7 +2775,7 @@ ul.breadcrumb li + li:last-child {
     margin-top: 20px;
   }
   .post-block {
-    border-radius: initial;
+    border-radius: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
     padding: 20px;
   }
@@ -2843,7 +2798,7 @@ ul.breadcrumb li + li:last-child {
     margin: 12px 0;
   }
   .post-block {
-    border-radius: initial;
+    border-radius: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
     min-height: auto;
     padding: 12px;
