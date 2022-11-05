@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-04T15:52:12.001Z</updated>
+  <updated>2022-11-05T16:43:51.118Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>锦瑟</title>
+    <link href="http://example.com/2022/11/05/Diary_1105/"/>
+    <id>http://example.com/2022/11/05/Diary_1105/</id>
+    <published>2022-11-04T16:00:00.000Z</published>
+    <updated>2022-11-05T16:43:51.118Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="/images/%E8%B5%AB%E8%90%9D/">赫萝</a></p><span id="more"></span><h1 id="随便说点"><a href="#随便说点" class="headerlink" title="随便说点"></a>随便说点</h1><p>啊，今天是我第一天写日志。摸索中…</p><h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>今天突然回想起一首诗，是李商隐的《锦瑟》。我还蛮喜欢的。<br>      <strong>锦瑟</strong>  李商隐<br>锦瑟无端五十弦，一弦一柱思华年。<br>庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>沧海月明珠有泪，蓝田日暖玉生烟。<br>此情可待成追忆，只是当时已惘然。</p><p>一开始没想起来诗句，后面一想起来全托出来了。<br>上网搜的时候，看到了一个人评价这首诗–<strong>美在解与不解之中</strong><br>说得挺好的，换个词即为<strong>朦胧感</strong>。</p><h1 id="来说说今天做了什么吧。"><a href="#来说说今天做了什么吧。" class="headerlink" title="来说说今天做了什么吧。"></a>来说说今天做了什么吧。</h1><ol><li><p>上午python爬虫的网课，但课程是两年前的。因此导致很多地方对不上，即便照着参考代码写也会报错…虽然是因为我买了课没有及时学，但问群里的主讲老师也不会，这样的服务态度着实让我不适。网易云课堂上的大熊课堂python，讲得还是挺清晰，但布置的作业和视频上的代码都无法正常运行那也很糟糕。<br>给我的教训是：<em>买了有时效性的网课要及时学</em></p></li><li><p>下午睡了俩小时，午睡时间太长了。但半小时又会很快感觉困，高中的时候也没这样啊。看来还是压力不够，决定明天睡眠时间缩短到1h以内，如果感觉困，就用冷水浇醒自己。<br>先看看这样是否行得通吧。</p></li><li><p>之后看了Web安全的基础–SQL注入漏洞。今天主要是看书《Web安全深度剖析》，SQL注入这一章是看完了，看得比较快，倒懂不懂的感觉吧。主要是过一遍，明天看视频。</p></li><li><p>最后学了半小时JS。还是在网易云课堂上学的，看的leo老师的网课。讲得蛮清晰，目前感觉良好。</p></li><li><p>24:30的《孤独摇滚》动画更新了，看动画去了。</p></li></ol><p>日志写到这里</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;/images/%E8%B5%AB%E8%90%9D/&quot;&gt;赫萝&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>如何寻觅动画</title>
