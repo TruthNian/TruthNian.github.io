@@ -28,12 +28,14 @@
 <meta property="og:site_name" content="Scammer">
 <meta property="og:description" content="前言直接做题很痛苦，看不懂也没有基础。去补了一节课才明白很多原理。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/sqli-labs_1.png">
 <meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T04:47:23.885Z">
+<meta property="article:modified_time" content="2022-11-07T17:00:13.631Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="SQL注入">
 <meta property="article:tag" content="sqli-labs">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/sqli-labs_1.png">
 
 <link rel="canonical" href="http://example.com/2022/11/07/sqli-labs_1+2/">
 
@@ -139,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-07 00:00:00 / 修改时间：12:47:23" itemprop="dateCreated datePublished" datetime="2022-11-07T00:00:00+08:00">2022-11-07</time>
+              <time title="创建时间：2022-11-07 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-07T00:00:00+08:00">2022-11-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-08 01:00:13" itemprop="dateModified" datetime="2022-11-08T01:00:13+08:00">2022-11-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,7 +255,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -270,11 +278,11 @@
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’ (或任意内容)后是否有<strong>报错提示</strong></li>
+<li>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong></li>
 </ol>
 <ul>
 <li>有提示。则存在SQL注入</li>
-<li>无提示。不存在SQL注入<br>（说明：有提示即代表输入的数据带入到了数据库中查询，因此存在注入）<br>只有存在SQL注入才能继续往下执行。</li>
+<li>无提示。不存在SQL注入<br>（说明：有提示即代表输入的数据带入到了数据库中查询，因此存在注入）<br>只有存在SQL注入才能继续往下执行。<br><img src="/simg/sqli-labs_1.png" alt="sqli-labs_1"></li>
 </ul>
 <ol start="2">
 <li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>方法是：<br>首先输入：<br> ?id&#x3D;1 and 1&#x3D;2  或  ?id&#x3D;1’–+<br>由于之前我们已经输入过 ?id&#x3D;1’ 出现报错，<br>如果本次输入再次出现报错，说明是 数字型<br>否则即为 字符型</p>
@@ -284,16 +292,16 @@
 <p>）<br>字段数可以通过order by语句得知。原理是通过order by语句查询，显示正常时是查询列数小于等于总列数。如果报错则该查询列数超过总列数。由此可得知字段数。示例语句如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;order by 3--+</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>爆出显示位<br>所谓爆出显示位，意思是查看分析哪些列是在页面显示的，这有利于我们后续的分析操作。<br>因此我们可以通过如下语句查询：</p>
+<li><p><strong>爆出显示位</strong><br>所谓爆出显示位，意思是查看分析哪些列是在页面显示的，这有利于我们后续的分析操作。<br>因此我们可以通过如下语句查询：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3--+</span><br></pre></td></tr></table></figure>
 <p>（说明：id&#x3D;-1的原因是为了让查询结果完全是union右边的值）</p>
 </li>
-<li><p>获取当前数据库名和数据库版本号<br>获取数据库名可以执行一些后续操作，获取版本号可以判断哪些数据库操作能做哪些不能做。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34678198/article/details/113273999">MYSQL版本简单区别</a><br>因此我们可以通过如下语句查询：</p>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>获取数据库名可以执行一些后续操作，获取版本号可以判断哪些数据库操作能做哪些不能做。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_34678198/article/details/113273999">MYSQL版本简单区别</a><br>因此我们可以通过如下语句查询：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version()--+</span><br></pre></td></tr></table></figure>
 <p>这里用到了mysql的系统函数，下面列举5个常用mysql注入系统函数：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">version()   		  MySQL版本</span><br><span class="line">user()     			  数据库用户名</span><br><span class="line">database() 			  数据库名</span><br><span class="line">@@datadir  			  数据库路径</span><br><span class="line">@@version_compile_os  操作系统版本</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>爆表<br>首先需要介绍数据库默认库information_schema中的重要表</p>
+<li><p><strong>爆表</strong><br>首先需要介绍数据库默认库information_schema（5.0以上版本有该库）中的重要表</p>
 </li>
 </ol>
 <ul>
@@ -314,13 +322,17 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure>
 
 <ol start="7">
-<li><p>爆字段名<br>通过sql语句查询知道当前数据库有4个表，根据表名知道可能用户的账号和密码是在users表中。因此接下来即为得到该表的字段名和内容。<br>示例语句为：</p>
+<li><p><strong>爆字段名</strong><br>通过sql语句查询知道当前数据库有4个表，根据表名知道可能用户的账号和密码是在users表中。因此接下来即为得到该表的字段名和内容。<br>示例语句为：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure>
 <p>说明：该语句查询information_schema数据库下的columns表的table_name字段。注意table_name字段在tables表和columns表中均存在。表示所有字段对应的表名。</p>
 </li>
-<li><p>爆数据<br>通过上述操作可知敏感字段username和password，接下来即查询该字段对应的内容：</p>
+<li><p><strong>爆数据</strong><br>通过上述操作可知敏感字段username和password，接下来即查询该字段对应的内容：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,group_concat(username,id,password) from users--+</span><br></pre></td></tr></table></figure></li>
 </ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>以上示例主要是第一关，第一关和第二关差别只在字符型和数字型</li>
+</ul>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48421613/article/details/107488560">关于sql注入暴库爆表爆字段</a></p>
 
@@ -409,8 +421,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/06/Diary_1106/" rel="prev" title="Diary_1106">
-      <i class="fa fa-chevron-left"></i> Diary_1106
+    <a href="/2022/11/06/Diary_1106/" rel="prev" title="惜">
+      <i class="fa fa-chevron-left"></i> 惜
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/11/07/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%92%8C%E6%95%B0%E5%AD%97%E5%9E%8B%E5%88%A4%E6%96%AD/" rel="next" title="SQL注入之字符型和数字型判断">
@@ -474,7 +486,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">解决步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">3.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">解决步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -490,7 +502,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -561,13 +573,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">7k</span>
+    <span title="站点总字数">9k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
 
 <!--
