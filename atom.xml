@@ -34,6 +34,29 @@
   </entry>
   
   <entry>
+    <title>夫天地者，万物之逆旅也</title>
+    <link href="http://example.com/2022/11/08/Diary_1108/"/>
+    <id>http://example.com/2022/11/08/Diary_1108/</id>
+    <published>2022-11-07T16:00:00.000Z</published>
+    <updated>2022-11-08T17:40:42.284Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p><span id="more"></span><h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p><h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/violet--6.png&quot; alt=&quot;violet&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>sqli-labs_4</title>
     <link href="http://example.com/2022/11/08/sqli-labs_4/"/>
     <id>http://example.com/2022/11/08/sqli-labs_4/</id>

