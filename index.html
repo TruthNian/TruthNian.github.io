@@ -400,7 +400,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-11-08 00:00:00 / 修改时间：13:56:17" itemprop="dateCreated datePublished" datetime="2022-11-08T00:00:00+08:00">2022-11-08</time>
+              <time title="创建时间：2022-11-08 00:00:00 / 修改时间：14:01:00" itemprop="dateCreated datePublished" datetime="2022-11-08T00:00:00+08:00">2022-11-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -442,65 +442,14 @@
 
       
           <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
-<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><h2 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h2><ol>
-<li>格式<br>updatexml(XML_document,XPath_string,new_value)</li>
-</ol>
-<ul>
-<li>XML_document: xml标记</li>
-<li>XPath_string: 显示输入语句</li>
-<li>new_value: 新值</li>
-</ul>
-<ol start="2">
-<li>原理<br>updatexml()函数是MySQL对XML文档数据进行查询和修改的XPATH函数：</li>
-</ol>
-<ul>
-<li>xml:可扩展语言</li>
-<li>update():函数更新</li>
-<li>组合，具有查询功能的函数，用于查询xpath<br>利用插入不符合函数格式的语句并拼接查询语句从而通过函数报错达到查询内容的目的</li>
-</ul>
-<ol start="3">
-<li>示例<br>updatexml(1,concat(0x7e,(select database()),0x7e),1)</li>
-</ol>
-<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><ol>
-<li><p>格式<br>extractvalue(XML_document,XPath_string):<br>XML_document是string格式，为XML文档对象的名称<br>XPath_string(Xpath格式的字符串)<br>concat:返回结果为连接参数产生的字符串</p>
-</li>
-<li><p>原理</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">&#x27;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#x27;</span>, <span class="string">&#x27;/a/b&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>该语句是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误，就会报错</p>
-</li>
-</ol>
-<ul>
-<li>输出字符长度限制为32个字符</li>
-</ul>
-<ol start="3">
-<li>示例<br>extractvalue(1,concat(0x7e,(select database())))</li>
-</ol>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h2><ol>
-<li>格式<br>and (select 1 from (select count(*),concat(payload,floor(rand(0)*2))x from information_schema.tables group by x)a)</li>
-</ol>
-<ul>
-<li>payload是需要插入sql注入语句的位置</li>
-<li>floor():去除小数部分</li>
-<li>rand():产生随机数</li>
-<li>rand(x):每个x对应一个固定的值，连续执行多次值会变化，但可预测，序列为011011…</li>
-<li>count():count(*)函数返回表中的记录数</li>
-<li>适用版本：5.0 &lt; MySQL &lt; 8.x</li>
-</ul>
-<ol start="2">
-<li><p>原理<br>利用数据库表主键不能重复的原理，使用group by分组，产生主键key冗余，导致报错<br>详细解释：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43504939/article/details/90046342">SQL注入:floor()报错注入</a></p>
-</li>
-<li><p>示例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs/Less-1/?id=-1’ and (select 1 from (select count(*),concat(database(),floor(rand(0)*2))x from information_schema.tables group by x)a)--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43238111/article/details/106205125">报错注入常用函数</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/GTL-JU/p/16054806.html">报错注入常用的三种注入方式</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46706771/article/details/112768348">MYSQL 通过ExtractValue()报错注入</a></p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
