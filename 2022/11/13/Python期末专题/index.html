@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~本篇复习主要以两次测试以及题库为主，其它作为补充。 概念题 id()函数   定义和用法id() 函数返回指定对象的唯一 id。Python 中的所有对象都有其自己的唯一 id。id 在创建时已分配给对象。id 是对象的内存地址，并且在每次运行程序时都不同。（除了某些具有恒定唯一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python期末专题">
+<meta property="og:url" content="http://example.com/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~本篇复习主要以两次测试以及题库为主，其它作为补充。 概念题 id()函数   定义和用法id() 函数返回指定对象的唯一 id。Python 中的所有对象都有其自己的唯一 id。id 在创建时已分配给对象。id 是对象的内存地址，并且在每次运行程序时都不同。（除了某些具有恒定唯一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-13T15:15:59.905Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>Python期末专题 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python期末专题
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-13 00:00:00 / 修改时间：23:15:59" itemprop="dateCreated datePublished" datetime="2022-11-13T00:00:00+08:00">2022-11-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。<br>我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~<br>本篇复习主要以两次测试以及题库为主，其它作为补充。</p>
+<h1 id="概念题"><a href="#概念题" class="headerlink" title="概念题"></a>概念题</h1><ol>
+<li>id()函数</li>
+</ol>
+<ul>
+<li>定义和用法<br>id() 函数返回指定对象的唯一 id。<br>Python 中的所有对象都有其自己的唯一 id。<br>id 在创建时已分配给对象。<br>id 是对象的内存地址，并且在每次运行程序时都不同。（除了某些具有恒定唯一 id 的对象，比如 -5 到 256 之间的整数</li>
+<li>语法<br>id(object)</li>
+</ul>
+<ol start="2">
+<li><p>Python是一种<strong>跨平台</strong>的，是一个高层次的结合了<strong>解释性</strong>、<strong>编译性</strong>、<strong>互动性</strong>和<strong>面向对象</strong>的<strong>脚本</strong>语言</p>
+</li>
+<li><p>python序列</p>
+</li>
+</ol>
+<ul>
+<li>有序序列包括： <strong>列表 元组 字符串</strong></li>
+<li>无序序列包括： <strong>字典 集合 控制集合数据的对象</strong></li>
+</ul>
+<ol start="4">
+<li><p>python程序的扩展名<br>.py是<strong>源文件扩展名</strong><br>.pyw是另一种<strong>源文件扩展名</strong>  主要用于GUI程序发布时不需要看到控制台信息的情况<br>.pyc是<strong>源文件编译后的文件</strong><br>.pyo是<strong>源文件优化编译后的文件</strong><br>.pyd是<strong>其他语言写的python库</strong></p>
+</li>
+<li><p>Python注释</p>
+</li>
+</ol>
+<ul>
+<li>单行注释 #</li>
+<li>多行注释(不一定是注释，有时可作为字符串存在)<br>单引号 ‘’’<br>双引号 “””</li>
+</ul>
+<ol start="6">
+<li><p>Python 变量名区分大小写<br>例如：Cuit和cuit是两个变量名</p>
+</li>
+<li><p>非面向对象的程序设计语言是<br>C语言  汇编语言</p>
+</li>
+<li><p>使用上下文管理关键字 with 可以自动管理文件对象，不论何种原因结束该关键字中的语句块，都能保证文件被正确关闭</p>
+</li>
+<li><p>Python3 中有六个标准的数据类型：</p>
+</li>
+</ol>
+<ul>
+<li>Number（数字）  支持 int、float、bool、complex（复数）</li>
+<li>String（字符串）</li>
+<li>List（列表）</li>
+<li>Tuple（元组）</li>
+<li>Set（集合）</li>
+<li>Dictionary（字典）</li>
+</ul>
+<ol start="10">
+<li><p>Python中的关系运算符可以连续使用<br>如：6&lt; a &lt;10</p>
+</li>
+<li><p>Python 3.x 中可以使用中文作为变量名</p>
+</li>
+<li><p>生成器推导式比列表推导式具有更高的效率，推荐使用</p>
+</li>
+<li><p>Python编程中，提示符“&gt;&gt;&gt;”表示 交互式编程模式</p>
+</li>
+<li><p>Python不允许使用关键字作为变量名，允许使用内置函数名作为变量名，但这会改变函数名的定义</p>
+</li>
+<li><p>Python中相同的值在内存中的保存</p>
+</li>
+</ol>
+<ul>
+<li>对于[-5, 256]之间的整数，会在内存中进行缓存，任何时刻在内存中只有一份</li>
+<li>同一个列表或元组中的大整数在内存中会保存一份</li>
+<li>对于实数，不进行缓存。一样的实数，在内存中也不是一份</li>
+<li>对于字符串，是否进行缓存，并不是单纯地看长度</li>
+</ul>
+<ol start="16">
+<li><p>对于带有else子句的for循环和while循环，当循环因循环条件不成立而自然结束时会执行else中的代码</p>
+</li>
+<li><p>通过对象可以调用类方法和静态方法</p>
+</li>
+<li><p>Python使用 class 关键字来定义类</p>
+</li>
+<li><p>在函数内部可以通过关键字 global 来定义全局变量</p>
+</li>
+<li><p>Python中，关于类中的构造函数 创建时自动调用</p>
+</li>
+<li><p>Python 函数返回值</p>
+</li>
+</ol>
+<ul>
+<li>函数体中 return 语句有指定返回值时返回的就是其值</li>
+<li>函数体中没有 return 语句时，函数运行结束会隐含返回一个 None 作为返回值，类型是 NoneType，与 return 、return None 等效，都是返回 None</li>
+</ul>
+<ol start="22">
+<li><p>在类的定义中，以两个下划线“__”开始（不以两个或者更多下划线结尾）定义的成员方法是<strong>私有</strong>方法</p>
+</li>
+<li><p>在Python中定义类时所有实例方法的第一个参数用来表示对象本身，在类的外部通过对象名来调用实例方法时不需要为该参数传值</p>
+</li>
+<li><p>通过类名修改类属性的值，会影响所有的实例化对象</p>
+</li>
+<li><p>自定义函数时，即使该函数不需要接收任何参数，也必须在函数名后保留一对空的圆括号来表示这是一个函数</p>
+</li>
+<li><p>Python 数据成员(属性)</p>
+</li>
+</ol>
+<ul>
+<li>属于对象的数据成员一般在构造方法__init__()中定义，当然也可以在其他成员方法中定义，在定义和在实例方法中访问数据成员时<strong>以self作为前缀</strong>，同一个类的不同对象（实例）的数据成员之间互不影响</li>
+<li>属于类的数据成员是该类所有对象共享的，不属于任何一个对象，在定义类时这类数据成员一般不在任何一个成员方法的定义中</li>
+</ul>
+<ol start="27">
+<li>Python函数的参数</li>
+</ol>
+<ul>
+<li>位置参数(positional argument)<br>位置参数也称必须参数，位置参数须以从左到右的顺序传入函数。调用时的数量必须和声明时的一样</li>
+<li>关键字参数(keyword argument)<br>在调用函数时，实参可以是key&#x3D;value的形式，称为关键字参数<br>可以不按照从左到右的顺序定义，但仍能为指定的形参赋值<br>关键字参数在位置参数后面。位置参数是必须先满足，才考虑其他可变参数<br>不可以对一个形参重复赋值</li>
+<li>默认参数<br>默认参数必须在位置参数之后</li>
+<li>不定长参数<br>当需要一个函数能处理比当初声明时更多的参数，则这些参数叫做不定长参数</li>
+</ul>
+<ol start="28">
+<li><p>以读模式打开文件时，文件指针指向文件开始处</p>
+</li>
+<li><p>函数内部定义的局部变量当函数调用结束后被自动删除</p>
+</li>
+<li><p>语句<strong>pass</strong>仅起到占位符的作用，并不会做任何操作</p>
+</li>
+<li><p>Python支持在函数内部定义函数，此类函数又称为<strong>局部</strong>函数</p>
+</li>
+<li><p>python中的*(星号)</p>
+</li>
+</ol>
+<ul>
+<li>作为乘法运算符</li>
+<li>收集列表中多余的值</li>
+<li>函数中收集参数或者分配参数</li>
+</ul>
+<ol start="33">
+<li><p>对文件进行读写操作之后必须显式关闭文件以确保所有内容都得到保存</p>
+</li>
+<li><p>python编程语言中，函数可以不包含 return 语句</p>
+</li>
+<li><p>在类中，采用@和关键字<strong>classmethod</strong>修饰的方法为类方法</p>
+</li>
+<li><p>Python内置函数<strong>open</strong>用来打开或创建文件并返回文件对象</p>
+</li>
+<li><p>类的数据成员，一种是<strong>类属性</strong>，另一种是<strong>实例</strong>属性</p>
+</li>
+<li><p>Python类方法和实例方法相似，它最少也要包含一个参数，只不过类方法中通常将其命名为<strong>cls</strong></p>
+</li>
+<li><p>Python 支持多继承，如果父类中有相同的方法名，而在子类中调用时没有指定父类名，则 Python 解释器将从左向右按顺序进行搜索</p>
+</li>
+<li><p>使用 pickle 进行序列化得到的二进制文件使用 struct <strong>不可以</strong>正确地进行反序列化</p>
+</li>
+<li><p>Python文件基本操作方法</p>
+</li>
+</ol>
+<ul>
+<li>open()  read()  write()  close()</li>
+<li>readline() 一次读取一行</li>
+<li>append()<strong>不是！</strong></li>
+<li>详细：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/article/25704283.html">Python文件基本操作整理</a></li>
+</ul>
+<ol start="42">
+<li>Python文件打开的合法模式组合</li>
+</ol>
+<ul>
+<li>r&#x2F;rt  默认模式，文本模式读</li>
+<li>rb	二进制文件</li>
+<li>w&#x2F;wt 	文本模式写，打开前文件存储被清空</li>
+<li>wb    二进制写，文件存储同样被清空</li>
+<li>a   	追加模式，只能写在文件末尾</li>
+<li>a+  	可读写模式，写只能写在文件末尾</li>
+<li>w+ 	可读写，与a+的区别是要清空文件内容</li>
+<li>r+   	可读写，与a+的区别是可以写到文件任何位置</li>
+</ul>
+<ol start="43">
+<li>Python成员方法</li>
+</ol>
+<ul>
+<li>公有方法  默认都是公有的方法</li>
+<li>私有方法  以两个下划线”__“开始声明私有方法</li>
+<li>静态方法  使用staticmethod()方法声明静态方法</li>
+<li>类方法    使用classmethod()方法声明类方法</li>
+</ul>
+<ol start="44">
+<li>Python编程语言中，可以动态地为类和对象增加成员</li>
+</ol>
+<h1 id="选填判断题"><a href="#选填判断题" class="headerlink" title="选填判断题"></a>选填判断题</h1><h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/" title="Python期末专题">http://example.com/2022/11/13/Python期末专题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/11/sqli-labs_17/" rel="prev" title="sqli-labs_17">
+      <i class="fa fa-chevron-left"></i> sqli-labs_17
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">概念题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E5%A1%AB%E5%88%A4%E6%96%AD%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">选填判断题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">编程题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (台北標準時間) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">25k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">23 分钟</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
