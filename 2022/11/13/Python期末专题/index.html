@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~本篇复习主要以两次测试以及题库为主，其它作为补充。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-13T15:20:48.229Z">
+<meta property="article:modified_time" content="2022-11-13T17:19:12.685Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -215,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-13 00:00:00 / 修改时间：23:20:48" itemprop="dateCreated datePublished" datetime="2022-11-13T00:00:00+08:00">2022-11-13</time>
+              <time title="创建时间：2022-11-13 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-13T00:00:00+08:00">2022-11-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-14 01:19:12" itemprop="dateModified" datetime="2022-11-14T01:19:12+08:00">2022-11-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -242,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>5.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -440,7 +446,27 @@
 <ol start="44">
 <li>Python编程语言中，可以动态地为类和对象增加成员</li>
 </ol>
-<h1 id="选填判断题"><a href="#选填判断题" class="headerlink" title="选填判断题"></a>选填判断题</h1><h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1>
+<h1 id="选填判断题"><a href="#选填判断题" class="headerlink" title="选填判断题"></a>选填判断题</h1><ol>
+<li><p><code>x = &#123;1:1, 2:2&#125;</code>，之后执行<code>x.update(&#123;2:3, 3:3&#125;)</code>，则<code>sorted(x.items())</code>值为：<br>[(1, 1), (2, 3), (3, 3)]<br>解析：<br>执行update函数后，x&#x3D;{1: 1, 2: 3, 3: 3}<br>由于items()方法返回一个 view 对象。这个视图对象包含字典的键值对，形式为列表中的元组。<br>因此可得到该结果。</p>
+</li>
+<li><p>判断：正则表达式’^abc’只能匹配所有以’abc’开头的字符串<br>对</p>
+</li>
+<li><p>判断：表达式1&lt;2 or a&lt;b的值为异常报错，因为a,b没有被定义<br>错<br>解析：<br>运行后不会产生报错</p>
+</li>
+<li><p>在Python编程语言中，已知i&#x3D;4，++i的值为：<br>4<br>解析：<br>++i 表示先输出再作 + 运算</p>
+</li>
+<li><p>int(‘101’, 2)的值是：<br>5<br>解析：<br>int()的语法 <code>class int(x, base=10)</code><br>参数：x -- 字符串或数字  base -- 进制数，默认十进制<br>该题是将前面的字符串’101’当作二进制，转换成十进制即为5</p>
+</li>
+<li><p><code>x = [&#39;321&#39;, &#39;0234&#39;, &#39;9&#39;,&#39;99&#39;],max(x, key=len)</code>结果是：<br>‘0234’<br>解析：<br>max()函数是从中选出最大值，key&#x3D;len意思是按长度排序，因此结果’0234’</p>
+</li>
+<li><p>判断：已知 x &#x3D; ‘cuit’，那么赋值语句 x &#x3D; 3 由于赋值类型不一致，导致该语句是无法正常执行的<br>错<br>解析：<br>可以正常执行，能够赋值成功</p>
+</li>
+<li><p>已知<code>x = [[None] * 2] * 2</code>,那么<code>x[0][0]=1</code>后，x的值为：<br>[[1, None], [1, None]]<br>解析：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">```x = [[None] * 2] * 2```的值为[[None, None], [None, None]]</span><br><span class="line">外面的 * 2 是完全复制，内存id相同，因此赋值时```x[0][0],x[1][0]```均为1</span><br><span class="line">内部的 * 2 是部分复制，内存id不同，因此赋值时```x[0][1],x[0][1]```仍然是None</span><br><span class="line"></span><br><span class="line">9. 表达式&#x27;a,,,bb,,ccc&#x27;.split(&#x27;,&#x27;)的运行结果是：</span><br><span class="line">[&#x27;a&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;bb&#x27;, &#x27;&#x27;, &#x27;ccc&#x27;]</span><br><span class="line">解析：</span><br><span class="line">按照&#x27;,&#x27;切分字符串，由于该字符串两个&#x27;,&#x27;之间为空，所以最终会得到&#x27;&#x27;的字符串</span><br><span class="line"></span><br><span class="line">10. 已知 x 为非空字符串，那么表达式 ```&#x27;,&#x27;.join(x.split(&#x27;,&#x27;)) == x``` 的值一定为 True</span><br><span class="line">对</span><br><span class="line"></span><br><span class="line">11. 语句```x.append(3)```和```x = x+[3]```，都是原地修改列表x,在列表x尾部添加元素3</span><br><span class="line">错</span><br><span class="line">解析：</span><br><span class="line">append()函数是在列表尾部添加元素3，```x = x+[3]```是重新创建一个列表，把元素3添加进去，再赋值给x</span><br><span class="line"></span><br><span class="line">12. 表达式```&#123;1, 2, 3, 4, 5, 6&#125; ^ &#123;5, 6, 7, 8&#125;```的值为:</span><br><span class="line">&#123;1, 2, 3, 4, 7, 8&#125;</span><br><span class="line">解析：</span><br><span class="line">集合运算符号&#x27;^&#x27;是剔除两个集合相同元素后得到新集合。</span><br><span class="line">更多集合运算知识：[Python3 集合](https://www.runoob.com/python3/python3-set.html)</span><br><span class="line"></span><br><span class="line">13. str((1,2,3))的返回值是:</span><br><span class="line">&#x27;(1,2,3)&#x27;</span><br><span class="line">解析：</span><br><span class="line">不要忘加外面的引号，单引双引皆可</span><br><span class="line"></span><br><span class="line">14. 正则表达式r&#x27;p\*&#x27;表示允许匹配多个(至少1个)p</span><br><span class="line">错</span><br><span class="line">解析：</span><br><span class="line">\*表示匹配前⼀个字符出现0次或者⽆限次，即可有可⽆</span><br><span class="line"></span><br><span class="line">15. 对象```x=（1,2,3)```,语句```x[0]=10```，表示修改对象x第一个元素的值</span><br><span class="line">错</span><br><span class="line">解析：</span><br><span class="line">元组对象不支持元素修改，因为是不可变类型</span><br><span class="line"></span><br><span class="line">16. 表达式 [] == None 的值为 True</span><br><span class="line">错</span><br><span class="line">解析</span><br><span class="line">值为False。 None表示空，但它不等于空字符串、空列表，也不等同于False</span><br><span class="line"></span><br><span class="line">17. &quot;aassadfddff&quot;.strip(&quot;af&quot;)的结果是：</span><br><span class="line">ssadfdd</span><br><span class="line">解析：</span><br><span class="line">该正则表达式strip意为将前面字符串首尾包含括号内字符的切掉。</span><br><span class="line">如果是lstrip 切掉左边的</span><br><span class="line">如果是rstrip 切掉右边的</span><br><span class="line"></span><br><span class="line">18. 已知```x = [300, 300, 300]，x[0] is x[1]```的值为True</span><br><span class="line">对</span><br><span class="line">解析：</span><br><span class="line">is运算符判断两者id是否相同。本题中，同一列表中值相同的元素id相同</span><br><span class="line"></span><br><span class="line">19.</span><br><span class="line">```Python </span><br><span class="line">x=input(&#x27;input ten number:&#x27;)#输入的分别是3 4 2 3 17 4 21 18 19 22</span><br><span class="line">a_list = list(map( lambda x:int(x),x.split(&#x27; &#x27;))#期望 a_lis为: [3,4,2,3,17,4,21,18,19,22]；注意上一行x中有空格</span><br><span class="line">print(a_list[-6:-1])#期望输出[4,21,18,19,22]</span><br><span class="line">print(a_list.remove(3))#期望输出[4,2,3,17,4,21,18,19,22]</span><br><span class="line">print( len(a_list))#期望显示a___list元素个数</span><br></pre></td></tr></table></figure>
+<p>解析：<br>输入时是字符串，因此需要用<code>int / lambda x:int(x)</code>转化为整型，用<code>x. split(&#39; &#39;)</code>将输入时间隔的空格去掉<br>采用切片操作[-6:-1],-6的意思是从列表的倒数第6个开始，一直到倒数第1个<br>remove()函数从列表中移除括号内的数字，从左到右第一个会被移除<br>len()输出列表长度</p>
+</li>
+</ol>
+<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1>
     </div>
 
     
@@ -674,13 +700,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">25k</span>
+    <span title="站点总字数">28k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">23 分钟</span>
+    <span title="站点阅读时长">25 分钟</span>
 </div>
 
 <!--
