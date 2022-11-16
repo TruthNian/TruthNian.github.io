@@ -28,12 +28,14 @@
 <meta property="og:site_name" content="Scammer">
 <meta property="og:description" content="前言本次的难度也不大，关键是要知道方法">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/sqli-labs_20.png">
 <meta property="article:published_time" content="2022-11-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-15T15:51:41.963Z">
+<meta property="article:modified_time" content="2022-11-15T16:00:52.358Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="SQL注入">
 <meta property="article:tag" content="sqli-labs">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/sqli-labs_20.png">
 
 <link rel="canonical" href="http://example.com/2022/11/15/sqli-labs_20/">
 
@@ -139,7 +141,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">31</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,10 +218,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-15 00:00:00 / 修改时间：23:51:41" itemprop="dateCreated datePublished" datetime="2022-11-15T00:00:00+08:00">2022-11-15</time>
+              <time title="创建时间：2022-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-15T00:00:00+08:00">2022-11-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-16 00:00:52" itemprop="dateModified" datetime="2022-11-16T00:00:52+08:00">2022-11-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,7 +255,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>639</span>
+              <span>635</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -270,7 +278,7 @@
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>正常输入了admin之后，我们发现出现了如下界面：<br><a href="/simg/sqli-labs_20.png">返回情况</a><br>点击下方的按钮，返回到原来界面<br>接下来我们再次输入admin，并显示到该界面，可以明显看出，cookie字段显示出来。<br>然后我们按F12，点击存储，再点击Cookie下的链接，修改值为admin’<br>刷新后，出现报错，说明存在注入。<br>因此我们可以利用修改cookie的方式进行注入</p>
+<li><p>测试并判断注入类型<br>正常输入了admin之后，我们发现出现了如下界面：<br><img src="/simg/sqli-labs_20.png" alt="返回情况"><br>点击下方的按钮，返回到原来界面<br>接下来我们再次输入admin，并显示到该界面，可以明显看出，cookie字段显示出来。<br>然后我们按F12，点击存储，再点击Cookie下的链接，修改值为admin’<br>刷新后，出现报错，说明存在注入。<br>因此我们可以利用修改cookie的方式进行注入</p>
 </li>
 <li><p>猜解SQL查询语句中的字段数</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin<span class="string">&#x27;order by 4 #</span></span><br></pre></td></tr></table></figure>
@@ -375,8 +383,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/15/sqli-labs_21/" rel="prev" title="sqli-labs_21">
-      <i class="fa fa-chevron-left"></i> sqli-labs_21
+    <a href="/2022/11/15/sqli-labs_21+22/" rel="prev" title="sqli-labs_21+22">
+      <i class="fa fa-chevron-left"></i> sqli-labs_21+22
     </a></div>
       <div class="post-nav-item">
     <a href="/2022/11/15/sqli-labs_19/" rel="next" title="sqli-labs_19">
@@ -456,7 +464,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -527,13 +535,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">38k</span>
+    <span title="站点总字数">40k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">35 分钟</span>
+    <span title="站点阅读时长">36 分钟</span>
 </div>
 
 <!--
