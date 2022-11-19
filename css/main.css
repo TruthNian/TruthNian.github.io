@@ -1278,7 +1278,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #b5ffdd;
+  background: #14a3d2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2849,11 +2849,11 @@ body {
 }
 .header-inner {
   background: #ddd;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .sidebar {
   transition-duration: 1s;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .posts-expand .post-title-link {
   color: #222;
