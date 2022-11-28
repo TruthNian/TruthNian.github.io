@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-11-27T06:15:42.825Z</updated>
+  <updated>2022-11-28T03:24:36.849Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS study record</title>
+    <link href="http://example.com/2022/11/27/JS_study/"/>
+    <id>http://example.com/2022/11/27/JS_study/</id>
+    <published>2022-11-26T16:00:00.000Z</published>
+    <updated>2022-11-28T03:24:36.849Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>只是对于JS学习的简单记录，以便于加强自身记忆。</p><span id="more"></span><h1 id="JavaScript-简介"><a href="#JavaScript-简介" class="headerlink" title="JavaScript 简介"></a>JavaScript 简介</h1><p>JavaScript 是脚本语言。其特点有：轻量级，可插入HTML页面，插入后可由所有现代浏览器执行。<br>JavaScript 的用处：</p><ul><li>直接写入 HTML 输出流</li><li>对事件的反应</li><li>改变 HTML 内容</li><li>改变 HTML 图像</li><li>改变 HTML 样式</li><li>验证输入<br>注意：JavaScript和Java是两种完全不同的语言，无论在概念上还是设计上。</li></ul><h1 id="JavaScript-用法"><a href="#JavaScript-用法" class="headerlink" title="JavaScript 用法"></a>JavaScript 用法</h1><p>HTML 中的 Javascript 脚本代码必须位于 <code>&lt;script&gt;</code> 与 <code>&lt;/script&gt;</code> 标签之间。<br>Javascript 脚本代码可被放置在 HTML 页面的 <code>&lt;body&gt;</code> 和 <code>&lt;head&gt;</code> 部分中。<br>Javascript 脚本可以保存在外部文件，外部文件通常包含被多个网页使用的代码。<br>外部 JavaScript 文件的文件扩展名是 .js。<br>如需使用外部文件，请在 &lt;script&gt; 标签的 “src” 属性中设置该 .js 文件：<br>实例：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myScript.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure><p>注意：外部脚本不能包含 &lt;script&gt; 标签</p><h1 id="运行调试"><a href="#运行调试" class="headerlink" title="运行调试"></a>运行调试</h1><p>打开浏览器，F12可以查看页面情况<br>Console窗口调试 JavaScript 代码<br>可以在浏览器中创建一个小脚本执行，具体方法看最下面链接的第4节（Javascript Chrome 中运行）的末尾</p><h1 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h1><p>JavaScript 没有任何打印或者输出的函数。</p><h2 id="显示数据的方式"><a href="#显示数据的方式" class="headerlink" title="显示数据的方式"></a>显示数据的方式</h2><ol><li>使用 <code>window.alert()</code> 弹出警告框</li><li>使用 <code>document.write</code> 方法将内容写到HTML文档中</li><li>使用 <code>innerHTML</code> 写入到HTML元素</li><li>使用 <code>console.log()</code> 写入到浏览器控制台</li></ol><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol><li>关于 <code>console.log()</code> ：<br>相比alert他的优点是：<br>他能看到结构化的东西，如果是alert，弹出一个对象就是[object object],但是console能看到对象的内容。<br>console不会打断你页面的操作，如果用alert弹出来内容，那么页面就死了，但是console输出内容后你页面还可以正常操作。</li><li>关于 <code>document.write()</code> ：<br>document.write是直接写入到页面的内容流，如果在写之前没有调用document.open, 浏览器会自动调用open。每次写完关闭之后重新调用该函数，会导致页面被重写。 </li><li>关于 <code>innerHTML</code> :<br>innerHTML则是DOM页面元素的一个属性，代表该元素的html内容。你可以精确到某一个具体的元素来进行更改。如果想修改document的内容，则需要修改document.documentElement.innerElement。<br>innerHTML很多情况下都优于document.write，其原因在于其允许更精确的控制要刷新页面的那一个部分。</li><li>关于 <code>window.alert()</code> :<br>window.alert(5+6) 与 window.alert(“5+6”) 输出的值是不一样的。window.alert(5+6) 会输出 11，而window.alert(“5+6”) 会输出 5+6。这是因为当用引号时会认为引号中是字符串，从而直接将引号中的内容打印出来。</li></ol><h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h2><ul><li><strong>数字（Number）字面量</strong> 可以是整数或者是小数，或者是科学计数(e)  3.14</li><li><strong>字符串（String）字面量</strong> 可以使用单引号或双引号  ‘John Doe’</li><li><strong>表达式字面量</strong> 用于计算： 5+6</li><li><strong>数组（Array）字面量</strong> 定义一个数组   <code>[40, 100, 1, 5, 25, 10]</code></li><li><strong>对象（Object）字面量</strong> 定义一个对象  <code>&#123;firstName:&quot;John&quot;, lastName:&quot;Doe&quot;, age:50, eyeColor:&quot;blue&quot;&#125;</code></li><li><strong>函数（Function）字面量</strong> 定义一个函数  <code>function myFunction(a, b) &#123; return a * b;&#125;</code></li></ul><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>变量用于存储数据值。JavaScript 使用关键字 var 来定义变量， 使用等号来为变量赋值：<br><code>var x   x = 5 </code><br>注意：变量是一个名称，字面量是一个值。</p><h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>和其它语言基本一致</p><h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p>在 HTML 中，JavaScript 语句用于向浏览器发出命令。<br>语句是用分号分隔 <code>x=5+6;</code></p><h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>JavaScript 同样保留了一些关键字，这些关键字在当前的语言版本中并没有使用，但在以后 JavaScript 扩展中会用到。</p><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>双斜杠 &#x2F;&#x2F; 后的内容将会被浏览器忽略</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 我不会执行</span><br></pre></td></tr></table></figure><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>JavaScript 有多种数据类型：数字，字符串，数组，对象等等。<br>JavaScript是弱类型编程语言,定义变量都使用 var 定义,与 Java 这种强类型语言有区别。<br>在定义后可以通过 <code>typeOf()</code> 来获取JavaScript中变量的数据类型<br>注意: typeof 不能用来判断是 Array 还是Object<br>使用 <code>isArray</code> 方法可以判断是否为数组<br>使用 <code>instanceof</code> 操作符也可以判断是否为数组</p><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>JavaScript 语句可以写在函数内，函数可以重复引用：<br>引用一个函数 &#x3D; 调用函数(执行函数内的语句)。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myFunction</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a * b;                                <span class="comment">// 返回 a 乘以 b 的结果</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="字母大小写"><a href="#字母大小写" class="headerlink" title="字母大小写"></a>字母大小写</h2><p>JavaScript 对大小写是敏感的<br>函数 getElementById 与 getElementbyID 是不同的。<br>同样，变量 myVariable 与 MyVariable 也是不同的。</p><h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>JavaScript 使用 Unicode 字符集。<br>Unicode 覆盖了所有的字符，包含标点等字符。</p><h1 id="语句-1"><a href="#语句-1" class="headerlink" title="语句"></a>语句</h1><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.runoob.com/js/js-tutorial.html">JavaScript教程-runoob</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;只是对于JS学习的简单记录，以便于加强自身记忆。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JS" scheme="http://example.com/categories/JS/"/>
+    
+    
+    <category term="JS" scheme="http://example.com/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>upload-labs_18+19</title>
@@ -132,29 +153,6 @@
   </entry>
   
   <entry>
-    <title>浅谈爱国</title>
-    <link href="http://example.com/2022/11/26/%E6%B5%85%E8%B0%88%E7%88%B1%E5%9B%BD/"/>
-    <id>http://example.com/2022/11/26/%E6%B5%85%E8%B0%88%E7%88%B1%E5%9B%BD/</id>
-    <published>2022-11-25T16:00:00.000Z</published>
-    <updated>2022-11-26T16:19:24.848Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>爱国，似乎是一个不具有讨论性的话题。可能随便在街上问一个人，爱不爱国？恐怕都会答曰：爱国。<br>我仍然想讨论这个话题。</p><span id="more"></span><h1 id="爱国之问"><a href="#爱国之问" class="headerlink" title="爱国之问"></a>爱国之问</h1><p>为什么要爱国呢？是因为享受了国家的福祉而感恩？是因为为了更好的利益？是因为要政府的管理而顺从？还是因为寻求一种归属感？<br>爱国，到底是爱什么？是爱国家里的江山？人民？文化？政府？抑或皆有之。<br>要了解这些，首先需要知道，国家的性质有些什么。我查了下资料，大致上有这些：领土，政府，主权，人民，文化。</p><h1 id="爱国的部分"><a href="#爱国的部分" class="headerlink" title="爱国的部分"></a>爱国的部分</h1><p>既然要爱国，那这些也必定应当爱吧。领土和主权自不必谈，这里主要谈三个部分。</p><h2 id="政府"><a href="#政府" class="headerlink" title="政府"></a>政府</h2><p>政府（英语：Government）是一个政治体系，于某个区域订立、执行法律和管理的一套机构。<br>作为统治人民的机构，它做出对人民有利的事是应当的。因为政府在天然上占据了大量的优势，资源，信息都远超一般人民。倘若只占据好处而无所作为，那政府只是某些人用来谋取利益权势的工具。<br><font color=DarkRed>至于人民是否感谢政府，应当取决于人民自身的意愿，而不该带有强制要求去试图取代人民的感受。比如由政府带头大力宣传应当感激它自身，那恐怕只是一种政治目的或洗脑方式，必须要警惕。</font><br>爱国必然爱政府，当然爱是自由的，或许有的人能找到各种各样的理由爱政府，那没关系，我并不反对。<font color=DarkOliveGreen>只是有一点我必须要提出，爱必须要在了解的前提下才能谈。既然爱政府，那当然应该了解自己所在政府做了些什么事，尤其是对于擅长隐瞒事实的政府。只有在了解好坏并且接受之后，才能理直气壮地说自己爱政府。否则，我认为那只是一种偏见。如果连了解都不愿意真相都不接受，那只是愚蠢无知，没有谈下去的必要。</font></p><h2 id="人民"><a href="#人民" class="headerlink" title="人民"></a>人民</h2><p>人民（英语：People），又译居民、住民、国民，是个人（Person）的复数形集合。<br>国家里的人民，是整个人类的一部分，如果爱人类，那必然也爱人民。当然爱人民不代表爱人类。可一个声称自己爱国的人，会爱人民吗？我对此表示怀疑。当国民遭遇不幸时，是否会感到由衷地悲伤，还是说与我无关，抱着多一事不如少一事的心态。当国民在国际上取得名声时，是否会感到由衷地自豪，还是说无动于衷或是不屑一顾。爱国必然爱人民，如果做不到以上的事，那就不可能是爱人民。不仅如此，居庙堂而为非作歹，有余力却不愿施予。那更是与爱字沾不到边。<br><font color=darkblue>爱，是需要付出心力的，绝不是一句口号，一朝一夕之间的事。</font></p><h2 id="文化"><a href="#文化" class="headerlink" title="文化"></a>文化</h2><p>文化（英语：culture）是一群共同生活在相同自然环境及经济生产方式的人所形成的一种约定俗成潜意识的外在表现。其中之一的意义是“相互通过学习人类思想与行为的精华来达到完美”；广义的文化包括文字、语言、建筑、饮食、工具、技能、技术、知识、习俗、艺术等。<br>文化非常宽泛，如今有着各种各样的文化，这是特定团体的特色产物。而国家的文化与国家大小人民历史等方面都有着密不可分的联系。<br>每个国家都有自己的文化，或许有的在慢慢衰落，有的在逐渐兴起。可无论如何，只要不是糟粕的那一部分文化，都是值得尊重的。<br>一些所谓的爱国者常常喜欢谈论文化入侵，借此排挤他国文化。<font color=brown>我实在是觉得非常搞笑。首先文化入侵是国家与国家之间才考虑的事，个体喜欢什么是自身的自由。然后，一谈到文化入侵，马上想到的是怎么排挤，而不是怎么更好发展自己国家的文化，自欺欺人。不去想如何竞争，只会发动权力去打压，很低级也很蠢。</font><br>怎样体现出爱文化，其实是一件非常困难的事。因为爱文化不代表不能接受其它国家的文化，爱文化也不代表对自己国家的每种文化都全盘接受。我想，只要对自己国家的好的文化，即便不理解，保持着敬意，带着尊重的心，那便是爱文化。</p><h1 id="爱的高下"><a href="#爱的高下" class="headerlink" title="爱的高下"></a>爱的高下</h1><p>在讨论完爱国至少需要爱哪些部分后，接下来便是爱的高下。<br>当国家主动发起战争时，一个爱国的人，他是应当支持还是反对呢？或许有的人会犹豫，但我认为答案很明确，那便是反对。<br>首先，爱国不代表毫无底线。战争是国家之间最糟糕的行为，完全地反人类。难道说因为爱国而杀人就是正确的？可笑之极。<br>其次，爱国应当指出错误而不是容忍。就如一个孩子的成长过程中犯了错，作为父母是应当无所谓，等待酿下大错；还是及时教育避免重复出错呢？答案很明显吧。<br>因此，当一个国家做了错误的事，批判才是正确的行为。而非常可笑的是，有相当多所谓的爱国人士，只会包庇纵容。在我看来，这根本是虚伪的爱国。<br><font color=blue>对人类而言，首先是做人，然后再谈爱国。</font>就像逻辑推理，先有大前提才有小前提。违背良心与道德底线，是违背人的标准。人类都不复存在了更何况国家之事。<br>常常有人说，爱它就去改变它，对它不满就去改变它。可我想说如果一个国家烂到根里了，无论园丁怎么修剪枝叶，无论施加多少肥料，也是毫无意义。满腔热血终会被凉水泼冷，怂恿下火海终将万劫不复，爱国是否值得也有待商榷。<br>小家与大家之间的冲突问题。的确，古人云，皮之不存毛将焉附，覆巢之下安有完卵。面对外敌入侵，人民把国家放在第一位并没有问题。<br>没有外敌入侵时，国家做了不合理的措施，让人民来承担过失，我是坚决不同意的。捍卫自己与自己周边的利益，即便是国家也不能退让。<br><font color=red>做公民，不要做奴隶。<br></font></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>简单地讨论了以上几点后，我想，可以过滤掉一大部分自称的“爱国人士”。<br>爱国也并非总是位居最高位，当国家的所作所为违背了人类的基本准则，那是应当反对的。<br>当国家的所作所为侵害了个人权益，即便是国家也不应让步（仅限于能够抗议的政府，独裁政府不在此列，保护自身及周边人安全最重要）。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>其实想写这么一篇文章，是因周围有人宣称自己爱国，我便思考什么是爱国，算是临时想的，写得并不算好，我自己也不太满意。以后有新的思考再补充吧，权当留个引子。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;爱国，似乎是一个不具有讨论性的话题。可能随便在街上问一个人，爱不爱国？恐怕都会答曰：爱国。&lt;br&gt;我仍然想讨论这个话题。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
-    
-    
-    <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
-    
-    <category term="爱国" scheme="http://example.com/tags/%E7%88%B1%E5%9B%BD/"/>
-    
-  </entry>
-  
-  <entry>
     <title>浅谈礼仪的对象</title>
     <link href="http://example.com/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/"/>
     <id>http://example.com/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</id>
@@ -174,6 +172,29 @@
     <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
     
     <category term="礼仪" scheme="http://example.com/tags/%E7%A4%BC%E4%BB%AA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈爱国</title>
+    <link href="http://example.com/2022/11/26/%E6%B5%85%E8%B0%88%E7%88%B1%E5%9B%BD/"/>
+    <id>http://example.com/2022/11/26/%E6%B5%85%E8%B0%88%E7%88%B1%E5%9B%BD/</id>
+    <published>2022-11-25T16:00:00.000Z</published>
+    <updated>2022-11-26T16:19:24.848Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>爱国，似乎是一个不具有讨论性的话题。可能随便在街上问一个人，爱不爱国？恐怕都会答曰：爱国。<br>我仍然想讨论这个话题。</p><span id="more"></span><h1 id="爱国之问"><a href="#爱国之问" class="headerlink" title="爱国之问"></a>爱国之问</h1><p>为什么要爱国呢？是因为享受了国家的福祉而感恩？是因为为了更好的利益？是因为要政府的管理而顺从？还是因为寻求一种归属感？<br>爱国，到底是爱什么？是爱国家里的江山？人民？文化？政府？抑或皆有之。<br>要了解这些，首先需要知道，国家的性质有些什么。我查了下资料，大致上有这些：领土，政府，主权，人民，文化。</p><h1 id="爱国的部分"><a href="#爱国的部分" class="headerlink" title="爱国的部分"></a>爱国的部分</h1><p>既然要爱国，那这些也必定应当爱吧。领土和主权自不必谈，这里主要谈三个部分。</p><h2 id="政府"><a href="#政府" class="headerlink" title="政府"></a>政府</h2><p>政府（英语：Government）是一个政治体系，于某个区域订立、执行法律和管理的一套机构。<br>作为统治人民的机构，它做出对人民有利的事是应当的。因为政府在天然上占据了大量的优势，资源，信息都远超一般人民。倘若只占据好处而无所作为，那政府只是某些人用来谋取利益权势的工具。<br><font color=DarkRed>至于人民是否感谢政府，应当取决于人民自身的意愿，而不该带有强制要求去试图取代人民的感受。比如由政府带头大力宣传应当感激它自身，那恐怕只是一种政治目的或洗脑方式，必须要警惕。</font><br>爱国必然爱政府，当然爱是自由的，或许有的人能找到各种各样的理由爱政府，那没关系，我并不反对。<font color=DarkOliveGreen>只是有一点我必须要提出，爱必须要在了解的前提下才能谈。既然爱政府，那当然应该了解自己所在政府做了些什么事，尤其是对于擅长隐瞒事实的政府。只有在了解好坏并且接受之后，才能理直气壮地说自己爱政府。否则，我认为那只是一种偏见。如果连了解都不愿意真相都不接受，那只是愚蠢无知，没有谈下去的必要。</font></p><h2 id="人民"><a href="#人民" class="headerlink" title="人民"></a>人民</h2><p>人民（英语：People），又译居民、住民、国民，是个人（Person）的复数形集合。<br>国家里的人民，是整个人类的一部分，如果爱人类，那必然也爱人民。当然爱人民不代表爱人类。可一个声称自己爱国的人，会爱人民吗？我对此表示怀疑。当国民遭遇不幸时，是否会感到由衷地悲伤，还是说与我无关，抱着多一事不如少一事的心态。当国民在国际上取得名声时，是否会感到由衷地自豪，还是说无动于衷或是不屑一顾。爱国必然爱人民，如果做不到以上的事，那就不可能是爱人民。不仅如此，居庙堂而为非作歹，有余力却不愿施予。那更是与爱字沾不到边。<br><font color=darkblue>爱，是需要付出心力的，绝不是一句口号，一朝一夕之间的事。</font></p><h2 id="文化"><a href="#文化" class="headerlink" title="文化"></a>文化</h2><p>文化（英语：culture）是一群共同生活在相同自然环境及经济生产方式的人所形成的一种约定俗成潜意识的外在表现。其中之一的意义是“相互通过学习人类思想与行为的精华来达到完美”；广义的文化包括文字、语言、建筑、饮食、工具、技能、技术、知识、习俗、艺术等。<br>文化非常宽泛，如今有着各种各样的文化，这是特定团体的特色产物。而国家的文化与国家大小人民历史等方面都有着密不可分的联系。<br>每个国家都有自己的文化，或许有的在慢慢衰落，有的在逐渐兴起。可无论如何，只要不是糟粕的那一部分文化，都是值得尊重的。<br>一些所谓的爱国者常常喜欢谈论文化入侵，借此排挤他国文化。<font color=brown>我实在是觉得非常搞笑。首先文化入侵是国家与国家之间才考虑的事，个体喜欢什么是自身的自由。然后，一谈到文化入侵，马上想到的是怎么排挤，而不是怎么更好发展自己国家的文化，自欺欺人。不去想如何竞争，只会发动权力去打压，很低级也很蠢。</font><br>怎样体现出爱文化，其实是一件非常困难的事。因为爱文化不代表不能接受其它国家的文化，爱文化也不代表对自己国家的每种文化都全盘接受。我想，只要对自己国家的好的文化，即便不理解，保持着敬意，带着尊重的心，那便是爱文化。</p><h1 id="爱的高下"><a href="#爱的高下" class="headerlink" title="爱的高下"></a>爱的高下</h1><p>在讨论完爱国至少需要爱哪些部分后，接下来便是爱的高下。<br>当国家主动发起战争时，一个爱国的人，他是应当支持还是反对呢？或许有的人会犹豫，但我认为答案很明确，那便是反对。<br>首先，爱国不代表毫无底线。战争是国家之间最糟糕的行为，完全地反人类。难道说因为爱国而杀人就是正确的？可笑之极。<br>其次，爱国应当指出错误而不是容忍。就如一个孩子的成长过程中犯了错，作为父母是应当无所谓，等待酿下大错；还是及时教育避免重复出错呢？答案很明显吧。<br>因此，当一个国家做了错误的事，批判才是正确的行为。而非常可笑的是，有相当多所谓的爱国人士，只会包庇纵容。在我看来，这根本是虚伪的爱国。<br><font color=blue>对人类而言，首先是做人，然后再谈爱国。</font>就像逻辑推理，先有大前提才有小前提。违背良心与道德底线，是违背人的标准。人类都不复存在了更何况国家之事。<br>常常有人说，爱它就去改变它，对它不满就去改变它。可我想说如果一个国家烂到根里了，无论园丁怎么修剪枝叶，无论施加多少肥料，也是毫无意义。满腔热血终会被凉水泼冷，怂恿下火海终将万劫不复，爱国是否值得也有待商榷。<br>小家与大家之间的冲突问题。的确，古人云，皮之不存毛将焉附，覆巢之下安有完卵。面对外敌入侵，人民把国家放在第一位并没有问题。<br>没有外敌入侵时，国家做了不合理的措施，让人民来承担过失，我是坚决不同意的。捍卫自己与自己周边的利益，即便是国家也不能退让。<br><font color=red>做公民，不要做奴隶。<br></font></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>简单地讨论了以上几点后，我想，可以过滤掉一大部分自称的“爱国人士”。<br>爱国也并非总是位居最高位，当国家的所作所为违背了人类的基本准则，那是应当反对的。<br>当国家的所作所为侵害了个人权益，即便是国家也不应让步（仅限于能够抗议的政府，独裁政府不在此列，保护自身及周边人安全最重要）。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>其实想写这么一篇文章，是因周围有人宣称自己爱国，我便思考什么是爱国，算是临时想的，写得并不算好，我自己也不太满意。以后有新的思考再补充吧，权当留个引子。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;爱国，似乎是一个不具有讨论性的话题。可能随便在街上问一个人，爱不爱国？恐怕都会答曰：爱国。&lt;br&gt;我仍然想讨论这个话题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
+    
+    
+    <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
+    
+    <category term="爱国" scheme="http://example.com/tags/%E7%88%B1%E5%9B%BD/"/>
     
   </entry>
   
@@ -456,29 +477,6 @@
     <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
     
     <category term="sqli-labs" scheme="http://example.com/tags/sqli-labs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>平水远矣</title>
-    <link href="http://example.com/2022/11/19/Diary_1119/"/>
-    <id>http://example.com/2022/11/19/Diary_1119/</id>
-    <published>2022-11-18T16:00:00.000Z</published>
-    <updated>2022-11-20T17:09:32.099Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_4.png" alt="凉宫春日&amp;长门有希"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>糟糕的一天</p><h1 id="兜兜转转"><a href="#兜兜转转" class="headerlink" title="兜兜转转"></a>兜兜转转</h1><p>今天一天什么都没玩，但我感觉非常地不好，没学到多少东西。就像绕着一个圈子一直在兜兜转转，没啥好说的，明早早起。<br>今天是World Cup(世界杯)开幕式来着，我倒是没什么兴趣，就这样吧。</p><h1 id="平水远矣"><a href="#平水远矣" class="headerlink" title="平水远矣"></a>平水远矣</h1><p>人生就像一碗盛满的水，唯有把水端平，才走得远。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>赶紧早点睡咯</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_4.png&quot; alt=&quot;凉宫春日&amp;amp;长门有希&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
