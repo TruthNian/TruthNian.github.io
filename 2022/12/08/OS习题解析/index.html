@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言因为快到期末考试了，所以需要好好复习，争取考高分吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS习题解析">
+<meta property="og:url" content="http://example.com/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言因为快到期末考试了，所以需要好好复习，争取考高分吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-09T07:27:13.524Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>OS习题解析 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">78</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OS习题解析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-08 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-08T00:00:00+08:00">2022-12-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-09 15:27:13" itemprop="dateModified" datetime="2022-12-09T15:27:13+08:00">2022-12-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index"><span itemprop="name">OS</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/%E4%B9%A0%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">习题</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>7.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为快到期末考试了，所以需要好好复习，争取考高分吧。</p>
+<span id="more"></span>
+<h1 id="习题解析"><a href="#习题解析" class="headerlink" title="习题解析"></a>习题解析</h1><ul>
+<li>说明：</li>
+</ul>
+<ol>
+<li>不是全部题，只写本人不会的以及需要思考的题。</li>
+<li>选择题不写选项，因为懒</li>
+<li>试卷来源于打印店</li>
+</ol>
+<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><ol>
+<li><p>若处理器有32位地址，则它的虚拟地址空间为（）字节。<br>解析：<br>虚拟地址对应于物理存储空间的大小，因而可以虚拟出看起来很大的内存空间，这里虚拟地址的地址结构是：<br>31—页号—12—位移量w—0,这里的地址长度正好是操作系统的内存位数，所以可以知道最大寻址为2的32次方b,对应于kb,mb,gb的换算式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2^10b = 1kb</span><br><span class="line">2^20b = 1mb = 1kb*2^10</span><br><span class="line">2^30b = 1gb = 1mb*2^10</span><br><span class="line">这里2^32 = 2^2*1gb  = 4gb</span><br><span class="line">答案：4GB，选B</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>支持程序浮动的地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
+</li>
+<li><p>UNIX中的文件系统采用（）<br>解析：<br>按逻辑结构划分，Unix中的文件系统采用流式文件；而按物理结构划分，则是索引文件。<br>答案：流式文件，选D</p>
+</li>
+<li><p>段页式管理每取一数据，要访问（）次内存。<br>解析：<br>一般需要访问3次以上的内存：<br>第1次是由段表地址寄存器得段表始址后访问段表，由此取出对应段的页表在内存中的地址。<br>第2次则是访问页表得到所要访问的物理地址。<br>第3次才能访问真正需要访问的物理单元。<br>答案：3，选C</p>
+</li>
+<li><p>文件系统的主要目的是（）<br>解析：<br>文件系统是操作系统用来组织和管理存储设备或磁盘分区上的文件的数据结构和方法；即在存储设备上组织和 管理文件 的方法。 操作系统中负 责管理和存储文件信息的软件机构即为文件管理系统，简称为“文件系统”。文件系统主要由三部分组成：文件系统接口，对对象操纵还有管理的软件集合，对象及属性。<br>从操作系统的角度来看，文件系统是对文件存储设备的空间进行组织、分配，负责文件存储并且对存入的文件进行保护和检索的系统。<br>答案：实现对文件的按名存取，选A</p>
+</li>
+<li><p>某基于动态分区存储管理的计算机，其主存容量为55MB (初始为空闲)，采用最佳适配(Best Fit)算法，分配和释放的顺序为 ： 分配15MB ，分配30MB，释放15MB，分配8MB，分配6MB ，此时主存中最大空闲分区的大小是()<br>解析：<br>最佳适应算法（BF）：每次为作业分配内存时总是把能满足要求又是最小的空闲分区分配给作业。<br>其主存容量为55mb(初试为空间)，<br>第一步分配15MB以后还有55MB－15MB＝40MB，<br>第二步分配30MB以后还有 40MB－30MB＝10MB，<br>第三步释放15MB以后有两个空闲区15MB，10MB，<br>第四步分配8MB，则空闲区为15MB，2MB，<br>第五步分配 6MB，则空闲区为9MB，2MB。<br>答案：9MB，选B</p>
+</li>
+<li><p>设计批处理多道系统时，首先要考虑的是（）<br>解析：<br>多道批处理系统：<br>优点：资源利用率大幅提升，系统吞吐量增大<br>缺点：用户响应时间长，没有交互功能。<br>答案：系统效率和吞吐量，选B</p>
+</li>
+<li><p>进程调度的对象和任务分别是（）<br>解析：<br>CPU调度与执行的基本对象应该为线程。而不是作业。没有从后备作业中选定调度策略上CPU这种说法，进程应该是从就绪状态通过分配内存并调度进入CPU执行状态的。<br>答案：进程，从就绪队列中按一定的调度策略选择一个作业占用CPU。 选C</p>
+</li>
+<li><p>一种既有利于短小作业又兼顾到长作业的作业调度算法是（）<br>解析：<br>最高响应比优先算法等待时间相同时，要求服务时间愈短，优先权愈高，因而该算法有利于短作业；<br>对于长作业，作业的优先级可以随等待时间的增加而提高，当其等待时间足够长时，其优先级便可升到很高，从而获得处理机。<br>因此该算法即有利于短作业又兼顾到了长作业。<br>答案：最高响应比优先，选C</p>
+</li>
+<li><p>两个进程合作完成任务。在并发执行中，一个进程要等待其合作伙伴发来消息，或者建立某个条件后再向前执行，这种制约性合作关系被称为进程的（）<br>解析：<br>进程的同步（Synchronization）是解决进程间协作关系( 直接制约关系) 的手段。<br>进程同步指两个以上进程基于某个条件来协调它们的活动。一个进程的执行依赖于另一个协作进程的消息或信号，当一个进程没有得到来自于另一个进程的消息或信号时则需等待，直到消息或信号到达才被唤醒。<br>直接制约关系：指一个进程执行完后，另一个进程才能开始，否则不能开始。<br>答案：同步，选B</p>
+</li>
+<li><p>当每类资源只有一个个体时，下列说法不正确的是（）<br>A 有环必死锁 	B 死锁必有环 	C 有环不一定死锁 		D 被锁者一定全在环中<br>解析：<br>当每个资源类型只有一个实例，则有环等价于死锁。<br>当存在资源类型有多个实例，则死锁必有环，有环不一定死锁。<br>答案：选C</p>
+</li>
+<li><p>在现代操作系统中引入了（），从而使并发和共享成为了可能。<br>答案：多道程序，选D</p>
+</li>
+<li><p>设有3个作业，它们同时到达，运行时间分别为T1，T2和T3，且T1≤T2≤T3，若它们在单处理机系统中按单道运行，采用短作业优先调度算法，则平均周转时间为（）<br>解析：<br>周转时间是：程序从进入系统到完成的时间总量<br>因为是单道的，所以只能一个一个地执行，又是按照最短时间优先执行，因此，执行T1花费总时间是T1,执行T2花费总时间是T1+T2(T1是等待的时间)，执行T3花费的总时间是T1+T2+T3,(T1+T2)是等待的时间，故而，总的平均周转时间是三者之和除以三。<br>答案：T3/3+2*T2/3+T1，选D</p>
+</li>
+<li><p>若系统中有五台绘图仪，有多个进程均需要使用两台，规定每个进程一次仅允许申请一台，则至多允许（）个进程参与竞争，而不会发生死锁。<br>解析：<br>4个进程，当5个进程的时候如果都同时申请到了1台，就发生死锁了。如果是4个进程，那必然有一个能申请到2台，使资源能够得到释放。<br>答案：4，选D</p>
+</li>
+<li><p>CPU输出数据速度远远高于打印机的打印速度，为解决矛盾，可采用（）<br>解析：<br>覆盖技术和虚拟技术主要是解决内存不足的问题，当有大文件、程序需要在内存处理时，可以用到覆盖技术和虚拟技术，并行技术主要用于多核的 CPU 或者多 IO 总线上并行处理。<br>答案：缓冲技术，选B</p>
+</li>
+<li><p>为了允许不同用户的文件具有相同的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
+</li>
+<li><p>在可变分区存储管理中，最优适应分配算法要求对空闲区表项按（）排列<br>解析：</p>
+</li>
+</ol>
+<ul>
+<li>首次适应算法：按照首址递增的方式来排序。这种方式的特点是：当用户查找空闲区表时，他是从低地址空间开始查找的，所以他是尽可能地先使用低地址空间。但需要较大分区时在高地址空间有较大的满足可能性。</li>
+<li>最佳适应法：按照大小递增的方式排序。这种方法的特点是：尽可能地先使用较小的空闲区，保留较大的空闲区。当需要较大分区时有较大的满足可能性。</li>
+<li>最坏适应法：空闲区表按大小递减排序。尽可能地先使用较大的空闲区，大空闲区分割后剩下部分还是很大，还能装下较大的程序。所以最坏适应法未必最坏。仅作一次查找就可以找到所要分区。<br>因此在最有适应分配算法中对空闲区表项是按照尺寸从小到大进行排序的。<br>答案：尺寸从小到大，选C</li>
+</ul>
+<ol start="18">
+<li><p>支持程序浮动地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。<br>存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
+</li>
+<li><p>在可变式分区分配方案中，某一作业完成后，系统收回其主存空间，并与相邻空闲区合并，为此需修改空闲区表，造成空闲区数减1的情况是（）<br>解析：<br>无上邻空闲区，也无下邻空闲区：这时应该是空闲区数加 1<br>有上邻空闲区，但无下邻空闲区；有下邻空闲区，但无上邻空闲区：这时空闲区数不变<br>有下邻空闲区，也有上邻空闲区：这时空闲区数减 1<br>答案：有下邻空闲区，也有上邻空闲区。选D</p>
+</li>
+<li><p>在下面关于虚拟存储器的叙述中，正确的是（）<br>A 要求程序运行前必须全部装入内存且在运行过程中一直驻留在内存<br>B 要求程序运行前不必全部装入内存且在运行过程中不必一直驻留在内存<br>C 要求程序运行前不必全部装入内存但是在运行过程中必须一直驻留在内存<br>D 要求程序运行前必须全部装入内存但在运行过程中不必一直驻留在内存<br>解析：<br>虚拟存储器基于局部性原理，在程序运行时，可以将程序的一部分装入内存，而将其余部分留在外存，就可以启动程序执行。在程序执行过程中，当访问的信息不在内存时，由操作系统将所需的部分调入内存，然后继续执行。另一方面，操作系统将内存中暂时不使用的内容换出到外存上，从而腾出空间存放将要调入的信息。<br>答案：选B</p>
+</li>
+<li><p>文件系统中用（）管理文件。<br>解析：<br>文件系统属于操作系统中的一个重要组成部分，负责信息的组织、存储和访问，提供高效快速和方便访问功能。操作系统以文件方式管理计算机软件资源和被管理的文件和数据结构（目录、索引表等）的集合<br>选项A：进程控制块 用来管理进程，如程序计数器、进程状态、CPU暂存器、CPU排班法、存储器管理、输入输出状态等。<br>选项B：目录 实现文件的按名存取管理，系统中保存了海量文件需要组织管理，磁盘可以分为若干个分区，每个分区都包含了存储在分区中的文件的信息，这些信息保存在设备目录中。<br>选项C：外页表 是虚页号与实际地址的对应表，主要功能是实现虚地址到实地址的转化。<br>选项D：软硬件结合的方法 是笼统的计算机硬件和软件的结合，和本题意不太符合。<br>答案：目录，选D</p>
+</li>
+<li><p>在多进程的并发系统中，肯定不会因竞争（）而产生死锁。<br>解析：</p>
+</li>
+</ol>
+<ul>
+<li>竞争资源引起进程死锁<br>当系统中供多个进程共享的资源如打印机、公用队列的等，其数目不足以满足诸进程的需要时，会引起诸进程对资源的竞争而产生死锁。 </li>
+<li>可剥夺资源和不可剥夺资源<br>系统中的资源可以分为两类，一类是可剥夺资源，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺。例如，优先权高的进程可以剥夺优先权低的进程的处理机。又如，内存区可由存储器管理程序，把一个进程从一个存储区移到另一个存储区，此即剥夺了该进程原来占有的存储区，甚至可将一进程从内存调到外存上，可见，CPU和主存均属于可剥夺性资源，<strong>可剥夺资源不会产生死锁</strong>。另一类资源是不可剥夺资源，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如磁带机、打印机等。</li>
+<li>竞争不可剥夺资源<br>在系统中所配置的不可剥夺资源，由于它们的数量不能满足诸进程运行的需要，会使进程在运行过程中，因争夺这些资源而陷于僵局。例如，系统中只有一台打印机R1和一台磁带机R2，可供进程P1和P2共享。假定PI已占用了打印机R1，P2已占用了磁带机R2，若P2继续要求打印机R1，P2将阻塞；P1若又要求磁带机，P1也将阻塞。于是，在P1和P2之间就形成了僵局，两个进程都在等待对方释放自己所需要的资源，但是它们又都因不能继续获得自己所需要的资源而不能继续推进，从而也不能释放自己所占有的资源，以致进入死锁状态。 </li>
+<li>竞争临时资源<br>上面所说的打印机资源属于可顺序重复使用型资源，称为永久资源。还有一种所谓的临时资源，这是指由一个进程产生，被另一个进程使用，短时间后便无用的资源，故也称为消耗性资源，如硬件中断、信号、消息、缓冲区内的消息等，它也可能引起死锁。例如，SI，S2，S3是临时性资源，进程P1产生消息S1，又要求从P3接收消息S3；进程P3产生消息S3，又要求从进程P2处接收消息S2；进程P2产生消息S2，又要求从P1处接收产生的消息S1。如果消息通信按如下顺序进行：<br>P1: ···Relese（S1）；Request（S3）； ···<br>P2: ···Relese（S2）；Request（S1）； ···<br>P3: ···Relese（S3）；Request（S2）； ···<br>并不可能发生死锁。但若改成下述的运行顺序：<br>P1: ···Request（S3）；Relese（S1）；···<br>P2: ···Request（S1）；Relese（S2）； ···<br>P3: ···Request（S2）；Relese（S3）； ···<br>则可能发生死锁。</li>
+<li>进程推进顺序不当引起死锁<br>由于进程在运行中具有异步性特征，这可能使P1和P2两个进程按下述两种顺序向前推进。<br>1） 进程推进顺序合法<br>当进程P1和P2并发执行时，如果按照下述顺序推进：P1：Request（R1）； P1：Request（R2）； P1: Relese（R1）；P1: Relese（R2）； P2：Request（R2）； P2：Request（R1）； P2: Relese（R2）；P2: Relese（R1）；这两个进程便可顺利完成，这种不会引起进程死锁的推进顺序是合法的。<br>2） 进程推进顺序非法<br>若P1保持了资源R1,P2保持了资源R2，系统处于不安全状态，因为这两个进程再向前推进，便可能发生死锁。例如，当P1运行到P1：Request（R2）时，将因R2已被P2占用而阻塞；当P2运行到P2：Request（R1）时，也将因R1已被P1占用而阻塞，于是发生进程死锁。<br>答案：CPU，选C</li>
+</ul>
+<ol start="23">
+<li><p>程序员利用系统调用打开I&#x2F;O设备时，通常使用的设备标识（）<br>解析：<br>设备管理具有设备独立性的特点，操作系统以系统调用方式来请求某类设备时，使用的是逻辑设备名。而在程序实际执行时，将逻辑设备名转换为对应的物理设备名。<br>答案：逻辑设备名，选D</p>
+</li>
+<li><p>分段存储管理系统中，地址长度为32位，其中段号占8位，则段长最大（）<br>解析：<br>分段存储管理中，逻辑地址分为两部分，段号和段内位移，地址总长度为32位．段号占了8位，则剩下24位表示段内位移的，则最大段长为2^24字节。<br>答案：2^24字节，选C</p>
+</li>
+<li><p>设与某资源相关联的信号量初值为3，当前值为1，若M表示该资源的可用个数，N表示等待资源的进程数，则M，N分别是（）<br>解析：<br>信号量的初值表示系统中某类资源的数目，已知为3；<br>信号量的值小于等于0时，表示该类资源已分配完毕，此时信号量的绝对值表示在该信号量链表中已阻塞进程的数目。<br>信号量的值大于0时，表示该类资源还没有完全分配完，此时信号量的值表示该资源的可用个数。<br>信号量的当前值为1，大于0，则M表示该资源的可用个数为1，N表示等待资源的进程数为0。<br>答案：1，0  选A</p>
+</li>
+<li><p>某计算机系统中有8台打印机，有K个进程竞争使用，每个进程最多需要3台打印机。该系统可能会发生死锁的K的最小值（）<br>解析：<br>由于每个进程最多需要3台打印机，总共有8台打印机。<br>当有3个进程竞争使用时，每个进程能分配打印机数分别为3，3，2。有进程能释放资源，不会发生死锁。<br>当有4个进程竞争使用时，每个进程能分配2台打印机，不足以释放资源，即发生死锁。<br>因此最小值为4。<br>总结：用系统资源n-1除以进程最多需要的资源数m-1得到的结果向下取整的结果为不发生死锁的最大进程数。<br>答案：4，选C</p>
+</li>
+<li><p>设文件F1当前引用计数值为1，先建立F1的符号链接文件F2，再建立F1的硬链接文件F3，然后删除F1。此时F2和F3的引用计数值分别是（）<br>解析：<br>硬链接，同时改变源文件和链接文件连接数（+1），其实是同一个文件，文件类型是普通文件。<br>软链接，也叫符号链接，创建新的链接文件，文件类型，链接文件（l），是一个全新的文件，相当于快捷方式，不改变源文件链接数。<br>答案：1，1。选C</p>
+</li>
+<li><p>当进程因时间片用完而让出处理机时，该进程应转变为（）状态。<br>解析：<br><strong>进程调度的时机</strong><br>进程调度发生的时机（也称为调度点）与进程的状态变化有直接的关系。回顾进程状态变化图，我们可以看到进程调度的时机直接与进程在运行态&lt;--&gt;退出态&#x2F;就绪态&#x2F;阻塞态的转变时机相关。简而言之，引起进程调度的时机可归结为以下几类：</p>
+</li>
+</ol>
+<ul>
+<li>正在执行的进程执行完毕，需要选择新的就绪进程执行。</li>
+<li>正在执行的进程调用相关系统调用（包括与I/O操作，同步互斥操作等相关的系统调用）导致需等待某事件发生或等待资源可用，从而将白己阻塞起来进入阻塞状态。</li>
+<li>正在执行的进程主动调用放弃CPU的系统调用，导致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
+<li>等待事件发生或资源可用的进程等待队列，从而导致进程从阻塞态回到就绪态，并可参与到调度中。</li>
+<li>正在执行的进程的时间片已经用完，致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
+<li>在执行完系统调用后准备返回用户进程前的时刻，可调度选择一新用户进程执行</li>
+<li>就绪队列中某进程的优先级变得高于当前执行进程的优先级，从而也将引发进程调度。</li>
+<li>有序列表内容<br>答案：就绪，选B</li>
+</ul>
+<ol start="29">
+<li><p>文件的保密是指防止文件被（）<br>解析：<br>文件的保护:防止文件被破坏。<br>文件的保密:防止文件被窃取。<br>答案：窃取，选C</p>
+</li>
+<li><p>为了允许不同用户的文件具有相通的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/" title="OS习题解析">http://example.com/2022/12/08/OS习题解析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"><i class="fa fa-tag"></i> OS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/07/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/" rel="prev" title="文件包含漏洞">
+      <i class="fa fa-chevron-left"></i> 文件包含漏洞
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/09/SSRF/" rel="next" title="SSRF服务端请求伪造">
+      SSRF服务端请求伪造 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">习题解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">选择题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (台北標準時間) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">148k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:14</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

