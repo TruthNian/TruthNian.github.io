@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/simg/ssrf_4.png">
 <meta property="og:image" content="http://example.com/simg/ssrf_5.png">
 <meta property="article:published_time" content="2022-12-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-09T16:58:11.839Z">
+<meta property="article:modified_time" content="2022-12-09T17:17:38.283Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="SSRF">
 <meta name="twitter:card" content="summary">
@@ -134,17 +134,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">23</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">24</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">78</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-10 00:58:11" itemprop="dateModified" datetime="2022-12-10T00:58:11+08:00">2022-12-10</time>
+                <time title="修改时间：2022-12-10 01:17:38" itemprop="dateModified" datetime="2022-12-10T01:17:38+08:00">2022-12-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,7 +261,7 @@
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -410,7 +410,8 @@ gopher发送get请求</li>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192。168。0。1</span><br></pre></td></tr></table></figure>
 
 <h2 id="xip-io和xip-name"><a href="#xip-io和xip-name" class="headerlink" title="xip.io和xip.name"></a>xip.io和xip.name</h2><p><strong>xip.io</strong> 是一个提供通配符 DNS 解析的魔法域名。你可以无需配置，将自定义的任何域名解析到指定的 IP 地址。假设你的 IP 地址是 10.0.0.1，你只需使用 前缀域名+IP地址+xip.io 即可完成相应自定义域名解析。<br><strong>xip.name</strong> 是受 xip.io 启发，使用 Golang 开发的一个支持通配符的 DNS 服务器。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1825757">详细解释</a></p>
-<h2 id="Enclosed-alphanumerics字符集绕过"><a href="#Enclosed-alphanumerics字符集绕过" class="headerlink" title="Enclosed alphanumerics字符集绕过"></a>Enclosed alphanumerics字符集绕过</h2><p>可在该网站挑选合适的字符进行替代：<a target="_blank" rel="noopener" href="https://www.mp51.vip/Code/AllUniCode?quwei=2460-24FF">替代字符</a></p>
+<h2 id="利用IPv6"><a href="#利用IPv6" class="headerlink" title="利用IPv6"></a>利用IPv6</h2><p>有些服务没有考虑IPv6的情况，但是内网又支持IPv6，则可以使用IPv6的本地IP如 <code>[::] 0000::1</code> 或IPv6的内网域名来绕过过滤。</p>
+<h2 id="利用IDN"><a href="#利用IDN" class="headerlink" title="利用IDN"></a>利用IDN</h2><p>一些网络访问工具如Curl等是支持国际化域名（Internationalized Domain Name，IDN）的，国际化域名又称特殊字符域名，是指部分或完全使用特殊的文字或字母组成的互联网域名。<br>在这些字符中，部分字符会在访问时做一个等价转换。<br>可在该网站挑选合适的字符进行替代：<a target="_blank" rel="noopener" href="https://www.mp51.vip/Code/AllUniCode?quwei=2460-24FF">替代字符</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ⓌⓌⓌ.ⓑⓐⓘⓓⓤ.ⓒⓞⓜ 完全等价于 https://www.baidu.com</span><br></pre></td></tr></table></figure>
 <p>当然，适用于域名而不适用与直接IP访问</p>
 <h2 id="DNS重绑定"><a href="#DNS重绑定" class="headerlink" title="DNS重绑定"></a>DNS重绑定</h2><p>对于浏览器来说，两次访问的都是同一域名，是符合浏览器的同源策略的，但是第二次访问解析到其他IP，调用到了其他资源。这样的行为被称之为域名重新绑定攻击（DNS ReBinding）。</p>
@@ -514,7 +515,10 @@ gopher发送get请求</li>
     <a href="/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/" rel="prev" title="OS习题解析">
       <i class="fa fa-chevron-left"></i> OS习题解析
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/" rel="next" title="RCE漏洞">
+      RCE漏洞 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -573,7 +577,7 @@ gopher发送get请求</li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8D%B1%E5%AE%B3"><span class="nav-number">3.</span> <span class="nav-text">漏洞危害</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">漏洞场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">利用方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#file-get-contents"><span class="nav-number">6.1.</span> <span class="nav-text">file_get_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsockopen"><span class="nav-number">6.2.</span> <span class="nav-text">fsockopen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl-exec"><span class="nav-number">6.3.</span> <span class="nav-text">curl_exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">相关协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#File%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.1.</span> <span class="nav-text">File协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.2.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.3.</span> <span class="nav-text">dict协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gopher%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.4.</span> <span class="nav-text">gopher协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%94%BB%E5%87%BB"><span class="nav-number">7.5.</span> <span class="nav-text">Redis未授权攻击</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%89%8B%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">绕过手法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-number">8.1.</span> <span class="nav-text">@绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E7%BB%95%E8%BF%87"><span class="nav-number">8.2.</span> <span class="nav-text">进制绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%BB%95%E8%BF%87-amp-%E7%9F%AD%E7%BD%91%E5%9D%80%E7%BB%95%E8%BF%87"><span class="nav-number">8.3.</span> <span class="nav-text">重定向绕过&amp;短网址绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B7%E9%97%A8%E5%8D%8F%E8%AE%AE%E7%BB%95%E8%BF%87"><span class="nav-number">8.4.</span> <span class="nav-text">冷门协议绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%94%A8%E6%B3%95%E7%BB%95%E8%BF%87"><span class="nav-number">8.5.</span> <span class="nav-text">特殊用法绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xip-io%E5%92%8Cxip-name"><span class="nav-number">8.6.</span> <span class="nav-text">xip.io和xip.name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Enclosed-alphanumerics%E5%AD%97%E7%AC%A6%E9%9B%86%E7%BB%95%E8%BF%87"><span class="nav-number">8.7.</span> <span class="nav-text">Enclosed alphanumerics字符集绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="nav-number">8.8.</span> <span class="nav-text">DNS重绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="nav-number">9.</span> <span class="nav-text">SSRF的防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">10.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">11.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8D%B1%E5%AE%B3"><span class="nav-number">3.</span> <span class="nav-text">漏洞危害</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%9C%BA%E6%99%AF"><span class="nav-number">4.</span> <span class="nav-text">漏洞场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">利用方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">6.</span> <span class="nav-text">相关函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#file-get-contents"><span class="nav-number">6.1.</span> <span class="nav-text">file_get_contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsockopen"><span class="nav-number">6.2.</span> <span class="nav-text">fsockopen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#curl-exec"><span class="nav-number">6.3.</span> <span class="nav-text">curl_exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.</span> <span class="nav-text">相关协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#File%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.1.</span> <span class="nav-text">File协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.2.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.3.</span> <span class="nav-text">dict协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gopher%E5%8D%8F%E8%AE%AE"><span class="nav-number">7.4.</span> <span class="nav-text">gopher协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%94%BB%E5%87%BB"><span class="nav-number">7.5.</span> <span class="nav-text">Redis未授权攻击</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%95%E8%BF%87%E6%89%8B%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">绕过手法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%95%E8%BF%87"><span class="nav-number">8.1.</span> <span class="nav-text">@绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E7%BB%95%E8%BF%87"><span class="nav-number">8.2.</span> <span class="nav-text">进制绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%BB%95%E8%BF%87-amp-%E7%9F%AD%E7%BD%91%E5%9D%80%E7%BB%95%E8%BF%87"><span class="nav-number">8.3.</span> <span class="nav-text">重定向绕过&amp;短网址绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B7%E9%97%A8%E5%8D%8F%E8%AE%AE%E7%BB%95%E8%BF%87"><span class="nav-number">8.4.</span> <span class="nav-text">冷门协议绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%94%A8%E6%B3%95%E7%BB%95%E8%BF%87"><span class="nav-number">8.5.</span> <span class="nav-text">特殊用法绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xip-io%E5%92%8Cxip-name"><span class="nav-number">8.6.</span> <span class="nav-text">xip.io和xip.name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8IPv6"><span class="nav-number">8.7.</span> <span class="nav-text">利用IPv6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8IDN"><span class="nav-number">8.8.</span> <span class="nav-text">利用IDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="nav-number">8.9.</span> <span class="nav-text">DNS重绑定</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="nav-number">9.</span> <span class="nav-text">SSRF的防御</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">10.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">11.</span> <span class="nav-text">致谢</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -589,20 +593,20 @@ gopher发送get请求</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -660,13 +664,13 @@ gopher发送get请求</li>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">148k</span>
+    <span title="站点总字数">149k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:14</span>
+    <span title="站点阅读时长">2:16</span>
 </div>
 
 <!--
