@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-12-10T10:36:46.666Z</updated>
+  <updated>2022-12-10T18:16:49.592Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不知老之将至</title>
+    <link href="http://example.com/2022/12/10/Diary_1202/"/>
+    <id>http://example.com/2022/12/10/Diary_1202/</id>
+    <published>2022-12-09T16:00:00.000Z</published>
+    <updated>2022-12-10T18:16:49.592Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/%E8%99%B9%E5%A4%8F_1.png" alt="虹夏"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好多天没写了，主要是因为懒吧。今天也很迟了，还是要写，不能一直松懈下去。</p><h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>发愤忘食，乐以忘忧，不知老之将至云尔。<br>--孔子</p><h1 id="孔子的英文"><a href="#孔子的英文" class="headerlink" title="孔子的英文"></a>孔子的英文</h1><p>近来看到孔子的一句英文，但我实在想不起对应的中文原文是什么了，按理说应该有名啊，这里暂且写一下英文：<br>Our greatest glory is not in never falling, but in rising every time we fall.<br>以后有意再找找吧。</p><h1 id="记录近况"><a href="#记录近况" class="headerlink" title="记录近况"></a>记录近况</h1><p>约莫有十天没写了吧，从我因为住的楼里出现新冠阳性，到我从小道溜出学校住亲戚家，再到全校自愿返家，人走的差不多，最后寝室唯我一人。<br>大致上就是如此吧，流水账不必多言。</p><h1 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h1><p>由于六级推迟至明年3月初，我也从备考六级中解放出来，用更多精力去看web安全方面的内容。<br>不过学得太浅了，怎么说呢？看视频和博客，再自己写博客。也没怎么练习，很多东西一知半解，让我觉得轻飘飘的，看似把知识学进脑中，实则什么也不会。这种感觉很不好受。<br>还是需要，看视频，毕竟这样印象要深一些，而且必须要多进行实际练习，比如ctf，漏洞复现之类的。我将把大部分精力都放在实际练习上，知识的东西如果不会有效运用，终究是无趣的教条。<br>一个人住在寝室里，感觉自己就像在闭关修炼，其实感觉还不错？</p><h1 id="幸福的联系"><a href="#幸福的联系" class="headerlink" title="幸福的联系"></a>幸福的联系</h1><p>今天有人向我寻求问题的解答，大致是关于恋爱的事。<br>说着说着就谈到了幸福的问题。那人认为，幸福是每个人自己的，也即每个人的幸福是分开的，并不具有很强的联系。如果自己的幸福最大化，常常也会减损他人的幸福，也即是一种互斥的关系。<br>可在我看来，只有自己幸福最大化，才能让身边的人幸福。越是亲近的人，越会因我的幸福而变得幸福。也就是说，每个人的幸福之间具有很强的联系。倘若让他人伴我共赴地狱能使我幸福，那我会毫不犹豫邀请。因为我的幸福，即为我亲近之人的幸福。<br>常见的例子还有父母与孩子之间，孩子的幸福是父母的幸福。<br>但这个问题也是一个复杂的问题，比如身边的人关系亲疏是到什么程度，才会符合自己的幸福会给他人带来幸福？还有是些什么样的情形才符合？很多方面仍需思考，还不成熟。慢慢思考，以后专门写一篇文章吧。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我们都在等待，等待着别人来拯救我们自己。 --列夫·托尔斯泰</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E8%99%B9%E5%A4%8F_1.png&quot; alt=&quot;虹夏&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>RCE漏洞</title>
@@ -438,27 +461,6 @@
     <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
     
     <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>upload-labs_2</title>
-    <link href="http://example.com/2022/11/24/upload-labs_2/"/>
-    <id>http://example.com/2022/11/24/upload-labs_2/</id>
-    <published>2022-11-23T16:00:00.000Z</published>
-    <updated>2022-11-24T04:13:03.365Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关难度也不大，只是涉及到了新的知识点。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>测试<br>首先可以尝试传输文件。<br>当我传输一个txt文件时，提示类型错误，但这次和第一关不同，不是弹窗，而是页面直接提示，因此不是前端JavaScript验证。<br>这时我们查看源码，可以看到下面这一段：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><p>从这段代码可以看出，上传文件的途中验证了content-type，并且固定了上传文件类型。这里涉及到了MIME。<br>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的标准，用来表示文档、文件或字节流的性质和格式。<br>MIME 消息能包含文本、图像、音频、视频以及其他应用程序专用的数据。<br>浏览器通常使用 MIME 类型（而不是文件扩展名）来确定如何处理URL，因此 We b服务器在响应头中添加正确的 MIME 类型非常重要。如果配置不正确，浏览器可能会无法解析文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。<br>语法：<br>type&#x2F;subtype<br>用法：<br>客户端：<br>告诉服务端上传文件类型<br>告诉服务端可以接受文件类型<br>服务端：<br>告诉客户端响应数据类型<br>详细参见：<a href="https://www.runoob.com/http/mime-types.html">MIME 类型</a><br>因此可以通过改变content-type来让目标文件上传成功</p></li><li><p>尝试与抓包<br>burp抓包，将content-type更改为image&#x2F;png，然后放包，我们就看到文件上传成功了。<br>然后打开，显示没问题，最终成功！</p></li></ol><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，没什么难度。</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;这一关难度也不大，只是涉及到了新的知识点。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="upload-labs" scheme="http://example.com/categories/upload-labs/"/>
-    
-    
-    <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
     
   </entry>
   
