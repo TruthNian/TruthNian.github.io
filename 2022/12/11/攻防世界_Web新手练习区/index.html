@@ -21,26 +21,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言终于来到RCE了，感觉在漏洞中会很常见。">
+  <meta name="description" content="前言这是攻防世界一些比较简单的题，算是用来补充知识的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RCE漏洞">
-<meta property="og:url" content="http://example.com/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/index.html">
+<meta property="og:title" content="攻防世界_Web新手练习区">
+<meta property="og:url" content="http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/index.html">
 <meta property="og:site_name" content="Scammer">
-<meta property="og:description" content="前言终于来到RCE了，感觉在漏洞中会很常见。">
+<meta property="og:description" content="前言这是攻防世界一些比较简单的题，算是用来补充知识的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/simg/rce_1.png">
-<meta property="og:image" content="http://example.com/simg/rce_2.png">
-<meta property="og:image" content="http://example.com/simg/rce_3.png">
-<meta property="og:image" content="http://example.com/simg/rce_4.png">
-<meta property="og:image" content="http://example.com/simg/rce_5.png">
-<meta property="article:published_time" content="2022-12-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-11T09:17:48.397Z">
+<meta property="article:published_time" content="2022-12-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-12T09:32:32.230Z">
 <meta property="article:author" content="Bron">
-<meta property="article:tag" content="RCE">
+<meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/simg/rce_1.png">
 
-<link rel="canonical" href="http://example.com/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/">
+<link rel="canonical" href="http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/">
 
 
 <script id="page-configurations">
@@ -53,7 +47,7 @@
   };
 </script>
 <link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
-  <title>RCE漏洞 | Scammer</title>
+  <title>攻防世界_Web新手练习区 | Scammer</title>
   
 
 
@@ -199,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Elaina.png">
@@ -212,7 +206,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          RCE漏洞
+          攻防世界_Web新手练习区
         </h1>
 
         <div class="post-meta">
@@ -222,14 +216,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-12-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-10T00:00:00+08:00">2022-12-10</time>
+              <time title="创建时间：2022-12-11 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-11T00:00:00+08:00">2022-12-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-11 17:17:48" itemprop="dateModified" datetime="2022-12-11T17:17:48+08:00">2022-12-11</time>
+                <time title="修改时间：2022-12-12 17:32:32" itemprop="dateModified" datetime="2022-12-12T17:32:32+08:00">2022-12-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +231,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RCE/" itemprop="url" rel="index"><span itemprop="name">RCE</span></a>
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
                 </span>
             </span>
 
@@ -254,7 +248,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -273,64 +267,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于来到RCE了，感觉在漏洞中会很常见。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是攻防世界一些比较简单的题，算是用来补充知识的。</p>
 <span id="more"></span>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>RCE（remote command&#x2F;code execute），远程命令&#x2F;代码执行。RCE漏洞，可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。RCE分为远程命令执行ping和远程代码执行evel。</p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作接口。比如常见的路由器，防火墙，入侵检测等设备的web管理界面上。一般会给用户提供ping操作的web界面。<br>用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。如果设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交不符合预期的命令，并让后台执行，从而控制整个后台服务器。<br>现在很多企业开始实施自动化运维，大量系统操作会通过“自动化运维平台”进行操作。在这种平台上往往会出现远程系统命令执行漏洞。远程代码执行 同样的道理，因为需求设计，后台有时也会把用户的输入作为代码的一部分执行，也就造成RCE漏洞。比如代码执行的函数，不安全的反序列化等等。<br>因此，如果需要给前端用户提供操作类的API接口，一定要对接口输入的内容进行严格判断，比如实施严格的白名单策略会是一个比较好的办法。</p>
-<h1 id="漏洞分类"><a href="#漏洞分类" class="headerlink" title="漏洞分类"></a>漏洞分类</h1><h2 id="代码层过滤不严"><a href="#代码层过滤不严" class="headerlink" title="代码层过滤不严"></a>代码层过滤不严</h2><p>商业应用的一些核心代码封装在二进制文件中，在web应用中通过system函数来调用：</p>
-<pre><code>system(&quot;/bin/program --arg $arg&quot;);
-</code></pre>
-<h2 id="系统漏洞造成命令注入"><a href="#系统漏洞造成命令注入" class="headerlink" title="系统漏洞造成命令注入"></a>系统漏洞造成命令注入</h2><pre><code>比如：bash破壳漏洞（CVE-2014-6217）
-</code></pre>
-<h2 id="调用的第三方组件存在代码执行漏洞"><a href="#调用的第三方组件存在代码执行漏洞" class="headerlink" title="调用的第三方组件存在代码执行漏洞"></a>调用的第三方组件存在代码执行漏洞</h2><pre><code>如wordpress中用来处理图片的imageMagick组件
-Java中的命令执行漏洞（struts2/ElasticsearchGroovy等）
-ThinkPHP5.x的命令执行
-</code></pre>
-<h1 id="命令执行漏洞的利用条件"><a href="#命令执行漏洞的利用条件" class="headerlink" title="命令执行漏洞的利用条件"></a>命令执行漏洞的利用条件</h1><ol>
-<li>开发人员调用了能够执行系统命令的函数</li>
-<li>这个函数的参数可控（即用户能够控制）</li>
-<li>开发人员没有对该函数的参数进行过滤或过滤不严</li>
-</ol>
-<h1 id="可能存在命令执行漏洞的函数（PHP）"><a href="#可能存在命令执行漏洞的函数（PHP）" class="headerlink" title="可能存在命令执行漏洞的函数（PHP）"></a>可能存在命令执行漏洞的函数（PHP）</h1><h2 id="利用系统函数实现命令执行的函数"><a href="#利用系统函数实现命令执行的函数" class="headerlink" title="利用系统函数实现命令执行的函数"></a>利用系统函数实现命令执行的函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval(), assert(), preg_replace(), call_user_func()</span><br></pre></td></tr></table></figure>
-<p>如果页面存在以上函数且对用户输入没有作严格过滤，那么可能会造成远程命令执行漏洞，除此之外还有其它函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ob_start(), unserialize(), creat_function(), uasort(), uksort(), array_filter(), array_reduce()</span><br></pre></td></tr></table></figure>
-
-<h2 id="直接执行系统命令的代码函数"><a href="#直接执行系统命令的代码函数" class="headerlink" title="直接执行系统命令的代码函数"></a>直接执行系统命令的代码函数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system(), exec(), shell_exec(), passthru(), pcntl_exec(), popen(), proc_open(), 反引号</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="命令拼接符号"><a href="#命令拼接符号" class="headerlink" title="命令拼接符号"></a>命令拼接符号</h1><p>命令拼接符号可以连接多个命令，恶意命令通常拼接在正常命令后面。</p>
-<h2 id="Windows的系统命令拼接符"><a href="#Windows的系统命令拼接符" class="headerlink" title="Windows的系统命令拼接符"></a>Windows的系统命令拼接符</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">拼接符 		示例 		解释</span><br><span class="line">&amp; 		A&amp;B 		无论A是false还是true，B都执行。即互不影响</span><br><span class="line">&amp;&amp; 		A&amp;&amp;B 		具有短路效果，A是false，B就不执行</span><br><span class="line">| 		A|B 		表示A命令语句的输出，作为B命令语句的输入执行。当A为false的时候将不会执行</span><br><span class="line">|| 		A||B 		表示A命令语句执行失败，然后才执行B命令语句</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux的系统命令拼接符"><a href="#Linux的系统命令拼接符" class="headerlink" title="Linux的系统命令拼接符"></a>Linux的系统命令拼接符</h2><h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><p>&amp;的作用是使命令在后台执行。只要在命令后面跟上一个空格和&amp;，可以一口气在后台运行多个命令。需要停止，就是kill -s 进程号。如下所示：<br><img src="/simg/rce_1.png" alt=" "></p>
-<h3 id=""><a href="#" class="headerlink" title=";"></a>;</h3><p>分号（;）作用是进行多条命令的无关联执行，每一条执行结果互不影响，示例如下：<br><img src="/simg/rce_2.png" alt=" "></p>
-<h3 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h3><p>&amp;&amp;的用法和功能与Windows相同，都是左边成功右边才能执行。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title="||"></a>||</h3><p>||的用法和功能与Windows相同，都是前面执行失败才执行后面。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title="()"></a>()</h3><p>如果想执行几条命令，则需要用命令分隔符分号隔开每条命令，并使用圆括号()把所有命令组合起来，示例如下：<br><img src="/simg/rce_3.png" alt=" "></p>
-<h2 id="常用命令总述"><a href="#常用命令总述" class="headerlink" title="常用命令总述"></a>常用命令总述</h2><p>使用时不要局限于单个的，简单的用法，因为很多过滤参数的方式都是识别对应的拼接符，所以要思维变通，很多时候，大量拼接符层层嵌套往往会有出其不意的效果<br>    比如上面这个圆括号的使用例子，意思就是当echo 1 执行成功后会执行后面的命令，把echo 1输出到 11.txt ，然后复制11.txt到根目录。 结合||和&amp;&amp;可以实现复杂的功能。</p>
-<h1 id="常用绕开防护的方法"><a href="#常用绕开防护的方法" class="headerlink" title="常用绕开防护的方法"></a>常用绕开防护的方法</h1><h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><ul>
-<li>常见通配符如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">符号 	含义</span><br><span class="line">? 		匹配单个字符，匹配多个字符需要多个?连用</span><br><span class="line">* 		*代表任意数量的字符</span><br><span class="line">[] 		代表一定有一个在括号内的字符（非任意字符），例如[abcd]代表一定有一个字符，可能是a,b,c,d这四个中任何一个</span><br></pre></td></tr></table></figure></li>
-<li>使用示例：<br>一个常用的读取密码命令如下：<br><code>cat /etc/passwd</code><br>可以搭配多种通配符使用。<br>使用?通配符后，可能会有多种变化，比如：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat /?tc/?as?wd</span><br><span class="line">cat /*tc/*as*wd</span><br></pre></td></tr></table></figure></li>
+<h1 id="view-source"><a href="#view-source" class="headerlink" title="view_source"></a>view_source</h1><p>直接按下F12，从Elements中找到flag</p>
+<h1 id="get-post"><a href="#get-post" class="headerlink" title="get_post"></a>get_post</h1><p>首先根据要求在搜索框后加上： <code>/?a=1</code>  然后提交<br>之后根据要求，先抓包，然后将首部的GET请求改为POST请求<br>再在下面添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">b=2</span><br></pre></td></tr></table></figure>
+<p>即可拿到flag</p>
+<p>关于post的更多知识可以看：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Sending_and_retrieving_form_data">GET&amp;POST</a></p>
+<h1 id="robots"><a href="#robots" class="headerlink" title="robots"></a>robots</h1><p>直接在url后面加上：<br><code>/robots.txt</code><br>然后把获得的php文件名加在url后面，即可拿到flag</p>
+<h1 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h1><p>需要寻找index.php的备份文件，那么常见的备份文件后缀：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar, tae.gz, zip, rar, bak, dat, txt, log, mdb, bz2, tar.bz2, 7z</span><br></pre></td></tr></table></figure>
+<p>常见的网站源码备份文件名：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web, website, backup, back, www, wwwroot, temp</span><br></pre></td></tr></table></figure>
+<p>更详细的解释可以看看：<a target="_blank" rel="noopener" href="https://mayi077.gitee.io/2020/03/04/%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/">备份文件</a><br>bak是自动创建的备份文件，因此首先尝试，出现下载框，下载后记事本方式打开，得到flag</p>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>明示了与cookie相关，所以我们直接查看cookie，发现指示我们打开cookie.php页面，打开后又发现页面写着看http response，所以我们抓包后，send to repeater，看响应，最终拿到flag</p>
+<h1 id="disabled-button"><a href="#disabled-button" class="headerlink" title="disabled_button"></a>disabled_button</h1><p>不能按的按钮，那我们直接按下F12检查页面，发现在按钮处有个disabled。<br>这里浏览器之间有个有趣的小差别：<br>FireFox是直接删除disabled元素即可显示flag<br>chrome需要把disabled改为enabled才能显示flag</p>
+<h1 id="simple-js"><a href="#simple-js" class="headerlink" title="simple_js"></a>simple_js</h1><p>打开后有一个输入密码的弹窗，没什么用。<br>按下F12查看元素，发现有一段script代码，我们仔细查看，发现一串可疑的16进制数据。<br>将16进制数据拿去转码为10进制，再通过python的一段代码编写（s数组内即为转码后的10进制数据）：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="number">55</span>,<span class="number">56</span>,<span class="number">54</span>,<span class="number">79</span>,<span class="number">115</span>,<span class="number">69</span>,<span class="number">114</span>,<span class="number">116</span>,<span class="number">107</span>,<span class="number">49</span>,<span class="number">50</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(i), end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>成功得到flag。</p>
+<h1 id="xff-referer"><a href="#xff-referer" class="headerlink" title="xff_referer"></a>xff_referer</h1><ul>
+<li>xff 是http的拓展头部，作用是使Web服务器获取访问用户的IP真实地址（可伪造）。由于很多用户通过代理服务器进行访问，服务器只能获取代理服务器的IP地址，而xff的作用在于记录用户的真实IP，以及代理服务器的IP。<br>格式为：X-Forwarded-For: 本机IP, 代理1IP, 代理2IP, 代理2IP</li>
+<li>referer 是http的拓展头部，作用是记录当前请求页面的来源页面的地址。服务器使用referer确认访问来源，如果referer内容不符合要求，服务器可以拦截或者重定向请求。</li>
 </ul>
-<h2 id="连接符"><a href="#连接符" class="headerlink" title="连接符"></a>连接符</h2><ul>
-<li>常见连接符<br><code>单引号（&#39;）双引号（&quot;）反斜杠（\）  如：/&#39;b&#39;i&#39;n&#39;/&#39;c&#39;a&#39;t/&#39;e&#39;t&#39;c&#39;/&#39;p&#39;a&#39;s&#39;s&#39;w&#39;d</code></li>
-<li>使用示例：<br><img src="/simg/rce_4.png" alt=" "></li>
+<p>题目明示伪造xff和referer，那么我们直接打开页面抓包，在包的首部添加字段：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Referer:https://www.google.com</span><br><span class="line">X-Forwarded-for:123.123.123.123</span><br></pre></td></tr></table></figure>
+<p>即可得到flag</p>
+<h1 id="weak-auth"><a href="#weak-auth" class="headerlink" title="weak_auth"></a>weak_auth</h1><p>这一关用到了弱口令爆破。<br>但其实之前我并没有学这个知识，所以一开始很迷惑，但还好，这部分知识并不复杂。<br>是一个登录界面，直接抓包。<br>抓包后发送到Intruder。看到Positions，我们会发现需要爆破的地方被用另一种颜色涂抹了，由于只需要爆破密码。所以把其它位置的$符号去掉，只保留密码处的，然后用户名是admin。<br>之后看到Payloads那里，我们需要一个字典来爆破，这样会比较高效。在Payload Options处导入我们准备好的字典后，直接开始攻击。<br>很快，我们发现payloads为123456处那里的字段长度与别的不同，我们检查这个包，发现response里面就有flag。</p>
+<h1 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h1><p>这一关打开是一个ping命令，然后结合题目信息，我们可以从远程命令执行入手（RCE）。<br>那么Windows远程命令常用的有 <code>&amp;  &amp;&amp;  |  ||</code><br>随便用那个都行，直接输入以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 &amp;&amp; find / -name &quot;flag*&quot;</span><br></pre></td></tr></table></figure>
+<p>可以找到一个名为 <code>flag.txt</code>  的文件，于是我们可以执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 &amp;&amp; cat /home/flag.txt</span><br></pre></td></tr></table></figure>
+<p>即可得到flag</p>
+<h1 id="simple-php"><a href="#simple-php" class="headerlink" title="simple_php"></a>simple_php</h1><p>本题的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;config.php&quot;</span>);</span><br><span class="line"><span class="variable">$a</span>=@<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span>=@<span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span>==<span class="number">0</span> <span class="keyword">and</span> <span class="variable">$a</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$b</span>&gt;<span class="number">1234</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这道题主要是考察对php的熟悉程度，虽然不难，但基础不好也容易掉入陷阱。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show_source 	show_source() 函数对文件进行语法高亮显示,是 highlight_file() 的别名</span><br><span class="line">include 		include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中</span><br></pre></td></tr></table></figure>
+<p>代码搞清楚后，那么接下来看如何处理<br>要求是以get方式传入a,b参数，</p>
+<ul>
+<li>a的要求<br>值为0，且参数a本身不为flase<br>那么不能为数字0，因为会被解析为false<br>而我们知道字符型数据会被转化为0与数字比较，<br>因此随便填个字符即可满足要求</li>
+<li>b的要求<br>不能为数字，且值要大于1234<br>那么直接来个2345a</li>
 </ul>
-<h2 id="未初始化变量"><a href="#未初始化变量" class="headerlink" title="未初始化变量"></a>未初始化变量</h2><ul>
-<li>简介<br>未初始化的变量值都是null，例如a,a,a,b，在Linux环境下都输出为null，所以可以用未初始化变量加在一些命令的末尾，来绕过一些黑名单。</li>
-<li>使用示例<br><code>cat$a /etc$a/passwd$a</code><br><img src="/simg/rce_5.png" alt=" "></li>
-</ul>
-<h1 id="常见位置"><a href="#常见位置" class="headerlink" title="常见位置"></a>常见位置</h1><p>各种cms框架的命令执行漏洞是最多的，着重在这些地方找。除此之外就是插件位置，插件因为各种原因经常也需要执行系统命令。当然其它地方也有。</p>
-<h1 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h1><ol>
-<li>各种框架、插件等都可能出现命令执行，升级到新版本，多打补丁</li>
-<li>关注行业最新安全动态，一旦爆发命令执行漏洞，迅速修复，避免造成更大影响</li>
-<li>少用框架&#x2F;cms</li>
-<li>可以过滤一些符号从而减少一些危险</li>
-<li>安全配置好php相关参数<br>php配置文件里有个disable_functions的配置，这个禁止某些php函数，服务器便是用这个来禁止php的执行命令函数。<br>例如：disable_functions&#x3D;system,passthru,shell_exec,exec,popen便禁止了用这些函数来执行系统命令</li>
-<li>升级中间件</li>
-<li>严格控制传入变量，严禁使用魔法函数</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>大多只是看了，没有实际操作，得加强一下实战方面。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_63844103/article/details/126953630?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&utm_relevant_index=2">命令执行漏洞（RCE）详解</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46706771/article/details/118893434">RCE(远程代码执行漏洞)原理及漏洞利用</a></p>
+<p>所以最终结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a=a&amp;b=2345a</span><br></pre></td></tr></table></figure>
+<p>即可拿到flag</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本次总共11道题，每道题都非常简单，主要是考察基础知识，对于新手而言还是很有帮助的。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>正是简单才看出基础。</p>
 
     </div>
 
@@ -356,7 +337,7 @@ ThinkPHP5.x的命令执行
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/" title="RCE漏洞">http://example.com/2022/12/10/RCE漏洞/</a>
+    <a href="http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/" title="攻防世界_Web新手练习区">http://example.com/2022/12/11/攻防世界_Web新手练习区/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -407,7 +388,7 @@ ThinkPHP5.x的命令执行
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/RCE/" rel="tag"><i class="fa fa-tag"></i> RCE</a>
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
           </div>
 
         
@@ -416,13 +397,10 @@ ThinkPHP5.x的命令执行
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/09/SSRF/" rel="prev" title="SSRF服务端请求伪造">
-      <i class="fa fa-chevron-left"></i> SSRF服务端请求伪造
+    <a href="/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/" rel="prev" title="攻防世界_easyphp">
+      <i class="fa fa-chevron-left"></i> 攻防世界_easyphp
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/12/10/Diary_1202/" rel="next" title="不知老之将至">
-      不知老之将至 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -481,7 +459,7 @@ ThinkPHP5.x的命令执行
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%86%E7%B1%BB"><span class="nav-number">4.</span> <span class="nav-text">漏洞分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%B1%82%E8%BF%87%E6%BB%A4%E4%B8%8D%E4%B8%A5"><span class="nav-number">4.1.</span> <span class="nav-text">代码层过滤不严</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%BC%8F%E6%B4%9E%E9%80%A0%E6%88%90%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5"><span class="nav-number">4.2.</span> <span class="nav-text">系统漏洞造成命令注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E7%BB%84%E4%BB%B6%E5%AD%98%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="nav-number">4.3.</span> <span class="nav-text">调用的第三方组件存在代码执行漏洞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">命令执行漏洞的利用条件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E5%AD%98%E5%9C%A8%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%87%BD%E6%95%B0%EF%BC%88PHP%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">可能存在命令执行漏洞的函数（PHP）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E5%AE%9E%E7%8E%B0%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">6.1.</span> <span class="nav-text">利用系统函数实现命令执行的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E7%9A%84%E4%BB%A3%E7%A0%81%E5%87%BD%E6%95%B0"><span class="nav-number">6.2.</span> <span class="nav-text">直接执行系统命令的代码函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%8B%BC%E6%8E%A5%E7%AC%A6%E5%8F%B7"><span class="nav-number">7.</span> <span class="nav-text">命令拼接符号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E6%8B%BC%E6%8E%A5%E7%AC%A6"><span class="nav-number">7.1.</span> <span class="nav-text">Windows的系统命令拼接符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4%E6%8B%BC%E6%8E%A5%E7%AC%A6"><span class="nav-number">7.2.</span> <span class="nav-text">Linux的系统命令拼接符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#amp"><span class="nav-number">7.2.1.</span> <span class="nav-text">&amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">7.2.2.</span> <span class="nav-text">;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#amp-amp"><span class="nav-number">7.2.3.</span> <span class="nav-text">&amp;&amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-1"><span class="nav-number">7.2.4.</span> <span class="nav-text">||</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#-2"><span class="nav-number">7.2.5.</span> <span class="nav-text">()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E8%BF%B0"><span class="nav-number">7.3.</span> <span class="nav-text">常用命令总述</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%95%E5%BC%80%E9%98%B2%E6%8A%A4%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">常用绕开防护的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-number">8.1.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E7%AC%A6"><span class="nav-number">8.2.</span> <span class="nav-text">连接符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%98%E9%87%8F"><span class="nav-number">8.3.</span> <span class="nav-text">未初始化变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BD%8D%E7%BD%AE"><span class="nav-number">9.</span> <span class="nav-text">常见位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88"><span class="nav-number">10.</span> <span class="nav-text">修复方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">11.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">12.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#view-source"><span class="nav-number">2.</span> <span class="nav-text">view_source</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#get-post"><span class="nav-number">3.</span> <span class="nav-text">get_post</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#robots"><span class="nav-number">4.</span> <span class="nav-text">robots</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#backup"><span class="nav-number">5.</span> <span class="nav-text">backup</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie"><span class="nav-number">6.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#disabled-button"><span class="nav-number">7.</span> <span class="nav-text">disabled_button</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#simple-js"><span class="nav-number">8.</span> <span class="nav-text">simple_js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#xff-referer"><span class="nav-number">9.</span> <span class="nav-text">xff_referer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#weak-auth"><span class="nav-number">10.</span> <span class="nav-text">weak_auth</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#command-execution"><span class="nav-number">11.</span> <span class="nav-text">command_execution</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#simple-php"><span class="nav-number">12.</span> <span class="nav-text">simple_php</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">13.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">14.</span> <span class="nav-text">后记</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

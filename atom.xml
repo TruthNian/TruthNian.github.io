@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-12-11T10:04:54.404Z</updated>
+  <updated>2022-12-12T09:32:32.230Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>攻防世界_Web新手练习区</title>
+    <link href="http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/"/>
+    <id>http://example.com/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/</id>
+    <published>2022-12-10T16:00:00.000Z</published>
+    <updated>2022-12-12T09:32:32.230Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是攻防世界一些比较简单的题，算是用来补充知识的。</p><span id="more"></span><h1 id="view-source"><a href="#view-source" class="headerlink" title="view_source"></a>view_source</h1><p>直接按下F12，从Elements中找到flag</p><h1 id="get-post"><a href="#get-post" class="headerlink" title="get_post"></a>get_post</h1><p>首先根据要求在搜索框后加上： <code>/?a=1</code>  然后提交<br>之后根据要求，先抓包，然后将首部的GET请求改为POST请求<br>再在下面添加：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">b=2</span><br></pre></td></tr></table></figure><p>即可拿到flag</p><p>关于post的更多知识可以看：<a href="https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Sending_and_retrieving_form_data">GET&amp;POST</a></p><h1 id="robots"><a href="#robots" class="headerlink" title="robots"></a>robots</h1><p>直接在url后面加上：<br><code>/robots.txt</code><br>然后把获得的php文件名加在url后面，即可拿到flag</p><h1 id="backup"><a href="#backup" class="headerlink" title="backup"></a>backup</h1><p>需要寻找index.php的备份文件，那么常见的备份文件后缀：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar, tae.gz, zip, rar, bak, dat, txt, log, mdb, bz2, tar.bz2, 7z</span><br></pre></td></tr></table></figure><p>常见的网站源码备份文件名：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web, website, backup, back, www, wwwroot, temp</span><br></pre></td></tr></table></figure><p>更详细的解释可以看看：<a href="https://mayi077.gitee.io/2020/03/04/%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6/">备份文件</a><br>bak是自动创建的备份文件，因此首先尝试，出现下载框，下载后记事本方式打开，得到flag</p><h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>明示了与cookie相关，所以我们直接查看cookie，发现指示我们打开cookie.php页面，打开后又发现页面写着看http response，所以我们抓包后，send to repeater，看响应，最终拿到flag</p><h1 id="disabled-button"><a href="#disabled-button" class="headerlink" title="disabled_button"></a>disabled_button</h1><p>不能按的按钮，那我们直接按下F12检查页面，发现在按钮处有个disabled。<br>这里浏览器之间有个有趣的小差别：<br>FireFox是直接删除disabled元素即可显示flag<br>chrome需要把disabled改为enabled才能显示flag</p><h1 id="simple-js"><a href="#simple-js" class="headerlink" title="simple_js"></a>simple_js</h1><p>打开后有一个输入密码的弹窗，没什么用。<br>按下F12查看元素，发现有一段script代码，我们仔细查看，发现一串可疑的16进制数据。<br>将16进制数据拿去转码为10进制，再通过python的一段代码编写（s数组内即为转码后的10进制数据）：</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="number">55</span>,<span class="number">56</span>,<span class="number">54</span>,<span class="number">79</span>,<span class="number">115</span>,<span class="number">69</span>,<span class="number">114</span>,<span class="number">116</span>,<span class="number">107</span>,<span class="number">49</span>,<span class="number">50</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(i), end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure><p>成功得到flag。</p><h1 id="xff-referer"><a href="#xff-referer" class="headerlink" title="xff_referer"></a>xff_referer</h1><ul><li>xff 是http的拓展头部，作用是使Web服务器获取访问用户的IP真实地址（可伪造）。由于很多用户通过代理服务器进行访问，服务器只能获取代理服务器的IP地址，而xff的作用在于记录用户的真实IP，以及代理服务器的IP。<br>格式为：X-Forwarded-For: 本机IP, 代理1IP, 代理2IP, 代理2IP</li><li>referer 是http的拓展头部，作用是记录当前请求页面的来源页面的地址。服务器使用referer确认访问来源，如果referer内容不符合要求，服务器可以拦截或者重定向请求。</li></ul><p>题目明示伪造xff和referer，那么我们直接打开页面抓包，在包的首部添加字段：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Referer:https://www.google.com</span><br><span class="line">X-Forwarded-for:123.123.123.123</span><br></pre></td></tr></table></figure><p>即可得到flag</p><h1 id="weak-auth"><a href="#weak-auth" class="headerlink" title="weak_auth"></a>weak_auth</h1><p>这一关用到了弱口令爆破。<br>但其实之前我并没有学这个知识，所以一开始很迷惑，但还好，这部分知识并不复杂。<br>是一个登录界面，直接抓包。<br>抓包后发送到Intruder。看到Positions，我们会发现需要爆破的地方被用另一种颜色涂抹了，由于只需要爆破密码。所以把其它位置的$符号去掉，只保留密码处的，然后用户名是admin。<br>之后看到Payloads那里，我们需要一个字典来爆破，这样会比较高效。在Payload Options处导入我们准备好的字典后，直接开始攻击。<br>很快，我们发现payloads为123456处那里的字段长度与别的不同，我们检查这个包，发现response里面就有flag。</p><h1 id="command-execution"><a href="#command-execution" class="headerlink" title="command_execution"></a>command_execution</h1><p>这一关打开是一个ping命令，然后结合题目信息，我们可以从远程命令执行入手（RCE）。<br>那么Windows远程命令常用的有 <code>&amp;  &amp;&amp;  |  ||</code><br>随便用那个都行，直接输入以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 &amp;&amp; find / -name &quot;flag*&quot;</span><br></pre></td></tr></table></figure><p>可以找到一个名为 <code>flag.txt</code>  的文件，于是我们可以执行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 &amp;&amp; cat /home/flag.txt</span><br></pre></td></tr></table></figure><p>即可得到flag</p><h1 id="simple-php"><a href="#simple-php" class="headerlink" title="simple_php"></a>simple_php</h1><p>本题的代码：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;config.php&quot;</span>);</span><br><span class="line"><span class="variable">$a</span>=@<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span>=@<span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span>==<span class="number">0</span> <span class="keyword">and</span> <span class="variable">$a</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$b</span>&gt;<span class="number">1234</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>这道题主要是考察对php的熟悉程度，虽然不难，但基础不好也容易掉入陷阱。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show_source show_source() 函数对文件进行语法高亮显示,是 highlight_file() 的别名</span><br><span class="line">include include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中</span><br></pre></td></tr></table></figure><p>代码搞清楚后，那么接下来看如何处理<br>要求是以get方式传入a,b参数，</p><ul><li>a的要求<br>值为0，且参数a本身不为flase<br>那么不能为数字0，因为会被解析为false<br>而我们知道字符型数据会被转化为0与数字比较，<br>因此随便填个字符即可满足要求</li><li>b的要求<br>不能为数字，且值要大于1234<br>那么直接来个2345a</li></ul><p>所以最终结果为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a=a&amp;b=2345a</span><br></pre></td></tr></table></figure><p>即可拿到flag</p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本次总共11道题，每道题都非常简单，主要是考察基础知识，对于新手而言还是很有帮助的。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>正是简单才看出基础。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;这是攻防世界一些比较简单的题，算是用来补充知识的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
+    
+  </entry>
   
   <entry>
     <title>攻防世界_easyphp</title>
@@ -444,29 +465,6 @@
     <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
     
     <category term="礼仪" scheme="http://example.com/tags/%E7%A4%BC%E4%BB%AA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>宁为玉碎</title>
-    <link href="http://example.com/2022/11/25/Diary_1125/"/>
-    <id>http://example.com/2022/11/25/Diary_1125/</id>
-    <published>2022-11-24T16:00:00.000Z</published>
-    <updated>2022-11-25T17:16:49.949Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png" alt="凉宫春日"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我的生活一如既往，平淡且平静。不过今天似乎在乌鲁木齐没有那么安宁，然而我也做不了什么。逝者愿安息，生者愿平安。</p><h1 id="点滴"><a href="#点滴" class="headerlink" title="点滴"></a>点滴</h1><p>今天的学习状态还是比较满意的，只是学习时长不够长。今日杂务做完了，明天多学习，尤其English!<br>学到了一个小知识：喝水温度对65℃以上对口腔不好。感受到烫一般是50℃以上。<br>昨晚又晚睡了，这不好，再次提醒自己要早睡。早起吃早餐听听力。</p><h1 id="激进分子"><a href="#激进分子" class="headerlink" title="激进分子"></a>激进分子</h1><p>No progress without radicals.没有激进分子就没有进步。<br>这是我今天听听力，听到的一句话。其实没预料到，听听力也能听出一些深刻的话。遇到了一篇蛮有趣的文章。<br>想想其实的确如此，很多事物的改变就是来源于“激进分子”。当然，这个激进分子是广义上的。<br>比如乔布斯，在各个手机厂商都流行在手机上加更多的键时，他一意孤行选择了只给手机保留一个键，这何尝不是一种激进呢？<br>还有很多例子，都可以说明，激进并不一定是一件坏事。<br>社会的大多数人，都是倾向于稳定的。因此激进很容易被反对，也不会被大多数人所理解。这也意味着，激进分子是少数人的“特权”。<br>具前瞻性的言论未必会为时人所接受。但当时间证明了该言论的价值时，社会各界又会争相附和。<br>这就和之前的“不容，然后见君子”其实是联系到一起了。<br>本质上表达的思想是相同的。<br>当然，激进并非代表愚昧的激进，而是明智的激进才是有益的。愚蠢的激进只是滑稽的表演。<br>最后，未来想要更激进一点，如果有人用radical来形容我，我想我会把这个词当作称赞的。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>再借我一点时间吧，我会更珍惜的。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png&quot; alt=&quot;凉宫春日&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
