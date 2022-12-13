@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言仍然是新手入门题，继续来训练自己的基础了。这一篇主要是训练的信息搜集部分。有些相似的内容在攻防世界新手篇中有的不会再写，选择性的写有遗漏的部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFSHOW_WEB入门_信息搜集">
+<meta property="og:url" content="http://example.com/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言仍然是新手入门题，继续来训练自己的基础了。这一篇主要是训练的信息搜集部分。有些相似的内容在攻防世界新手篇中有的不会再写，选择性的写有遗漏的部分。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-13T08:16:02.028Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="信息搜集">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>CTFSHOW_WEB入门_信息搜集 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">31</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CTFSHOW_WEB入门_信息搜集
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-12-13 00:00:00 / 修改时间：16:16:02" itemprop="dateCreated datePublished" datetime="2022-12-13T00:00:00+08:00">2022-12-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>仍然是新手入门题，继续来训练自己的基础了。这一篇主要是训练的信息搜集部分。有些相似的内容在攻防世界新手篇中有的不会再写，选择性的写有遗漏的部分。</p>
+<span id="more"></span>
+<h1 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h1><p><strong>考点: 前台JS绕过</strong><br>这一题无法鼠标右键查看源代码，也无法按下F12。<br>题目明示了是js前端拦截，那么我们有三种方法：</p>
+<ol>
+<li><p>不断刷新，不断按F12<br>实际上是一种条件竞争的方式</p>
+</li>
+<li><p>view-source:url<br>在url之前加上view-source</p>
+</li>
+<li><p>下载源码，比如按下CTRL+S<br>下载后即可查看</p>
+</li>
+</ol>
+<h1 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h1><p><strong>考点: phps源码泄露</strong><br>提示源码泄露<br>直接在url后面加上<br><code>/index.phps</code><br>然后弹出下载框，下载后打开，发现flag</p>
+<h1 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h1><p><strong>考点: 源码压缩包泄露</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">网站备份压缩文件 漏洞成因</span><br><span class="line">在网站的升级和维护过程中，通常需要对网站中的文件进行修改。此时就需要对网站整站或者其中某一页面进行备份。</span><br><span class="line">当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站 web 目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</span><br><span class="line">该漏洞的成因主要有是管理员将备份文件放在到 web 服务器可以访问的目录下。</span><br><span class="line">该漏洞往往会导致服务器整站源代码或者部分页面的源代码被下载，利用。源代码中所包含的各类敏感信息，如服务器数据库连接信息，服务器配置信息等会因此而泄露，造成巨大的损失。</span><br><span class="line">被泄露的源代码还可能会被用于代码审计，进一步利用而对整个系统的安全埋下隐患。</span><br><span class="line">.rar .zip .7z .tar.gz .bak .swp .txt</span><br></pre></td></tr></table></figure>
+<p>提示解压源码到当前目录。<br>一番折腾后，终于搞清楚做法：<br><code>url/www.zip</code><br>下载后解压打开txt文件，拿到flag</p>
+<h1 id="web7"><a href="#web7" class="headerlink" title="web7"></a>web7</h1><p><strong>考点: Git泄露</strong><br>题目描述： 版本控制很重要，但不要部署到生产环境更重要。<br>根据提示版本控制，想到常用的版本控制工具git，svn，尝试访问.git和.svn，在.git中发现flag<br>这里是 .git 源码泄露。<br>是由于运行git init初始化代码库的时候，会在当前目录下面产生一个.git的隐藏文件，用来记录代码的变更记录等等。在发布代码的时候， .git 这个目录没有删除，直接发布了。使用这个文件，可以用来恢复源代码。<br>类似的还有 .hg 源码泄露，由于 hg init 的时候生成 .hg 文件。<br>访问 <code>url/.git/</code><br>得到flag</p>
+<h1 id="web8"><a href="#web8" class="headerlink" title="web8"></a>web8</h1><p><strong>考点: SVN泄露</strong><br>与web7类似，<br>这里是 SVN 导致文件泄露。<br>Subversion ，简称 SVN ，是一个开放源代码的版本控制系统，它的设计目标是取代 CVS 。<br>访问 <code>ur;/.svn</code><br>得到flag</p>
+<h1 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h1><p><strong>考点: vim临时文件泄露</strong><br>题目描述：发现网页有个错别字？赶紧在生产环境vim改下，不好，死机了<br>当开发人员在线上环境中使用 vim 编辑器，在使用过程中会留下 vim 编辑器缓存，当vim异常退出时，缓存会一直留在服务器上，引起网站源码泄露。<br>vim缓存泄露，在使用vim进行编辑时，会产生缓存文件，操作正常，则会删除缓存文件，如果意外退出，缓存文件保留下来，这是时可以通过缓存文件来得到原文件，以index.php来说，第一次退出后，缓存文件名为 .index.php.swp，第二次退出后，缓存文件名为.index.php.swo,第三次退出后文件名为.index.php.swn<br><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-vim.html">vim</a></p>
+<p>因此，访问 <code>url/index.php.swp</code><br>得到flag</p>
+<h1 id="web11"><a href="#web11" class="headerlink" title="web11"></a>web11</h1><p><strong>考点: 域名txt记录泄露</strong><br>题目描述：域名其实也可以隐藏信息，比如flag.ctfshow.com 就隐藏了一条信息<br>根据提示，我们可以去查找该域名，比如打开<a target="_blank" rel="noopener" href="https://boce.aliyun.com/home">网络诊断分析</a><br>查找后在“DNS检查”下发现TXT，得到flag</p>
+<h1 id="web12"><a href="#web12" class="headerlink" title="web12"></a>web12</h1><p><strong>考点: 敏感信息公布</strong><br>题目描述：有时候网站上的公开信息，就是管理员常用密码<br>打开页面，发现最底部的一串数字，根据提示，估计就是密码了。<br>然后在url后面添加admin： <code>url/admin</code><br>进入管理员后台账户，账号即为admin，密码是刚才那串数字。<br>得到flag</p>
+<h1 id="web13"><a href="#web13" class="headerlink" title="web13"></a>web13</h1><p><strong>考点: 内部技术文档泄露</strong><br>题目描述：技术文档里面不要出现敏感信息，部署到生产环境后及时修改默认密码<br>查看底部的 document<br>点击后会出现一个pdf文件，上面写着登录地址和账号密码。<br>打开后即可得到flag</p>
+<h1 id="web14"><a href="#web14" class="headerlink" title="web14"></a>web14</h1><p><strong>考点: 编辑器配置不当</strong><br>题目描述：有时候源码里面就能不经意间泄露重要(editor)的信息,默认配置害死人<br>首先根据提示，访问： <code>url/editor</code><br>这个界面具有编辑提交功能<br>我们点击图片上传或文件上传<br>可以看到目录，<br>查找 <code>/var/www/html/nothinghere/fl000g.txt</code><br>可以得到我们需要的文件，然后在url栏输入：<br><code>url/nothinghere/fl000g.txt</code><br>得到flag<br>这一题的关键在于没有经验很难找到关键文件，一般在www目录下会有关键信息。</p>
+<h1 id="web15"><a href="#web15" class="headerlink" title="web15"></a>web15</h1><p><strong>考点: 密码逻辑脆弱</strong><br>题目描述：公开的信息比如邮箱，可能造成信息泄露，产生严重后果<br>根据提示，拿到了公开的邮箱，<br>然后登录后台 <code>url/admin</code><br>随便输入一个密码无法登录，发现有个忘记密码选项，于是点击忘记密码，发现需要输入居住城市。于是我们想到了刚才那个邮箱，搜索QQ发现qq上的城市为西安，输入西安，密码重置。再次登录，获得flag<br>这一题提示我们要更灵活一点，善于利用信息！</p>
+<h1 id="web16"><a href="#web16" class="headerlink" title="web16"></a>web16</h1><p><strong>考点: 探针泄露</strong><br>题目描述：对于测试用的探针，使用完毕后要及时删除，可能会造成信息泄露</p>
+<ul>
+<li>PHP探针:<br>php探针是用来探测空间、服务器运行状况和PHP信息用的，探针可以实时查看服务器硬盘资源、内存占用、网卡 流量、系统负载、服务器时间等信息。 url后缀名添加&#x2F;tz.php 版本是雅黑PHP探针。<br>根据探针的提示，我们可以访问： <code>url/tz.php</code><br>进入探针界面，然后发现界面有一个phpinfo，我们点进去，用CTRL+F，搜索ctf，找到flag</li>
+</ul>
+<h1 id="web17"><a href="#web17" class="headerlink" title="web17"></a>web17</h1><p><strong>考点：sql备份文件泄露</strong><br>题目描述：备份的sql文件会泄露敏感信息<br>根据提示，我们访问： <code>url/backup.sql</code><br>弹出下载框，下载后打开，找到flag</p>
+<h1 id="web18"><a href="#web18" class="headerlink" title="web18"></a>web18</h1><p><strong>考点: js敏感信息泄露</strong><br>题目描述：不要着急，休息，休息一会儿，玩101分给你flag<br>直接打开F12，看到有一个js文件，我们直接加在url后面：<br><code>url/js/Flappy_js.js</code><br>打开后发现了一段unicode代码，我们解码成中文后，发现提示是110.php<br>于是将该php加在url后面：<br><code>url/110.php</code><br>得到flag</p>
+<h1 id="web19"><a href="#web19" class="headerlink" title="web19"></a>web19</h1><p><strong>考点: 前端密钥泄露</strong><br>题目描述：密钥什么的，就不要放在前端了<br>根据描述，发现前端验证，直接抓包，将验证内容输入到包里再发送<br>成功拿到flag</p>
+<h1 id="web20"><a href="#web20" class="headerlink" title="web20"></a>web20</h1><p><strong>考点: 数据库恶意下载</strong><br>题目描述：mdb文件是早期asp+access构架的数据库文件，文件泄露相当于数据库被脱裤了。<br>mdb文件是早期asp+access构架的数据库文件 直接查看url路径添加 <code>/db/db.mdb</code> 下载文件通过txt打开或者通过EasyAccess.exe打开搜索flag<br>得到flag</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>通过这次信息收集的训练，我又进步了一点点~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46150940/article/details/113788511?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-113788511-blog-116881655.pc_relevant_3mothn_strategy_recovery&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-113788511-blog-116881655.pc_relevant_3mothn_strategy_recovery&utm_relevant_index=1">CTFshow-Web入门-信息泄露</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" title="CTFSHOW_WEB入门_信息搜集">http://example.com/2022/12/13/ctfshow_web入门_信息搜集/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" rel="tag"><i class="fa fa-tag"></i> 信息搜集</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_Web%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BA/" rel="prev" title="攻防世界_Web新手练习区">
+      <i class="fa fa-chevron-left"></i> 攻防世界_Web新手练习区
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web2"><span class="nav-number">2.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web5"><span class="nav-number">3.</span> <span class="nav-text">web5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web6"><span class="nav-number">4.</span> <span class="nav-text">web6</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web7"><span class="nav-number">5.</span> <span class="nav-text">web7</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web8"><span class="nav-number">6.</span> <span class="nav-text">web8</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web9"><span class="nav-number">7.</span> <span class="nav-text">web9</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web11"><span class="nav-number">8.</span> <span class="nav-text">web11</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web12"><span class="nav-number">9.</span> <span class="nav-text">web12</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web13"><span class="nav-number">10.</span> <span class="nav-text">web13</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web14"><span class="nav-number">11.</span> <span class="nav-text">web14</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web15"><span class="nav-number">12.</span> <span class="nav-text">web15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web16"><span class="nav-number">13.</span> <span class="nav-text">web16</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web17"><span class="nav-number">14.</span> <span class="nav-text">web17</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web18"><span class="nav-number">15.</span> <span class="nav-text">web18</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web19"><span class="nav-number">16.</span> <span class="nav-text">web19</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web20"><span class="nav-number">17.</span> <span class="nav-text">web20</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%AE%B0"><span class="nav-number">18.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">19.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (台北標準時間) – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">162k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:27</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
