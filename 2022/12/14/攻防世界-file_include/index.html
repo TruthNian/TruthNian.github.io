@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言感觉挺开心的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-14T17:32:46.243Z">
+<meta property="article:modified_time" content="2022-12-14T17:38:25.458Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="文件包含">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-15 01:32:46" itemprop="dateModified" datetime="2022-12-15T01:32:46+08:00">2022-12-15</time>
+                <time title="修改时间：2022-12-15 01:38:25" itemprop="dateModified" datetime="2022-12-15T01:38:25+08:00">2022-12-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,7 +285,7 @@
 <p>用第二次编码后的字符替换掉原来的字符：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?filename=php://filter/convert.b%2561%2573e64-en%2563%256fde/resource=flag.php</span><br></pre></td></tr></table></figure>
 <p>得到flag</p>
-<h3 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h3><p><em><em>convert.iconv.</em> 绕过</em>*<br>这个过滤器需要php支持iconv，而iconv是默认编译的。使用convert.iconv.*过滤器等同于用iconv()函数处理所有的流数据。<br>iconv — 字符串按要求的字符编码来转换<br>convery.iconv.*的使用有两种方法:</p>
+<h3 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h3><p><strong>convert.iconv.* 绕过</strong><br>这个过滤器需要php支持iconv，而iconv是默认编译的。使用convert.iconv.*过滤器等同于用iconv()函数处理所有的流数据。<br>iconv — 字符串按要求的字符编码来转换<br>convery.iconv.*的使用有两种方法:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">convert.iconv.&lt;input-encoding&gt;.&lt;output-encoding&gt; </span><br><span class="line">or </span><br><span class="line">convert.iconv.&lt;input-encoding&gt;/&lt;output-encoding&gt;</span><br></pre></td></tr></table></figure>
 <p>列举部分编码方式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UCS-4*	UCS-4BE	 UCS-4LE*  UCS-2  UCS-2BE  UCS-2LE  UTF-32*  UTF-32BE*  UTF-32LE*  UTF-16*  UTF-16BE*  UTF-16LE*  UTF-7  UTF7-IMAP  UTF-8*  ASCII*  EUC-JP*  SJIS*  eucJP-win*  SJIS-win*  ISO-2022-JP  ISO-2022-JP-MS  CP932  CP51932  BASE64</span><br></pre></td></tr></table></figure>
@@ -381,12 +381,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/" rel="prev" title="攻防世界-baby_web">
-      <i class="fa fa-chevron-left"></i> 攻防世界-baby_web
+    <a href="/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-fileclude/" rel="prev" title="攻防世界-fileclude">
+      <i class="fa fa-chevron-left"></i> 攻防世界-fileclude
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-_easyupload/" rel="next" title="攻防世界-easyupload">
-      攻防世界-easyupload <i class="fa fa-chevron-right"></i>
+    <a href="/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/" rel="next" title="攻防世界-baby_web">
+      攻防世界-baby_web <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
