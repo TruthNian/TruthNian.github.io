@@ -21,21 +21,21 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前言一道很简单的题，但我因为基础不牢，导致做不出来。">
+  <meta name="description" content="前言为了继续巩固php基础！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="攻防世界_PHP2">
-<meta property="og:url" content="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/index.html">
+<meta property="og:title" content="ctfshow-web入门-php特性">
+<meta property="og:url" content="http://example.com/2022/12/15/ctfshow-web%E5%85%A5%E9%97%A8-php%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="Scammer">
-<meta property="og:description" content="前言一道很简单的题，但我因为基础不牢，导致做不出来。">
+<meta property="og:description" content="前言为了继续巩固php基础！">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-14T05:41:13.877Z">
+<meta property="article:published_time" content="2022-12-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-15T16:53:03.166Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="PHP">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/">
+<link rel="canonical" href="http://example.com/2022/12/15/ctfshow-web%E5%85%A5%E9%97%A8-php%E7%89%B9%E6%80%A7/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 <link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
-  <title>攻防世界_PHP2 | Scammer</title>
+  <title>ctfshow-web入门-php特性 | Scammer</title>
   
 
 
@@ -194,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/15/ctfshow-web%E5%85%A5%E9%97%A8-php%E7%89%B9%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/Elaina.png">
@@ -207,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          攻防世界_PHP2
+          ctfshow-web入门-php特性
         </h1>
 
         <div class="post-meta">
@@ -216,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-14 00:00:00 / 修改时间：13:41:13" itemprop="dateCreated datePublished" datetime="2022-12-14T00:00:00+08:00">2022-12-14</time>
+              <time title="创建时间：2022-12-15 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-15T00:00:00+08:00">2022-12-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-16 00:53:03" itemprop="dateModified" datetime="2022-12-16T00:53:03+08:00">2022-12-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>731</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -266,19 +272,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一道很简单的题，但我因为基础不牢，导致做不出来。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了继续巩固php基础！</p>
 <span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>查看源码<br>首先页面显示没有意义的一句话。<br>然后我们点鼠标右键尝试查看源代码，无法看到。<br>于是尝试其它方式，比如在url后面加index.phps：<br><code>url/index.phps</code><br>源代码成功显示（用工具扫一下会比较好）</p>
+<h1 id="web89"><a href="#web89" class="headerlink" title="web89"></a>web89</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$num</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/[0-9]/&quot;</span>, <span class="variable">$num</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">intval</span>(<span class="variable">$num</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+首先include包含了flag.php，然后通过get方式传入num参数。</li>
+</ol>
+<ul>
+<li><p>preg_match()函数：<br>执行匹配正则表达式。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">preg_match</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$pattern</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$subject</span>,</span><br><span class="line">    <span class="keyword">array</span> &amp;<span class="variable">$matches</span> = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$flags</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span></span><br><span class="line">): <span class="keyword">int</span>|<span class="literal">false</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">pattern</span></span><br><span class="line"><span class="comment">要搜索的模式，字符串类型。</span></span><br><span class="line"><span class="comment">subject</span></span><br><span class="line"><span class="comment">输入字符串。</span></span><br><span class="line"><span class="comment">matches</span></span><br><span class="line"><span class="comment">如果提供了参数matches，它将被填充为搜索结果。 $matches[0]将包含完整模式匹配到的文本， $matches[1] 将包含第一个捕获子组匹配到的文本，以此类推。</span></span><br><span class="line"><span class="comment">flags</span></span><br><span class="line"><span class="comment">flags 可以被设置为以下标记值的组合：</span></span><br><span class="line"><span class="comment">PREG_OFFSET_CAPTURE</span></span><br><span class="line"><span class="comment">如果传递了这个标记，对于每一个出现的匹配返回时会附加字符串偏移量(相对于目标字符串的字节数)。 注意：这会改变填充到matches参数的数组，使其每个元素成为一个由 第0个元素是匹配到的字符串，第1个元素是该匹配字符串 在目标字符串subject中的偏移量。</span></span><br><span class="line"><span class="comment">PREG_UNMATCHED_AS_NULL</span></span><br><span class="line"><span class="comment">使用该标记，未匹配的子组会报告为 null；未使用时，报告为空的 string。</span></span><br><span class="line"><span class="comment">offset</span></span><br><span class="line"><span class="comment">通常，搜索从目标字符串的开始位置开始。可选参数 offset 用于 指定从目标字符串的某个位置开始搜索(单位是字节)。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">返回值</span></span><br><span class="line"><span class="comment">如果 pattern 匹配到指定 subject，则 preg_match() 返回 1，如果没有匹配到则返回 0， 或者在失败时返回 false。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>分析条件<br>我们看到源码：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;admin&quot;</span>===<span class="variable">$_GET</span>[id]) &#123;</span><br><span class="line">  <span class="keyword">echo</span>(<span class="string">&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;</span>);</span><br><span class="line">  <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[id] = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_GET</span>[id]);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[id] == <span class="string">&quot;admin&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Key: xxxxxxx &lt;/p&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">Can you anthenticate to this website?</span><br></pre></td></tr></table></figure>
-<p>第1个if语句：要求不能直接在url栏输入admin，否则不予通过。<br>第2个if语句：url解码后的值要与admin相同。</p>
+<li><p>intval()函数<br>获取变量的整数值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">intval(mixed $value, int $base = 10): int</span><br><span class="line">通过使用指定的进制 base 转换（默认是十进制），返回变量 value 的 int 数值。 intval() 不能用于 object，否则会产生 E_NOTICE 错误并返回 1。</span><br><span class="line">注意:</span><br><span class="line">如果 base 是 0，通过检测 value 的格式来决定使用的进制：</span><br><span class="line">如果字符串包括了 &quot;0x&quot; (或 &quot;0X&quot;) 的前缀，使用 16 进制 (hex)；否则，</span><br><span class="line">如果字符串以 &quot;0&quot; 开始，使用 8 进制(octal)；否则，</span><br><span class="line">将使用 10 进制 (decimal)。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li>构造语句<br>因为preg_match在匹配字符串不为“字符串”时，会提示错误，返回false。因此我们可以传入一个数组。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?num[]=a</span><br></pre></td></tr></table></figure>
+拿到flag</li>
+</ol>
+<h1 id="web90"><a href="#web90" class="headerlink" title="web90"></a>web90</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$num</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$num</span>===<span class="string">&quot;4476&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">intval</span>(<span class="variable">$num</span>,<span class="number">0</span>)===<span class="number">4476</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">intval</span>(<span class="variable">$num</span>,<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>分析源码可知，条件为num变量的10进制值为4476时不能通过，但又要求:<br><code>intval($num,0)===4476</code><br>根据上面的知识点可知，当base为0时检测value的前缀。<br>那么我们可以更改为十进制以外的前缀，并且让其10进制值为4476，便可通过。</p>
 </li>
-<li><p>构造语句<br>url编码就是一个字符ascii码的十六进制。不过稍微有些变动，需要在前面加上“%”。<br>因此我们将a进行url编码，可得到%61dmin<br>解码后与admin值相同。<br>但这样还不够，因为url栏会先对传上的值解一次码，变成admin，这样在判断第1个if语句时仍然无法通过。<br>因此我们需要二次编码绕过。将%61再次进行编码：%2561<br>最终得到： <code>%2561dmin</code><br>最后拿到flag</p>
+<li><p>构造语句<br><code>?num=0x117c</code><br>拿到flag</p>
 </li>
 </ol>
-
+<h1 id="web91"><a href="#web91" class="headerlink" title="web91"></a>web91</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^php$/im&#x27;</span>, <span class="variable">$a</span>))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/^php$/i&#x27;</span>, <span class="variable">$a</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;hacker&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;nonononono&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+知识点总结：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">^ 	 	匹配开头</span><br><span class="line">$		匹配末尾</span><br><span class="line">/i  	不区分大小写</span><br><span class="line">/m 		多行匹配</span><br></pre></td></tr></table></figure>
+多行匹配（不匹配换行符）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^xxx$</span><br><span class="line">^yyy$</span><br><span class="line">^zzz$</span><br></pre></td></tr></table></figure>
+单行匹配（匹配换行符）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">^xxx</span><br><span class="line">yyy</span><br><span class="line">zzz$</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>第1个if语句是多行匹配，第2个if语句是单行匹配。</p>
+<ol start="2">
+<li>构造语句<br>通过使用换行符，可以让换行符后为php，换行符前为其它字符。能成功绕过2个if语句。<br>于是可以得到：<br><code>?cmd=a%0aphp</code><br>拿到flag<br>该题原型为一个<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46091464/article/details/108278486">解析漏洞</a></li>
+</ol>
+<h1 id="web92"><a href="#web92" class="headerlink" title="web92"></a>web92</h1><p>和web90题差不多，区别在于从&#x3D;&#x3D;&#x3D;变成了&#x3D;&#x3D;，&#x3D;&#x3D;会进行弱类型转换<br>解决方法很多，比如0x117c, 4476.1, 4476e123<br>我的： <code>?num=0x117c</code><br>拿到flag</p>
+<h1 id="web93"><a href="#web93" class="headerlink" title="web93"></a>web93</h1><p>和web92题类似，只不过不能用字符了，所以16进制和科学计数法不能使用，但可以通过8进制或小数点绕过<br>我的： <code>?num=4476.1</code><br>拿到flag</p>
+<h1 id="web94"><a href="#web94" class="headerlink" title="web94"></a>web94</h1><p>和web93题类似，这一次把浮点数4476.1和八进制010574都过滤了，我们仔细看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$num</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$num</span>===<span class="string">&quot;4476&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/[a-z]/i&quot;</span>, <span class="variable">$num</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">strpos</span>(<span class="variable">$num</span>, <span class="string">&quot;0&quot;</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no no no!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">intval</span>(<span class="variable">$num</span>,<span class="number">0</span>)===<span class="number">4476</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>题目中增加的条件是：num参数中必须包含0，但不能在首位，于是我们可以在八进制前添加一个空格绕过：<br><code>?num= 010574</code><br>或者将数字0添加到小数点后：<br><code>?num=4476.01</code><br>均可拿到flag</p>
+<h1 id="web95"><a href="#web95" class="headerlink" title="web95"></a>web95</h1><p>这一题和web94差不多，只不过把小数点过滤了，不能使用浮点数，但可以在八进制前面加上空格之类的绕过<br><code>?num= 010574</code><br>拿到flag</p>
+<h1 id="web96"><a href="#web96" class="headerlink" title="web96"></a>web96</h1><p>看到highlight_file()函数，想到文件包含<br>所以直接构造文件包含的语句：<br><code>?u=php://filter/convert.base64-encode/resource=flag.php</code><br>得到的数据经过base64解码即可拿到flag<br>或者使用相对路径： <code>?u=./flag.php</code><br>或者使用绝对路径： <code>?u=/var/www/html/flag.php</code><br>均可拿到flag</p>
+<h1 id="web97"><a href="#web97" class="headerlink" title="web97"></a>web97</h1>
     </div>
 
     
@@ -303,7 +339,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/" title="攻防世界_PHP2">http://example.com/2022/12/14/攻防世界_PHP2/</a>
+    <a href="http://example.com/2022/12/15/ctfshow-web%E5%85%A5%E9%97%A8-php%E7%89%B9%E6%80%A7/" title="ctfshow-web入门-php特性">http://example.com/2022/12/15/ctfshow-web入门-php特性/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -364,12 +400,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_SQL%E6%B3%A8%E5%85%A5/" rel="prev" title="CTFSHOW_web入门_SQL注入">
-      <i class="fa fa-chevron-left"></i> CTFSHOW_web入门_SQL注入
+    <a href="/2022/12/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-warmup/" rel="prev" title="攻防世界-warmup">
+      <i class="fa fa-chevron-left"></i> 攻防世界-warmup
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-fileclude/" rel="next" title="攻防世界-fileclude">
-      攻防世界-fileclude <i class="fa fa-chevron-right"></i>
+    <a href="/2022/12/15/CTFHUB-find_it/" rel="next" title="CTFHUB-find_it">
+      CTFHUB-find_it <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -429,7 +465,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">解决步骤</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web89"><span class="nav-number">2.</span> <span class="nav-text">web89</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web90"><span class="nav-number">3.</span> <span class="nav-text">web90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web91"><span class="nav-number">4.</span> <span class="nav-text">web91</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web92"><span class="nav-number">5.</span> <span class="nav-text">web92</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web93"><span class="nav-number">6.</span> <span class="nav-text">web93</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web94"><span class="nav-number">7.</span> <span class="nav-text">web94</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web95"><span class="nav-number">8.</span> <span class="nav-text">web95</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web96"><span class="nav-number">9.</span> <span class="nav-text">web96</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web97"><span class="nav-number">10.</span> <span class="nav-text">web97</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
