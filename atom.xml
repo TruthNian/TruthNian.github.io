@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-02-19T07:27:47.057Z</updated>
+  <updated>2023-02-20T17:52:00.188Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>谁最可靠</title>
+    <link href="http://example.com/2023/02/20/Diary_20230220/"/>
+    <id>http://example.com/2023/02/20/Diary_20230220/</id>
+    <published>2023-02-19T16:00:00.000Z</published>
+    <updated>2023-02-20T17:52:00.188Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/Holo_8.png" alt="Holo"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个人的一生有许多关系。亲人，亲戚，朋友，熟人，伴侣……谁是最可能可靠的呢？</p><h1 id="亲人之间"><a href="#亲人之间" class="headerlink" title="亲人之间"></a>亲人之间</h1><p>我们最开始也是最常见的亲人，无疑就是爷爷奶奶外公外婆父母兄弟姐妹了。<br>父母大了我们一代，爷爷奶奶外公外婆大了我们两代，阅历必然是要高于我们的，也有一代人独特的认知。因出生时代的不同，所处立场的不同，教育能力的不足等等，大多数父母无法对待孩子像对待朋友那样。也即长辈很难真正意义上与孩子交心，隔阂自然也是有的。<br>年龄相差过大的兄弟姐妹大多也会有类似的情况。但年龄较为接近的兄弟姐妹之间就要好得多了。</p><p>亲人是我们来到这个世界上产生的第一类亲密关系。这类亲密关系建立起来最根本的原因就是血缘。无论父母起初是以怎样的心情对待孩子，在朝夕相处的时光中，相互之间蕴含的感情也会慢慢增加。如果作为长辈的亲人给予孩子的负面情感与正面情感相差不远甚至负面比正面多，那么父母与孩子之间很难建立稳固的关系。彼此之间或许也不会认为对方是可靠的存在。</p><p>当然，每个人所处的情况不尽相同。不知他人境遇，也莫言是非论调。总的来说，我认为，在一个家庭中主要由对方造成的负面影响（比如家暴、虐待、欺骗等）没有达到自己有点难以承受的地步，彼此之间的关系应当还是能稳定存在的。在这个前提下，亲人之间的联系应当建立在较高层面，只要不是做了过分的事，不应轻易被动摇。</p><h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Holo_8.png&quot; alt=&quot;Holo&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>道理与觉悟：为什么现代人看起来越来越聪明，却越来越难以理解“道理”？</title>
@@ -478,31 +501,6 @@
     <category term="CTF" scheme="http://example.com/tags/CTF/"/>
     
     <category term="文件包含" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>攻防世界_web2</title>
-    <link href="http://example.com/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web2/"/>
-    <id>http://example.com/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-web2/</id>
-    <published>2022-12-23T16:00:00.000Z</published>
-    <updated>2022-12-24T07:39:56.160Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一次密码破译，还是比较有趣的。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol><li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$miwen</span>=<span class="string">&quot;a1zLbgQsCESEIqRLwuQAyMwLyq2L5VwBxqGA3RQAyumZ0tmMvSGM2ZwB4tws&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params"><span class="variable">$str</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$_o</span>=<span class="title function_ invoke__">strrev</span>(<span class="variable">$str</span>);</span><br><span class="line">    <span class="comment">// echo $_o;</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$_0</span>=<span class="number">0</span>;<span class="variable">$_0</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$_o</span>);<span class="variable">$_0</span>++)&#123;</span><br><span class="line">       </span><br><span class="line">        <span class="variable">$_c</span>=<span class="title function_ invoke__">substr</span>(<span class="variable">$_o</span>,<span class="variable">$_0</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="variable">$__</span>=<span class="title function_ invoke__">ord</span>(<span class="variable">$_c</span>)+<span class="number">1</span>;</span><br><span class="line">        <span class="variable">$_c</span>=<span class="title function_ invoke__">chr</span>(<span class="variable">$__</span>);</span><br><span class="line">        <span class="variable">$_</span>=<span class="variable">$_</span>.<span class="variable">$_c</span>;   </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_rot13</span>(<span class="title function_ invoke__">strrev</span>(<span class="title function_ invoke__">base64_encode</span>(<span class="variable">$_</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   逆向加密算法，解密$miwen就是flag</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li></ol><ul><li><p>strrev()函数<br>反转字符串</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strrev(string $string): string</span><br><span class="line">返回 string 反转后的字符串。</span><br></pre></td></tr></table></figure></li><li><p>ord()函数<br>转换字符串第一个字节为 0-255 之间的值</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ord(string $character): int</span><br><span class="line">解析 character 二进制值第一个字节为 0 到 255 范围的无符号整型类型。</span><br><span class="line"></span><br><span class="line">如果字符串是 ASCII、 ISO-8859、Windows 1252之类单字节编码，就等于返回该字符在字符集编码表中的位置。 但请注意，本函数不会去检测字符串的编码，尤其是不会识别类似 UTF-8 或 UTF-16 这种多字节字符的 Unicode 代码点（code point）。</span><br><span class="line"></span><br><span class="line">该函数是 chr() 的互补函数。</span><br></pre></td></tr></table></figure></li><li><p>chr()函数<br>从数字生成单字节字符串</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">chr(int $codepoint): string</span><br><span class="line">返回单字符字符串，包含将 codepoint 作为无符号整数解释的指定字符。</span><br><span class="line"></span><br><span class="line">这可用于在一种单字节编码（像是 ASCII、ISO-8859 或 Windows 1252）中通过传递想要的字符在编码映射表中的位置来创建单字符字符串。</span><br><span class="line">但是，注意此函数并不清楚任何字符串编码，特别是无法通过传递一个 Unicode 码位值来生成多字节编码（像是 UTF-8 或 UTF-16）字符串。</span><br><span class="line"></span><br><span class="line">此函数与 ord() 互补。</span><br></pre></td></tr></table></figure></li><li><p>str_rot13()函数<br>对字符串执行 ROT13 转换</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">str_rot13(string $string): string</span><br><span class="line">对 string 参数执行 ROT13 编码并将结果字符串返回。</span><br><span class="line"></span><br><span class="line">ROT13 编码简单地使用字母表中后面第 13 个字母替换当前字母，同时忽略非字母表中的字符。</span><br><span class="line">编码和解码都使用相同的函数，传递一个编码过的字符串作为参数，将得到原始字符串。</span><br></pre></td></tr></table></figure></li></ul><p>根据提示可知，我们需要通过逆向加密算法解密变量miwen。</p><ol start="2"><li>解密</li></ol><ul><li>rot13解密，得到：(不可忽略字符大小写)<br><code>n1mYotDfPRFRVdEYjhDNlZjYld2Y5IjOkdTN3EDNlhzM0gzZiFTZ2MjO4gjf</code></li><li>倒转后，得到：<br><code>fjg4OjM2ZTFiZzg0MzhlNDE3NTdkOjI5Y2dlYjZlNDhjYEdVRFRPfDtoYm1n</code></li><li>base64解密后，得到：<br>~88:36e1bg8438e41757d:29cgeb6e48c`GUDTO|;hbmg</li><li>所有字符的ASCII顺序减1，得到：<br>}77925d0af7327d30646c918bfda5d37b-FTCSN{:galf</li><li>再次倒转，得到：<br><code>flag:&#123;NSCTF_b73d5adfb819c64603d7237fa0d52977&#125;</code></li></ul>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;一次密码破译，还是比较有趣的。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    <category term="PHP" scheme="http://example.com/categories/CTF/PHP/"/>
-    
-    
-    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
-    
-    <category term="PHP" scheme="http://example.com/tags/PHP/"/>
     
   </entry>
   
