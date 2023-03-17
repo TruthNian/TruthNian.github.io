@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言写一些护网的面试题，了解一下行话。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红队护网面试准备">
+<meta property="og:url" content="http://example.com/2023/03/15/%E7%BA%A2%E9%98%9F%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言写一些护网的面试题，了解一下行话。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-17T04:29:47.099Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="护网">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/03/15/%E7%BA%A2%E9%98%9F%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>红队护网面试准备 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">47</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">46</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">123</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/15/%E7%BA%A2%E9%98%9F%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          红队护网面试准备
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-15T00:00:00+08:00">2023-03-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-17 12:29:47" itemprop="dateModified" datetime="2023-03-17T12:29:47+08:00">2023-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%A4%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">护网</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%A4%E7%BD%91/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>写一些护网的面试题，了解一下行话。</p>
+<span id="more"></span>
+<h1 id="面试题目"><a href="#面试题目" class="headerlink" title="面试题目"></a>面试题目</h1><h2 id="描述外网打点的流程？"><a href="#描述外网打点的流程？" class="headerlink" title="描述外网打点的流程？"></a>描述外网打点的流程？</h2><ol>
+<li><p>打点的基本认识<br>所谓打点，就是拿到一台机器的shell。打点的目的一般在于利用这台机器作为跳板进入内网。一个红队人员快速打点能力的强悍与否，是区别普通红队和优秀红队的因素之一。</p>
+</li>
+<li><p>打点的基本方法<br>流程：靶标确认–信息收集–漏洞探测–漏洞利用–权限获取<br>其中，信息收集技术含量低，过程可用工具相对优化，但是仍然需要大量劳力。</p>
+</li>
+</ol>
+<p>靶标确认：确认攻击目标范围，防止攻击打偏的情况，例如IP段、子域名等域名信息</p>
+<p>信息收集：信息收集分为基础信息收集与进阶信息收集，基础信息收集包括域名备案信息、真实IP等：进阶信息收集包含靶标端口开放情况、网站目录结构、防护设备信息等。</p>
+<p>漏洞探测：根据信息收集的情况找到合适的漏洞poc进行测试，也可使用漏洞扫描器对靶标进行全方位漏洞探测</p>
+<p>漏洞利用：poc测试完成之后，确认漏洞，使用exp攻击获取部分权限（如数据库权限，webshell权限等）</p>
+<p>权限提升与维持：获取到基础权限之后，可以通过认证绕过、溢出漏洞等本地提权方式获取去靶标的高级权限（管理员权限、系统权限等）</p>
+<p>横向移动：当获取到靶标的最高权限，可以尝试获取靶标所在内网中的其他的机器权限。</p>
+<p><strong>信息收集</strong>大致步骤：<br>（1）得到攻击目标（假设为公司），通过企查查等平台搜索，得到公司和子公司信息。<br>（2）通过公司和子公司信息，通过oneforall，得到子域名。<br>（3）将子域名拿到Eeyes(棱眼)跑一遍，得到子域名所对应的IP和C段信息。（C段指的是同一内网段内的其他服务器，每个IP有ABCD四个段，举个例子，192.168.0.1，A段就是192，B段是168，C段是0，D段是1，而C段嗅探的意思就是拿下它同一C段中的其中一台服务器，也就是说是D段1-255中的一台服务器，然后利用工具嗅探拿下该服务器。）<br>（4）将对应IP和C段丢给fofa和fscan，fofa能快速得到C段资产信息；fscan能快速扫一遍，顺便打一下常见漏洞。（Fofa 是白帽汇推出的一款网络空间搜索引擎，它通过进行网络空间测绘，能够帮助研究人员或者企业迅速进行网络资产匹配。 例如进行漏洞影响范围分析、应用分布统计、应用流行度等。 在渗透测试过程中，Fofa能帮助测试人员快速发现目标资产。）（Fscan是一款内网综合扫描工具，它非常的方便，一键启动，之后完全自动化、并且全方位漏洞扫描。 它支持主机存活探测、端口扫描、常见服务的爆破、ms17010、redis批量写公钥、计划任务反弹shell、读取win网卡信息、web指纹识别、web漏洞扫描、netbios探测、域控识别等功能。）<br>（5）如果fscan爆出漏洞可拿去利用（小概率）<br>（6）查看通过fofa得到的资产，可配合ehole的指纹识别来快速筛选。通过筛选敏感资产（如shiro, fastjson等）直接能够反序列化getshell的资产（小概率）。（EHole是一款对资产中重点系统指纹识别的工具，在红队作战中，信息收集是必不可少的环节，如何才能从大量的资产中提取有用的系统(如OA、VPN、Weblogic…)。 EHole旨在帮助红队人员在信息收集期间能够快速从C段、大量杂乱的资产中精准定位到易被攻击的系统，从而实施进一步攻击。）<br>（7）获得了登陆后台&#x2F;用户登录&#x2F;注册&#x2F;管理员等交互类型的资产后，可以尝试进行反序列化漏洞&#x2F;文件上传漏洞&#x2F;SQL注入等漏洞。<br>（8）对各种登录系统尝试弱口令&#x2F;SQL注入攻击，弱口令能登入后台就找上传点，SQL注入建议xray+burp检测，有戏再用sqlmap。fofa搜关键字，title&#x3D;”单位名”等，可自行穿插灵活使用，有时有效。弱口令登云桌面(horizen,vdi等)拿到shell的方式可尝试（小概率）。<br>（9）弱口令如果爆不出账号密码，考虑上 网盘&#x2F;GitHub&#x2F;社工库&#x2F;泄露公开库 搜对应人员信息，看是否有效。<br>（10）若无用，则查看 公众号&#x2F;app&#x2F;小程序 的信息。<br>（11）若无用，开始使用 域传送&#x2F;备案号&#x2F;IP反查网站&#x2F;ssl证书&#x2F;Google 来搜C段。<br>（12）若无用，使用 dirmap&#x2F;dirsearch 对可疑网站进行目录爆破。<br>（13）若无用，发钓鱼邮件。（网络钓鱼攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行诈骗活动，受骗者往往会泄露自己的<br>财务数据，如信用卡号、帐户用户名和口令等内容。诈骗者通常会将自己伪装成知名银行、在线零售<br>商和信用卡公司等可信的站点，在所有接触诈骗信息的用户中，有高达5%的人都会对这些骗局做出响<br>应 。）<br>（14）若无用，申请近源渗透。（近源渗透通俗而言就是通过乔装、社工等方式实地物理侵入企业办公区域，通过其内部各种潜在攻击面（如Wi-Fi网络、RFID门禁、暴露的有线网口、USB接口等）获得“战果”，最后以隐秘的方式将评估结果带出上报，由此证明企业安全防护存在漏洞。）</p>
+<p>可能用到的工具：</p>
+<ul>
+<li>ENScan: 企业信息查询工具。</li>
+<li>Netcraft,站长工具：网站基本信息收集</li>
+<li>Oneforall: 子域名收集工具</li>
+<li>水泽：信息收集自动化工具</li>
+<li>Wappalyzer: 网站技术识别工具。</li>
+<li>Eeyes: 快速筛选真实IP并整理为C段</li>
+<li>Goby: 网络安全测试工具，由赵武打造，它能对一个目标企业梳理最全的攻击面信息，能够快速的从一个验证入口点，切换到横向。</li>
+<li>FOFA: 网络空间资产搜索引擎</li>
+<li>Fscan: 是一款内网综合扫描工具</li>
+<li>Masscan：一个批量端口扫描器</li>
+<li>nmap：端口扫描工具</li>
+<li>ARL资产安全灯塔：快速侦察与目标关联的资产工具</li>
+<li>EHole: 是一款对资产中重点系统指纹识别的工具</li>
+<li>xray: 用于SQL注入检测</li>
+</ul>
+<ol start="3">
+<li>打点的技术区分线<br>漏洞利用是否成功。<br>失败原因有：出网却无法反弹shell，能反弹shell却时不时断开，能写能连内存马但是无法下载或上传较大文件，其它都成功但执行特定命令就会失败……</li>
+</ol>
+<h2 id="举几个-FOFA-在外网打点过程中的使用小技巧"><a href="#举几个-FOFA-在外网打点过程中的使用小技巧" class="headerlink" title="举几个 FOFA 在外网打点过程中的使用小技巧"></a>举几个 FOFA 在外网打点过程中的使用小技巧</h2><ul>
+<li>后台挖掘：title&#x3D;”后台” &amp;&amp; body&#x3D;”password” &amp;&amp; host&#x3D;”x.cn”</li>
+<li>子域名：title !&#x3D; ‘404’ &amp;&amp; title!&#x3D;’302’ &amp;&amp; host&#x3D;’x.cn’</li>
+<li>C段：ip&#x3D;’x.x.x.x&#x2F;24’ &amp;&amp; host&#x3D;’x.cn’</li>
+<li>框架特征：body&#x3D;’icon-spring-boot-admin.svg’</li>
+<li>漏洞：body&#x3D;’index&#x2F;of’ [列目录漏洞]</li>
+</ul>
+<h2 id="如何识别CDN？"><a href="#如何识别CDN？" class="headerlink" title="如何识别CDN？"></a>如何识别CDN？</h2><ol>
+<li><p>CDN简介<br>CDN全称是Content Delivery Network，即内容分发网络。其基本思想是尽可能避开网络上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，CDN系统能够实时根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上。<br>CDN的关键技术主要有内容存储和分发技术。</p>
+</li>
+<li><p>识别CDN的方法<br>（1）ping目标主域<br>如果ping的名称和返回信息的名称不同，可知是使用了CDN。<br>（2）nslookup使用不同的DNS域名解析<br>通过不同的DNS域名解析同一域名，如果解析结果不同，则很可能使用了CDN服务<br>比如：<br><code>nslookup www.jd.com 8.8.8.8</code><br><code>nslookup www.jd.com 114.114.114.114</code></p>
+</li>
+</ol>
+<p>（3）通过全国ping<br>ping出的结果有多个IP地址则说明，使用了CDN<br>（4）使用工具<br>比如<br><code>https://www.cdnplanet.com/tools/cdnfinder</code></p>
+<h2 id="邮件钓鱼的准备工作有哪些？"><a href="#邮件钓鱼的准备工作有哪些？" class="headerlink" title="邮件钓鱼的准备工作有哪些？"></a>邮件钓鱼的准备工作有哪些？</h2><ol>
+<li><p>网络钓鱼攻击的概述<br>网络钓鱼攻击是经常使用社会工程诱饵或引诱内容的骗局。链接到网络钓鱼网站的合法通信（通常是电子邮件）是网络钓鱼攻击中最常见的方法之一。网络钓鱼网站通常模拟需要用户输入凭据和账户信息的登录界面。然后，网络钓鱼网站在用户提供敏感信息后立即捕获该信息，使攻击者能够访问该信息。<br>下面是攻击者用来尝试窃取信息或获取设备访问权限的一些最常见的网络钓鱼技术。<br>（1）发票网络钓鱼<br>（2）付款&#x2F;送货诈骗<br>（3）以税务为主题的网络钓鱼诈骗<br>（4）下载内容<br>（5）发送其它威胁的网络钓鱼电子邮件<br>（6）Spear 网络钓鱼<br>（7）捕鲸<br>（8）商业电子邮件泄露</p>
+</li>
+<li><p>准备工作<br>（1）准备邮件钓鱼的形式：链接、文件<br>（2）收集目标相关的邮箱<br>（3）编写钓鱼邮件文案<br>（4）匿名邮箱<br>（5）木马免杀测试、钓鱼站点搭建<br>（6）反溯源</p>
+</li>
+</ol>
+<h2 id="判断出靶标的CMS，对外网打点有什么意义？"><a href="#判断出靶标的CMS，对外网打点有什么意义？" class="headerlink" title="判断出靶标的CMS，对外网打点有什么意义？"></a>判断出靶标的CMS，对外网打点有什么意义？</h2><ol>
+<li><p>CMS概述<br>CMS是Content Management System的缩写，意为内容管理系统。是一种位于WEB前端（Web服务器）和后端办公系统或流程（内容创作、编辑）之间的软件系统。</p>
+</li>
+<li><p>CMS对外网打点的意义<br>（1）判断当前使用的CMS是否存在Nday，然后利用公开的poc,exp进行尝试。<br>（2）根据CMS特征关联同CMS框架站点，进行敏感备份文件扫描，有可能获得站点备份文件。尝试从CMS源码进行代码审计，挖掘潜在漏洞。</p>
+</li>
+</ol>
+<p>tips:<br>0 day:未被公开的漏洞<br>1 day:刚刚公布的漏洞<br>n day:已公布n天的漏洞</p>
+<h2 id="Apache-Log4j2的漏洞原理是什么？"><a href="#Apache-Log4j2的漏洞原理是什么？" class="headerlink" title="Apache Log4j2的漏洞原理是什么？"></a>Apache Log4j2的漏洞原理是什么？</h2><p>Log4j2组件在处理程序日志记录时存在JNDI注入缺陷，未经授权的攻击者利用该漏洞，可向目标服务器发送精心构造的恶意数据，触发Log4j2组件解析缺陷，实现目标服务器的任意代码执行，获得目标服务器权限。</p>
+<h2 id="水坑攻击和鱼叉攻击的区别是什么？"><a href="#水坑攻击和鱼叉攻击的区别是什么？" class="headerlink" title="水坑攻击和鱼叉攻击的区别是什么？"></a>水坑攻击和鱼叉攻击的区别是什么？</h2><p>水坑攻击(watering hole)：在受害者必经之路设置一个水坑，也即陷阱。常见做法是攻击者分析目标的上网活动规律，经常访问哪些网站，然后利用网站漏洞在其中植入攻击代码，用户访问该网站就中招了。这种方式隐蔽性高，成功率较高。</p>
+<p>鱼叉攻击是指利用木马程序作为电子邮件附件，发送到目标电脑，诱导受害者打开附件感染木马。</p>
+<h2 id="如何判断靶标站点是windows-x2F-linux"><a href="#如何判断靶标站点是windows-x2F-linux" class="headerlink" title="如何判断靶标站点是windows&#x2F;linux?"></a>如何判断靶标站点是windows&#x2F;linux?</h2><ol>
+<li>大小写检测：windows大小写不敏感，Linux大小写敏感。</li>
+<li>ping命令：根据TTL值，windows一般大于100，Linux小于100（TTL，生存时间值：该字段指定IP包被路由器丢弃之前允许通过的最大网段数量）</li>
+</ol>
+<h2 id="无法连接服务器3389端口的几种情况？"><a href="#无法连接服务器3389端口的几种情况？" class="headerlink" title="无法连接服务器3389端口的几种情况？"></a>无法连接服务器3389端口的几种情况？</h2><ol>
+<li><p>3389端口<br>3389端口是Windows 2000(2003) Server 远程桌面的服务端口，可以通过这个端口，用类似于“远程桌面”的连接工具连接到远程服务器，如果连上了，输入系统管理员的用户名和密码后，将变得可以像操作本机一样操作远程电脑，因此远程服务器端口一般都将这个端口修改数值或关闭。</p>
+</li>
+<li><p>无法连接的原因<br>（1）3389端口处于关闭状态<br>（2）远程桌面默认端口号被修改<br>（3）防火墙 拦截<br>（4）处于内网环境<br>（5）超过了服务器最大的连接数<br>（6）管理员设置了权限，指定用户才能通过3389端口访问</p>
+</li>
+</ol>
+<h2 id="如何建立隐藏用户？"><a href="#如何建立隐藏用户？" class="headerlink" title="如何建立隐藏用户？"></a>如何建立隐藏用户？</h2><ol>
+<li>添加$符来添加隐藏用户并加入管理员组<br><code>net user username$ password /add</code><br><code>net localgroup administrators username$ /add</code></li>
+</ol>
+<p>删除该账户只需要 <code>net user username$ /del</code></p>
+<ol start="2">
+<li><p>修改注册表<br>打开注册表，路径如下：<br><code>HKEY_LOCAL_MACHINE\SAM\SAM\</code></p>
+</li>
+<li><p>使用工具</p>
+</li>
+</ol>
+<p>方法2,3的具体操作步骤看这篇文章: <a target="_blank" rel="noopener" href="https://teamssix.com/220118-134825.html">创建隐藏账号-TeamsSix</a></p>
+<h2 id="为什么MySQL数据库的站点，无法连接？"><a href="#为什么MySQL数据库的站点，无法连接？" class="headerlink" title="为什么MySQL数据库的站点，无法连接？"></a>为什么MySQL数据库的站点，无法连接？</h2>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/03/15/%E7%BA%A2%E9%98%9F%E6%8A%A4%E7%BD%91%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" title="红队护网面试准备">http://example.com/2023/03/15/红队护网面试准备/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%A4%E7%BD%91/" rel="tag"><i class="fa fa-tag"></i> 护网</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/11/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AAIP%E6%98%AF%E5%90%A6%E4%B8%BA%E5%85%AC%E7%BD%91IP/" rel="prev" title="判断一个IP是否为公网IP">
+      <i class="fa fa-chevron-left"></i> 判断一个IP是否为公网IP
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">面试题目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0%E5%A4%96%E7%BD%91%E6%89%93%E7%82%B9%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%9F"><span class="nav-number">2.1.</span> <span class="nav-text">描述外网打点的流程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BE%E5%87%A0%E4%B8%AA-FOFA-%E5%9C%A8%E5%A4%96%E7%BD%91%E6%89%93%E7%82%B9%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.2.</span> <span class="nav-text">举几个 FOFA 在外网打点过程中的使用小技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%ABCDN%EF%BC%9F"><span class="nav-number">2.3.</span> <span class="nav-text">如何识别CDN？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%82%AE%E4%BB%B6%E9%92%93%E9%B1%BC%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">2.4.</span> <span class="nav-text">邮件钓鱼的准备工作有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%87%BA%E9%9D%B6%E6%A0%87%E7%9A%84CMS%EF%BC%8C%E5%AF%B9%E5%A4%96%E7%BD%91%E6%89%93%E7%82%B9%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%EF%BC%9F"><span class="nav-number">2.5.</span> <span class="nav-text">判断出靶标的CMS，对外网打点有什么意义？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Log4j2%E7%9A%84%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.6.</span> <span class="nav-text">Apache Log4j2的漏洞原理是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%9D%91%E6%94%BB%E5%87%BB%E5%92%8C%E9%B1%BC%E5%8F%89%E6%94%BB%E5%87%BB%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.7.</span> <span class="nav-text">水坑攻击和鱼叉攻击的区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%9D%B6%E6%A0%87%E7%AB%99%E7%82%B9%E6%98%AFwindows-x2F-linux"><span class="nav-number">2.8.</span> <span class="nav-text">如何判断靶标站点是windows&#x2F;linux?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A83389%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%9F"><span class="nav-number">2.9.</span> <span class="nav-text">无法连接服务器3389端口的几种情况？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E9%9A%90%E8%97%8F%E7%94%A8%E6%88%B7%EF%BC%9F"><span class="nav-number">2.10.</span> <span class="nav-text">如何建立隐藏用户？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E7%AB%99%E7%82%B9%EF%BC%8C%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%EF%BC%9F"><span class="nav-number">2.11.</span> <span class="nav-text">为什么MySQL数据库的站点，无法连接？</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (新加坡标准时间) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">332k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">5:02</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
