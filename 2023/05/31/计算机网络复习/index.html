@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言重头再来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-02T10:29:10.302Z">
+<meta property="article:modified_time" content="2023-06-05T03:55:47.914Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-02 18:29:10" itemprop="dateModified" datetime="2023-06-02T18:29:10+08:00">2023-06-02</time>
+                <time title="修改时间：2023-06-05 11:55:47" itemprop="dateModified" datetime="2023-06-05T11:55:47+08:00">2023-06-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,14 +248,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5k</span>
+              <span>12k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -269,6 +269,9 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>重头再来。</p>
 <span id="more"></span>
+
+
+<p>-—————————–<strong>第一套试题</strong>————————</p>
 <h1 id="填空题"><a href="#填空题" class="headerlink" title="填空题"></a>填空题</h1><ol>
 <li><p>网络协议的三个要素是<strong>语法</strong>、<strong>语义</strong>和<strong>同步</strong>。</p>
 </li>
@@ -371,7 +374,7 @@
 <li><p>假定1公里长的CSMA&#x2F;CD网络的数据率为2Gbps。设信号在网络上的传播速度为200000km&#x2F;s。求能够使用此协议的最短帧长是多少字节。<br>解：<br>端到端时延：1km&#x2F;200000km&#x2F;s&#x3D;5微秒<br>来回的时延：2*5&#x3D;10微秒<br>最短帧长：2*5*10^-6*2*10^9&#x2F;8&#x3D;2500字节</p>
 </li>
 </ol>
-<h1 id="综合分析题"><a href="#综合分析题" class="headerlink" title="综合分析题"></a>综合分析题</h1><p>-—————————–第二套试题————————</p>
+<h1 id="综合分析题"><a href="#综合分析题" class="headerlink" title="综合分析题"></a>综合分析题</h1><p>-—————————–<strong>第二套试题</strong>————————</p>
 <h1 id="填空题-1"><a href="#填空题-1" class="headerlink" title="填空题"></a>填空题</h1><ol>
 <li><p>局域网使用的三种典型拓扑结构是<strong>星型</strong>、<strong>环型</strong>和<strong>总线型</strong>。</p>
 </li>
@@ -384,7 +387,105 @@
 <li><p>IPv6的基本首部长度是<strong>40</strong>字节。</p>
 </li>
 </ol>
-<h1 id="单项选择题"><a href="#单项选择题" class="headerlink" title="单项选择题"></a>单项选择题</h1>
+<h1 id="单项选择题"><a href="#单项选择题" class="headerlink" title="单项选择题"></a>单项选择题</h1><ol>
+<li><p>D<br>交换式以太网的特点是：采用交换机作为中央设备，将冲突隔绝在每个端口。</p>
+</li>
+<li><p>A<br>在以太网中，冲突域是指当两个或更多台设备同时发送数据时，这些设备之间的范围。在集线器（Hub）网络中，由于所有数据都被广播到所有连接的设备上，因此所有设备都位于一个冲突域中。</p>
+</li>
+</ol>
+<p>因此，一个由2个HUB构成的网络中，只有一个冲突域。无论设备之间的物理连接是直接连接到同一个Hub上，还是通过不同的Hub互联，所有设备都在同一个冲突域中，冲突检测算法也在整个网络中应用。</p>
+<ol start="3">
+<li><p>A<br>因为VLAN是在数据链路层（OSI第二层）划分的，而冲突域是在物理层（OSI第一层）划分的。VLAN可以跨越多个交换机，因此一个VLAN可能包含多个冲突域。<br>一个VLAN等于一个广播域，因为VLAN可以隔离广播流量，只有同一VLAN内的设备才能收到广播。将物理网段分成多个逻辑网段是VLAN的主要功能之一。VLAN能跨越多个交换机，只要交换机支持VLAN标记或端口划分。</p>
+</li>
+<li><p>C<br>OSPF是一种链路状态路由协议，它使用最短路径优先算法来计算网络中的最佳路由。OSPF不交换路由表，而是交换链路状态信息，从而构建一个网络拓扑数据库。OSPF不需要周期性地更新路由信息，而是只在链路状态发生变化时发送增量更新。OSPF支持多个区域划分，每个区域都有一个相同的网络拓扑数据库，但是不同区域之间的路由信息可以进行汇总或过滤。</p>
+</li>
+<li><p>A<br>IP地址分为公有地址和私有地址。公有地址是可以在互联网上路由的地址，而私有地址是只能在局域网内使用的地址，不能直接访问互联网。私有地址的范围是由IANA（互联网编号分配机构）规定的，包括以下几个段：<br>•  10.0.0.0 - 10.255.255.255<br>•  172.16.0.0 - 172.31.255.255<br>•  192.168.0.0 - 192.168.255.255<br>除了私有地址外，还有一些特殊用途的地址，也不能作为公有地址使用，例如：<br>•  0.0.0.0&#x2F;8：用于表示本网络或未知网络<br>•  127.0.0.0&#x2F;8：用于表示本地回环接口<br>•  169.254.0.0&#x2F;16：用于自动配置没有DHCP服务器的网络<br>•  224.0.0.0&#x2F;4：用于多播通信<br>•  240.0.0.0&#x2F;4：保留未来使用<br>•  255.255.255.255：用于广播通信</p>
+</li>
+</ol>
+<p>29.9.255.18这个地址不属于任何私有或特殊用途的范围，因此可以作为公有地址使用。其他三个选项都是无效的：</p>
+<p>•  B .127.21.19.109：这个地址属于本地回环接口的范围，不能作为公有地址使用。<br>•  C .192.5.91.255：这个地址是一个网络广播地址，不能分配给主机使用。<br>•  D .220.103.256.56：这个地址不符合IPv4格式，因为每个字节的取值范围是0-255，而256超出了这个范围。</p>
+<ol start="6">
+<li><p>D<br>D. 169.254.0.1：这是APIPA地址（Automatic Private IP Addressing），是用于自动配置地址的标准，如果DHCP无法分配地址，则该地址将被自动分配；<br>B. 0.0.0.0：这是未分配地址或空地址，表示网络接口没有分配 IP 地址；<br>A. 169.255.0.0 和 C. 169.253.0.0 并不是有效的IP地址。</p>
+</li>
+<li><p>A<br>在滑动窗口协议中，发送窗口是指发送数据时，已经发送但还未收到确认和准备发送的数据单元。</p>
+</li>
+<li><p>D<br>由于管理员要求每个子网最多容纳 16 台主机，因此每个子网需要至少 5 位主机位来编址 (2^5&#x3D;32，扣除子网号和广播地址后，可用主机地址数量为 30，刚好能容纳 16 台主机)。</p>
+</li>
+</ol>
+<p>在一个 C 类 IP 地址中，网络部分占用前 24 位，剩余 8 位用于主机编址。因此，我们需要从最后的 8 位中分配 5 位作为主机位，剩余三位作为子网位。这可以得出的子网掩码为 11111111.11111111.11111111.11111000，转换为十进制为 255.255.255.248。</p>
+<ol start="9">
+<li><p>B<br>频分复用将一个较宽频带的信道划分成多个较窄的频带，每个频带用来传输一路信号。</p>
+</li>
+<li><p>C<br>首先需要确定10.10.100.10&#x2F;18主机所属的子网，以及其他IP地址的主机所属的子网。然后，比较这些子网是否相同，如果相同，说明这些主机在同一个局域网内，不需要路由；如果不同，说明这些主机在不同的局域网内，需要路由。<br>为了确定子网，我们需要知道子网掩码。&#x2F;18表示子网掩码的前18位都是1，后14位都是0。所以，子网掩码是： 11111111 11111111 11000000 00000000 十进制表示为： 255.255.192.0 然后，我们可以用子网掩码和IP地址进行按位与运算，得到子网号。<br>例如，对于10.10.100.10&#x2F;18主机，我们可以将其IP地址和子网掩码分别转换为二进制表示： IP地址： 00001010 00001010 01100100 00001010 子网掩码： 11111111 11111111 11000000 00000000 按位与运算： 00001010 00001010 01000000 00000000 这就是该主机所属的子网号。转换为十进制表示为： 10.10.64.0<br>我们可以看到，只有C选项的主机所属的子网号与之不同。</p>
+</li>
+<li><p>B<br>生成树协议 (STP) 的作用是防止交换回路。</p>
+</li>
+<li><p>D<br>DNS（Domain Name System）是一个应用层协议，用于将域名转换为 IP 地址。它依靠 UDP 协议来提供域名解析服务，使用UDP dport&#x3D;53进行通信。DNS数据包通常比较小，且可以快速发送和接收，因此使用UDP可以提高性能。<br>其它使用UDP协议的还有：网络时间协议（NTP）、远程过程调用（RPC）、网络文件系统（NFS）、简单网络管理协议（SNMP）、简单文件传输协议（TFTP）</p>
+</li>
+<li><p>C</p>
+</li>
+<li><p>A<br>电路交换（Circuit Switching）是指建立一条物理通路，通信双方在数据传输前，必须先建立一条完整的物理通路。在整个数据通信过程中，所分配的物理通路只供通信双方使用，即使在通信数据空闲期，所分配的通路也始终占用不释放。因此，电路交换的电路利用率相对较低，因为占用的通路不能被其他通信所利用，当某一通信时间很短时，接入通信线路了也很长时间无法被利用。</p>
+</li>
+<li><p>B<br>RARP的工作原理是，当一个只知道自己的物理地址而不知道自己的IP地址的站点初始化后，它会向本地网络上的所有主机发送一个RARP请求数据包，其中包含自己的物理地址。如果有一个RARP服务器收到了这个请求，它就会在自己的地址映射表中查找与该物理地址对应的IP地址，并将其放在一个RARP响应数据包中发送给请求者。这样，请求者就可以得到自己的IP地址了。</p>
+</li>
+<li><p>D<br>通信子网（互联网核心部分）是指负责数据传输的网络部分，它对应于 OSI模型中的低三层（物理层、数据链路层、网络层），而传输层是第四层，不属于通信子网的范畴 。<br>传输层主要负责提供端到端的可靠数据传输服务，它在通信子网之上，为资源子网提供服务。</p>
+</li>
+<li><p>C<br>在TCP&#x2F;IP通讯过程中，当TCP报文中SYN&#x3D;1而ACK&#x3D;1时，表明这是<strong>连接应答报文</strong>。</p>
+</li>
+<li><p>A<br>用客户端软件接收E-mail所用的协议是<strong>POP3</strong>。</p>
+</li>
+<li><p>C<br>CIDR技术消除了传统的A类、B类和C类地址以及划分子网的概念，将网络前缀从固定长度变为了可调节长度，更为有效的对IPv4地址进行了分配。<br>假设一个B类地址为172.32.0.0-172.63.0.0，<br>那么换成二进制地址为10101100:00100000:00000000:00000000-10101100:00111111:00000000:00000000<br>可知，前11位相同，即172.32.0.0&#x2F;11</p>
+</li>
+<li><p>C<br>直接进行 IP 封装的协议是 OSPF（Open Shortest Path First）。</p>
+</li>
+</ol>
+<p>OSPF 是一种基于链路状态算法的路由协议，它可以帮助构建一个 IP 网络环境下的路由信息传递体系。OSPF 协议中，路由器之间会通过信息交流来构建路由表，这些信息是封装在 IP 数据包中。因此，在 OSPF 协议中，信息可以直接通过 IP 封装来进行传输。</p>
+<p>相比之下，RIP（Routing Information Protocol）和 BGP（Border Gateway Protocol）都是基于距离向量算法的路由协议。RIP 协议将路由信息封装在 UDP 数据包内进行传输，而 BGP 协议是将路由信息封装在 TCP 数据包内进行传输。</p>
+<p>DNS（Domain Name System）是一种用于解析域名和 IP 地址之间对应关系的协议，它的数据封装在 UDP 或 TCP 数据包中传输，但它并不是一个路由协议，与题目所问的不符。</p>
+<h1 id="判断题-1"><a href="#判断题-1" class="headerlink" title="判断题"></a>判断题</h1><ol>
+<li><p>√<br>ISO 组织制定的 OSI 参考模型是一种网络分层架构，它将整个网络通信系统分成七个层次，每个层次执行特定的功能，并与其他层次相互通信。</p>
+</li>
+<li><p>×<br>广域网（WAN）是指覆盖范围广、跨越城市乃至国家、大洲甚至全球的计算机网络。在广域网中，常用的拓扑结构包括星型拓扑、环型拓扑、网状拓扑等。<br>总线型拓扑结构是一种使用同一媒体或电缆连接所有端用户的方式，这种结构在局域网中使用较多。</p>
+</li>
+<li><p>×<br>双绞线确实是一种常见的传输介质，但并不是带宽最宽、抗干扰能力最强的类型。事实上，光纤等其他介质比双绞线有更高的带宽和更好的抗干扰能力。</p>
+</li>
+<li><p>×<br>应用网关是一种 Web 流量负载均衡器，可以根据 HTTP 请求的属性（如 URI 路径或主机头）进行路由决策。应用网关是一种应用层（OSI 层 7）负载均衡器，而不是数据链路层（OSI 层 2）的设备。数据链路层实现网络互连的设备有交换机、网桥等。</p>
+</li>
+<li><p>√<br>密码学包括两个主要分支，一个是密码编码学，它研究的是如何设计和使用密码来加密和解密信息;另一个是密码分析学，它研究的是如何攻击和破解密码系统。</p>
+</li>
+<li><p>√<br>AES算法是一种公开的对称加密算法，在2001年被美国政府确定为美国政府使用的加密标准，其加密和解密过程都是公开的。但是，AES加密中使用的密钥是必须保密的，否则就会使加密过程变得毫无意义。密钥是加密解密的关键之一，只有找到正确的密钥，才能对加密的内容进行解密操作。因此，保护AES加密的密钥是非常重要的。</p>
+</li>
+<li><p>×<br>一个C类地址由3个字节的网络地址和1个字节的主机地址组成，网络地址的最高位必须是“110”，范围从192.0.0.0到233.255.255.255。C类网络可达209万余个，每个网络能容纳254个主机。因为主机位不能全为0或全为1，否则表示网络地址或广播地址。所以，一个C类地址拥有8位主机位，可给254台主机分配地址，而不是256台。</p>
+</li>
+<li><p>×<br>IGMP是网络层的协议，而不是传输层的协议。IGMP是Internet Group Management Protocol的简称，又被称为互联网组管理协议，是TCP&#x2F;IP协议栈中负责IPv4 组播成员注册管理的协议。IGMP直接在IP层工作，每个IGMP报文都有一个IP头和一个IGMP头 。IGMP不使用传输层协议，如TCP或UDP。</p>
+</li>
+<li><p>×<br>进程寻址使用的是端口号（Port Number）来实现。在网络通信过程中，每个应用程序通常都会绑定到一个端口号上，这个端口号是一个16位的数字，用于在网络连接中标识不同的进程。当两个进程需要进行通信时，需要通过端口号来确定彼此的身份，从而成功建立连接。因此，进程寻址是使用主机地址加上端口号来实现的，而不是使用端点（TSAP）标识。<br>TSAP（Transport Service Access Point）是用于在OSI模型的表示层和会话层之间提供传输服务访问的标识符，它不直接用于进程寻址。</p>
+</li>
+<li><p>√<br>WWW (World Wide Web) 服务是一种分布式的、基于客户端&#x2F;服务器 (Client&#x2F;Server)方式工作的互联网服务。<br>WWW客户端是一个通过发送HTTP请求到WWW 服务器上获取特定内容的程序，而WWW服务器负责响应这些请求并返回相关的内容。<br>因此，WWW服务采用的是经典的客户端&#x2F;服务器服务模型。客户端向服务器发送请求，服务器收到请求并响应请求，返回相关的信息。这种模型使得WWW服务更加灵活、高效、可靠，并能够满足不同用户的不同需求。</p>
+</li>
+</ol>
+<h1 id="简答及计算题-1"><a href="#简答及计算题-1" class="headerlink" title="简答及计算题"></a>简答及计算题</h1><ol>
+<li><p>分析IP地址数量<br>已知地址：140.120.84.24&#x2F;20<br>那么根据CIDR地址块，可知前20位不变。由于每个字节占8位，于是140.120不变。<br>84&#x3D;64+16+8，即84&#x3D;01011000，即前4位0101不变。<br>最小地址：140.120.80.0<br>最大地址：140.120.95.255<br>地址总数：16×256&#x3D;4096<br>相当于16个C类网。</p>
+</li>
+<li><p>数据报分片原理<br>•  首先，我们需要确定每个数据报片的数据字段长度。由于固定首部长度为20字节，那么每个数据报片的数据部分最多只能是1500-20&#x3D;1480字节。</p>
+</li>
+</ol>
+<p>•  然后，我们需要确定需要划分为几个数据报片。由于原始数据报的数据部分有4000-20&#x3D;3980字节，那么我们可以用3980除以1480得到2.689，向上取整得到3，即需要划分为3个数据报片。</p>
+<p>•  接下来，我们需要确定每个数据报片的片偏移字段和MF标志位。第一个数据报片相对于原始数据报没有偏移，所以片偏移字段为0，而且后面还有其他的数据报片，所以MF标志位为1。第二个数据报片相对于原始数据报偏移了1480字节，所以片偏移字段为1480&#x2F;8&#x3D;185，而且后面还有其他的数据报片，所以MF标志位为1。第三个数据报片相对于原始数据报偏移了1480+1480&#x3D;2960字节，所以片偏移字段为2960&#x2F;8&#x3D;370，而且后面没有其他的数据报片了，所以MF标志位为0。</p>
+<p>综上所述，我们可以得到以下答案：</p>
+<p>•  路由器应当将此数据段划分为3个数据报片。</p>
+<p>•  各数据报分片的数据字段长度分别为1480字节、1480字节和1040字节。</p>
+<p>•  各数据报分片的片偏移字段分别为0、185和370。</p>
+<p>•  各数据报分片的MF标志位分别为1、1和0。</p>
+<ol start="3">
+<li><p>访问网站发送报文类型<br>（1）ARP查询报文：在进行TCP连接之前，计算机需要解析域名 <code>www.qq.com</code> 所对应的IP地址，这个过程需要进行Address Resolution Protocol（ARP）查询。因此，计算机可能会发送 ARP查询报文到局域网中的其他计算机或路由器，以获取 <code>www.qq.com</code> 对应的IP地址。<br>（2）DNS查询报文：这种报文是用来向DNS服务器请求解析 <code>www.qq.com</code> 的IP地址的，因为计算机需要知道目标网站的IP地址才能与之通信<br>（3）HTTP请求报文：这种报文是用来向目标网站请求具体的资源或服务的，比如网页、图片、视频等</p>
+</li>
+<li><p>CSMA&#x2F;CD协议工作原理<br>载波监听：每个节点在发送数据之前，都要先检测信道是否空闲，即是否有其他节点正在发送数据。如果信道空闲，则可以发送数据；如果信道忙碌，则要等待信道空闲后再发送。<br>多路访问：当信道空闲时，每个节点都有平等的机会发送数据，没有优先级的区别。但是，如果有多个节点同时检测到信道空闲，并且同时开始发送数据，就会发生冲突。<br>冲突检测：每个节点在发送数据的同时，也要不断监听信道上的信号，以检测是否有冲突发生。如果检测到冲突，就说明有其他节点也在发送数据，导致信号相互干扰<br>冲突处理：如果一个节点在发送数据过程中检测到冲突，就要立即停止发送，并向信道发送一个特殊的冲突信号，以通知其他节点发生了冲突。然后，该节点要随机选择一个时间段后退延迟，再次尝试发送数据。如果连续发生多次冲突，该节点就要逐渐增加后退延迟的时间范围，直到成功发送数据或者达到最大尝试次数为止。</p>
+</li>
+<li><p>信噪比公式，香农公式<br>根据信噪比公式：信噪比&#x3D;10lg(S&#x2F;N)和已知条件，知：<br>30&#x3D;10lg(S&#x2F;N)，可得S&#x2F;N&#x3D;1000<br>根据香农公式：C&#x3D;Wlog2(1+S&#x2F;N)和已知条件，知：（W是带宽）<br>C&#x3D;4K×log2(1+1000)≈40Kb&#x2F;s</p>
+</li>
+</ol>
+
     </div>
 
     
@@ -534,7 +635,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">填空题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">选择题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">判断题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E7%AD%94%E5%8F%8A%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">简答及计算题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">综合分析题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98-1"><span class="nav-number">7.</span> <span class="nav-text">填空题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">单项选择题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">填空题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">选择题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">判断题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E7%AD%94%E5%8F%8A%E8%AE%A1%E7%AE%97%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">简答及计算题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90%E9%A2%98"><span class="nav-number">6.</span> <span class="nav-text">综合分析题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98-1"><span class="nav-number">7.</span> <span class="nav-text">填空题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E9%A1%B9%E9%80%89%E6%8B%A9%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">单项选择题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98-1"><span class="nav-number">9.</span> <span class="nav-text">判断题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E7%AD%94%E5%8F%8A%E8%AE%A1%E7%AE%97%E9%A2%98-1"><span class="nav-number">10.</span> <span class="nav-text">简答及计算题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -621,13 +722,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">359k</span>
+    <span title="站点总字数">366k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5:27</span>
+    <span title="站点阅读时长">5:33</span>
 </div>
 
 <!--
