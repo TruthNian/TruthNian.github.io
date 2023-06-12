@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言重头再来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-10T07:41:10.963Z">
+<meta property="article:modified_time" content="2023-06-12T12:50:56.737Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-10 15:41:10" itemprop="dateModified" datetime="2023-06-10T15:41:10+08:00">2023-06-10</time>
+                <time title="修改时间：2023-06-12 20:50:56" itemprop="dateModified" datetime="2023-06-12T20:50:56+08:00">2023-06-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -248,7 +248,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -478,7 +478,7 @@
 <p>•  各数据报分片的片偏移字段分别为0、185和370。</p>
 <p>•  各数据报分片的MF标志位分别为1、1和0。</p>
 <ol start="3">
-<li><p>访问网站发送报文类型<br>（1）ARP查询报文：在进行TCP连接之前，计算机需要解析域名 <code>www.qq.com</code> 所对应的IP地址，这个过程需要进行Address Resolution Protocol（ARP）查询。因此，计算机可能会发送 ARP查询报文到局域网中的其他计算机或路由器，以获取 <code>www.qq.com</code> 对应的IP地址。<br>（2）DNS查询报文：这种报文是用来向DNS服务器请求解析 <code>www.qq.com</code> 的IP地址的，因为计算机需要知道目标网站的IP地址才能与之通信<br>（3）HTTP请求报文：这种报文是用来向目标网站请求具体的资源或服务的，比如网页、图片、视频等</p>
+<li><p>访问网站发送报文类型<br>（1）ARP查询报文：根据缺省网关的IP地址查询其MAC地址<br>（2）DNS查询报文：用来向DNS服务器请求解析 <code>www.qq.com</code> 的IP地址<br>（3）HTTP请求报文：这种报文是用来向目标网站请求具体的资源或服务的，比如网页、图片、视频等</p>
 </li>
 <li><p>CSMA&#x2F;CD协议工作原理<br>载波监听：每个节点在发送数据之前，都要先检测信道是否空闲，即是否有其他节点正在发送数据。如果信道空闲，则可以发送数据；如果信道忙碌，则要等待信道空闲后再发送。<br>多路访问：当信道空闲时，每个节点都有平等的机会发送数据，没有优先级的区别。但是，如果有多个节点同时检测到信道空闲，并且同时开始发送数据，就会发生冲突。<br>冲突检测：每个节点在发送数据的同时，也要不断监听信道上的信号，以检测是否有冲突发生。如果检测到冲突，就说明有其他节点也在发送数据，导致信号相互干扰<br>冲突处理：如果一个节点在发送数据过程中检测到冲突，就要立即停止发送，并向信道发送一个特殊的冲突信号，以通知其他节点发生了冲突。然后，该节点要随机选择一个时间段后退延迟，再次尝试发送数据。如果连续发生多次冲突，该节点就要逐渐增加后退延迟的时间范围，直到成功发送数据或者达到最大尝试次数为止。</p>
 </li>
