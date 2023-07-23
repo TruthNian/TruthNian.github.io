@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-07-21T18:44:17.125Z</updated>
+  <updated>2023-07-23T17:28:04.371Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>流媒体再进一步</title>
+    <link href="http://example.com/2023/07/23/Diary_20230723/"/>
+    <id>http://example.com/2023/07/23/Diary_20230723/</id>
+    <published>2023-07-22T16:00:00.000Z</published>
+    <updated>2023-07-23T17:28:04.371Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/Christina_4.png" alt="牧濑红莉栖"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>差点关电脑了，别忘了强迫自己。</p><h1 id="emby"><a href="#emby" class="headerlink" title="emby"></a>emby</h1><p>emby这个东西真好用啊，2年曾经尝试过一次，但是当时可能不太感兴趣还是怎么着，没深入研究了。这次看到某个群好多人在用，想想是不是该试试。于是兴冲冲地尝试了。这个东西就是自己建媒体库，无论是电子书，音乐还是影视剧等等，都能放进去。不过大多数人还是喜欢拿来当作影视库吧，毕竟电子书靠z-library，音乐占空间相对而言也不大。</p><p>言归正传，下午的时候自己尝试搭了emby媒体库，但emby这种如果真想存很多资源，放在本地其实是有些划不来，或者说吃不消的，一般都放在服务器上，但放服务器上又要花钱和折腾，所以我自己简单尝试了几部片子之后便放弃了，虽然确实好用（把片子存到本地在emby上能自动显示封面海报和其它的各种信息之类的，UI也看着舒服）。</p><p>随后想到公益服，于是我在浏览器上搜，链接跑到Telegram频道了，再在tg里发现了几个不错的emby服务器，直接拿来用。这下子，我突然觉得什么bilibili会员，什么Netflix，什么Disney+索然无味。因为这些公益服里的资源实在太多了，而且质量也不错。这下子我决定除了nf，其它的都不充了。</p><p>那么来总结下吧：<br>优点：</p><ol><li>资源丰富，比任何单一平台资源都要多。</li><li>质量较高，有些资源质量比流媒体平台资源还高。</li><li>UI好看，界面风格和NF风格很相似。</li></ol><p>缺点：</p><ol><li>对于即时更新的资源时间会稍微慢1-5天。</li><li>无法对没看完的片子精准定位。</li><li>由于是民间经营，有可能跑路或偶尔断联。</li></ol><p>初步体验下来就这样，还能接受，反正免费方便，先试试看。</p><h1 id="说真的"><a href="#说真的" class="headerlink" title="说真的"></a>说真的</h1><p>吐槽一下：“说真的”，“老实说”。<br>有时为了加强想表达的内容，会习惯性地这么说。然而往往一说出口就觉得别扭。<br>原因就在于我感觉我绝大部分的话都是“说真的”或“老实说”，我要是开头这么说，那说得好像我平时讲话都是“说假的”或“不老实说”。<br>反而让我没那么想这么说了。</p><h1 id="末日孤雄"><a href="#末日孤雄" class="headerlink" title="末日孤雄"></a>末日孤雄</h1><p>昨日至今看完了一部日本的小说，叫做末日孤雄。关于在末日中主角被丧尸咬之后形成抗体从此再也不被丧尸袭击的故事。我看这部作品的简介有点兴趣，加上某网站上评分还可以。于是找来看，意外地很难找，不过还是顺利找到了，共60话有3章。<br>怎么说呢？稍微和预期之中有些不同，文笔还算看得下去。关于sex的描写有点多，大致统计了下有8，9处吧。是7年前的小说，甚至改编成了游戏。我也鬼使神差地下来玩了一点。感觉得到没写完，不过作者没写了，那也没办法。算是爽文题材作品。</p><h1 id="别人的世界"><a href="#别人的世界" class="headerlink" title="别人的世界"></a>别人的世界</h1><p>我挺喜欢看故事的，我有这个自觉。<br>对于小说，影视作品之类的这些会看不少。<br>不过我最近打算减少看故事作品的数量。<br>每一部作品都有着一个独特的世界，一直以来我喜欢去别的世界旅行。最近我决定不再如此了，无论是好是坏的作品，我都打算减少观看的时间。<br>因为无论如何，这些作品都是别人的世界，始终不是在自己的世界，我想要建造自己的世界。<br>把看其它作品的时间花在对自己世界的构筑上，比如自己创作一部全新的作品，或者续写别人的作品，最次也要翻译一部作品（有人说翻译也是一种创作）。<br>看看会有怎样的成效吧~</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Christina_4.png&quot; alt=&quot;牧濑红莉栖&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>七上八下</title>
+    <link href="http://example.com/2023/07/22/Diary_20230722/"/>
+    <id>http://example.com/2023/07/22/Diary_20230722/</id>
+    <published>2023-07-21T16:00:00.000Z</published>
+    <updated>2023-07-22T16:21:44.347Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/%E7%BB%98%E9%87%8C%E9%A6%99.jpg" alt="绘里香"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按自己的约定，今天也要写。</p><h1 id="说"><a href="#说" class="headerlink" title="说"></a>说</h1><p>今天没什么想说的，日子也并不有趣。言多必失，就这样吧。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E7%BB%98%E9%87%8C%E9%A6%99.jpg&quot; alt=&quot;绘里香&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>前面是哪方</title>
@@ -405,48 +451,6 @@
     <category term="护网" scheme="http://example.com/tags/%E6%8A%A4%E7%BD%91/"/>
     
     <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>判断一个IP是否为公网IP</title>
-    <link href="http://example.com/2023/03/11/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AAIP%E6%98%AF%E5%90%A6%E4%B8%BA%E5%85%AC%E7%BD%91IP/"/>
-    <id>http://example.com/2023/03/11/%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AAIP%E6%98%AF%E5%90%A6%E4%B8%BA%E5%85%AC%E7%BD%91IP/</id>
-    <published>2023-03-10T16:00:00.000Z</published>
-    <updated>2023-03-11T03:19:05.589Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时需要一个公网ip，但是不知道自己的IP是否为公网IP，由于老是会忘掉怎么判断，不如自己记录一下。</p><span id="more"></span><h1 id="IP之间的区别"><a href="#IP之间的区别" class="headerlink" title="IP之间的区别"></a>IP之间的区别</h1><p>内网IP：只能在限定区域内访问，外网无法识别。<br>大内网IP：假设是联通带宽，则分配IP只能在联通内访问，移动电信网络均无法访问。<br>公网IP：全球唯一IP地址，在任何地方均可访问。</p><h1 id="Tips-1-IP地址范围"><a href="#Tips-1-IP地址范围" class="headerlink" title="Tips 1:IP地址范围"></a>Tips 1:IP地址范围</h1><p>以下IP段范围均为私网IP地址：</p><ol><li>10.0.0.0-10.255.255.255</li><li>192.168.0.0-192.168.255.255</li><li>172.16.0.0-172.31.255.255</li></ol><h1 id="Tips-2-咨询网络服务商"><a href="#Tips-2-咨询网络服务商" class="headerlink" title="Tips 2:咨询网络服务商"></a>Tips 2:咨询网络服务商</h1><p>如果不确定自身IP是否为公网IP，那么可以咨询客服。<br>如果确定不是公网IP，那么向客服要求开通公网IP。</p><h1 id="Tips-3-IP对比法"><a href="#Tips-3-IP对比法" class="headerlink" title="Tips 3:IP对比法"></a>Tips 3:IP对比法</h1><p>首先查看自身IP：使用cmd的ipconfig&#x2F;all命令，查看正在连接的ipv4地址。<br>然后在<a href="https://www.whatismyip.com/">whatismyip</a> 或 <a href="https://www.ipchicken.com/">ipchicken</a> 查看IP，比对是否一致。<br>如果一致，则说明IP为公网ip，否则不是。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>物以稀为贵，公网IP更好，但也要看自身需求。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有时需要一个公网ip，但是不知道自己的IP是否为公网IP，由于老是会忘掉怎么判断，不如自己记录一下。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="IP" scheme="http://example.com/categories/IP/"/>
-    
-    
-    <category term="IP" scheme="http://example.com/tags/IP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浮</title>
-    <link href="http://example.com/2023/03/09/%E6%B5%AE/"/>
-    <id>http://example.com/2023/03/09/%E6%B5%AE/</id>
-    <published>2023-03-08T16:00:00.000Z</published>
-    <updated>2023-03-09T16:56:12.378Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/RainGlass.png" alt="Rain"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>“浮”是一种糟糕的人生状态，绝大多数人或多或少都有过这种状态，只不过有的人天生不是浮在水面的生物，只是暂居水面。有的人一辈子只能浮在水面上，无论他甘心与否。</p><h1 id="说文解字"><a href="#说文解字" class="headerlink" title="说文解字"></a>说文解字</h1><p>首先看，浮这个字，可以组成的词有：浮躁、浮萍、浮夸、浮生、浮华等等，虽然也有少量中性或是褒义的词，但大多数还是贬义的形容。然后，“浮”对于不会游泳的生物而言是一个危险的词，因为当不会游泳的生物在没有外力的作用下，浮在水面上通常是由于死亡，此外鱼儿在死亡后也会浮在水面上。最后，我认为“浮”从抽象意义上表现一个人既不能自由地翱翔在天空中，上九天揽月；也不能漫步水底，下五洋捉鳖。“浮”带给我的始终是不上不下，高不成低不就的一种感觉。“浮”这个字从我的角度来看，它代表了一种不稳定、不安全、不满足、缺乏主动性和责任感的状态，可能会让一个人感到烦躁、迷茫、空虚。</p><h1 id="“浮”的大多数"><a href="#“浮”的大多数" class="headerlink" title="“浮”的大多数"></a>“浮”的大多数</h1><p>不可否认的是，大多数人都是处于“浮”的状态的，能遨游天际抑或是潜入海底的终究是少数。<br>我对人性是持悲观态度的，同时我又是宿命论的支持者，因此我对于“浮”的状态的人更多批判而更少同情。我相信有些鸟儿是注定不会被关在牢笼里的，它们的每一片羽毛都闪耀着自由的光辉。不能从“浮”的状态中脱离出的人，可能一辈子都无法脱离，命运不能改变。<br>有些人往往向往着崇高，却自由地选择卑劣。处在“浮”的状态中的人，大多数并不是不自知，而是知道了选择逃避，或许有想过挣扎，蹦跶了几次后，没有成功最终放弃。处于“浮”的状态的人，没有改变的决心。“浮”绝不是一种自由的体现，因为自由不能以彻底放弃自由为代价！<br>正如我之前的一篇文章中所写，道理充斥的时代，我们缺少觉悟。不论什么样的觉悟都可以，单纯是不想将这个世界让给讨厌的人也好，拯救苍生也好。觉悟不分贵贱，只在程度深浅。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>讨论写出的文章，时间紧迫，没做修改，凑合着看看。以后有机会再回来改~</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/RainGlass.png&quot; alt=&quot;Rain&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
-    
-    
-    <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
     
   </entry>
   
