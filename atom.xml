@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-07-29T16:08:04.530Z</updated>
+  <updated>2023-08-02T16:18:12.349Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>空</title>
+    <link href="http://example.com/2023/08/02/Diary_20230802/"/>
+    <id>http://example.com/2023/08/02/Diary_20230802/</id>
+    <published>2023-08-01T16:00:00.000Z</published>
+    <updated>2023-08-02T16:18:12.349Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>无波澜。</p><span id="more"></span><h1 id="未强迫"><a href="#未强迫" class="headerlink" title="未强迫"></a>未强迫</h1><p>最近两天强迫力下降了，没有强迫自己写日记。<br>我也总是给自己找理由，没什么好写的之类的话。<br>不过即便没有什么值得记录的东西，这些时间也过去了。还是能想方设法写点东西的。</p><h1 id="看"><a href="#看" class="headerlink" title="看"></a>看</h1><p>最近一直在看动漫。我也不知道为什么要这么做，似乎只是因为习惯了。没什么做的便看动漫，沉浸于一个个幻想世界。<br>看完了上世纪的 星际牛仔 ，看完了快20年前的 混沌武士 ，一直看啊看，对外界毫不关心。<br>留着胡子，每次遇到亲戚之类的，都会吐槽我。即便如此我也没有在意。</p><h1 id="厌倦"><a href="#厌倦" class="headerlink" title="厌倦"></a>厌倦</h1><p>不知道这是不是厌倦现实世界了呢？总觉得有些消极，但或许又确实是这样。<br>我应该努力工作的，可我心底里总觉得那个时机还没到来。<br>我对天天看动漫，其实也有些厌倦了。可仍然还没让我有足够的动力改变。</p><p>感觉自己是那种，要么做，要么不做的人。比较极端。学习工作与娱乐难以平衡。说起来我也不是那么在意平衡。</p><h1 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h1><p>别人都在努力学习或是找工作之类的，我却驻足不前，丝毫没有干劲。能理解，但不是借口。</p><p>那么，未来遭遇了困境，我也绝不要寻求帮助。<br>我有预感，未来会因我现在的懒散掉大坑里。<br>那么只要不是置于死亡的境地，一定不要找人帮忙，一定要品尝痛苦的滋味，来惩罚或者说，洗礼自己。<br>这是活该，也是必经之路。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;无波澜。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>波西米亚狂想曲</title>
@@ -427,27 +450,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;SRC的课开始了，记点笔记比较好。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="SRC" scheme="http://example.com/categories/SRC/"/>
-    
-    
-    <category term="SRC" scheme="http://example.com/tags/SRC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SRC_course_2</title>
-    <link href="http://example.com/2023/05/11/SRC_course_2/"/>
-    <id>http://example.com/2023/05/11/SRC_course_2/</id>
-    <published>2023-05-10T16:00:00.000Z</published>
-    <updated>2023-05-12T09:37:20.085Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>逐渐开始步入正轨…</p><span id="more"></span><h1 id="Burp插件"><a href="#Burp插件" class="headerlink" title="Burp插件"></a>Burp插件</h1><p>tips:<br>建议插件本地加载。</p><ol><li>Burp插件推荐<br>HaE<br>wooyun-payload<br>shiro<br>FastJson</li></ol><h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>MD5不是加密算法，是摘要算法。<br><a href="www.cmd5.com">MD5加解密</a></p><p>32位或16位，可以去尝试是否为MD5。<br>如果试不出来，那么可能是随机字符。</p><h1 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h1><p>绝活</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">图片上传</span><br><span class="line">data:image/png;base64,PGltZyBzcmM9MSBvbmVycm9yPWFsZXJ0KDEpPg==</span><br><span class="line"></span><br><span class="line">替换为</span><br><span class="line"></span><br><span class="line">data:text/html;base64,PGltZyBzcmM9MSBvbmVycm9yPWFsZXJ0KDEpPg==</span><br><span class="line"></span><br><span class="line">这样就不会出现filename</span><br></pre></td></tr></table></figure><h1 id="jwt-JSON-Web-Token"><a href="#jwt-JSON-Web-Token" class="headerlink" title="jwt(JSON Web Token)"></a>jwt(JSON Web Token)</h1><p><a href="jwt.io">JWT网站</a></p><p>使用场景：<br>抓包后，在Auth字段可能会有jwt<br>示例：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Auth:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line">Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</span><br></pre></td></tr></table></figure><p>eyJ开头的字段，证明是jwt格式。<br>第一部分：Header(头部)<br>第二部分：Payload(负载)<br>第三部分：Signature(签名)</p><p>JWT默认不加密，只是Base64编码，任何人都可以读到。</p><p>正常挖洞的流程：<br>将签名删除，修改数据体。</p><p>修改数据体的方式：将数据体通过base64解密，修改内容，再加密为base64格式。</p><h1 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h1><p>面对一大堆cookie，需要逐步分析。<br>带有”+”,”&#x2F;“符号的字符串，有可能是AES加密。<br>面对AES加密字符，如果不知道及加密模式，填充，密钥，偏移量，输出方式。很难解密。<br>在企业做测试，去询问加密的方式等等。</p><p>Token如果是纯数字，使用多个账号，如果能成功，则有越权漏洞。证明可遍历。</p><p>或者挨个删除信息，看能否成功。</p><p>不可动生产数据。</p><p>先修改数据，不修改cookie。如果不能成再改其它。</p><h1 id="OSS浏览器"><a href="#OSS浏览器" class="headerlink" title="OSS浏览器"></a>OSS浏览器</h1><p>AccessKeyId, AccessKeySecret利用可使用oss浏览器。<br><a href="help.aliyun.com">oss浏览器下载地址</a><br>扫AK,AS的泄露信息，或在GitHub搜索泄露信息。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;逐渐开始步入正轨…&lt;/p&gt;</summary>
     
     
     
