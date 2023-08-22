@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-12T16:53:35.137Z</updated>
+  <updated>2023-08-22T03:15:08.614Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,105 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>内网渗透之信息收集</title>
+    <link href="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</id>
+    <published>2023-08-19T16:00:00.000Z</published>
+    <updated>2023-08-22T03:15:08.614Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。</p><span id="more"></span><h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>主机名： <code>hostname</code><br>查询所有计算机名称 <code>dsquery computer</code><br>查看配置及补丁信息：<br><code>systeminfo</code><br><code>wmic qfe get description,installedOn /format:csv</code></p><p>查看版本： <code>ver</code></p><p>进程信息：<br><code>tasklist /svc</code><br><code>wmic process get caption,executablepath,commandline /format:csv</code><br><code>get-process</code></p><p>查看所有环境命令： <code>set</code></p><p>查看计划任务： <code>schtasks /QUERY /fo LIST /v</code></p><p>查看安装驱动： <code>DRIVERQUERY</code></p><p>查看操作系统信息：<br>架构： <code>wmic os get osarchitecture</code><br>系统名： <code>wmic os get caption</code></p><p>查看逻辑盘： <code>wmic logicaldisk get caption</code><br>查看安装的软件信息： <code>wmic product get name,version</code></p><p>查看服务信息：<br><code>wmic service list brief</code><br><code>sc query</code><br><code>Get-WmiObject win32_service | select PathName</code></p><h2 id="域信息"><a href="#域信息" class="headerlink" title="域信息"></a>域信息</h2><p>获取当前组的计算机名： <code>net view</code> (失败原因可能为防病毒程序或防火墙配置阻止与服务器的连接，禁用功能发现服务等。)<br>网络发现： <code>net view /all</code><br>查看所有域： <code>net view /domain</code><br>域信任信息： <code>nltest /domain_trusts</code><br>定位域控： <code>net time /domain</code><br>查看域中的用户名： <code>dsquery user</code><br>查询域组名称： <code>net group /domain</code><br>查询域管理员： <code>net group &quot;Domain Admins&quot; /domain</code></p><p>域控信息：<br><code>nltest /dclist:xx</code><br><code>Get-NetDomain</code><br><code>Get-NetDomainController</code><br><code>net group &quot;Domain controllers&quot;</code></p><h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>查看用户：<br><code>net user</code><br><code>woami</code> &#x2F; <code>whoami /priv</code> &#x2F; <code>whoami /all</code><br><code>wmic useraccount get /ALL /format:csv</code></p><p>用户特权信息： <code>whoami /priv</code><br>查看当前权限： <code>net localgroup administrators</code><br>查看在线用户： <code>quser</code> &#x2F; <code>qwinsta</code> &#x2F; <code>query user</code><br>查看当前计算机名，全名，用户名，系统版本，工作站域，登陆域： <code>net config Workstation</code><br>ACL信息： <code>get-acl</code></p><h2 id="网络信息"><a href="#网络信息" class="headerlink" title="网络信息"></a>网络信息</h2><p>网卡信息： <code>ipconfig</code><br>ARP表： <code>arp -a</code><br>路由表： <code>route print</code><br>监听的端口： <code>netstat -ano</code><br>端口信息：<br><code>Get-NetTCPConnection</code><br>DNS缓存：<br><code>ipconfig /displaydns</code><br><code>Get-CimInstance -Namespace root/StandardCimv2 -ClassName MSFT_DNSClientCache</code></p><p>探测出网情况：<br><code>powershell -c &quot;1..65535 | % &#123;echo ((new-object Net.Sockets.TcpClient).Connect(&#39;allports.exposed&#39;,$_)) $_ &#125; 2&gt;$null&quot;</code></p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>查看防火墙状态： <code>netsh advfireall show allprofiles</code><br>防火墙日志目录： <code>netsh firewall show logging</code><br>防火墙规则：<br><code>netsh advfirewall firewall show rule name=all</code><br><code>netsh firewall show config</code><br><code>netsh firewall show state</code></p><h2 id="密码信息"><a href="#密码信息" class="headerlink" title="密码信息"></a>密码信息</h2><p>Windows RDP连接记录<br>浏览器中保存的账号密码<br>系统密码管理器中的各种密码<br>无人值守安装文件中的密码信息：<br><code>C:\sysprep.inf</code><br><code>C:\sysprep\sysprep.xml</code><br><code>C:\Windows\Panther\Unattend\Unattended.xml</code><br><code>C:\Windows\Panther\Unattended.xml</code></p><h2 id="票据信息"><a href="#票据信息" class="headerlink" title="票据信息"></a>票据信息</h2><p><code>cmdkey /l</code><br>klist<br>msf meterpreter</p><h2 id="特殊文件"><a href="#特殊文件" class="headerlink" title="特殊文件"></a>特殊文件</h2><p>文档<br>xlsx &#x2F; xls<br>docx &#x2F; doc<br>pptx &#x2F; ppt<br>vsdx &#x2F; vsd<br>md &#x2F; txt</p><p>压缩文件<br>zip &#x2F; rar &#x2F; 7z</p><p>VPN配置<br>ovpn</p><p>代码<br>py &#x2F; php &#x2F; jsp &#x2F; aspx &#x2F; asp &#x2F; sql</p><p>配置文件<br>conf &#x2F; ini &#x2F; xml</p><p>特定关键字<br>账号 &#x2F; 账户 &#x2F; 登录 &#x2F; login &#x2F; user<br>密码 &#x2F; pass<br>代码 &#x2F; 文档 &#x2F; 交接 &#x2F; 备份 &#x2F; git &#x2F; svn<br>邮箱 &#x2F; 通讯录 &#x2F; 集群 &#x2F; 办公<br>代理 &#x2F; 内网 &#x2F; VPN<br>设备 &#x2F; 资产<br>系统 &#x2F; 运维 &#x2F; 拓扑 &#x2F; 网络 &#x2F; IT<br>后台 &#x2F; 管理员 &#x2F; 数据库<br>监控 &#x2F; 隔离 &#x2F; 防火墙 &#x2F; 网闸 &#x2F; 巡检</p><h2 id="局域网存活主机"><a href="#局域网存活主机" class="headerlink" title="局域网存活主机"></a>局域网存活主机</h2><p>NetBIOS扫描<br>OXID扫描</p><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>启用的共享文件夹<br>回收站<br>最近运行的命令<br>访问文件历史记录<br>查看补丁安装情况<br><code>wmic qfe get Caption,Description,HotFixID,InstalledOn</code></p><p>日志与事件信息<br><code>wevtuil</code><br><code>eventvwr</code></p><p>注册表信息<br><code>reg</code></p><p>安装的各类agent监控软件<br>安装的杀毒软件<br>查看&#x2F;设置后缀失联<br><code>assoc</code><br><code>assoc .ext=example</code></p><p>PowerShell版本<br>.Net版本<br>Wi-Fi密码</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="信息收集" scheme="http://example.com/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>觉悟的样子</title>
+    <link href="http://example.com/2023/08/16/Diary_20230816/"/>
+    <id>http://example.com/2023/08/16/Diary_20230816/</id>
+    <published>2023-08-15T16:00:00.000Z</published>
+    <updated>2023-08-17T02:52:08.379Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我没有觉悟。</p><span id="more"></span><h1 id="有觉悟表现出的几个特征"><a href="#有觉悟表现出的几个特征" class="headerlink" title="有觉悟表现出的几个特征"></a>有觉悟表现出的几个特征</h1><ol><li>早上醒了或闹钟响了便起床，不会醒了之后继续睡。</li><li>原本诱惑的东西吸引力弱了很多。</li><li>不会三心二意。</li></ol><h1 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h1><p>现在的我没有觉悟，我能感觉到。<br>说到底，觉悟这种东西，不是凭借外界的什么就能达到，而是一种自发涌现的力量。<br>没有，那就是没有。</p><h1 id="前进"><a href="#前进" class="headerlink" title="前进"></a>前进</h1><p>大多数人，应该都是没有觉悟的。支撑人们前进的往往是外界因素，比如通过什么强制自己做什么，或者不做什么就会发生什么糟糕的事。</p><p>人等不到觉悟，便由锁链拉扯前行。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;我没有觉悟。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重要</title>
+    <link href="http://example.com/2023/08/15/Diary_20230815/"/>
+    <id>http://example.com/2023/08/15/Diary_20230815/</id>
+    <published>2023-08-14T16:00:00.000Z</published>
+    <updated>2023-08-16T04:26:38.611Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天只说一点点。</p><span id="more"></span><h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>如果某些事足够重要，即使情况不利于你，也应当去做。    –Elon Musk</p><h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>写自己思考的东西，自己的看法，是为了不要忘记，为了强化自己的观点。<br>如果想到了什么，却不去记述，那么灵感很快会转瞬即逝。</p><p>我依旧想起了在很多年前的高中，我写了一首诗。拿给了一位朋友看。朋友说，即使平常不看诗，也觉得这首诗写得很好。水平大概是和顾城的“黑夜给了我黑色的眼睛，我却用它来寻找光明。”同等程度。<br>但是后来不知为何，我把所写的诗弄丢了，而我也再也想不起来，我自己曾经写的那首诗。<br>我感到十分可惜。</p><p>帕斯卡尔说，人是一根会思考的芦苇。</p><p>表达什么观点，高尚或卑劣，成熟或幼稚，都没有关系。重要的是去表达。<br>用笛卡尔的这句话做结尾很恰当：我思故我在。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;今天只说一点点。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>进展</title>
+    <link href="http://example.com/2023/08/13/Diary_20230813/"/>
+    <id>http://example.com/2023/08/13/Diary_20230813/</id>
+    <published>2023-08-12T16:00:00.000Z</published>
+    <updated>2023-08-13T18:01:20.786Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有开头，进展不太顺利。</p><span id="more"></span><h1 id="习惯"><a href="#习惯" class="headerlink" title="习惯"></a>习惯</h1><p>习惯未成，感觉有些别扭。<br>明天约束一下自己。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有开头，进展不太顺利。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
     <title>欢迎加入NHK--困境中的挣扎与释然</title>
     <link href="http://example.com/2023/08/12/%E6%AC%A2%E8%BF%8E%E5%8A%A0%E5%85%A5NHK--%E5%AE%B6%E9%87%8C%E8%B9%B2%E7%9A%84%E6%8C%A3%E6%89%8E/"/>
     <id>http://example.com/2023/08/12/%E6%AC%A2%E8%BF%8E%E5%8A%A0%E5%85%A5NHK--%E5%AE%B6%E9%87%8C%E8%B9%B2%E7%9A%84%E6%8C%A3%E6%89%8E/</id>
     <published>2023-08-11T16:00:00.000Z</published>
-    <updated>2023-08-12T16:53:35.137Z</updated>
+    <updated>2023-08-12T16:58:26.632Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_10.png" alt="中原岬"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这部是我打算在近段时间看的最后一部完结动画。这是一部将近20年前的动画作品。看完之后挺满足的。</p><h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>故事的主人公是22岁大学辍学的家里蹲男人佐藤达广。<br>动画里大致上有9个故事：</p><ol><li>男主受到女主（中原岬）邀请帮助他走出家里蹲状态。</li><li>男主与男二邻居高中学弟（山崎薰）一起制作美少女游戏。</li><li>男主与女主假扮情侣真约会。</li><li>男主与女二高中学姐（柏瞳）一起相约组团自杀。</li><li>男主想通过玩网游赚钱陷入痴迷状态。</li><li>男主被高中班长（小林惠）骗入传销。</li><li>男二回家继承家业。</li><li>男主拒绝女二学姐的外遇邀请。</li><li>男主走出家里蹲状态并了解到女主过去。</li></ol><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_3.png" alt=" "></p><h1 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h1><p>本部作品中的角色都很有趣。</p><p><strong>男主（佐藤达广）</strong><br>首先这是个真废物，恶心人的品质有不少。<br>比如：下载色图到电脑磁盘塞满，天天打游戏不分昼夜，对不切实际的幻想想入非非，傻到被传销组织连骗两次…<br>如果只有其中的一两点倒还好，他是各样均沾，让我对这位男主都有点反感了。<br>不过，这个人也不是一无是处，他拒绝了对学姐外遇的邀约，舍身拯救了女主。</p><p><strong>女主（中原岬）</strong><br>简直像女神&#x2F;天使一样。<br>当然，并不是说女主是完美无缺的人。实际上，就精神状态而言，女主只比男主好上一些罢了。女主是18岁高中辍学的中原岬。<br>之所以，要帮助男主摆脱家里蹲状态，也是为了能够证明自己并非一无是处。</p><p><strong>女二（柏瞳）</strong><br>是个坏女人呢。<br>男主的高中学姐，可谓是男主的负面源头之一。拉上男主去组团跳海自杀，诱惑男主外遇…<br>但不得不说，学姐也正因为她的坏，有了别具一格的魅力。<br>这种魅力让男主为她一起自杀事后却毫无怨言。</p><p><strong>男二（山崎薰）</strong><br>不甘平凡却又归于平凡。<br>可以说在他的圈子里是个“怪胎”。不屑与对随波逐流的人为伍，抛弃继承家业来到东京逐梦游戏制作。<br>他是个有决心有毅力的人。因为拒绝一眼望得到头的人生自行选择了更艰苦却热爱的事业。最终由于家庭因素放弃了梦想，安然接受一眼到头的人生。<br>其实我内心与这个角色有些共鸣，我也是拒绝一眼到头的人生，可是否过10年或20年之后，又会像他一样安然接受了呢？<br>要说没有一点这种恐惧，那是自欺欺人。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_4.png" alt=" "></p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>就我看来，这部动画本质上讲的是<strong>对现实的释然</strong>。</p><p>把男主这个社会底层作为主要观察对象，来表现一些人的生存方式，最终对现实的释然。<br>生存方式里，男主是逃避，男二是逐梦，女主是自我欺骗，女二是隐忍与发泄。</p><p>男主自从不去大学后，对外界的眼光越发在意到难以与陌生人打交道的地步。<br>结果就是成天在租的屋子里不去工作依靠父母救济。<br>他知道应该如何解决问题，那就是去找一份工作。但因为仍旧有着退路（指父母的接济），所以迟迟没有付诸行动。<br>最终父母把他的生活费断掉之后，他饿了三天最终去找了一份工作。<br>他逃避着一切：逃避世人眼光成了无业游民，逃避承认自己是家里蹲而选择做美少女游戏，逃避被母亲看到不堪一面而制造谎言，逃避现实而喜欢上了游戏中的虚拟人物，逃避正确的路而被传销组织二度欺骗…<br>我们可以看到，逃避最终没有效果，是因生存的环境消失而自己又有着生存欲望而被迫正视现实。<br>曾经看到某个电视剧的名称叫做“逃避虽然可耻但是有用”，我对这个名称嗤之以鼻。<br>我曾经也逃避过，我不喜欢麻烦事，所以为了逃避麻烦事，一直想办法往后拖。<br>然而这没有意义，最终反而给我造成了不得不面对的更大麻烦。<br>经历了那样的教训后，我从此明白逃避，是一条不可选择的路。或者说，长期逃避而不去解决，是绝对不能做的，否则最终只有死路一条。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_7.png" alt=" "></p><p>归根结底，所有人不都是对现实不满，才会做出不合常理的举动吗？<br>症状轻的人，即使不满也会去努力改变；症状重的人，直接放弃了生存的欲望。<br>男二对现实不满于是去改造，他失败了，接受了，释然了。别离东京的最后，用一种戏剧性的方式辞别了他喜欢的女生。<br>女二对现实放弃了希望，于是组团跳海自杀，虽然挽回了，但是她生活里的不满并没有消失，她仍然感到压力大与心累。她是物质上的成功人士：是公务员，有着正常的丈夫，住着豪宅。可她的精神很糟糕，遭受职场中人的排斥，对象常常因为工作繁忙而不能陪她，吃着精神方面的药物。想通过搞外遇来缓解这种压力，幸而男主没有接受。<br>男主对现实不满，他是边逃避边改造，一来不想与外界接触，二来又不甘于成为家里蹲。在这种矛盾的心理下，才会有时好像进步了有时又在退步。<br>女主对现实一开始没有放弃希望，他拯救男主，想以此来证明自己的价值，并且想通过这种方式来让男主依赖自己，好让自己不寂寞。然而男主成功走出家里蹲后，没有依赖女主，他也不认为这是一种健康的生存方式。结果导致了女主的绝望，让女主走向自杀。但幸好最终男女主互相释然了，接受了这样的现实。</p><p>他们没有改造现实的能力，只是对现实释然了。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_1.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_5.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_9.png" alt=" "></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_10.png" alt="中原岬"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这部是我打算在近段时间看的最后一部完结动画。这是一部将近20年前的动画作品。看完之后挺满足的。</p><h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>故事的主人公是22岁大学辍学的家里蹲男人佐藤达广。<br>动画里大致上有9个故事：</p><ol><li>男主受到女主（中原岬）邀请帮助他走出家里蹲状态。</li><li>男主与男二邻居高中学弟（山崎薰）一起制作美少女游戏。</li><li>男主与女主假扮情侣真约会。</li><li>男主与女二高中学姐（柏瞳）一起相约组团自杀。</li><li>男主想通过玩网游赚钱陷入痴迷状态。</li><li>男主被高中班长（小林惠）骗入传销。</li><li>男二回家继承家业。</li><li>男主拒绝女二学姐的外遇邀请。</li><li>男主走出家里蹲状态并了解到女主过去。</li></ol><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_3.png" alt=" "></p><h1 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h1><p>本部作品中的角色都很有趣。</p><p><strong>男主（佐藤达广）</strong><br>首先这是个真废物，恶心人的品质有不少。<br>比如：下载色图到电脑磁盘塞满，天天打游戏不分昼夜，对不切实际的幻想想入非非，傻到被传销组织连骗两次…<br>如果只有其中的一两点倒还好，他是各样均沾，让我对这位男主都有点反感了。<br>不过，这个人也不是一无是处，他拒绝了对学姐外遇的邀约，舍身拯救了女主。</p><p><strong>女主（中原岬）</strong><br>简直像女神&#x2F;天使一样。<br>当然，并不是说女主是完美无缺的人。实际上，就精神状态而言，女主只比男主好上一些罢了。女主是18岁高中辍学的中原岬。<br>之所以，要帮助男主摆脱家里蹲状态，也是为了能够证明自己并非一无是处。</p><p><strong>女二（柏瞳）</strong><br>是个坏女人呢。<br>男主的高中学姐，可谓是男主的负面源头之一。拉上男主去组团跳海自杀，诱惑男主外遇…<br>但不得不说，学姐也正因为她的坏，有了别具一格的魅力。<br>这种魅力让男主为她一起自杀事后却毫无怨言。</p><p><strong>男二（山崎薰）</strong><br>不甘平凡却又归于平凡。<br>可以说在他的圈子里是个“怪胎”。不屑与对随波逐流的人为伍，抛弃继承家业来到东京逐梦游戏制作。<br>他是个有决心有毅力的人。因为拒绝一眼望得到头的人生自行选择了更艰苦却热爱的事业。最终由于家庭因素放弃了梦想，安然接受一眼到头的人生。<br>其实我内心与这个角色有些共鸣，我也是拒绝一眼到头的人生，可是否过10年或20年之后，又会像他一样安然接受了呢？<br>要说没有一点这种恐惧，那是自欺欺人。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_4.png" alt=" "></p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>就我看来，这部动画本质上讲的是<strong>对现实的释然</strong>。</p><p>把男主这个社会底层作为主要观察对象，来表现一些人的生存方式，最终对现实的释然。<br>生存方式里，男主是逃避，男二是逐梦，女主是自我欺骗，女二是隐忍与发泄。</p><p>男主自从不去大学后，对外界的眼光越发在意到难以与陌生人打交道的地步。<br>结果就是成天在租的屋子里不去工作依靠父母救济。<br>他知道应该如何解决问题，那就是去找一份工作。但因为仍旧有着退路（指父母的接济），所以迟迟没有付诸行动。<br>最终父母把他的生活费断掉之后，他饿了三天最终去找了一份工作。<br>他逃避着一切：逃避世人眼光成了无业游民，逃避承认自己是家里蹲而选择做美少女游戏，逃避被母亲看到不堪一面而制造谎言，逃避现实而喜欢上了游戏中的虚拟人物，逃避正确的路而被传销组织二度欺骗…<br>我们可以看到，逃避最终没有效果，是因生存的环境消失而自己又有着生存欲望而被迫正视现实。<br>曾经看到某个电视剧的名称叫做“逃避虽然可耻但是有用”，我对这个名称嗤之以鼻。<br>我曾经也逃避过，我不喜欢麻烦事，所以为了逃避麻烦事，一直想办法往后拖。<br>然而这没有意义，最终反而给我造成了不得不面对的更大麻烦。<br>经历了那样的教训后，我从此明白逃避，是一条不可选择的路。或者说，长期逃避而不去解决，是绝对不能做的，否则最终只有死路一条。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_7.png" alt=" "></p><p>归根结底，所有人不都是对现实不满，才会做出不合常理的举动吗？<br>症状轻的人，即使不满也会去努力改变；症状重的人，直接放弃了生存的欲望。<br>男二对现实不满于是去改造，他失败了，接受了，释然了。别离东京的最后，用一种自我毁灭的方式辞别了他喜欢的女生。<br>女二对现实放弃了希望，于是组团跳海自杀，虽然挽回了，但是她生活里的不满并没有消失，她仍然感到压力大与心累。她是物质上的成功人士：是公务员，有着正常的丈夫，住着豪宅。可她的精神很糟糕，遭受职场中人的排斥，对象常常因为工作繁忙而不能陪她，吃着精神方面的药物。想通过搞外遇来缓解这种压力，幸而男主没有接受。<br>男主对现实不满，他是边逃避边改造，一来不想与外界接触，二来又不甘于成为家里蹲。在这种矛盾的心理下，才会有时好像进步了有时又在退步。<br>女主对现实一开始没有放弃希望，他拯救男主，想以此来证明自己的价值，并且想通过这种方式来让男主依赖自己，好让自己不寂寞。然而男主成功走出家里蹲后，没有依赖女主，他也不认为这是一种健康的生存方式。结果导致了女主的绝望，让女主走向自杀。但幸好最终男女主互相释然了，接受了这样的现实。</p><p>他们没有改造现实的能力，只是对现实释然了。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_1.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_5.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_9.png" alt=" "></p>]]></content>
     
     
     <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_10.png&quot; alt=&quot;中原岬&quot;&gt;&lt;/p&gt;</summary>
@@ -379,94 +471,6 @@
     <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
     <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>七上八下</title>
-    <link href="http://example.com/2023/07/22/Diary_20230722/"/>
-    <id>http://example.com/2023/07/22/Diary_20230722/</id>
-    <published>2023-07-21T16:00:00.000Z</published>
-    <updated>2023-07-22T16:21:44.347Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E7%BB%98%E9%87%8C%E9%A6%99.jpg" alt="绘里香"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>按自己的约定，今天也要写。</p><h1 id="说"><a href="#说" class="headerlink" title="说"></a>说</h1><p>今天没什么想说的，日子也并不有趣。言多必失，就这样吧。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E7%BB%98%E9%87%8C%E9%A6%99.jpg&quot; alt=&quot;绘里香&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前面是哪方</title>
-    <link href="http://example.com/2023/07/21/Diary_20230721/"/>
-    <id>http://example.com/2023/07/21/Diary_20230721/</id>
-    <published>2023-07-20T16:00:00.000Z</published>
-    <updated>2023-07-21T18:44:17.125Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E4%BA%94%E6%9D%A1%E6%82%9F1.png" alt="五条悟"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又开始写日记了，断断续续。</p><h1 id="强迫症"><a href="#强迫症" class="headerlink" title="强迫症"></a>强迫症</h1><p>中学时期，一位同学有强迫症，常常会强迫自己做一些事，比如每天强迫自己洗澡。<br>当时的我，认为强迫症是一种糟糕的心理疾病，希望她摆脱。</p><p>而时隔多年，到了现在，我却开始觉得强迫症也许并不坏。<br>我想有强迫症的人大多是比较自律的吧。而且强迫症，正因为并非自己喜欢做的事，才会被强迫，不是吗？<br>正是这种强迫，让人拥有自律。或许强迫症与自律之间是一体两面的关系。</p><p>所以，我想开始强迫自己。从一些小事开始，看能否更好。<br>每天强迫自己洗头或洗澡。<br>每天强迫自己写日记。<br>每天强迫自己11:30-7:30睡觉。</p><h1 id="踌躇"><a href="#踌躇" class="headerlink" title="踌躇"></a>踌躇</h1><p>已经过了这么多天了，我无所作为。没有找工作，只是在家里玩。<br>因为没有动力，也有点抗拒，造成了这样的局面。<br>是的，我应当被谴责。扭扭捏捏的，不就是懒吗？不就是不想去做吗？<br>当过一段时间后再看，或许这些都不过是微小的事。<br>可在当下，这确实让我很困扰。<br>我自问是有过动力有过奋斗的，所以说我认为从根源上来讲，造成目前这种状况的原因不是懒，而是没有目标没有动力以及不知如何去做。<br>在这样一个快节奏的社会，能说三年不鸣一鸣惊人吗？对于没找到自身天赋的人来说很难吧。<br>我对于这个专业，还算是有些喜欢的，可是这个专业的学习过程太艰难。<br>难在哪里呢？难在没有方向。倘若是路难走，那么努力就可以了。可我连方向都没有，也不知目标在哪，就感觉自己迷茫。<br>这就是让我抗拒的部分。<br>而我如果不做专业相关的事做什么呢？这我也不知道，并且其它的路能否走通也是个疑问。<br>我必须确信我在某一方面有天赋，我才会去走别的路。但是我现在没看到，那么我走哪条路和专业都是差不多的。<br>所以我无法选择与专业不相干的工作。</p><h1 id="釜山行"><a href="#釜山行" class="headerlink" title="釜山行"></a>釜山行</h1><p>今天看了这部电影，某位网友推荐的僵尸片，查了下评分后还不错，于是看了。<br>怎么说呢？作品质量确实不差，感觉不是想象中的味道。<br>更偏向于讲人性，丧尸只是一种让人陷入绝境的手段。<br>也即，作品虽然处处充满丧尸，可醉翁之意不在酒。<br>我还是更想看讲丧尸的作品吧，不过这类作品讲得好的很少，就看以后有没有机会撞见一部有趣的了。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E4%BA%94%E6%9D%A1%E6%82%9F1.png&quot; alt=&quot;五条悟&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DDoS攻击简单介绍</title>
-    <link href="http://example.com/2023/06/29/DDoS%E6%94%BB%E5%87%BB%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/"/>
-    <id>http://example.com/2023/06/29/DDoS%E6%94%BB%E5%87%BB%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</id>
-    <published>2023-06-28T16:00:00.000Z</published>
-    <updated>2023-06-29T09:35:55.694Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>DDos攻击（Distributed Denial of Service Attack）是一种常见的攻击。据我所知最近一段时间，Apex游戏的“炸房挂”，攻击YouTube频道以便让视频无法加载，机场的服务中断等等都是与这个DDoS有关。既然这么常见，那么了解研究防范就很重要了。</p><span id="more"></span><h1 id="已定义的DDos攻击"><a href="#已定义的DDos攻击" class="headerlink" title="已定义的DDos攻击"></a>已定义的DDos攻击</h1><p>分布式拒绝服务（DDos）攻击以网站和服务器为目标，攻击方式是中断网络服务。DDos攻击会尝试耗尽应用程序的资源。执行这些攻击的罪犯会用错误的流量攻占网站，导致网站功能不佳或离线。</p><h1 id="DDos攻击的工作原理"><a href="#DDos攻击的工作原理" class="headerlink" title="DDos攻击的工作原理"></a>DDos攻击的工作原理</h1><p>在DDos攻击起见，一些列机器人或僵尸网络会用HTTP请求和流量攻占网站或服务。从本质上讲，在攻击期间会有多台计算机攻击一台计算机，导致合法用户退出。因此，服务可能会延迟或中断一段时间。<br>在攻击起见，黑客也有可能渗入数据库以访问各种敏感信息。DDos攻击可以利用安全漏洞并攻击可通过Internet公开访问的任何终结点。<br>拒绝服务攻击可能会持续几小时，甚至几天。这些网络服务还可能在一次攻击中造成多项破坏。个人和企业设备都容易受到此类攻击。</p><h1 id="DDos攻击的类型"><a href="#DDos攻击的类型" class="headerlink" title="DDos攻击的类型"></a>DDos攻击的类型</h1><p>DDos攻击分为三大类：容量耗尽攻击、协议攻击和资源层攻击。<br>（1） 容量耗尽攻击通过最初似乎是合法的流量来使网络层不堪重负。这种类型的攻击是最常见的DDos攻击形式。DNS放大就是一种容量耗尽攻击，它使用开放的DNS服务器向目标发送海量DNS响应流量。<br>（2） 协议攻击是通过利用第3层和第4层协议堆栈中的弱点导致服务中断。SYN攻击就是此类攻击的一个示例，该攻击会消耗所有可用服务器资源。<br>（3） 资源（或应用程序）层攻击针对Web应用程序数据包并破坏主机之间的数据传输。此类攻击的示例包括HTTP协议违规、SQL注入、跨站脚本和其他第7层攻击。</p><h1 id="如何检测和响应DDos攻击"><a href="#如何检测和响应DDos攻击" class="headerlink" title="如何检测和响应DDos攻击"></a>如何检测和响应DDos攻击</h1><p>有一些迹象可能提示网络正受到攻击：<br>· 看到网络流量激增但来源不明，这些流量实际来自同一个IP地址或范围。<br>· 网络性能缓慢或异常。<br>· 网站、在线商店或其他服务完全离线。<br>需要制订DDoS攻击行动计划（包含明确的角色和程序），以便团队能够针对这些威胁采取迅速而果断的行动。不同的攻击制定不同的响应协议来缓解不同的攻击。</p><h1 id="如何预防DDoS攻击"><a href="#如何预防DDoS攻击" class="headerlink" title="如何预防DDoS攻击"></a>如何预防DDoS攻击</h1><p>发现网络威胁前需要指定对应流程。<br>需要执行以下操作：<br>· 指定拒绝服务防御策略，以帮助检测、预防和减少DDoS攻击。<br>· 识别安全漏洞并评估针对设置的潜在威胁。<br>· 更新任何保护软件或技术并确保其正常工作。<br>· 成立相关团队并针对应用攻击分配角色。</p><h1 id="DDoS防护"><a href="#DDoS防护" class="headerlink" title="DDoS防护"></a>DDoS防护</h1><p>宏观而言：<br>（1） 定期进行风险分析，以了解组织的哪些部分需要威胁防护。<br>（2） 成立DDos攻击响应团队，专门负责识别和缓解攻击。<br>（3） 在你的在线运营中纳入检测和预防工具，并培训用户需要注意什么事项。<br>（4）评估防御策略的有效性并确定后续措施。</p><p>具体而言<br>（1）高带宽。使用带宽大的服务器能够增加抗攻击能力，能够在遭受DDoS攻击时保有一定的流量冗余，避免网络的拥堵。<br>（2）高防CDN。通过部署CDN，除了能够加速网络服务外，还能够隐藏源服务器IP地址，充当高防服务器使用，可以说使用CDN服务器是应对DDoS攻击的最有效手段之一。<br>（3）使用防火墙。针对DDoS攻击和黑客入侵而设计的专业级防火墙通过对异常流量的清洗过滤，可对抗SYN&#x2F;ACK攻击、TCP全连接攻击、刷脚本攻击等流量型DDoS攻击。<br>（4）安装最新安全补丁。大多数DDoS攻击都是针对的特定软件或硬件漏洞，因此及时安装安全补丁可以有效降低被攻击的风险。<br>（5）禁用未使用的服务。服务器运行的应用程序和服务越多，遭受DDoS攻击的可能性和破坏性就越大。因此禁用不需要和未使用的服务和程序，可以提高网络的安全性。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;DDos攻击（Distributed Denial of Service Attack）是一种常见的攻击。据我所知最近一段时间，Apex游戏的“炸房挂”，攻击YouTube频道以便让视频无法加载，机场的服务中断等等都是与这个DDoS有关。既然这么常见，那么了解研究防范就很重要了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="DDoS" scheme="http://example.com/categories/DDoS/"/>
-    
-    
-    <category term="DDoS" scheme="http://example.com/tags/DDoS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>跃动青春--你想选择怎样的人生</title>
-    <link href="http://example.com/2023/06/22/%E8%B7%83%E5%8A%A8%E9%9D%92%E6%98%A5--%E4%BD%A0%E6%83%B3%E9%80%89%E6%8B%A9%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F/"/>
-    <id>http://example.com/2023/06/22/%E8%B7%83%E5%8A%A8%E9%9D%92%E6%98%A5--%E4%BD%A0%E6%83%B3%E9%80%89%E6%8B%A9%E6%80%8E%E6%A0%B7%E7%9A%84%E4%BA%BA%E7%94%9F/</id>
-    <published>2023-06-21T16:00:00.000Z</published>
-    <updated>2023-06-22T12:48:38.329Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/SkipAndLoafer.png" alt="跃动青春"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一部轻松舒适温馨自然的动画。</p><h1 id="你太耀眼"><a href="#你太耀眼" class="headerlink" title="你太耀眼"></a>你太耀眼</h1><p>无疑，女主岩仓美津未虽然从农村小地方来，表现却非常耀眼。这种耀眼程度，以至于第一话就让男主志摩聪介的内心发生了改变。美津未的人生态度积极进取，立志做一位官员，以改变家乡的环境。而聪介在没遇到美津未之前，人生态度是随波逐流，会融入环境，会承受别人的期待。<br>这让我想起了一部10年前的京都动画–冰菓。在这部动画中，男主折木也是一开始崇尚着灰色的生活，以节能自居，“不必要的事不做，必要的事尽快完成”。而女主千反田则是玫瑰色的生活，会享受青春，会去“我很好奇”。千反田慢慢地将折木改变，让他也踏入了玫瑰色的生活。<br>不同的是，冰菓的故事更多围绕在小团体之间，而跃动青春的故事更偏向于群像剧。而由于聪介内心的敏感和自卑，会更倾向于讨好他人。这一点我们可以从很多地方看出来：班上人起哄让聪介与美津未担任班长，发小莉莉华对聪介纠缠不休，聪介被迫演音乐剧…歌词里唱的“你太耀眼”如果不看情节单看封面，或许大部分人都会以为耀眼指的是男主。可实际上恰恰相反，在外貌上平平无奇的女主，才是男主眼中闪耀的光芒！</p><h1 id="活得真诚"><a href="#活得真诚" class="headerlink" title="活得真诚"></a>活得真诚</h1><p>在这部动画里，所有的勾心斗角畏缩不前都被打破，取而代之的是真心换真心。美津未的存在就像是放入沙丁鱼群中的一条鲶鱼。把抱持着小心思，观望态度等的同学直接或间接地改变了。聪介，结月，美佳，久留米诚…也不得不说，这是一种幸运，没有遇到那种糟糕的人比较多的班级，否则等糟糕的人抱起团来，即便美津未也难以突破。<br>这部动画向我们展示了人与人之间的交往，真诚永远应当是第一选择。而人为什么会变得不真诚呢？聪介是因小时候负面影响，结月是被嫉妒，美佳是被嘲笑，久留米诚是被孤立。归结而言，是由于和周围人有不同之处造成格格不入，于是被小人攻击而中伤。大家害怕受伤，所以变得不真诚。<br>美津未以前班上的人很少，大家的联系都比较紧密。没有受过伤，所以不害怕。因为不害怕，所以能勇敢。而难能可贵的是同学们也能从害怕受伤的心理中走出来，去真诚对待他人。</p><h1 id="个性鲜明"><a href="#个性鲜明" class="headerlink" title="个性鲜明"></a>个性鲜明</h1><p>前面说到，很多人之所以不真诚是因为害怕受伤，为了不受伤有的人选择磨灭自己的个性融入群体。本作就向我们很好地展示了不必隐藏自己的个性，即便是个性不同的人也能友好相处，甚至能成为非常好的朋友。因为成为朋友的关键不在于与他人相同，而在于尊重理解包容以及真切地想与他人成为朋友。如果做不到这些，那么即便有相同的兴趣爱好，相处起来也会很容易出问题，毕竟世上没有完全两个相同的人。<br>我想，如果不是有害的，不要去泯灭自己的个性。</p><h1 id="勇敢向前"><a href="#勇敢向前" class="headerlink" title="勇敢向前"></a>勇敢向前</h1><p>朝前看，向前走。<br>美佳和美津未练习排球的时候被高年级学长欺负，被另一位学长看到及时解围。美佳选择记住欺负她的人，美津未选择记住帮助她的人。同样的事，不同的选择。美佳的选择让她面向消极，而美津未的选择让她面向积极。这是一种正反馈，好的更好，坏的更坏。这也是为什么要以高中生的校园生活作为舞台，正在经历变得成熟的过程，又不至于太过于成熟而变得思维固化，可谓是非常恰当的。<br>兼近学长也是和美津未同一类型的人，抱持着梦想不懈努力，所以一开始才会不理解为什么像聪介这样有童星经历的人为什么想隐藏身份，甚至触碰雷区。同样莉莉华想要把聪介和她一样困在过去，最终聪介走出来，选择了去追逐美津未这样闪闪发光的人。</p><h1 id="教育意义"><a href="#教育意义" class="headerlink" title="教育意义"></a>教育意义</h1><p>很多人看这部动画感到温馨治愈舒适愉悦，贴近生活、行为也符合逻辑，让这部动画富有教育意义。<br>不单单局限在高中校园当中，我想这对于整个人生而言都适用。<br>人啊，就是要像跃动青春这样生活，世界才会变得更美丽~<br>所以，你想要选择什么样的生活呢？</p><p>♪♪你太过耀眼，太过耀眼♪♪<br>♪♪令我不由得移开视线♪♪<br>♪♪我甚至找不到合适的话语 形容眼前的你♪♪</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/SkipAndLoafer.png&quot; alt=&quot;跃动青春&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="动画" scheme="http://example.com/categories/%E5%8A%A8%E7%94%BB/"/>
-    
-    
-    <category term="动画" scheme="http://example.com/tags/%E5%8A%A8%E7%94%BB/"/>
     
   </entry>
   
