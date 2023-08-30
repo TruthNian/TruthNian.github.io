@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-30T08:11:50.235Z</updated>
+  <updated>2023-08-30T16:14:27.620Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>而立</title>
+    <link href="http://example.com/2023/08/30/Diary_20230830/"/>
+    <id>http://example.com/2023/08/30/Diary_20230830/</id>
+    <published>2023-08-29T16:00:00.000Z</published>
+    <updated>2023-08-30T16:14:27.620Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为赶时间，就简单写写。</p><span id="more"></span><h1 id="包容度"><a href="#包容度" class="headerlink" title="包容度"></a>包容度</h1><p>大约有10天没写日记了，还是有点久了，一部分原因是我觉得没什么好写的，如果只是说几句话就算完了，有些空荡。另一部分是我懒，还记得自己说要强迫自己每天写日记，看来是没做到呢。</p><p>接下来便是我想谈的正题，由于各方面的原因，或许也可称为感悟之类的，突然在某一天，感觉自己的包容度上升了。<br>之前是怎样的呢？比如在某个地方见到有人回我评论是带有恶意的方式，我会回骂一句或直接拉黑，当然有时也只是不予理睬。<br>说这个不是想表明自己有多么嫉恶如仇，而是我常常带有一种蔑视的心理：如果某个人在某一方面的认知显得愚蠢，那么我就认为这不是值得对等交谈的人，而不屑与之相处。</p><p>但是近来，由于各种各样的原因，我渐渐能包容这些了。<br>即便有人发评论侮辱，我也能变得波澜不惊，更不会拉黑（顺带一提，我的b站黑名单已经满了）。</p><p>这么做，容易被人视为懦弱吧。</p><p>不过，这不是懦弱胆怯，这是一种包容。<br>既接受人的光辉一面，也容纳人的丑恶一面。<br>说着说着，有种“圣母”的感觉了。哈哈。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>写得不行，没把想表达的内容写出来，有些可惜。等下次有了充裕的时间再做表述吧。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;因为赶时间，就简单写写。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
+    
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>内网渗透之隧道通信</title>
@@ -441,29 +464,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;回归到看书了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人与智能</title>
-    <link href="http://example.com/2023/08/04/Diary_20230804/"/>
-    <id>http://example.com/2023/08/04/Diary_20230804/</id>
-    <published>2023-08-03T16:00:00.000Z</published>
-    <updated>2023-08-04T16:34:58.760Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>无事发生。</p><span id="more"></span><h1 id="心理测量者"><a href="#心理测量者" class="headerlink" title="心理测量者"></a>心理测量者</h1><p>今天看了这部动漫，大致是说未来警察都通过系统策略人的心理，如果心理犯罪指数过高，即便这个人什么也没做，也能执行死刑。</p><p>题材来说，还是有点意思的。我认为主题是<strong>人与智能</strong>吧。<br>判断是交由智能系统处理，还是人来处理。这实际是一个非常难的抉择。<br>拿一个近点的例子来说，Tesla的fsd和人的驾驶，也是一种同类型关系。<br>我们能否完全信任智能系统，保证其不出错？</p><p>那恐怕要先解决另一个问题：这世上，是否有完美的东西？<br>我们知道，完美的圆是不存在的。人类各国的法律发展了上千年，依然有人在钻法律的漏洞。<br>诸如此类，由此认为完美的事物是不存在的，最多是接近完美。</p><p>智能也不会是完美的，总会有无法预料的新状况，钻了漏洞。事后再学习再弥补，也无法改变之前发生的事。<br>那么，最理想的状况当然是，人与智能相互合作。</p><p>但这没有那么容易，人是有天然惰性的。智能被人类信任后，将会让大部分人放松警惕。<br>习惯了安逸下的人们，大多是无法对意料之外的情况作出反应的。<br>只要人依赖了智能，一旦智能有了缺陷，很可能造成严重的后果。</p><p>尽管这么说，但智能的学习能力是远超于个体的人。智能系统是一种统称，分布在世界各地的智能共同组成了智能系统，共享学习成果，我认为这是智能最强大的一点。<br>也就是说，成熟的智能出错概率是肯定会低于个体人类的，多数情况下信任没有问题。<br>别看人类至今创造出如此缤纷的社会，但作为个体而言，除了极少数人，大部分人也是不值一提。还不如信任智能呢。</p><p>说了这么多，我又说了些什么呢？</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;无事发生。&lt;/p&gt;</summary>
     
     
     
