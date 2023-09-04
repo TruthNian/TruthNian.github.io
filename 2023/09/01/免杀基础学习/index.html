@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言绝大多数用户PC上都装有杀毒软件，绕过杀毒软件顺利进入系统执行即为免杀。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="免杀基础学习">
+<meta property="og:url" content="http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言绝大多数用户PC上都装有杀毒软件，绕过杀毒软件顺利进入系统执行即为免杀。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-03T02:35:39.084Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="免杀">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>免杀基础学习 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">181</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          免杀基础学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-01T00:00:00+08:00">2023-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-03 10:35:39" itemprop="dateModified" datetime="2023-09-03T10:35:39+08:00">2023-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%8D%E6%9D%80/" itemprop="url" rel="index"><span itemprop="name">免杀</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>绝大多数用户PC上都装有杀毒软件，绕过杀毒软件顺利进入系统执行即为免杀。</p>
+<span id="more"></span>
+<h1 id="免杀技术"><a href="#免杀技术" class="headerlink" title="免杀技术"></a>免杀技术</h1><p>免杀技术全称为反杀毒技术Anti Anti- Virus简称“免杀”，它指的是一种能使病毒木马免于被杀毒软件查杀的技术。由于免杀技术的涉猎面非常广，其中包含反汇编、逆向工程、系统漏洞等黑客技术，所以难度很高，一般人不会或没能力接触这技术的深层内容。其内容基本上都是修改病毒、木马的内容改变特征码，从而躲避了杀毒软件的查杀。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="查杀分类"><a href="#查杀分类" class="headerlink" title="查杀分类"></a>查杀分类</h3><ul>
+<li>静态免杀：一般根据特征码识别，然后对文件进行特征匹配。</li>
+<li>行为查杀（动态查杀）：主要是对其产生的行为进行特征匹配。</li>
+<li>云查杀：提取出文件的特征和上传云端，云端进行检测后返回客户端，对相应病毒进行查杀。</li>
+</ul>
+<p><strong>静态免杀</strong><br>对于静态免杀，针对的是杀毒软件的静态文件扫描，云查（病毒库）杀。</p>
+<p>杀毒是提取文件一段“特征码”来识别病毒文件。<br>特征码：能识别一个程序是一个病毒的一段不大于 64 字节的特征串</p>
+<p>那杀毒软件是怎么提取文件特征码的？<br>如果我们知道了一个文件是病毒，那么通过 md5 肯定可以判断一个就是这个病毒文件，那如果该病毒文件做了小小变动呢，直接 md5 肯定是不行了，那杀毒软件是怎么做的呢？这里有个叫做“模糊哈希”（Fuzzy Hashing）算法的东西。<br>模糊哈希算法又叫基于内容分割的分片分片哈希算法（context triggered piecewise hashing, CTPH），主要用于文件的相似性比较。</p>
+<p>大致就可以理解为，不要把一个文件的所有内容都拿来计算 hash，而通过分片，取出部分重要（不易改变）的内容进行 hash 计算，这样就能达到通过一个特征码找到类似的病毒变种。</p>
+<p>特征码定位工具：原理就是分割文件，某些分割部分填入数据 (0)，如果扫描该部分不报警，则特征码在这个部分。如此反复，直到找到很短的某一段内容。不同工具之间区别是使用的分割算法不同，查找特征码的效果不同。</p>
+<p>目前比较常有名气的特征码定位器主要有 CCL 与 MYCCL，他们都采用文件分块定位的办法，定位效果带有运气成份，且可能每次定位出的位置都不尽相同，这个免杀带来了困难。</p>
+<h3 id="免杀分类"><a href="#免杀分类" class="headerlink" title="免杀分类"></a>免杀分类</h3><ul>
+<li>开源免杀：指的是拥有病毒、木马原始码的前提下，通过修改原始码进行免杀。</li>
+<li>手工免杀：指的是仅有病毒、木马的可执行文件（PE文件）的情况下进行免杀。</li>
+<li>自动免杀：指的是病毒、木马自身能自动变异，如：千面人病毒。</li>
+</ul>
+<p><strong>手工免杀(仅限有源码)</strong></p>
+<ol>
+<li>mian 中屏蔽所有代码，编译，扫描。不报的话继续 2，如果依然报毒，去 5。</li>
+<li>放开一层（可以多层、二分也可以）函数，编译，扫描。不报的话，重复 2。直到定位到某个函数或者多个函数，进入 3。</li>
+<li>在函数内部屏蔽部分代码（二分），编译，扫描。不报，重复 2。</li>
+<li>直到定位某段代码（无自定义内部调用），特征码在此。</li>
+<li>是不是有附加数据，或者资源存储的文件。有，单独检查该文件或者数据，方法从 1 开始。如果没有，那去找找 PE 头吧。</li>
+</ol>
+<p>大致流程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. sub1 //未报2. sub1 sub2 //未报3. sub1 sub2 sub3 //报4. sub1 sub2 sub3(sub31) //未报5. sub1 sub2 sub3(sub31 sub32) //报6. sub1 sub2 sub3(sub31 sub32(sub321)) //报...直到找到某API调用，或者逻辑代码（没有自定义函数调用）</span><br></pre></td></tr></table></figure>
+
+<h2 id="技术概览"><a href="#技术概览" class="headerlink" title="技术概览"></a>技术概览</h2><h3 id="加壳脱壳与加密解密"><a href="#加壳脱壳与加密解密" class="headerlink" title="加壳脱壳与加密解密"></a>加壳脱壳与加密解密</h3><ul>
+<li>加壳压缩是一种对EXE档案的数据压缩及加密保护，可以将EXE档案压缩成自我解压档案，并能隐藏解压进程。</li>
+<li>在免杀技术里所谓的壳与伪装壳其实就是压缩与外层数据伪装，其实是利用特殊的算法，对可执行文件与动态库里的资源进行压缩与对文件的描述、版本号、创建日期、修改软件、系统执行需求等外层数据进行伪装。</li>
+<li>脱壳就是把已压缩与伪装的文件完全或近似还原到未压缩与伪装的状态。最常用的加壳软件就是WinRAR。</li>
+<li>加密是将明文信息隐匿起来，使之在缺少特殊信息时全部或部分数据不可读，令杀毒软件无从下手。</li>
+<li>而解密就是令在宿主电脑中的病毒得到密钥，从而突然发作。<br>压缩壳：upx, aspack, fsg, pecompach<br>加密壳：ASProtect, Armadillo(穿山甲), EXEcryptor, Themida, ZProtect<br>虚拟机壳：VMProtect</li>
+</ul>
+<h3 id="加花指令与程序入口点修改"><a href="#加花指令与程序入口点修改" class="headerlink" title="加花指令与程序入口点修改"></a>加花指令与程序入口点修改</h3><ul>
+<li>加花指令就是在程序开头加入一段计算用的汇编指令和一些入口点内存地址的乱跳转，或加上其它常用程序特有的入口指令来迷惑杀毒软件。因为计算与跳转的最后结果是没有实质的意义的，所以这么做并不影响程序的正常运行。但能使一些杀毒软件无法正确识别木马程序，从而达到免杀的效果。</li>
+<li>程序入口点修改就是改变入口点，通常用到的方法是在入口点上令电脑先处理那段没意义的指令，再在花指令后再加跳转代码，跳转到程序执行数据的入口点上，令程序正常运行。</li>
+</ul>
+<h3 id="内存、文件特征码的定位与修改"><a href="#内存、文件特征码的定位与修改" class="headerlink" title="内存、文件特征码的定位与修改"></a>内存、文件特征码的定位与修改</h3><p>众所周知大部分杀毒软件查杀病毒的根据就是对比特征码，而这个过程一般发生在内存与硬盘中。对比硬盘中储存着的文件的特征码，能全面地查杀电脑中的可疑文件；对比在内存中储存着的文件的特征码，能快速地查杀正在运行的程序是否带有病毒，另外病毒文件一旦进入内存即运行中，很可能会现出原形被杀毒软件查杀。针对杀毒软件这一特性，骇客们发明了内存、文件特征码修改免杀法。通常首先用特征码定位软件定位文件特征码的所在之处，再用UltraEdit对被定位的特征码段进行修改。</p>
+<p>一般修改方法有：</p>
+<ul>
+<li>十六进制的特征码直接修改法，就是把十六进制的特征码加1；</li>
+<li>字符串大小写修改法，就是特征码所对应的内容是字符串的时候，把大小字互换；</li>
+<li>等价替换法，就是当特征码所对应的是汇编指令时，把指令替换成功能类拟的指令；</li>
+<li>指令顺序调换法，把特征码对应的汇编指令的顺序互换；</li>
+<li>通用跳转法，用跳转的方法把特征码对应的汇编指令跳转走，犹如加花一样。</li>
+</ul>
+<p>修改特征码的方法针对性很强很有用，但一次修改只能对一款杀毒软件免杀；要令另一款软件免杀，就要重新针对该软件修改特征码，因为各家杀毒软件公司使用的特征码基本上都不相同。</p>
+<h2 id="免杀工具"><a href="#免杀工具" class="headerlink" title="免杀工具"></a>免杀工具</h2><p>常用工具有：</p>
+<ul>
+<li>加壳器：PEditor、MaskPE、UPX等</li>
+<li>脱壳与分析器：PEid、ResScope、RL!dePacker、Restorator等</li>
+<li>加花器：FakeNinja</li>
+<li>特征码定位与修改器:CCL、OllyDbg、UltraEdit、MYCCL</li>
+<li>调试器：SoftIce</li>
+<li>反汇编器：IDA、W32Dasm等</li>
+<li>十六进制编辑器：HIEW、UltraEdit等</li>
+<li>开 发包：SDK与DDK</li>
+<li>编译器：Microsoft Visual C++、Borland C++、Watcom C、GNU C以及Free Pascal等</li>
+</ul>
+<h2 id="常用沙箱和免杀工具"><a href="#常用沙箱和免杀工具" class="headerlink" title="常用沙箱和免杀工具"></a>常用沙箱和免杀工具</h2><p><a target="_blank" rel="noopener" href="https://s.threatbook.com/">微步云沙箱</a><br><a target="_blank" rel="noopener" href="https://www.virustotal.com/gui/home/upload">Virustotal</a><br><a target="_blank" rel="noopener" href="https://habo.qq.com/">腾讯哈勃分析系统</a><br><a target="_blank" rel="noopener" href="https://sandbox.ti.qianxin.com/sandbox/page">奇安信情报沙箱</a></p>
+<p><a target="_blank" rel="noopener" href="https://cuckoo-sandbox.readthedocs.io/zh_CN/latest/introduction/sandboxing.html">Cuckoo Sandbox本地沙箱</a><br><a target="_blank" rel="noopener" href="https://www.clamav.net/">ClamAV-Linux下杀毒软件</a><br><a target="_blank" rel="noopener" href="https://github.com/1y0n/AV_Evasion_Tool">掩日 - 适用于红队的综合免杀工具</a></p>
+<h2 id="免杀方法"><a href="#免杀方法" class="headerlink" title="免杀方法"></a>免杀方法</h2><ol>
+<li>对shellcode进行加密处理，如异或、转置、AES加密、Base64加密、多轮加密等。</li>
+<li>对加载器代码进行加密或编码处理，使其静态特征不明显。</li>
+<li>分离免杀，将shellcode和加载器代码放置于网络上，通过下载的方式进行加载，可进一步免除静态特征。</li>
+<li>通过进程注入或借助傀儡进程进行加载和运行。</li>
+<li>通过加壳的方式对木马进行混淆，进而绕过杀软。<br>（通过静态特征绕过杀软检测相对容易，但是要绕过沙箱或动态检测，则非常难）</li>
+</ol>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="加密shellcode"><a href="#加密shellcode" class="headerlink" title="加密shellcode"></a>加密shellcode</h3><ol>
+<li><p>异或加密<br>异或加密是简单的加密方式，异或运算根据二进制位进行按位运算，如果对应位相同，则为0，不同则为1。同时遵守以下规则：<br>如果a^b&#x3D;c，则可以将b视为密钥，c视为加密字符串，则b^c&#x3D;a，可根据密钥b和密文c，解密出a的值。</p>
+</li>
+<li><p>字符串反转<br>在python中，对一个字符串进行反转，使用 <code>str[::-1]</code> 即可。<br>如果 str&#x3D;’abcde’, str[::-1]&#x3D;’edcba’</p>
+</li>
+<li><p>将字节类型转换为字符串<br>由于python的shellcode为 <code>b&#39;&#39;</code> 的字节类型（也可视为二进制类型），而要进行加密或反转处理，只能针对字符串进行处理，所以还需要对将字节类型数据转换为字符串。可以利用python内置的binascii模块进行处理。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">buf = <span class="string">b&quot;\xfc\xe8\x8f\x00\x00\x60\x89\xe5\x31\xd2\x64\x8b&quot;</span></span><br><span class="line"><span class="built_in">str</span> = binascii.b2a_hex(buf).decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Python中实现AES加解密<br>加密过程：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装第三方库 pip install pycryptodome</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> binascii <span class="keyword">import</span> b2a_hex, a2b_hex</span><br><span class="line"></span><br><span class="line">source = <span class="string">&#x27;hello-abc&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果source不足16位的倍数就用\0补足为16位</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(source.encode(<span class="string">&#x27;utf-8&#x27;</span>)) % <span class="number">16</span>:</span><br><span class="line">	add = <span class="number">16</span> - (<span class="built_in">len</span>(source.encode(<span class="string">&#x27;utf-8&#x27;</span>)) % <span class="number">16</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	add = <span class="number">0</span></span><br><span class="line">source = source + (<span class="string">&#x27;\0&#x27;</span> * add)</span><br><span class="line"><span class="built_in">print</span>(source)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义密钥和偏移量，必须是16个字节、24个字节或32个字节</span></span><br><span class="line"><span class="comment"># key = &#x27;todayiswonderful-1234567&#x27;.encode()</span></span><br><span class="line">key = <span class="string">&#x27;todayiswonderful-FEDCBA987654321&#x27;</span>.encode()</span><br><span class="line">mode = AES.MODE_CBC</span><br><span class="line">iv = <span class="string">b&#x27;1234567890ABCDEF&#x27;</span></span><br><span class="line">cryptos = AES.new(key,mode,iv)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行加密处理</span></span><br><span class="line">cipher = cryptos.encrytpt(source.encode())</span><br><span class="line"><span class="built_in">print</span>(cipher)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 便于传播可以将其转换成16进制，结果为db86ba246ebdf73c8a3a8b26a98ecadf</span></span><br><span class="line"><span class="built_in">print</span>(b2a_hex(cipher).encode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>解密过程与加密过程相反即可</p>
+<h3 id="加密加载器"><a href="#加密加载器" class="headerlink" title="加密加载器"></a>加密加载器</h3><ol>
+<li><p>将加载器代码进行base64编码</p>
+</li>
+<li><p>将base64编码进行AES加密</p>
+</li>
+</ol>
+<h3 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h3><p>将加密后的shellcode和加载器放在同一个python文件里。<br>然后使用 <code>exec()</code> 函数执行加载器代码。</p>
+<p>最后使用 <code>pyinstaller.exe</code> 将python文件打包为exe文件，执行命令为：<br><code>pythoninstaller.exe -Fw shellcode_run.py</code></p>
+<p>注意：不能将变量命名为诸如shellcode, trojan, virus等敏感字词。以免被杀毒软件查杀。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://www.wangan.com/p/7fy7f690c41538bf">免杀技术有一套</a><br><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/396696">免杀基础原理及实践免杀</a><br><a target="_blank" rel="noopener" href="https://github.com/TideSec/BypassAntiVirus">远控免杀专题</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2207475">MSF CS通用免杀项目</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/01/%E5%85%8D%E6%9D%80%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/" title="免杀基础学习">http://example.com/2023/09/01/免杀基础学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%85%8D%E6%9D%80/" rel="tag"><i class="fa fa-tag"></i> 免杀</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/30/Diary_20230830/" rel="prev" title="而立">
+      <i class="fa fa-chevron-left"></i> 而立
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/01/ShellCode%E7%94%9F%E6%88%90/" rel="next" title="ShellCode获取">
+      ShellCode获取 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF"><span class="nav-number">2.</span> <span class="nav-text">免杀技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%9D%80%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.1.</span> <span class="nav-text">查杀分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E6%9D%80%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.2.</span> <span class="nav-text">免杀分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88"><span class="nav-number">2.2.</span> <span class="nav-text">技术概览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%A3%B3%E8%84%B1%E5%A3%B3%E4%B8%8E%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86"><span class="nav-number">2.2.1.</span> <span class="nav-text">加壳脱壳与加密解密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%8A%B1%E6%8C%87%E4%BB%A4%E4%B8%8E%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3%E7%82%B9%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.2.</span> <span class="nav-text">加花指令与程序入口点修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E3%80%81%E6%96%87%E4%BB%B6%E7%89%B9%E5%BE%81%E7%A0%81%E7%9A%84%E5%AE%9A%E4%BD%8D%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="nav-number">2.2.3.</span> <span class="nav-text">内存、文件特征码的定位与修改</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E6%9D%80%E5%B7%A5%E5%85%B7"><span class="nav-number">2.3.</span> <span class="nav-text">免杀工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%B2%99%E7%AE%B1%E5%92%8C%E5%85%8D%E6%9D%80%E5%B7%A5%E5%85%B7"><span class="nav-number">2.4.</span> <span class="nav-text">常用沙箱和免杀工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E6%9D%80%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">免杀方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.6.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86shellcode"><span class="nav-number">2.6.1.</span> <span class="nav-text">加密shellcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">2.6.2.</span> <span class="nav-text">加密加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%AF%86"><span class="nav-number">2.6.3.</span> <span class="nav-text">解密</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">181</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">457k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:55</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

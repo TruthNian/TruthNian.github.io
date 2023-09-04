@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言可以不用，但不能没有。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备之web漏洞篇">
+<meta property="og:url" content="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言可以不用，但不能没有。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-04T09:04:01.235Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>面试准备之web漏洞篇 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">181</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面试准备之web漏洞篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-03T00:00:00+08:00">2023-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-04 17:04:01" itemprop="dateModified" datetime="2023-09-04T17:04:01+08:00">2023-09-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/web%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="index"><span itemprop="name">web漏洞</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>可以不用，但不能没有。</p>
+<span id="more"></span>
+<h1 id="SQL注入与其它注入"><a href="#SQL注入与其它注入" class="headerlink" title="SQL注入与其它注入"></a>SQL注入与其它注入</h1><ol>
+<li><p>如何判断sql注入，有哪些方法？</p>
+</li>
+<li><p>如何判断sql注入漏洞成因？如何防范？注入方式有哪些？除了数据库数据，利用方式还有哪些？</p>
+</li>
+<li><p>为什么有的时候没有错误回显？</p>
+</li>
+<li><p>宽字节注入原理？如何利用宽字节注入漏洞？payload如何构造？</p>
+</li>
+<li><p>mysql的网站注入，5.0以上与5.0以下有什么区别？</p>
+</li>
+<li><p>mysql的用户名密码是存放在哪张表里？mysql密码采用哪种加密方式？</p>
+</li>
+<li><p>mysql注入点，用工具对目标站直接写入一句话，需要哪些条件？</p>
+</li>
+<li><p>SQL头注入点</p>
+</li>
+<li><p>mysql写shell有几种方法</p>
+</li>
+<li><p>如何突破注入时字符被转义？</p>
+</li>
+<li><p>注入时可以不用 and 或 or 或 xor，直接order by开始注入吗？</p>
+</li>
+<li><p>sql注入有以下两个测试选项，选一个并且阐述不选另一个的理由。<br>A. demo.jsp?id&#x3D;2+1<br>B. demo.jsp?id&#x3D;2-1</p>
+</li>
+<li><p>以下链接存在sql注入漏洞，对于这个变形注入，你有什么思路？</p>
+</li>
+<li><p>sql注入的几种类型？</p>
+</li>
+<li><p>报错注入函数有哪些？10个</p>
+</li>
+<li><p>延时注入如何来判断？</p>
+</li>
+<li><p>盲注和延时注入的共同点？</p>
+</li>
+<li><p>sql注入写文件都有哪些函数？</p>
+</li>
+<li><p>sql注入防护方法？</p>
+</li>
+<li><p>注入有防护怎么办？</p>
+</li>
+<li><p>有没有写过sqlmap tamper？</p>
+</li>
+<li><p>为什么参数化查询可以防止SQL注入？</p>
+</li>
+<li><p>盲注是什么？怎么盲注？</p>
+</li>
+<li><p>宽字节注入原理以及根本原因</p>
+</li>
+<li><p>sql如何写shell&#x2F;单引被过滤怎么办？</p>
+</li>
+<li><p>sql注入点，空表如何利用</p>
+</li>
+<li><p>怎样判断是否存在注入</p>
+</li>
+<li><p>sql注入无回显怎么办？</p>
+</li>
+<li><p>延时注入除了sleep的其它姿势(mysql)</p>
+</li>
+<li><p>DNSlog原理</p>
+</li>
+<li><p>sql注入，写shell的语句，除了into outfile还有什么MySQL的特性可以getshell</p>
+</li>
+<li><p>redis的利用，如何shell，相关命令</p>
+</li>
+<li><p>sql注入原理，及常用payload（手写-爆表名）</p>
+</li>
+<li><p>sql注入空格不能使用如何绕过？</p>
+</li>
+<li><p>sql注入防御，延伸预处理不能预防哪些注入？</p>
+</li>
+<li><p>攻击redis的方式（手写payload）</p>
+</li>
+<li><p>SQL注入写shell（MySQL &amp; mssql &amp; oracle）</p>
+</li>
+<li><p>SQL注入后利用</p>
+</li>
+<li><p>redis的利用</p>
+</li>
+<li><p>常见的sql注入类型有哪些？并写出sqlmap检测sql注入的命令？sqlmap api怎么使用？</p>
+</li>
+<li><p>针对sql注入，写出你所知道的bypass waf的可能方式</p>
+</li>
+<li><p>sql注入漏洞如何修复？</p>
+</li>
+<li><p>数据库预处理怎么突破？</p>
+</li>
+<li><p>sql注入如何拿getshell</p>
+</li>
+<li><p>sqlmap怎么跑post请求</p>
+</li>
+<li><p>sql注入怎么拿到最高权限？</p>
+</li>
+<li><p>怎么利用sql注入来读取文件</p>
+</li>
+<li><p>注入攻击原理是什么？如何找注入点？如何判断注入点？</p>
+</li>
+<li><p>注入分为几类，提交方式是什么？</p>
+</li>
+<li><p>注入攻击一般所支持的类型有哪些？</p>
+</li>
+<li><p>sql注入对服务器文件读写操作需要哪些条件？</p>
+</li>
+<li><p>分别说出sqlmap -u -r -v -p  –level –risk –tables –columns -T –tamper参数的含义</p>
+</li>
+<li><p>注入漏洞防范方法</p>
+</li>
+<li><p>MySQL数据库的右向偏移</p>
+</li>
+<li><p>sqlserver利用思路</p>
+</li>
+<li><p>偏移注入</p>
+</li>
+<li><p>说说sql注入手工怎么爆出所有库名字</p>
+</li>
+<li><p>数据库表名test，字段名user，password写出查询语句。</p>
+</li>
+<li><p>是否有写过tamper</p>
+</li>
+<li><p>如何彻底杜绝SQL注入？</p>
+</li>
+<li><p>SQL注入，如果注入点在union或order by之后，怎么办？</p>
+</li>
+</ol>
+<h1 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h1><ol>
+<li><p>文件上传有哪些防护方式？</p>
+</li>
+<li><p>文件上传白名单利用</p>
+</li>
+<li><p>文件上传点，黑名单限制，如何利用</p>
+</li>
+<li><p>文件上传怎么绕过</p>
+</li>
+<li><p>任意文件上传漏洞分几类，说出每类突破方法</p>
+</li>
+</ol>
+<h1 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h1><ol>
+<li><p>XSS能用来做什么？</p>
+</li>
+<li><p>XSS的三种类型，防御方法。</p>
+</li>
+<li><p>存储型XSS的原理和危害</p>
+</li>
+<li><p>你怎么理解XSS攻击？</p>
+</li>
+<li><p>如何快速发现XSS位置</p>
+</li>
+<li><p>DOM XSS 原理&#x2F;防范</p>
+</li>
+<li><p>DOM型XSS与反射型XSS区别？</p>
+</li>
+<li><p>如果SRC上报了一个XSS漏洞，payload已经写入页面，但未给出具体位置，如何快速介入？ </p>
+</li>
+<li><p>XSS Worm 原理</p>
+</li>
+<li><p>有没有用过xss平台？</p>
+</li>
+<li><p>xss如何执行代码</p>
+</li>
+<li><p>xss常用哪些标签？</p>
+</li>
+<li><p>xss如何盗取cookie</p>
+</li>
+<li><p>xss有cookie一定可以无用户名密码登录吗？</p>
+</li>
+<li><p>XSS除了获取cookie，还有别的用处吗?</p>
+</li>
+<li><p>xss的危害，可能存在的地方？</p>
+</li>
+<li><p>xss漏洞测试方法</p>
+</li>
+<li><p>xss如何绕过安全防范</p>
+</li>
+</ol>
+<h1 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h1><ol>
+<li><p>php的LFI，本地包含漏洞原理是什么？写一段带有漏洞的代码，手工的话如何发掘？如果无本地报错回显，如何遍历文件？</p>
+</li>
+<li><p>PHP和Java的文件包含区别</p>
+</li>
+<li><p>文件包含以及变量覆盖</p>
+</li>
+<li><p>文件包含漏洞攻击原理及分类</p>
+</li>
+<li><p>如何快速挖掘包含漏洞</p>
+</li>
+<li><p>包含漏洞具体能做什么，怎么绕过？</p>
+</li>
+</ol>
+<h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ol>
+<li><p>CSRF如何不带referer访问</p>
+</li>
+<li><p>CSRF成因及防御措施；如果不用token如何做防御？</p>
+</li>
+<li><p>CSRF有何危害？</p>
+</li>
+<li><p>如何防止CSRF？</p>
+</li>
+<li><p>CSRF的原理及防御</p>
+</li>
+<li><p>一种特殊的CSRF场景：后端只解析json格式的时候如何利用CSRF（非更改Content-Type）</p>
+</li>
+<li><p>SameSite</p>
+</li>
+<li><p>csrf攻击原理是什么，一般用什么工具进行检测</p>
+</li>
+</ol>
+<h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><ol>
+<li><p>SSRF漏洞的成因 防御 绕过</p>
+</li>
+<li><p>介绍SSRF漏洞，如何深入利用？如何探测非HTTP协议？如何防范？</p>
+</li>
+<li><p>SSRF利用点</p>
+</li>
+<li><p>ssrf的原理即后利用，怎么执行命令，常搭配使用的协议。</p>
+</li>
+<li><p>ssrf漏洞攻击原理，用途</p>
+</li>
+<li><p>说说如何挖掘ssrf漏洞</p>
+</li>
+</ol>
+<h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><ol>
+<li><p>Java反序列化基础</p>
+</li>
+<li><p>Java反序列化有哪些CC链是有回显的？</p>
+</li>
+<li><p>Java反序列化相关的协议？</p>
+</li>
+<li><p>Fastjson反序列化及如何修复？</p>
+</li>
+<li><p>Java反序列化的原理</p>
+</li>
+<li><p>讲讲yso的链</p>
+</li>
+<li><p>shiro反序列化原理</p>
+</li>
+<li><p>反序列化原理</p>
+</li>
+</ol>
+<h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><ol>
+<li>命令注入有哪些</li>
+</ol>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
+<li><p>CRLF注入原理。</p>
+</li>
+<li><p>如何绕过CDN获取目标网站真实IP？</p>
+</li>
+<li><p>列举你所知道的所有开源组件高危漏洞（10个以上）</p>
+</li>
+<li><p>服务器为IIS+PHP+MySQL，发现root权限注入漏洞，讲讲你的渗透思路。</p>
+</li>
+<li><p>下面这段代码存在漏洞吗？如果存在请说出存在什么漏洞并利用。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.exp.com/1.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$s_func</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;s_func&#x27;</span>];</span><br><span class="line"><span class="variable">$info</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;info&#x27;</span>];</span><br><span class="line"><span class="variable">$s_func</span>(<span class="variable">$info</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说出至少三种业务逻辑漏洞，以及修复方式？</p>
+</li>
+<li><p>DNSRebinding</p>
+</li>
+<li><p>登录框攻击面</p>
+</li>
+<li><p>getshell的姿势</p>
+</li>
+<li><p>DNS重绑定，利用</p>
+</li>
+<li><p>disable function bypass</p>
+</li>
+<li><p>写出你知道的逻辑漏洞</p>
+</li>
+<li><p>简述XXE的基本原理，以及如何去检测或判断blind XXE的存在</p>
+</li>
+<li><p>ARP攻击的原理(讲出具体流程)，如何发现并防御ARP攻击</p>
+</li>
+<li><p>SSL Strip（SSP）攻击到底是什么？</p>
+</li>
+<li><p>中间人攻击–ARP欺骗原理、实战及防御</p>
+</li>
+<li><p>会话劫持原理</p>
+</li>
+<li><p>CC攻击</p>
+</li>
+<li><p>添加时间戳防止重放攻击</p>
+</li>
+<li><p>https中间人攻击与证书校验</p>
+</li>
+<li><p>越权以及逻辑漏洞问题</p>
+</li>
+<li><p>验证码绕过有哪些方法？</p>
+</li>
+<li><p>分别说出iis，apache，nginx解析漏洞原理</p>
+</li>
+<li><p>任意下载漏洞攻击原理及测试方法</p>
+</li>
+<li><p>xxe漏洞攻击原理是什么？如何找xxe漏洞及攻击方法</p>
+</li>
+<li><p>xxe攻击在无回显的时候是怎么突破的？</p>
+</li>
+<li><p>如何防范xxe漏洞？</p>
+</li>
+<li><p>越权问题有哪些？实战</p>
+</li>
+<li><p>URL跳转漏洞</p>
+</li>
+<li><p>ARP欺骗的方法有哪些？说说原理</p>
+</li>
+</ol>
+<h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol>
+<li><p>如果遇到waf的情况	如何进行sql注入&#x2F;上传webshell怎么做？请写出曾经绕过WAF的经过。</p>
+</li>
+<li><p>拿到一个待测的站，首先应该做什么？</p>
+</li>
+<li><p>判断出网站的CMS对渗透有什么意义？</p>
+</li>
+<li><p>一个成熟并且相对安全的CMS，渗透时扫目录的意义？</p>
+</li>
+<li><p>在某后台新闻编辑界面看到编辑器，应该先做什么？</p>
+</li>
+<li><p>拿到一个webshell发现网站根目录下有.htaccess文件，我们能做什么？</p>
+</li>
+<li><p>注入漏洞只能查账号密码？</p>
+</li>
+<li><p>安全狗会追踪变量，从而发现是一句话木马吗？</p>
+</li>
+<li><p>.access扫出后缀为asp的数据库文件，访问乱码，如何实现到本地利用？</p>
+</li>
+<li><p>如何利用这个防注入系统拿shell？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">某个防注入系统，在注入时会提示：</span><br><span class="line">系统检测到你有非法注入的行为。</span><br><span class="line">已记录您的IP:xxx.xxx.xx.xx</span><br><span class="line">时间:yy:mm:dd</span><br><span class="line">提交页面: test.asp?id=15</span><br><span class="line">提交内容: and 1=1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上传大马后访问乱码时，有哪些解决办法？</p>
+</li>
+<li><p>审查上传点的元素有什么意义？</p>
+</li>
+<li><p>目标站禁止注册用户，找回密码处随便输入用户名提示：“此用户不存在”，你觉得这里怎样利用？</p>
+</li>
+<li><p>以下条件有什么思路？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标站发现某txt的下载地址为：</span><br><span class="line">http://www.test.com/down/down.php?file=/upwdown/1.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>甲给你一个目标站，并且告诉你根目录下存在&#x2F;abc&#x2F;目录，并且此目录下存在编辑器和admin目录。请问你的想法是？</p>
+</li>
+<li><p>在有shell的情况下，如何使用xss实现对目标站的长久控制？</p>
+</li>
+<li><p>发现 demo.jsp?uid&#x3D;110 注入点，你有哪几种思路获取webshell，哪种是优选？</p>
+</li>
+<li><p>CSRF和XSS和XXE有什么区别，以及修复方式？</p>
+</li>
+<li><p>CSRF、SSRF和重放攻击有什么区别？</p>
+</li>
+<li><p>XSS、CSRF、CRLF比较容易弄混，说说三者的原理，防御方法。</p>
+</li>
+<li><p>owasp漏洞都有哪些？</p>
+</li>
+<li><p>渗透测试中常见的端口？</p>
+</li>
+<li><p>网站渗透流程</p>
+</li>
+<li><p>发现一个大范围影响的新漏洞，如何快速排查公司资产？</p>
+</li>
+<li><p>shiro反序列化</p>
+</li>
+<li><p>怎样对一个站去挖nday</p>
+</li>
+<li><p>跟过哪些nday，怎样一个思路</p>
+</li>
+<li><p>挖到过0day吗</p>
+</li>
+<li><p>代码审计</p>
+</li>
+<li><p>app渗透经历</p>
+</li>
+<li><p>redis利用姿势及环境差异</p>
+</li>
+<li><p>fastjson回显</p>
+</li>
+<li><p>jndi注入及原理</p>
+</li>
+<li><p>Java回显</p>
+</li>
+<li><p>泛微oa xstream的回显(jdk1.8和jdk1.7的差异)</p>
+</li>
+<li><p>shiro限制payload长度</p>
+</li>
+<li><p>Java回显的通用思路以及不同版本jdk的差异</p>
+</li>
+<li><p>owasp top10 漏洞</p>
+</li>
+<li><p>Rootkit是什么意思</p>
+</li>
+<li><p>手工查找后门木马的小技巧</p>
+</li>
+<li><p>常见web安全漏洞</p>
+</li>
+<li><p>永恒之蓝的漏洞原理是什么？怎么做到的？</p>
+</li>
+<li><p>针对PHP的弱类型，有哪些漏洞？</p>
+</li>
+<li><p>代码审计方面，有过对大型cms的审计吗？发现过哪些漏洞？</p>
+</li>
+<li><p>针对PHP的语言特点，说几个常见漏洞？</p>
+</li>
+<li></li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><p><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DSlByWEZoaWx4U3la">2022渗透测试面试问题搜集</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/511394956">干货 | 80篇+网络安全面试经验帖(第25篇还没看)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.51cto.com/u_15474183/5535532">2023级网络安全岗面试题及面试经验分享</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/566448154">2023届网络安全岗秋招面试题及面试经验分享</a></p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/" title="面试准备之web漏洞篇">http://example.com/2023/09/03/面试准备之web漏洞篇/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="prev" title="面试准备之密码学篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之密码学篇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5%E4%B8%8E%E5%85%B6%E5%AE%83%E6%B3%A8%E5%85%A5"><span class="nav-number">2.</span> <span class="nav-text">SQL注入与其它注入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">3.</span> <span class="nav-text">文件上传</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XSS"><span class="nav-number">4.</span> <span class="nav-text">XSS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-number">5.</span> <span class="nav-text">文件包含</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSRF"><span class="nav-number">6.</span> <span class="nav-text">CSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF"><span class="nav-number">7.</span> <span class="nav-text">SSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">反序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RCE"><span class="nav-number">9.</span> <span class="nav-text">RCE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-number">10.</span> <span class="nav-text">其它</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%BC%E5%90%88"><span class="nav-number">11.</span> <span class="nav-text">综合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">12.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">181</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">457k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:55</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

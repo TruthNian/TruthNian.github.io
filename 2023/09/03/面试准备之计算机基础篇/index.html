@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言地基。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试准备之计算机基础篇">
+<meta property="og:url" content="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言地基。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-04T14:26:52.752Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>面试准备之计算机基础篇 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">73</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">181</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面试准备之计算机基础篇
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-09-03 00:00:00" itemprop="dateCreated datePublished" datetime="2023-09-03T00:00:00+08:00">2023-09-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-04 22:26:52" itemprop="dateModified" datetime="2023-09-04T22:26:52+08:00">2023-09-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>地基。</p>
+<span id="more"></span>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ol>
+<li>什么是同源策略？</li>
+</ol>
+<p>源就是主机、协议、端口名的一个三元组。<br>同源策略(Same Origin Policy,SOP)是web应用程序的一种安全模型，被广泛地应用在处理web内容地各种客户端上，比如各大浏览器，Microsoft的Silverlight，Adobe的Flash&#x2F;Acrobat等等。同源策略限制不同源对当前document属性内容进行读取或设置。</p>
+<ol start="2">
+<li>如何使得前端 referer 为空</li>
+</ol>
+<p>通过地址栏输入，书签里面选择或浏览器的插件BurpSuite修改。</p>
+<ol start="3">
+<li>cookie参数，security是干什么的？</li>
+</ol>
+<p>expire: 可选的有效期参数，设置cookie变量保存时间。第一种是写入 session ，在浏览器会话期间有效，关闭浏览器则失效。另一种是需要把 date 对象转换成字符串再写入 cookie。<br>HttpOnly: 只有在http请求下才可使用，防止cookie被xss偷<br>https: 防止cookie在网络中被偷<br>Secure: 只有在https的请求下才可使用，阻止cookie在非https下传输<br>Path: 指定的某个路径这个 cookie 才能使用，这里的一般直接就是设置成 <code>\</code> ，当前目录下都可使用，因为只要是当前域下的，其实都可以使用。区分cookie的标识，安全上作用不大，和浏览器同源冲突</p>
+<ol start="4">
+<li>cookie的P3P性质</li>
+</ol>
+<p>http响应头的P3P(Platform for Privacy Preferences Project)字段是W3C公布的一项隐私保护推荐标准，该字段用于标识是否允许<strong>目标网站的cookie</strong>被<strong>另一个域</strong>通过加载目标网站而设置或发送，仅IE执行了该策略。<br>将情形分为两类，分别是设置与发送：<br>（1）设置cookie。在IE下默认是不允许第三方域设置的，除非foo域在响应的时候带上P3P字段，这样设置后，被加载的目标域的cookie就可以被正常设置了。<br>（2）发送cookie。如果是内存cookie，无所谓是否有P3P属性，就可以正常发送；如果是本地cookie，则这个cookie必须拥有P3P属性。</p>
+<ol start="5">
+<li>常见的网站服务器容器</li>
+</ol>
+<p>(1) Apache: 目前Apache仍然是世界上用得最多的Web服务器，市场占有率约为60%左右。源代码开放、有一支强大的开发团队、支持跨平台的应用（可以运行在几乎所有的Unix、Windows、Linux系统平台上）以及它的可移植性等方面。<br>(2) IIS: Microsoft的Web服务器产品为Internet Information Services。IIS 是允许在公共Intranet或Internet上发布信息的Web服务器。<br>(3) Nginx: 读作”engine x”，是一个高性能的HTTP和反向代理服务器，也是一个IMAP&#x2F;POP3&#x2F;SMTP代理服务器。<br>(4) Tomcat: Tomcat是一个开放源代码、运行Servlet和JSP的容器。TomcatServer实现了Servlet和JSP规范。<br>(5) WebLogic: BEA WebLogic Server是一种多功能、基于标准的Web应用服务器，为企业构建自己的应用提供了坚实的基础。<br>(6) WebSphere: WebSphere Application Server是功能完善、开放的Web应用程序服务器，是IBM电子商务计划的核心部分，它是基于Java的应用环境，用于建立、部署和管理Internet和Intranet Web应用程序，适应各种Web应用程序服务器的需要，范围从简单到高级直到企业级。<br>(7) Kangle: Kangle Web服务器是一款跨平台、功能强大、安全稳定、易操作的高性能Web服务器和反向代理服务器软件。此外，Kangle也是一款专为做虚拟主机研发的Web服务器。</p>
+<ol start="6">
+<li>3306，1443，8080是什么端口？</li>
+</ol>
+<p>3306: MySQL<br>1443: SQL Server<br>8080: 代理端口</p>
+<ol start="7">
+<li>计算机网络从物理层到应用层xxxx</li>
+</ol>
+<p>物理层，链路层，网络层，传输层，应用层</p>
+<ol start="8">
+<li>token和referer做横向对比，谁安全等级高？</li>
+</ol>
+<p>token安全等级高。<br>Referer可以伪造，而且不是任何服务器都可以取得referer，如果从https跳到http，也不会发送referer。并且一些flash版本可以自定义referer。对于token要保证其足够随机且不可泄露。客户端建议存储到sessionstage里。</p>
+<ol start="9">
+<li>对referer的验证，从什么角度去做？如果做，怎么杜绝问题</li>
+</ol>
+<p>对header中的referer的验证，一个是空referer，一个是referer过滤或检测不完善。<br>为了杜绝这种问题，在验证的白名单中，正则规则应当写完善。</p>
+<ol start="10">
+<li>针对token，对token哪方面进行测试</li>
+</ol>
+<p>针对token的攻击，一是对它本身的攻击，重放测试一次性、分析加密规则、校验方式是否正确等，二是结合信息泄露漏洞对它的获取，结合着发起组合攻击。<br>信息泄露方面，可以是缓存、日志、get或利用跨站。<br>很多跳转的登录都依赖token，有一个跳转漏洞加反射型跨站就可以组合成登录劫持了。<br>另外也可以结合其它业务来描述token的安全性及设计怎么不好怎么被绕过比如抢红包业务之类的。</p>
+<ol start="11">
+<li>SSL&#x2F;TLS握手过程</li>
+</ol>
+<p>SSL(安全套接字层)是为HTTP开发的原始安全协议。不久前，SSL被TLS(传输层安全性)所取代。SSL握手现在称为TLS握手。<br>TLS握手步骤大致如下：<br>(1) 客户端问候(client hello) 消息：客户端通过向服务器发送“问候”消息来开始握手。该消息将包含客户端支持的TLS版本，支持的密码套件，以及一串被称为“客户端随机数(client random)”的随机字节。<br>(2) 服务端问候(server hello) 消息：作为对client hello消息的回复，服务器发送一条消息，内含服务器的SSL证书、服务器选择的密码套件，以及“服务器随机数(server random)”，即由服务器生成的另一串随机字符。<br>(3) 身份验证：客户端使用颁发该证书的证书颁发机构验证服务器的SSL证书。此举确认服务器是其声称的身份，且客户端正在与该域的实际所有者进行交互。<br>(4) 预主密钥：客户端再发送一串随机字节，即“预主密钥(premaster secret)”。预主密钥是使用公钥加密的，只能使用服务器的私钥解密。（客户端从服务器的SSL证书中获得公钥）。<br>(5) 私钥被使用：服务器对预主密钥进行解密。<br>(6) 生成会话密钥：客户端和服务器均使用客户端随机数、服务器随机数和预主密钥生成会话密钥。双方应得到相同结果。<br>(7) 客户端就绪：客户端发送一条“已完成”消息，该消息用会话密钥加密。<br>(8) 服务端就绪：服务端发送一条“已完成”消息，该消息用会话密钥加密。<br>(9) 实现安全对称加密：已完成握手，并使用会话密钥继续进行通信。</p>
+<ol start="12">
+<li>TCP三次握手过程以及对应的状态转换</li>
+</ol>
+<p>(1) 客户端向服务端发送一个SYN包，包含客户端使用的端口号呃初始序列号x；<br>(2) 服务端收到客户端发送来的SYN包后，向客户端发送一个SYN和ACK都置位的TCP报文，包含确认号xx1和服务器端的初始序列号y；<br>(3) 客户端收到服务端返回的SYN，ACK报文后，向服务器发送一个确认号为yy1、序列号为xx1的ACK报文，一个标准的TCP连接完成。</p>
+<ol start="13">
+<li>TCP和UDP协议区别</li>
+</ol>
+<p>tcp面向连接，udp面向报文；tcp对系统资源的要求多，udp结构简单；tcp保证数据完整性和顺序，udp不保证</p>
+<ol start="14">
+<li>https的建立过程</li>
+</ol>
+<p>(1) 客户端发送请求到服务器端<br>(2) 服务器端返回证书和公开密钥，公开密钥作为证书的一部分存在<br>(3) 客户端验证证书和公开密钥的有效性，如果有效，则生成共享密钥并使用公开密钥加密发送到服务器端<br>(4) 服务器端使用私有密钥解密数据，并使用收到的共享密钥加密数据，发送到客户端<br>(5) 客户端使用共享密钥解密数据<br>(6) SSL加密建立</p>
+<ol start="15">
+<li>http状态码：503，502，501</li>
+</ol>
+<p>503: 由于超载或系统维护，服务器暂时无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中。<br>502: 作为网关或代理工作的服务器尝试执行请求时，从远程服务器收到了一个无效的响应。<br>501: 服务器不支持请求的功能，无法完成请求。</p>
+<ol start="16">
+<li>http请求方式及各自作用</li>
+</ol>
+<p>(1) GET–请求指定的页面信息，并返回实体主体。<br>(2) HEAD–类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。<br>(3) POST–向指定资源提交数据进行处理请求（例如提交表单或上传文件）。数据被包含在请求体中。POST请求可能导致新的资源建立和&#x2F;或已有资源的修改。<br>(4) PUT–从客户端向服务器传送的数据取代指定的文档和内容。<br>(5) DELETE–请求服务器删除指定的内容。<br>(6) CONNECT–HTTP&#x2F;1.1协议中预留给能够连接改为管道方式的代理服务器。<br>(7) OPTIONS–允许客户端查看服务器性能。<br>(8) TRACE–回显服务器收到的请求。<br>(9) PATCH–是对PUT方法的补充，用来对已知资源进行局部更新。</p>
+<ol start="17">
+<li><p>计算机网络的分层及分别有哪些协议？</p>
+</li>
+<li><p>HttpOnly</p>
+</li>
+<li><p>a.baidu.com和b.baidu.com是否同源</p>
+</li>
+<li><p>算法？了解过什么排序？</p>
+</li>
+<li><p>爬虫</p>
+</li>
+<li><p>页面存在很多js的时候，用什么</p>
+</li>
+<li><p>爬虫的待爬取URL量级比较大的时候，如何对其去重</p>
+</li>
+<li><p>多线程，异步，协程，多路复用 用哪一个最快，为什么？</p>
+</li>
+<li><p>浏览器的常用编码</p>
+</li>
+<li><p>web常用的加密算法有什么？</p>
+</li>
+<li><p>病毒和蠕虫的区别？</p>
+</li>
+<li><p>DNS欺骗</p>
+</li>
+<li><p>移动端的调试经验 apk，ipa包分析</p>
+</li>
+<li><p>对于云安全的理解</p>
+</li>
+<li><p>虚拟机逃逸的理解</p>
+</li>
+<li><p>dll文件是什么意思，有什么用？DLL劫持原理</p>
+</li>
+<li><p>get传参和post传参有什么区别？</p>
+</li>
+<li><p>讲一下HTTP双向认证</p>
+</li>
+<li><p>http的请求方式，具体说说</p>
+</li>
+<li><p>常见的http方法有哪些，他们之间的区别是什么？</p>
+</li>
+<li><p>常见状态码你知道吗？分别说一下200，201，301，302，500，503的含义</p>
+</li>
+<li><p>常见请求消息头的作用，分别说一下cookie, referer, user-agent的作用？</p>
+</li>
+<li><p>响应消息头的作用，分别说一下location, Access-Control-Allow-Origin, WWW-Authenticate</p>
+</li>
+<li><p>Cookie响应消息头的secure和httponly分别作用是什么？</p>
+</li>
+<li><p>静态、动态语言区别</p>
+</li>
+<li><p>常用的脚本语言和数据库有哪些？</p>
+</li>
+<li><p>系统、脚本语言、中间件如何组合？</p>
+</li>
+<li><p>会不会逆向APK，会不会嵌入式</p>
+</li>
+<li><p>正则能不能写？</p>
+</li>
+<li><p>对https了解吗？讲一下加密和解密流程？</p>
+</li>
+<li><p>陈述一下缓冲区溢出</p>
+</li>
+<li><p>jsonp安全攻防技术，怎么写jsonp的攻击页面</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" title="面试准备之计算机基础篇">http://example.com/2023/09/03/面试准备之计算机基础篇/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="prev" title="面试准备之语言篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之语言篇
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="next" title="面试准备之自身方面篇">
+      面试准备之自身方面篇 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">前端</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">181</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">457k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:55</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
