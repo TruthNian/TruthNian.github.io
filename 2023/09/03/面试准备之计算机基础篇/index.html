@@ -28,11 +28,15 @@
 <meta property="og:site_name" content="Scammer">
 <meta property="og:description" content="前言地基。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%801.png">
+<meta property="og:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%802.png">
+<meta property="og:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%803.png">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-04T14:26:52.752Z">
+<meta property="article:modified_time" content="2023-09-08T09:00:18.588Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%801.png">
 
 <link rel="canonical" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/">
 
@@ -223,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-04 22:26:52" itemprop="dateModified" datetime="2023-09-04T22:26:52+08:00">2023-09-04</time>
+                <time title="修改时间：2023-09-08 17:00:18" itemprop="dateModified" datetime="2023-09-08T17:00:18+08:00">2023-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +256,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.3k</span>
+              <span>9.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -282,7 +286,7 @@
 </ol>
 <p>通过地址栏输入，书签里面选择或浏览器的插件BurpSuite修改。</p>
 <ol start="3">
-<li>cookie参数，security是干什么的？</li>
+<li>cookie参数，secure是干什么的？</li>
 </ol>
 <p>expire: 可选的有效期参数，设置cookie变量保存时间。第一种是写入 session ，在浏览器会话期间有效，关闭浏览器则失效。另一种是需要把 date 对象转换成字符串再写入 cookie。<br>HttpOnly: 只有在http请求下才可使用，防止cookie被xss偷<br>https: 防止cookie在网络中被偷<br>Secure: 只有在https的请求下才可使用，阻止cookie在非https下传输<br>Path: 指定的某个路径这个 cookie 才能使用，这里的一般直接就是设置成 <code>\</code> ，当前目录下都可使用，因为只要是当前域下的，其实都可以使用。区分cookie的标识，安全上作用不大，和浏览器同源冲突</p>
 <ol start="4">
@@ -338,71 +342,150 @@
 </ol>
 <p>(1) GET–请求指定的页面信息，并返回实体主体。<br>(2) HEAD–类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。<br>(3) POST–向指定资源提交数据进行处理请求（例如提交表单或上传文件）。数据被包含在请求体中。POST请求可能导致新的资源建立和&#x2F;或已有资源的修改。<br>(4) PUT–从客户端向服务器传送的数据取代指定的文档和内容。<br>(5) DELETE–请求服务器删除指定的内容。<br>(6) CONNECT–HTTP&#x2F;1.1协议中预留给能够连接改为管道方式的代理服务器。<br>(7) OPTIONS–允许客户端查看服务器性能。<br>(8) TRACE–回显服务器收到的请求。<br>(9) PATCH–是对PUT方法的补充，用来对已知资源进行局部更新。</p>
 <ol start="17">
-<li><p>计算机网络的分层及分别有哪些协议？</p>
-</li>
-<li><p>HttpOnly</p>
-</li>
-<li><p>a.baidu.com和b.baidu.com是否同源</p>
-</li>
-<li><p>算法？了解过什么排序？</p>
-</li>
-<li><p>爬虫</p>
-</li>
-<li><p>页面存在很多js的时候，用什么</p>
-</li>
-<li><p>爬虫的待爬取URL量级比较大的时候，如何对其去重</p>
-</li>
-<li><p>多线程，异步，协程，多路复用 用哪一个最快，为什么？</p>
-</li>
-<li><p>浏览器的常用编码</p>
-</li>
-<li><p>web常用的加密算法有什么？</p>
-</li>
-<li><p>病毒和蠕虫的区别？</p>
-</li>
-<li><p>DNS欺骗</p>
-</li>
-<li><p>移动端的调试经验 apk，ipa包分析</p>
-</li>
-<li><p>对于云安全的理解</p>
-</li>
-<li><p>虚拟机逃逸的理解</p>
-</li>
-<li><p>dll文件是什么意思，有什么用？DLL劫持原理</p>
-</li>
-<li><p>get传参和post传参有什么区别？</p>
-</li>
-<li><p>讲一下HTTP双向认证</p>
-</li>
-<li><p>http的请求方式，具体说说</p>
-</li>
-<li><p>常见的http方法有哪些，他们之间的区别是什么？</p>
-</li>
-<li><p>常见状态码你知道吗？分别说一下200，201，301，302，500，503的含义</p>
-</li>
-<li><p>常见请求消息头的作用，分别说一下cookie, referer, user-agent的作用？</p>
-</li>
-<li><p>响应消息头的作用，分别说一下location, Access-Control-Allow-Origin, WWW-Authenticate</p>
-</li>
-<li><p>Cookie响应消息头的secure和httponly分别作用是什么？</p>
-</li>
-<li><p>静态、动态语言区别</p>
-</li>
-<li><p>常用的脚本语言和数据库有哪些？</p>
-</li>
-<li><p>系统、脚本语言、中间件如何组合？</p>
-</li>
-<li><p>会不会逆向APK，会不会嵌入式</p>
-</li>
-<li><p>正则能不能写？</p>
-</li>
-<li><p>对https了解吗？讲一下加密和解密流程？</p>
-</li>
-<li><p>陈述一下缓冲区溢出</p>
-</li>
-<li><p>jsonp安全攻防技术，怎么写jsonp的攻击页面</p>
-</li>
+<li>计算机网络的分层及分别有哪些协议？</li>
 </ol>
+<p>物理层：RJ45, 802.3<br>数据链路层：SDLC，HDLC，PPP，STP<br>网络层：IP，IPX，ICMP，IGMP，ARP，RARP，OSPF<br>传输层：TCP，UDP<br>应用层：文件传输(FTP)，电子邮件(SMTP)，万维网(HTTP)</p>
+<ol start="18">
+<li>HttpOnly</li>
+</ol>
+<p>这是cookie中的一个参数。如果cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击，窃取cookie内容，增加了cookie安全性。</p>
+<ol start="19">
+<li>a.baidu.com和b.baidu.com是否同源</li>
+</ol>
+<p>源：主机，域名，端口。同源要求三者必须都相同，而这两个域名不同，因此不属于同源。</p>
+<ol start="20">
+<li>算法？了解过什么排序？</li>
+</ol>
+<p>个人理解的算法就是解决某一类问题的通用方式。<br>排序算法有：冒泡排序，选择排序，插入排序，希尔排序，归并排序，快速排序，堆排序，计数排序，桶排序，基数排序。<br><img src="/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%801.png" alt="排序"></p>
+<ol start="21">
+<li>爬虫</li>
+</ol>
+<p>爬虫是一种用来自动浏览万维网的网络机器人。<br>会写python爬虫。</p>
+<ol start="22">
+<li>页面存在很多js的时候，用什么</li>
+</ol>
+<p>如果需要操纵浏览器拿到浏览器显示出来的数据，可以使用selenium模块。</p>
+<p>当页面存在很多js时，要分析如何找到是哪个js在控制数据的生成及js发送请求的路径<br>首先拿到详情页的请求路径：<br><code>url_1=&#39;https://www.example.com/a/b.html&#39;</code><br>然后把url_1最后一个斜杠后面的内容替换掉，<br><code>url_2=&#39;https://www.example.com/%s/c.js&#39;%(url_1.split(&#39;/&#39;)[3])</code><br>把url_1用 <code>/</code> 分割，拿到第四部分，即索引为3，然后拼接进去即可<br>这样就构造好了一个详情页数据请求路径，然后直接去访问这个路径就能拿到数据，也不用再访问详情页。</p>
+<ol start="23">
+<li>爬虫的待爬取URL量级比较大的时候，如何对其去重</li>
+</ol>
+<p>使用布隆过滤器。<br>原理：<br>BloomFilter会开辟一个m位的bitArrary(位数组)，开始所有数据全部置为0。当一个元素( <code>www.baidu.com</code> )过来时，能过多个哈希函数(h1,h2,h3…)计算不同的在哈希值，并通过哈希值找到对应的bitArray下标处，将里面的值0置位1。</p>
+<ol start="24">
+<li>多线程，异步，协程，多路复用 用哪一个最快，为什么？</li>
+</ol>
+<p>多线程？not sure</p>
+<ol start="25">
+<li>浏览器的常用编码</li>
+</ol>
+<p>UTF-8<br>UTF-16</p>
+<ol start="26">
+<li>web常用的加密算法有什么？</li>
+</ol>
+<p>不可逆：MD5，SHA-256<br>对称：DES，AES<br>非对称：RSA</p>
+<ol start="27">
+<li>病毒和蠕虫的区别？</li>
+</ol>
+<p>蠕虫和病毒都会自我复制。<br>区别：<br>蠕虫：蠕虫不依附于计算机上的其它程序或文件。不需要人工干预，利用漏洞主动攻击，具有较强的独立性。<br>病毒：病毒把自身附加于程序或者文件，从一台计算机传播到另一台计算机，当运行程序或者打开文件时，才会感染计算机。在没有人为操作的情况下，病毒无法传播，必须通过外部操作来触发他。</p>
+<ol start="28">
+<li>DNS欺骗</li>
+</ol>
+<p>DNS欺骗就是攻击者在域名解析请求的过程中冒充DNS域名服务器进行响应，回复给用户一个虚假的地址，也就是攻击者冒充顶替域名服务器的一种欺骗行为。<br>原理：攻击者冒充域名服务器，将目标IP地址设为自己的IP地址，接着，用户访问时就进入到攻击者的主页里，将原来的域名网站冒充顶替掉了，这就是DNS欺骗的基本原理。</p>
+<ol start="29">
+<li>移动端的调试经验 apk，ipa包分析</li>
+</ol>
+<p>不太了解。参考下面两篇文章：<br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7264235181778960421">Android-使用 APK 分析器分析 build</a><br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7185079396678991928">iOS 包体积优化1 - 总览</a></p>
+<ol start="30">
+<li>对于云安全的理解</li>
+</ol>
+<p>云安全定义:<br>云安全是为保护云端应用、数据和基础架构安全而采取的一套信息安全措施。这涉及应用各种安全政策、实践、控制措施以及诸如身份和访问权限管理和数据泄露防护工具等其他方法，目的是帮助保护云环境免受未经授权的访问、在线攻击和内部威胁的侵害。</p>
+<p>云安全的工作原理:<br>云安全主要关注如何搭配实现各种策略、流程和技术，以确保实现数据保护、支持法规遵从，并为用户和设备提供对隐私、访问和身份验证方面的控制措施。<br>云服务提供商 (CSP) 通常采用责任共担模型，这意味着，实现云计算安全既是云服务提供商的责任，也是您（即客户）的责任。您可以将该模型看作一个责任框架，用以界定哪些安全任务归云服务提供商负责，哪些又是客户的职责。<br>一般来说，CSP始终负责云及其核心基础架构的安全，而客户则应保护在云端运行的所有内容的安全，例如网络控件、身份和访问权限管理、数据和应用。</p>
+<p>云安全的安全风险：<br>来自外部：数据泄露和数据丢失、钓鱼式攻击、恶意软件、DDoS 攻击和易受攻击的 API。<br>来自内部：缺少洞察性、配置不当、访问权限管理、动态工作加载、法规遵从。</p>
+<p>云安全的优势：<br>更高的可见性、集中式安全性、减少费用、数据保护、云合规性、高级威胁检测。</p>
+<p><a target="_blank" rel="noopener" href="https://cloud.google.com/learn/what-is-cloud-security?hl=zh-cn">云安全参考资料</a></p>
+<ol start="31">
+<li>虚拟机逃逸的理解</li>
+</ol>
+<p>虚拟机逃逸(Virtual Machine Escape)是一种网络安全攻击技术，指的是攻击者通过利用虚拟机(VM)内的漏洞或设计缺陷，实现从虚拟机内部向宿主机(Host)的操作系统进行攻击。<br>虚拟机逃逸攻击的原理很大程度上依赖于虚拟化技术的实现方式。虚拟化技术通常由Hypervisor负责，其主要任务是管理和调度多个虚拟机之间的资源分配。在虚拟机逃逸攻击中，攻击者寻找并利用虚拟机监视器的漏洞或设计缺陷，绕过虚拟机与宿主机之间的隔离层，实现对宿主机的操作系统及其资源的访问和控制。<br>通常包括以下几种类型：<br>(1) 利用虚拟机监视器漏洞，如缓冲区溢出、整数溢出等，攻击者通过这些漏洞实现代码执行，最终获得宿主机的控制权限。<br>(2) 利用虚拟设备或驱动程序的设计缺陷，攻击者可能通过虚拟网络接口、虚拟磁盘等设备逃出虚拟机环境。<br>(3) 利用虚拟机管理工具和接口的安全漏洞，例如虚拟机控制台、虚拟机迁移等，攻击者可能在不被察觉的情况下实现虚拟机逃逸。</p>
+<p>举例：QEMU逃逸（CVE-2020-14364）<br><a target="_blank" rel="noopener" href="https://blog.nsfocus.net/virtual/">虚拟机逃逸技术介绍</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12540">FreeBSD系统的虚拟机逃逸漏洞</a></p>
+<ol start="32">
+<li>dll文件是什么意思，有什么用？DLL劫持原理</li>
+</ol>
+<p>DLL(Dynamic Link Library)文件为动态链接库文件，又称“应用程序扩展”，是软件文件类型。<br>在Windows系统中，许多应用程序不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。<br>用处：使用DLL有助于促进代码的模块化、代码重用、内存的有效使用和减少所占用的磁盘空间。<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/troubleshoot/windows-client/deployment/dynamic-link-library">什么是 DLL</a></p>
+<p>DLL劫持原理：<br>如果在进程尝试加载一个DLL时没有并没有指定DLL的绝对路径，那么Windows会尝试去按照顺序搜索这些特定目录来查找这个DLL,如果攻击者能够将恶意的DLL放在优先于正常DLL所在的目录，那么就能够欺骗系统去加载恶意的DLL，形成”劫持”,CWE将其归类为UntrustedSearch Path Vulnerability,比较直译的一种解释。<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/endpoint/366348.html">DLL劫持从零到CobaltStrike上线免杀</a><br><a target="_blank" rel="noopener" href="https://www.mayuexuan.com/dll%E5%8A%AB%E6%8C%81%E5%8E%9F%E7%90%86/">DLL劫持原理</a></p>
+<ol start="33">
+<li>get传参和post传参有什么区别？</li>
+</ol>
+<p>(1) GET请求只能进行URI编码，而POST支持多种编码方式。<br>(2) 对参数的数据类型，GET只接受ASCII字符，而POST没有限制。<br>(3) GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。<br>(4) GET参数通过URL传递，而且是有长度限制的，POST放在请求体中，没有长度限制。</p>
+<ol start="34">
+<li>讲一下HTTPS双向认证</li>
+</ol>
+<p>(1) 客户端发起建立HTTPS连接请求，将SSL协议版本的信息发送给服务端<br>(2) 服务端将本机的公钥证书(server.crt)发送给客户端<br>(3) 客户端读取公钥证书(servet.crt)，取出服务端公钥<br>(4) 客户端将客户端公钥证书(client.crt)发送给服务器端<br>(5) 服务器端使用根证书(root.crt)解密客户端公钥证书，拿到客户端公钥<br>(6) 客户端发送自己支持的加密方案给服务器端<br>(7) 服务器端根据自己和客户端的能力，选择一个双方都能接受的加密方案，使用客户端的公钥加密后发送给客户端<br>(8) 客户端使用自己的私钥解密加密方案，生成一个随机数R，使用服务器公钥加密后传给服务器端<br>(9) 服务器端用自己的私钥去解密这个密文，得到了密钥R<br>(10) 服务器端和客户端在后续通讯过程就使用这个密钥R进行通信了</p>
+<ol start="35">
+<li>http的请求方式，具体说说</li>
+</ol>
+<p>见问题16</p>
+<ol start="36">
+<li>常见的http方法有哪些，他们之间的区别是什么？</li>
+</ol>
+<p>见问题16</p>
+<ol start="37">
+<li>常见状态码你知道吗？分别说一下200，201，301，302，500，503的含义</li>
+</ol>
+<p>200–请求成功，一般用于GET和POST请求<br>201–已创建，成功请求并创建了新的资源<br>301–永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替<br>302–临时移动。与301类似。但资源只是临时被移动。客户端应使用原有URI<br>500–服务器内部错误，无法完成请求<br>503–由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中。</p>
+<ol start="38">
+<li>常见请求消息头的作用，分别说一下cookie, referer, user-agent的作用？</li>
+</ol>
+<p>HTTP头字段(HTTP header fields)，是指在超文本传输协议(HTTP)的请求和响应消息中的消息头部分。<br>Cookie: 服务器通过Set-Cookie发送的一个超文本传输协议Cookie<br>Referer: 判断请求来源，以及防止盗链。<br>User-Agent: 浏览器身份标识字符串</p>
+<ol start="39">
+<li>响应消息头的作用，分别说一下location, Access-Control-Allow-Origin, WWW-Authenticate</li>
+</ol>
+<p>Location: 表示客户应当到哪里去提取文档，用于接收端定位到资源的位置(URL)上。Location通常不是直接设置的，而是通过HttpServletResponse的sendRedirect方法，该方法同时设置状态码302<br>Access-Control-Allow-Origin: 携带了服务端验证后允许的跨域请求域名。<br>WWW-Authenticate: 表名客户端请求实体应该使用的授权方案</p>
+<ol start="40">
+<li>Cookie响应消息头的secure和httponly分别作用是什么？</li>
+</ol>
+<p>见问题3</p>
+<ol start="41">
+<li>静态、动态语言区别</li>
+</ol>
+<p>动态语言（弱类型语言）：是运行时才确定数据类型的语言，变量在使用之前无需申明类型，通常变量的值是被赋值的那个值的类型。比如PHP、ASP、JavaScript、python、Perl<br>静态语言（强类型语言）：是编译时变量的数据类型就可以确定的语言，大多数静态语言要求在使用变量之前就必须声明数据类型。比如Java, C, C++, C#</p>
+<p>区别：<br>静态语言由于强制声明数据类型，让开发工具(IDE)对代码有很强的判断能力，在实现复杂的业务逻辑和开发大型商业系统、以及那些声明周期很长的应用中，开发者可以依托强大的IDE来更高效更安全地开发。<br>动态语言代码量更少，看起来更简介；思维不受约束，可以任意发挥，把更多的精力放在产品本身上；集中思考业务逻辑实现，思考过程就是实现过程。</p>
+<ol start="42">
+<li>常用的脚本语言和数据库有哪些？</li>
+</ol>
+<p>常用脚本语言：js，php，ruby，python<br>常用数据库：Oracle，MySQL，SQL server，mssql，redis</p>
+<ol start="43">
+<li>系统、脚本语言、中间件如何组合？</li>
+</ol>
+<p>数据库：Oracle大型数据库、Access、SQL Server(ms SQL)、MySQL常用中小型数据库<br>中间件：IIS、Apache、Nginx、Tomcat<br>脚本：PHP、ASP、ASPX(ASP.NET)、JSP</p>
+<p>综合搭配：<br>Linux + Apache + PHP +MySQL<br>Linux + Nginx + PHP + MySQL<br>Windows + IIS +ASPX(ASP.NET) + SQL Server(ms SQL)<br>Linux + Tomcat + JSP +MySQL<br>Linux + Tomcat + JSP + Oracle</p>
+<ol start="44">
+<li>会不会逆向APK，会不会嵌入式</li>
+</ol>
+<p>了解过一点。</p>
+<p>直接修改 <code>xxx.apk</code> 的后缀为 <code>xxx.zip</code> ，解压文件目录。<br><img src="/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%802.png" alt="计算机基础2"><br>所有的代码处于 <code>classes.dex</code> 中，图片布局等资源处于 <code>res</code> 目录下。 <code>AndroidManifest.xml</code> 和 <code>activity_main.xml</code> 文件是一堆整齐排列的16进制数，需要使用apktool（反编译资源），反编译APK中的资源。</p>
+<p>经过apktool反编译后生成的具体文件：<br><img src="/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%803.png" alt="计算机基础3"><br>1、AndroidManifest.xml：经过反编译还原后的 manifest 文件<br>2、original 文件夹：存放了未经反编译过、原始的 AndroidManifest.xml 文件<br>3、res 文件夹：存放了反编译出来的所有资源<br>4、smali 文件夹：存放了反编译出来的所有代码，只不过格式都是.smali类型的</p>
+<p>使用 apktool 反编译后的代码处于 smali 文件夹下，且都是.smali格式的<br>将其转换成能看懂的Java代码（反编译代码）：使用dex2jar + jd-gui</p>
+<p>dex2jar的作用是将dex文件转换为jar文件<br>jd-gui查看jar包里的具体内容</p>
+<p>修改完成后用apktool将文件夹重新打包成apk，然后使用 AndroidStudio 生成一个签名文件。最后再执行签名命令即可安装。<br><a target="_blank" rel="noopener" href="https://juejin.cn/post/7158107697907236878">Android逆向</a></p>
+<p>嵌入式只了解一点概念，是一种嵌入机械或电气系统内部、具有专一功能和实时计算机性能的电脑系统。</p>
+<ol start="45">
+<li>正则能不能写？</li>
+</ol>
+<p>能写。<br><a target="_blank" rel="noopener" href="https://www.runoob.com/regexp/regexp-syntax.html">正则表达式</a></p>
+<ol start="46">
+<li>对https了解吗？讲一下加密和解密流程？</li>
+</ol>
+<p>HTTPS(Hypertext Transfer Protocol Secure: 超文本传输安全协议) 是一种透过计算机网络进行安全通信的传输协议。<br>HTTPS经由HTTP通信，但利用SSL&#x2F;TLS来加密数据包。HTTPS开发的主要目的是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。<br>加解密流程见问题11。</p>
+<ol start="47">
+<li>陈述一下缓冲区溢出</li>
+</ol>
+<p>缓冲区溢出是一种异常现象，当软件向缓冲区中写入数据使缓冲区容量溢出时，会导致相邻存储器位置被覆盖。过量信息被传递到没有足够空间的容器中，而这些信息最终会替换相邻容器中的数据。攻击者可以利用缓冲区溢出修改计算机的内存，以破坏或控制程序的执行。<br>造成此现象的原因有：</p>
+<ul>
+<li>存在缺陷的程序设计</li>
+<li>尤其是C语言，不像其它一些高级语言会自动进行数组或指针的堆栈区块边界检查，增加溢出风险。</li>
+<li>C语言中的C标准库还具有一些非常危险的操作函数，使用不当也为溢出创造条件。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-sg/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA">缓冲区溢出</a></p>
 
     </div>
 
@@ -640,13 +723,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">457k</span>
+    <span title="站点总字数">486k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:55</span>
+    <span title="站点阅读时长">7:22</span>
 </div>
 
 <!--
