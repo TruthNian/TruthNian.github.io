@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言自身方面的提问是对综合素质的考察。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-04T08:50:21.671Z">
+<meta property="article:modified_time" content="2023-09-19T08:30:50.025Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-04 16:50:21" itemprop="dateModified" datetime="2023-09-04T16:50:21+08:00">2023-09-04</time>
+                <time title="修改时间：2023-09-19 16:30:50" itemprop="dateModified" datetime="2023-09-19T16:30:50+08:00">2023-09-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>874</span>
+              <span>2.5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -286,11 +286,16 @@
 </li>
 <li><p>了解什么比较新的漏洞</p>
 </li>
-<li><p>你在SRC挖掘中遇到最多的漏洞是什么？</p>
-</li>
-<li><p>有拿过cnvd证书吗</p>
-</li>
 </ol>
+<p>exit_hook攻击<br>适用版本：glibc-2.34 后失效<br>利用条件:<br>至少有一次任意写<br>程序可以结束(可显式触发 <code>exit</code> 函数 或 主函数由 <code>libc_start_main</code> 启动且可正常退出)，调用到 <code>_dl_fini</code> 函数<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12856">exit_hook攻击利用</a></p>
+<ol start="7">
+<li>你在SRC挖掘中遇到最多的漏洞是什么？</li>
+</ol>
+<p>sql注入</p>
+<ol start="8">
+<li>有拿过cnvd证书吗</li>
+</ol>
+<p>没。</p>
 <h1 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h1><ol>
 <li><p>如果给你一个网站，你的渗透测试思路是什么？在获取书面授权的前提下。</p>
 </li>
@@ -332,57 +337,108 @@
 </li>
 </ol>
 <h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
-<li><p>多久开始接触安全的？</p>
-</li>
-<li><p>熟悉安全的哪些内容？web？逆向？iot？在公司主要的工作内容？</p>
-</li>
-<li><p>安全工具的使用</p>
-</li>
-<li><p>自我介绍</p>
-</li>
-<li><p>hw经历</p>
-</li>
-<li><p>对红蓝对抗的看法</p>
-</li>
-<li><p>你觉得什么是你自己比较擅长的而我没有问到的？</p>
-</li>
-<li><p>针对web扫描器的爬虫，你怎么看？</p>
-</li>
-<li><p>企业内部安全</p>
-</li>
-<li><p>怎么判断目前是否是cms？</p>
-</li>
-<li><p>做过黑产吗？</p>
-</li>
-<li><p>以后的发展？</p>
-</li>
-<li><p>多久能学会？</p>
-</li>
-<li><p>说说你以前在你公司主要做什么安全工作？如每天，每月，每年做些什么安全工作？</p>
-</li>
-<li><p>你写过什么好的安全漏洞文章发布过吗？是否可以说说？</p>
-</li>
-<li><p>说说你的其它优势（如：对安全新兴技术的研究、个人博客、比赛、在校经历等）</p>
-</li>
-<li><p>说说大学这几年最自豪的事情</p>
-</li>
-<li><p>CTF你都做过哪些题型？</p>
-</li>
-<li><p>遇到的比较困难的web题型的ctf题目</p>
-</li>
-<li><p>假如让你设计一个waf，你会怎么设计？</p>
-</li>
-<li><p>有没有写过一些脚本？</p>
-</li>
-<li><p>为什么做这一行？</p>
-</li>
-<li><p>是否有在国外抓过肉鸡，有没有做黑产的朋友</p>
-</li>
-<li><p>是否能接受驻场？</p>
-</li>
-<li><p>都破解过哪些软件？如果给你一个产品，你能提出安全加固建议吗？</p>
-</li>
+<li>多久开始接触安全的？</li>
 </ol>
+<p>2020年</p>
+<ol start="2">
+<li>熟悉安全的哪些内容？web？逆向？iot？在公司主要的工作内容？</li>
+</ol>
+<p>web安全，渗透测试，安全防护</p>
+<ol start="3">
+<li>安全工具的使用</li>
+</ol>
+<p>kali下的sqlmap，nmap，beef，metasploit等，CobaltStrike, Nessus, AWVS, 御剑，DirBuster, appscan, xray, goby, 菜刀，御剑，冰蝎，BurpSuite, Wireshark.</p>
+<ol start="4">
+<li>自我介绍</li>
+</ol>
+<p>我是一名来自成都信息工程大学的大四学生，2021年经历过蓝队护网，2022年经历过红队护网，2023年经历过红队护网。</p>
+<ol start="5">
+<li>hw经历</li>
+</ol>
+<p>2021年国护蓝队初级。<br>2022年国护红队初级。<br>2023年国护红队初级。</p>
+<ol start="6">
+<li>对红蓝对抗的看法</li>
+</ol>
+<p>攻防趋势演变越来越激烈。红队普遍要比蓝队强大。<br><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/366788.html">红队浅析一</a></p>
+<ol start="7">
+<li>你觉得什么是你自己比较擅长的而我没有问到的？</li>
+</ol>
+<p>擅长绕waf</p>
+<ol start="8">
+<li>针对web扫描器的爬虫，你怎么看？</li>
+</ol>
+<p>还可以</p>
+<ol start="9">
+<li>企业内部安全</li>
+</ol>
+<p>内部安全通常比较薄弱，最大的问题尤其是管理人员的疏忽。</p>
+<ol start="10">
+<li>怎么判断目前是否是cms？</li>
+</ol>
+<p>(1) 查看网页源代码，查找CMS系统的标识符。如：WordPress的标识符是wp-content, wp-includes；DedeCMS的标识符是dedeajax, uploadsalling；Discuz：uchome、uc_server<br>(2) 访问robots.txt文件，可以查看CMS系统禁止访问的文件或目录。如：WordPress禁止访问的文件或目录包括wp-admin、wp-includes、wp-content等<br>(3) 使用CMS识别工具。在线CMS识别工具：Wappalyzer, WhatCMS；命令行CMS识别工具：cmsdetect；脚本CMS识别工具：cmsdetect.py。<br>(4) 尝试登录后台。在网站网址后面加上 <code>**/admin  或  /login**</code> 等后缀，如果可以访问到CMS系统的后台，则可判断该网站使用了CMS。<br>(5) URL 结构：使用了 CMS 的网站，其 URL 结构通常包含标识符，例如 “&#x2F;category” 或 “&#x2F;tag” 等。</p>
+<ol start="11">
+<li>做过黑产吗？</li>
+</ol>
+<p>没</p>
+<ol start="12">
+<li>以后的发展？</li>
+</ol>
+<p>首先是大致精通web安全，然后再将web安全与AI结合起来。因为以后必然是AI的时代。</p>
+<ol start="13">
+<li>多久能学会？</li>
+</ol>
+<p>不敢说什么东西多久能学会，但会尽力去学，用空闲时间研究学习。</p>
+<ol start="14">
+<li>说说你以前在你公司主要做什么安全工作？如每天，每月，每年做些什么安全工作？</li>
+</ol>
+<p>渗透测试。</p>
+<ol start="15">
+<li>你写过什么好的安全漏洞文章发布过吗？是否可以说说？</li>
+</ol>
+<p>没有。</p>
+<ol start="16">
+<li>说说你的其它优势（如：对安全新兴技术的研究、个人博客、比赛、在校经历等）</li>
+</ol>
+<p>我在校期间做过家教，炒股，炒币，代付等赚钱方式，这些经历能够使我拥有更开阔的视野。</p>
+<ol start="17">
+<li>说说大学这几年最自豪的事情</li>
+</ol>
+<p>一个月赚了3万元。</p>
+<ol start="18">
+<li>CTF你都做过哪些题型？</li>
+</ol>
+<p>web安全的各种题型基本都有涉及。SQL注入，文件上传，文件包含，CSRF，SSRF，爆破，RCE，反序列化，XXE，SSTI，XSS。PHP。</p>
+<ol start="19">
+<li>遇到的比较困难的web题型的ctf题目</li>
+</ol>
+<p>ctfshow的命令执行 web40<br>ctfshow的PHP web133</p>
+<ol start="20">
+<li>假如让你设计一个waf，你会怎么设计？</li>
+</ol>
+<p>不知道，兼容性好的。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1043131">互联网公司WAF系统设计</a></p>
+<ol start="21">
+<li>有没有写过一些脚本？</li>
+</ol>
+<p>写过。主要是python脚本，抓取信息，下载。爬虫。</p>
+<ol start="22">
+<li>为什么做这一行？</li>
+</ol>
+<p>喜欢。向往。有趣。</p>
+<ol start="23">
+<li>是否有在国外抓过肉鸡，有没有做黑产的朋友</li>
+</ol>
+<p>有。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2245714">抓肉鸡的几种方法</a></p>
+<ol start="24">
+<li>是否能接受驻场？</li>
+</ol>
+<p>驻场就是不在公司工作,而是去公司指定的别的地方工作,而且几乎是长期在外。<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/security-management/243980.html">安全驻场工程师的自我救赎之路</a><br>无论是在本公司工作还是驻场，都不是最重要的。关键在于能否学到东西。我希望进公司后能够学习到更多东西，掌握理论知识，提高实践能力。不仅仅是做着简单的事务，而是为公司能够有更多的贡献。为公司的发展添砖加瓦。</p>
+<ol start="25">
+<li>都破解过哪些软件？如果给你一个产品，你能提出安全加固建议吗？</li>
+</ol>
+<p>拷贝漫画。<br><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/297988">破解apk</a><br><a target="_blank" rel="noopener" href="https://github.com/jjz/blog/blob/master/android/Apk%E5%8C%85%E7%9A%84%E7%A0%B4%E8%A7%A3%E4%B8%8E%E5%8F%8D%E7%BC%96%E8%AF%91.md">APK包的破解与反编译</a><br><strong>安全加固</strong>：<br>源码加固：<br>Java源码加固-dex文件加壳保护、dex函数抽取加密；<br>SO库加固-SO文件加壳保护、高级深度混淆、ELF数据隐藏；<br>Html加固；<br>资源文件加固-音视频加密、配置文件和数据库加密；</p>
+<p>运行环境加固：<br>完整性保护-签名、防二次打包；<br>防调试保护-双向ptrace保护、反IDAPro调试；<br>防篡改保护-防数据破解分析、防数据劫持；<br>反编译保护-反apktool、反ApkIDE、反jd-gui；<br>模拟器识别；<br>ROOT检测；</p>
+<p>业务场景加固：<br>密钥保护；<br>安全键盘；<br>防界面劫持；<br>反外挂；<br>清场；<br>通信协议加密；</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/473745398">App安全加固</a></p>
 
     </div>
 
@@ -620,13 +676,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">486k</span>
+    <span title="站点总字数">506k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:22</span>
+    <span title="站点阅读时长">7:40</span>
 </div>
 
 <!--

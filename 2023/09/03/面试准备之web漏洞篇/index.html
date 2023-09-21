@@ -28,11 +28,13 @@
 <meta property="og:site_name" content="Scammer">
 <meta property="og:description" content="前言可以不用，但不能没有。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/captcha1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-15T10:39:35.112Z">
+<meta property="article:modified_time" content="2023-09-21T14:31:47.512Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/captcha1.jpg">
 
 <link rel="canonical" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/">
 
@@ -223,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-15 18:39:35" itemprop="dateModified" datetime="2023-09-15T18:39:35+08:00">2023-09-15</time>
+                <time title="修改时间：2023-09-21 22:31:47" itemprop="dateModified" datetime="2023-09-21T22:31:47+08:00">2023-09-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>28k</span>
+              <span>46k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>25 分钟</span>
+              <span>42 分钟</span>
             </span>
 
         </div>
@@ -830,161 +832,357 @@
 <p>(7) 扫描全网。通过Zmap、masscan等工具对整个互联网发起扫描，针对扫描结果进行关键字查找，获取网站真实IP。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Zmap: https://github.com/zmap/zmap</span><br><span class="line">Masscan: https://github.com/robertdavidgraham/masscan</span><br></pre></td></tr></table></figure>
 
-<p>(8) 配置不当导致绕过。在配置CDN的时候，需要指定域名、端口等信息，有时候小小的配置细节就容易导致CDN防护被绕过。<br>案例1：为了方便用户访问，我们常常将 <code>www.test.com</code> 和 <code>test.com</code> 解析到同一个站点，而CDN只配置了 <code>www.test.com</code> ，通过访问 <code>test.com</code> ，就可以绕过 CDN 了。</p>
-<p>案例2：站点同时支持http和https访问，CDN只配置 https协议，那么这时访问http就可以轻易绕过。</p>
+<p>(8) 配置不当导致绕过。在配置CDN的时候，需要指定域名、端口等信息，有时候小小的配置细节就容易导致CDN防护被绕过。<br>案例1：为了方便用户访问，我们常常将 <code>www.test.com</code> 和 <code>test.com</code> 解析到同一个站点，而CDN只配置了 <code>www.test.com</code> ，通过访问 <code>test.com</code> ，就可以绕过 CDN 了。<br>案例2：站点同时支持http和https访问，CDN只配置 https协议，那么这时访问http就可以轻易绕过。</p>
 <ol start="3">
-<li><p>列举你所知道的所有开源组件高危漏洞（10个以上）</p>
-</li>
-<li><p>服务器为IIS+PHP+MySQL，发现root权限注入漏洞，讲讲你的渗透思路。</p>
-</li>
-<li><p>下面这段代码存在漏洞吗？如果存在请说出存在什么漏洞并利用。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.exp.com/1.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$s_func</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;s_func&#x27;</span>];</span><br><span class="line"><span class="variable">$info</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;info&#x27;</span>];</span><br><span class="line"><span class="variable">$s_func</span>(<span class="variable">$info</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>说出至少三种业务逻辑漏洞，以及修复方式？</p>
-</li>
-<li><p>DNSRebinding</p>
-</li>
-<li><p>登录框攻击面</p>
-</li>
-<li><p>getshell的姿势</p>
-</li>
-<li><p>DNS重绑定，利用</p>
-</li>
-<li><p>disable function bypass</p>
-</li>
-<li><p>写出你知道的逻辑漏洞</p>
-</li>
-<li><p>简述XXE的基本原理，以及如何去检测或判断blind XXE的存在</p>
-</li>
-<li><p>ARP攻击的原理(讲出具体流程)，如何发现并防御ARP攻击</p>
-</li>
-<li><p>SSL Strip（SSP）攻击到底是什么？</p>
-</li>
-<li><p>中间人攻击–ARP欺骗原理、实战及防御</p>
-</li>
-<li><p>会话劫持原理</p>
-</li>
-<li><p>CC攻击</p>
-</li>
-<li><p>添加时间戳防止重放攻击</p>
-</li>
-<li><p>https中间人攻击与证书校验</p>
-</li>
-<li><p>越权以及逻辑漏洞问题</p>
-</li>
-<li><p>验证码绕过有哪些方法？</p>
-</li>
-<li><p>分别说出iis，apache，nginx解析漏洞原理</p>
-</li>
-<li><p>任意下载漏洞攻击原理及测试方法</p>
-</li>
-<li><p>xxe漏洞攻击原理是什么？如何找xxe漏洞及攻击方法</p>
-</li>
-<li><p>xxe攻击在无回显的时候是怎么突破的？</p>
-</li>
-<li><p>如何防范xxe漏洞？</p>
-</li>
-<li><p>越权问题有哪些？实战</p>
-</li>
-<li><p>URL跳转漏洞</p>
-</li>
-<li><p>ARP欺骗的方法有哪些？说说原理</p>
-</li>
+<li>列举你所知道的所有开源组件高危漏洞（10个以上）</li>
 </ol>
+<p>(1) Log4j 2 远程代码执行漏洞(CVE-2021-44228):该漏洞影响了Log4j 2 所有版本，可被利用来执行任意代码。<br>(2) Spring Core RCE漏洞(CVE-2022-22965): Spring Framework远程代码执行漏洞<br>(3) Spring Boot RCE漏洞(CVE-2022-22963): Spring Cloud Function存在SPEL表达式注入漏洞<br>(4) Fastjson 反序列化漏洞(CVE-2022-22947): Spring Cloud Gateway远程代码执行漏洞<br>(5) Apache Struts2 反序列化漏洞（CVE-2022-0338）<br>(6) Apache Commons Collections 反序列化漏洞（CVE-2022-22960）<br>(7) Apache Commons FileUpload 反序列化漏洞（CVE-2022-22959）<br>(8) Apache Commons BeanUtils 反序列化漏洞（CVE-2022-22958）<br>(9) Jenkins 远程代码执行漏洞（CVE-2022-0241）<br>(10) Apache Tomcat 远程代码执行漏洞（CVE-2022-22966）<br>(11) Apache Shiro 远程代码执行漏洞（CVE-2022-22967）<br>(12) Spring Data Commons SQL 远程代码执行漏洞（CVE-2022-22964）<br>(13) Spring Boot Starter Data JPA 远程代码执行漏洞（CVE-2022-22962）<br>(14) Apache Log4j SQL注入漏洞(CVE-2022-23305)	</p>
+<ol start="4">
+<li>服务器为IIS+PHP+MySQL，发现root权限注入漏洞，讲讲你的渗透思路。</li>
+</ol>
+<p>可以读取IIS信息，知道路径，如果像WAMMP类似构建，通过@@datadir知道数据库路径也可以猜测网站路径。<br>或者直接写shell</p>
+<ol start="5">
+<li>下面这段代码存在漏洞吗？如果存在请说出存在什么漏洞并利用。<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//www.exp.com/1.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$s_func</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;s_func&#x27;</span>];</span><br><span class="line"><span class="variable">$info</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;info&#x27;</span>];</span><br><span class="line"><span class="variable">$s_func</span>(<span class="variable">$info</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>代码执行，通过assert调用。</p>
+<ol start="6">
+<li>说出至少三种业务逻辑漏洞，以及修复方式？</li>
+</ol>
+<p>密码找回漏洞存在<br>(1) 密码允许暴力破解<br>(2) 存在通用型找回凭证<br>(3) 可以跳过验证步骤<br>(4) 找回凭证可以拦包获取<br>等方式来通过厂商提供的密码找回功能来得到密码。</p>
+<p>身份认证漏洞中最常见的是<br>(1) 会话固定攻击<br>(2) Cookie仿冒</p>
+<p>只要得到Session或Cookie即可伪造用户身份。验证码漏洞中存在<br>验证码允许暴力破解<br>验证码可以通过JavaScript或者改包的方式来进行绕过</p>
+<ol start="7">
+<li>DNSRebinding</li>
+</ol>
+<p>DNS重绑定利用DNS绕过浏览器的同源策略。<br>攻击原理：攻击者首先控制一个域名，并将其指向一个恶意网站；然后使用恶意网站上的脚本诱导用户访问该域名；当用户访问时浏览器会将其解析为攻击者的IP地址；攻击者然后将域名的IP地址重绑定到另一个IP地址，该IP地址指向一个内网中的服务器；当用户再次访问该域名时，浏览器会使用攻击者重绑定的IP地址；由于浏览器认为这两个IP地址是同源的，因此恶意脚本可以访问内网中的服务器。<br>DNS重绑定攻击可以用来窃取敏感数据，例如用户名、密码和信用卡信息。它还可以用来执行恶意代码，例如安装恶意软件或控制受感染的设备。<br>防御：通过控制2次的DNS查询请求的间隔低于TTL值,确保两次查询的结果一致。写一个请求判断,Linux系统修改默认的TTL值为10,即可很轻松解决这个问题。使用 DNS 安全扩展 (DNSSEC)，该扩展可以防止 DNS 欺骗。<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7495">从0到1认识DNS重绑定攻击</a></p>
+<ol start="8">
+<li>登录框攻击面</li>
+</ol>
+<p>错误信息判断：不同用户名或密码错误信息不同，可以暴力破解。修复方案是将错误信息改为一致。<br>弱口令：暴力破解。修复方案是禁用弱口令。<br>空口令：直接登录。修复方案是判断密码为空禁止空口令登录。<br>登录认证绕过：少数可禁用js绕过登录认证，也有少部分通过burp抓包改包登录绕过。修复方案是不用前端认证，增加验证码，密码通过加密算法加密，失败多次加锁，密码强度增加。<br>存在暴力破解：社工手段。修复方案：增加验证码，密码通过加密算法加密，失败多次加锁，密码强度增加。<br>图形验证码不失效：输入特殊字符可能绕过或验证码使用后未刷新。修复方案：验证码识别后销毁session中的验证码，限制用户提交的验证码不能为空，判断提交的验证码与服务器上存储的是否一致。<br>短信验证码绕过：某些网站使用手机短信登录，短信验证码可被绕过或验证码过短被爆破。修复方案：若存在特权验证码，建议删除；服务端严格校验验证码参数是否为空，格式是否正确；关键操作每提交一次请求，应发送新的短信验证码，旧的不可使用。<br>短信验证码可暴力破解：位数太短或有效期太长。修复方案：短信验证码不少于6位，有效期不超过1分钟，验证码错误次数上限锁定账户。<br>短信轰炸：发送数据包重放，若服务器短信平台未做校验，系统会一直发短信，造成短信轰炸，连续收到10条以上短信即可验证。修复方案：后端配置同一手机号发送次数不超过3-5次，对间隔时间做限制；前端禁止同一手机号进行次数大于5的发送，加入验证码功能，限制发送时间间隔。<br>恶意锁定问题：不断输入错误的密码恶意锁定任意账号。修复方案：账户锁定之后应不能继续使用认证功能。认证功能防自动化操作，如添加图形验证码。<br>密码明文传输：敏感数据未加密。修复方案：使用加密方式传输，如HTTPS，但可能会影响用户体验。也可用前端js加密后再传输。<br>反射型跨站脚本攻击：可对页面提交参数处进行测试。修复方案：输入验证，输出编码，黑白名单结合。<br>万能密码：诸如 <code>admin&#39;or 1=1 #</code> 。修复方案：web应用防火墙。<br>sql注入：不多说。修复方案：略。<br>任意用户密码修改&#x2F;重置：篡改用户名或id、暴力破解验证码等方式修改或重置任意账户密码。修复方案：及时对请求的用户身份与当前登录的用户身份进行校验，判断是否有权修改用户的密码并对原始密码是否正确进行正确判断；对原始密码进行了验证的情况下，限制输入原始密码的错误次数，防止攻击者暴力破解原始密码；重置密码链接中的关键信息应随机化，不可预测(如token)，且禁止将关键信息返回到客户端。<br>目录遍历：输入类似于 <code>../../</code> 或通过御剑进行目录扫描。修复方案：IIS中关闭目录浏览功能，在IIS的网站属性中，勾去目录浏览选项，重启IIS；Apache中关闭目录浏览功能，打开Apache配置文件中的httpd.conf，查找“Options Indexs FollowSymLinks”，修改为“ Options -Indexes”(减号表示取消，保存退出，重启Apache；Nginx中默认不会开启目录浏览功能，若您发现当前已开启该功能，可以编辑nginx.conf文件，删除如下两行：autoindex on;autoindex_exact_size on;重启Nginx。<br>敏感文件信息泄露：爬虫扫描或手工挖掘查看源代码。修复方案：重要代码注意加密保护或隐藏。</p>
+<ol start="9">
+<li>getshell的姿势</li>
+</ol>
+<p>两篇参考文章：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_53087192/article/details/112779349">各种Getshell姿势总结</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/258229.html">GetShell的姿势总结</a></p>
+<ol start="10">
+<li>DNS重绑定，利用</li>
+</ol>
+<p>见问题7</p>
+<ol start="11">
+<li>disable function bypass</li>
+</ol>
+<p>(1) 黑名单绕过：查找漏网之鱼。如: <code>assert,system,passthru,exec,pcntl_exec,shell_exec,popen,proc_open</code><br>(2) 利用Windows组件COM绕过。查看 <code>com.allow_dcom</code> 是否开启,这个默认是不开启的。<br>(3) 利用pcntl_exec结合python反弹shell。使用条件是PHP安装并启用了pcntl插件。<br>(4) 利用LD_PRELOAD环境变量。通过环境变量LD_PRELOAD劫持系统函数。<br>(5) 利用ShellShock(CVE-2014-6271)。Bash破壳漏洞。<br>(6) 利用Apache Mod CGI<br>(7) 通过攻击PHP-FPM<br>(8) 利用GC UAF<br>(9) 利用Backtrace UAF<br>(10) Json Serializer UAF<br>(11) 利用SplDoublyLinkedList UAC<br>(12) 利用FFI扩展执行命令<br>(13) 利用ImageMagick</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/network/263540.html">绕过Disable Functions来搞事情</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/10057">bypass disable_functions姿势总结</a><br><a target="_blank" rel="noopener" href="https://www.geekby.site/2021/08/%E5%B8%B8%E8%A7%81bypass-disable-functions%E6%96%B9%E6%B3%95/">常见Bypass Disable Functions方法</a></p>
+<ol start="12">
+<li>写出你知道的逻辑漏洞</li>
+</ol>
+<p>按类型：<br>身份验证漏洞：暴力破解漏洞、Session固定攻击、cookie欺骗漏洞。<br>权限类逻辑漏洞：平行权限跨越、垂直权限跨越、未经授权访问。<br>图形验证码漏洞：图形验证码突破。<br>找回密码逻辑漏洞：密码找回漏洞。<br>业务数据篡改漏洞：业务数据篡改（赋值反冲）<br>执行顺序逻辑漏洞：执行顺序篡改。<br>其他类型逻辑漏洞：条件竞争漏洞、数据包重放漏洞、参数绑定漏洞。</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/281141.html">逻辑漏洞梳理与总结</a></p>
+<ol start="13">
+<li>简述XXE的基本原理，以及如何去检测或判断blind XXE的存在</li>
+</ol>
+<p>XXE(XML External Entity Injection)，外部实体注入漏洞。攻击者通过向服务器注入指定的xml实体内容,从而让服务器按照指定的配置进行执行,导致问题。<br>如何检测或判断Blind XXE存在：寻找XML输入点。比如Content-Type:text&#x2F;xml，post数据包含XML格式。将结果写入文件查看。<br>防御：完全禁用DTD，过滤用户提交的XML数据。</p>
+<ol start="14">
+<li>ARP攻击的原理(讲出具体流程)，如何发现并防御ARP攻击</li>
+</ol>
+<p>ARP协议没有真伪校验机制，因此网络中的攻击者可以通过伪造IP地址和MAC地址发出一些假报文来欺骗其它主机，能够在网络中产生大量的ARP通信量使网络阻塞，攻击者只要持续不断地发出伪造的ARP响应包就能更改目标主机ARP缓存中的IP-MAC条目，造成网络中断或中间人攻击。</p>
+<p>具体流程：<br>PC1需要跟PC2通信，通过ARP请求包询问PC2的MAC地址，由于采用广播形式，所以交换机将ARP请求包从接口P1广播到P2和PC3。（注：交换机收到广播&#x2F;组播&#x2F;未知帧都会其他接口泛洪）<br>PC2根据询问信息，返回ARP单播回应包；此时PC3作为攻击者，没有返回ARP包，但是处于”监听”状态，为后续攻击做准备。<br>PC1和PC2根据ARP问答，将各自的ARP映射信息（IP-MAC）存储在本地ARP缓存表。<br>交换机根据其学习机制，记录MAC地址对应的接口信息，存储在CAM缓存表（也称为MAC地址表）。交换机收到数据包时，会解封装数据包，根据目标MAC字段进行转发。</p>
+<p>防御：<br>使用HTTPS加密协议：<br>ARP静态绑定：在路由和终端上同时进行 IP 地址和 MAC 地址的绑定，相当于人工管理 ARP 缓存，自行维护 IP 地址和 MAC 地址的对应关系。但维护非常繁琐。换个网卡或 IP 地址，都需要重新修改配置。当流动电脑临时接入时，也要即时进行绑定，费时费力。<br>交换机端口绑定：跟双绑措施类似，只不过将 IP 和交换机端口进行绑定，缺点也是类似的。<br>PPPoE：使用 PPPoE 协议对网络流量进行二次封装，为每个用户都分配账号密码，上网时必须通过认证。这样 ARP 报文在一个认证的通道中传输，也就不会遭受攻击了。但 PPPoE 也不是完美的，由于二次封装的存在，传输效率会打些折扣。更严重的是，PPPoE 方式下局域网内无法互访。如果局域网内需要部署文件服务器、打印机，就有麻烦了。<br>启用ARP防火墙：ARP防火墙可以检测和阻断恶意的ARP报文，从而防止ARP攻击。<br>启用DHCP Snooping：DHCP Snooping 是一种交换机功能，可以阻止攻击者伪造 DHCP 报文来欺骗受害机器。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28818627">图解ARP协议（二）ARP攻击篇</a></p>
+<ol start="15">
+<li>SSL Strip（SSP）攻击到底是什么？</li>
+</ol>
+<p>SSL Strip(也叫HTTPS降级攻击)原理：为了剥离SSL，攻击者干预了HTTP到安全HTTPS协议的重定向，并拦截了用户到服务器的请求。然后，攻击者将继续在自己和服务器之间建立HTTPS连接，并与用户建立不安全的HTTP连接，充当他们的桥梁。<br>SSL Strip利用了大多数用户访问SSL的方式。大多数访问者连接到通过302重定向进行重定向的网站页面，或通过非SSL网站的连接到达SSL页面。<br>举例：受害者想打开网站 <code>www.example.com</code> ，则浏览器连接到攻击者机器，并等待服务器的响应。反过来，在SSL Strip中，攻击者将受害者的请求转发到example的服务器，并接收安全地HTTPS页面。例如: <code>https://www.example.com</code> 。此时，攻击者已经完全控制了页面。他将HTTPS降级为HTTP，然后将其发回到受害者的浏览器，现在浏览器将其重定向到 <code>http://www.example.com</code> ，受害者的所有信息将会纯文本格式传输，攻击者将能拦截它们。服务器认为已经建立安全连接，实际上确实建立了安全连接，只是连接到攻击者机器上。<br>实施方法：SSL Strip攻击最常见的方法是创建热点并允许受害者连接到该热点。采用与官方开放连接相似的热点名称来混淆伪造。假如麦当劳热点名称是“麦当劳”，那么攻击者可以将热点伪造为“麦当劳餐厅”。一旦用户尝试连接到服务器，攻击者便会使用对热点的控制来攻击用户。</p>
+<p>防御措施：<br>(1) 启用HSTS。HSTS是一种安全策略，告诉浏览器在未来的访问中都使用HTTPS。缺点是用户首次访问不受HSTS保护，首次访问浏览器未收到HSTS。<br>(2) 使用HTTPS Everywhere。这是一个浏览器扩展，它会自动将所有网站的请求切换到HTTPS。<br>(3) 使用HTTPS强制传输。最有效。<br>(4) WIFI加密传输。<br>(5) 定期更新SSL证书。</p>
+<p><a target="_blank" rel="noopener" href="https://learnku.com/cs/t/42552">什么是 SSL Strip 攻击？</a><br><a target="_blank" rel="noopener" href="https://glsakura.gitee.io/2020/04/02/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%95%B4%E7%9A%84%20SSLStrip%20%E6%94%BB%E5%87%BB/">如何进行一次完整的 SSLStrip 攻击</a></p>
+<ol start="16">
+<li>中间人攻击–ARP欺骗原理、实战及防御</li>
+</ol>
+<p>ARP欺骗(Address Resolution Protocol Spoofing)原理是通过伪造或欺骗ARP协议的通信过程，使攻击者能够欺骗其它主机，使他们将数据发送到错误主机上，从而达到攻击者的目的。</p>
+<p>在一个以太网中，当一台主机想要发送数据包给另一台主机时，它需要知道目标主机的MAC地址。<br>此时，发送方会发送一个ARP请求，请求目标主机的MAC地址。<br>目标主机会将自己的MAC地址发送回去，请求方则将其缓存到自己的ARP缓存中，以加快以后的通信。<br>攻击者会利用这个过程伪造自己的MAC地址，并向其他主机发送这种伪造的ARP请求，从而将目标主机的MAC地址指向攻击者的MAC地址。<br>这就使攻击者能够接收到目标主机发送的数据包，并可以选择是否转发或篡改这些数据，同时继续欺骗其他主机。</p>
+<p>实战：<br>开始前更新kali下的软件列表，然后安装dsniff（用于自动化完成ARP欺骗）。<br>攻击机输入 <code>ifconfig</code> 查看内网IP，接着输入 <code>nbtscan -r 192.168.119.0/24</code> 扫描内网网段。<br>探测到了IP为192.168.119.131，名为HAIXIN-PC的受害机。检测网络连接正常。<br>接下来在攻击机中输入 <code>arpspoof -i eth0 -t 192.168.119.131 192.168.119.2</code> 开启ARP攻击，其中 <code>-i</code> 指定攻击机某张网卡来进行攻击， <code>-t</code> 第一个IP指定受害机的IP为内网网关（一般是路由）的IP，第一个参数可通过扫描确定，第二个参数可在攻击机中输入 <code>netstat -rn</code> 来查看。<br>通过以上措施可使目标机器断网。接下来要使kali具备类似路由的功能，将受害机发来的网络请求包转发给真实的网关，再由真实网关转发到外网，接收返回包的过程同理。<br>使用以下命令暂时开启kali的路由转发功能: <code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code> 。此时受害者机器网络连接正常说明路由转发功能已开启。<br>打开wireshark并选择之前进行arp欺骗的网卡。当受害者打开某个登录网页时，流量会被wireshark捕捉到，最终得到受害者信息</p>
+<p>防御：<br>(1) 使用静态ARP表。将IP与MAC绑定。缺点是需要手动配置，对大型网络来说比较麻烦。<br>(2) 使用防火墙。缺点是只能过滤部分ARP欺骗攻击，对于复杂的攻击可能无法防御。<br>(3) 动态ARP检测&#x2F;监控工具。检测工具本身可能影响网络性能。监控工具只能在攻击发生后才能检测，不能完全防止攻击发生。</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/network/266951.html">中间人攻击之arp欺骗</a></p>
+<ol start="17">
+<li>会话劫持原理</li>
+</ol>
+<p>会话劫持(Session Hijacking, 又名cookie劫持或cookie side-jacking)是一种网络攻击。攻击者通过窃取合法用户的会话ID，接管该用户的网络会话，从而获得该用户的权限。<br>原理：<br>首先要获取合法用户的ID。可通过钓鱼，监听网络流量，诱使用户点击恶意链接，利用应用程序漏洞。<br>攻击者获取到会话ID后，可以伪装成合法用户，向服务器发送请求。<br>服务器收到请求后，会将请求转发给合法用户。<br>攻击者可以通过接管合法用户的网络会话，获得该用户的权限。</p>
+<ol start="18">
+<li>CC攻击</li>
+</ol>
+<p>CC攻击(Challenge Collapsar Attack)是一种拒绝服务攻击(DDoS)的一种，攻击者通过向受害者目标发送大量的请求，从而导致目标资源耗尽，无法正常提供服务。</p>
+<p>原理：<br>(1) 攻击者首先要获取目标的IP地址和端口号。<br>(2) 攻击者使用CC攻击工具，向目标发送大量的请求。<br>(3) 目标收到请求后，会消耗大量的资源来处理这些请求。<br>(4) 当目标的资源耗尽后，将无法正常提供服务。</p>
+<p>一般来说，CC攻击有两种方式进行：第一种方式是利用自己的机器对目标网站进行集中式攻击，目标网站接收到大量的访问请求后，服务器无法正常响应；第二种方式是通过使用大量的分散在各个地区、各个网络和主机上的代理程序或者“僵尸”计算机来攻击目标网站，这样作为攻击源的计算机会比较难以被记录下来。</p>
+<p>危害：破坏服务(如网站，银行，电商等)，勒索(勒索目标，要求目标支付赎金)，宣传(宣传自己的网站或产品)，用户访问速度慢影响体验，长时间会造成搜索排名下降云服务器商清退。</p>
+<p>防御：<br>(1) 使用CDN: 分散流量到多个服务器上，减轻单个服务器压力。<br>(2) 使用WAF: 过滤恶意请求。<br>(3) 使用CC防护服务: 措施是流量清洗，流量分发，DDoS防御。具体有云端CC防护(CloudFlare，阿里云，腾讯云，华为云)和本地CC防护。</p>
+<p>特点：攻击量大，攻击目标广泛，防御难度大。</p>
+<ol start="19">
+<li>添加时间戳防止重放攻击</li>
+</ol>
+<p>重放攻击(Replay Attack,或称回放攻击)是指攻击者截获了合法用户的请求，并将其重新发送给服务器，以达到冒充合法用户的目的。重放攻击可以用于盗取用户的账号信息、进行非法操作等。</p>
+<p>添加时间戳可以防止重放攻击的原理是：服务器会在收到请求时，检查请求中的时间戳是否在有效范围内。如果时间戳过期，则认为该请求是重复请求，拒绝处理。</p>
+<p>添加时间戳的方法：</p>
+<ul>
+<li>在请求头中添加时间戳：客户端在发送请求时，会在请求头中添加一个名为“timestamp”的时间戳参数，该参数的值为当前时间戳。服务器在收到请求时，会检查该参数的值是否在有效范围内。</li>
+<li>在请求头中添加时间戳：类似于上。</li>
+</ul>
+<p>注意事项：<br>时间戳有效范围可以根据需求设置，一般设置为60s。<br>在服务器端，需要缓存时间戳，以便进行检查。</p>
+<p>优缺点：<br>在客户端和服务端都需要进行修改。<br>时间戳的有效范围需要根据具体需求进行设置。</p>
+<p>除了添加时间戳外，还可以：<br>使用nonce：nonce是一个随机数，每次请求会产生一个新的nonce。服务器会在收到请求时，检查nonce是否存在。nonce存在则认为请求是重复请求拒绝处理。<br>使用数字签名：客户端使用私钥对请求进行签名，服务器使用公钥验签。验签失败则认为是伪造的拒绝处理。</p>
+<ol start="20">
+<li>https中间人攻击与证书校验</li>
+</ol>
+<p>HTTPS中间人攻击(Man-in-the-middle attack)是指攻击者在客户端和服务器之间建立了一个信任关系，从而可以拦截、修改或丢弃客户端发送给服务器或服务器发送给客户端的数据。<br>HTTPS中间人攻击的常用手段是伪造服务器证书。攻击者可以使用自己伪造的证书，或者使用被劫持的证书。</p>
+<p>HTTPS证书校验的常见方法是：</p>
+<ul>
+<li>检查证书的颁发机构：是否为受信任的机构</li>
+<li>检查证书的有效期：是否过期。</li>
+<li>检查证书的域名：客户端会检查服务器证书的域名与客户端请求的域名相匹配。</li>
+</ul>
+<p>HTTPS强校验：指客户端不允许使用自签名证书或过期的证书。如果客户端检测到服务器使用了自签名证书或过期的证书，则会拒绝连接到该服务器。<br>HTTPS证书pinning：指客户端将服务器证书的哈希值保存到本地。如果检测到服务器证书的哈希值与本地保存的哈希值不匹配，则拒绝连接。<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jmilkfan-fanguiju/p/10589756.html">自建 CA 中心并签发 CA 证书</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59759209">HTTPS中间人攻击实践</a></p>
+<ol start="21">
+<li>越权以及逻辑漏洞问题</li>
+</ol>
+<p>越权漏洞是指应用程序未对当前用户操作的身份权限进行严格校验，导致用户可以操作超出自己管理权限范围的功能，从而操作一些非该用户可以操作的行为。越权漏洞是一种常见的安全漏洞，属于“失效的访问控制”的问题，指其它用户能够执行本身没有资格执行的一些操作。</p>
+<p>分类：<br>水平越权：攻击者可以访问其它同级用户的资源或数据。<br>垂直越权：攻击者可以访问更高权限用户的资源或数据。<br>交叉越权：拥有水平越权和垂直越权的权限。</p>
+<p>常见原因包括：<br>开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。<br>应用程序没有对用户的身份进行严格校验，例如使用了弱密码或没有使用权限验证。<br>应用程序的设计存在缺陷：例如没有对敏感数据进行加密。<br>通过隐藏URL，直接对象引用，多阶段功能，静态文件，平台配置错误。</p>
+<p>检测：通过特定传参的更改来发现越权漏洞。</p>
+<p>防御措施：<br>严格校验用户的身份权限，例如强密码、进行权限验证、对敏感数据进行加密等。<br>使用安全的编码规范，例如避免使用弱密码、使用安全的编程语言和框架等。<br>定期进行安全扫描，发现和修复越权漏洞。<br>前后端验证，关键操作前验证身份</p>
+<ol start="22">
+<li>验证码绕过有哪些方法？</li>
+</ol>
+<p>验证码(CAPTCHA)是“Completely Automated Public Turing test to tell Computers and Humans Apart”全自动区分计算机和人类的图灵测试的缩写。<br><img src="/simg/captcha1.jpg" alt="占比"><br>(1) 验证码固定之无条件不刷新：不刷新验证码绕过。<br>(2) 验证码固定之有条件不刷新：不通过其条件绕过。<br>(3) 验证码前端可获取：验证码隐藏在源码或cookie中。<br>(4) 仅在客户端生成验证码：本地js验证<br>(5) 验证码薄弱：使用插件或工具(PKAV HTTP FUzzer)识别。<br>(6) 验证码爆破登录：抓包丢进工具爆破。<br>(7) 验证码可控制：验证码包含在URL里面，是一个URL传参，可以把URL设置定，验证码可控制。<br>(8) 空验证码绕过：可以通过删除验证码参数或cookie中的值判断，进行暴力破解。<br>(9) 万能验证码：无论是什么，只要输入000000就能直接绕过。<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/network/276509.html">验证码绕过、密码找回漏洞</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12557">绕过滑块验证码拿到高危漏洞</a></p>
+<ol start="23">
+<li>分别说出iis，apache，nginx解析漏洞原理</li>
+</ol>
+<p>IIS解析漏洞（也称为IIS路径遍历漏洞）原理：IIS服务器会根据URL中文件的扩展名来判断文件类型，并将其交给相应的处理程序进行处理。攻击者可以利用这一点，构造特殊的URL，让IIS服务器将非脚本文件误认为脚本文件，从而执行恶意代码。</p>
+<p>Apache解析漏洞（也称为Apache漏洞或.htaccess漏洞）原理：Apache默认一个文件可以有多个以点分割的后缀，当最右边的后缀无法识别，则继续向左识别，直到识别到合法后缀才进行解析。<br>比如 test.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把wooyun.php.owf.rar解析成php。</p>
+<p>Nginx解析漏洞原理：该漏洞通常是由于Nginx服务器配置不当导致的，攻击者可以通过发送特制的HTTP请求并利用Nginx基于路径转换的问题来访问受限文件。攻击者通过发送带有特定构造的HTTP请求，欺骗服务器将请求转换为其他路径，从而绕过了服务器的访问控制。<br>比如：攻击者可以使用..&#x2F;，.&#x2F;，%2e%2e&#x2F;等字符序列来尝试绕过服务器的访问限制，访问服务器上其他目录中的文件。</p>
+<ol start="24">
+<li>任意下载漏洞攻击原理及测试方法</li>
+</ol>
+<p>任意文件下载漏洞(Arbitrary File Download Vulnerability)原理：攻击者构造特殊的请求，让服务器下载指定文件。<br>测试方法：<br>注册合法账号登入平台，避免被系统禁止访问。不能造成系统的损坏，记录结果。<br>手动或使用工具（dirbuster, burpsuite）查找常见接口点，比如 <code>download.php?path=  down.php?file=  &amp;src=  &amp;inputfile=</code> ，也可使用Google hacking <code>inurl:&quot;readfile.php?file=&quot;</code><br>尝试下载系统文件( <code>/etc/passwd   /etc/shadow   /etc/sudoers</code> )，数据库文件( <code>/var/lib/mysql/</code> )，其它敏感文件( <code>/home/admin/</code> )</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43148062/article/details/105496744">渗透测试-任意文件下载漏洞</a></p>
+<ol start="25">
+<li>xxe漏洞攻击原理是什么？如何找xxe漏洞及攻击方法</li>
+</ol>
+<p>见问题13</p>
+<ol start="26">
+<li>xxe攻击在无回显的时候是怎么突破的？</li>
+</ol>
+<p>见问题13</p>
+<ol start="27">
+<li>如何防范xxe漏洞？</li>
+</ol>
+<p>见问题13</p>
+<ol start="28">
+<li>越权问题有哪些？实战</li>
+</ol>
+<p>越权见问题24</p>
+<p>实战：<br>攻击场景：<br>(1) 登录<br>未授权访问:可尝试修改响应码，从链接访问从而绕过，人为疏忽导致密码暴露。<br>身份或登录信息伪造：将身份或登录信息简单编码(Base64)加密(MD5)后放在链接中或数据包中<br>(2) 数据<br>身份信息伪造：身份校验采用明文或简单编码加密。<br>数据篡改：正负值反冲，修改订单数据，修改商品ID等。发送信息或邮件等可以尝试爆破构成短信&#x2F;邮件轰炸。<br>流程越过：越过中间校验步骤直接进行后续操作。<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/313396.html">实战中的越权攻击总结</a></p>
+<ol start="29">
+<li>URL跳转漏洞</li>
+</ol>
+<p>URL跳转漏洞（Open Redirect Vulnerability）是一种常见的Web安全漏洞，攻击者可通过构造恶意链接，引导用户跳转到恶意网站，从而窃取用户敏感信息等。常见的URL跳转漏洞发生原因一般是在程序中没有对跳转URL进行有效的过滤和校验，攻击者可以通过构造链接，在跳转URL中注入恶意代码或者外部URL，从而实现对跳转流程的控制。<br>绕过方式：@绕过，?绕过，#绕过，斜杠(&#x2F;)绕过，反斜杠(\)绕过，白名单匹配绕过，xip.io绕过，协议绕过，xss跳转。<br>fuzz的参数： <code>redirect, url, redirecturl, callback, return_url, toUrl, jump, target, to, link, domain</code></p>
+<p>实战：登录跳转，充值接口跳转，xss造成的url跳转</p>
+<ol start="30">
+<li>ARP欺骗的方法有哪些？说说原理</li>
+</ol>
+<p>见问题14</p>
 <h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol>
-<li><p>如果遇到waf的情况	如何进行sql注入&#x2F;上传webshell怎么做？请写出曾经绕过WAF的经过。</p>
-</li>
-<li><p>拿到一个待测的站，首先应该做什么？</p>
-</li>
-<li><p>判断出网站的CMS对渗透有什么意义？</p>
-</li>
-<li><p>一个成熟并且相对安全的CMS，渗透时扫目录的意义？</p>
-</li>
-<li><p>在某后台新闻编辑界面看到编辑器，应该先做什么？</p>
-</li>
-<li><p>拿到一个webshell发现网站根目录下有.htaccess文件，我们能做什么？</p>
-</li>
-<li><p>注入漏洞只能查账号密码？</p>
-</li>
-<li><p>安全狗会追踪变量，从而发现是一句话木马吗？</p>
-</li>
-<li><p>.access扫出后缀为asp的数据库文件，访问乱码，如何实现到本地利用？</p>
-</li>
-<li><p>如何利用这个防注入系统拿shell？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">某个防注入系统，在注入时会提示：</span><br><span class="line">系统检测到你有非法注入的行为。</span><br><span class="line">已记录您的IP:xxx.xxx.xx.xx</span><br><span class="line">时间:yy:mm:dd</span><br><span class="line">提交页面: test.asp?id=15</span><br><span class="line">提交内容: and 1=1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上传大马后访问乱码时，有哪些解决办法？</p>
-</li>
-<li><p>审查上传点的元素有什么意义？</p>
-</li>
-<li><p>目标站禁止注册用户，找回密码处随便输入用户名提示：“此用户不存在”，你觉得这里怎样利用？</p>
-</li>
-<li><p>以下条件有什么思路？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标站发现某txt的下载地址为：</span><br><span class="line">http://www.test.com/down/down.php?file=/upwdown/1.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>甲给你一个目标站，并且告诉你根目录下存在&#x2F;abc&#x2F;目录，并且此目录下存在编辑器和admin目录。请问你的想法是？</p>
-</li>
-<li><p>在有shell的情况下，如何使用xss实现对目标站的长久控制？</p>
-</li>
-<li><p>发现 demo.jsp?uid&#x3D;110 注入点，你有哪几种思路获取webshell，哪种是优选？</p>
-</li>
-<li><p>CSRF和XSS和XXE有什么区别，以及修复方式？</p>
-</li>
-<li><p>CSRF、SSRF和重放攻击有什么区别？</p>
-</li>
-<li><p>XSS、CSRF、CRLF比较容易弄混，说说三者的原理，防御方法。</p>
-</li>
-<li><p>owasp漏洞都有哪些？</p>
-</li>
-<li><p>渗透测试中常见的端口？</p>
-</li>
-<li><p>网站渗透流程</p>
-</li>
-<li><p>发现一个大范围影响的新漏洞，如何快速排查公司资产？</p>
-</li>
-<li><p>shiro反序列化</p>
-</li>
-<li><p>怎样对一个站去挖nday</p>
-</li>
-<li><p>跟过哪些nday，怎样一个思路</p>
-</li>
-<li><p>挖到过0day吗</p>
-</li>
-<li><p>代码审计</p>
-</li>
-<li><p>app渗透经历</p>
-</li>
-<li><p>redis利用姿势及环境差异</p>
-</li>
-<li><p>fastjson回显</p>
-</li>
-<li><p>jndi注入及原理</p>
-</li>
-<li><p>Java回显</p>
-</li>
-<li><p>泛微oa xstream的回显(jdk1.8和jdk1.7的差异)</p>
-</li>
-<li><p>shiro限制payload长度</p>
-</li>
-<li><p>Java回显的通用思路以及不同版本jdk的差异</p>
-</li>
-<li><p>owasp top10 漏洞</p>
-</li>
-<li><p>Rootkit是什么意思</p>
-</li>
-<li><p>手工查找后门木马的小技巧</p>
-</li>
-<li><p>常见web安全漏洞</p>
-</li>
-<li><p>永恒之蓝的漏洞原理是什么？怎么做到的？</p>
-</li>
-<li><p>针对PHP的弱类型，有哪些漏洞？</p>
-</li>
-<li><p>代码审计方面，有过对大型cms的审计吗？发现过哪些漏洞？</p>
-</li>
-<li><p>针对PHP的语言特点，说几个常见漏洞？</p>
-</li>
+<li>如果遇到waf的情况	如何进行sql注入&#x2F;上传webshell怎么做？请写出曾经绕过WAF的经过。</li>
 </ol>
+<p>遇到waf首先查看是哪家的waf，然后网上查找相关资料或询问有关人员根据waf的漏洞进行绕过。</p>
+<ol start="2">
+<li>拿到一个待测的站，首先应该做什么？</li>
+</ol>
+<p>信息收集：获取域名的whois信息，注册者邮箱电话等。通过站长之家，明小子，k8等查询服务器旁站，C段及子域名站点。服务器操作系统的版本、中间件、数据库类型，前端语言，后端语言，开放端口，真实IP，网站指纹。Google hack进一步收集网站信息，后台，敏感文件等。qq，邮箱，身份证，电话使用社工库反查。</p>
+<p>漏洞扫描：nmap，御剑，dirbuster，sqlmap，burp，metasploit，nessus，AWVS，goby</p>
+<p>漏洞利用…<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_45097365/article/details/122831464">渗透测试流程</a></p>
+<ol start="3">
+<li>判断出网站的CMS对渗透有什么意义？</li>
+</ol>
+<p>可以查找已知的漏洞了解弱点，如果是开源CMS，可以将源码下载进行审计。</p>
+<ol start="4">
+<li>一个成熟并且相对安全的CMS，渗透时扫目录的意义？</li>
+</ol>
+<p>敏感文件、二级目录扫描<br>站长的误操作比如：网站备份的压缩文件、说明.txt、二级目录可能存放着其他站点</p>
+<ol start="5">
+<li>在某后台新闻编辑界面看到编辑器，应该先做什么？</li>
+</ol>
+<p>查看编辑器的名称版本,然后搜索公开的漏洞。</p>
+<ol start="6">
+<li>拿到一个webshell发现网站根目录下有.htaccess文件，我们能做什么？</li>
+</ol>
+<p>能做很多事，如上传.htaccess文件并上传图片码，获取网站的权限<br>插入 <code>&lt;FilesMatcher &quot;xxx.jpg&quot;&gt; SetHandler application/x-httpd-php</code> .jpg文件会被解析成.php文件。<br>.htaccess 文件可以用来重写 URL，这是比较常见的一种用法。攻击者可以使用它来欺骗用户，让用户访问一个恶意网站，或者重定向到钓鱼站点等</p>
+<ol start="7">
+<li>注入漏洞只能查账号密码？</li>
+</ol>
+<p>还可以修改数据库，进行DDoS攻击，执行任意代码。</p>
+<ol start="8">
+<li>安全狗会追踪变量，从而发现是一句话木马吗？</li>
+</ol>
+<p>不是，是根据特征码，所以只要更改特征码即可。</p>
+<ol start="9">
+<li>.access扫出后缀为asp的数据库文件，访问乱码，如何实现到本地利用？</li>
+</ol>
+<p>迅雷下载，直接改后缀为.mdb</p>
+<ol start="10">
+<li>如何利用这个防注入系统拿shell？<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">某个防注入系统，在注入时会提示：</span><br><span class="line">系统检测到你有非法注入的行为。</span><br><span class="line">已记录您的IP:xxx.xxx.xx.xx</span><br><span class="line">时间:yy:mm:dd</span><br><span class="line">提交页面: test.asp?id=15</span><br><span class="line">提交内容: and 1=1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>在URL里面直接提交一句话，然后网站就会把提交内容记录进数据库文件，之后尝试查找网站的配置文件，使用shell连接工具(如：蚁剑)</p>
+<ol start="11">
+<li>上传大马后访问乱码时，有哪些解决办法？</li>
+</ol>
+<p>浏览器中改编码</p>
+<ol start="12">
+<li>审查上传点的元素有什么意义？</li>
+</ol>
+<p>有些站点的上传文件类型的限制是在前端实现的，这时只要增加上传类型就能突破限制。</p>
+<ol start="13">
+<li>目标站禁止注册用户，找回密码处随便输入用户名提示：“此用户不存在”，你觉得这里怎样利用？</li>
+</ol>
+<p>直接爆破用户名。根据报错信息判断出哪些用户是存在的。然后利用爆破出的用户名更改密码。</p>
+<ol start="14">
+<li>以下条件有什么思路？<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">目标站发现某txt的下载地址为：</span><br><span class="line">http://www.test.com/down/down.php?file=/upwdown/1.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>下载漏洞。已经知道下载点了，直接尝试下载敏感文件配置文件等。如 <code>linux下可以: /etc/passwd  /etc/shadow   Windows下可以: C:\Windows\win.ini  C:\Windows\repair\sam</code> 。也可以输入index.php下载首页文件，然后在首页文件里查找其它文件网站的配置文件，找出网站的数据库密码和数据库的地址。</p>
+<ol start="15">
+<li>甲给你一个目标站，并且告诉你根目录下存在&#x2F;abc&#x2F;目录，并且此目录下存在编辑器和admin目录。请问你的想法是？</li>
+</ol>
+<p>直接在网站二级目录 <code>/abc/</code> 下扫描敏感文件及目录。</p>
+<ol start="16">
+<li>在有shell的情况下，如何使用xss实现对目标站的长久控制？</li>
+</ol>
+<p>后台登录处加一段记录登录账号的JS，并且判断是否登录成功，如果登录成功，就把账号密码记录到一个生僻的路径的文件或直接发到自己的网站文件中。（此方式适合有价值且需要深入控制权限的网络）<br>在登录后才可以访问的文件中插入XSS脚本。</p>
+<ol start="17">
+<li>发现 demo.jsp?uid&#x3D;110 注入点，你有哪几种思路获取webshell，哪种是优选？</li>
+</ol>
+<p>有写入权限的，构造联合查询语句使用 using INTO OUTFILE，可以将查询的输出重定向到系统的文件中，这样去写入 WebShell 使用 sqlmap –os-shell 原理和上面一种相同，来直接获得一个Shell，这样效率更高。通过构造联合查询语句得到网站管理员的账户和密码，然后扫后台登录后台，再在后台通过改包上传等方法上传 Shell</p>
+<ol start="18">
+<li>CSRF和XSS和XXE有什么区别，以及修复方式？</li>
+</ol>
+<p>XSS 是跨站脚本攻击，用户提交的数据中可以构造代码来执行，从而实现窃取用户信息等攻击。修复方式：对字符实体进行转义、使用 HTTP Only 来禁止 JavaScript 读取 Cookie 值、输入时校验、浏览器与 Web 应用端采用相同的字符编码。</p>
+<p>CSRF 是跨站请求伪造攻击，XSS是实现CSRF的诸多手段中的一种，是由于没有在关键操作执行时进行是否由用户自愿发起的确认。修复方式：筛选出需要防范 CSRF 的页面然后嵌入 Token、再次输入密码、检验 Referer</p>
+<p>XXE 是 XML 外部实体注入攻击，XML中可以通过调用实体来请求本地或者远程内容，和远程文件保护类似，会引发相关安全问题，例如敏感文件读取。修复方式：XML 解析库在调用时严格禁止对外部实体的解析。</p>
+<ol start="19">
+<li>CSRF、SSRF和重放攻击有什么区别？</li>
+</ol>
+<p>CSRF 是跨站请求伪造攻击，由客户端发起<br>SSRF 是服务器端请求伪造，由服务器发起<br>重放攻击是将截获的数据包进行重放，达到身份认证等目的</p>
+<ol start="20">
+<li>XSS、CSRF、CRLF比较容易弄混，说说三者的原理，防御方法。</li>
+</ol>
+<p>CSRF跨站请求伪造，构造已知的所有参数让对方访问。</p>
+<p>防护CSRF原理：防御原理：不让你那么容易伪造请求（cookie中加入随机数，要求请求中带上，而攻击者获取不到cookie中的随机数，验证HTTP Referer字段，在请求地址中添加token字段）</p>
+<p>CRLF原理：HTTP拆分攻击（HTTP Splitting），CRLF是“回车+换行”（\r\n）的简称。<br>在HTTP协议中，HTTP Header与HTTP body是用两个CRLF分隔的，浏览器就是根据这两个CRLF来取出HTTP内容并显示出来。所以，一旦我们能够控制HTTP消息头的字符，注入一些恶意换行，这样就能注入一些会话Cookie或HTML代码，所以CRLF Injection又叫HTTP Response Splitting，简称HRS。</p>
+<ol start="21">
+<li>owasp漏洞都有哪些？</li>
+</ol>
+<p>(1) Broken Object Level Authenorization 中断的对象级授权<br>(2) Broken Authentication 无效的身份认证<br>(3) Broken Object Property Level Authentication 失效的对象属性级授权<br>(4) Unrestricted Resource Consumption 不受限的资源消耗<br>(5) Broken Function Level Authorization 功能级授权失效<br>(6) Unrestricted Access to Sensitive Business Flows 不受限访问敏感业务流<br>(7) Server Side Request Forgery SSRF服务端请求伪造<br>(8) Security Misconfiguration 安全配置错误<br>(9) Improper Inventory Management 存量资产管理不当<br>(10) Unsafe Consumption of APIs API的不安全使用<br><a target="_blank" rel="noopener" href="https://www.secrss.com/articles/55490">2023 OWASP API Security Top 10</a></p>
+<ol start="22">
+<li>渗透测试中常见的端口？</li>
+</ol>
+<p>文件共享服务端口：21(FTP), 22(SSH), 69(TFTP)<br>远程连接服务端口：22(SSH), 23(Telnet), 3389(RDP), 5900(VNC)<br>Web应用服务端口：53(DNS), (80, 443, 8080, 8443)(HTTP&#x2F;HTTPS)<br>数据库服务端口：1433(MSSQL), 1521(Oracle), 3306(MySQL), 5432(PostgreSQL)<br>邮件服务端口：25(SMTP), 110(POP3), 143(IMAP)<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/jayjaydream/5850365">渗透测试入门15之常见端口安全测试</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/333481.html">常见端口攻击方式</a></p>
+<ol start="23">
+<li>网站渗透流程</li>
+</ol>
+<p>(1) 信息收集<br>包括目标确认和公开情报收集。<br>(2) 主动探测<br>包括主动扫描，人工浏览、逐个请求burp，自动化。<br>(3) 漏洞挖掘<br>漏洞扫描工具，挖掘漏洞<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/270202.html">渗透测试全流程总结</a></p>
+<ol start="24">
+<li>发现一个大范围影响的新漏洞，如何快速排查公司资产？</li>
+</ol>
+<p>(1) 了解漏洞的影响范围。包括漏洞类型、漏洞利用条件、漏洞危害等。根据漏洞影响范围，可以初步判断公司资产是否存在风险。<br>(2) 制定排查方案。根据漏洞的影响范围，制定排查方案。排查方案应包括排查资产范围、排查方法、排查流程、排查工具等。<br>(3) 快速排查资产。排查过程中应重点关注：使用了漏洞软件或设备的资产，存储了敏感数据的资产，连接到互联网的资产。<br>(4) 确认漏洞存在情况。排查完成后，需要确认漏洞是否存在于公司资产中。确认方法可以通过漏扫工具、人工检测等。<br>(5) 采取措施修复漏洞。如果确认漏洞存在，应立即采取措施修复漏洞。措施可采用升级软件、补丁修复等。</p>
+<ol start="25">
+<li>怎样对一个站去挖nday</li>
+</ol>
+<p>首先进行信息搜集，确认已知漏洞。找到已知漏洞后，我们可以从网上找到已知漏洞的payload，尝试挖掘。</p>
+<ol start="26">
+<li>跟过哪些nday，怎样一个思路</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://paper.seebug.org/2033/">WSO2文件上传漏洞</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/R3col/p/16094132.html">Django SQL注入漏洞</a></p>
+<ol start="27">
+<li>挖到过0day吗</li>
+</ol>
+<p>没有。</p>
+<ol start="28">
+<li>代码审计</li>
+</ol>
+<p>抽空去看蜗牛学苑的代码审计一节，增补经历</p>
+<ol start="29">
+<li>app渗透经历</li>
+</ol>
+<p>做过一个app渗透，大概是在去年暑假刚开始的时候，身边有个人被诈骗了。是在某个app内，所以我就尝试进行app渗透。如下：<br><a target="_blank" rel="noopener" href="https://www.wangan.com/p/7fy7fx71176412a7">实战|从app渗透到网站沦陷</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_40228200/article/details/128474830">APP应用渗透测试思路</a></p>
+<ol start="30">
+<li>redis利用姿势及环境差异</li>
+</ol>
+<p><strong>Linux</strong>：<br>(1) 未授权访问：默认直接绑定在0.0.0.0:6379，密码为空，未对ip、端口等限制，攻击者可未授权访问redis，轻则获取数据，重则配合其它漏洞取得服务器权限。redis3.2版本新增protected-mode，默认yes，外部网络无法访问redis服务。<br>利用方式：直接nmap扫描，然后直连。<br>(2) 利用config写配置文件。<br>利用方式：直连到redis后，一句话木马写入webshell。<br>Ubuntu下利用定时任务反弹shell<br>(3) 模块加载rce。redis4.0以上区别于以下的版本在于其多出一个模块，允许我们加载外部的so文件，实现在redis内执行我们的自定义命令，可以理解我们可以自写插件来扩展redis的功能。<br>利用方式：如果拿到webshell之后，登录redis后通过webshell上传动态链接库即so文件后，通过redis的moudle load加载动态链接库即可rce。权限一般可满足<br>(4) 主从复制RCE。主从复制是指将一台redis服务器的数据，复制到其它的redis服务器。前者称之为主节点(master)，后者称之为(slave)；主从复制是单向的，只能由主节点到从节点。<br>利用方式：通过全量复制。尝试在服务器中nc一个端口，然后我们的redis用slaveof命令<br>(5) SSRF打redis。SSRF因为一个gopher协议大大拓宽了攻击面，使用过gopher的会知道我们需要对需要发送的包进行抓包然后编码通过gopher协议进行发送。<br>利用方式：根据redis的数据格式伪造将webshell、ssh、定时任务等进行编码后通过gopher协议发送到存在着redis的机器上，就可以达成ssrf打redis。</p>
+<p><strong>Windows</strong>：<br>(1) 写无损文件。<br>利用方式：使用工具RedisWriteFile。<br>(2) getshell。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_50464560/article/details/121095951">Redis利用方式总结(Linux&#x2F;Windows)</a></p>
+<ol start="31">
+<li>fastjson回显</li>
+</ol>
+<p>fastjson回显是指在使用fastjson解析json数据时，由于fastjson存在反序列化漏洞，攻击者可以通过构造恶意json数据，将恶意代码注入到服务端，从而实现远程代码执行、数据库操作等攻击。</p>
+<p>fastjson回显漏洞主要存在于fastjson的 <code>JSON.parse()</code> 方法中，该方法用于将json字符串解析为Java对象。fastjson在解析json数据时，会将json字符串中的所有键值对都转换为Java对象，其中包括恶意代码。</p>
+<p>利用BCEL打fastjson直接burp回显getshell<br>基于dbcp的fastjson rce回显<br>fastjson &lt;&#x3D; 1.2.24</p>
+<p>防御：<br>升级fastjson到最新版本，最新版本已经修复了该漏洞。<br>在fastjson的配置文件中，设置 <code>deserializerFeatures</code> 属性为 <code>SerializerFeature.DisableFeatures.AUTO_DESERIALIZE_ENUM</code> ，该属性可以禁止fastjson自动反序列化枚举类型，从而防止攻击者利用枚举类型进行攻击。<br>使用第三方安全工具进行检测和修复。</p>
+<ol start="32">
+<li>jndi注入及原理</li>
+</ol>
+<p>JDNI注入是指攻击者通过控制JNDI查询参数，将恶意代码或对象注入到JNDI服务中，从而<br>JNDI(Java Naming and Direcotry Interface)是Java提供的命名和目录接口。通过调用JNDI的API可以定位资源和其它程序对象。<br>JNDI是Java EE的重要部分，JNDI可访问的现有目录及服务有：JDBC, LDAP, RMI, DNS, NIS, CORBA.</p>
+<p>JNDI注入，即当开发者在定义JNDI接口初始化时， <code>lookup()</code> 方法的参数可控，攻击者就可以将恶意的url传入参数远程加载恶意载荷，造成注入攻击。</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12277">JNDI注入原理及利用考究</a></p>
+<ol start="33">
+<li>Java回显</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7740">Java 反序列化回显的多种姿势</a></p>
+<ol start="34">
+<li>泛微oa xstream的回显(jdk1.8和jdk1.7的差异)</li>
+</ol>
+<p>不知道</p>
+<ol start="35">
+<li>shiro限制payload长度</li>
+</ol>
+<p>Shiro是一个流行的Java安全框架，可以作为应用程序的身份验证和授权解决方案。<br>在Shiro中，有一个限制payload长度的设置可以增加应用程序的安全性。<br>shiro限制payload长度的主要方法是设置SecurityManager的subjectFactory属性。subjectFactory属性用于创建subject对象，可以通过设置该属性的maxPayloadLength属性来限制payload的长度。<br>示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DefaultSubjectFactory</span> <span class="variable">subjectFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultSubjectFactory</span>();</span><br><span class="line">subjectFactory.setMaxPayloadLength(<span class="number">1024</span>);</span><br><span class="line"><span class="type">SecurityManager</span> <span class="variable">securityManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultSecurityManager</span>(subjectFactory);</span><br></pre></td></tr></table></figure>
+<p>该配置将限制payload的长度为1024字节。</p>
+<p>除此之外还有：<br>在shiro的配置文件中设置SecurityFilterChain的filters属性。filters属性用于指定shiro的过滤器链，可以通过添加PayloadLengthFilter过滤器来限制payload的长度。<br>在shiro的配置文件中设置SecurityManager的subjectFactory属性的maxPrincipalLength属性。maxPrincipalLength属性用于限制principal的长度，principal是用于表示用户身份的对象。</p>
+<ol start="36">
+<li>Java回显的通用思路以及不同版本jdk的差异</li>
+</ol>
+<p>jdk1.7 存在Apache Commons Collections中的Collections.unrollMap方法的反序列化漏洞，可执行任意代码。安全配置方面：开发人员可以使用ObjectInputFilter来配置白名单规则以确保反序列化处理的对象合法可信，并使用 Javadoc 文档中提供的安全基线配置来提高安全性。<br>jdk1.8 存在Apache Commons Collections中的TransformerFactory.getClassLoader方法的反序列化漏洞，可被攻击者利用获取敏感信息。安全配置有设置Java安全管理器来限制反序列化操作的范围。<br>jdk11 JDK的ssl库存在信息泄露漏洞，攻击者可以针对受害者获取机密的信息。安全配置有通过设置Java安全管理器的allowList属性来指定允许反序列化的类。</p>
+<ol start="37">
+<li>Rootkit是什么意思</li>
+</ol>
+<p>rootkit是一种恶意软件，它可以隐藏自身和其它恶意软件，从而使攻击者可以获取对受感染系统的完全控制。rootkit通常使用系统漏洞来安装，并使用各种技术隐藏自身和其它恶意软件。</p>
+<p>常见类型：<br>内核rootkit：内核rootkit是安装在操作系统内核中的rootkit，可访问和修改操作系统的所有部分，使其非常难以检测和删除。<br>文件系统rootkit：文件系统rootkit是安装在文件系统中的rootkit。文件系统rootkit可以隐藏自身和其他恶意软件，使其难以检测和删除。<br>网络rootkit：网络rootkit是用于攻击网络的rootkit。网络rootkit可以用于窃取敏感信息、进行远程攻击或破坏系统。</p>
+<p>rootkit示例：Stuxnet, Flame, Necurs.</p>
+<p>检测：比较困难。可根据特征推测，如蓝屏，异常网络浏览器行为，设备性能缓慢，Windows设置未经许可修改，网页运行不正常。<br>清除：如果有深度感染唯一办法是重装系统。<br><a target="_blank" rel="noopener" href="https://www.kaspersky.com.cn/resource-center/definitions/what-is-rootkit">什么是 Rootkit</a></p>
+<ol start="38">
+<li>手工查找后门木马的小技巧</li>
+</ol>
+<p>1、首先最需要注意的地方是系统的启动项，可以在“运行”-输入“msconfig 命令” 在打开的系统配置实用程序里的启动列表查看，并且服务也要注意一下，如果对电脑不是太熟悉建议使用 360 安全卫士的开机加速功能，来查看有无异常的可以启动项和服务项，因为在后门木马中大部分都会注册自己为系统服务，达到开机自启动的目的，如果发现可疑项直接打开相应的路径，找到程序文件，直接删除并且禁止自启动；</p>
+<p>2、查看系统关键目录 system32 和系统安装目录 Windows 下的文件，xp 系统下两者默认路径分别是 C:\WINDOWS\system32 和 C:\WINDOWS\。然后最新修改的文件中有没有可疑的可执行文件或 dll 文件，这两个地方都是木马最喜欢的藏身的地方了（小提示：一定要设置显示所有的文件的文件夹哦）。</p>
+<p>3、观察网络连接是否存在异常，还有“运行”-“cmd”- <code>netstat -an</code> 查看有没有可疑或非正常程序的网络连接，如果对电脑不是很熟悉建议大家使用 360 的流量监控功能更加直观和方便，尤其注意一下远程连接的端口，如果有类似于 8000 等端口就要注意了，8000 是灰鸽子的默认端口，记得有一次自己就在后门木马测试中在网络连接中发现 8000 端口，当然意思不是说只要没有 8000 端口的网络连接就一定安全，因为 8000 端口只是灰鸽子上线的默认端口，并且端口是可以更改的。</p>
+<p>通过以上方法，可以查找到电脑的一些可疑文件，如果确认无疑，就可以手工进行删除了。当然还可以借助杀毒软件的力量。如果你真的中了木马后门，不用慌。最好最彻底的方法是重装系统后，在安全模式下，利用最新病毒库的杀软进行查杀。</p>
+<ol start="39">
+<li>常见web安全漏洞</li>
+</ol>
+<p>sql注入，文件上传，xss，文件包含，CSRF，SSRF，XXE，SSTI，反序列化，RCE，目录穿越，逻辑漏洞，中间件。</p>
+<ol start="40">
+<li>永恒之蓝的漏洞原理是什么？怎么做到的？</li>
+</ol>
+<p>原理：攻击者可以通过发送一个特制的SMB请求，导致Windows内核中的SmbSessionNegotiate函数发生缓冲区溢出。攻击者可以利用该漏洞执行任意代码，从而获得对受感染系统的完全控制。<br>漏洞类型：缓冲区溢出。<br>漏洞危害：攻击者可以利用该漏洞执行任意代码，从而获得对受感染系统的完全控制。</p>
+<ol start="41">
+<li>针对PHP的弱类型，有哪些漏洞？</li>
+</ol>
+<p>(1) 类型转换漏洞：由于PHP的弱类型变量，在进行比较运算时会自动进行类型转换，攻击者可以利用此特性来触发特定的条件判断。例如，攻击者可以在比较两个值时传递一个特殊的参数，导致预期以外的结果。<br>(2) SQL注入漏洞：由于弱类型变量的存在，攻击者可以通过传递恶意的SQL查询来注入数据库。攻击者可以伪造一个查询或输入等操作，绕过服务器端的验证和过滤机制，最终达到执行数据库操作的目的。<br>(3) XSS漏洞：类似于SQL注入漏洞，攻击者可以通过传递恶意的代码来攻击Web应用程序的用户。例如，攻击者可以在提交表单数据的地方插入JavaScript脚本，从而可以窃取用户的Cookie和会话信息。<br>(4) 文件包含漏洞：在PHP中，文件包含函数可以接受用户输入作为参数，如果未正确过滤和验证用户输入，则攻击者可以通过构造特定的文件路径来包含任意文件，进而执行任意代码。这种漏洞通常被称为“远程文件包含漏洞”。<br>(5) DOS&#x2F;DDOS攻击：攻击者可能会通过发送大量请求或具有恶意参数的请求来占用PHP应用程序的资源，从而导致拒绝服务或崩溃。</p>
+<p>采取措施：<br>使用强类型转换：在将值转换为另一种类型之前，应使用强类型转换。这可以帮助防止类型转换错误。<br>使用过滤器：在使用用户输入之前，应使用过滤器来过滤潜在有害的输入。这可以帮助防止整数溢出、字符串注入和其他类型的漏洞。<br>使用安全库和框架：一些安全库和框架可以帮助防止PHP语言特点漏洞。</p>
+<ol start="42">
+<li>代码审计方面，有过对大型cms的审计吗？发现过哪些漏洞？</li>
+</ol>
+<p>同28题。</p>
+<ol start="43">
+<li>针对PHP的语言特点，说几个常见漏洞？</li>
+</ol>
+<p>同41题。</p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
 <li><p><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DSlByWEZoaWx4U3la">2022渗透测试面试问题搜集</a></p>
 </li>
@@ -1084,8 +1282,8 @@
       <i class="fa fa-chevron-left"></i> 面试准备之系统篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
-      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/" rel="next" title="面试准备之工具篇">
+      面试准备之工具篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1232,13 +1430,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">486k</span>
+    <span title="站点总字数">506k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:22</span>
+    <span title="站点阅读时长">7:40</span>
 </div>
 
 <!--
