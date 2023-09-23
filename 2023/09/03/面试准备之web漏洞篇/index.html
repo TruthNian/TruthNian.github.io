@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/captcha1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-22T07:16:23.871Z">
+<meta property="article:modified_time" content="2023-09-23T06:20:55.974Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-22 15:16:23" itemprop="dateModified" datetime="2023-09-22T15:16:23+08:00">2023-09-22</time>
+                <time title="修改时间：2023-09-23 14:20:55" itemprop="dateModified" datetime="2023-09-23T14:20:55+08:00">2023-09-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>46k</span>
+              <span>47k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1106,7 +1106,11 @@
 <ol start="28">
 <li>代码审计</li>
 </ol>
-<p>抽空去看蜗牛学苑的代码审计一节，增补经历</p>
+<p>有审计过VAudit，使用了Seay源代码审计系统。<br>审计出的漏洞有：<br>(1) 文件包含。源代码未进行严格过滤，仅添加后缀inc。直接创建shell.inc文件，写一句话木马。蚁剑连接成功。<br>(2) sql注入。在留言界面未对用户输入的id字段做检测，仅有敏感字符替换。因为替换字段中 <code>||</code> 被替换为空，所以我们可将其插入到敏感字符中间绕过。<br>(3) 反射型XSS。搜索留言处存在。<br>(4) 登录次数未做限制可爆破。登录处，管理员账户。无验证可python爆破，有验证burp爆破。<br>(5) 命令执行。<br>(6) 任意文件读取。查看avatar.php源代码：存在危险函数 <code>file_get_contents</code> ，通过代码审计发现 <code>$_SESSION[&#39;avatar&#39;]</code> 。数据可控。<br>(7) 安装漏洞。查看install.php的代码时就算存在install.lock文件依然会执行后面的代码，数据库连接参数由用户上传可控，仅对dbname做了重复检测，未对参数进行校验，可进行SQL注入。使用反引号使SQL语句合法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`&quot;;phpinfo();//`</span><br></pre></td></tr></table></figure>
+
+<p>跟着文章审计过XXE漏洞。解密通达OA后，在日程安排功能点处，发现导入日程的说明描述是可上传XML格式文档。那么也可能解析XML实体，于是抓包去路由，查看版本并利用。详看文章。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/akucoco/article/details/129032037">VAudit代码审计从0到1，思路记录</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/341238.html">如何通过代码审计大型OA系统拿到CNVD证书</a></p>
 <ol start="29">
 <li>app渗透经历</li>
 </ol>
@@ -1278,10 +1282,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="prev" title="面试准备之密码学篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之密码学篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="prev" title="面试准备之流量篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之流量篇
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="next" title="面试准备之密码学篇">
+      面试准备之密码学篇 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -1427,13 +1434,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">509k</span>
+    <span title="站点总字数">511k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:43</span>
+    <span title="站点阅读时长">7:45</span>
 </div>
 
 <!--

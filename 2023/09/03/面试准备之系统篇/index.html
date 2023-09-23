@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言了解系统，才能更好攻击与防御。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-21T15:54:16.881Z">
+<meta property="article:modified_time" content="2023-09-22T15:25:20.407Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-21 23:54:16" itemprop="dateModified" datetime="2023-09-21T23:54:16+08:00">2023-09-21</time>
+                <time title="修改时间：2023-09-22 23:25:20" itemprop="dateModified" datetime="2023-09-22T23:25:20+08:00">2023-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -291,12 +291,22 @@
 <p>(5) 令牌窃取</p>
 <p>(6) 数据库提权</p>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><ol>
-<li><p>Linux服务器的安全运维操作有哪些？如何保护SSH？</p>
-</li>
-<li><p>入侵Linux服务器后需要清除哪些日志？</p>
-</li>
-<li><p>Linux提权的姿势</p>
-</li>
+<li>Linux服务器的安全运维操作有哪些？如何保护SSH？</li>
+</ol>
+<p>Linux安全运维：<br>(1) 删除特殊的用户和用户组：默认安装很多不必要的用户和用户组，不需要即删除。可删的如adm、lp、sync、shutdown、halt<br>(2) 关闭系统不需要的服务：默认绑定很多没用的服务是自启动，根据服务器用途不需要即删除。一般可删的如：auditd, ip6tables kdump<br>(3) 合理使用su、sudo命令：sudo执行命令的流程是：将当前用户切换到超级用户下，或切换到指定的用户下，然后以超级用户或其指定切换到的用户身份执行命令，执行完成后，直接退回到当前用户，而这一切的完成要通过sudo的配置文件&#x2F;etc&#x2F;sudoers来进行授权。<br>(4) 删减系统登录欢迎信息：虽然欢迎信息或版本信息能给系统管理者带来一定的方便，但是这些信息可能被利用，为了保证系统安全，可以修改或删除某些系统文件，这样的文件有: <code>/etc/issue  /etc/issue.net  /etc/redhat-release  /etc/motd</code><br>(5) 禁止Control-Alt-Delete键盘关闭命令：默认同时按下Control-Alt-Delete组合键，系统将自动重启，这个策略不安全，因此禁止。<br>(6) 合理使用shell历史命令记录功能：linux下可通过history命令查看用户所有的历史操作记录，同时shell命令操作记录默认保存在用户目录下的.bash_history文件中，通过这个文件可以查询shell命令的执行历史，有助于运维人员进行系统审计和问题排查<br>(7) 启动tcp_wrappers防火墙：tcp_wrappers是一个用来分析TCP&#x2F;IP封包的软件，类似的IP封包软件还有iptables。</p>
+<p>保护SSH：<br>(1) 改变默认端口<br>(2) 不要使用密码，通过密钥连接<br>(3) 决定谁可以登录，连接IP限制<br>(4) 禁用root用户登录<br>(5) 限制登录访问尝试<br>(6) 使用SSH 版本2</p>
+<ol start="2">
+<li>入侵Linux服务器后需要清除哪些日志？</li>
+</ol>
+<p>删除bash历史记录<br>需要清理的日志记录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/log/auth.log  认证</span><br><span class="line">/var/log/cron.log  Cron任务</span><br><span class="line">/var/log/maillog   邮件</span><br><span class="line">/var/log/httpd 	   Apache</span><br></pre></td></tr></table></figure>
+
+<p>注意：清理方式是将文件清空，而不是将其完全擦除。<br>使用truncate命令将文件大小减少到0： <code>truncate -s 0 /var/log/auth.log</code><br>通过将nothing映射到文件来完成： <code>echo &quot; &gt; /var/log/auth.log</code><br>还可以单独使用&gt;来清理文件： <code>&gt; /var/log/auth.log</code><br>也可以发送到&#x2F;dev&#x2F;null： <code>cat /dev/null &gt; /var/log/auth.log</code><br>使用tee命令： <code>true | tee /var/log/auth.log</code></p>
+<ol start="3">
+<li>Linux提权的姿势</li>
+</ol>
+<p>(1) 内核漏洞提权–DirtyCow<br>(2) 定时任务提权<br>(3) SUID提权<br>(4) Sudo滥用提权<br>(5) 外壳逃生序列<br>(6) NFS提权<br>(7) Password &amp; Key 提权<br>(8) Docker提权</p>
+<ol start="4">
 <li><p>Linux下有哪些文件进行渗透时比较关注的，以及文件权限问题</p>
 </li>
 <li><p>dirty cow的时间及其修复版本（哪年后无法使用）</p>
@@ -599,8 +609,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="prev" title="面试准备之自身方面篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之自身方面篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/" rel="prev" title="面试准备之工具篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之工具篇
     </a></div>
       <div class="post-nav-item">
     <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
@@ -751,13 +761,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">509k</span>
+    <span title="站点总字数">511k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:43</span>
+    <span title="站点阅读时长">7:45</span>
 </div>
 
 <!--
