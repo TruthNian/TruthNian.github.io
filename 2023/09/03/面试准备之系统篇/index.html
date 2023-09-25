@@ -28,11 +28,13 @@
 <meta property="og:site_name" content="Scammer">
 <meta property="og:description" content="前言了解系统，才能更好攻击与防御。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/simg/system_1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-22T15:25:20.407Z">
+<meta property="article:modified_time" content="2023-09-25T14:26:14.407Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/simg/system_1.jpg">
 
 <link rel="canonical" href="http://example.com/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E7%B3%BB%E7%BB%9F%E7%AF%87/">
 
@@ -223,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-22 23:25:20" itemprop="dateModified" datetime="2023-09-22T23:25:20+08:00">2023-09-22</time>
+                <time title="修改时间：2023-09-25 22:26:14" itemprop="dateModified" datetime="2023-09-25T22:26:14+08:00">2023-09-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -307,73 +309,193 @@
 </ol>
 <p>(1) 内核漏洞提权–DirtyCow<br>(2) 定时任务提权<br>(3) SUID提权<br>(4) Sudo滥用提权<br>(5) 外壳逃生序列<br>(6) NFS提权<br>(7) Password &amp; Key 提权<br>(8) Docker提权</p>
 <ol start="4">
-<li><p>Linux下有哪些文件进行渗透时比较关注的，以及文件权限问题</p>
-</li>
-<li><p>dirty cow的时间及其修复版本（哪年后无法使用）</p>
-</li>
-<li><p>列举Linux反弹shell的一些方法</p>
-</li>
-<li><p>Linux系统中etc&#x2F;password和&#x2F;shadow文件的区别</p>
-</li>
-<li><p>Linux如何查看当前权限</p>
-</li>
-<li><p>对Linux了解吗？Linux内核漏洞有没有分析过？</p>
-</li>
-<li><p>你说你对堆栈溢出有了解，那玩过pwn吗？</p>
-</li>
-<li><p>如果对方开启了ALSR和DEP，要如何绕过？</p>
-</li>
+<li>Linux下有哪些文件进行渗透时比较关注的，以及文件权限问题</li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/apache/apache/conf/httpd.conf</span><br><span class="line">/apache/apache2/conf/httpd.conf</span><br><span class="line">/apache/php/php.ini</span><br><span class="line">/bin/php.ini</span><br><span class="line">/etc/anacrontab</span><br><span class="line">/etc/apache/apache.conf</span><br><span class="line">/etc/apache/httpd.conf</span><br><span class="line">/etc/cron.allow</span><br><span class="line">/etc/cron.deny</span><br><span class="line">/etc/crontab</span><br><span class="line">/etc/shadow</span><br><span class="line">/etc/httpd/logs/access.log</span><br><span class="line">/etc/httpd/logs/access_log</span><br><span class="line">/etc/httpd/logs/error.log</span><br><span class="line">/etc/httpd/logs/error_log</span><br><span class="line">/etc/httpd/php.ini</span><br><span class="line">/etc/networks</span><br><span class="line">/etc/passwd</span><br><span class="line">/etc/php/php.ini</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43847838/article/details/127886311">Linux渗透中常见的敏感目录或文件</a></p>
+<p>文件权限：<br>chown (change owner) ： 修改所属用户与组。<br>chmod (change mode) ： 修改用户的权限。<br>使用 ll 或者 ls –l 命令来显示一个文件的属性以及文件所属的用户和组<br>r-4 代表可读(read)、 w-2 代表可写(write)、 x-1 代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号 - 而已。<br><img src="/simg/system_1.jpg" alt=" "></p>
+<ol start="5">
+<li>dirty cow的时间及其修复版本（哪年后无法使用）</li>
+</ol>
+<p>自2007 年9 月发布的2.6.22 版本起就存在于Linux 内核中<br>2017 年 11 月 27 日发布了补丁来修复该问题。</p>
+<ol start="6">
+<li>列举Linux反弹shell的一些方法</li>
+</ol>
+<p>(1) 利用netcat反弹shell<br>(2) 利用bash反弹shell<br>(3) Curl配合bash反弹shell<br>(4) 将反弹shell的命令写入&#x2F;etc&#x2F;profile文件<br>(5) 利用Socat反弹shell<br>(6) 利用Telnet反弹shell<br>(7) 利用awk反弹shell<br>(8) 各种脚本反弹shell</p>
+<ol start="7">
+<li>Linux系统中etc&#x2F;password和&#x2F;shadow文件的区别</li>
+</ol>
+<p><code>/etc/passwd</code> 存储一般的用户信息，任何人都可以访问<br><code>/etc/shadow</code> 存储用户的密码信息，只有 root 用户可以访问<br><a target="_blank" rel="noopener" href="https://howiezhao.github.io/2018/04/29/passwd-and-shadow/">Linux 中&#x2F;etc&#x2F;passwd 与&#x2F;etc&#x2F;shadow 的区别</a></p>
+<ol start="8">
+<li>Linux如何查看当前权限</li>
+</ol>
+<p>查看当前用户: <code>whoami</code><br>查看登录用户: <code>who</code><br>查看有哪些用户组: <code>cat /etc/group</code><br>查看用户在哪些组: <code>groups</code></p>
+<ol start="9">
+<li>对Linux了解吗？Linux内核漏洞有没有分析过？</li>
+</ol>
+<p>有一定程度的了解。</p>
+<p>经典的Dirty Cow。漏洞形成原因：写时拷贝技术</p>
+<p>和新内核漏洞的利用方法：<br>(1) pipe管道技术<br>(2) kernel5.x版本和kernal4.x版本的利用方法</p>
+<p>Linux内核保护与绕过<br>(1) KASLR保护<br>(2) SMEP&amp;SMAP保护<br>(3) KPTI保护</p>
+<p><a target="_blank" rel="noopener" href="https://paper.seebug.org/2050/">Linux 内核常用保护和绕过技术</a></p>
+<ol start="10">
+<li>你说你对堆栈溢出有了解，那玩过pwn吗？</li>
+</ol>
+<p>无</p>
+<ol start="11">
+<li>如果对方开启了ASLR和DEP，要如何绕过？</li>
+</ol>
+<p>先泄漏出libc.so某些函数在内存中的地址，然后再利用泄漏出的函数地址根据偏移量计算出system()函数和 <code>/bin/sh</code> 字符串在内存中的地址，然后再执行我们的ret2libc的shellcode。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23487280">一步一步学ROP之linux_x86篇</a></p>
 <h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><ol>
-<li><p>常见web开发Java框架</p>
-</li>
-<li><p>Java哪些框架，审过哪些框架，它们常出现的问题是什么？</p>
-</li>
-<li><p>python的web框架（flask&#x2F;django）</p>
-</li>
-<li><p>了解struts框架吗？说一说</p>
-</li>
+<li>常见web开发Java框架</li>
 </ol>
+<p>(1) Spring: Spring是一个全栈Java框架，包含了许多模块，可以用于开发各种类型的Web应用程序。Spring MVC是Spring框架中用于Web开发的模块，它提供了一个MVC架构，可以简化Web应用程序的开发。<br>(2) Apache Struts: Struts是一个基于MVC架构的Web开发框架，它是Spring MVC之前比较流行的Web开发框架。<br>(3) Grails：Grails是一个基于Groovy语言的Web开发框架，它是一个基于Spring的框架，提供了一个MVC架构，可以简化Web应用程序的开发。<br>(4) Hibernate：Hibernate是一个ORM框架，它可以简化数据库访问。<br>(5) JSF：JSF是一个基于Java的Web开发框架，它提供了一个MVC架构，可以简化Web应用程序的开发。</p>
+<ol start="2">
+<li>Java哪些框架，审过哪些框架，它们常出现的问题是什么？</li>
+</ol>
+<p>Java框架：见问题1<br>审过哪些框架：<br>Java三层架构：数据访问层、业务逻辑层、表现层。<br>(1) 持久层(Data Access Layer DAL，数据访问层)采用DAO模式。建立实体类和数据库表映射（ORM映射）。也就是哪个类对应哪个表，哪个属性对应哪个列。持久层的目的是，完成对象数据和关系数据的转换。<br>(2) 业务层(Business Logic Layer BLL, 逻辑层、service层)采用事务脚本模式。将一个业务中所有的操作封装成一个方法，同时保证方法中所有的数据库更新操作，即保证同时成功或同时失败。避免部分成功部分失败造成的数据库混乱操作。<br>(3) 表现层(UI层、视图层、界面层)采用MVC(Model-ViewController)模式，采用JSP&#x2F;Servlet技术进行页面效果显示。</p>
+<p>SSH框架<br>业务层：Spring<br>表现层：Struts<br>持久层：Hibernate</p>
+<p>SSM框架<br>业务层：Spring<br>表现层：SpringMVC<br>持久层：MyBatis</p>
+<p><a target="_blank" rel="noopener" href="https://paper.seebug.org/1075/">Java框架级SSM代码审计思路</a></p>
+<p>代码审计的流程和思路：<br>(1) 收集信息：查看源码、分析日志、使用工具等方式，收集目标用户程序的信息，包括但不限于：应用程序的文件目录结构、配置文件、程序源码、请求参数、数据库结构等。<br>(2) 风险评估：根据收集到的信息，分析应用程序中可能存在的漏洞和安全隐患，并对进行评估，确定哪些漏洞最为严重、哪些应该优先修复。<br>(3) 漏洞挖掘：通过手动测试和工具扫描等方式，对应用程序进行漏洞挖掘。测试应包括各种类型的漏洞，例如：SQL注入、跨站脚本、CSRF等。<br>(4) 漏洞验证：验证漏洞是否真实存在，并确认漏洞的影响程序、可能的攻击方式和风险级别。<br>(5) 报告编写：将漏洞及其影响、攻击方式、风险级别等信息整理成报告，供开发者和管理者参考。报告应该详细说明漏洞的位置、修复建议等具体内容，并提供漏洞的Poc（漏洞利用代码）。<br>(6) 漏洞修复：由开发人员修复漏洞，并通过测试验证修复效果。在修复漏洞之后，应再次进行代码审计，以确保没有新漏洞产生。</p>
+<p>审过spring框架，MyBatis框架，常出现的问题是SQL注入。<br>spring框架情况：Statement直接拼接sql语句造成SQL语句漏洞。<br>MyBatis框架情况：使用like语句进行模糊查询；使用in语句；使用order by语句。<br><a target="_blank" rel="noopener" href="https://www.ctfiot.com/133145.html">Java代码审计—SQL注入篇</a></p>
+<ol start="3">
+<li>python的web框架（flask&#x2F;django）</li>
+</ol>
+<p>Django：Django是一个全栈Web框架，提供了丰富的功能，可以满足各种Web应用程序的需求。Django是目前最流行的Python Web框架，具有功能强大、易用性高、可扩展性强等优点。</p>
+<p>Flask：Flask是一个轻量级Web框架，专注于提供核心功能并保持简单易懂。Flask适合开发小型到中型Web应用程序。</p>
+<ol start="4">
+<li>了解struts框架吗？说一说</li>
+</ol>
+<p>Struts 是一个开源框架，用于扩展 Java Servlet API 并使用模型、视图、控制器(MVC) 体系结构。<br>Struts框架提供如下服务：<br>(1) 作为控制器的Servlet<br>(2) 提供大量的标签库<br>(3) 提供了用于国际化的框架，利用不同的配置文件，可以帮助用户选择适合自己的语言。<br>(4) 提供了JDBC的实现，来定义数据源和数据库连接池。<br>(5) XML语法分析工具。<br>(6) 文件下载机制。</p>
+<p>Struts原理：<br>Struts是对JSPModel2设计标准的一种实现，下面分别从模型（Model）、视图（view）和控制器3个部分介绍Struts的体系结构和工作原理。<br>（1）视图（view）<br>在Struts中，视图层包含两个部分，JSP页面和ActionForm。<br>ActionForm封装了用户提交的表单信息，其实ActonForm本质上就是JavaBean，这些JavaBean中没有业务逻辑，只提供了所有属性的getter和setter方法，这些属性和用户表单中的输入项是一一对应的。在Struts中就是通过ActionForm把用户表单信息提交给控制器。<br>JSP页面是经典MVC中主要的视图组件，主要是信息显示和控制器处理结果显示的功能。<br>除了以上，struts还提供了一个强大的struts标签库，来帮助用户解决显示逻辑，并且利用ActonForm组件将信息传递到控制层。</p>
+<p>（2）控制器（Controller）<br>在控制层，struts提供了一个控制器组件ActionServlet，它继承自HttpServlet，并重载了HttpServlet的doGet()，doPost()方法，可以接受HTTP的响应，并进行转发，同时还提供了使用XML进行转发Mapping（映射）的功能。</p>
+<p>（3）模型（Model）<br>模型表示状态和业务逻辑的处理，在一般的web应用程序中，用JavaBean或者EJB来实现系统的业务逻辑。在Struts中，struts提供Action对象，来管理业务逻辑的调用，帮助用户分离业务逻辑，也就是说struts本身不实现业务逻辑，但可以调用已完成的业务逻辑。</p>
+<p>Struts工作流程：<br>ActionServlet是struts中核心的控制器，所有的用户请求都必须通过ActionServlet的处理，而struts-config.xml是struts中核心的配置文件，在这个文件中配置了用户请求URL和控制器Action的映射关系，ActionServlet通过这个配置文件把用户的请求发送到对应的控制器中。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26316119">Struts简介和原理</a></p>
 <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><ol>
-<li><p>说说常见的中间件解析漏洞利用方式。</p>
-</li>
-<li><p>目前已知哪些版本的容器有解析漏洞，具体举例。</p>
-</li>
-<li><p>常见的中间件</p>
-</li>
-<li><p>中间件有哪些已知漏洞</p>
-</li>
+<li>说说常见的中间件解析漏洞利用方式。</li>
 </ol>
+<p>中间件解析漏洞利用方式：<br>(1) IIS 解析漏洞：<br>成因：IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。<br>利用方式：<br>IIS 6.0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iis6.0畸形解析：asa、cer</span><br><span class="line">iis6.0目录解析：/test.asp/test.jpg</span><br><span class="line">iis6.0文件解析：test.asp;.jpg</span><br><span class="line">IIS7.5文件解析：test.jpg/.php</span><br></pre></td></tr></table></figure>
+
+<p>(2) Apache 解析漏洞：<br>用户配置不当，如1.php.biubiu会被当成php文件执行</p>
+<p>(3) Nginx 解析漏洞：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户配置不当，对于任意文件名，在后面加上/任意文件名.php后该文件就会以php格式进行解析，如1.png/.php</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/192063.html">Web中间件常见漏洞总结</a><br><a target="_blank" rel="noopener" href="http://47.103.121.189/2022/06/02/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/">常见中间件漏洞总结</a></p>
+<ol start="2">
+<li>目前已知哪些版本的容器有解析漏洞，具体举例。</li>
+</ol>
+<p>见问题1</p>
+<ol start="3">
+<li>常见的中间件</li>
+</ol>
+<p>IIS, Nginx, Apache, Tomcat, jBoss, WebLogic, shiro, struts, FastCGI</p>
+<ol start="4">
+<li>中间件有哪些已知漏洞</li>
+</ol>
+<p>解析漏洞，远程代码执行，反序列化，目录遍历，PUT漏洞，文件上传，SSRF，目录穿越</p>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ol>
-<li><p>请写出MySQL5数据库中查询库’helloworld’中’user’表所有列名的语句。</p>
-</li>
-<li><p>udf提权</p>
-</li>
-<li><p>为何一个mysql数据库的站，只有一个80端口开放？</p>
-</li>
-<li><p>3389无法连接的几种情况</p>
-</li>
-<li><p>MySQL两种提权方式</p>
-</li>
-<li><p>Mongodb, redis, websphere, rsync服务简介和默认运行端口</p>
-</li>
-<li><p>MySQL中like查询会非常缓慢，如何进行优化？</p>
-</li>
-<li><p>Oracle, mysql, sqlserver默认端口</p>
-</li>
-<li><p>怎么通过数据库获取shell</p>
-</li>
-<li><p>数据库的提权有接触过吗？</p>
-</li>
-<li><p>mssql的提权你能说一下吗？</p>
-</li>
-<li><p>怎么分辨数据库类型？</p>
-</li>
-<li><p>mysql数据库账号和密码存放在哪个库和表里面？</p>
-</li>
-<li><p>分别写出MySQL及mssql数据库写入webshell的方法</p>
-</li>
+<li>请写出MySQL5数据库中查询库’helloworld’中’user’表所有列名的语句。</li>
 </ol>
+<p><code>select * from information_schema.COLUMNS where table_name = &#39;user&#39; and table_schema = &#39;helloworld&#39;;</code></p>
+<ol start="2">
+<li>udf提权</li>
+</ol>
+<p>UDF(User Define Function)用户自定义函数，是MySQL的一个扩展接口，通过添加新函数，对MySQL的功能进行扩充。调用方式与一般系统自带的函数相同，例如user(), version()等函数。<br>udf文件后缀在Windows与Linux系统下分别为dll与so，即动态链接库文件，由C, C++编写</p>
+<p>攻击原理：<br>(1) 攻击者在目标系统上传、执行UDF文件。<br>(2) 攻击者通过SQL语句调用UDF文件中的函数。<br>(3) UDF文件中的函数利用漏洞执行任意命令。</p>
+<p>修复建议：<br>(1) MySQL配置文件中secure_file_priv预设置为NULL或非 <code>mysql/lib/plugin</code> 目录。<br>(2) 数据库用户确保正确实施最小权限原则。</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/database/291175.html">Mysql-UDF提权篇</a></p>
+<ol start="3">
+<li>为何一个mysql数据库的站，只有一个80端口开放？</li>
+</ol>
+<p>更改了端口，没有扫描出来。</p>
+<ol start="4">
+<li>3389无法连接的几种情况</li>
+</ol>
+<p>没开放3389端口<br>端口被修改<br>防护拦截<br>处于内网(需要进行端口转发)</p>
+<ol start="5">
+<li>MySQL两种提权方式</li>
+</ol>
+<p>(1) UDF提权：见问题2</p>
+<p>(2) MOF提权：<br>MOF提权是指利用MOF文件的漏洞，将用户权限提升到与Windows系统的最高权限（System）一致。</p>
+<p>原理：mof是Windows系统的一个“托管对象格式”文件(位置 <code>c:/windows/system32/wbem/mof</code> )，其作用是每隔5秒就会去监控进程创建和死亡，mof目录下有两个文件夹(good与bad)。Windows server 2003及以下系统每5秒会执行一次mof目录下的文件，执行成功会移动到good文件夹，执行失败移动到bad文件夹。<br>mof提权其实就是利用mysql写入mof文件，通过mof文件中的vbs脚本与system权限执行系统命令。</p>
+<p>修复：<br>解决系统继续运行恶意代码的问题：<br>net stop winmgmt<br>删除文件夹内容 <code>c:/windows/system32/wbem/repository</code><br>net start winmgmt</p>
+<ol start="6">
+<li>Mongodb, redis, websphere, rsync服务简介和默认运行端口</li>
+</ol>
+<p>Mongodb: MongoDB是一个NoSQL数据库，它使用JSON格式存储数据，具有灵活的架构和可扩展性。面向文档的数据库管理系统，适用于处理大量数据和高并发请求。<br>默认端口：27017</p>
+<p>Redis: Redis是一个内存数据库，它使用键值对存储数据，具有高性能和可靠性。可以用于缓存、消息队列、计数器等应用。<br>默认端口：6379</p>
+<p>WebSphere: WebSphere是一个Java应用程序服务器，它用于部署和运行Java应用程序。支持Web服务、企业级应用等。<br>默认端口：9080</p>
+<p>Rsync: Rsync是一个文件传输工具，它用于快速、安全地复制文件。远程文件同步工具，支持差异化同步和数据压缩。<br>默认端口：873</p>
+<ol start="7">
+<li>MySQL中like查询会非常缓慢，如何进行优化？</li>
+</ol>
+<p>(1) 使用前缀索引。例如，如果表中有一个字段name，可以创建一个前缀索引name(10)。<br>(2) 使用正则表达式。例如，查询 <code>name like &#39;%张%&#39;</code> 可以使用 <code>name regexp &#39;^.*张.*$&#39;</code> 来代替。<br>(3) 使用全文搜索。全文搜索使得MySQL可以在整个文本内容中查找匹配项。这样可以快速找到诸如同义词和名词变体等匹配项。</p>
+<ol start="8">
+<li>Oracle, mysql, sqlserver默认端口</li>
+</ol>
+<p>Oracle: 1521<br>MySQL: 3306<br>SQL Server: 1433</p>
+<ol start="9">
+<li>怎么通过数据库获取shell</li>
+</ol>
+<p>(1) MySQL Outfile导出webshell<br>(2) MySQL日志获取webshell<br>(3) mof提权<br>(4) udf提权</p>
+<ol start="10">
+<li>数据库的提权有接触过吗？</li>
+</ol>
+<p>见问题5</p>
+<ol start="11">
+<li>mssql的提权你能说一下吗？</li>
+</ol>
+<p>(1) 存储过程写webshell<br>利用条件：拥有DBA权限，知道网站的绝对路径。<br>利用存储过程写入一句话，注意路径。</p>
+<p>(2) 差异备份写webshell<br>利用条件：需要知道绝对路径，路径可写</p>
+<p>(3) 日志备份写webshell<br>利用条件：</p>
+<ul>
+<li>拥有DBA权限</li>
+<li>知道网站绝对路径，并且可写</li>
+<li>站库不分离</li>
+<li>数据库必须被备份过一次</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>重复性好，多次备份的成功率高</li>
+<li>相对于差异备份而言，shell的体积较小</li>
+</ul>
+<p>(4) sp_addextendedproc<br>sp_addextendedproc 可以利用于恢复组件</p>
+<p>(5) xp_cmdshell<br>xp_cmdshell 是 Sql Server 中的一个组件，我们可以用它来执行系统命令。</p>
+<p>利用条件</p>
+<ul>
+<li>拥有 DBA 权限, 在 2005 中 xp_cmdshell 的权限是 system，2008 中是 network。</li>
+<li>依赖 xplog70.dll</li>
+</ul>
+<p>(6) sp_oacreate(Ole Automation Procedures)<br>利用条件</p>
+<ul>
+<li>拥有DBA权限</li>
+<li>依赖 odsole70.dll</li>
+</ul>
+<p>(7) xp_rewrite<br>利用条件</p>
+<ul>
+<li>xpstar.dll</li>
+</ul>
+<p>修改注册表来劫持粘贴键(映像劫持)</p>
+<ol start="12">
+<li>怎么分辨数据库类型？</li>
+</ol>
+<p>前端与数据库类型：<br>asp: SQL Server, Access<br>.net: SQL Server<br>PHP: PostgreSQL, MySQL<br>Java: Oracle, MySQL</p>
+<p>常用web和数据库构造：<br>ASP+Access 或 SQL Server<br>PHP+MySQL</p>
+<p>各数据库标志性信息：<br>SQL Server: <code>select@@version --</code><br>Oracle: <code>select banner from v$version</code><br>MySQL: <code>select @@version, version() --</code>  <code>length(user)&gt;0</code><br>postgresql: <code>select version() --</code></p>
+<p>各数据库特有的函数：<br>SQL Server: <code>@@pack_received  @@rowcount</code><br>MySQL: <code>connection_id()  last_insert_id() row_count()</code><br>oracle: <code>bitand(1,1)</code><br>postgresql: <code>select extract(dow from now())</code></p>
+<p>对于字符串处理方式：<br>sql server ：<code>id=1 and &#39;a&#39;+&#39;b&#39;=&#39;ab&#39; --</code><br>mysql: <code>id=1 and &#39;a&#39;+&#39;b&#39;=&#39;ab&#39; ， &#39;ab&#39;=concat(&#39;a&#39;,&#39;b&#39;)</code><br>oracle: <code>id=1 and &#39;a&#39;+&#39;b&#39;=&#39;a&#39;||&#39;b&#39; ，&#39;ab&#39;=concat(&#39;a&#39;,&#39;b&#39;)</code><br>postgresql : <code>id=1 and &#39;a&#39;+&#39;b&#39;=&#39;a&#39;||&#39;b&#39; ,&#39;ab&#39;=concat(&#39;a&#39;,&#39;b&#39;)</code></p>
+<p>特殊符号，注释的判断<br>安顺序来<br>1,“null”和“%00”是Access支持的注释。<br>2，“#”是MySQL中的注释符，返回错误说明该注入点可能不是MySQL，另外也支持’– ‘,和 <code>/* */</code> 注释（注意mysql使用– 时需要后面添加空格）<br>3，“–”和 <code>/* */</code> 是Oracle，SQL server和MSSQL支持的注释符，如果正常，说明可能就是这仨了。<br>4，“;”是子句查询标识符，在Oracle中不支持多行查询，返回错误，很可能是Oracle数据库。<br>这样一串下来，基本就知道了数据库类型了</p>
+<p>对Mssql和access数据库的判断：<br><code>&#39; and exists (select count(*) from sysobjects) &gt;0</code> 正常，就是MSSQL数据库<br><code>&#39; and exists (select count(*) from msysobjects) &gt;0</code> 两条都不正常，是Access数据库</p>
+<p>通过上面各种判断方法，各种主流数据库基本就能判断出来了。</p>
+<ol start="13">
+<li>mysql数据库账号和密码存放在哪个库和表里面？</li>
+</ol>
+<p>mysql地user权限表里</p>
+<ol start="14">
+<li>分别写出MySQL及mssql数据库写入webshell的方法</li>
+</ol>
+<p>MySQL: 见问题9<br>MYSSQL: 问题11</p>
 <h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol>
 <li><p>Windows、Linux、数据库的加固降权思路。</p>
 </li>
@@ -609,12 +731,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/" rel="prev" title="面试准备之工具篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之工具篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="prev" title="面试准备之语言篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之语言篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
-      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="next" title="面试准备之自身方面篇">
+      面试准备之自身方面篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -761,13 +883,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">511k</span>
+    <span title="站点总字数">519k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:45</span>
+    <span title="站点阅读时长">7:52</span>
 </div>
 
 <!--
