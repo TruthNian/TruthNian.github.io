@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-09-01T06:01:34.872Z</updated>
+  <updated>2023-10-10T17:17:42.079Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>渗透测试之信息收集</title>
+    <link href="http://example.com/2023/10/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    <id>http://example.com/2023/10/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</id>
+    <published>2023-10-09T16:00:00.000Z</published>
+    <updated>2023-10-10T17:17:42.079Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>渗透之基础。</p><span id="more"></span><h1 id="公司级别（获取目标域名）"><a href="#公司级别（获取目标域名）" class="headerlink" title="公司级别（获取目标域名）"></a>公司级别（获取目标域名）</h1><ol><li><p>得到公司名，使用Google搜索得到官网，官网一般主域名。</p></li><li><p>使用企查查，天眼查，域名备案获取主域名。也可以得到相关身份信息（人名，手机号，邮箱）<br><a href="www.qcc.com">企查查</a>  <a href="https://www.tianyancha.com/">天眼查</a>  <a href="https://www.freebuf.com/sectool/284285.html">境外企业信息查询小工具</a></p></li><li><p>利用whois查询，whois反查获取域名相关信息<br><a href="http://whois.chinaz.com/">站长之家</a><br><a href="https://x.threatbook.cn/">微步</a></p></li><li><p>查看ip信息，有无CDN<br><a href="https://ping.chinaz.com/">站长工具</a><br><a href="https://www.ipshudi.com/">IP反查</a><br><a href="https://www.ssllabs.com/ssltest/analyze.html">SSL Lab查找真实IP</a></p></li></ol><h1 id="域名级别（获取目标子域名）"><a href="#域名级别（获取目标子域名）" class="headerlink" title="域名级别（获取目标子域名）"></a>域名级别（获取目标子域名）</h1><ol><li><p>子域名收集<br>Oneforall - 自动化，收集比较全，使用方便<br>fofa语法: <code>domain=&quot;anikore.jp&quot;</code></p></li><li><p>查旁站<br><a href="https://chapangzhan.com/">查旁站</a><br><a href="https://ipchaxun.com/">ip查询</a><br><a href="https://stool.chinaz.com/same?s=178.79.181.137">站长工具</a></p></li><li><p>Google语法<br>迅速查找信息泄露、管理后台暴露等漏洞语法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">Google hack实战-搜索敏感文件</span><br><span class="line">filetype:txt 登录</span><br><span class="line">filetype:xls 登录</span><br><span class="line">filetype:doc 登录</span><br><span class="line">site:xxx.com filetype:doc intext:pass</span><br><span class="line">site:xxx.com filetype:xsl intext:pass</span><br><span class="line">site:xxx.com filetype:conf</span><br><span class="line">site:xxx.com filetype:inc</span><br><span class="line">filetype:log iserror.log</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Google hack实战-搜索登陆后台</span><br><span class="line">intitle:后台管理</span><br><span class="line">intitle:login</span><br><span class="line">intitle: 后台管理 inurl:admin</span><br><span class="line">intitle:index of /</span><br><span class="line">site:example.com filetype:txt 登录</span><br><span class="line">site:example.com intitle: 后台管理</span><br><span class="line">site:example.com admin</span><br><span class="line">site:example.com login</span><br><span class="line">site:example.com system</span><br><span class="line">site:example.com 管理</span><br><span class="line">site:example.com 登录</span><br><span class="line">site:example.com 内部</span><br><span class="line">site:example.com 系统</span><br><span class="line">site:xxx.com admin</span><br><span class="line">site:xxx.com login</span><br><span class="line">site:xxx.com 管理</span><br><span class="line">site:example.com system</span><br><span class="line">site:example.com 登录</span><br><span class="line">site:example.com 内部</span><br><span class="line">site:example.com 系统</span><br><span class="line">site:example.com filetype:txt 登录</span><br><span class="line">site:example.com intitle:后台管理</span><br><span class="line">inurl:login|admin|manage|member|admin_login|login_admin|system|login|user|main|cms</span><br><span class="line">site:example.com intext:管理|后台|登录|用户名|密码|验证码|系统|账号|admin|login|sys|management|password|username</span><br><span class="line"></span><br><span class="line">Google hack实战-搜索中间件</span><br><span class="line">Weblogic</span><br><span class="line"></span><br><span class="line">inurl:/console/login/LoginForm.jsp site:domian</span><br><span class="line">inurl:/console/login/LoginForm.jsp intitle:Oracle WebLogin Server site:domain</span><br><span class="line">inurl:/console/login/ intitle:&quot;Oracle WebLogin Server 管理控制台&quot; site:domain</span><br><span class="line"></span><br><span class="line">Jboss</span><br><span class="line"></span><br><span class="line">inurl:/jmx-console/htmladaptor site:domain</span><br><span class="line"></span><br><span class="line">Websphere</span><br><span class="line"></span><br><span class="line">inutl:/ibm/console/login.jsp site:domain</span><br></pre></td></tr></table></figure></li></ol><h1 id="IP级别（获取目标IP）"><a href="#IP级别（获取目标IP）" class="headerlink" title="IP级别（获取目标IP）"></a>IP级别（获取目标IP）</h1><ol><li><p>域名转IP<br>可使用在线工具: <a href="https://www.useotools.com/zh/domain-into-ip/output">域名转IP</a></p></li><li><p>C段信息<br>使用cIPR</p></li><li><p>存活探测，端口扫描，常见服务爆破<br>使用fscan</p></li><li><p>查找资产<br>使用fofa，zoomeye等</p></li></ol><h1 id="web级别（获取目标web信息）"><a href="#web级别（获取目标web信息）" class="headerlink" title="web级别（获取目标web信息）"></a>web级别（获取目标web信息）</h1><ol><li><p>识别网站框架cms<br>用插件Wappalyzer</p></li><li><p>路径收集<br>使用dirbuster，御剑等</p></li><li><p>敏感信息收集<br>使用JSFinder</p></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;渗透之基础。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="渗透测试" scheme="http://example.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    <category term="信息收集" scheme="http://example.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    
+    
+    <category term="信息收集" scheme="http://example.com/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/"/>
+    
+    <category term="渗透测试" scheme="http://example.com/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>ShellCode获取</title>
@@ -437,29 +462,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;hvv开始了，没有参加，从旁看热热闹闹轰轰烈烈。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="日志" scheme="http://example.com/categories/%E6%97%A5%E5%BF%97/"/>
-    
-    
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-    <category term="日志" scheme="http://example.com/tags/%E6%97%A5%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>奈落</title>
-    <link href="http://example.com/2023/08/07/Diary_20230807/"/>
-    <id>http://example.com/2023/08/07/Diary_20230807/</id>
-    <published>2023-08-06T16:00:00.000Z</published>
-    <updated>2023-08-07T14:56:56.133Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有时人真的脆弱。</p><span id="more"></span><h1 id="人"><a href="#人" class="headerlink" title="人"></a>人</h1><p>有时人脆弱有时人坚强，契机往往无心。</p><h1 id="我"><a href="#我" class="headerlink" title="我"></a>我</h1><p>今天有几个人问我找工作了吗，我说没有。<br>一开始想的是在家短暂逗留便回成都找工作，实际我懒惰地什么也没做。<br>我必须诚实地面对自己，别让欺骗自己的谎言沉醉，也别披上光鲜亮丽的外皮造成错觉。</p><h1 id="期限"><a href="#期限" class="headerlink" title="期限"></a>期限</h1><p>我得给自己一个期限，不能无休止地这么下去。想了想，最迟12号之前，我会将大部分时间用于学习，准备面试。完成后，去成都找工作。</p><p>突然想起来，之前有人问我：你不是应该去体制内工作的吗？<br>不知道为何这么说，可能是我进体制比较容易吧。<br>然而我并没有那种意愿，我可能懒惰，也不意味着我想去进体制做那种混时间的事务。<br>有得有失，懒惰却又不愿浪费时间。</p><p>真是个别扭的人啊。</p>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;有时人真的脆弱。&lt;/p&gt;</summary>
     
     
     

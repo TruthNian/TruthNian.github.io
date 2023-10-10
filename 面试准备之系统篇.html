@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/system_1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:55:51.360Z">
+<meta property="article:modified_time" content="2023-10-10T07:57:45.581Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -131,17 +131,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">56</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">64</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">66</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">173</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">174</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -287,6 +287,122 @@
 <li>如果对方开启了ASLR和DEP，要如何绕过？</li>
 </ol>
 <p>先泄漏出libc.so某些函数在内存中的地址，然后再利用泄漏出的函数地址根据偏移量计算出system()函数和 <code>/bin/sh</code> 字符串在内存中的地址，然后再执行我们的ret2libc的shellcode。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23487280">一步一步学ROP之linux_x86篇</a></p>
+<ol start="12">
+<li>Linux命令</li>
+</ol>
+<p>(1) cat - 用于连接文件并打印到标准输出设备上。<br>实例：<br><code>cat -n textfile1 &gt; textfile2</code>  把textfile1的文档内容加上行号后输入textfile2这个文档里<br><code>cat /dev/null &gt; /etc/test.txt</code>  清空 <code>/etc/test.txt</code> 文档内容<br><code>dev/null</code> ：在类 Unix 系统中， <code>/dev/null</code> 称空设备，是一个特殊的设备文件，它丢弃一切写入其中的数据（但报告写入操作成功），读取它则会立即得到一个 EOF。</p>
+<p>(2) chmod - 控制用户对文件的权限的命令<br>Linux&#x2F;Unix 的文件调用权限分为三级 : 文件所有者（Owner）、用户组（Group）、其它用户（Other Users）。<br>只有文件所有者和超级用户可以修改文件或目录的权限。可以使用绝对模式（八进制数字模式），符号模式指定文件的权限。<br>u&#x3D;user(文件所有者), g&#x3D;group(文件所有者所在组), o&#x3D;others(所有其它用户), a&#x3D;all(所有用户，相当于ugo)<br><code>+</code> 为指定用户类型增加权限，<code>-</code> 去除指定用户类型的权限，<code>=</code> 设置指定用户权限的设置，也即把用户类型的所有权限重置<br>4&#x3D;r(读), 2&#x3D;w(写), 1&#x3D;x(执行)<br>实例：<br><code>chmod ugo+r file1.txt</code> 将文件file1.txt设为所有人皆可读取<br><code>chmod a+r file1.txt</code> 将文件file1.txt设为所有人皆可读取<br><code>chmod u+x ex1.py</code> 将文件ex1.py文件拥有者增加可执行权限<br><code>chmod 777 file</code> 将文件file设置为所有人皆可读可写可执行</p>
+<p>(3) chown - 用于设置文件所有者和文件关联组的命令<br>chown 需要超级用户 root 的权限才能执行此命令。<br>实例：<br><code>chown root /var/run/httpd.pid</code>  把 <code>/var/run/httpd.pid</code> 的所有者设置root<br><code>chown runoob:runoobgroup file1.txt</code> 将文件file1.txt的拥有者设置为runoob，群体的使用者runoobgroup<br><code>chown runoob:runoobgroup *</code> 将当前前目录下的所有文件和子目录的拥有者皆设为runoob，群体使用者runoobgroup<br><code>chown :512 /home/runoob</code> 把&#x2F;home&#x2F;runoob的关联组设置为512（关联组id），不改变所有者</p>
+<p>(4) chgrp - 用于变更文件或目录的所属群组<br>与 chown 命令不同，chgrp 允许普通用户改变文件所属的组，只要该用户是该组的一员。<br>实例：<br><code>chgrp -v bin log2012.log</code> log2012.log的所属组从root更改为bin<br><code>chgrp --reference=log2012.log log2013.log</code> 根据指定文件改变文件的群组属性。这里将log2013.log文件的群组属性改为和log2012.log相同</p>
+<p>(5) cmp - 用于比较两个文件是否有差异<br>当相互比较的两个文件完全一样时，则该指令不会显示任何信息。若发现有差异，预设会标示出第一个不同之处的字符和列数编号。<br>若不指定任何文件名称或是所给予的名称为“-”，则cmp指令会从标准输入设备读取数据。<br>实例：<br><code>cmp prog.o.bak prag.o</code><br>这比较prog.o.bak和prog.o。如果文件相同，则不显示消息。如果文件不同，则显示第一个不同的位置，如：<br><code>prog.o.bak prog.o differ: char 4, line 1</code></p>
+<p>(6) diff - 用于比较文件的差异。<br>diff以逐行的方式，比较文本文件的异同处。如果指定要比较目录，则diff会比较目录中相同文件名的文件，但不会比较其中子目录。<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">diff log2014.log log2013.log  // 比较两个文件</span><br><span class="line">3c3</span><br><span class="line">&lt; 2014-03</span><br><span class="line">---</span><br><span class="line">&gt; 2013-03</span><br><span class="line">8c8</span><br><span class="line">&lt; 2013-07</span><br><span class="line">---</span><br><span class="line">&gt; 2013-08</span><br><span class="line">11,12d10</span><br><span class="line">&lt; 2013-11</span><br><span class="line">&lt; 2013-12</span><br><span class="line"></span><br><span class="line">上面的&quot;3c3&quot;和&quot;8c8&quot;表示log2014.log和log20143log文件在3行和第8行内容有所不同；</span><br><span class="line">&quot;11,12d10&quot;表示第一个文件比第二个文件多了第11和12行。</span><br><span class="line">&quot;&lt;&quot;表示后面文件比前面文件少了1行内容，&quot;&gt;&quot;表示后面文件比前面文件多了1行内容</span><br></pre></td></tr></table></figure>
+
+<p>(7) file - 用于辨识文件类型<br>通过file指令，我们得以辨识该文件的类型<br>实例：<br>显示文件类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# file install.log</span><br><span class="line">install.log: UTF-8 Unicode text</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file -b install.log      &lt;== 不显示文件名称</span><br><span class="line">UTF-8 Unicode text</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file -i install.log      &lt;== 显示MIME类别。</span><br><span class="line">install.log: text/plain; charset=utf-8</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file -b -i install.log</span><br><span class="line">text/plain; charset=utf-8</span><br></pre></td></tr></table></figure>
+
+<p>显示符号链接文件类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ls -l /var/mail</span><br><span class="line">lrwxrwxrwx 1 root root 10 08-13 00:11 /var/mail -&gt; spool/mail</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file /var/mail</span><br><span class="line">/var/mail: symbolic link to `spool/mail&#x27;</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file -L /var/mail</span><br><span class="line">/var/mail: directory</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file /var/spool/mail</span><br><span class="line">/var/spool/mail: directory</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# file -L /var/spool/mail</span><br><span class="line">/var/spool/mail: directory</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>(8) find - 用于在指定目录下查找文件和目录<br>它可以使用不同的选项来过滤和限制查找结果<br>实例：<br><code>find . -name file.txt</code> 查找当前目录下名为file.txt的文件<br><code>find . -name &quot;*.c&quot;</code> 将当前目录及其子目录下所有文件后缀为 <code>.c</code> 的文件列出来<br><code>find . -type f</code> 将当前目录及其子目录的所有文件列出<br><code>find /home -size +1M</code> 查找&#x2F;home目录下大于1MB的文件<br><code>find /var/log mtime +7</code> 查找&#x2F;var&#x2F;log目录下在7天前修改过的文件<br><code>find . -ctime 20</code> 将当前目录及其子目录下所有最近20天前更新过的文件列出，不多不少正好20天前的<br><code>find /var/log -type f -mtime +7 -ok rm &#123;&#125; \;</code> 查找&#x2F;var&#x2F;log目录中更改时间在7日以前的普通文件，且在删除之前询问它们<br><code>find . -type f -perm 644 -exec ls -l &#123;&#125; \;</code> 查找当前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件<br><code>find / -type f -size 0 -exec ls -l &#123;&#125; \;</code> 查找系统中所有文件长度为 0 的普通文件，并列出它们的完整路径</p>
+<p>(9) git - 是文字模式下的文件管理员<br>git是用来管理文件的程序，它十分类似DOS下的Norton Commander，具有互动式操作界面。它的操作方式和Norton Commander几乎一样。<br>F1 ：执行info指令，查询指令相关信息，会要求您输入欲查询的名称。<br>F2 ：执行cat指令，列出文件内容。<br>F3 ：执行gitview指令，观看文件内容。<br>F4 ：执行vi指令，编辑文件内容。<br>F5 ：执行cp指令，复制文件或目录，会要求您输入目标文件或目录。<br>F6 ：执行mv指令，移动文件或目录，或是更改其名称，会要求您输入目标文件或目录。<br>F7 ：执行mkdir指令，建立目录。<br>F8 ：执行rm指令，删除文件或目录。<br>F9 ：执行make指令，批处理执行指令或编译程序时，会要求您输入相关命令。<br>F10 ：离开git文件管理员。</p>
+<p>(10) cut - 用于显示每行从开头算起num1到num2的文字<br>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cut  [-bn] [file]</span><br><span class="line">cut [-c] [file]</span><br><span class="line">cut [-df] [file]</span><br></pre></td></tr></table></figure>
+<p>使用说明：<br>cut命令从文件的每一行剪切字节、字符和字段并将这些字节、字符和字段写至标准输出。<br>如果不指定File参数，cut命令将读取标准输入。必须指定 -b、-c或-f标志之一。<br>参数：<br>-b ：以字节为单位进行分割。这些字节位置将忽略多字节字符边界，除非也指定了 -n 标志。<br>-c ：以字符为单位进行分割。<br>-d ：自定义分隔符，默认为制表符。<br>-f ：与-d一起使用，指定显示哪个区域。<br>-n ：取消分割多字节字符。仅和 -b 标志一起使用。如果字符的最后一个字节落在由 -b 标志的 List 参数指示的<br>范围之内，该字符将被写出；否则，该字符将被排除</p>
+<p>(11) ln - 功能是为某一个文件在另外一个位置建立一个同步的链接<br>Linux文件系统中，有所谓的链接(link)，我们可以将其视为档案的别名，而链接又可分为两种 : 硬链接(hard link)与软链接(symbolic link)，硬链接的意思是一个档案可以有多个名称，而软链接的方式则是产生一个特殊的档案，该档案的内容是指向另一个档案的位置。硬链接是存在同一个文件系统中，而软链接却可以跨越不同的文件系统。<br>不论是硬链接或软链接都不会将原本的档案复制一份，只会占用非常少量的磁碟空间。<br>实例：<br><code>ln -s log2013.log link2013</code> 给文件创建软链接，为log2013.log文件创建软链接link2013，如果log2013.log丢失，link2013将失效<br><code>ln log2013.log ln2013</code> 给文件创建硬链接，为log2013.log创建硬链接ln2013，log2013.log与ln2013的各项属性相同</p>
+<p>(12) more - 类似cat，不过会一页一页的形式显示，更方便使用者逐页阅读<br>而最基本的指令就是按空白键（space）就往下一页显示，按 b 键就会往回（back）一页显示，而且还有搜寻字串的功能（与 vi 相似），使用中的说明文件，请按 h<br>实例：<br><code>more -s testfile</code> 逐页显示testfile文档内容，如有连续两行以上空白则以一行空白显示<br><code>more +20 testfile</code> 从第20行开始显示testfile的文档内容<br>常用操作命令：<br>Enter 向下n行，需要定义。默认为1行<br>Ctrl+F 向下滚动一屏<br>空格键 向下滚动一屏<br>Ctrl+B 返回上一屏<br>&#x3D; 输出当前行的行号<br>：f 输出文件名和当前行的行号<br>V 调用vi编辑器<br>!命令 调用Shell，并执行命令<br>q 退出more</p>
+<p>(13) less - less与more相似，less可以随意浏览文件，支持翻页和搜索，支持向上翻页和向下翻页。<br>实例：<br><code>less log2013.log</code> 查看文件<br><code>ps -ef |less</code> ps查看进程信息并通过less分页表示<br><code>history |less</code> 查看历史记录并通过less分页表示<br><code>less log2013.log log2014.log</code> 浏览多个文件<br>说明：<br>输入 ：n后，切换到 log2014.log<br>输入 ：p 后，切换到log2013.log<br>附加备注：<br>1、全屏导航<br>ctrl + F - 向前移动一屏<br>ctrl + B - 向后移动一屏<br>ctrl + D - 向前移动半屏<br>ctrl + U - 向后移动半屏<br>2、单行导航<br>j - 下一行<br>k - 上一行<br>3、其它导航<br>G - 移动到最后一行<br>g - 移动到第一行<br>q &#x2F; ZZ - 退出 less 命令<br>4、其它有用的命令<br>v - 使用配置的编辑器编辑当前文件<br>h - 显示 less 的帮助文档<br>&amp;pattern - 仅显示匹配模式的行，而不是整个文件<br>5、标记导航<br>当使用 less 查看大文件时，可以在任何一个位置作标记，可以通过命令导航到标有特定标记的文本位置：<br>ma - 使用 a 标记文本的当前位置<br>‘a - 导航到标记 a 处</p>
+<p>(14) lsattr - 用于显示文件属性<br>用chatter执行改变文件或目录的属性，可执行lsattr指令查询其属性<br>实例：<br><code>lsattr /etc/resolv.conf</code> 使用lsattr命令来显示文件属性<br>输出结果为: <code>----i-------- /etc/resolv.conf</code></p>
+<p>(15) mv - 用来为文件或目录改名，或将文件或目录移入其它位置<br>实例：<br><code>mv aaa bbb</code> 将文件aaa改名为bbb<br><code>mv info/ logs</code> 将info目录放入logs目录中。注意，如果logs目录不存在，则该命令将info改名为logs<br><code>mv /usr/runoob/*  .</code> 将&#x2F;usr&#x2F;runoob下的所有文件和目录移到当前目录下<br><code>mv source_file dest_directory</code> 将文件source_file移动到目标目录dest_directory中</p>
+<p>(16) paste - 用于合并文件的列<br>paste命令会把每个文件以列对列的方式，一列列地加以合并。<br>实例：<br><code>paste file testfile testfile1</code> 使用paste指令将文件file, testfile, testfile1进行合并</p>
+<p>(17) patch - 用于修补文件<br>patch指令让用户利用设置修补文件的方式，修改，更新原始文件。倘若一次仅修改一个文件，可直接在指令列中下达指令依序执行。如果配合修补文件的方式则能一次修补大批文件，这也是Linux系统核心的升级方法之一。<br>实例：<br><code>patch -p0 testfile1 testfile.patch</code> 使用patch指令将文件”testfile1”升级，其升级补丁文件为”testfile.patch”</p>
+<p>(18) rm - 用于删除一个文件或目录<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rm test.txt</span><br><span class="line">rm：是否删除 一般文件 &quot;test.txt&quot;? y</span><br><span class="line">rm  homework  </span><br><span class="line">rm: 无法删除目录&quot;homework&quot;: 是一个目录</span><br><span class="line">rm  -r  homework  </span><br><span class="line">rm：是否删除 目录 &quot;homework&quot;? y</span><br><span class="line"></span><br><span class="line">rm -r *  // 删除当前目录下的所有文件及目录</span><br><span class="line">rm -rf test/  // 删除目录 test，不管该目录下是否有子目录或文件，都直接删除</span><br></pre></td></tr></table></figure>
+
+<p>(19) which - 用于查找文件<br>which指令会在环境变量$PATH设置的目录里查找符合条件的文件<br>实例：<br><code>which bash</code>  使用指令”which”查看指令”bash”的绝对路径</p>
+<p>(20) cp - 用于复制文件或目录<br>语法：<br><code>cp file.txt /path/to/destination/</code>  将文件file.txt复制到目录 &#x2F;path&#x2F;to&#x2F;destination&#x2F; 中<br><code>cp -r test/ newtest</code>  使用指令cp将当前目录test下所有文件复制到新目录newtest下<br>注意：用户使用该指令复制目录时，必须使用参数 -r 或者 -R<br><code>cp -i file.txt /path/to/destination/</code>  复制文件，并在目标文件已存在时确认</p>
+<p>(21) whereis - 用于查找文件<br>该指令会在特定目录中查找符合条件的文件。这些文件应属于原始代码、二进制文件，或是帮助文件。<br>该指令只能用于查找二进制文件、源代码文件和man手册页，一般文件的定位需使用locate命令。<br>实例：<br><code>whereis bash</code> 使用指令“whereis”查看“bash”的位置<br>上面指令执行后输出以下信息：<br><code>bash:/bin/bash/etc/bash.bashrc/usr/share/man/man1/bash.1.gz</code></p>
+<p>(22) awk - 是一种处理文件的语言，是一个强大的文本分析工具<br><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-awk.html">Linux awk 命令</a></p>
+<p>(23) read - 用于从标准输入读取数值<br>read 内部命令被用来从标准输入读取单行数据。这个命令可以用来读取键盘输入，当使用重定向的时候，可以读取文件中的一行数据。<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">#这里默认会换行  </span><br><span class="line">echo &quot;输入网站名: &quot;  </span><br><span class="line">#读取从键盘的输入  </span><br><span class="line">read website  </span><br><span class="line">echo &quot;你输入的网站名是 $website&quot;  </span><br><span class="line">exit 0  #退出</span><br></pre></td></tr></table></figure>
+
+<p>测试结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入网站名: </span><br><span class="line">www.x.com</span><br><span class="line">你输入的网站名是 www.x.com</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-read.html">Linux read 命令</a></p>
+<p>(24) grep - 用于查找文件里符合条件的字符串或正则表达式<br>grep指令用于查找内容包含指定的范本样式的文件，如果发现某文件的内容符合所指定的范本样式，预设grep指令会把含有范本样式的那一列显示出来。若不指定任何文件名称，或是所给予的文件名为 <code>-</code> ，则grep指令会从标准输入设备读取数据。<br>实例：<br><code>grep hello file.txt</code> 在文件file.txt中查找字符串“hello”，并打印匹配的行<br><code>grep -r -n pattern dir/</code> 在文件夹dir中递归查找所有文件中匹配正则表达式“pattern”的行，并打印匹配行所在的文件名和行号<br><code>echo &quot;hello world&quot; | grep -c world</code> 在标准输入中查找字符串“hello world”，并只打印匹配的行数<br><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-grep.html">Linux grep 命令</a></p>
+<p>(25) sort - 用于将文本文件内容加以排序<br>sort可针对文本文件的内容，以行为单位来排序<br>实例：<br><code>sort testfile</code> 使用sort命令以默认的方式对文件的行进行排序</p>
+<p>(26) tr - 用于转换或删除文件中的字符<br>tr命令从标准输入设备读取数据，经过字符串转译后，将结果输出到标准输出设备<br>实例：<br><code>cat testfile |tr a-z A-Z</code> 将文件testfile中的小写字母全部转化为大写字母</p>
+<p>(27) let - 是BASH中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上$来表示变量。如果表达式中包含了空格或其它特殊字符，则必须引起来。<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">let a=5+4</span><br><span class="line">let b=9-3 </span><br><span class="line">echo $a $b</span><br></pre></td></tr></table></figure>
+
+<p>(28) cd - 用于改变当前工作目录的命令，切换到指定的路径<br>若目录名称省略，则变换至使用者的home目录(也就是刚login时所在的目录)<br>另外， <code>~</code> 也表示home目录的意思， <code>.</code> 则是表示目前所在的目录， <code>..</code> 则表示目前目录位置的上一目录<br>实例：<br><code>cd /usr/bin</code> 切换到 &#x2F;usr&#x2F;bin&#x2F;目录<br><code>cd ..</code> 切换到上级目录<br><code>cd ~</code> 切换到用户主目录<br><code>cd -</code> 切换到上次访问的目录</p>
+<p>(29) df - 用于显示目前在Linux系统上的文件系统磁盘使用情况统计<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df  //显示文件系统的磁盘使用情况统计</span><br><span class="line">Filesystem     1K-blocks    Used     Available Use% Mounted on </span><br><span class="line">/dev/sda6       29640780 4320704     23814388  16%     / </span><br><span class="line">udev             1536756       4     1536752    1%     /dev </span><br><span class="line">tmpfs             617620     888     616732     1%     /run </span><br><span class="line">none                5120       0     5120       0%     /run/lock </span><br><span class="line">none             1544044     156     1543888    1%     /run/shm </span><br></pre></td></tr></table></figure>
+<p>第一列指定文件系统的名称，第二列指定一个特定的文件系统1K-块1K是1024字节为单位的总内存。用和可用列正在使用中，分别指定的内存量。<br>使用列指定使用的内存的百分比，而最后一栏”安装在”指定的文件系统的挂载点。<br><code>df --total</code> 显示所有的信息，输出的末尾，包含一个额外的行，显示总的每一列<br><code>df -h</code> 通过-h选项可以产生可读的格式df命令的输出</p>
+<p>(30) du - 用于显示目录或文件的大小<br>du会显示指定的目录或文件所占用的磁盘空间<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">du  显示目录或文件所占空间</span><br><span class="line">608     ./test6</span><br><span class="line">308     ./test4</span><br><span class="line">4       ./scf/lib</span><br><span class="line">4       ./scf/service/deploy/product</span><br><span class="line">4       ./scf/service/deploy/info</span><br><span class="line">12      ./scf/service/deploy</span><br><span class="line">16      ./scf/service</span><br><span class="line">4       ./scf/doc</span><br><span class="line">4       ./scf/bin</span><br><span class="line">32      ./scf</span><br><span class="line">8       ./test3</span><br><span class="line">1288    .</span><br></pre></td></tr></table></figure>
+<p><code>du -h test</code> 方便阅读的格式显示test目录所占空间情况</p>
+<p>(31) mkdir - 用于创建目录<br>实例：<br><code>mkdir test</code> 在工作目录下，创建一个名为test的目录</p>
+<p>(32) pwd - 用于显示工作目录<br>执行pwd指令可立刻得知目前所在的工作目录的绝对名称<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwd  // 查看当前所在目录</span><br><span class="line">/root/test           #输出结果</span><br></pre></td></tr></table></figure>
+
+<p>(33) mount - 是经常会使用到的命令，它用于挂载Linux系统外的文件<br>实例：<br><code>mount /dev/hda1 /mnt</code> 将&#x2F;dev&#x2F;hda1挂在&#x2F;mnt之下</p>
+<p>(34) rmdir - 删除空的目录<br>实例：<br><code>rmdir AAA</code> 将工作目录下，名为AAA的子目录删除</p>
+<p>(35) ls - 用于显示指定工作目录下的内容(列出目前工作目录所含的文件及子目录)<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls -l    # 以长格式显示当前目录中的文件和目录</span><br><span class="line">ls -a    # 显示当前目录中的所有文件和目录，包括隐藏文件</span><br><span class="line">ls -lh   # 以人类可读的方式显示当前目录中的文件和目录大小</span><br><span class="line">ls -t    # 按照修改时间排序显示当前目录中的文件和目录</span><br><span class="line">ls -l /etc/passwd  # 显示/etc/passwd文件的详细信息</span><br><span class="line">ls /     # 列出根目录(\)下的所有目录</span><br></pre></td></tr></table></figure>
+
+<p>(36) telnet - 用于远程输入<br>执行telnet指令开启终端机阶段作业，并登入远端主机</p>
+<p>(37) nc - 用于设置路由器<br>执行本指令可设置路由器的相关参数</p>
+<p>(38) ifconfig - 用于显示或设置网络设备<br>ifconfig可设置网络设备的状态，或是显示目前的设置</p>
+<p>(39) netstat - 用于显示网络状态<br>利用 netstat 指令可让你得知整个 Linux 系统的网络情况<br>实例：<br><code>netstat -a</code> 显示详细的网络状况<br><code>netstat -i</code> 显示网卡列表<br><code>netstat -s</code> 显示网络统计信息<br><code>netstat -l</code> 显示监听的套接口</p>
+<p>(40) ping - 用于检测与另一个主机之间的网络连接<br>执行 ping 指令会使用 ICMP（Internet Control Message Protocol） 传输协议，发出要求回应的信息，若远端主机的网络功能没有问题，就会回应该信息，因而得知该主机运作正常<br>实例：<br><code>ping www.x.com //ping主机</code></p>
+<p>(41) adduser - 用于新增使用者账号或更新预设的使用者资料<br>adduser与useradd为同一指令（经由符号连接symbolic link）<br>使用权限：系统管理员<br>adduser 是增加使用者。相对的，也有删除使用者的指令 userdel，语法为 <code>userdel [login ID]</code><br>实例：<br><code>adduser kk</code> 添加一个一般用户<br><code>adduser -g root kk</code> 为添加的用户指定相应的用户组<br><code>adduser -r kk</code> 创建一个系统用户<br><code>adduser -d /home/myf kk</code> 为新添加的用户指定&#x2F;home目录</p>
+<p>(42) useradd - 用于建立用户账号<br>useradd 可用来建立用户帐号。帐号建好之后，再用 passwd 设定帐号的密码。而可用 userdel 删除帐号。使用 useradd 指令所建立的帐号，实际上是保存在 &#x2F;etc&#x2F;passwd 文本文件中<br>实例：<br><code>useradd tt</code> 添加一般用户<br><code>useradd -g root tt</code> 为添加的用户指定相应的用户组<br>和adduser命令相同</p>
+<p>(43) date - 用来显示或设定系统的日期和时间<br>实例：<br><code>date</code> 显示当前时间<br><code>date + &quot;%Y-%m-%d&quot;</code> 格式化输出<br><code>date -s</code> 设置当前时间，只有root权限才能设置，其它只能查看</p>
+<p>(44) exit - 用于退出目前的shell<br>实例：<br><code>exit</code> 退出终端</p>
+<p>(45) finger - 可让使用者查询其它使用者的资料<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">finger -l  //列出当前登录用户的相关信息</span><br><span class="line">Login: root Name: root</span><br><span class="line">Directory: /root Shell: /bin/bash</span><br><span class="line">On since Fri Apr 9 20:17 (CST) on :0 (messages off)</span><br><span class="line">On since Fri Apr 9 20:17 (CST) on pts/1 32 days 22 hours idle</span><br><span class="line">On since Fri Apr 9 20:17 (CST) on pts/3 4 hours 5 minutes idle</span><br><span class="line">(messages off)</span><br><span class="line">On since Wed May 12 18:08 (CST) on pts/4 from 192.168.1.10</span><br><span class="line">On since Wed May 12 18:35 (CST) on pts/5 from 192.168.1.10</span><br><span class="line">7 minutes 54 seconds idle</span><br><span class="line">On since Wed May 12 14:37 (CST) on pts/2 from 192.168.1.10</span><br><span class="line">3 hours 14 minutes idle</span><br><span class="line">On since Wed May 12 14:53 (CST) on pts/7 34 minutes 25 seconds idle</span><br><span class="line">(messages off)</span><br><span class="line">On since Wed May 12 16:53 (CST) on pts/8 from 192.168.1.10</span><br><span class="line">30 minutes 18 seconds idle</span><br><span class="line">Mail last read Mon Mar 31 04:02 2008 (CST)</span><br><span class="line">No Plan.</span><br></pre></td></tr></table></figure>
+<p><code>finger -m hnlinux</code> 显示指定用户信息<br><code>finger -m root@192.168.1.1</code> 显示远程用户信息</p>
+<p>(46) sleep - 用来将目前动作延迟一段时间<br>使用权限：所有使用者<br>实例：<br><code>sleep 5m</code> 休眠5m<br><code>date;sleep 1m;date</code> 显示目前时间后延迟1分钟，之后再次显示时间</p>
+<p>(47) kill - 用于删除执行中的程序或工作<br>kill 可将指定的信息送至程序。预设的信息为 SIGTERM(15)，可将指定程序终止。若仍无法终止该程序，可使用 SIGKILL(9) 信息尝试强制删除程序。程序或工作的编号可利用 ps 指令或 jobs 指令查看。<br>实例：<br><code>kill 12345</code> 杀死进程<br><code>kill -KILL 123456</code> 强制杀死进程<br><code>kill -9 123456</code> 彻底杀死进程<br><code>kill -u hnlinux</code> 杀死指定用户所有进程</p>
+<p>(48) last - 用于显示用户最近的登录信息<br>单独执行last命令，它会读取位于&#x2F;var&#x2F;log&#x2F;目录下，名称为wtmp的文件，并把该文件记录登录的用户名，全部显示出来<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">last -R -2  #显示两行，并省略主机名hostname的列</span><br><span class="line">root     pts/0        Thu Apr 28 18:06   still logged in</span><br><span class="line">root     pts/0        Tue Apr 26 09:06 - 19:36  (10:30)</span><br><span class="line"></span><br><span class="line">wtmp begins Sun Apr  3 13:11:25 2022</span><br></pre></td></tr></table></figure>
+<p><code>last</code> 一般显示方法</p>
+<p>(49) shutdown - 用来进行关机程序<br>在关机以前传送讯息给所有使用者正在执行的程序，shutdown也可以用来重开机<br>使用权限：系统管理者<br>实例：<br><code>shutdown -h now</code> 立即关机<br><code>shutdown -h 10</code> 10分钟后关机<br><code>shutdown -r now</code> 重新启动计算机</p>
+<p>(50) sudo - 以系统管理者的身份执行命令<br>使用权限：在 &#x2F;etc&#x2F;sudoers 中有出现的使用者<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ls</span><br><span class="line">[sudo] password for hnlinux: </span><br><span class="line">hnlinux is not in the sudoers file. This incident will be reported.</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-sudo.html">Linux sudo命令</a></p>
+<p>(51) ps - 用于显示当前进程状态，类似于Windows的任务管理器<br>实例：<br><code>ps -ef | grep 进程关键字</code> 查找指定进程格式<br><code>ps -A</code> 显示进程信息<br><code>ps -u root</code> 显示root进程用户信息</p>
+<p>(52) wc - 统计指定的文件中字节数、字数、行数，并将统计结果输出<br>实例：<br><code>wc text.txt</code> 查找文件的行数 单词数 字节数 文件名。 结果: <code>7     8     70     test.txt</code><br><code>cat text.txt | wc -l</code> 统计输出结果的行数</p>
+<p>(53) locate - 通过搜寻系统内建文档数据库达到快速找到档案<br>默认情况下 locate 命令在搜寻数据库时比由整个由硬盘资料来搜寻资料来得快，但较差劲的是 locate 所找到的档案若是最近才建立或 刚更名的，可能会找不到，在内定值中，updatedb 每天会跑一次，可以由修改 crontab 来更新设定值 (etc&#x2F;crontab)。<br>locate 与 find 命令相似，可以使用如 *、? 等进行正则匹配查找<br>实例：<br><code>locate pwd</code> 查找和pwd相关的所有文件(文件名中包含pwd)<br><code>locate /etc/sh</code> 搜索etc目录下所有以sh开头的文件<br><code>locate -r &#39;^/var.*reason$&#39;  //(其中.表示一个字符，*表示任务多个；.*表示任意多个字符)</code> 查找&#x2F;var目录下，以reason结尾的文件</p>
+<p>(54) tail - 用于显示指定文件末尾内容，不指定文件时，作为输入信息进行处理。常用查看日志文件。<br>实例：<br><code>tail notes.log</code> 显示notes.log文件的最后10行<br><code>tail -n 100 /etc/cron</code> 显示最后100行数据</p>
+<p>(55) uname - 用于显示操作系统信息，例如内核版本、主机名、处理器类型等<br>uname可显示电脑及操作系统的相关信息<br>实例：<br><code>uname -a</code> 显示系统信息<br><code>uname -m</code> 显示计算机类型<br><code>uname -n</code> 显示计算机名<br><code>uname -s</code> 显示操作系统名称<br><code>uname -v</code> 显示系统版本与时间</p>
+<p>(56) who - 用于显示系统中有哪些使用者正在上面<br>显示的资料包含了使用者id、使用的终端机、从哪边连上来的、上线时间、呆滞时间、CPU使用量、动作等等<br>使用权限：所有使用者都可使用<br>实例：<br><code>who</code> 显示当前登录系统的用户<br><code>who -l -H</code> 显示用户登录来源<br><code>who -m -H</code> 只显示当前用户</p>
+<p>(57) whoami - 用于显示自身用户名称<br>显示自身的用户名称，相当于执行 <code>id -un</code> 指令<br>实例：<br><code>whoami</code> 显示用户名</p>
+<p>(58) whois - 用于查找并显示用户信息<br>whois指令会去查找并显示指定帐号的用户相关信息，因为它是到Network Solutions的WHOIS数据库去查找，所以该帐号名称必须在上面注册方能寻获，且名称没有大小写的差别<br>实例：<br><code>whois root</code> 查找root用户信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">whois Lx138.COm   //查找域名信息</span><br><span class="line"></span><br><span class="line">The Registry database contains ONLY .COM, .NET, .EDU domains and</span><br><span class="line">Registrars.</span><br><span class="line">Domain Name ..................... Lx138.COm</span><br><span class="line">Name Server ..................... dns15.hichina.com</span><br><span class="line">                 dns16.hichina.com</span><br><span class="line">Registrant ID ................... hc937242545-cn</span><br><span class="line"></span><br><span class="line">...省略部分内容</span><br></pre></td></tr></table></figure>
+<p><code>whois -p 80 Lx138.com</code> 指定端口查询</p>
+<p>(59) su - 用于变更为其它使用者的身份，除root外，需要键入该使用者的密码<br>使用权限：所有使用者。<br>实例：<br><code>su root</code> 变更账号为root<br><code>su -c ls root</code>   变更帐号为 root 并在执行 ls 指令后退出变回原使用者</p>
+<p>(60) id - 用于显示用户的id，以及所属群组的id<br>id 会显示用户以及所属群组的实际与有效 ID，若两个 ID 相同，则仅显示实际 ID，若仅指定用户名称，则显示目前用户的 ID。<br>该命令会显示用户的 UID（User ID）、GID（Group ID）以及附属于用户的所有组 ID。<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id   //显示当前用户id</span><br><span class="line">uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel) context=root:system_r:unconfined_t</span><br></pre></td></tr></table></figure>
+<p><code>id -g</code> 显示用户群组的id</p>
+<p>(61) free - 用于显示内存状态<br>free指令会显示内存的使用情况，包括实体内存，虚拟的交换文件内存，共享内存区段，以及系统核心使用的缓冲区等。<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">free  //显示内存使用信息</span><br><span class="line">total used free shared buffers cached</span><br><span class="line">Mem: 254772 184568 70204 0 5692 89892</span><br><span class="line">-/+ buffers/cache: 88984 165788</span><br><span class="line">Swap: 524280 65116 459164</span><br></pre></td></tr></table></figure>
+
+<p>(62) groupadd - 用于创建一个新的工作组，新工作组的信息将被添加到系统文件中<br>相关文件:<br>&#x2F;etc&#x2F;group 组账户信息。<br>&#x2F;etc&#x2F;gshadow 安全组账户信息。<br>&#x2F;etc&#x2F;login.defs Shadow密码套件配置<br>实例：<br><code>groupadd -g 344 abc</code>  创建一个新的组，并添加组id<br>此时在 &#x2F;etc&#x2F;group 文件中产生一个组 ID（GID）是 344 的项目。</p>
+<p>(63) clear - 用于清除屏幕<br>实例：<br><code>clear</code> 清除</p>
+<p>(64) eval - 用于重新运算求出参数内容<br>eval可读取一连串的参数，然后再依参数本身的特性来执行。<br>实例：<br><code>eval enable;ls</code> 连接多个命令</p>
+<p>(65) passwd - 用于更改使用者的密码<br>实例：<br><code>passwd root</code> 修改root用户密码<br><code>passwd -S root</code> 显示账号密码信息<br><code>passwd -d lx135</code> 删除用户密码</p>
+<p>(66) dump - 用于备份文件系统<br>dump为备份工具程序，可将目录或整个文件系统备份至指定的设备，或备份成一个大文件<br>实例：<br><code>dump -0 -u /dev/tape /home/</code> 备份文件到磁带</p>
+<p>(67) gzip - 用于压缩文件<br>gzip是个使用广泛的压缩程序，文件经它压缩过后，其名称后面会多出”.gz”的扩展名。<br>实例：<br><code>gzip *</code> 压缩当前目录下所有文件</p>
+<p>(68) tar - 用于备份文件<br>tar 是用来建立，还原备份文件的工具程序，它可以加入，解开备份文件内的文件<br>实例：<br><code>tar -czvf test.tar.gz a.c</code> 压缩a.c文件为test.tar.gz<br><code>tar -tzvf test.tar.gz</code> 列出压缩文件内容<br><code>tar -xzvf test.tar.gz</code> 解压文件<br><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-tar.html">Linux tar 命令</a></p>
+<p>(69) unzip - 用于解压缩zip文件<br>unzip为.zip压缩文件的解压缩程序<br>实例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">unzip -l abc.zip   //查看压缩文件中包含的文件</span><br><span class="line">Archive: abc.zip</span><br><span class="line"> Length   Date  Time  Name</span><br><span class="line">--------  ----  ----  ----</span><br><span class="line">  94618 05-21-10 20:44  a11.jpg</span><br><span class="line">  202001 05-21-10 20:44  a22.jpg</span><br><span class="line">    16 05-22-10 15:01  11.txt</span><br><span class="line">  46468 05-23-10 10:30  w456.JPG</span><br><span class="line">  140085 03-14-10 21:49  my.asp</span><br><span class="line">--------          -------</span><br><span class="line">  483188          5 files</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">unzip -v abc.zip   //用于查看压缩文件目录信息，但是不解压该文件</span><br><span class="line">Archive: abc.zip</span><br><span class="line">Length  Method  Size Ratio  Date  Time  CRC-32  Name</span><br><span class="line">-------- ------ ------- -----  ----  ----  ------  ----</span><br><span class="line">  94618 Defl:N  93353  1% 05-21-10 20:44 9e661437 a11.jpg</span><br><span class="line"> 202001 Defl:N  201833  0% 05-21-10 20:44 1da462eb a22.jpg</span><br><span class="line">   16 Stored    16  0% 05-22-10 15:01 ae8a9910 ? +-|￥+-? (11).txt</span><br><span class="line">  46468 Defl:N  39997 14% 05-23-10 10:30 962861f2 w456.JPG</span><br><span class="line"> 140085 Defl:N  36765 74% 03-14-10 21:49 836fcc3f my.asp</span><br><span class="line">--------     ------- ---              -------</span><br><span class="line"> 483188      371964 23%              5 files</span><br></pre></td></tr></table></figure>
+
+<p>(70) zip - 用于压缩文件<br>zip 是个使用广泛的压缩程序，压缩后的文件后缀名为 .zip<br>实例：<br><code>zip -q -r html.zip /home/html</code> 将 &#x2F;home&#x2F;html&#x2F; 这个目录下所有文件和文件夹打包为当前目录下的 html.zip<br><code>zip -q -r html.zip *</code> 将当前目录下所有文件和文件夹打包为html.zip<br><code>zip -dv cp.zip a.c</code> 从压缩文件cp.zip中删除文件a.c</p>
+<p>(71) poweroff - 用于关闭计算机并切断电源<br>使用权限：系统管理者<br>实例：<br><code>poweroff</code> 关闭系统</p>
 <h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><ol>
 <li>常见web开发Java框架</li>
 </ol>
@@ -823,20 +939,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">173</span>
+          <span class="site-state-item-count">174</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">56</span>
+        <span class="site-state-item-count">57</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -894,13 +1010,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">445k</span>
+    <span title="站点总字数">446k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">6:44</span>
+    <span title="站点阅读时长">6:46</span>
 </div>
 
 <!--
