@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/system_1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-10T07:57:45.581Z">
+<meta property="article:modified_time" content="2023-10-12T09:26:18.752Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-10 15:57:45" itemprop="dateModified" datetime="2023-10-10T15:57:45+08:00">2023-10-10</time>
+                <time title="修改时间：2023-10-12 17:26:18" itemprop="dateModified" datetime="2023-10-12T17:26:18+08:00">2023-10-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,7 +254,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>39k</span>
+              <span>40k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -282,14 +282,15 @@
 <ol start="2">
 <li>Windows认证协议</li>
 </ol>
-<p>NTLM, NTLM（NT LAN Manager）是Windows早期版本中使用的认证协议。NTLM使用挑战&#x2F;响应机制来验证用户身份。<br>Kerberos, Kerberos是Windows Server 2000中引入的认证协议。Kerberos使用密钥交换机制来验证用户身份。<br>NTLMv2, NTLMv2是NTLM的改进版本。NTLMv2使用更安全的哈希算法来保护用户密码。<br>Negotiate, Negotiate是Windows Server 2003中引入的认证协议。Negotiate允许客户端和服务器协商使用哪种认证协议。</p>
+<p>NTLM, NTLM（NT LAN Manager）是Windows早期版本中使用的认证协议。NTLM使用挑战&#x2F;响应机制来验证用户身份。客户端和服务器之间的通信需要多次交换数据以进行身份验证。容易受到中间人攻击的威胁。<br>Kerberos, Kerberos是Windows Server 2000中引入的认证协议。Kerberos使用密钥交换机制来验证用户身份。使用票据交换来进行身份验证，客户端和服务器之间的通信只需要一次票据交换，因此减少了中间人攻击的机会。<br>NTLMv2, NTLMv2是NTLM的改进版本。NTLMv2使用更安全的哈希算法来保护用户密码。<br>Negotiate, Negotiate是Windows Server 2003中引入的认证协议。Negotiate允许客户端和服务器协商使用哪种认证协议。(是协议选择机制，Kerberos或NTLM)</p>
+<p>安全性：Kerberos&gt;NTLM</p>
 <ol start="3">
 <li>Windows怎么提权</li>
 </ol>
 <p>(1) 内核溢出提权–未打漏洞补丁，可以通过metasploit信息收集，手工信息收集systeminfo等。</p>
 <p>(2) 系统配置错误提权<br>2.1 权限配置错误<br>2.2 可信任服务器路径漏洞<br>2.3 不安全的注册表权限配置<br>2.4 启用注册表键AlwaysInstallElevated</p>
 <p>(3) 组策略首选项提权</p>
-<p>(4) bypassUAC提权</p>
+<p>(4) bypass UAC(User Account Control 用户账户控制)提权</p>
 <p>(5) 令牌窃取</p>
 <p>(6) 数据库提权</p>
 <h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><ol>
@@ -303,7 +304,7 @@
 <p>删除bash历史记录<br>需要清理的日志记录：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/log/auth.log  认证</span><br><span class="line">/var/log/cron.log  Cron任务</span><br><span class="line">/var/log/maillog   邮件</span><br><span class="line">/var/log/httpd 	   Apache</span><br></pre></td></tr></table></figure>
 
-<p>注意：清理方式是将文件清空，而不是将其完全擦除。<br>使用truncate命令将文件大小减少到0： <code>truncate -s 0 /var/log/auth.log</code><br>通过将nothing映射到文件来完成： <code>echo &quot; &gt; /var/log/auth.log</code><br>还可以单独使用&gt;来清理文件： <code>&gt; /var/log/auth.log</code><br>也可以发送到&#x2F;dev&#x2F;null： <code>cat /dev/null &gt; /var/log/auth.log</code><br>使用tee命令： <code>true | tee /var/log/auth.log</code></p>
+<p>注意：清理方式是将文件清空，而不是将其完全擦除。<br>使用truncate命令将文件大小减少到0： <code>truncate -s 0 /var/log/auth.log</code><br>通过将nothing映射到文件来完成： <code>echo &#39;&#39; &gt; /var/log/auth.log</code><br>还可以单独使用&gt;来清理文件： <code>&gt; /var/log/auth.log</code><br>也可以发送到&#x2F;dev&#x2F;null： <code>cat /dev/null &gt; /var/log/auth.log</code><br>使用tee命令： <code>true | tee /var/log/auth.log</code></p>
 <ol start="3">
 <li>Linux提权的姿势</li>
 </ol>
@@ -321,15 +322,15 @@
 <ol start="6">
 <li>列举Linux反弹shell的一些方法</li>
 </ol>
-<p>(1) 利用netcat反弹shell<br>(2) 利用bash反弹shell<br>(3) Curl配合bash反弹shell<br>(4) 将反弹shell的命令写入&#x2F;etc&#x2F;profile文件<br>(5) 利用Socat反弹shell<br>(6) 利用Telnet反弹shell<br>(7) 利用awk反弹shell<br>(8) 各种脚本反弹shell</p>
+<p>(1) 利用netcat反弹shell<br>(2) 利用bash反弹shell<br>(3) Curl配合bash反弹shell(最近爆出漏洞)<br>(4) 将反弹shell的命令写入&#x2F;etc&#x2F;profile文件<br>(5) 利用Socat反弹shell<br>(6) 利用Telnet反弹shell<br>(7) 利用awk反弹shell<br>(8) 各种脚本反弹shell</p>
 <ol start="7">
 <li>Linux系统中etc&#x2F;password和&#x2F;shadow文件的区别</li>
 </ol>
-<p><code>/etc/passwd</code> 存储一般的用户信息，任何人都可以访问<br><code>/etc/shadow</code> 存储用户的密码信息，只有 root 用户可以访问<br><a target="_blank" rel="noopener" href="https://howiezhao.github.io/2018/04/29/passwd-and-shadow/">Linux 中&#x2F;etc&#x2F;passwd 与&#x2F;etc&#x2F;shadow 的区别</a></p>
+<p><code>/etc/passwd</code> 存储一般的用户信息，任何人都可以访问。<br>存储格式: <code>用户名:口令:用户标识号:组标识号:注释:主目录:登录Shell</code><br><code>/etc/shadow</code> 存储用户的密码信息，只有 root 用户可以访问<br>存储格式: <code>用户名:密码散列:最后修改日期:密码最短有效期:密码最长有效期:密码过期警告期限:密码失效日期:帐户失效日期:保留字段</code><br><a target="_blank" rel="noopener" href="https://howiezhao.github.io/2018/04/29/passwd-and-shadow/">Linux 中&#x2F;etc&#x2F;passwd 与&#x2F;etc&#x2F;shadow 的区别</a></p>
 <ol start="8">
 <li>Linux如何查看当前权限</li>
 </ol>
-<p>查看当前用户: <code>whoami</code><br>查看登录用户: <code>who</code><br>查看有哪些用户组: <code>cat /etc/group</code><br>查看用户在哪些组: <code>groups</code></p>
+<p>查看当前用户: <code>whoami</code><br>查看登录用户: <code>who</code><br>查看有哪些用户组: <code>cat /etc/group</code><br>查看当前用户在哪个组: <code>groups</code></p>
 <ol start="9">
 <li>对Linux了解吗？Linux内核漏洞有没有分析过？</li>
 </ol>
@@ -518,7 +519,7 @@
 <li>udf提权</li>
 </ol>
 <p>UDF(User Define Function)用户自定义函数，是MySQL的一个扩展接口，通过添加新函数，对MySQL的功能进行扩充。调用方式与一般系统自带的函数相同，例如user(), version()等函数。<br>udf文件后缀在Windows与Linux系统下分别为dll与so，即动态链接库文件，由C, C++编写</p>
-<p>攻击原理：<br>(1) 攻击者在目标系统上传、执行UDF文件。<br>(2) 攻击者通过SQL语句调用UDF文件中的函数。<br>(3) UDF文件中的函数利用漏洞执行任意命令。</p>
+<p>攻击原理：<br>(1) 攻击者在目标系统导入UDF。<br>(2) 攻击者通过SQL语句调用执行UDF。<br>(3) UDF利用漏洞执行任意命令，提升权限。</p>
 <p>修复建议：<br>(1) MySQL配置文件中secure_file_priv预设置为NULL或非 <code>mysql/lib/plugin</code> 目录。<br>(2) 数据库用户确保正确实施最小权限原则。</p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/database/291175.html">Mysql-UDF提权篇</a></p>
 <ol start="3">
@@ -534,7 +535,7 @@
 </ol>
 <p>(1) UDF提权：见问题2</p>
 <p>(2) MOF提权：<br>MOF提权是指利用MOF文件的漏洞，将用户权限提升到与Windows系统的最高权限（System）一致。</p>
-<p>原理：mof是Windows系统的一个“托管对象格式”文件(位置 <code>c:/windows/system32/wbem/mof</code> )，其作用是每隔5秒就会去监控进程创建和死亡，mof目录下有两个文件夹(good与bad)。Windows server 2003及以下系统每5秒会执行一次mof目录下的文件，执行成功会移动到good文件夹，执行失败移动到bad文件夹。<br>mof提权其实就是利用mysql写入mof文件，通过mof文件中的vbs脚本与system权限执行系统命令。</p>
+<p>原理：mof(Managed Object Format)是Windows系统的一个“托管对象格式”文件(位置 <code>c:/windows/system32/wbem/mof</code> )，其作用是每隔5秒就会去监控进程创建和死亡，mof目录下有两个文件夹(good与bad)。Windows server 2003及以下系统每5秒会执行一次mof目录下的文件，执行成功会移动到good文件夹，执行失败移动到bad文件夹。<br>mof提权其实就是利用mysql写入mof文件，通过mof文件中的vbs脚本与system权限执行系统命令。</p>
 <p>修复：<br>解决系统继续运行恶意代码的问题：<br>net stop winmgmt<br>删除文件夹内容 <code>c:/windows/system32/wbem/repository</code><br>net start winmgmt</p>
 <ol start="6">
 <li>Mongodb, redis, websphere, rsync服务简介和默认运行端口</li>
@@ -607,7 +608,7 @@
 <ol start="13">
 <li>mysql数据库账号和密码存放在哪个库和表里面？</li>
 </ol>
-<p>mysql地user权限表里</p>
+<p>mysql的user权限表里</p>
 <ol start="14">
 <li>分别写出MySQL及mssql数据库写入webshell的方法</li>
 </ol>
@@ -1010,8 +1011,8 @@
       <i class="fa fa-chevron-left"></i> 面试准备之自身方面篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/" rel="next" title="面试准备之web漏洞篇">
-      面试准备之web漏洞篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
+      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1158,13 +1159,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">556k</span>
+    <span title="站点总字数">559k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:25</span>
+    <span title="站点阅读时长">8:28</span>
 </div>
 
 <!--
