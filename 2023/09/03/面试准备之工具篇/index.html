@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言工具是兵器，知识是使用方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-12T15:51:29.891Z">
+<meta property="article:modified_time" content="2023-10-17T16:30:42.255Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -128,17 +128,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">57</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">75</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">77</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">183</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">184</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-12 23:51:29" itemprop="dateModified" datetime="2023-10-12T23:51:29+08:00">2023-10-12</time>
+                <time title="修改时间：2023-10-18 00:30:42" itemprop="dateModified" datetime="2023-10-18T00:30:42+08:00">2023-10-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.1k</span>
+              <span>7.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -364,6 +364,23 @@
 <p>8、Aircrack</p>
 <p>9、Netcat</p>
 <p>10、john</p>
+<ol start="15">
+<li><p>常见webshell管理工具交互流量特征都有哪些<br>1、菜⼑特征：PHP 类 WebShell流量中eval函数用于执行传递的攻击 payload，流量参数z0、z1、z2<br>2、冰蝎3.0：默认内置 16 个 user-agent，content-type为application&#x2F;octet-stream<br>3、蚁剑：PHP 类 WebShell流量最中明显的特征为 @ini_set (“display_errors”,”0”);</p>
+</li>
+<li><p>冰蝎3.0流量特征</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">默认内置 16 个 user-agent，content-type为application/octet-stream**</span><br><span class="line">请求包中content-length 为5740或5720（可能会根据Java版本而改变)</span><br><span class="line">**每一个请求头中存在Pragma: no-cache，Cache-Control: no-cache**</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>冰蝎3.11流量特征</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、header头顺序是颠倒的</span><br><span class="line">2、发送包是base64，返回包是字节数组，所以会乱码</span><br><span class="line">3、如果冰蝎密码不对，会出现两个连接，第一个是post 第二个是get</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>哥斯拉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">不修改User-Agent，User-Agent会类似于Java/1.8.0_121（具体什么版本取决于JDK环境版本）</span><br><span class="line">在请求包的Cookie中有一个非常致命的特征，最后的分号</span><br><span class="line">标准的HTTP请求中最后一个Cookie的值是不应该出现;的</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>请求包特征<br>1、 “pass&#x3D;”起始<br>2、 请求包较长 响应包为0<br>3.、 一个tcp包里面有三个http</p>
+<p>响应包特征<br>整个响应包的结构体征为：md5前十六位+base64+md5后十六位</p>
+<ol start="19">
+<li>哥斯拉4.0.1中JAVA_AES_BASE64特征流量特征<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">host头</span><br><span class="line">密码和base64字符串是密码=base64字符串的形式</span><br><span class="line">发送包是密码=bae64字符串的形式，返回包是类base64字符串的格式</span><br><span class="line">1. 对称加密算法：JAVA_AES_BASE64是哥斯拉4.0.1使用的对称加密算法;</span><br><span class="line">因此可以根据哥斯拉4.0.1的流量中是否包含JAVA_AES_BASE64来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">2. 长度固定：哥斯拉4.0.1使用JAVA_AES_BASE64算法对数据进行加密后，加密后数据的长度是固定的</span><br><span class="line">因此，可以根据攻击流量的长度是否固定来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">3. 常见数据前缀：哥斯拉4.0.1加密的数据在明文数据前会添加特定的前缀;</span><br><span class="line">因此，可以根据攻击流量中是否包含常见的数据前缀来判断是否为哥斯拉4.0.1攻击流量。</span><br></pre></td></tr></table></figure></li>
+</ol>
 
     </div>
 
@@ -449,12 +466,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="prev" title="面试准备之流量篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之流量篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="prev" title="面试准备之密码学篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之密码学篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/" rel="next" title="面试准备之web漏洞篇">
-      面试准备之web漏洞篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="next" title="渗透测试之信息收集">
+      渗透测试之信息收集 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -530,20 +547,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">183</span>
+          <span class="site-state-item-count">184</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">75</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">57</span>
+        <span class="site-state-item-count">59</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -601,13 +618,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">565k</span>
+    <span title="站点总字数">580k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:34</span>
+    <span title="站点阅读时长">8:48</span>
 </div>
 
 <!--
