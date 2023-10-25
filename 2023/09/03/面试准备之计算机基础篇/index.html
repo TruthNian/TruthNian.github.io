@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%802.png">
 <meta property="og:image" content="http://example.com/simg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%803.png">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-18T06:37:54.789Z">
+<meta property="article:modified_time" content="2023-10-24T09:50:07.865Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-18 14:37:54" itemprop="dateModified" datetime="2023-10-18T14:37:54+08:00">2023-10-18</time>
+                <time title="修改时间：2023-10-24 17:50:07" itemprop="dateModified" datetime="2023-10-24T17:50:07+08:00">2023-10-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,14 +256,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>9.6k</span>
+              <span>14k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>13 分钟</span>
             </span>
 
         </div>
@@ -324,7 +324,7 @@
 <ol start="12">
 <li>TCP三次握手过程以及对应的状态转换</li>
 </ol>
-<p>(1) 客户端向服务端发送一个SYN包，包含客户端使用的端口号呃初始序列号x；<br>(2) 服务端收到客户端发送来的SYN包后，向客户端发送一个SYN和ACK都置位的TCP报文，包含确认号xx1和服务器端的初始序列号y；<br>(3) 客户端收到服务端返回的SYN，ACK报文后，向服务器发送一个确认号为yy1、序列号为xx1的ACK报文，一个标准的TCP连接完成。</p>
+<p>(1) 客户端向服务端发送一个SYN包，包含客户端使用的端口号呃初始序列号x；<br>(2) 服务端收到客户端发送来的SYN包后，向客户端发送一个SYN和ACK都置位的TCP报文。包含确认号xx1和服务器端的初始序列号y；<br>(3) 客户端收到服务端返回的SYN，ACK报文后，向服务器发送一个确认号为yy1、序列号为xx1的ACK报文，一个标准的TCP连接完成。</p>
 <ol start="13">
 <li>TCP和UDP协议区别</li>
 </ol>
@@ -342,17 +342,16 @@
 </ol>
 <p>(1) GET–请求指定的页面信息，并返回实体主体。<br>(2) HEAD–类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头。<br>(3) POST–向指定资源提交数据进行处理请求（例如提交表单或上传文件）。数据被包含在请求体中。POST请求可能导致新的资源建立和&#x2F;或已有资源的修改。<br>(4) PUT–从客户端向服务器传送的数据取代指定的文档和内容。<br>(5) DELETE–请求服务器删除指定的内容。<br>(6) CONNECT–HTTP&#x2F;1.1协议中预留给能够连接改为管道方式的代理服务器。<br>(7) OPTIONS–允许客户端查看服务器性能。<br>(8) TRACE–回显服务器收到的请求。<br>(9) PATCH–是对PUT方法的补充，用来对已知资源进行局部更新。</p>
 <ol start="17">
-<li>计算机网络的分层及分别有哪些协议？</li>
-</ol>
-<p>物理层：RJ45, 802.3<br>数据链路层：SDLC，HDLC，PPP，STP<br>网络层：IP，IPX，ICMP，IGMP，ARP，RARP，OSPF<br>传输层：TCP，UDP<br>应用层：文件传输(FTP)，电子邮件(SMTP)，万维网(HTTP)</p>
-<ol start="18">
-<li>HttpOnly</li>
+<li><p>计算机网络的分层及分别有哪些协议？<br>OSI七层<br>物理层：RJ45, 802.3<br>数据链路层：SDLC，HDLC，PPP，STP<br>网络层：IP，IPX，ICMP，IGMP，ARP，RARP，OSPF<br>传输层：TCP，UDP<br>应用层(会话层，表示层，应用层)：文件传输(FTP)，电子邮件(SMTP)，万维网(HTTP)</p>
+</li>
+<li><p>HttpOnly</p>
+</li>
 </ol>
 <p>这是cookie中的一个参数。如果cookie中设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击，窃取cookie内容，增加了cookie安全性。</p>
 <ol start="19">
 <li>a.baidu.com和b.baidu.com是否同源</li>
 </ol>
-<p>源：主机，域名，端口。同源要求三者必须都相同，而这两个域名不同，因此不属于同源。</p>
+<p>源：主机，协议，端口。同源要求三者必须都相同，而这两个域名不同，因此不属于同源。</p>
 <ol start="20">
 <li>算法？了解过什么排序？</li>
 </ol>
@@ -487,8 +486,62 @@
 </ul>
 <p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-sg/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA">缓冲区溢出</a></p>
 <ol start="48">
-<li>栈溢出原理<br>栈溢出指的是程序向栈中某个变量中写入的字节数超过了这个变量本身所申请的字节数，因而导致与其相邻的栈中的变量的值被改变。</li>
+<li><p>栈溢出原理<br>栈溢出指的是程序向栈中某个变量中写入的字节数超过了这个变量本身所申请的字节数，因而导致与其相邻的栈中的变量的值被改变。</p>
+</li>
+<li><p>JS混淆解密<br>入门：<br>混淆是将 JavaScript 代码压缩、优化并加上一些无意义的代码，从而使其难以被人阅读和理解。<br>示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;<span class="keyword">for</span>(<span class="keyword">var</span> _0x123456=<span class="number">0</span>;_0x123456&lt;<span class="number">100</span>;_0x123456++)&#123;<span class="variable language_">console</span>[<span class="string">&#x27;log&#x27;</span>](_0x123456);&#125;&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br></pre></td></tr></table></figure></li>
 </ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)&#123;<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(i);&#125;&#125;</span><br><span class="line"><span class="title function_">test</span>();</span><br></pre></td></tr></table></figure>
+
+<p>进阶：<br>示例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getRanNum = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> _0xf66axf = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> _0xf66axd = <span class="number">0</span>; _0xf66axd &lt; <span class="number">4</span>; _0xf66axd++) &#123;</span><br><span class="line">        <span class="keyword">var</span> _0xf66ax10 = <span class="title class_">Math</span>[_0xebfe[<span class="number">55</span>]](<span class="title class_">Math</span>[_0xebfe[<span class="number">42</span>]]() * <span class="number">25</span>);</span><br><span class="line">        _0xf66axf[_0xebfe[<span class="number">57</span>]](<span class="title class_">String</span>[_0xebfe[<span class="number">56</span>]](<span class="number">65</span> + _0xf66ax10))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> _0xf66axf[_0xebfe[<span class="number">58</span>]](_0xebfe[<span class="number">52</span>])</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getRanNum = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> res = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> number = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(<span class="title class_">Math</span>.<span class="title function_">random</span>() * <span class="number">25</span>);</span><br><span class="line"></span><br><span class="line">    res[<span class="string">&#x27;push&#x27;</span>](<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">65</span> + number));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="50">
+<li><p>IP数据报长度达到多少会被分片？<br>1472字节。<br>因为MTU为1500，固定长度是28字节，所以MTU减去固定长度得到1472字节。</p>
+</li>
+<li><p>classloader是什么？<br>ClassLoader 顾名思义就是类加载器,ClassLoader 作用：</p>
+</li>
+</ol>
+<p>负责将 Class 加载到 JVM 中<br>审查每个类由谁加载（父优先的等级加载机制）<br>将 Class 字节码重新解析成 JVM 统一要求的对象格式</p>
+<ol start="52">
+<li><p>Java反序列化和字节码的区别？<br>反序列化是将先前序列化的数据恢复为对象的过程。<br>字节码是一种中间代码，它是由Java编译器生成的，用于在JVM上执行。<br>Java源代码首先编译为字节码，然后由JVM解释或编译为本机机器代码。</p>
+</li>
+<li><p>DNS迭代查询和递归查询的区别？<br>DNS解析流程分为递归查询和迭代查询，递归查询是以本地名称服务器为中心查询， 递归查询是默认方式，迭代查询是以DNS客户端，也就是客户机器为中心查询。</p>
+</li>
+<li><p>Java的底层是什么？<br>java的底层语言是C语言和是C++语言</p>
+</li>
+<li><p>Java的类和接口区别是什么？<br>1、抽象类可以有方法体的方法，但接口没有（Java 8 以前）。<br>2、接口中的成员变量隐式为 static final ，但抽象类不是的。<br>3、一个类可以实现多个接口，但只能继承一个抽象类。</p>
+</li>
+<li><p>jvm的作用<br>JVM（Java Virtual Machine，Java虚拟机）是Java编程语言的核心组件之一，它的主要作用是在运行Java程序时提供一种平台独立性和内存管理。<br>主要作用：<br>1、字节码执行<br>2、内存管理<br>3、性能优化<br>4、安全性</p>
+</li>
+<li><p>python如何写爬虫？能正常访问目标页面但不能爬取信息怎么办？<br>使用Python和requests库进行网页请求和BeautifulSoup库进行网页解析。</p>
+</li>
+</ol>
+<p>能正常访问但不能爬取信息：<br>1、网页内容是动态加载的： 有时，网页内容可能是使用JavaScript动态加载的，而不是通过初始HTML请求返回的。在这种情况下，你需要使用一个库，如Selenium，来模拟浏览器行为，以确保你能够获取完整的页面内容。Selenium可以控制浏览器执行JavaScript，并获取动态生成的内容。<br>2、数据在异步请求中加载： 一些网站使用异步请求加载数据，这意味着数据不在页面加载时立即可用。你需要查看网页上的网络请求，并确定哪个请求返回所需的数据。然后，你可以使用库，如requests或aiohttp，来模拟这些请求并获取数据。<br>3、网站采用反爬虫措施： 一些网站可能会采取反爬虫措施，如验证码、IP封锁或频率限制。你需要小心处理这些情况，以确保你的爬虫不被封锁。这可能需要使用代理服务器或调整请求频率。</p>
+<ol start="58">
+<li>ACL访问控制<br>ACL，是Access Control List的简写，中文名称叫做“访问控制列表”。它是由一系列条件规则（即描述报文匹配条件的判断语句）组成， 这些条件规则可以是报文的源地址、目的地址、端口号等，是一种应用在网络设备各种软硬接口上的指令列表。<br>ACL本质上是一种报文过滤器，规则是过滤器的滤芯。设备基于这些规则进行报文匹配，可以过滤出特定的报文，并根据应用ACL的业务模块的处理策略来允许或阻止该报文通过。<br>基于ACL规则定义方式，可以将ACL分为基本ACL、高级ACL、二层ACL等种类。基本ACL根据源IP地址、分片信息和生效时间段等信息来定义规则，对IPv4报文进行过滤。如果只需要根据源IP地址对报文进行过滤，可以配置基本ACL。</li>
+</ol>
+<p>ACL的作用：<br>1、ACL可以限制网络流量、提高网络性能。<br>2、ACL提供对通信流量的控制手段。<br>3、ACL是提供网络安全访问的基本手段。<br>4、ACL可以在路由器端口处决定哪种类型的通信流量被转发或被阻塞。</p>
+<ol start="59">
+<li><p>tcp&#x2F;ip几层，分别是什么？<br>tcp&#x2F;ip协议包含四层：1、应用层；2、传输层；3、网络层；4、网络接口层。 应用层位于TCP&#x2F;IP协议的第一层，是直接为应用进程提供服务的；运输层位于协议的第二层，在整个TCP&#x2F;IP协议中起到了中流砥柱的作用；网络层位于协议的第三层；网络接口层位于协议的第四层。</p>
+</li>
+<li><p>安全设备<br>安全狗，WAF，入侵检测系统IDS，入侵防御系统IPS。漏洞扫描器，DDOS防护，监控设备：SOC安全运营中心（奇安信NGSOC）。</p>
+</li>
+<li><p>ipsec vpn<br>IPSec VPN 是一种 VPN 软件，它使用 IPSec 协议在 Internet 上创建加密隧道。它提供端到端加密，这意味着数据在计算机上被加密，在接收服务器上被解密。<br>IPSec 协议适用于 OSI 模型中间的网络和传输层。</p>
+</li>
+</ol>
+<p>IPSec VPN的应用场景分为3种：<br>1、Site-to-Site（站点到站点或者网关到网关）：如弯曲评论的3个机构分布在互联网的3个不同的地方，各使用一个商务领航网关相互建立VPN隧道，企业内网（若干PC）之间的数据通过这些网关建立的IPSec隧道实现安全互联。<br>2、End-to-End（端到端或者PC到PC）： 两个PC之间的通信由两个PC之间的IPSec会话保护，而不是网关。<br>3、End-to-Site（端到站点或者PC到网关）：两个PC之间的通信由网关和异地PC之间的IPSec进行保护。</p>
+<ol start="62">
+<li><p>钩子hook函数了解吗？<br>钩子(hook)函数是Windows消息处理机制的一部分，通过设置“钩子”，应用程序可以在系统级对所有消息、事件进行过滤，访问在正常情况下无法访问的消息。 钩子的本质是一段用以处理系统消息的程序，通过系统调用，把它挂入系统。</p>
+</li>
+<li><p>ATT&amp;CK框架了解吗、到什么程度，是否有过应用？<br>ATT&amp;CK是由MITRE机构开发的攻击模型框架，其全称为Adversarial Tactics, Techniques, and Common Knowledge（对抗性战术，技术以及公共知识库），是一个基于现实世界所观察到的攻击向量所组成的一个公开的对抗性战术和技术知识库，其可被用于私营机构、政府部门、网络安全产品和服务社区作为特定威胁模型和方法的开发基础。</p>
+</li>
+</ol>
+<p>ATT&amp;CK框架的使用：<br>1、初始访问<br>2、执行<br>3、持久化<br>4、提升权限<br>5、防御绕过<br>6、凭据访问<br>7、发现<br>8、横向移动<br>9、收集<br>10、命令和控制<br>11、数据渗漏<br>12、影响</p>
+<p>ATT&amp;CK使用场景<br>（1）对抗模拟<br>ATT＆CK可用于创建对抗性模拟场景，测试和验证针对常见对抗技术的防御方案。<br>（2）红队&#x2F;渗透测试活动<br>红队、紫队和渗透测试活动的规划、执行和报告可以使用ATT＆CK，以便防御者和报告接收者以及其内部之间有一个通用语言。<br>（3）制定行为分析方案<br>ATT＆CK可用于构建和测试行为分析方案，以检测环境中的对抗行为。<br>（4）防御差距评估<br>ATT＆CK可以用作以行为为核心的常见对抗模型，以评估组织企业内现有防御方案中的工具、监视和缓解措施。在研究MITRE ATT＆CK时，大多数安全团队都倾向于为Enterprise矩阵中的每种技术尝试开发某种检测或预防控制措施。虽然这并不是一个坏主意，但是ATT＆CK矩阵中的技术通常可以通过多种方式执行。因此，阻止或检测执行这些技术的一种方法并不一定意味着涵盖了执行该技术的所有可能方法。由于某种工具阻止了用另一种形式来采用这种技术，而组织机构已经适当地采用了这种技术，这可能导致产生一种虚假的安全感。但是，攻击者仍然可以成功地采用其他方式来采用该技术，但防御者却没有任何检测或预防措施。<br>（5）SOC成熟度评估<br>ATT＆CK可用作一种度量，确定SOC在检测、分析和响应入侵方面的有效性。SOC团队可以参考ATT＆CK已检测到或未涵盖的技术和战术。这有助于了解防御优势和劣势在哪里，并验证缓解和检测控制措施，并可以发现配置错误和其他操作问题。<br>（6）网络威胁情报收集<br>ATT＆CK对于网络威胁情报很有用，因为ATT＆CK是在用一种标准方式描述对抗行为。可以根据攻击者已知利用的ATT＆CK中的技术和战术来跟踪攻击主体。这为防御者提供了一个路线图，让他们可以对照他们的操作控制措施，查看对某些攻击主体而言，他们在哪些方面有弱点，在哪些方面有优势。针对特定的攻击主体，创建MITRE ATT＆CK 导航工具内容，是一种观察环境中对这些攻击主体或团体的优势和劣势的好方法。ATT＆CK还可以为STIX 和 TAXII 2.0提供内容，从而可以很容易地将支持这些技术的现有工具纳入中。<br><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/187998">ATT&amp;CK框架以及使用场景实例</a></p>
+<p>ATT&amp;CK工具：<br>1、Metta<br>Metta是一款对抗性模拟工具，它是由多个内部项目产生的。Metta使用Redis&#x2F;Celery、python和VirtualBox进行攻击行为模拟，这样用户就可以测试基于主机的安全系统。另外用户还能测试其他基于网络的安全检测和控制，具体过程取决于使用者的设置方式。Metta能够在Microsoft Windows、MacOS和Linux等多个操作系统终端上运行。<br>2、Atomic Red Team<br>Atomic Red Team是一个由Red Canary主导的开源项目，它提供了和ATT&amp;CK一致的红队测试内容，可以用来测试现有的威胁分析方法。安全团队可以使用Atomic Red Team快速、可移植和可重复地测试他们的系统应用环境。用户可以直接通过命令行执行测试，无需安装运行软件。<br>3、Mapping CVEs to MITRE ATT&amp;CK网站<br>这是一个由Vulcan Cyber的研究团队创建的网站，用于展示一个正在进行的攻击研究项目，可以将记录的CVE映射到MITRE ATT&amp;CK矩阵中的相关战术和技术。目前，该网站还处于测试阶段，将会不断更新，以纳入并记录更多的新CVE。用户可以根据特定的技术需要搜索CVE，也可以通过特定的CVE搜索与之匹配的ATT&amp;CK战术和技术。</p>
 
     </div>
 
@@ -574,12 +627,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="prev" title="面试准备之语言篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之语言篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E7%B3%BB%E7%BB%9F%E7%AF%87/" rel="prev" title="面试准备之系统篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之系统篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8Bweb%E6%BC%8F%E6%B4%9E%E7%AF%87/" rel="next" title="面试准备之web漏洞篇">
-      面试准备之web漏洞篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="next" title="面试准备之自身方面篇">
+      面试准备之自身方面篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -726,13 +779,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">580k</span>
+    <span title="站点总字数">608k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:48</span>
+    <span title="站点阅读时长">9:13</span>
 </div>
 
 <!--

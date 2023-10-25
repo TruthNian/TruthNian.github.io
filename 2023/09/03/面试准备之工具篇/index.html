@@ -29,7 +29,7 @@
 <meta property="og:description" content="前言工具是兵器，知识是使用方法。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-17T16:30:42.255Z">
+<meta property="article:modified_time" content="2023-10-23T12:42:31.727Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -223,7 +223,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-18 00:30:42" itemprop="dateModified" datetime="2023-10-18T00:30:42+08:00">2023-10-18</time>
+                <time title="修改时间：2023-10-23 20:42:31" itemprop="dateModified" datetime="2023-10-23T20:42:31+08:00">2023-10-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,14 +252,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>8.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>8 分钟</span>
             </span>
 
         </div>
@@ -293,7 +293,7 @@
 <ol start="2">
 <li>nmap，扫描的几种方式？</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-sS  SYN扫描，半连接扫描，优点是扫描速度快，不容易被记录，适用于任何兼容TCP堆栈，可以清晰可靠地区分端口开启、关闭和过滤状态。</span><br><span class="line">但需要root权限去构造原始数据包，目前IDS可以检测到这种扫描方式。</span><br><span class="line">-sT  TCP连接扫描，建立完整的连接，会被日志、IDS等记录。</span><br><span class="line">-sA  ACK扫描，适合用来映射防火墙规则。</span><br><span class="line">-sW  Windows扫描，窗口扫描原理与ACK扫描相同，但它会利用系统的实现细节区分端口开放和关闭，而不是都标记为 unfiltered。</span><br><span class="line">-sM  Maimon扫描，以发现者Uriel Maimon命名，使用FIN/ACK数据包为探针。</span><br><span class="line">-sU  UDP扫描，速度很慢，扫描上千个端口需要至少17分钟，多数Linux系统会限制icmp响应速率。</span><br><span class="line">-sN/sF/sX  NULL扫描、FIN扫描、Xmas扫描，设置TCP标志位。</span><br><span class="line">这三种扫描类型（以及--scanflags选项）利用TCP RFC 标准中的细节来区分开放端口和关闭端口，通常只能确定关闭的端口。</span><br><span class="line">-sI  空闲扫描，也有称之为僵尸扫描，利用僵尸主机进行扫描，优点是隐蔽性强，缺点是需要县找一台合适的僵尸主机。</span><br><span class="line">-sY/sZ SCTP INIT/COOKIE-ECHO扫描，这两种扫描方式是基于SCTP协议。</span><br><span class="line">-sO  协议扫描，IP层协议扫描，这不算是端口扫描技术，该扫描技术用于判断目标主机所支持的协议。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-sS  SYN扫描，半连接扫描，优点是扫描速度快，不容易被记录，适用于任何兼容TCP堆栈，可以清晰可靠地区分端口开启、关闭和过滤状态。</span><br><span class="line">但需要root权限去构造原始数据包，目前IDS可以检测到这种扫描方式。</span><br><span class="line">-sT  TCP连接扫描，建立完整的连接，会被日志、IDS等记录。</span><br><span class="line">-sA  ACK扫描，适合用来映射防火墙规则。</span><br><span class="line">-sW  Windows扫描，窗口扫描原理与ACK扫描相同，但它会利用系统的实现细节区分端口开放和关闭，而不是都标记为 unfiltered。</span><br><span class="line">-sM  Maimon扫描，以发现者Uriel Maimon命名，使用FIN/ACK数据包为探针。</span><br><span class="line">-sU  UDP扫描，速度很慢，扫描上千个端口需要至少17分钟，多数Linux系统会限制icmp响应速率。</span><br><span class="line">-sN/sF/sX  NULL扫描、FIN扫描、Xmas扫描，设置TCP标志位。</span><br><span class="line">这三种扫描类型（以及--scanflags选项）利用TCP RFC 标准中的细节来区分开放端口和关闭端口，通常只能确定关闭的端口。</span><br><span class="line">-sI  空闲扫描，也有称之为僵尸扫描，利用僵尸主机进行扫描，优点是隐蔽性强，缺点是需要找一台合适的僵尸主机。</span><br><span class="line">-sY/sZ SCTP INIT/COOKIE-ECHO扫描，这两种扫描方式是基于SCTP协议。</span><br><span class="line">-sO  协议扫描，IP层协议扫描，这不算是端口扫描技术，该扫描技术用于判断目标主机所支持的协议。</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/sectool/277822.html">一文读懂Nmap的正确使用方法</a></p>
 <ol start="3">
 <li>用什么扫描端口，目录？</li>
@@ -379,8 +379,35 @@
 <p>请求包特征<br>1、 “pass&#x3D;”起始<br>2、 请求包较长 响应包为0<br>3.、 一个tcp包里面有三个http</p>
 <p>响应包特征<br>整个响应包的结构体征为：md5前十六位+base64+md5后十六位</p>
 <ol start="19">
-<li>哥斯拉4.0.1中JAVA_AES_BASE64特征流量特征<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">host头</span><br><span class="line">密码和base64字符串是密码=base64字符串的形式</span><br><span class="line">发送包是密码=bae64字符串的形式，返回包是类base64字符串的格式</span><br><span class="line">1. 对称加密算法：JAVA_AES_BASE64是哥斯拉4.0.1使用的对称加密算法;</span><br><span class="line">因此可以根据哥斯拉4.0.1的流量中是否包含JAVA_AES_BASE64来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">2. 长度固定：哥斯拉4.0.1使用JAVA_AES_BASE64算法对数据进行加密后，加密后数据的长度是固定的</span><br><span class="line">因此，可以根据攻击流量的长度是否固定来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">3. 常见数据前缀：哥斯拉4.0.1加密的数据在明文数据前会添加特定的前缀;</span><br><span class="line">因此，可以根据攻击流量中是否包含常见的数据前缀来判断是否为哥斯拉4.0.1攻击流量。</span><br></pre></td></tr></table></figure></li>
+<li><p>哥斯拉4.0.1中JAVA_AES_BASE64特征流量特征</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">host头</span><br><span class="line">密码和base64字符串是密码=base64字符串的形式</span><br><span class="line">发送包是密码=bae64字符串的形式，返回包是类base64字符串的格式</span><br><span class="line">1. 对称加密算法：JAVA_AES_BASE64是哥斯拉4.0.1使用的对称加密算法;</span><br><span class="line">因此可以根据哥斯拉4.0.1的流量中是否包含JAVA_AES_BASE64来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">2. 长度固定：哥斯拉4.0.1使用JAVA_AES_BASE64算法对数据进行加密后，加密后数据的长度是固定的</span><br><span class="line">因此，可以根据攻击流量的长度是否固定来判断是否为哥斯拉4.0.1攻击流量</span><br><span class="line">3. 常见数据前缀：哥斯拉4.0.1加密的数据在明文数据前会添加特定的前缀;</span><br><span class="line">因此，可以根据攻击流量中是否包含常见的数据前缀来判断是否为哥斯拉4.0.1攻击流量。</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>burp插件 burpsuite插件<br>1、Log4j2Scan<br>描述：该工具为被动扫描Log4j2漏洞CVE-2021-44228的BurpSuite插件，具有多DNSLog（后端）平台支持，支持异步并发检测、内网检测、延迟检测等功能。<br><a target="_blank" rel="noopener" href="https://github.com/whwlsfb/Log4j2Scan">Download</a></p>
+</li>
 </ol>
+<p>2、BurpFastJsonScan<br>描述：一款基于BurpSuite的被动式FastJson检测插件<br><a target="_blank" rel="noopener" href="https://github.com/pmiaowu/BurpFastJsonScan">Download</a></p>
+<p>3、BurpJSLinkFinder<br>描述：用于端点链接的被动扫描 JS 文件的 Burp 扩展。<br><a target="_blank" rel="noopener" href="https://github.com/InitRoot/BurpJSLinkFinder">Download</a></p>
+<p>4、BurpShiroPassiveScan<br>描述：一款基于BurpSuite的被动式shiro检测插件<br><a target="_blank" rel="noopener" href="https://github.com/pmiaowu/BurpShiroPassiveScan">Download</a></p>
+<p>5、BurpSuite_403Bypasser<br>描述：绕过 403 限制目录的 Burpsuite 扩展<br><a target="_blank" rel="noopener" href="https://github.com/sting8k/BurpSuite_403Bypasser">Download</a></p>
+<p>6、Fiora<br>描述：漏洞PoC框架Nuclei的图形版。快捷搜索PoC、一键运行Nuclei。即可作为独立程序运行，也可作为burp插件使用<br><a target="_blank" rel="noopener" href="https://github.com/bit4woo/Fiora/releases">Download</a></p>
+<p>7、Hackbar<br>描述：Burpsuite 的 HackBar 插件<br><a target="_blank" rel="noopener" href="https://github.com/d3vilbug/HackBar">Download</a></p>
+<p>8、HaE<br>描述：HaE是基于 BurpSuite Java插件API 开发的请求高亮标记与信息提取的辅助型框架式插件，该插件可以通过自定义正则的方式匹配响应报文或请求报文，并对满足正则匹配的报文进行信息高亮与提取。<br><a target="_blank" rel="noopener" href="https://github.com/gh0stkey/HaE">Download</a></p>
+<p>9、sqlmap4burp++<br>描述：sqlmap4burp++是一款兼容Windows，mac，linux多个系统平台的Burp与sqlmap联动插件<br><a target="_blank" rel="noopener" href="https://github.com/c0ny1/sqlmap4burp-plus-plus">Download</a><br>10、TsojanScan<br>描述：一个集成的BurpSuite漏洞探测插件<br><a target="_blank" rel="noopener" href="https://github.com/Tsojan/TsojanScan">Download</a></p>
+<p>11、wooyu 同类漏洞查询<br>描述：从wooyun中提取的payload，以及burp插件<br><a target="_blank" rel="noopener" href="https://github.com/boy-hack/wooyun-payload">Download</a></p>
+<p>12、分块传输<br>描述：Burp suite 分块传输辅助插件<br><a target="_blank" rel="noopener" href="https://github.com/c0ny1/chunked-coding-converter">Download</a></p>
+<p>13、伪造IP<br>描述：服务端配置错误情况下用于伪造ip地址进行测试的Burp Suite插件<br><a target="_blank" rel="noopener" href="https://github.com/TheKingOfDuck/burpFakeIP">Download</a></p>
+<p>14、信息收集管理<br>描述：domain_hunter的高级版本，SRC挖洞、HW打点之必备！自动化资产收集；快速Title获取；外部工具联动；等等<br><a target="_blank" rel="noopener" href="https://github.com/bit4woo/domain_hunter_pro">Download</a></p>
+<p>15、验证码爆破<br>描述：captcha-killer的修改版，支持关键词识别base64编码的图片，添加免费ocr库，用于验证码爆破，适配新版Burpsuite<br><a target="_blank" rel="noopener" href="https://github.com/f0ng/captcha-killer-modified">Download</a></p>
+<p>16、越权检测<br>描述：AuthMatrix 是一个 Burp Suite 扩展，它提供了一种简单的方法来测试 Web 应用程序和 Web 服务中的授权。<br><a target="_blank" rel="noopener" href="https://github.com/SecurityInnovation/AuthMatrix">Download</a></p>
+<ol start="21">
+<li><p>Android脱壳工具<br>1、DumpDex–主要使用C和C++编写，需要xposed支持<br>2、FART–使用Python编写，ART环境下自动化脱壳方案<br>3、frida-dexdump–主要使用Python和TypeScript语言编写<br>4、BlackDex–支持5.0～12，无需依赖任何环境任何手机都可以使用，包括模拟器。只需几秒，即可对已安装包括未安装的APK进行脱壳。</p>
+</li>
+<li><p>多级代理工具<br>在有些内网环境中，它的内网环境分为好几层，我们必须通过拿到一层内网中服务器的权限之后再通过这一内网中的服务器进一步访问二层内网中的其他服务器。在这种环境中，我们就需要多级代理突破层层内网，来实现在内网中漫游。</p>
+</li>
+</ol>
+<p>多级代理方案：<br>第一种是在内网直接利用Venom、ew、stowaway等工具搭建一个多级代理，然后利用Proxifier连接这个多级代理的最初节点。<br>第二种是利用其他工具如iox、lcx、ew等在内网搭建一个反向代理和一个正向代理，然后利用Proxifier连接多级代理。</p>
+<p>1、Stowaway–利用go语言编写。用户可使用此程序将外部流量通过多个节点代理至内网，突破内网访问限制，构造树状节点网络，并轻松实现管理功能<br>2、Venom–利用go语言编写。Venom可将多个节点进行连接，然后以节点为跳板，构建多级代理。</p>
 
     </div>
 
@@ -466,12 +493,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="prev" title="面试准备之密码学篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之密码学篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="prev" title="面试准备之流量篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之流量篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/10/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="next" title="渗透测试之信息收集">
-      渗透测试之信息收集 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="next" title="面试准备之密码学篇">
+      面试准备之密码学篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -618,13 +645,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">580k</span>
+    <span title="站点总字数">608k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:48</span>
+    <span title="站点阅读时长">9:13</span>
 </div>
 
 <!--

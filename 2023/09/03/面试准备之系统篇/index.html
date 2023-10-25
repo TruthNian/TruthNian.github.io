@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/system_1.jpg">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-19T08:57:34.758Z">
+<meta property="article:modified_time" content="2023-10-24T09:48:39.301Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-19 16:57:34" itemprop="dateModified" datetime="2023-10-19T16:57:34+08:00">2023-10-19</time>
+                <time title="修改时间：2023-10-24 17:48:39" itemprop="dateModified" datetime="2023-10-24T17:48:39+08:00">2023-10-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,14 +254,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>47k</span>
+              <span>55k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>43 分钟</span>
+              <span>50 分钟</span>
             </span>
 
         </div>
@@ -633,7 +633,7 @@
 <p>(1) 准备相关的工具，查后门等工具<br>(2) 初步判断时间类型，事件升级<br>(3) 抑制范围，隔离使受害面不继续扩大<br>(4) 查找原因，封堵攻击源<br>(5) 业务恢复正常水平<br>(6) 总结，报告，修复，监控</p>
 <p>应急响应的经验：<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/defense/375005.html">网络安全应急响应典型案例</a><br><a target="_blank" rel="noopener" href="https://forum.butian.net/share/2225">应急响应</a></p>
 <ol start="5">
-<li>webshell的检测有哪些方法？</li>
+<li>webshell检测有哪些方法？webshell的检测方式</li>
 </ol>
 <p>(1) 基于webshell特征检测<br>(2) 基于流量特征的webshell检测<br>(3) 基于webshell系统行为特征的检测<br>(4) 基于web日志webshell行为特征的检测<br>(5) 动态检测(沙箱)<br>(6) 统计学</p>
 <ol start="6">
@@ -990,7 +990,103 @@
 <li>什么是内网穿透？<br>内网穿透，简单地说就是内网的数据让外网可以获取，可以映射到公共网络上，这样就可以在公共网络上访问内网的数据。<br>工具：<br>ssh：<br>frp：frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务，支持 tcp, http, https 等协议类型，并且 web 服务支持根据域名进行路由转发。<br>花生壳：<br>EarthWorm：EW 是一套便携式的网络穿透工具，具有 SOCKS v5 服务架设和端口转发两大核心功能，可在复杂网络环境下完成网络穿透。<br>reGeorg：reGeorg 是 reDuh 的继承者, 利用了会话层的 socks5 协议, 结合 Proxifier 使用效率会更高。</li>
 </ol>
 <p><a href="file:///D:/Telegram_Download/%E9%9D%A2%E8%AF%95%E9%A2%98(1).pdf">面试题1</a></p>
+<ol start="81">
+<li>溯源总结<br>1、IP<br>首先丢微步情报社区，看其是否归属IDC机房或者云主机，如果是，就考虑查域名历史解析记录（微步有），如果不是，就继续判断，其是否为肉鸡或者代理IP，如果是肉鸡的话，微步情报社区会有历史攻击记录，或者被打上傀儡机标签，如果是代理IP的话，扫描它的端口，一般代理服务都会有端口指纹，例如ccproxy，如果上面都没有，就有可能是真实的国内ip，可以尝试用高精度定位网站进行定位</li>
+</ol>
+<p>2、域名<br>反查注册人，如果开启了隐私保护政策，就通过微步情报社区，查看历史解析IP，用同样的套路，记录反查域名和注册人信息</p>
+<p>3、社交账号<br>一般是通过蜜罐的JSONP跨域来获得</p>
+<p>4、恶意样本<br>上传微步云沙箱获得C2地址，利用微软的strings.exe工具解析铭感字符串，此外还要关注调试信息、有无pdb文件，可能会泄露物理路径，其中的计算机名可能是黑客ID</p>
+<p>5、ID<br>搜索引擎（百度，谷歌），社交网站（微博，贴吧），技术博客（csdn，博客园），src平台（补天），社工库（telegram社工机器人），论坛（吾爱破解），尝试加微信（ID可能就是微信ID）</p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/263539.html">面试题总结其一</a></p>
+<ol start="82">
+<li>Linux入侵检测&#x2F;Linux入侵排查&#x2F;Linux应急响应<br>1、Linux日志<br>bash历史记录：history命令<br>日志记录：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/log/auth.log  认证</span><br><span class="line">/var/log/cron.log  Cron任务</span><br><span class="line">/var/log/maillog   邮件</span><br><span class="line">/var/log/httpd 	   Apache</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>2、检查ssh登录<br>查看有没有保存可疑的公钥文件</p>
+<p>3、检查文件状态改动时间<br>在Linux下，文件有三种时间：访问时间(access time)、修改时间(modify time)、状态改动时间(change time)。<br>某文件从其他服务器传到本服务器路径下，或者从某个压缩包中解压，change time 会变成当前时间，而 access time 和 modify time 不会变化。再结合进程的启动时间，基本就能确定此文件首次在本服务器的生成时间。</p>
+<p>4、检查用户<br>Linux不同的用户，有不同的操作权限，但是所有用户都会在 <code>/etc/passwd, /etc/shadow, /etc/group</code> 文件中记录。</p>
+<p><code>less /etc/passwd</code>　　查看是否有新增用户</p>
+<p><code>grep :0 /etc/passwd</code>　　查看是否有特权用户（root权限用户）</p>
+<p><code>ls -l /etc/passwd</code>　　查看passwd最后修改时间</p>
+<p><code>awk -F: &#39;$3==0 &#123;print $1&#125;&#39; /etc/passwd</code>　　查看是否存在特权用户</p>
+<p><code>awk -F: &#39;length($2)==0 &#123;print $1&#125;&#39; /etc/shadow</code>　　查看是否存在空口令用户</p>
+<p>注：linux设置空口令: <code>passwd -d username</code></p>
+<p>5、检查进程<br>一般被入侵的服务器都会运行一些恶意程序，或是挖矿程序，或者DDOS程序等等，如果程序运行着，那么通过查看进程可以发现一些信息。 如一般的反弹shell，核心是将bash的标准输入和标准输出都绑定到了socket fd 上，故 <code>lsof -p pid</code> 如果看到某bash 进程的0 1 绑定在<code>tcp:socket</code> 上，就是有问题的。简单通过 <code>bash -i</code> 来判断是否反弹shell，可能导致误报，如 <code>/usr/bin/script</code> 脚本的作用是用于存储每个SESSION的工作，只有在远程连接中的情况下才会被执行，默认执行就会启动 <code>bash -i</code> 。</p>
+<p>6、检查系统文件完整性<br>被入侵的网站，通常肯定有文件被改动，那么可以通过比较文件创建时间、完整性、文件路径等方式查看文件是否被改动。</p>
+<p>7、检查网络<br>检查网络的目的，是查看黑客是否通过篡改网卡类型，进行流量嗅探等操作。</p>
+<p>8、检查计划任务<br>当我们尝试kill恶意程序时，往往会遇到被kill程序自动启动的问题，那么就要检查下计划任务(cron)了。</p>
+<p>9、检查系统中的core文件<br>通过发送畸形请求来攻击服务器的某一服务来入侵系统是一种常规的入侵方法，典型的RPC攻击就是通过这种方式。这种方式有一定的成功率，也就是说它并不能100%保证成功入侵系统，而且通常会在服务器相应目录下产生core文件，全局查找系统中的core文件，输入find &#x2F; -name core –exec ls –l {} ; 依据core所在的目录、查询core文件来判断是否有入侵行为。</p>
+<p>10、检查系统后门<br>可以使用工具，如：clamAV（病毒库比较难下）、lynis（基础安全检查非常不错）、Conmodo、rkhunter、chkrootkit 等，<br>当然也可以手工输入命令检查。</p>
+<p>11、检查内核级后门<br>首先，检查系统加载的模块，在LINUX系统下使用lsmod命令，在solaris系统下使用modinfo命令来查看。</p>
+<p>12、webshell查找<br>Webshell的排查可以通过文件、流量、日志三种方式进行分析，基于文件的命名特征和内容特征，相对操作性较高，在入侵后应急过程中频率也比较高。</p>
+<p>13、查看应用类<br>Apache、tomcat、Nginx、IIS<br>web服务器其实日志需要关注的东西是一致的，即access_log和error_log。</p>
+<ol start="83">
+<li>某些命令被替换了，如何发现  &#x2F;  rpm有个参数就可以校验命令是否被替换，是什么<br>1、AIDE入侵检测工具<br>AIDE 是一款入侵检测工具，主要用途是检查文档的完整性。通过构建一个基准的数据库，保存文档的各种属性，一旦系统被入侵，可以通过对比基准数据库而获取文件变更记录。</li>
+</ol>
+<p>2、RPM检查<br>通过 <code>rpm -Va</code> 来检查已安装的rpm包的完整性，防止rpm也被替换，可上传一个安全干净稳定版本的rpm二进制文件到服务器上进行检查。</p>
+<p>3、检查md5sum和文件大小，判断是否被替换<br><code>md5sum /bin/netstat</code></p>
+<ol start="84">
+<li>Windows应急响应&#x2F;Windows入侵排查&#x2F;Windows入侵检测<br>1、账号排查<br>在红队视角下，Windows账户有三种：<br>正常用户: <code>net user</code> 能看到<br>隐藏用户: <code>net user</code> 看不到，但在控制面版，用户组，使用命令wmic可以看到。<br>影子用户: 只有在注册表中能看到，方法是Win+R，输入 <code>regedit</code> 。查找 <code>HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/</code></li>
+</ol>
+<p>2、网络排查<br>查找可疑端口和进程：<br>非管理员输入: <code>netstat -ano</code><br>管理员输入: <code>netstat -anob</code><br>任务管理器通过pid查找可疑进程详细信息<br>进程排查可用火绒剑代替任务管理器</p>
+<p>3、注册表排查<br>用户自启动项<br>镜像劫持</p>
+<p>4、系统相关信息排查<br>查看计划任务: <code>taskschd.msc</code><br>查看服务: <code>services.msc</code><br>查找最近打开的文件</p>
+<ol start="85">
+<li>对抗杀软之白加黑 杀毒软件<br>白加黑可达到如下效果：<br>1、执行敏感命令<br>2、提升权限<br>3、权限维持</li>
+</ol>
+<p>白加黑的加载方式：<br>1、白执行黑dll<br>2、白执行dll加载shellcode<br>3、白加载shellcode</p>
+<p>白加黑的通用流程&#x2F;思路：<br>1、寻找合适的白文件：手工查找<br>2、查看是否有写入权限，如果有可以考虑直接修改，反之考虑通过LoadLibrary函数创建一个新的黑DLL</p>
+<p>检测和预防：<br>1、检查具有异常网络连接的进程，且给定进程的网络活动已变得与基线不同，则该进程可能已受到损害<br>2、DLL权限，针对具有LoadLibrary()函数的DLL进行限制<br>3、DLL白名单，即跟踪系统上使用的DLL的哈希值以识别差异</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12376">白加黑的初步探究</a></p>
+<ol start="86">
+<li>约束委派，非约束委派攻击原理<br><strong>域委派</strong>：<br>是将域用户的权限委派给服务账号，委派之后，服务账号就可以以域用户的身份去做域用户能够做的事</li>
+</ol>
+<p>注意：能够被委派的用户只能是服务账号或者机器账号<br>1、机器账户:活动目录中的computers组内的计算机，也被称为机器账号。<br>2、服务账号：域内用户的一种类型，是服务器运行服务时所用的账号，将服务运行起来加入域内，比如：SQLServer，MYSQL等，还有就是域用户通过注册SPN也能成为服务账号。<br>服务账号（Service Account），域内用户的一种类型，服务器运行服务时所用的账号，将服务运行起来并加入域。就比如 SQL Server在安装时，会在域内自动注册服务账号SqlServiceAccount，这类账号不能用于交互式登录。</p>
+<p><strong>非约束委派</strong>：<br>在域中如果出现A使用Kerberos身份验证访问域中的服务B,而B再利用A的身份去请求域中的服务C，这个过程就可以理解为委派</p>
+<p>利用方式1：<br>使域管理员访问被控机器，找到配置了非约束委派的机器（机器账户） 并且获取其管理员权限<br>具体示例：用administrator登录，将mimikatz上传，查看本地票据( <code>mimikatz.exe &quot;privilege::debug&quot; &quot;sekurlsa::tickets /export&quot; exit</code> )，使用域控访问web，在域控上执行命令: <code>net use \\web.haishi.com</code> ，返回web重新导出票据。<br>导入票据: <code>mimikatz.exe &quot;kerberos::ptt [0;36eb98]-2-0-60a10000-Administrator@krbtgt-HAISHI.COM.kirbi&quot; &quot;exit&quot;</code><br>可成功访问。</p>
+<p>利用方式2：<br>利用打印机漏洞，强迫运行打印服务(Print Spooler)的主机向目标主机发起Kerberos或NTLM认证请求。<br>条件：administrator权限，域用户的账户密码，域控开启打印机<br>使用工具 <a target="_blank" rel="noopener" href="https://github.com/leechristensen/SpoolSample/">SpoolSample</a> 编译<br>使用mimikatz，需要使用域用户运行SpoolSample<br>使用命令打开一个域用户权限的powershell: <code>runas /user:haishi.com\many powershell</code><br>然后在该用户的powershell运行: <code>C:/Users/Administrator/Desktop/SpoolSample.exe dc web</code> ，然后导出票据<br>之后再导入票据: <code>mimikatz.exe &quot;kerberos::ptt [0;af1f8]-0-0-60a50000-DC$@cifs-dc.haishi.com.kirbi&quot; &quot;exit&quot;</code><br>导出hash: <code>lsadump::dcsync /domain:haishi.com /user:haishi\Administrator</code><br>利用wmiexec.py远程登陆: <code>python3 wmiexec.py -hashes :fb4f3a0d0b8c4d81d72d36b925dbed6c haishi.com/administrator@10.150.127.166 -no-pass</code><br>这里用的工具包impacket(github自行下载)<br>然后清除票据<br>但其实在实战中 很少遇到这种情况</p>
+<p><strong>约束性委派</strong>：<br>由于非约束委派的不安全性，微软在windows2003中发布了约束委派的功能，如下所示</p>
+<p>在约束委派中的kerberos中，用户同样还是会将TGT发送给相关受委派的服务，但是由于S4U2proxy的影响，对发送给受委派的服务去访问其他服务做了限制，不允许受委派的服务代表用户使用这个TGT去访问任意服务，而是只能访问指定的服务。</p>
+<p>引入了两个新的概念</p>
+<p>S4U2self<br>允许受约束委派的服务代表任意用户向KDC请求服务自身，从而获得一张该用户（任意用户）的对当前受约束委派服务的票据TGS(ST)，该服务票据TGS(ST)包含了用户的相关信息，比如该用户的组信息等。</p>
+<p>S4U2proxy<br>允许受约束委派的服务通过服务票据ST，然后代表用户去请求指定的服务。</p>
+<p>利用方式：<br>1、使用机器账户Web<br>2、使用机器账户hash<br>3、用机器账户的hash 远程wmiexec登录<br>4、使用服务账户</p>
+<p>但在实战中 约束性委派也遇到的很少</p>
+<p><strong>基于资源的约束性委派</strong>：<br>为了使用户&#x2F;资源更加独立，Windows Server 2012中引入了基于资源的约束委派。基于资源的约束委派允许资源配置受信任的帐户委派给他们。基于资源的约束委派将委派的控制权交给拥有被访问资源的管理员。</p>
+<p>上面“基于资源的约束委派将委派的控制权交给拥有被访问资源的管理员”，这就导致了正常只要是域用户都有权限进行委派操作。</p>
+<p>与约束委派最大的不同点，就是”基于资源”这四个字，如何理解”基于资源”？在设置相关的约束委派的实现的时候不再需要域管理员自己去设置相关约束委派的属性，而操作权落在了当前登录的机器或者用户的手中</p>
+<p>基于资源的约束性委派的优势：<br>委派的权限授予给了拥有资源的后端，而不再是前端<br>约束性委派不能跨域进行委派，基于资源的约束性委派可以跨域和林<br>不再需要域管理员权限设置委派，只需拥有在计算机对象上编辑msDS-AllowedToActOnBehaffOtherldentity属性权限也就是将计算机加入域的域用户和机器自身拥有权限。</p>
+<p>约束性委派和基于资源的约束性委派配置的差别：<br>传统的约束委派是正向的，通过修改服务A的属性msDS-AlowedToDelegateTo，添加服务B的SPN，设置约束委派对象（服务B)，服务A便可以模拟用户向域控制器请求访问服务B的ST服务票据。<br>而基于资源的约束委派则是相反的，通过修改服务B属性msDS-AllowedToActOnBehalfOfotherldentity，添加服务A的SID，达到让服务A模拟用户访问B资源的目的。</p>
+<p>msDS-AllowedToActOnBehalfOfOtherIdentity属性指向委派账户（也就是我们创建的机器账户或已知机器账户）</p>
+<p>条件：<br>具有对主机修改msDS-AllowedToActOnBehalfOfOtherIdentity属性的权限(如已经控制的主机是WEB 则具有修改WEB主机的msDS-AllowedToActOnBehalfOfOtherIdentity的权限账户)<br>可以创建机器账户的域用户（或已知机器账户）</p>
+<p>利用方式：<br>1、基于资源的约束委派攻击本地提权<br>2、Account Operators组用户拿下主机<br>3、结合HTLM Relay接管域控（CVE-2019-1040）<br>4、打造变种黄金票据<br>在获得域控的权限后 对krbtgt用户设置委派属性 来打造黄金票据 进行权限维持</p>
+<p>域委派防范措施：<br>1、高权限用户，设置为敏感用户，不能被委派<br>2、主机账号需设置委派时，只能设置为约束性委派<br>Windows 2012 R2及更高的系统建立了受保护的用户组Protected Users，组内用户不允许被委派，这是有效的手段。受保护的用户组，但有一个cve可绕过这些限制CVE-2020-1704<br>稳的防范 就打补丁 KB4598347</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11555">域渗透之委派攻击全集</a></p>
+<ol start="87">
+<li>windows defender防御机制原理，如何绕过？Windows防火墙防御原理.杀软<br>防御机制原理：<br>Windows Defender使用病毒定义和启发式来捕捉危险程序。<br>绕过：1、使用自定义加密绕过静态分析 2、部分函数不会触发动态扫描（运行时分析）</li>
+</ol>
+<p>绕过Windows defender的方式：<br>1、内存中 AMSI&#x2F;ETW 补丁<br>我要说明的第一种方法也是我个人使用最多的一种方法，非常方便快捷。<br>AMSI，或 AntiMalware Scan Interface，是一种与供应商无关的 Windows 安全控件，它扫描 PowerShell、wscript、cscript、Office 宏等，并将遥测数据发送给安全提供商（在我们的案例中为 Defender）以确定它是否是恶意的.<br>ETW，或 Windows事件跟踪，是另一种安全机制，用于记录在用户模式和内核驱动程序上发生的事件。供应商然后可以分析来自流程的此信息，以确定它是否具有恶意意图。</p>
+<p>2、代码混淆<br>对于 C&#x2F;C++ 等本机编译语言，通常不需要或不值得花时间进行代码混淆，因为编译器无论如何都会应用大量优化。但是很大一部分恶意软件和工具是用 C# 编写的，有时是用 Java 编写的。这些语言被编译为字节码&#x2F;MSIL&#x2F;CIL，可以很容易地进行逆向工程。这意味着您将需要应用一些代码混淆以避免签名检测。</p>
+<p>3、编译时混淆<br>对于 C、C++、Rust 等本机编译语言，您可以利用编译时混淆来隐藏子例程和一般指令流的真实行为。<br>根据语言的不同，可能存在不同的方法。由于我的恶意软件开发首选 C++，因此我将解释我尝试过的两个：LLVM 混淆和模板元编程。<br>该工具生成的二进制文件通常更难被人类&#x2F;AV&#x2F;EDR 静态分析。</p>
+<p>4、二进制混淆&#x2F;打包<br>一旦你已经生成了二进制文件，你的选项主要有以下几种：</p>
+<p>混淆二进制文件的汇编指令。<br>打包二进制文件。<br>加密二进制文件的内容以在运行时对其进行解密。<br>或者，将其转换为 shellcode 以供以后操作和注入。</p>
+<p>5、加密Shellcode注入<br>Shellcode 注入是一种非常著名的技术，它包括在给定的牺牲过程中插入&#x2F;注入与位置无关的 Shellcode，以最终在内存中执行它。这可以通过多种方式实现。</p>
+<p>6、甜甜圈shellcode加载<br>TheWover 的 Donut 项目是一个非常有效的 Position-Independent shellcode 生成器，来自 PE&#x2F;DLL。根据给定的输入文件，它以不同的方式工作。</p>
+<p>7、定制工具<br>Mimikatz、Rubeus、Certify、PowerView、BloodHound 等工具之所以受欢迎是有原因的：它们在单个包中实现了很多功能。这对恶意行为者非常有用，因为他们可以仅使用一些工具自动传播恶意软件。然而，这也意味着供应商很容易通过注册其签名字节（例如，菜单字符串、C# 中的类&#x2F;命名空间名称等）来关闭整个工具。</p>
+<p>8、有效载荷分级<br>将有效载荷分成渐进阶段无论如何都不是新技术，威胁参与者通常使用它来传播逃避初始静态分析的恶意软件。这是因为真正的恶意负载将在稍后阶段被检索和执行，静态分析可能没有机会发挥作用。</p>
+<p>9、反射加载<br>您可能还记得第一部分中我们在修补内存中的 AMSI 后执行 Mimikatz 作为 Defender 停止扫描进程内存的演示。这是因为 .NET 公开了 System.Reflection.Assembly API，我们可以使用它来反射加载和执行.NET程序集（定义为“表示一个程序集，它是一个可重用、可版本化且自描述的公共构建块语言运行时应用程序。”）在内存中。</p>
+<p>10、P&#x2F;调用 C# 程序集<br>P&#x2F;Invoke 或 Platform Invoke 允许我们从非托管本机 Windows DLL 访问结构、回调和函数，以便访问可能无法直接从 .NET 获得的本机组件中的较低级别 API。</p>
+<p>现在，由于我们知道它的作用，并且知道我们可以在 PowerShell 中使用 .NET，这意味着我们可以从 PowerShell 脚本访问低级 API，如果我们之前修补 AMSI，我们可以在没有 Defender 监视的情况下运行该脚本。</p>
+<p><a target="_blank" rel="noopener" href="https://www.ddosi.org/bypassing-windows-defender/">绕过Windows Defender的10种方法|Bypass</a></p>
+<ol start="88">
+<li><p>卡巴斯基进程保护如何绕过进行进程迁移？<br>通过蓝屏获得memory.dmp绕过卡巴斯基，通过蓝屏绕过卡巴斯基的内存保护抓取密码，使用RPC控制isass加载SSP</p>
+</li>
+<li><p>内存马的机制<br>1、servlet-api型<br>通过命令执行等方式动态注册一个新的listener、filter或servlet，从而实现命令执行等功能。特定框架、容器的内存马原理与此类似，如spring的controller内存马，tomcat的value内存马<br>2、字节码增强型<br>通过Java的instrumentation动态修改已有代码，进而实现命令执行等功能。</p>
+</li>
+<li><p>WAF和IPS的区别<br>IPS位于防火墙和网络的设备之间，防火墙可以拦截底层攻击行为，但无法有效面对应用层的深层攻击。IPS是对防火墙的补充，综合能力更强；WAF是工作在应用层的防火墙，主要对Web请求&#x2F;响应进行防护。</p>
+</li>
+<li><p>木马驻留系统的方式有哪些？<br>1、注册表<br>2、服务<br>3、启动目录<br>4、计划任务<br>5、关联文件类型</p>
+</li>
+</ol>
 
     </div>
 
@@ -1080,8 +1176,8 @@
       <i class="fa fa-chevron-left"></i> ShellCode获取
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="next" title="面试准备之自身方面篇">
-      面试准备之自身方面篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="next" title="面试准备之计算机基础篇">
+      面试准备之计算机基础篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1228,13 +1324,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">580k</span>
+    <span title="站点总字数">608k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">8:48</span>
+    <span title="站点阅读时长">9:13</span>
 </div>
 
 <!--
