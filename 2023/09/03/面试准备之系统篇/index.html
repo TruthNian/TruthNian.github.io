@@ -29,8 +29,10 @@
 <meta property="og:description" content="前言了解系统，才能更好攻击与防御。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/simg/system_1.jpg">
+<meta property="og:image" content="http://example.com/simg/firewall1.png">
+<meta property="og:image" content="http://example.com/simg/firewall2.png">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-24T09:48:39.301Z">
+<meta property="article:modified_time" content="2023-10-31T10:13:51.147Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -130,17 +132,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">59</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">77</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">80</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">184</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">187</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -225,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-24 17:48:39" itemprop="dateModified" datetime="2023-10-24T17:48:39+08:00">2023-10-24</time>
+                <time title="修改时间：2023-10-31 18:13:51" itemprop="dateModified" datetime="2023-10-31T18:13:51+08:00">2023-10-31</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,14 +256,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>55k</span>
+              <span>62k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>50 分钟</span>
+              <span>56 分钟</span>
             </span>
 
         </div>
@@ -280,12 +282,12 @@
 </ol>
 <p><code>netstat -an</code></p>
 <ol start="2">
-<li>Windows认证协议</li>
+<li>@ Windows认证协议</li>
 </ol>
 <p>NTLM, NTLM（NT LAN Manager）是Windows早期版本中使用的认证协议。NTLM使用挑战&#x2F;响应机制来验证用户身份。客户端和服务器之间的通信需要多次交换数据以进行身份验证。容易受到中间人攻击的威胁。<br>Kerberos, Kerberos是Windows Server 2000中引入的认证协议。Kerberos使用票据交换来进行身份验证，客户端和服务器之间的通信只需要一次票据交换，因此减少了中间人攻击的机会。<br>NTLMv2, NTLMv2是NTLM的改进版本。NTLMv2使用更安全的哈希算法来保护用户密码。<br>Negotiate, Negotiate是Windows Server 2003中引入的认证协议。Negotiate允许客户端和服务器协商使用哪种认证协议。(是协议选择机制，Kerberos或NTLM)</p>
 <p>安全性：Kerberos&gt;NTLM</p>
 <ol start="3">
-<li>Windows怎么提权</li>
+<li>@ Windows怎么提权</li>
 </ol>
 <p>(1) 内核溢出提权–未打漏洞补丁，可以通过metasploit信息收集，手工信息收集systeminfo等。</p>
 <p>(2) 系统配置错误提权<br>2.1 权限配置错误<br>2.2 可信任服务器路径漏洞<br>2.3 不安全的注册表权限配置<br>2.4 启用注册表键AlwaysInstallElevated</p>
@@ -306,7 +308,7 @@
 
 <p>注意：清理方式是将文件清空，而不是将其完全擦除。<br>使用truncate命令将文件大小减少到0： <code>truncate -s 0 /var/log/auth.log</code><br>通过将nothing映射到文件来完成： <code>echo &#39;&#39; &gt; /var/log/auth.log</code><br>还可以单独使用&gt;来清理文件： <code>&gt; /var/log/auth.log</code><br>也可以发送到&#x2F;dev&#x2F;null： <code>cat /dev/null &gt; /var/log/auth.log</code><br>使用tee命令： <code>true | tee /var/log/auth.log</code></p>
 <ol start="3">
-<li>Linux提权的姿势</li>
+<li>@ Linux提权的姿势</li>
 </ol>
 <p>(1) 内核漏洞提权–DirtyCow<br>(2) 定时任务提权<br>(3) SUID提权<br>(4) Sudo滥用提权<br>(5) 外壳逃生序列<br>(6) NFS提权<br>(7) Password &amp; Key 提权<br>(8) Docker提权</p>
 <ol start="4">
@@ -474,7 +476,7 @@
 <p>SSH框架<br>业务层：Spring<br>表现层：Struts<br>持久层：Hibernate</p>
 <p>SSM框架<br>业务层：Spring<br>表现层：SpringMVC<br>持久层：MyBatis</p>
 <p><a target="_blank" rel="noopener" href="https://paper.seebug.org/1075/">Java框架级SSM代码审计思路</a></p>
-<p>代码审计的流程和思路：<br>(1) 收集信息：查看源码、分析日志、使用工具等方式，收集目标用户程序的信息，包括但不限于：应用程序的文件目录结构、配置文件、程序源码、请求参数、数据库结构等。<br>(2) 风险评估：根据收集到的信息，分析应用程序中可能存在的漏洞和安全隐患，并对进行评估，确定哪些漏洞最为严重、哪些应该优先修复。<br>(3) 漏洞挖掘：通过手动测试和工具扫描等方式，对应用程序进行漏洞挖掘。测试应包括各种类型的漏洞，例如：SQL注入、跨站脚本、CSRF等。<br>(4) 漏洞验证：验证漏洞是否真实存在，并确认漏洞的影响程序、可能的攻击方式和风险级别。<br>(5) 报告编写：将漏洞及其影响、攻击方式、风险级别等信息整理成报告，供开发者和管理者参考。报告应该详细说明漏洞的位置、修复建议等具体内容，并提供漏洞的Poc（漏洞利用代码）。<br>(6) 漏洞修复：由开发人员修复漏洞，并通过测试验证修复效果。在修复漏洞之后，应再次进行代码审计，以确保没有新漏洞产生。</p>
+<p>@ 代码审计的流程和思路：<br>(1) 收集信息：查看源码、分析日志、使用工具等方式，收集目标用户程序的信息，包括但不限于：应用程序的文件目录结构、配置文件、程序源码、请求参数、数据库结构等。<br>(2) 风险评估：根据收集到的信息，分析应用程序中可能存在的漏洞和安全隐患，并对进行评估，确定哪些漏洞最为严重、哪些应该优先修复。<br>(3) 漏洞挖掘：通过手动测试和工具扫描等方式，对应用程序进行漏洞挖掘。测试应包括各种类型的漏洞，例如：SQL注入、跨站脚本、CSRF等。<br>(4) 漏洞验证：验证漏洞是否真实存在，并确认漏洞的影响程序、可能的攻击方式和风险级别。<br>(5) 报告编写：将漏洞及其影响、攻击方式、风险级别等信息整理成报告，供开发者和管理者参考。报告应该详细说明漏洞的位置、修复建议等具体内容，并提供漏洞的Poc（漏洞利用代码）。<br>(6) 漏洞修复：由开发人员修复漏洞，并通过测试验证修复效果。在修复漏洞之后，应再次进行代码审计，以确保没有新漏洞产生。</p>
 <p>审过spring框架，MyBatis框架，常出现的问题是SQL注入。<br>spring框架情况：Statement直接拼接sql语句造成SQL语句漏洞。<br>MyBatis框架情况：使用like语句进行模糊查询；使用in语句；使用order by语句。<br><a target="_blank" rel="noopener" href="https://www.ctfiot.com/133145.html">Java代码审计—SQL注入篇</a></p>
 <ol start="3">
 <li>python的web框架（flask&#x2F;django）</li>
@@ -490,7 +492,7 @@
 <p>（3）模型（Model）<br>模型表示状态和业务逻辑的处理，在一般的web应用程序中，用JavaBean或者EJB来实现系统的业务逻辑。在Struts中，struts提供Action对象，来管理业务逻辑的调用，帮助用户分离业务逻辑，也就是说struts本身不实现业务逻辑，但可以调用已完成的业务逻辑。</p>
 <p>Struts工作流程：<br>ActionServlet是struts中核心的控制器，所有的用户请求都必须通过ActionServlet的处理，而struts-config.xml是struts中核心的配置文件，在这个文件中配置了用户请求URL和控制器Action的映射关系，ActionServlet通过这个配置文件把用户的请求发送到对应的控制器中。<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26316119">Struts简介和原理</a></p>
 <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><ol>
-<li>说说常见的中间件解析漏洞利用方式。</li>
+<li>@ 说说常见的中间件解析漏洞利用方式。</li>
 </ol>
 <p>中间件解析漏洞利用方式：<br>(1) IIS 解析漏洞：<br>成因：IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。<br>利用方式：<br>IIS 6.0</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iis6.0畸形解析：asa、cer</span><br><span class="line">iis6.0目录解析：/test.asp/test.jpg</span><br><span class="line">iis6.0文件解析：test.asp;.jpg</span><br><span class="line">IIS7.5文件解析：test.jpg/.php</span><br></pre></td></tr></table></figure>
@@ -512,11 +514,11 @@
 </ol>
 <p>解析漏洞，远程代码执行，反序列化，目录遍历，PUT漏洞，文件上传，SSRF，目录穿越</p>
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><ol>
-<li>请写出MySQL5数据库中查询库’helloworld’中’user’表所有列名的语句。</li>
+<li>@ 请写出MySQL5数据库中查询库’helloworld’中’user’表所有列名的语句。</li>
 </ol>
 <p><code>select * from information_schema.COLUMNS where table_name = &#39;user&#39; and table_schema = &#39;helloworld&#39;;</code></p>
 <ol start="2">
-<li>udf提权</li>
+<li>@ udf提权</li>
 </ol>
 <p>UDF(User Define Function)用户自定义函数，是MySQL的一个扩展接口，通过添加新函数，对MySQL的功能进行扩充。调用方式与一般系统自带的函数相同，例如user(), version()等函数。<br>udf文件后缀在Windows与Linux系统下分别为dll与so，即动态链接库文件，由C, C++编写</p>
 <p>攻击原理：<br>(1) 攻击者在目标系统导入UDF。<br>(2) 攻击者通过SQL语句调用执行UDF。<br>(3) UDF利用漏洞执行任意命令，提升权限。</p>
@@ -531,7 +533,7 @@
 </ol>
 <p>没开放3389端口<br>端口被修改<br>防护拦截<br>处于内网(需要进行端口转发)</p>
 <ol start="5">
-<li>MySQL两种提权方式</li>
+<li>@ MySQL两种提权方式</li>
 </ol>
 <p>(1) UDF提权：见问题2</p>
 <p>(2) MOF提权：<br>MOF提权是指利用MOF文件的漏洞，将用户权限提升到与Windows系统的最高权限（System）一致。</p>
@@ -553,7 +555,7 @@
 </ol>
 <p>Oracle: 1521<br>MySQL: 3306<br>SQL Server: 1433</p>
 <ol start="9">
-<li>怎么通过数据库获取shell</li>
+<li>@ 怎么通过数据库获取shell</li>
 </ol>
 <p>(1) MySQL Outfile导出webshell<br>(2) MySQL日志获取webshell<br>(3) mof提权<br>(4) udf提权</p>
 <ol start="10">
@@ -561,7 +563,7 @@
 </ol>
 <p>见问题5</p>
 <ol start="11">
-<li>mssql的提权你能说一下吗？</li>
+<li>@ mssql的提权你能说一下吗？</li>
 </ol>
 <p>(1) 存储过程写webshell<br>利用条件：拥有DBA权限，知道网站的绝对路径。<br>利用存储过程写入一句话，注意路径。</p>
 <p>(2) 差异备份写webshell<br>利用条件：需要知道绝对路径，路径可写</p>
@@ -633,7 +635,7 @@
 <p>(1) 准备相关的工具，查后门等工具<br>(2) 初步判断时间类型，事件升级<br>(3) 抑制范围，隔离使受害面不继续扩大<br>(4) 查找原因，封堵攻击源<br>(5) 业务恢复正常水平<br>(6) 总结，报告，修复，监控</p>
 <p>应急响应的经验：<br><a target="_blank" rel="noopener" href="https://www.freebuf.com/defense/375005.html">网络安全应急响应典型案例</a><br><a target="_blank" rel="noopener" href="https://forum.butian.net/share/2225">应急响应</a></p>
 <ol start="5">
-<li>webshell检测有哪些方法？webshell的检测方式</li>
+<li>@ webshell检测有哪些方法？webshell的检测方式</li>
 </ol>
 <p>(1) 基于webshell特征检测<br>(2) 基于流量特征的webshell检测<br>(3) 基于webshell系统行为特征的检测<br>(4) 基于web日志webshell行为特征的检测<br>(5) 动态检测(沙箱)<br>(6) 统计学</p>
 <ol start="6">
@@ -646,7 +648,7 @@
 </ol>
 <p>见问题4</p>
 <ol start="8">
-<li>怎么查找域控</li>
+<li>@ 怎么查找域控</li>
 </ol>
 <p>(1) 通过DNS查询</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dig -t SRV _gc._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _ldap._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _kerberos._tcp.lab.ropnop.com</span><br><span class="line">dig -t SRV _kpasswd._tcp.lab.ropnop.com</span><br></pre></td></tr></table></figure>
@@ -731,14 +733,14 @@
 </ol>
 <p>(1) 查看系统信息：在Windows系统中，可以通过以下命令查看系统信息：<br><code>systeminfo</code><br>如果是域控，则会显示域名和域控制器的名称。<br>(2) 查看域成员：可以通过以下命令查看域成员：<br><code>net group /domain</code><br>如果系统是域控，则会显示域中所有成员的信息。<br>(3) 查看域控制器：可以通过以下命令查看域控制器：<br><code>nltest /dclist:域名</code><br>该命令将显示域中的所有域控制器。<br>(4) 查看DNS记录：可以通过以下命令查看DNS记录：<br><code>nslookup -type=SRV _ldap._tcp.域名</code><br>该命令将显示域控制器的SRV记录。<br>(5) 查看计算机的角色：在Windows Server中，可以通过Server Manager查看一个计算机的角色。如果计算机的角色是“Active Directory 域服务”，则它是域控制器。</p>
 <ol start="25">
-<li><p>工作组横向<br>(1) 通过at&amp;schtasks进行明文传递<br>说明：at&amp;schtasks 都是 windows 上创建计划任务的命令，只是针对的版本不同，at是win2008及以下；<br>(2) atexec进行明文与HASH传递<br>(3) SMB服务利用<br>(4) WMI服务利用<br>(5) PTH横向传递攻击<br>(6) PTK横向传递攻击<br>(7) RDP传递攻击<br><a target="_blank" rel="noopener" href="https://www.wangan.com/p/11v71d8e5253fc5f#%E4%B8%80%E3%80%81%E9%80%9A%E8%BF%87at&schtasks%E8%BF%9B%E8%A1%8C%E6%98%8E%E6%96%87%E4%BC%A0%E9%80%92">内网横向移动常用方法及工具总结</a></p>
+<li><p>@ 工作组横向<br>(1) 通过at&amp;schtasks进行明文传递<br>说明：at&amp;schtasks 都是 windows 上创建计划任务的命令，只是针对的版本不同，at是win2008及以下；<br>(2) atexec进行明文与HASH传递<br>(3) SMB服务利用<br>(4) WMI服务利用<br>(5) PTH横向传递攻击<br>(6) PTK横向传递攻击<br>(7) RDP传递攻击<br><a target="_blank" rel="noopener" href="https://www.wangan.com/p/11v71d8e5253fc5f#%E4%B8%80%E3%80%81%E9%80%9A%E8%BF%87at&schtasks%E8%BF%9B%E8%A1%8C%E6%98%8E%E6%96%87%E4%BC%A0%E9%80%92">内网横向移动常用方法及工具总结</a></p>
 </li>
-<li><p>域内横向</p>
+<li><p>@ 域内横向</p>
 </li>
 </ol>
 <p>(1) LM Hash 和 NTLM Hash<br>(2) PTH&amp;PTT&amp;PTK<br>(3) DCSync<br>(4) Zerologon 域提权漏洞<br>(5) 从NTDS.dit获取域散列值<br><a target="_blank" rel="noopener" href="https://www.shawroot.cc/2204.html">域内横向移动学习笔记</a><br><a target="_blank" rel="noopener" href="https://github.com/SewellDinG/Pentest-Notes/blob/master/%E7%AC%AC5%E7%AB%A0.%E5%9F%9F%E5%86%85%E6%A8%AA%E5%90%91%E7%A7%BB%E5%8A%A8%E5%88%86%E6%9E%90%E5%8F%8A%E9%98%B2%E5%BE%A1.md">域内横向移动分析及防御</a></p>
 <ol start="27">
-<li>白银票据黄金票据</li>
+<li>@ 白银票据黄金票据</li>
 </ol>
 <p>白银票据是指伪造的服务票据（Service Ticket，ST），它可以授权攻击者访问指定服务器上的指定服务。白银票据的生成需要以下条件：<br>1.域名称<br>2.域的SID值<br>3.域中的Server服务器账户的NTLM-Hash<br>4.伪造的用户名，可以是任意用户名.<br>5.目标服务器上面的kerberos服务</p>
 <p>白银票据的生成过程如下：<br>通过mimikatz生成银票。</p>
@@ -752,18 +754,18 @@
 <p>3、认证流程不同<br>Golden Ticket 的利用过程需要访问域控(KDC)<br>Silver Ticket 可以跳过 KDC 直接访问对应的服务器</p>
 <p><a target="_blank" rel="noopener" href="https://shu1l.github.io/2020/06/06/qian-xi-huang-jin-piao-ju-yu-bai-yin-piao-ju/">浅析黄金票据与白银票据</a></p>
 <ol start="28">
-<li>判断是否在域内</li>
+<li>@ 判断是否在域内</li>
 </ol>
 <p>1、 查看当前网卡和IP信息<br>使用命令 <code>ipconfig /all</code><br>在Windows IP 配置(Windows IP Configuration)下的主DNS后缀(Primary DNS Suffix)处：<br>如果为空，说明不在域内；<br>如果显示域名，说明在域内。</p>
 <p>2、 查看操作系统详细信息<br>使用命令 <code>systeminfo</code><br>在域(Domain)处，如果：<br>显示 工作组(WORKGROUP)，说明不在域内。<br>显示 域名，说明在域内。</p>
 <p>3、 查看当前登录域及域用户<br>使用命令 <code>net config workstation</code><br>在工作站域(Workstation Domain):<br>显示WORKGROUP，说明不在域内。<br>显示域名，说明在域内。而且多一行“工作站域DNS名称”。</p>
 <p>4、 查看域内时间<br>使用命令 <code>net time /domain</code><br>通过执行以上命令后，会出现三种情况：<br>(1) 当前是工作组环境。会显示“找不到域 WORKGROUP 的域控制器。”<br>(2) 存在域，当前用户不是域用户。会显示“发生系统错误5。 拒绝访问。”<br>(3) 存在域，当前用户是域用户。会显示“DC1.xx.xx 的当前时间是 YY&#x2F;MM&#x2F;DD HH:MM:SS  命令成功完成”</p>
 <ol start="29">
-<li>hash传递原理</li>
+<li>@ hash传递原理</li>
 </ol>
 <p>hash传递原理(Pass-The-Hash):<br>哈希传递攻击是基于NTLM认证的一种攻击方式。哈希传递攻击的利用前提是我们获得了某个用户的密码哈希值，但是解不开明文。这时我们可以利用NTLM认证的一种缺陷，利用用户的密码哈希值来进行NTLM认证。在域环境中，大量计算机在安装时会使用相同的本地管理员账号和密码。因此，如果计算机的本地管理员账号密码相同，攻击者就能使用哈希传递攻击登录内网中的其他机器。</p>
 <ol start="30">
-<li>权限维持</li>
+<li>@ 权限维持</li>
 </ol>
 <p>Windows权限维持：<br>(1) 辅助功能镜像劫持。比如最常见的按5下shift出现的粘滞键Sethc.exe，还有Windows + U组合键时启动的utilman.exe程序<br>(2) 启动项或服务后门。<br>(3) 系统计划任务后门。<br>(4) DLL劫持<br>(5) Winlogon用户登录初始化<br>(6) Logon Scripts 后门<br>(7) 文件关联<br>(8) Bitsadmin<br>(9) 进程注入<br>(10) 屏幕保护程序<br>(11) WMI构造无文件后门<br>(12) 影子用户<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9718">Windows权限维持总结</a></p>
 <p>Linux权限维持：<br>1、隐藏文件：创建隐藏文件的命令 <code>touch .test.txt</code> ，在文件名前加一个点即可创造隐藏文件。<br>2、隐藏文件时间戳：Unix 下藏后门必须要修改时间，否则很容易被发现，直接利用 touch 就可以了。比如参考 index.php 的时间，再赋给 webshell.php，结果两个文件的时间就一样了。<br>3、隐藏权限：在Linux中，使用chattr命令来防止root和其他管理用户误删除和修改重要文件及目录，此权限用 <code>ls -l</code> 是查看不出来的，从而达到隐藏权限的目的。<br>4、隐藏历史操作命令：(1) 只针对自己的工作关闭历史记录</p>
@@ -794,7 +796,7 @@
 </ol>
 <p>见问题25，26</p>
 <ol start="32">
-<li>凭证获取(姿势&#x2F;常用&#x2F;原理&#x2F;对抗)</li>
+<li>@ 凭证获取(姿势&#x2F;常用&#x2F;原理&#x2F;对抗)</li>
 </ol>
 <p>Windows凭证保护机制及bypass：<br>1、LSA保护<br>自Windows 8.1 开始为LSA提供了额外的保护（LSA Protection），以防止读取内存和不受保护的进程注入代码。保护模式要求所有加载到LSA的插件都必须使用Microsoft签名进行数字签名。 在LSA Protection保护模式下，mimikatz运行 sekurlsa::logonpasswords抓取密码会报错。</p>
 <p>bypass：<br>(1) mimikatz运行lsadump::sam从磁盘上的SAM读取凭据，可成功bypass LSA Protection，读取到用户哈希<br>(2) mimikatz其中的mimidrv.sys驱动程序，可从lsass.exe进程中删除LSA保护，成功bypass LSA保护</p>
@@ -806,7 +808,7 @@
 
 <p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/220991">Windows凭证机制浅析</a></p>
 <ol start="33">
-<li>如何对抗杀软加后门用户</li>
+<li>@ 如何对抗杀软加后门用户</li>
 </ol>
 <p>绕过敏感操作方式：白加黑。利用Windows系统的一些白文件去执行相应的敏感操作。<br>绕过流量特征方式：<br>(1) TCP分段。指的是数据包在传输过程中切分后以小段传输(效果不错，但网络不好容易断)<br>(2) 内容加密。针对传输内容加密混淆，比如执行命令的字符串<br>(3) 使用合法证书。<br><a target="_blank" rel="noopener" href="https://0range-x.github.io/2022/03/31/%E6%B5%85%E6%9E%90%E6%9D%80%E8%BD%AF/">浅析杀软</a></p>
 <ol start="34">
@@ -820,14 +822,14 @@
 </ol>
 <p>见问题29</p>
 <ol start="36">
-<li>DCsync原理，DCsync是哪个协议？</li>
+<li>@ DCsync原理，DCsync是哪个协议？</li>
 </ol>
 <p>当企业内网当做部署了多台域控制器后，一台域控进行了数据的更改之后，需要与其他域控进行数据的同步，而这个同步是通过Microsoft的远程目录复制服务协议 (MS-DRSR),该协议是基于MSRPC &#x2F; DCE&#x2F;RPC )进行的。并且其 DRS 的 Microsoft API 是DRSUAPI(这个在后面抓包可以看到)。</p>
 <p>DCsync原理：<br>在不同域控制器（DC）之间，每 15 分钟都会有一次域数据的同步。当一个域控制器（DC 1）想从其他域控制器（DC 2）获取数据时，DC 1 会向 DC 2 发起一个 GetNCChanges 请求，该请求的数据包括需要同步的数据。如果需要同步的数据比较多，则会重复上述过程。DCSync通过 DRS(Directory Replication Service) 服务的 GetNCChanges 接口向域控发起数据同步请求，从域控制器复制用户哈希凭据。</p>
 <p>利用DCSync导出域内用户的哈希值，本质上就是利用DRS(Directory Replication Service)协议通过 IDL_DRSGetNCChanges 从域控制器复制用户哈希凭据，以便进一步进行利用。<br>对拥有“复制目录更改（DS-Replication-Get-Changes）、全部复制目录更改 (DS-Replication-Get-Changes-All )、在过滤集中复制目录更改(可有可无)（DS-Replication-Get-Changes-In-Filtered-Set）”三条DACL的域用户，向域控发出数据同步请求，从而去dump域内用户hash。<br>默认本地管理员，域管理员或企业管理员以及域控制器计算机账户得成员默认具有上述权限。<br>注意，默认情况下，DCSync 攻击的对象如果是只读域控制器 (RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的。</p>
 <p>DCsync是：DRS(Directory Replication Service)协议。<br><a target="_blank" rel="noopener" href="https://tttang.com/archive/1634/">DCSync 技术的攻击和检测</a><br><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/186924.html">基于AD Event日志识别DCSync攻击</a></p>
 <ol start="37">
-<li>有台Windows域内机器，如何打域控？</li>
+<li>@ 有台Windows域内机器，如何打域控？</li>
 </ol>
 <p>Windows攻击域控的方式：<br>1、高权限读取本地密码(procdump+mimikatz绕过杀软)<br>2、SYSVOL组策略获取密码<br>3、Kerberoasting暴力破解密码<br>4、内网协议NTLM之内网大杀器CVE-2019-1040漏洞<br>5、CVE-2020-1472-ZeroLogon<br>6、MS14-068漏洞进行提权<br>7、窃取域管理员令牌<br>8、进程迁移</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_53742230/article/details/126082408">Windows 内网渗透之攻击域控</a></p>
@@ -853,7 +855,7 @@
 </ol>
 <p>见问题2</p>
 <ol start="43">
-<li>内网代理（详细问了frp）</li>
+<li>@ 内网代理（详细问了frp）</li>
 </ol>
 <p>frp是一个国人开发的非常易用的内网穿透工具，可以借助具有公网IP的服务器，建立从公网到内网的通道。</p>
 <p>frp使用server&#x2F;client的模式。一般来说，frps (server)运行在具有公网ip的服务器上，而frpc (client)运行在内网的服务器上。frpc连接到frps后，公网用户可以访问frps的ip与特定端口，访问对应的frpc。因此，抛开网络环境，使用frp最基础的条件就是，user与client都可以主动通过ip连接server。</p>
@@ -866,14 +868,14 @@
 <ol start="45">
 <li><p>除了TCP&#x2F;IP协议，如何将内网数据传递出来（内网环境有着严格防御与审查）<br>1、尝试icmp，如果能ping通外网主机，一般都能出网。<br>2、尝试应用层协议出网，比如HTTP, SSH, DNS, RDP等应用层协议；通常办公网是允许HTTP协议出网的，可能会域名白名单限制</p>
 </li>
-<li><p>有没有内网渗透的经验？怎么渗透？如果拿下了边界层的某一个机器，如何对内网进行其它探测？<br>有。<br>内网渗透流程：<br>1、拿到权限。通过exp进入主机，判断系统信息，获取当前目录路径，在当前目录写入一句话木马并连接，然后上传免杀马，最后上线。<br>2、权限维持。方法有设置延迟时间，注入进程使进程迁移，将木马隐藏在启动项下，使用计划任务。<br>3、主机信息收集。收集内容包括：主机信息 <code>systeminfo</code> ，网络信息 <code>ipconfig /all</code> ，路由表 <code>arp -a</code> ，进程 <code>tasklist</code> ，端口占用 <code>netstat -ano</code> ，是否域环境 <code>net user /domain</code> ，是否出网 <code>ping baidu.com -n 2</code> ，浏览器保存密码(使用工具)<br>4、隧道搭建。传入ew执行命令连接服务器等socks，传入frp客户端和配置文件并运行命令<br>5、横向移动。通过之前拿到的各种账号密码，登入常见服务如phpmyadmin<br>6、内网信息收集。内容：当前权限，网络配置信息，系统信息，敏感信息，域内信息(当前域，域用户，指定域用户详细信息，域控，域内用户详细信息，域控主机名)<br>7、提权。内核提权，计划任务提权，protato等。<br>8、横向移动。获取hash，pth等。<br>9、PTT(票据传递)。黄金票据，白银票据。</p>
+<li><p>@ 有没有内网渗透的经验？怎么渗透？如果拿下了边界层的某一个机器，如何对内网进行其它探测？<br>有。<br>内网渗透流程：<br>1、拿到权限。通过exp进入主机，判断系统信息，获取当前目录路径，在当前目录写入一句话木马并连接，然后上传免杀马，最后上线。<br>2、权限维持。方法有设置延迟时间，注入进程使进程迁移，将木马隐藏在启动项下，使用计划任务。<br>3、主机信息收集。收集内容包括：主机信息 <code>systeminfo</code> ，网络信息 <code>ipconfig /all</code> ，路由表 <code>arp -a</code> ，进程 <code>tasklist</code> ，端口占用 <code>netstat -ano</code> ，是否域环境 <code>net user /domain</code> ，是否出网 <code>ping baidu.com -n 2</code> ，浏览器保存密码(使用工具)<br>4、隧道搭建。传入ew执行命令连接服务器等socks，传入frp客户端和配置文件并运行命令<br>5、横向移动。通过之前拿到的各种账号密码，登入常见服务如phpmyadmin<br>6、内网信息收集。内容：当前权限，网络配置信息，系统信息，敏感信息，域内信息(当前域，域用户，指定域用户详细信息，域控，域内用户详细信息，域控主机名)<br>7、提权。内核提权，计划任务提权，protato等。<br>8、横向移动。获取hash，pth等。<br>9、PTT(票据传递)。黄金票据，白银票据。</p>
 </li>
 </ol>
 <p>探测方式：<br>首先使用代理进入内网regeorg、ew等<br>第二在本机进行信息收集，包括管理员ip、端口服务、账号密码、路由信息、网段信息等<br>第三扩展到收集到的网段进行渗透，利用常用服务:SMB、MYSQL、SQLserver、ftp、telnet等<br>借助轻量化脚本或扫描器扫描，但一般不这么做，动静太大容易被管理员发现<br>第四通过系统中存在的漏洞提权<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11784">通过边界代理一路打到三层内网+后渗透通用手法</a></p>
 <ol start="47">
 <li><p>主机疑似遭到入侵，要看哪里的日志？<br>1、系统登录日志<br>2、服务访问日志<br>3、网站日志<br>4、数据库日志</p>
 </li>
-<li><p>DDOS有哪些？CC攻击是什么，区别是什么<br>DDOS使分布式拒绝服务攻击，利用服务请求来占用过多的资源，从而使合法用户无法得到服务响应。<br>主要方式(整体层面)：<br>1、容量耗尽攻击: UDP Flood<br>2、协议攻击: SYN Flood<br>3、资源层攻击: HTTP GET<br>主要方式(具体层面)：<br>1、SYN Flood<br>2、UDP Flood<br>3、ICMP Flood<br>4、Connection Flood<br>5、HTTP Get<br>6、UDP DNS Query Flood</p>
+<li><p>@ DDOS有哪些？CC攻击是什么，区别是什么<br>DDOS使分布式拒绝服务攻击，利用服务请求来占用过多的资源，从而使合法用户无法得到服务响应。<br>主要方式(整体层面)：<br>1、容量耗尽攻击: UDP Flood<br>2、协议攻击: SYN Flood<br>3、资源层攻击: HTTP GET<br>主要方式(具体层面)：<br>1、SYN Flood<br>2、UDP Flood<br>3、ICMP Flood<br>4、Connection Flood<br>5、HTTP Get<br>6、UDP DNS Query Flood</p>
 </li>
 </ol>
 <p>CC攻击：模拟多个正常用户不停地访问如论坛这些需要大量数据操作的页面，造成服务器资源的浪费，CPU长时间处于100%，网络拥塞。</p>
@@ -883,15 +885,15 @@
 </li>
 <li><p>绕过waf常用方法<br>见问题18</p>
 </li>
-<li><p>信息收集都收集哪些信息<br>公司级别：企查查搜索公司和子公司信息，获得域名，并且通过oneforall搜索子域名信息。通过站长之家，whois等查找域名信息。<br>域名级别：使用工具批量获取子域名，查旁站。<br>IP级别：使用fofa，zoomeyes查找信息，通过SHA-1(SSL Lab)查找真实ip，域名转IP，C段信息。<br>web级别：识别网站框架cms，用插件Wappalyzer；路径收集，使用dirbuster，dirsearch，御剑等；敏感信息收集，使用JSFinder<br>主机级别：查看主机信息，如systeminfo；网络信息，如ipconfig &#x2F;all；查看路由，如arp -a；进程 tasklist；端口占用 netstat -ano；是否域环境 net user &#x2F;domain；是否出网 ping baidu.com -n 2；浏览器保存密码(使用工具)<br>内网级别：当前权限，网络配置信息，系统信息，敏感信息，域内信息(当前域，域用户，指定域用户详细信息，域控，域内用户详细信息，域控主机名)<br>见 信息收集 篇<br>见问题46</p>
+<li><p>@ 信息收集都收集哪些信息<br>公司级别：企查查搜索公司和子公司信息，获得域名，并且通过oneforall搜索子域名信息。通过站长之家，whois等查找域名信息。<br>域名级别：使用工具批量获取子域名，查旁站。<br>IP级别：使用fofa，zoomeyes查找信息，通过SHA-1(SSL Lab)查找真实ip，域名转IP，C段信息。<br>web级别：识别网站框架cms，用插件Wappalyzer；路径收集，使用dirbuster，dirsearch，御剑等；敏感信息收集，使用JSFinder<br>主机级别：查看主机信息，如systeminfo；网络信息，如ipconfig &#x2F;all；查看路由，如arp -a；进程 tasklist；端口占用 netstat -ano；是否域环境 net user &#x2F;domain；是否出网 ping baidu.com -n 2；浏览器保存密码(使用工具)<br>内网级别：当前权限，网络配置信息，系统信息，敏感信息，域内信息(当前域，域用户，指定域用户详细信息，域控，域内用户详细信息，域控主机名)<br>见 信息收集 篇<br>见问题46</p>
 </li>
 <li><p>获取shell之后，你是怎么提权的？<br>见Windows提权问题3和Linux提权问题3</p>
 </li>
-<li><p>进入到内网之后，怎么去维持权限？<br>Windows：计划任务，注册表自启动服务，映像劫持，logon scripts后门，Dsync，DSRM，Skeleton Key(万能密码)<br>Linux：添加超级用户，suid权限维持，ssh私钥免密登录，定时任务，rootkit后门</p>
+<li><p>进入到内网之后，怎么去维持权限？<br>Windows：计划任务，注册表自启动服务，映像劫持，logon scripts后门，DCsync，DSRM，Skeleton Key(万能密码)<br>Linux：添加超级用户，suid权限维持，ssh私钥免密登录，定时任务，rootkit后门</p>
 </li>
 <li><p>讲一下黄金票据<br>见问题27</p>
 </li>
-<li><p>讲一下APP渗透<br>首先准备阶段：定义安全测试的范围，包括确认适用的安全控制点、受控方的测试目标和敏感数据。同时在开展渗透测试前，应拿到书面盖章授权。<br>然后开始信息收集：<br>包括APP的环境信息、业务用例和架构等信息。<br>应用描绘：确定潜在漏洞风险高低对其进行排序，以便确认渗透测试的攻击路径，制定相应的测试用例。<br>漏洞利用和测试工具开发<br>提交报告<br>Activity组件：</p>
+<li><p>@ 讲一下APP渗透<br>首先准备阶段：定义安全测试的范围，包括确认适用的安全控制点、受控方的测试目标和敏感数据。同时在开展渗透测试前，应拿到书面盖章授权。<br>然后开始信息收集：<br>包括APP的环境信息、业务用例和架构等信息。<br>应用描绘：确定潜在漏洞风险高低对其进行排序，以便确认渗透测试的攻击路径，制定相应的测试用例。<br>漏洞利用和测试工具开发<br>提交报告<br>Activity组件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">activity绑定browserable与自定义协议</span><br><span class="line">ActivityManager漏洞</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>Service</p>
@@ -920,7 +922,7 @@
 </ol>
 <p>没有写入权限就上传呗</p>
 <ol start="60">
-<li><p>怎么获得绝对路径呢？没有报错呢？不能读取文件呢？<br>1、单引号引起数据库报错<br>2、访问错误参数或错误路径<br>3、探针类文件如phpinfo<br>4、扫描开发未删除的测试文件<br>5、google hacking<br>6、phpmyadmin爆路径：&#x2F;phpmyadmin&#x2F;libraries&#x2F;lect_lang.lib.php<br>7、利用漏洞读取配置文件找路径<br>8、恶意使用网站功能，如本地图片读取功能读取不存在图片，上传点上传不能正常导入的文件<br>9、源代码读取路径</p>
+<li><p>@ 怎么获得绝对路径呢？没有报错呢？不能读取文件呢？<br>1、单引号引起数据库报错<br>2、访问错误参数或错误路径<br>3、探针类文件如phpinfo<br>4、扫描开发未删除的测试文件<br>5、google hacking<br>6、phpmyadmin爆路径：&#x2F;phpmyadmin&#x2F;libraries&#x2F;lect_lang.lib.php<br>7、利用漏洞读取配置文件找路径<br>8、恶意使用网站功能，如本地图片读取功能读取不存在图片，上传点上传不能正常导入的文件<br>9、源代码读取路径</p>
 </li>
 <li><p>怎么找到域控机<br>见问题8</p>
 </li>
@@ -941,7 +943,7 @@
 <ol start="68">
 <li><p>如何寻找网址物理路径？<br>1、单引号爆路径: <code>http://localhost/news.php?id=100&#39;</code><br>2、错误参数值爆路径: <code>http://localhost/news.php?id=-1</code><br>3、通过搜索引擎获取: <code>Site:baidu.com warning</code> <code>Site:baidu.com  &quot;fatal error&quot;</code><br>4、测试文件获取路径: <code>/test.php</code><br>5、配置文件获取路径: <code>c:\windows\php.ini</code><br>6、nginx文件类型错误解析路径: <code>http://localhost/top.jpg/x.php</code><br>7、phpmyadmin爆路径: <code>/phpmyadmin/themes/darkblue_orange/layout.inc.php</code><br>8、配合远程代码执行漏洞: <code>比如eval()函数可控的话，直接传入phpinfo()，通过phpinfo页面中Document_Root参数获取网站绝对路径</code></p>
 </li>
-<li><p>如何创建一个用户并且提权<br>Linux:</p>
+<li><p>@ 如何创建一个用户并且提权<br>Linux:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">useradd abc  //创建用户abc</span><br><span class="line">passwd 123    //设置密码</span><br><span class="line">sudo      //提权</span><br><span class="line">vi sudo   //编辑sudo</span><br><span class="line"></span><br><span class="line">## Allows people in group wheel to run all commands</span><br><span class="line">添加配置，如 %abc ALL=(ALL)ALL 或 %abc ALL=NOPASSWD:ALL 保存退出</span><br><span class="line">再在abc用户下使用，操作需要权限的命令时，再加上sudo</span><br><span class="line">切换到root账号：sudo su -</span><br></pre></td></tr></table></figure>
 
 </li>
@@ -958,9 +960,9 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">wooyun</span>(<span class="params">v</span>)&#123;</span><br><span class="line">    <span class="title function_">alert</span>(v.<span class="property">username</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Content-type不正确情况下，JSONP和Callback内容可定义可造成XSS。JSONP和FLASH及其他的利用参照知道创宇的JSONP安全攻防技术。</p>
 </li>
-<li><p>挖矿病毒应急响应<br>1、原因排查<br>出现异常情况，如CPU占用率很高。开始排查，一旦发现服务器被挖矿，应该首先查看挖矿进程所属的用户，根据挖矿进程的运行用户去排查该用户下是否还运行着其它进程，确定这些进程是否有上述经常被恶意利用的漏洞。如果有常见的漏洞，则应该重点对此进行排查找到原因<br>2、清除木马<br>(1) 及时隔离主机<br>部分带有蠕虫功能的挖矿木马在取得本机的控制权后，会以本机为跳板机对同一局域网内的其他主机进行已知漏洞的扫描和进一步利用，所以发现挖矿现象后，在不影响业务的前提下应该及时隔离受感染主机，然后进行下一步分析<br>(2)删除文件、阻断与矿池通讯<br>iptables -A INPUT -S xmr.crypto- pool.fr -j DROP<br>iptables -A OUTPUT -d xmr.crypto- pool.fr -j DROP<br>(3)清除定时任务<br>大部分挖矿进程会在受感染主机中写入定时任务来完成程序的驻留，当安全人员只清除挖矿木马时，定时任务会再次从服务器下载挖矿进程或者直接执行挖矿脚本，导致挖矿进程清除失败<br>(4)清除启动项<br>有的挖矿进程为了实现长期驻留，会向系统中添加启动项来确保系统重启后挖矿进程还能重新启动，所以在清除时还应该关注启动项中的内容如果有可疑的启动项，也应该进行排查，确认是挖矿进程后，对其进行清除<br>(5)kill 挖矿进程<br>对于单进程挖矿程序，直接结束挖矿进程即可。但是对于大多数的挖矿进程，如果挖矿进程有守护进程，应先杀死守护进程再杀死挖矿进程，避免清除不彻底<br>在实际的清除工作中，应找到本机上运行的挖矿脚本，根据脚本的执行流程确定木马的驻留方式， 并按照顺序进行清除， 避免清除不彻底<br>(6)清除公钥文件<br>在用户 home 目录的 .ssh 目录下放置 authoruzed_keys 文件，从而免密登录该机器也是一种常见的保持服务器控制权的手段。在排查过程中应该查看该文件中是否有可疑公钥信息，有的话直接删除，避免攻击者再次免密登录该主机</p>
+<li><p>@ 挖矿病毒应急响应<br>1、原因排查<br>出现异常情况，如CPU占用率很高。开始排查，一旦发现服务器被挖矿，应该首先查看挖矿进程所属的用户，根据挖矿进程的运行用户去排查该用户下是否还运行着其它进程，确定这些进程是否有上述经常被恶意利用的漏洞。如果有常见的漏洞，则应该重点对此进行排查找到原因<br>2、清除木马<br>(1) 及时隔离主机<br>部分带有蠕虫功能的挖矿木马在取得本机的控制权后，会以本机为跳板机对同一局域网内的其他主机进行已知漏洞的扫描和进一步利用，所以发现挖矿现象后，在不影响业务的前提下应该及时隔离受感染主机，然后进行下一步分析<br>(2)删除文件、阻断与矿池通讯<br>iptables -A INPUT -S xmr.crypto- pool.fr -j DROP<br>iptables -A OUTPUT -d xmr.crypto- pool.fr -j DROP<br>(3)清除定时任务<br>大部分挖矿进程会在受感染主机中写入定时任务来完成程序的驻留，当安全人员只清除挖矿木马时，定时任务会再次从服务器下载挖矿进程或者直接执行挖矿脚本，导致挖矿进程清除失败<br>(4)清除启动项<br>有的挖矿进程为了实现长期驻留，会向系统中添加启动项来确保系统重启后挖矿进程还能重新启动，所以在清除时还应该关注启动项中的内容如果有可疑的启动项，也应该进行排查，确认是挖矿进程后，对其进行清除<br>(5)kill 挖矿进程<br>对于单进程挖矿程序，直接结束挖矿进程即可。但是对于大多数的挖矿进程，如果挖矿进程有守护进程，应先杀死守护进程再杀死挖矿进程，避免清除不彻底<br>在实际的清除工作中，应找到本机上运行的挖矿脚本，根据脚本的执行流程确定木马的驻留方式， 并按照顺序进行清除， 避免清除不彻底<br>(6)清除公钥文件<br>在用户 home 目录的 .ssh 目录下放置 authoruzed_keys 文件，从而免密登录该机器也是一种常见的保持服务器控制权的手段。在排查过程中应该查看该文件中是否有可疑公钥信息，有的话直接删除，避免攻击者再次免密登录该主机</p>
 </li>
-<li><p>勒索病毒应急响应<br>场景：<br>某天早上，网站管理员打开OA系统，首页访问异常，显示乱码</p>
+<li><p>@ 勒索病毒应急响应<br>场景：<br>某天早上，网站管理员打开OA系统，首页访问异常，显示乱码</p>
 </li>
 </ol>
 <p>事件分析：<br>登录网站服务器进行排查，在站点目录下发现所有的脚本文件及附件都被加密为.sage结尾的文件，每个文件夹下都有一个!HELP_SOS.hta文件<br>打开!HELP_SOS.hta文件，显示“文件恢复指南”，基本可以确认是服务器中了勒索病毒<br>上传样本到360勒索病毒网站，发现无法解密。试一试勒索病毒解密工具：</p>
@@ -980,14 +982,14 @@
 <li><p>内存马排查</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">先判断是通过什么方法注入的内存马，可以先查看web日志是否有可疑的web访问日志</span><br><span class="line">如果是filter或者listener类型就会有大量url请求路径相同参数不同的，或者页面不存在但是返回200的</span><br><span class="line">**，</span><br><span class="line">查看是否有类似哥斯拉、冰蝎相同的url请求，哥斯拉和冰蝎的内存马注入流量特征与普通webshell的流量特</span><br><span class="line">征基本吻合</span><br><span class="line">通过查找**返回200的url路径对比web目录下是否真实存在文件，如不存在大概率为内存马**</span><br><span class="line">如在web日志中并未发现异常，可以排查是否为中间件漏洞导致代码执行注入内存马，</span><br><span class="line">排查中间件的error.log日志查看是否有可疑的报错，根据注入时间和方法根据业务使用的组件排查是否可能存在java代码执行漏洞以及是否存在过webshell，排查框架漏洞，反序列化漏洞。</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>什么是SSO？<br>单点登录（SSO）是一种身份验证解决方案，可让用户通过一次性用户身份验证登录多个应用程序和网站。鉴于当今的用户经常直接从其浏览器访问应用程序，因此组织正在优先考虑改善安全性和用户体验的访问管理策略。SSO 兼具这两方面的优点，因为一旦验证身份，用户就可以访问所有受密码保护的资源，而无需重复登录。</p>
+<li><p>@ 什么是SSO？<br>单点登录（SSO）是一种身份验证解决方案，可让用户通过一次性用户身份验证登录多个应用程序和网站。鉴于当今的用户经常直接从其浏览器访问应用程序，因此组织正在优先考虑改善安全性和用户体验的访问管理策略。SSO 兼具这两方面的优点，因为一旦验证身份，用户就可以访问所有受密码保护的资源，而无需重复登录。</p>
 </li>
 </ol>
 <p>原理：<br>SSO 在应用程序或服务与外部服务提供商（也称为身份提供者（IdP））之间建立信任。这是通过在应用程序和集中式 SSO 服务之间执行的一系列身份验证、验证和通信步骤来实现的。</p>
 <p>SSO 流程如下：</p>
 <p>1、当用户登录应用程序时，应用程序会生成 SSO 令牌并向 SSO 服务发送身份验证请求。<br>2、该服务会检查用户之前是否在系统中进行了身份验证。如果是，它会向应用程序发送一个身份验证确认响应，以授予用户访问权限。<br>3、如果用户没有经过验证的凭证，SSO 服务会将用户重定向到中央登录系统并提示用户提交其用户名和密码。<br>4、提交后，服务会验证用户凭证并将肯定响应发送到应用程序。<br>5、否则，用户会收到错误消息并且必须重新输入凭证。多次尝试登录失败可能会导致服务阻止用户在固定的时间段内进行更多尝试。 </p>
 <ol start="80">
-<li>什么是内网穿透？<br>内网穿透，简单地说就是内网的数据让外网可以获取，可以映射到公共网络上，这样就可以在公共网络上访问内网的数据。<br>工具：<br>ssh：<br>frp：frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务，支持 tcp, http, https 等协议类型，并且 web 服务支持根据域名进行路由转发。<br>花生壳：<br>EarthWorm：EW 是一套便携式的网络穿透工具，具有 SOCKS v5 服务架设和端口转发两大核心功能，可在复杂网络环境下完成网络穿透。<br>reGeorg：reGeorg 是 reDuh 的继承者, 利用了会话层的 socks5 协议, 结合 Proxifier 使用效率会更高。</li>
+<li>@ 什么是内网穿透？<br>内网穿透，简单地说就是内网的数据让外网可以获取，可以映射到公共网络上，这样就可以在公共网络上访问内网的数据。<br>工具：<br>ssh：<br>frp：frp 是一个高性能的反向代理应用，可以帮助您轻松地进行内网穿透，对外网提供服务，支持 tcp, http, https 等协议类型，并且 web 服务支持根据域名进行路由转发。<br>花生壳：<br>EarthWorm：EW 是一套便携式的网络穿透工具，具有 SOCKS v5 服务架设和端口转发两大核心功能，可在复杂网络环境下完成网络穿透。<br>reGeorg：reGeorg 是 reDuh 的继承者, 利用了会话层的 socks5 协议, 结合 Proxifier 使用效率会更高。</li>
 </ol>
 <p><a href="file:///D:/Telegram_Download/%E9%9D%A2%E8%AF%95%E9%A2%98(1).pdf">面试题1</a></p>
 <ol start="81">
@@ -999,7 +1001,7 @@
 <p>5、ID<br>搜索引擎（百度，谷歌），社交网站（微博，贴吧），技术博客（csdn，博客园），src平台（补天），社工库（telegram社工机器人），论坛（吾爱破解），尝试加微信（ID可能就是微信ID）</p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/263539.html">面试题总结其一</a></p>
 <ol start="82">
-<li>Linux入侵检测&#x2F;Linux入侵排查&#x2F;Linux应急响应<br>1、Linux日志<br>bash历史记录：history命令<br>日志记录：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/log/auth.log  认证</span><br><span class="line">/var/log/cron.log  Cron任务</span><br><span class="line">/var/log/maillog   邮件</span><br><span class="line">/var/log/httpd 	   Apache</span><br></pre></td></tr></table></figure></li>
+<li>@ Linux入侵检测&#x2F;Linux入侵排查&#x2F;Linux应急响应<br>1、Linux日志<br>bash历史记录：history命令<br>日志记录：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/log/auth.log  认证</span><br><span class="line">/var/log/cron.log  Cron任务</span><br><span class="line">/var/log/maillog   邮件</span><br><span class="line">/var/log/httpd 	   Apache</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>2、检查ssh登录<br>查看有没有保存可疑的公钥文件</p>
 <p>3、检查文件状态改动时间<br>在Linux下，文件有三种时间：访问时间(access time)、修改时间(modify time)、状态改动时间(change time)。<br>某文件从其他服务器传到本服务器路径下，或者从某个压缩包中解压，change time 会变成当前时间，而 access time 和 modify time 不会变化。再结合进程的启动时间，基本就能确定此文件首次在本服务器的生成时间。</p>
@@ -1025,7 +1027,7 @@
 <p>2、RPM检查<br>通过 <code>rpm -Va</code> 来检查已安装的rpm包的完整性，防止rpm也被替换，可上传一个安全干净稳定版本的rpm二进制文件到服务器上进行检查。</p>
 <p>3、检查md5sum和文件大小，判断是否被替换<br><code>md5sum /bin/netstat</code></p>
 <ol start="84">
-<li>Windows应急响应&#x2F;Windows入侵排查&#x2F;Windows入侵检测<br>1、账号排查<br>在红队视角下，Windows账户有三种：<br>正常用户: <code>net user</code> 能看到<br>隐藏用户: <code>net user</code> 看不到，但在控制面版，用户组，使用命令wmic可以看到。<br>影子用户: 只有在注册表中能看到，方法是Win+R，输入 <code>regedit</code> 。查找 <code>HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/</code></li>
+<li>@ Windows应急响应&#x2F;Windows入侵排查&#x2F;Windows入侵检测<br>1、账号排查<br>在红队视角下，Windows账户有三种：<br>正常用户: <code>net user</code> 能看到<br>隐藏用户: <code>net user</code> 看不到，但在控制面版，用户组，使用命令wmic可以看到。<br>影子用户: 只有在注册表中能看到，方法是Win+R，输入 <code>regedit</code> 。查找 <code>HKEY_LOCAL_MACHINE/SAM/SAM/Domains/Account/Users/Names/</code></li>
 </ol>
 <p>2、网络排查<br>查找可疑端口和进程：<br>非管理员输入: <code>netstat -ano</code><br>管理员输入: <code>netstat -anob</code><br>任务管理器通过pid查找可疑进程详细信息<br>进程排查可用火绒剑代替任务管理器</p>
 <p>3、注册表排查<br>用户自启动项<br>镜像劫持</p>
@@ -1038,7 +1040,7 @@
 <p>检测和预防：<br>1、检查具有异常网络连接的进程，且给定进程的网络活动已变得与基线不同，则该进程可能已受到损害<br>2、DLL权限，针对具有LoadLibrary()函数的DLL进行限制<br>3、DLL白名单，即跟踪系统上使用的DLL的哈希值以识别差异</p>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12376">白加黑的初步探究</a></p>
 <ol start="86">
-<li>约束委派，非约束委派攻击原理<br><strong>域委派</strong>：<br>是将域用户的权限委派给服务账号，委派之后，服务账号就可以以域用户的身份去做域用户能够做的事</li>
+<li>@ 约束委派，非约束委派攻击原理<br><strong>域委派</strong>：<br>是将域用户的权限委派给服务账号，委派之后，服务账号就可以以域用户的身份去做域用户能够做的事</li>
 </ol>
 <p>注意：能够被委派的用户只能是服务账号或者机器账号<br>1、机器账户:活动目录中的computers组内的计算机，也被称为机器账号。<br>2、服务账号：域内用户的一种类型，是服务器运行服务时所用的账号，将服务运行起来加入域内，比如：SQLServer，MYSQL等，还有就是域用户通过注册SPN也能成为服务账号。<br>服务账号（Service Account），域内用户的一种类型，服务器运行服务时所用的账号，将服务运行起来并加入域。就比如 SQL Server在安装时，会在域内自动注册服务账号SqlServiceAccount，这类账号不能用于交互式登录。</p>
 <p><strong>非约束委派</strong>：<br>在域中如果出现A使用Kerberos身份验证访问域中的服务B,而B再利用A的身份去请求域中的服务C，这个过程就可以理解为委派</p>
@@ -1086,7 +1088,58 @@
 </li>
 <li><p>木马驻留系统的方式有哪些？<br>1、注册表<br>2、服务<br>3、启动目录<br>4、计划任务<br>5、关联文件类型</p>
 </li>
+<li><p>应急响应常见流程：<br>1、响应。事件类型判断，保持第一现场，信息收集。<br>2、阻断。切断网络，阻断传播，隔离核心资产，隔离受害群体<br>3、分析。日志分析，流量分析，恶意样本分析，行为分析（进程&#x2F;启动项），还原攻击过程<br>4、清除。杀进程，删文件，恢复受害群体<br>5、加固。打补丁，补足策略，升级设备，完善防御流程</p>
+</li>
 </ol>
+<p>常见网络安全应急响应场景：<br>勒索病毒，挖矿木马，webshell，网页篡改，DDoS攻击，数据泄露，流量劫持</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/358912.html">应急响应-从理论到实战</a></p>
+<ol start="93">
+<li><p>电子取证<br><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIyNzU0NjIyMg==&mid=2247485449&idx=1&sn=0f115c9ea54538cd85815fae9230facc&chksm=e85ecd08df29441e23ba641fe94cbd356979b7f045d3b6f8623b06b86aeca6bbe6ca1597c202&scene=21#wechat_redirect">数据安全与取证</a></p>
+</li>
+<li><p>Linux防火墙<br>Linux防火墙的作用如下：<br>1、过滤和控制流量：防火墙检查进出的数据包，并根据规则决定是否允许或阻止其传输。它可以根据源ip地址、目的ip地址和端口号等条件对数据包进行过滤，以控制网络流量。<br>2、防止未经授权的访问：防火墙可以配置以阻止未经授权的外部主机访问受保护的内部网络。它可以通过限制入站连接、禁止特定ip地址或网络的访问等方式来保护网络免受入侵。<br>3、检测和阻止恶意活动：防火墙可以监视网络流量并检测可能的恶意活动，例如端口扫描、拒绝服务攻击等。它可以配置以阻止这些恶意活动，保护网络免受攻击。</p>
+</li>
+</ol>
+<p>在Linux系统中，常用的防火墙工具是iptables和nftables。这些工具允许管理员定义规则集，配置网络流量的过滤和转发。以下是一个使用iptables配置防火墙规则的示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清空现有规则</span></span><br><span class="line">iptables -F</span><br><span class="line">iptables -X</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置默认策略</span></span><br><span class="line">iptables -P INPUT DROP</span><br><span class="line">iptables -P FORWARD DROP</span><br><span class="line">iptables -P OUTPUT ACCEPT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许回环接口的流量</span></span><br><span class="line">iptables -A INPUT -i lo -j ACCEPT</span><br><span class="line">iptables -A OUTPUT -o lo -j ACCEPT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许已建立的和相关的连接</span></span><br><span class="line">iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许SSH连接</span></span><br><span class="line">iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许HTTP和HTTPS连接</span></span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line">iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拒绝其它所有流量</span></span><br><span class="line">iptables -A INPUT -j REJECT</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">保存规则</span></span><br><span class="line">iptables-save &gt; /etc/iptables/rules.v4</span><br></pre></td></tr></table></figure>
+
+<p>Linux防火墙常用的工具和服务：<br>1、iptables: 这是Linux中最常用的防火墙工具。是一个命令行工具，用于配置和管理防火墙规则。iptables允许管理员定义规则集，以过滤和控制网络流量的传输。<br>2、UFW(Uncomplicated Firewall): UFW是iptables的前端工具，它提供了一个简化的界面来配置和管理防火墙规则。UFW使得配置防火墙变得更容易，特别适合初学者使用。<br>3、firewalld: firewalld是red hat系列发行版中使用的防火墙管理工具。它提供了一个动态管理防火墙规则的接口，支持网络区域和服务的定义，使得配置和管理防火墙更加灵活方便。<br>4、Shorewall: Shorewall是一个基于iptables的高级防火墙工具。它提供了一个配置文件的抽象层，使得配置复杂的防火墙规则变得更加简单和易于维护。<br>5、Fail2Ban: Fail2Ban是一个用于防止恶意登录和拒绝服务攻击的工具。它监视系统日志文件，并根据预定义的规则自动封锁来自恶意ip地址的连接。</p>
+<p>Linux防火墙开放&#x2F;关闭端口:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用iptables命令</span></span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 端口号 -j ACCEPT   # 开放端口</span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 端口号 -j DROP     # 关闭端口</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用firewalld命令</span></span><br><span class="line">sudo firewall-cmd --permanent --add-port=端口号/tcp      # 开放端口</span><br><span class="line">sudo firewall-cmd --reload</span><br><span class="line"></span><br><span class="line">sudo firewall-cmd --permanent --remove-port=端口号/tcp   # 关闭端口</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>配置Linux防火墙规则以允许特定IP地址或IP范围访问</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">sudo iptables -L  # 查看当前的防火墙规则</span><br><span class="line">sudo iptables -A INPUT -s 允许访问的ip地址/范围 -j ACCEPT  # 允许特定ip地址或范围访问</span><br><span class="line">sudo iptables -A INPUT -s 阻止访问的ip地址/范围 -j DROP    # 阻止特定ip地址或范围访问</span><br><span class="line">sudo iptables -A INPUT -j ACCEPT  # 允许其它所有流量通过</span><br><span class="line">sudo sysctl -w net.ipv4.ip_forward=1  # 启用ip转发</span><br><span class="line">sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination 目标ip:8080  # 使用iptables工具配置端口转发规则</span><br><span class="line">sudo iptables -A FORWARD -p tcp --dport 8080 -d 目标ip地址 -j ACCEPT  # 允许转发的流量通过</span><br><span class="line">sudo iptables -L -v  # 查看详细信息</span><br><span class="line">sudo iptables -t 表名 -L   # 查看特定表(如nat表或mangle表)规则</span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT   # 允许SSH连接</span><br><span class="line">sudo systemctl enable iptables-restore  # 启用iptables-restore服务</span><br><span class="line">sudo systemctl start iptables-restore   # 启动iptables-restore服务</span><br><span class="line"></span><br><span class="line">sudo iptables -A INPUT -p tcp --dport 80 -j LOG --log-prefix &quot;HTTP IN: &quot;</span><br><span class="line">sudo iptables -A OUTPUT -p tcp --dport 80 -j LOG --log-prefix &quot;HTTP OUT: &quot;    # 允许所有传入和传出的HTTP流量，并将相关日志记录到/var/log/iptables.log文件中</span><br><span class="line">sudo tail -f /var/log/iptables.log   # 查看防火墙日志</span><br></pre></td></tr></table></figure>
+
+<ol start="95">
+<li>防火墙技术学习<br>一般企业架设的网络结构如下所示：<br><img src="/simg/firewall1.png" alt="firewall"><br>内部网络：企业内部的局域网，禁止外部网络访问，同时对外部网络的访问权有限<br>DMZ: 对外部提供服务的服务器，例如web服务器等放在该网段它单独于内部网络，为内外网之间的通信起缓冲作用。</li>
+</ol>
+<p><strong>防火墙分类</strong>：<br>按在网络协议栈中的过滤层次可分为：包过滤防火墙，电路级防火墙，应用级防火墙（代理防火墙）<br><img src="/simg/firewall2.png" alt="firewall"></p>
+<p>1、包过滤防火墙：<br>也称为分组过滤防火墙，根据网络层的协议信息进行控制，也用了传输层的协议、端口号等信息<br>目前的路由器都集成了简单的包过滤功能<br>网络管理员首先根据企业的安全策略定义一组访问控制规则，然后防火墙的内存中会生成一张与访问控制规则相对应的访问控制列表，防火墙按规则处理数据包，若有记录，则按规定的操作对其操作，没有的话，采用默认操作（默认丢弃和默认允许）</p>
+<p>静态包过滤：对网络性能影响小，成本低，对用户透明。安全性低，缺少状态感知能力，容易遭受IP欺骗攻击，创建访问控制规则较难<br>动态包过滤：相对静态包过滤是高安全性，高性能，伸缩性和易拓展性，应用范围广。仍未对数据包内容过滤，规则难设计创建</p>
+<p>2、电路级防火墙：根据传输层的协议信息进行过滤，很少单独存在，一般作为应用级防火墙的一个模块</p>
+<p>3、应用级防火墙<br>也称为代理防火墙，根据应用层协议的信息进行过滤，代理是特定于某一个应用的。例如http代理等<br>应用代理包括客户代理和服务器代理<br>内外网之间进行交互时，并不是直接进行连接，而是通过代理服务器进行</p>
+<p>优点：高安全性，强大的认证功能，日志记录详细，规则配置简单<br>缺点：灵活性差，缺乏透明性，性能不高</p>
+<p>防火墙部署模式<br>三种典型模式：屏蔽主机模式，双宿&#x2F;多宿主机模式，屏蔽子网模式<br>这三种模式中都有一个很重要的主机：堡垒主机。</p>
+<p>堡垒主机(Bastion Host): 一种配置了较为全面的安全防范措施的网络上的计算机，它为网络间的通信提供了一个阻塞点。通常堡垒主机可以用作应用级和电路级网关的平台，是一个组织机构网络安全的中心主机。它和蜜罐是不同的，蜜罐是诱使敌人攻击的，而堡垒主机是那种防范很完备的出入口，是进入内部网络的一个检查点，达到把整个网络的安全问题集中在某个主机上解决的目的，通常有两块网卡，一个连接内网，一个连接外网。<br>堡垒主机上通常可以运行代理服务，如Telnet，DNS，FTP，SMTP以及用户认证等。<br>防火墙或包过滤路由器也可以看作是堡垒主机，是暴露在外网的，有些蜜罐也属于堡垒主机，作为牺牲品保全网络，吸引入侵者的注意力，耗费攻击真正网络主机的时间并且使追踪入侵企图变得更加容易。<br>这里要区别于堡垒机，堡垒机是一种运维安全审计系统，主要的功能是对运维人员的运维操作进行审计和权限控制。<br>因为堡垒主机对网络安全至关重要，对它必须进行完善的防御。这就是说，堡垒主机是由网络管理员严密监视的。</p>
+<ol start="96">
+<li>堡垒机<br>堡垒机的主要功能分为以下几个模块 堡垒机功能：<br>1、运维平台<br>RDP&#x2F;VNC运维；SSH&#x2F;Telnet运维；SFTP&#x2F;FTP运维；数据库运维；web系统运维；远程应用运维<br>2、管理平台<br>三权分立(配置，授权，审计；系统管理员，安全保密管理员，安全审计员)；身份鉴别；主机管理；密码托管；运维监控；电子工单<br>3、自动化平台<br>自动改密；自动运维；自动收集；自动授权；自动备份；自动告警<br>4、控制平台<br>IP防火墙；命令防火墙；访问控制；传输控制；会话阻断；运维审批<br>5、审计平台<br>命令记录；文字记录；SQL记录；文件保存；全文检索；审计报表</li>
+</ol>
+<p>堡垒机身份认证：<br>1、本地认证<br>本地账号密码认证，一般支持强密码策略<br>2、远程认证<br>一般可支持第三方AD&#x2F;LDAP&#x2F;Radius认证<br>3、双因子认证<br>UsbKey、动态令牌、短信网关、手机APP令牌等<br>4、第三方认证系统<br>OAuth2.0、CAS等</p>
+<p>堡垒机常见运维方式：<br>B&#x2F;S运维：通过浏览器运维<br>C&#x2F;S运维：通过客户端软件运维，比如Xshell，CRT等<br>H5运维：直接在网页上打开远程桌面进行运维。无需安装本地运维工具，只要有浏览器就可以对常用协议进行运维操作，支持ssh，telnet，rlogin，rdp，vnc协议<br>网关运维：采用SSH网关方式，实现代理直接登录目标主机，适用于运维自动化场景。</p>
+<p>堡垒机的其它常见功能：<br>文件传输：登录堡垒机，通过堡垒机中转。使用RDP&#x2F;SFTP&#x2F;FTP&#x2F;SCP&#x2F;RZ&#x2F;SZ等传输协议传输。<br>细粒度控制：可以对访问用户、命令、传输进行精细化控制。<br>支持开放的API</p>
+<p>堡垒机部署方式：<br>1、单机部署<br>堡垒机主要都是旁站部署，旁挂在交换机旁边，只要能访问所有设备即可。<br>部署特定：<br>旁路部署，逻辑串联<br>不影响现有网络结构</p>
+<p>2、HA高可靠部署<br>旁路部署两台堡垒机，中间有心跳线连接，同步数据。对外提供一个虚拟IP<br>部署特点：<br>两台硬件堡垒机，一主一备&#x2F;提供VIP<br>当主机出现故障时，备机自动接管服务。</p>
+<p>3、异地同步部署<br>通过在多个数据中心部署多台堡垒机，堡垒机之间进行配置信息自动同步。<br>部署特点：<br>多地部署，异地部署自动同步。<br>运维人员访问当地的堡垒机进行管理。<br>不受网络&#x2F;带宽影响</p>
+<p>4、集群部署（分布式部署）<br>当需要管理的设备数量很多时，可以将n多台堡垒机进行集群部署。其中两台堡垒机一主一备，其它n-2台堡垒机作为集群节点，给主机上传同步数据，整个集群对外提供一个虚拟IP地址。<br>部署特点：<br>两台硬件堡垒机一主一备，提供VIP<br>当主机出现故障时，备机自动接管服务。</p>
+<ol start="97">
+<li>常见WAF识别及工具<br>Web应用防护系统（也称为：网站应用级入侵防御系统。英文：Web Application Firewall，简称：WAF）。利用国际上公认的一种说法：Web应用防火墙是通过执行一系列针对HTTP&#x2F;HTTPS的安全策略来专门为Web应用提供保护的一款产品。<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1872310">常见WAF识别</a></li>
+</ol>
+<p>WAF识别&#x2F;WAF检测工具<br>1、wafw00f<br><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">wafw00f</a><br>2、identYwaf<br><a target="_blank" rel="noopener" href="https://github.com/stamparm/identywaf">identYwaf</a></p>
+<ol start="98">
+<li>WAF工作原理<br>WAF工作原理：<br>WAF的处理流程大致可分为四部分：预处理、规则检测、处理模块、日志记录。<br>1、预处理<br>预处理阶段首先在接收到数据请求流量时会先判断是否为HTTP&#x2F;HTTPS请求，之后会查看此URL请求是否在白名单之内，如果该URL请求在白名单列表里，直接交给后端Web服务器进行响应处理，对于不在白名单之内的对数据包解析后进入到规则检测部分。<br>2、规则检测<br>每一种WAF产品都有自己独特的检测规则体系，解析后的数据包会进入到检测体系中进行规则匹配，检查该数据请求是否符合规则，识别出恶意攻击行为。<br>3、处理模块<br>针对不同的检测结果，处理模块会做出不同的安全防御动作，如果符合规则则交给后端Web服务器进行响应处理，对于不符合规则的请求会执行相关的阻断、记录、告警处理。<br>不同的WAF产品会自定义不同的拦截警告页面，在日常渗透中我们也可以根据不同的拦截页面来辨别出网站使用了哪款WAF产品，从而有目的性的进行WAF绕过。<br>4、日志记录<br>WAF在处理的过程中也会将拦截处理的日志记录下来，方便用户在后续中可以进行日志查看分析。</li>
+</ol>
+<p>WAF的分类：<br>1、硬件型WAF<br>（厂商安装）（绿盟、深信服）：以硬件的形式部署在链路中<br>串联在内网的交换机上，防护范围大<br>2、云WAF<br>（腾讯云，阿里云，华为云）：通过配置NS或CNAME记录，使得对网站的请求报文优先经过WAF主机，经过WAF主机过滤后，将被认为无害的请求报文再发送给实际的网站服务器进行请求<br>基于云端的检测，安装简单，修改 DNS 解析或在服务器安装云 WAF 的模块即可<br>3、软件型WAF<br>（部署在Apache，Nginx等HTTPServer中）（安全狗、D盾、云锁等）<br>以软件形式安装在服务器上<br>安装在服务器上，根据网站流量决定占用内存量<br>4、自定义WAF<br>（自己写的一些规则）<br>在系统后台内置一项安全功能以便管理者使用</p>
+<p>安全设备&#x2F;WAF的使用：<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12905">EDR和雷池的使用</a>  （预计两者花费6-10h）<br>安全狗 也可以使用一下  （预计花费2-4h）</p>
+<p>域渗透练习：<br><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12117">记一次春秋云镜域渗透靶场Certify</a>  有机会进行域渗透练习（预计花费6-10h）<br><a target="_blank" rel="noopener" href="https://www.yulate.com/154.html">内网域渗透靶场学习一</a>  有机会进行域渗透练习（预计花费6-10h）<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/555323108">域渗透 学习笔记</a>  这个仅作参考<br>不实际操作的话，始终是纸上谈兵！</p>
 
     </div>
 
@@ -1176,8 +1229,8 @@
       <i class="fa fa-chevron-left"></i> ShellCode获取
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="next" title="面试准备之计算机基础篇">
-      面试准备之计算机基础篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AF%AD%E8%A8%80%E7%AF%87/" rel="next" title="面试准备之语言篇">
+      面试准备之语言篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1253,20 +1306,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">184</span>
+          <span class="site-state-item-count">187</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">59</span>
+        <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1324,13 +1377,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">608k</span>
+    <span title="站点总字数">640k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">9:13</span>
+    <span title="站点阅读时长">9:42</span>
 </div>
 
 <!--

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言MISC杂项的学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MISC杂项 - buuctf">
+<meta property="og:url" content="http://example.com/2023/11/01/MISC%E6%9D%82%E9%A1%B9%20-%20buuctf/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言MISC杂项的学习。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-02T14:23:02.490Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/11/01/MISC%E6%9D%82%E9%A1%B9%20-%20buuctf/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>MISC杂项 - buuctf | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">80</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">187</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/01/MISC%E6%9D%82%E9%A1%B9%20-%20buuctf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MISC杂项 - buuctf
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-01T00:00:00+08:00">2023-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-02 22:23:02" itemprop="dateModified" datetime="2023-11-02T22:23:02+08:00">2023-11-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index"><span itemprop="name">CTF</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/MISC%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">MISC杂项</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>MISC杂项的学习。</p>
+<span id="more"></span>
+<h1 id="1-签到题"><a href="#1-签到题" class="headerlink" title="1 - 签到题"></a>1 - 签到题</h1><p>加buuctf的qq群，没加进去…</p>
+<h1 id="2-金三胖"><a href="#2-金三胖" class="headerlink" title="2 - 金三胖"></a>2 - 金三胖</h1><p>打开下载的压缩包文件，是一个gif<br>打开gif，发现一闪而过的flag<br>用potplayer逐帧播放，成功拿到flag<br><code>flag&#123;he11ohongke&#125;</code></p>
+<h1 id="3-你竟然赶我走"><a href="#3-你竟然赶我走" class="headerlink" title="3 - 你竟然赶我走"></a>3 - 你竟然赶我走</h1><p>打开下载的压缩包文件，是一个jpg<br>打开jpg无明显特征<br>使用notepad++插件 Hex-Editor 查看16进制文件<br>然后发现在jpg的文件尾 <code>FF D9</code> 后还有一些额外的16进制数据，查看发现flag<br><code>flag&#123;stego_is_s0_bor1ing&#125;</code></p>
+<h1 id="4-二维码"><a href="#4-二维码" class="headerlink" title="4 - 二维码"></a>4 - 二维码</h1><p>打开下载的压缩包文件，是一个二维码<br>kali下使用binwalk工具，发现二维码中隐藏了一个zip文件，于是使用foremost工具分离二维码。<br>得到zip，解压需要知道密码。通过ARCHPR软件破解密码，直接使用数字暴力破解即可。密码是7639<br>解压得到txt文件，读取flag。<br><code>flag&#123;vjpw_wnoei&#125;</code></p>
+<h1 id="5-大白"><a href="#5-大白" class="headerlink" title="5 - 大白"></a>5 - 大白</h1><p>打开下载的压缩包文件，是一个png<br>根据题目提示，尝试修改题目的宽高<br>在第17-20字节之间是图片的长，第21-24字节之间是图片的高。<br>修改图片的高，其实就是增大16进制的值，拿到隐藏的部分flag<br><code>flag&#123;He1l0_d4_ba1&#125;</code></p>
+<h1 id="6-N种方法解决"><a href="#6-N种方法解决" class="headerlink" title="6 - N种方法解决"></a>6 - N种方法解决</h1><p>打开下载的压缩包文件，是一个exe<br>点击无法运行。<br>于是用010editor工具打开，发现一个data输出流：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:image/jpg;base64,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</span><br></pre></td></tr></table></figure>
+<p>直接在浏览器中打开，发现是一张二维码。<br>使用微信扫二维码，得到：<br><code>KEY&#123;dca57f966e4e4e31fd5b15417da63269&#125;</code><br>将KEY改为flag，提交成功<br><code>flag&#123;dca57f966e4e4e31fd5b15417da63269&#125;</code></p>
+<h1 id="7-乌镇峰会种图"><a href="#7-乌镇峰会种图" class="headerlink" title="7 - 乌镇峰会种图"></a>7 - 乌镇峰会种图</h1><p>打开下载的jpg图片，比较模糊。<br>查看属性，没有收获。<br>使用010editor工具打开jpg图片<br>搜索flag，得到：<br><code>flag&#123;97314e7864a8f62627b26f3f998c37f1&#125;</code></p>
+<h1 id="8-wireshark"><a href="#8-wireshark" class="headerlink" title="8 - wireshark"></a>8 - wireshark</h1><p>通过题目可知，需要通过wireshark进行流量分析，找到密码。<br>那么打开wireshark，直接搜索login，找到第一个POST界面。基本就是登录时输入密码的流量包。<br>然后就得到POST数据：<br><code>email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUG</code><br>由于密码即为flag，那么直接：<br><code>flag&#123;ffb7567a1d4f4abdffdb54e022f8facd&#125;</code></p>
+<h1 id="9-基础破解"><a href="#9-基础破解" class="headerlink" title="9 - 基础破解"></a>9 - 基础破解</h1><p>打开下载的压缩包文件，得到一个rar<br>根据题目提示，需要破解四位数字密码加密的rar文件才能获得flag信息。<br>于是使用ARCHPR工具进行暴力破解<br>得到密码2563<br>然后解密，得到flag.txt文件，打开是一个base64加密的字符串。<br>使用base64解密，得到：<br><code>flag&#123;70354300a5100ba78068805661b93a5c&#125;</code></p>
+<h1 id="10-文件中的秘密"><a href="#10-文件中的秘密" class="headerlink" title="10 - 文件中的秘密"></a>10 - 文件中的秘密</h1><p>打开下载的压缩包文件，得到一个jpeg<br>正常方式打开jpeg，没有发现特别的东西。<br>使用010editor工具搜索flag，也没有发现。<br>打开文件property，发现comments有flag：<br><code>flag&#123;870c5a72806115cb5439345d8b014396&#125;</code></p>
+<h1 id="11-LSB"><a href="#11-LSB" class="headerlink" title="11 - LSB"></a>11 - LSB</h1><p>打开下载的压缩包文件，得到一个png<br>根据题目提示的LSB，那么可以使用Stegsolve工具和zsteg工具。<br>首先尝试了zsteg工具，在github上clone文件。然后需要下载安装ruby语言环境，然后通过 <code>gem install zsteg</code> 安装zsteg<br>但是安装完成后使用，出现了报错，简单查询后无法解决，于是放弃。<br>接下来尝试了Stegsolve工具，通过网上的搜索下载到jar。<br>该工具需要Java环境，由于我已经安装Java，所以直接打开jar文件，然后将图片放上去。<br>接下来变换RGB通道，发现在Red plane 0, Green plane 0, Blue plane 0通道发现图片上方有东西。<br>于是通过 Analyse -&gt; Data Extract<br>在Bit Planes一栏，将Red，Green和Blue均改为0，同时在Bit Order一栏调为LSB First，其它不变。<br>最终生成了名为flag.png的二维码。</p>
+<p>接下来使用QR Research工具，解码数据得到：<br><code>cumtctf&#123;1sb_i4_s0_Ea4y&#125;</code><br>修改为答案格式：<br><code>flag&#123;1sb_i4_s0_Ea4y&#125;</code></p>
+<h1 id="12-zip伪加密"><a href="#12-zip伪加密" class="headerlink" title="12 - zip伪加密"></a>12 - zip伪加密</h1><p>下载压缩包文件，发现无法打开，提示需要输入密码。<br>根据题目提示zip伪加密，了解了zip伪加密的知识。<br>简单来说，就是zip文件本身没有加密，但是修改了全局方式位标记从 <code>00 00</code> 变为 <code>09 00</code> ，就会被判定为加密的zip文件。<br>我们只需要将16进制修改为 <code>00 00</code> 即可。（注意压缩源文件数据区和压缩源文件目录区的标记都要修改）<br>成功解压缩得到flag.txt<br>得到flag：<br><code>flag&#123;Adm1N-B2G-kU-SZIP&#125;</code></p>
+<h1 id="13-被嗅探的流量"><a href="#13-被嗅探的流量" class="headerlink" title="13 - 被嗅探的流量"></a>13 - 被嗅探的流量</h1><p>打开下载的压缩包文件，是一个wireshark相关文件，使用wireshark打开，分析流量。<br>重点查找GET，POST upload file的关键词部分，最终在 <code>POST /upload.php HTTP/1.1</code> 处，通过查看16进制数据，找到flag（不能复制有点离谱）<br><code>flag&#123;da73d88936010da1eeeb36e945ec4b97&#125;</code></p>
+<h1 id="14-rar"><a href="#14-rar" class="headerlink" title="14 - rar"></a>14 - rar</h1><p>打开下载的压缩包文件，是一个rar<br>需要输入4位纯数字的密码</p>
+<p>和之前的方式相同，使用ARCHPR破解。<br>得到flag：<br><code>flag&#123;1773c5da790bd3caff38e3decd180eb7&#125;</code></p>
+<h1 id="15-qr"><a href="#15-qr" class="headerlink" title="15 - qr"></a>15 - qr</h1><p>打开下载的二维码图片，使用QR Research工具，得到：<br><code>flag&#123;878865ce73370a4ce607d21ca01b5e59&#125;</code></p>
+<h1 id="16-镜子里面的世界"><a href="#16-镜子里面的世界" class="headerlink" title="16 - 镜子里面的世界"></a>16 - 镜子里面的世界</h1><p>打开下载的压缩包文件，是一个png<br>查看文件属性，原图片，原图片的16进制均无法得到flag<br>于是通过Stegsolve工具，变换RGB通道，发现在Red plane 0, Green plane 0, Blue plane 0通道发现图片上方有东西。<br>于是通过 Analyse -&gt; Data Extract<br>在Bit Planes一栏，将Red，Green和Blue均改为0，同时在Bit Order一栏调为LSB First，其它不变。<br>得到flag.png文件，文件无法通过普通方式打开，使用010Editor打开，发现flag值：<br><code>flag&#123;st3g0_saurus_wr3cks&#125;</code></p>
+<h1 id="17-ningen"><a href="#17-ningen" class="headerlink" title="17 - ningen"></a>17 - ningen</h1><p>打开下载的文件，是一个png<br>根据题目提示信息，可推测有文件附加<br>于是使用foremost分离文件，得到zip<br>4位纯数字解密，使用ARCHPR工具，解压得到：<br><code>flag&#123;b025fc9ca797a67d2103bfbc407a6d5f&#125;</code></p>
+<h1 id="18-小明的保险箱"><a href="#18-小明的保险箱" class="headerlink" title="18 - 小明的保险箱"></a>18 - 小明的保险箱</h1><p>解法和17题一模一样。</p>
+<h1 id="19-爱因斯坦"><a href="#19-爱因斯坦" class="headerlink" title="19 - 爱因斯坦"></a>19 - 爱因斯坦</h1><p>解法和17题基本一致，唯一的区别在于，zip文件的密码在属性中找到。<br><code>flag&#123;dd22a92bf2cceb6c0cd0d6b83ff51606&#125;</code></p>
+<h1 id="20-easycap"><a href="#20-easycap" class="headerlink" title="20 - easycap"></a>20 - easycap</h1><p>打开下载的文件，是一个pcap文件<br>使用wireshark打开，发现全是TCP包，那么直接追踪流量，使用 <code>Anaylze -&gt; Follow TCP Stream</code><br>直接得到flag<br><code>FLAG:385b87afc8671dee07550290d16a8071</code><br>更改为标准格式：<br><code>flag&#123;385b87afc8671dee07550290d16a8071&#125;</code></p>
+<h1 id="21-隐藏的钥匙"><a href="#21-隐藏的钥匙" class="headerlink" title="21 - 隐藏的钥匙"></a>21 - 隐藏的钥匙</h1><p>打开下载的文件，是一个jpg<br>直接使用010editor，搜索flag，得到：<br><code>flag:base64:(Mzc3Y2JhZGRhMWVjYTJmMmY3M2QzNjI3Nzc4MWYwMGE=)</code><br>base64解密：<br><code>377cbadda1eca2f2f73d36277781f00a</code><br>整理为flag格式：<br><code>flag&#123;377cbadda1eca2f2f73d36277781f00a&#125;</code></p>
+<h1 id="22-另外一个世界"><a href="#22-另外一个世界" class="headerlink" title="22 - 另外一个世界"></a>22 - 另外一个世界</h1><p>打开下载的文件，是一个jpg<br>直接使用010editor，搜索flag，没有找到<br>然后翻到最底部，发现有一串二进制，将二进制转换为字符串： <code>koekj3s</code><br>整理为flag格式：<br><code>flag&#123;koekj3s&#125;</code></p>
+<h1 id="23-FLAG"><a href="#23-FLAG" class="headerlink" title="23 - FLAG"></a>23 - FLAG</h1><p>打开下载的文件，是一个png<br>使用pngcheck工具：<br><code>pngcheck.win64.exe -v 42.png</code><br>得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">File: 42.png (383781 bytes)</span><br><span class="line">  chunk IHDR at offset 0x0000c, length 13</span><br><span class="line">    664 x 586 image, 24-bit RGB, non-interlaced</span><br><span class="line">  chunk IDAT at offset 0x00025, length 65536</span><br><span class="line">    zlib: deflated, 32K window, default compression</span><br><span class="line">  chunk IDAT at offset 0x10031, length 65536</span><br><span class="line">  chunk IDAT at offset 0x2003d, length 65536</span><br><span class="line">  chunk IDAT at offset 0x30049, length 65536</span><br><span class="line">  chunk IDAT at offset 0x40055, length 65536</span><br><span class="line">  chunk IDAT at offset 0x50061, length 55984</span><br><span class="line">  chunk IEND at offset 0x5db1d, length 0</span><br><span class="line">No errors detected in 42.png (8 chunks, 67.1% compression).</span><br></pre></td></tr></table></figure>
+<p>那么发现含有zlib<br>使用Stegsolve工具，将Red，Green，Blue调为0，选择Save Bin，保存为zip文件<br>尝试打开zip文件时发现文件损坏，随便找个文件修复工具进行修复。<br>得到修复后的zip，然后解压，得到1文件<br>使用010Editor工具打开，然后搜索hctf，得到flag：<br><code>flag&#123;dd0gf4c3tok3yb0ard4g41n~~~&#125;</code></p>
+<h1 id="24-神秘龙卷风"><a href="#24-神秘龙卷风" class="headerlink" title="24 - 神秘龙卷风"></a>24 - 神秘龙卷风</h1><p>打开压缩文件，得到rar<br>4位数字使用ARCHPR爆破得到密码5463<br>解压出来得到txt文件，代码看不懂。<br>查了下是brainfuck代码，使用 <a target="_blank" rel="noopener" href="https://bf.doleczek.pl/">这个网站</a> 将代码填入并运行，得到flag：<br><code>flag&#123;e4bbef8bdf9743f8bf5b727a9f6332a8&#125;</code></p>
+<h1 id="25-数据包中的线索"><a href="#25-数据包中的线索" class="headerlink" title="25 - 数据包中的线索"></a>25 - 数据包中的线索</h1><p>打开压缩文件，得到pcapng，是wireshark文件。<br>通过wireshark打开pcapng文件，找到HTTP包，通过Follow HTTP Stream得到一个base64编码的数据。<br>将base64编码的数据保存为txt文件，然后使用<a target="_blank" rel="noopener" href="https://www.base64decode.org/">在线网站</a>解码txt文件，可以直接得到一张图片，图片上就写了flag<br><code>flag&#123;209acebf6324a09671abc31c869de72c&#125;</code></p>
+<h1 id="26-假如给我三天光明"><a href="#26-假如给我三天光明" class="headerlink" title="26 - 假如给我三天光明"></a>26 - 假如给我三天光明</h1><p>打开压缩文件，得到一个jpg和一个zip，zip有加密，里面是一个wav文件。<br>首先来看jpg，通过查看jpg，发现封面上的盲文。<br>那么搜索英文盲文对照表，可知封面的为盲文对应为英文字符应当为：<br><code>kmdonowg</code><br>猜测是zip的密码，尝试成功<br>打开wav音频文件，是莫斯电码(分析方法：自己听，也可用Audacity工具分析)：<br><code>-.-. - ..-. .-- .--. . .. ----- ---.. --... ...-- ..--- ..--.. ..--- ...-- -.. --..</code><br>得到的英文是：<br><code>CTFWPEI08732?23DZ</code><br>整理后为：<br><code>flag&#123;wpei08732?23dz&#125;</code></p>
+<h1 id="27-后门查杀"><a href="#27-后门查杀" class="headerlink" title="27 - 后门查杀"></a>27 - 后门查杀</h1><p>打开压缩文件，得到一个html文件夹<br>根据题目描述，是一个网站的文件，需要找到后门文件的密码。<br>直接用杀毒软件(我用的火绒)对html文件夹进行查杀，得到密码<br><code>flag&#123;6ac45fb83b3bc355c024f5034b947dd3&#125;</code></p>
+<h1 id="28-webshell后门"><a href="#28-webshell后门" class="headerlink" title="28 - webshell后门"></a>28 - webshell后门</h1><p>方法和27题相同</p>
+<h1 id="29-来首歌吧"><a href="#29-来首歌吧" class="headerlink" title="29 - 来首歌吧"></a>29 - 来首歌吧</h1><p>打开压缩文件，得到一个wav<br>音频文件属性无信息，但是在听歌的过程中，发现了摩尔斯电码。<br>于是打开Audacity工具分析：<br>发现有两段音频，是混合在一起的。<br>那么分析那一段明显是莫尔斯电码的音频可以得到：<br><code>..... -... -.-. ----. ..--- ..... -.... ....- ----. -.-. -... ----- .---- ---.. ---.. ..-. ..... ..--- . -.... .---- --... -.. --... ----- ----. ..--- ----. .---- ----. .---- -.-.</code></p>
+<p>解码整理得到：<br><code>flag&#123;5BC925649CB0188F52E617D70929191C&#125;</code></p>
+<h1 id="30-荷兰宽带数据泄露"><a href="#30-荷兰宽带数据泄露" class="headerlink" title="30 - 荷兰宽带数据泄露"></a>30 - 荷兰宽带数据泄露</h1><p>打开压缩文件，得到一个conf.bin<br>搜索了一下，发现是一个路由器配置文件。<br>使用普通文件打开器显示乱码，于是下了一个路由器配置文件查看工具RouterPassView<br>使用该工具打开conf.bin，发现了配置信息。<br>然后通过配置信息找到了username和password</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Username val=053700357621 /&gt;</span><br><span class="line">&lt;Password val=210265 /&gt;</span><br></pre></td></tr></table></figure>
+<p>提交发现flag是username：<br><code>flag&#123;053700357621&#125;</code></p>
+<h1 id="31-面具下的flag"><a href="#31-面具下的flag" class="headerlink" title="31 - 面具下的flag"></a>31 - 面具下的flag</h1><p>打开压缩文件，得到一个jpg<br>通过查看发现jpg中有一个vmdk文件，于是使用binwalk和foremost分离文件，得到了一个zip<br>zip文件显示需要输入密码，在没有得到密码提示信息时首先思考是否是伪加密。<br>于是打开010Editor工具搜索 <code>50 4B 01 02</code> ，后面的全局方式位标记 显示为 <code>09 00</code><br>将其修改为 <code>00 00</code> 再尝试解压，成功。<br>得到了一个vmdk文件，搜索得知vmdk文件是虚拟机文件。<br>Linux下使用7z命令解压：<br><code>7z x flag.vmdk -o./</code></p>
+<p>得到了key_part_one和key_part_two目录<br>进入目录使用cat命令读取文件，分别得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+++++ +++++ [-&gt;++ +++++ +++&lt;] &gt;++.+ +++++ .&lt;+++ [-&gt;-- -&lt;]&gt;- -.+++ +++.&lt;</span><br><span class="line">++++[ -&gt;+++ +&lt;]&gt;+ +++.&lt; +++++ +[-&gt;- ----- &lt;]&gt;-- ----- --.&lt;+ +++[- &gt;----</span><br><span class="line">&lt;]&gt;-- ----- .&lt;+++ [-&gt;++ +&lt;]&gt;+ +++++ .&lt;+++ +[-&gt;- ---&lt;] &gt;-.&lt;+ +++++ [-&gt;++</span><br><span class="line">++++&lt; ]&gt;+++ +++.&lt; +++++ [-&gt;-- ---&lt;] &gt;---- -.+++ .&lt;+++ [-&gt;-- -&lt;]&gt;- ----- .&lt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook?</span><br><span class="line">Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook!</span><br><span class="line">Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook.</span><br><span class="line">Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook?</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook.</span><br><span class="line">Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook!</span><br><span class="line">Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook?</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook. Ook?</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook!</span><br><span class="line">Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook!</span><br><span class="line">Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook.</span><br></pre></td></tr></table></figure>
+
+<p>前者使用 <a target="_blank" rel="noopener" href="https://bf.doleczek.pl/">BrainFuck</a> 可得到flag的前半部分：<br><code>flag&#123;N7F5_AD5</code><br>后者使用 <a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">Brainfuck&#x2F;Ook!</a> 可得到flag的后半部分：<br><code>_i5_funny!&#125;</code></p>
+<p>最终整理得到flag:<br><code>flag&#123;N7F5_AD5_i5_funny!&#125;</code></p>
+<h1 id="32-九连环"><a href="#32-九连环" class="headerlink" title="32 - 九连环"></a>32 - 九连环</h1><p>打开压缩文件，得到一个jpg<br>通过010editor工具发现有zip<br>于是使用binwalk和foremost分离文件，得到一个zip<br>得到zip后发现有密码，爆破未果，猜测是伪密码。<br>定位到 <code>50 4B 01 02</code> 后4个字节的位置，有多个 <code>50 4B 01 02</code> ，逐个尝试。<br>最终在第3个修改后成功解压文件。<br>解压出来是一个jpg和一个zip，zip里有flag的文件，需要密码。猜测密码与图片有关。<br>通过上面其它已知办法没法找到密码。于是在网上搜索，了解到一个steghide工具。可以找出图片中的隐写文件。<br>在kali下使用该工具，安装命令为：<br><code>apt-get install steghide</code><br>安装好后，使用命令找出该jpg图片的隐写文件：<br><code>steghide extract -sf good.jpg</code><br>提示需要密码，直接空密码回车<br>得到一个ko.txt文件，打开看得到密码。<br>拿到zip解压，得到flag.txt<br>打开flag文件得到flag：<br><code>flag&#123;1RTo8w@&amp;4nK@z*XL&#125;</code></p>
+<h1 id="33"><a href="#33" class="headerlink" title="33 -"></a>33 -</h1>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/11/01/MISC%E6%9D%82%E9%A1%B9%20-%20buuctf/" title="MISC杂项 - buuctf">http://example.com/2023/11/01/MISC杂项 - buuctf/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/31/MISC%E6%9D%82%E9%A1%B9%E4%B9%8B%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90/" rel="prev" title="MISC杂项之隐写分析">
+      <i class="fa fa-chevron-left"></i> MISC杂项之隐写分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/02/K8s%E9%9B%86%E7%BE%A4%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AD%A6%E4%B9%A0/" rel="next" title="K8s集群安全攻防学习">
+      K8s集群安全攻防学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">1 - 签到题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E9%87%91%E4%B8%89%E8%83%96"><span class="nav-number">3.</span> <span class="nav-text">2 - 金三胖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E4%BD%A0%E7%AB%9F%E7%84%B6%E8%B5%B6%E6%88%91%E8%B5%B0"><span class="nav-number">4.</span> <span class="nav-text">3 - 你竟然赶我走</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">4 - 二维码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%A4%A7%E7%99%BD"><span class="nav-number">6.</span> <span class="nav-text">5 - 大白</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-N%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-number">7.</span> <span class="nav-text">6 - N种方法解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E4%B9%8C%E9%95%87%E5%B3%B0%E4%BC%9A%E7%A7%8D%E5%9B%BE"><span class="nav-number">8.</span> <span class="nav-text">7 - 乌镇峰会种图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-wireshark"><span class="nav-number">9.</span> <span class="nav-text">8 - wireshark</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-%E5%9F%BA%E7%A1%80%E7%A0%B4%E8%A7%A3"><span class="nav-number">10.</span> <span class="nav-text">9 - 基础破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%A7%98%E5%AF%86"><span class="nav-number">11.</span> <span class="nav-text">10 - 文件中的秘密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-LSB"><span class="nav-number">12.</span> <span class="nav-text">11 - LSB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-zip%E4%BC%AA%E5%8A%A0%E5%AF%86"><span class="nav-number">13.</span> <span class="nav-text">12 - zip伪加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#13-%E8%A2%AB%E5%97%85%E6%8E%A2%E7%9A%84%E6%B5%81%E9%87%8F"><span class="nav-number">14.</span> <span class="nav-text">13 - 被嗅探的流量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#14-rar"><span class="nav-number">15.</span> <span class="nav-text">14 - rar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#15-qr"><span class="nav-number">16.</span> <span class="nav-text">15 - qr</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#16-%E9%95%9C%E5%AD%90%E9%87%8C%E9%9D%A2%E7%9A%84%E4%B8%96%E7%95%8C"><span class="nav-number">17.</span> <span class="nav-text">16 - 镜子里面的世界</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#17-ningen"><span class="nav-number">18.</span> <span class="nav-text">17 - ningen</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#18-%E5%B0%8F%E6%98%8E%E7%9A%84%E4%BF%9D%E9%99%A9%E7%AE%B1"><span class="nav-number">19.</span> <span class="nav-text">18 - 小明的保险箱</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#19-%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6"><span class="nav-number">20.</span> <span class="nav-text">19 - 爱因斯坦</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-easycap"><span class="nav-number">21.</span> <span class="nav-text">20 - easycap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#21-%E9%9A%90%E8%97%8F%E7%9A%84%E9%92%A5%E5%8C%99"><span class="nav-number">22.</span> <span class="nav-text">21 - 隐藏的钥匙</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#22-%E5%8F%A6%E5%A4%96%E4%B8%80%E4%B8%AA%E4%B8%96%E7%95%8C"><span class="nav-number">23.</span> <span class="nav-text">22 - 另外一个世界</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#23-FLAG"><span class="nav-number">24.</span> <span class="nav-text">23 - FLAG</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#24-%E7%A5%9E%E7%A7%98%E9%BE%99%E5%8D%B7%E9%A3%8E"><span class="nav-number">25.</span> <span class="nav-text">24 - 神秘龙卷风</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#25-%E6%95%B0%E6%8D%AE%E5%8C%85%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%B4%A2"><span class="nav-number">26.</span> <span class="nav-text">25 - 数据包中的线索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#26-%E5%81%87%E5%A6%82%E7%BB%99%E6%88%91%E4%B8%89%E5%A4%A9%E5%85%89%E6%98%8E"><span class="nav-number">27.</span> <span class="nav-text">26 - 假如给我三天光明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#27-%E5%90%8E%E9%97%A8%E6%9F%A5%E6%9D%80"><span class="nav-number">28.</span> <span class="nav-text">27 - 后门查杀</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#28-webshell%E5%90%8E%E9%97%A8"><span class="nav-number">29.</span> <span class="nav-text">28 - webshell后门</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#29-%E6%9D%A5%E9%A6%96%E6%AD%8C%E5%90%A7"><span class="nav-number">30.</span> <span class="nav-text">29 - 来首歌吧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-%E8%8D%B7%E5%85%B0%E5%AE%BD%E5%B8%A6%E6%95%B0%E6%8D%AE%E6%B3%84%E9%9C%B2"><span class="nav-number">31.</span> <span class="nav-text">30 - 荷兰宽带数据泄露</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#31-%E9%9D%A2%E5%85%B7%E4%B8%8B%E7%9A%84flag"><span class="nav-number">32.</span> <span class="nav-text">31 - 面具下的flag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#32-%E4%B9%9D%E8%BF%9E%E7%8E%AF"><span class="nav-number">33.</span> <span class="nav-text">32 - 九连环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#33"><span class="nav-number">34.</span> <span class="nav-text">33 -</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">640k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">9:42</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+

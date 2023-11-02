@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言因为找不到工作，就学些自己感兴趣的东西了…惨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MISC杂项之隐写分析">
+<meta property="og:url" content="http://example.com/2023/10/31/MISC%E6%9D%82%E9%A1%B9%E4%B9%8B%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言因为找不到工作，就学些自己感兴趣的东西了…惨">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-01T13:14:48.817Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="MISC杂项">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/10/31/MISC%E6%9D%82%E9%A1%B9%E4%B9%8B%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>MISC杂项之隐写分析 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">80</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">187</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/31/MISC%E6%9D%82%E9%A1%B9%E4%B9%8B%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MISC杂项之隐写分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-31 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-31T00:00:00+08:00">2023-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-11-01 21:14:48" itemprop="dateModified" datetime="2023-11-01T21:14:48+08:00">2023-11-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MISC%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">MISC杂项</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MISC%E6%9D%82%E9%A1%B9/%E9%9A%90%E5%86%99/" itemprop="url" rel="index"><span itemprop="name">隐写</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为找不到工作，就学些自己感兴趣的东西了…惨</p>
+<span id="more"></span>
+<h1 id="隐写分析"><a href="#隐写分析" class="headerlink" title="隐写分析"></a>隐写分析</h1><p>简单来说，就是获取隐藏的信息。<br>隐写分析是 Misc 中最为重要的项目之一，包括文件分析、信息隐写等等，涉及巧妙的编码、隐藏数据、层层嵌套的文件中的文件等等于杂项一样，它也喜欢考察一些并非为我们所掌握的小知识，比如一些从来没听说过的乱七八糟的密码（比如与佛论禅加密、颜文字加密等等），我们需要善用自己的信息搜集能力。</p>
+<h1 id="直接附加"><a href="#直接附加" class="headerlink" title="直接附加"></a>直接附加</h1><h2 id="识别文件类型"><a href="#识别文件类型" class="headerlink" title="识别文件类型"></a>识别文件类型</h2><p>1、 Linux命令: file<br>用法: <code>file filename</code><br>用于识别文件类型，若文件头残缺或文件头错误，则显示data，表示无法识别。<br>2、 16进制编辑器工具：<strong>010 Editer</strong> 或者 <strong>WinHex</strong><br>可查看文件头类型，根据文件头判断文件类型</p>
+<p>文件的扩展名往往反映了文件的类型，但又不一定准确，因为我们可以随意地去修改它。<br>比如我们把可以一个 jpg 图片文件改名成 xxx.png，无论我们学过学过计算机知识都应该知道 JPG 和 PNG 不是同一个东西，但是我们双击却依然可以用图片查看器查看这张图片，这说明程序有自己的方式去判断这是什么类型的文件，从而选择读取这张图片内容的方式，这就是文件头的作用。<br>大部分文件类型有其固定的文件结构，基本结构为：<br><code>文件头 + 文件内容 + 文件尾(部分无)</code><br>图片查看器打开图片文件时，首先会根据文件头判断它是哪种类型的文件，然后再根据文件类型选择恰当的读取方式。<br>一般来说，程序在读取有文件尾的文件时一般只会读到文件尾，并不会关注后面还有没有别的内容。</p>
+<p>所以对于有文件尾的文件类型A来说，文件尾之后的内容往往不会对文件的查看有影响，增加的内容普通情况下不会被发现（拿十六进制编辑器不算普通情况）。我们可以往它的文件尾后面添加字符，数字，甚至是藏一个别的文件，这就是直接附加。</p>
+<h2 id="分离文件"><a href="#分离文件" class="headerlink" title="分离文件"></a>分离文件</h2><p>要分离出附加在文件A后面的文件，可以通过在十六进制编辑器中观察文件尾后中隐含的文件头信息来判断文件A中附加的文件类型，从而进行提取，常见文件类型文件头（尾）如下：</p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>文件头</th>
+<th>文件尾</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>JPEG(jpg)</td>
+<td>FF D8 FF</td>
+<td>FF D9</td>
+</tr>
+<tr>
+<td>PNG</td>
+<td>89 50 4E 47</td>
+<td>AE 42 60 82</td>
+</tr>
+<tr>
+<td>GIF</td>
+<td>47 49 46 38</td>
+<td>00 3B</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>50 4B 03 04</td>
+<td>50 4B</td>
+</tr>
+<tr>
+<td>RAR</td>
+<td>52 61 72 21</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>Wave(wav)</td>
+<td>57 41 56 45</td>
+<td>&#x2F;</td>
+</tr>
+</tbody></table>
+<p>使用工具：<br><strong>Binwalk</strong>(Kali自带)<br><strong>Foremost</strong>(Linux下安装: <code>apt-get install foremost</code> )<br><strong>dd</strong> 当无法自动分离时，用dd实现文件手动分离<br>分离文件A中附加的其他文件，Binwalk 可以自动分析一个文件中包含的多个文件并将它们提取出来<br>Foremost 也可以分离文件而且有时候更好用一点<br>可以先用 Binwalk 进行分析，如果有隐藏文件再用 Foremost 分离</p>
+<p>使用方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">binwalk [文件A]   # 分析文件A</span><br><span class="line">binwalk -e [文件A]    # 分析文件A后自动提取已知的文件类型的隐藏文件</span><br><span class="line">foremost [文件A]      # 分离文件A的隐藏文件，</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存到与文件A同目录的output文件夹中，同时在文件夹中生成一个日志文件</span></span><br></pre></td></tr></table></figure>
+
+<p>例题：BUUCTF - 二维码<br>注意分离出png文件和zip文件后，zip文件有密码，需要使用ARCHPR软件破解密码，直接使用数字暴力破解即可。密码是7639</p>
+<h2 id="文件合并操作"><a href="#文件合并操作" class="headerlink" title="文件合并操作"></a>文件合并操作</h2><p>Linux下cat命令：<br><code>cat file1 file2 &gt; file3</code><br>可利用md5校验是否正确合并</p>
+<h1 id="图片隐写"><a href="#图片隐写" class="headerlink" title="图片隐写"></a>图片隐写</h1><p>隐写术是关于信息隐藏，即不让计划的接收者之外的任何人知道信息的传递事件（而不只是信息的内容）的一门技巧与科学,英文写作Steganography。</p>
+<h2 id="png文件结构"><a href="#png文件结构" class="headerlink" title="png文件结构"></a>png文件结构</h2><p><code>文件头（89 50 4E 47 0D 0A 1A 0A） + 数据块 + 数据块 + 数据块…… + 文件尾（00 00 00 00 49 45 4E 44 AE 42 60 82）</code><br>PNG 定义了两种类型的数据块，一种是称为关键数据块，这是标准的数据块，另一种叫做辅助数据块，这是可选的数据块。关键数据块定义了4个标准数据块，每个 PNG 文件都必须包含它们。</p>
+<p>IHDR（文件头数据块）<br>第一块是文件头数据块（IHDR），它由第11——32字节组成（从0开始），包含有 PNG 文件中存储的图像数据的基本信息，数据从第 16字节开始，有13个字节，其前8字节分别用4个字节规定了图片的宽和高（十六进制，以像素为单位）。</p>
+<p>IDAT（图像数据块）<br>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。它采用 LZ77 算法的派生算法进行压缩，可以用 zlib 解压缩。</p>
+<h2 id="IHDR-篡改图片宽高"><a href="#IHDR-篡改图片宽高" class="headerlink" title="IHDR 篡改图片宽高"></a>IHDR 篡改图片宽高</h2><p>IHDR 的前8字节规定了图片的宽和高，我们可以用十六进位文件编辑器更改它们以使得这张图片显示不完整，从而达到隐藏信息的目的。此时它的图片数据并没有变，在Windows图片查看器中超过规定的图片宽高的部分只是不显示了。<br>当修改了IHDR时，会提示 IHDR CRC error<br>这是因为在每个数据块的最后4字节都有CRC（循环冗余检测）用来检测是否有错误和被篡改<br>可以利用 python 脚本反推图片原宽高，然后用十六进制编辑器打开图片修改图片宽高得到原图片。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用 python [脚本文件名] [图片文件名]</span></span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">filename = sys.argv[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    all_b = f.read()</span><br><span class="line">    crc32key = <span class="built_in">int</span>(all_b[<span class="number">29</span>:<span class="number">33</span>].<span class="built_in">hex</span>(),<span class="number">16</span>)</span><br><span class="line">    data = <span class="built_in">bytearray</span>(all_b[<span class="number">12</span>:<span class="number">29</span>])</span><br><span class="line">    n = <span class="number">4095</span></span><br><span class="line">    <span class="keyword">for</span> w <span class="keyword">in</span> <span class="built_in">range</span>(n): </span><br><span class="line">        width = <span class="built_in">bytearray</span>(struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, w))</span><br><span class="line">        <span class="keyword">for</span> h <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            height = <span class="built_in">bytearray</span>(struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, h))</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">                data[x+<span class="number">4</span>] = width[x]</span><br><span class="line">                data[x+<span class="number">8</span>] = height[x]</span><br><span class="line">            crc32result = zlib.crc32(data)</span><br><span class="line">            <span class="keyword">if</span> crc32result == crc32key:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;宽为：&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(width)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;高为：&quot;</span>,end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(height)</span><br><span class="line">                exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="LSB隐写"><a href="#LSB隐写" class="headerlink" title="LSB隐写"></a>LSB隐写</h2><p>PNG 文件中的图像像数一般是由 RGB 三原色（红绿蓝）组成（有的图片还包含A通道表示透明度），每一种颜色占用8位，取值范围为0x00至0xFF。LSB 隐写就是修改 RGB 颜色分量的最低二进制位（LSB），它修改了每个像数颜色的最低的1 bit，而人类的眼睛不会注意到这前后的变化，这样每个像素可以携带3比特的信息。</p>
+<p>如果是要寻找这种 LSB 隐藏痕迹的话，有一个工具 Stegsolve 是个神器，可以来辅助我们进行分析。通过下方的按钮观察每个通道的信息，我们可以捕捉异常点，抓住 LSB 隐写的蛛丝马迹（这玩意儿很难说，一般就是一看就感觉奇怪的n行或n列颜色块），进而利用 Stegsolve –&gt; Analyse –&gt; Data Extract 功能指定通道进行提取。</p>
+<p>对于PNG和BMP文件中的 LSB 等常见的隐写方式，我们也可以使用 zsteg 工具直接进行自动化的识别和提取。</p>
+<h2 id="IDAT隐写"><a href="#IDAT隐写" class="headerlink" title="IDAT隐写"></a>IDAT隐写</h2><p>IDAT 块只有当上一个块充满（正常length最大65524）时，才会继续一个新的块。程序读取图像的时候也会在 第一个未满的块停止 （查了下W3C标准，其实是PNG图片在压缩的时候会在最后一个块的标记位标明这是最后一个数据块）。所以如果某一块没有满但后面却还有 IDAT 块则说明后面的块是“假”的。</p>
+<p>我们可以用 pngcheck -v [文件名] 去查看PNG文件数据块信息，然后利用 python zlib 解压多余IDAT块的内容，此时注意剔除长度、数据块类型及末尾的CRC校验值。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line">IDAT = <span class="string">&quot; &quot;</span>.decode(<span class="string">&#x27;hex&#x27;</span>)    <span class="comment">#双引号中填IDAT数据</span></span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62895080">隐写术之图片隐写</a></p>
+<h1 id="ZIP伪加密"><a href="#ZIP伪加密" class="headerlink" title="ZIP伪加密"></a>ZIP伪加密</h1><p>zip伪加密是在文件头的加密标志位做修改，进而再打开文件时识被别为加密压缩包<br>一个 ZIP 文件由三个部分组成：<br>压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志</p>
+<p>压缩源文件数据区：<br>50 4B 03 04：这是头文件标记（0x04034b50）<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>00 00：扩展记录长度</p>
+<p>压缩源文件目录区：<br>50 4B 01 02：目录中文件文件头标记(0x02014b50)<br>3F 00：压缩使用的 pkware 版本<br>14 00：解压文件所需 pkware 版本<br>00 00：全局方式位标记（有无加密，这个更改这里进行伪加密，改为09 00打开就会提示有密码了）<br>08 00：压缩方式<br>5A 7E：最后修改文件时间<br>F7 46：最后修改文件日期<br>16 B5 80 14：CRC-32校验（1480B516）<br>19 00 00 00：压缩后尺寸（25）<br>17 00 00 00：未压缩尺寸（23）<br>07 00：文件名长度<br>24 00：扩展字段长度<br>00 00：文件注释长度<br>00 00：磁盘开始号<br>00 00：内部文件属性<br>20 00 00 00：外部文件属性<br>00 00 00 00：局部头部偏移量</p>
+<p>压缩源文件目录结束标志：<br>50 4B 05 06：目录结束标记<br>00 00：当前磁盘编号<br>00 00：目录区开始磁盘编号<br>01 00：本磁盘上纪录总数<br>01 00：目录区中纪录总数<br>59 00 00 00：目录区尺寸大小<br>3E 00 00 00：目录区对第一张磁盘的偏移量<br>00 00：ZIP 文件注释长度</p>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/599530557">从0开始学杂项</a></p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/10/31/MISC%E6%9D%82%E9%A1%B9%E4%B9%8B%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90/" title="MISC杂项之隐写分析">http://example.com/2023/10/31/MISC杂项之隐写分析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/MISC%E6%9D%82%E9%A1%B9/" rel="tag"><i class="fa fa-tag"></i> MISC杂项</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/13/%E5%9F%83%E9%9A%86%E9%A9%AC%E6%96%AF%E5%85%8B%E4%BC%A0--%E4%B8%8E%E9%A3%8E%E5%85%B1%E8%88%9E%E7%9A%84%E5%AD%A9%E5%AD%90/" rel="prev" title="埃隆马斯克传--与风共舞的孩子">
+      <i class="fa fa-chevron-left"></i> 埃隆马斯克传--与风共舞的孩子
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/01/MISC%E6%9D%82%E9%A1%B9%20-%20buuctf/" rel="next" title="MISC杂项 - buuctf">
+      MISC杂项 - buuctf <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E5%86%99%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">隐写分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E9%99%84%E5%8A%A0"><span class="nav-number">3.</span> <span class="nav-text">直接附加</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">识别文件类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%A6%BB%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">分离文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">文件合并操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99"><span class="nav-number">4.</span> <span class="nav-text">图片隐写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#png%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">4.1.</span> <span class="nav-text">png文件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IHDR-%E7%AF%A1%E6%94%B9%E5%9B%BE%E7%89%87%E5%AE%BD%E9%AB%98"><span class="nav-number">4.2.</span> <span class="nav-text">IHDR 篡改图片宽高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSB%E9%9A%90%E5%86%99"><span class="nav-number">4.3.</span> <span class="nav-text">LSB隐写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDAT%E9%9A%90%E5%86%99"><span class="nav-number">4.4.</span> <span class="nav-text">IDAT隐写</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ZIP%E4%BC%AA%E5%8A%A0%E5%AF%86"><span class="nav-number">5.</span> <span class="nav-text">ZIP伪加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%B4%E8%B0%A2"><span class="nav-number">6.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">640k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">9:42</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
