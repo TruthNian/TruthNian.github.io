@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言本课讲述了逻辑漏洞的种类及应用。逻辑漏洞课程第二课">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC_course_8">
+<meta property="og:url" content="http://example.com/2023/12/15/SRC_course_8/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言本课讲述了逻辑漏洞的种类及应用。逻辑漏洞课程第二课">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T08:52:41.509Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="SRC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/12/15/SRC_course_8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>SRC_course_8 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">81</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">191</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/15/SRC_course_8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SRC_course_8
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-15 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-15T00:00:00+08:00">2023-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-17 16:52:41" itemprop="dateModified" datetime="2023-12-17T16:52:41+08:00">2023-12-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SRC/" itemprop="url" rel="index"><span itemprop="name">SRC</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本课讲述了逻辑漏洞的种类及应用。逻辑漏洞课程第二课</p>
+<span id="more"></span>
+<h1 id="漏洞类型概览"><a href="#漏洞类型概览" class="headerlink" title="漏洞类型概览"></a>漏洞类型概览</h1><h2 id="任意用户漏洞"><a href="#任意用户漏洞" class="headerlink" title="任意用户漏洞"></a>任意用户漏洞</h2><h3 id="任意用户注册"><a href="#任意用户注册" class="headerlink" title="任意用户注册"></a>任意用户注册</h3><ol>
+<li>可覆盖注册。将系统中存在的账号再次注册。多数情况下会接管，少数情况会变成新号。（高危）</li>
+<li>不可覆盖注册。只能注册系统中不存在的账号。出现概率较高。（低危）</li>
+</ol>
+<h3 id="任意用户登录"><a href="#任意用户登录" class="headerlink" title="任意用户登录"></a>任意用户登录</h3><h3 id="任意用户密码重置"><a href="#任意用户密码重置" class="headerlink" title="任意用户密码重置"></a>任意用户密码重置</h3><h2 id="越权漏洞"><a href="#越权漏洞" class="headerlink" title="越权漏洞"></a>越权漏洞</h2><p>做了不属于自己权限的事。</p>
+<ol>
+<li>垂直越权</li>
+<li>水平越权</li>
+<li>不常见越权</li>
+</ol>
+<p>绕过方式1：删除字段（删除token或token以外的字段）<br>绕过方式2：cookie越权（修改可遍历的参数，可预知）<br>绕过方式3：绕过原始密码认证（低危或忽略）<br>绕过方式4：抓包控制信息泄露，避免跳转<br>绕过方式5：需要多个数据（若用户收货地址只有1个时不能删除）<br>绕过方式6：双因子绕过（需要修改uid和uuid，可遍历先尝试遍历，不可遍历尝试找泄露点）<br>绕过方式7：修改url路径参数值实现垂直越权（比如 <code>?app=user</code> 改为 <code>?app=admin</code> ）<br>绕过方式8：思路很重要（下订单时收货地址id可修改）<br>绕过方式9：思维（cookie中存在手机号，直接将手机号修改为任意11位数字）<br>绕过方式10：js（打开某地址，是一个登陆口，直接审计js，找到接口。）（插件findsthing）</p>
+<h2 id="不同类型站点一览"><a href="#不同类型站点一览" class="headerlink" title="不同类型站点一览"></a>不同类型站点一览</h2><p>电商、论坛、直播、大学</p>
+<h3 id="越权漏洞之构造参数（查找敏感信息，进行敏感操作）"><a href="#越权漏洞之构造参数（查找敏感信息，进行敏感操作）" class="headerlink" title="越权漏洞之构造参数（查找敏感信息，进行敏感操作）"></a>越权漏洞之构造参数（查找敏感信息，进行敏感操作）</h3><ol>
+<li>先f12找到js里面的参数</li>
+<li>只找到查找功能的menu列表的借口可以访问</li>
+<li>根据经验，构造添加借口，<code>POST xxx.com/api/v1/menu</code><br>根据返回值构造数据包<br>数据<br><code>&#123;&quot;name&quot;:&quot;testest&quot;,&quot;type&quot;:&quot;1&quot;,&quot;parentId&quot;:&quot;-1&quot;,&quot;href&quot;:&quot;test1test&quot;&#125;,</code></li>
+</ol>
+<p>可以看到成功添加</p>
+<p>经验总结:<br>后台模块的借口格式一般是</p>
+<p>添加的接口一般是POST &#x2F;PUT &#x2F;api&#x2F;模块名，<br>POST &#x2F;api&#x2F;模块名&#x2F;add</p>
+<p>删除的一般是 DELETE &#x2F;api&#x2F;模块名&#x2F;id<br>GET &#x2F;api&#x2F;模块名&#x2F;del?id&#x3D;<br>POST &#x2F;api&#x2F;模块名&#x2F;</p>
+<p>修改一般是 POST &#x2F;api&#x2F;模块名&#x2F;modify<br>POST &#x2F;api&#x2F;模块名</p>
+<p>查询一般是 GET &#x2F;api&#x2F;模块名&#x2F;list<br>&#x2F;api&#x2F;模块名&#x2F;all</p>
+<p>如果js文件中只有查询的接口，那么可以自己尝试一下构造添加、修改和删除接口</p>
+<p><strong>插件推荐</strong><br>js提取：JSFinder<br>工具地址: <code>https://github.com/Threezh1/JSFinder</code></p>
+<p><strong>额外</strong></p>
+<ol>
+<li><p>巧用搜索引擎 Google hacker<br>示例:<br>保险业务 <code>保单 site:exc.com filetype:xls</code></p>
+</li>
+<li><p>组合拳：越权修改+xss<br>自己搭建盲打平台</p>
+</li>
+</ol>
+<h2 id="其它逻辑漏洞"><a href="#其它逻辑漏洞" class="headerlink" title="其它逻辑漏洞"></a>其它逻辑漏洞</h2><p>以案例展示</p>
+<h3 id="短信轰炸"><a href="#短信轰炸" class="headerlink" title="短信轰炸"></a>短信轰炸</h3><p>判定标准：一分钟内收到30（50）+条的短信。<br>分类：</p>
+<ol>
+<li>横向轰炸。可以给多个手机号同时发短信，这类漏洞大部分忽略。</li>
+<li>纵向轰炸。给同一个手机号同时发多条短信。</li>
+</ol>
+<p>如果发短信&#x2F;邮件被限制，可选择：</p>
+<ol>
+<li>垃圾字符(英文字母)</li>
+<li>垃圾字符(+86)</li>
+<li>垃圾字符(空格)</li>
+<li>双写(mobile&#x3D;13333333333,1343333333或mobile&#x3D;13333333333&amp;mobile&#x3D;1343333333)</li>
+<li>XFF进行IP伪造(X-Forwarded-For: 127.0.0.1)(放在倒数第二排)（可用插件伪造ip，如X-Forwarded-For Header，burpfakeip）</li>
+<li>邮箱轰炸可改大小写绕过(如: <code>111@qq.CoM</code> )</li>
+</ol>
+<h3 id="URL跳转漏洞（不值钱）"><a href="#URL跳转漏洞（不值钱）" class="headerlink" title="URL跳转漏洞（不值钱）"></a>URL跳转漏洞（不值钱）</h3><p>URL没有任何限制，所以恶意用户可以提交 <code>http://www.aaa.com/1.php?url=http://www.bbb.com</code> (跳转到钓鱼网站)来生成自己的恶意链接，安全意识较低的用户可能会被欺骗。</p>
+<p>挖掘方式（参数下手）：redirect, redirect_to, url等等（或者直接尝试所有参数）<br>绕过方式1：单斜线“&#x2F;”绕过<br>绕过方式2：缺少协议绕过（ <code>?url=//www.evil.com</code> ）<br>绕过方式3：多斜线“&#x2F;”绕过（ <code>?url=///www.evil.com</code> ）<br>绕过方式4：@符号绕过<br>绕过方式5：反斜线“\”绕过<br>绕过方式6：#符号绕过<br>绕过方式7：?符号绕过<br>绕过方式8：“\\”绕过<br>绕过方式9：“.”绕过（ <code>?url=.evil.com</code> ）<br>绕过方式10：重复特殊字符绕过（ <code>?url=///www.evil.com//</code> ）</p>
+<h3 id="电商漏洞"><a href="#电商漏洞" class="headerlink" title="电商漏洞"></a>电商漏洞</h3><p>提前购买：先选择能买的，然后将id修改为不能买的，实现提前购买。</p>
+<h3 id="匿名漏洞（高危）"><a href="#匿名漏洞（高危）" class="headerlink" title="匿名漏洞（高危）"></a>匿名漏洞（高危）</h3><p>查看源代码，抓包查看。</p>
+<h3 id="fuzz漏洞"><a href="#fuzz漏洞" class="headerlink" title="fuzz漏洞"></a>fuzz漏洞</h3><p>在注册时，存在隐藏参数，如: usertype&#x3D;1, userlevel&#x3D;1, userrank&#x3D;1等等。</p>
+<h2 id="支付漏洞"><a href="#支付漏洞" class="headerlink" title="支付漏洞"></a>支付漏洞</h2><p>支付漏洞大致类型：</p>
+<ol>
+<li>低价充值；越权花别人的钱</li>
+<li>服务年限延长；更少的钱获得服务并生成多个优惠订单</li>
+<li>交易密码绕过</li>
+</ol>
+<h3 id="签约漏洞-高危"><a href="#签约漏洞-高危" class="headerlink" title="签约漏洞(高危)"></a>签约漏洞(高危)</h3><p>场景：<br>新用户购买vip，首月优惠价格6元，第2个月再次购买或续费就恢复原价10元。<br>购买时，两种支付手段：微信，支付宝。<br>分别生成一个订单，同时支付。获得2个月会员，并且仅支付12元。（或重放数据包，Repeater同时支付。并发。）</p>
+<h2 id="并发漏洞"><a href="#并发漏洞" class="headerlink" title="并发漏洞"></a>并发漏洞</h2><p>使用工具：burp 或 fd</p>
+<p>burp插件：Turbo Intruder<br>安装好插件后使用方法: </p>
+<ol>
+<li>右键 <code>Send to Turbo Intruder</code></li>
+<li>上半部分模块打上 <code>x-req:%s</code></li>
+<li>中间改为 <code>examples/race.py</code></li>
+<li>最后Attack</li>
+</ol>
+<h1 id="案例分享"><a href="#案例分享" class="headerlink" title="案例分享"></a>案例分享</h1><p>爆破需要挂代理IP池，否则ip会被封。</p>
+<h2 id="任意用户漏洞-1"><a href="#任意用户漏洞-1" class="headerlink" title="任意用户漏洞"></a>任意用户漏洞</h2><h3 id="案例1–四位数验证码可爆破"><a href="#案例1–四位数验证码可爆破" class="headerlink" title="案例1–四位数验证码可爆破"></a>案例1–四位数验证码可爆破</h3><p>任何需要发验证码的地方都可能存在。<br>登录口存在该漏洞，是高危漏洞。<br>登录进入存在该漏洞，一般是中危或低危。（可自评高危）<br>六位数验证码可爆破漏洞，可收。（中危）</p>
+<p>严重漏洞慎选。</p>
+<h3 id="案例2–验证码回显"><a href="#案例2–验证码回显" class="headerlink" title="案例2–验证码回显"></a>案例2–验证码回显</h3><p>返回包中存在正确的验证码。</p>
+<h3 id="案例3–只验证了验证码，未做绑定验证"><a href="#案例3–只验证了验证码，未做绑定验证" class="headerlink" title="案例3–只验证了验证码，未做绑定验证"></a>案例3–只验证了验证码，未做绑定验证</h3><p>在手机号收到验证码后，更改手机号。相当于用他人手机号注册账号。</p>
+<h3 id="案例4–修改返回包"><a href="#案例4–修改返回包" class="headerlink" title="案例4–修改返回包"></a>案例4–修改返回包</h3><p>修改返回包：false改为success, true, 400, 200, 0, 1, -1<br>返回包修改方式：在Burp软件的Proxy模块下修改。</p>
+<h3 id="案例5–双写"><a href="#案例5–双写" class="headerlink" title="案例5–双写"></a>案例5–双写</h3><p>示例：</p>
+<p>以上略…<br>Cookie:<br>Connection: keep-alive<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Content-Length: 60</p>
+<p>mobile&#x3D;13512312312&amp;code&#x3D;12390  (正常情况)<br>mobile&#x3D;13512312312, 13500000000, 13333333333&amp;code&#x3D;12390  (修改方式1)<br>mobile&#x3D;13512312312&amp;mobile&#x3D;13500000000&amp;code&#x3D;12390  (修改方式2)</p>
+<h3 id="案例6–第三方登录"><a href="#案例6–第三方登录" class="headerlink" title="案例6–第三方登录"></a>案例6–第三方登录</h3><p>示例：<br>在第三方平台中登录选择微博登录，然后会返回一个数据包，修改数据包uid即可登录对应的账号（问题在于第三方平台未做好配置）</p>
+<h3 id="案例7–随意验证码"><a href="#案例7–随意验证码" class="headerlink" title="案例7–随意验证码"></a>案例7–随意验证码</h3><p>找回密码，获取验证码，填写任意验证码即可（不管验证码是什么，随便填一个6位数的数字）</p>
+<h3 id="案例8–验证码为空"><a href="#案例8–验证码为空" class="headerlink" title="案例8–验证码为空"></a>案例8–验证码为空</h3><p>找回密码，获取验证码，验证码字段写成null或留空</p>
+<h3 id="案例9–奇葩绕过"><a href="#案例9–奇葩绕过" class="headerlink" title="案例9–奇葩绕过"></a>案例9–奇葩绕过</h3><p>示例：</p>
+<p>找回密码场景中：<br>输入用户名admin，在下发验证码时将手机号改为自己的手机号（返回包中修改），从而利用自己手机号接收验证码，重置他人账号。</p>
+<h3 id="案例10–重置链接"><a href="#案例10–重置链接" class="headerlink" title="案例10–重置链接"></a>案例10–重置链接</h3><p>点击密码重置输入自己的账号，自己邮箱会收到这样的重置链接。</p>
+<h3 id="案例11–万能密码（注入）"><a href="#案例11–万能密码（注入）" class="headerlink" title="案例11–万能密码（注入）"></a>案例11–万能密码（注入）</h3><p>通过asp，aspx，php，jsp等的万能密码登入账号。<br>示例任意用户登录：admin’or’1’&#x3D;’1</p>
+<h3 id="案例12–输入用户名获取当前用户信息"><a href="#案例12–输入用户名获取当前用户信息" class="headerlink" title="案例12–输入用户名获取当前用户信息"></a>案例12–输入用户名获取当前用户信息</h3><p>当在登录口或找回密码界面，输入用户名后，发现自动发送一个请求包检测用户名是否存在，返回包中获得密码或md5加密的密码。</p>
+<h3 id="案例13–修改url跳过步骤"><a href="#案例13–修改url跳过步骤" class="headerlink" title="案例13–修改url跳过步骤"></a>案例13–修改url跳过步骤</h3><p>示例：<br>假设找回密码地址第一步: <code>http://www.xxx.com/u/getpwd1.html</code><br>第一步输入邮箱和验证码开始找回密码，<br>第二步将url参数从2改为3，变成 <code>http://www.xxx.com/u/getpwd3.html</code> ，从而直接到达重置密码的第3步。<br>第三步重置密码，退出后验证是否能够重新登录，如果能则说明存在漏洞。</p>
+<h3 id="案例14–平台存在初始密码，使用爆破手段将全站未修改初始密码的账号获取"><a href="#案例14–平台存在初始密码，使用爆破手段将全站未修改初始密码的账号获取" class="headerlink" title="案例14–平台存在初始密码，使用爆破手段将全站未修改初始密码的账号获取"></a>案例14–平台存在初始密码，使用爆破手段将全站未修改初始密码的账号获取</h3><h3 id="案例15–请求包中存在userid或其它字符，修改userid能以自己账号修改他人密码"><a href="#案例15–请求包中存在userid或其它字符，修改userid能以自己账号修改他人密码" class="headerlink" title="案例15–请求包中存在userid或其它字符，修改userid能以自己账号修改他人密码"></a>案例15–请求包中存在userid或其它字符，修改userid能以自己账号修改他人密码</h3><h3 id="案例16–通用框架漏洞"><a href="#案例16–通用框架漏洞" class="headerlink" title="案例16–通用框架漏洞"></a>案例16–通用框架漏洞</h3><h2 id="越权漏洞-1"><a href="#越权漏洞-1" class="headerlink" title="越权漏洞"></a>越权漏洞</h2><h3 id="案例1–常见id越权"><a href="#案例1–常见id越权" class="headerlink" title="案例1–常见id越权"></a>案例1–常见id越权</h3><p>重点关注的点：<br>收货地址<br>用户<br>编辑<br>预览（草稿回收站）<br>报告（采购）<br>订单（抽奖 付款）</p>
+<h2 id="并发漏洞（30次以内，需代理）"><a href="#并发漏洞（30次以内，需代理）" class="headerlink" title="并发漏洞（30次以内，需代理）"></a>并发漏洞（30次以内，需代理）</h2><h3 id="案例1–成功刷赞"><a href="#案例1–成功刷赞" class="headerlink" title="案例1–成功刷赞"></a>案例1–成功刷赞</h3><p><strong>报告示例</strong> （避开复现过程，审核太弱）<br>标题：xx存在并发刷赞漏洞可随意控制排名<br>自评等级：结合具体情况分析<br>详细内容：来到 <code>http://www.xx.com/1.html</code> , 点赞，抓包<br>【贴上原始页面图片】<br>（贴出的数据包：不带x-req:%s的数据包）<br>直接并发，并发成功，可以看到成功刷赞<br>【贴上刷赞成功页面图片】<br>危害：结合具体情况分析<br>修复建议：数据库加锁</p>
+<h3 id="案例2–签到"><a href="#案例2–签到" class="headerlink" title="案例2–签到"></a>案例2–签到</h3><p>根据危害情况，漏洞危害判定为忽略到高危不等。</p>
+<h3 id="案例3–突破限购"><a href="#案例3–突破限购" class="headerlink" title="案例3–突破限购"></a>案例3–突破限购</h3><h3 id="案例4–突破地址限制"><a href="#案例4–突破地址限制" class="headerlink" title="案例4–突破地址限制"></a>案例4–突破地址限制</h3><h3 id="案例5–文件上传-实际用处不大"><a href="#案例5–文件上传-实际用处不大" class="headerlink" title="案例5–文件上传(实际用处不大)"></a>案例5–文件上传(实际用处不大)</h3><h3 id="案例6–领券"><a href="#案例6–领券" class="headerlink" title="案例6–领券"></a>案例6–领券</h3><h3 id="案例7–刷积分"><a href="#案例7–刷积分" class="headerlink" title="案例7–刷积分"></a>案例7–刷积分</h3><h3 id="案例8–提现"><a href="#案例8–提现" class="headerlink" title="案例8–提现"></a>案例8–提现</h3><h3 id="案例9–抽奖"><a href="#案例9–抽奖" class="headerlink" title="案例9–抽奖"></a>案例9–抽奖</h3><h3 id="案例10–下单"><a href="#案例10–下单" class="headerlink" title="案例10–下单"></a>案例10–下单</h3><h2 id="支付漏洞-1"><a href="#支付漏洞-1" class="headerlink" title="支付漏洞"></a>支付漏洞</h2><h3 id="案例1–负数购买"><a href="#案例1–负数购买" class="headerlink" title="案例1–负数购买"></a>案例1–负数购买</h3><p>正常情况：200(余额)-2*10(单价)&#x3D;180<br>hack：200-(-2)*10&#x3D;220</p>
+<h3 id="案例2–修改内容"><a href="#案例2–修改内容" class="headerlink" title="案例2–修改内容"></a>案例2–修改内容</h3><p>场景：云主机购买逻辑设计不严密，经过base64编码的数据可以被篡改，实现原有买低配的价格可以直接买高配。比如将带宽从5M修改为200M，CPU从2核修改为8核…(价格未变或是降低，算是成功)</p>
+<h3 id="案例3–修改金额"><a href="#案例3–修改金额" class="headerlink" title="案例3–修改金额"></a>案例3–修改金额</h3><ol>
+<li>负数</li>
+<li>金额变小</li>
+<li>小数点前移，从199变成1.99</li>
+<li>修改的金额系统内置：比如一个东西，普通人买100元，员工买1元。</li>
+</ol>
+<p>注意点：修改内容要一一对应，了解逻辑。</p>
+<h3 id="案例4–无限重放-并发"><a href="#案例4–无限重放-并发" class="headerlink" title="案例4–无限重放(并发)"></a>案例4–无限重放(并发)</h3><p>运用场景：优惠券，退款…</p>
+<h3 id="案例5–修改运费"><a href="#案例5–修改运费" class="headerlink" title="案例5–修改运费"></a>案例5–修改运费</h3><h3 id="案例6–修改下单金额"><a href="#案例6–修改下单金额" class="headerlink" title="案例6–修改下单金额"></a>案例6–修改下单金额</h3><h3 id="案例7–正负叠加"><a href="#案例7–正负叠加" class="headerlink" title="案例7–正负叠加"></a>案例7–正负叠加</h3><p>示例：<br>随便购买两件商品，商品为数量一正一负提交订单<br>30(A商品)*1-10(B商品)*2&#x3D;10</p>
+<h3 id="案例8–优惠券漏洞"><a href="#案例8–优惠券漏洞" class="headerlink" title="案例8–优惠券漏洞"></a>案例8–优惠券漏洞</h3><p>抓包修改优惠券金额</p>
+<h3 id="案例9–优惠券漏洞"><a href="#案例9–优惠券漏洞" class="headerlink" title="案例9–优惠券漏洞"></a>案例9–优惠券漏洞</h3><p>注意数据包，一定要各个金额保持一致</p>
+<h3 id="案例10–溢出漏洞"><a href="#案例10–溢出漏洞" class="headerlink" title="案例10–溢出漏洞"></a>案例10–溢出漏洞</h3><p>漏洞成因：int32最大值为4294967296，充值98998996172801，支付溢出</p>
+<h3 id="案例11–更改购买类型"><a href="#案例11–更改购买类型" class="headerlink" title="案例11–更改购买类型"></a>案例11–更改购买类型</h3><p>场景：一个成人800和一个儿童180，抓包将“成人”类型修改为儿童，得到总价360</p>
+<h1 id="如何挖"><a href="#如何挖" class="headerlink" title="如何挖"></a>如何挖</h1><p>掌握漏洞类型–确定资产–功能点分析–耐心</p>
+<h2 id="挖洞心法"><a href="#挖洞心法" class="headerlink" title="挖洞心法"></a>挖洞心法</h2><ol>
+<li>明确自己要挖什么类型的漏洞</li>
+<li>明确这个站大概会有什么类型的漏洞：nday，自己的知识</li>
+<li>耐心</li>
+<li>明确各个平台重点关注的漏洞，优先挖掘价值较高漏洞。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/12/15/SRC_course_8/" title="SRC_course_8">http://example.com/2023/12/15/SRC_course_8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SRC/" rel="tag"><i class="fa fa-tag"></i> SRC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/11/SRC_course_7/" rel="prev" title="SRC_course_7">
+      <i class="fa fa-chevron-left"></i> SRC_course_7
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/12/17/SRC_course_9/" rel="next" title="SRC_course_9">
+      SRC_course_9 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">漏洞类型概览</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.1.</span> <span class="nav-text">任意用户漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C"><span class="nav-number">2.1.1.</span> <span class="nav-text">任意用户注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">任意用户登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">任意用户密码重置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.2.</span> <span class="nav-text">越权漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%AB%99%E7%82%B9%E4%B8%80%E8%A7%88"><span class="nav-number">2.3.</span> <span class="nav-text">不同类型站点一览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E%E4%B9%8B%E6%9E%84%E9%80%A0%E5%8F%82%E6%95%B0%EF%BC%88%E6%9F%A5%E6%89%BE%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%BF%9B%E8%A1%8C%E6%95%8F%E6%84%9F%E6%93%8D%E4%BD%9C%EF%BC%89"><span class="nav-number">2.3.1.</span> <span class="nav-text">越权漏洞之构造参数（查找敏感信息，进行敏感操作）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.4.</span> <span class="nav-text">其它逻辑漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%AD%E4%BF%A1%E8%BD%B0%E7%82%B8"><span class="nav-number">2.4.1.</span> <span class="nav-text">短信轰炸</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL%E8%B7%B3%E8%BD%AC%E6%BC%8F%E6%B4%9E%EF%BC%88%E4%B8%8D%E5%80%BC%E9%92%B1%EF%BC%89"><span class="nav-number">2.4.2.</span> <span class="nav-text">URL跳转漏洞（不值钱）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%B5%E5%95%86%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.4.3.</span> <span class="nav-text">电商漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BF%E5%90%8D%E6%BC%8F%E6%B4%9E%EF%BC%88%E9%AB%98%E5%8D%B1%EF%BC%89"><span class="nav-number">2.4.4.</span> <span class="nav-text">匿名漏洞（高危）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fuzz%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.4.5.</span> <span class="nav-text">fuzz漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.5.</span> <span class="nav-text">支付漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%BE%E7%BA%A6%E6%BC%8F%E6%B4%9E-%E9%AB%98%E5%8D%B1"><span class="nav-number">2.5.1.</span> <span class="nav-text">签约漏洞(高危)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.6.</span> <span class="nav-text">并发漏洞</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E5%88%86%E4%BA%AB"><span class="nav-number">3.</span> <span class="nav-text">案例分享</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E6%BC%8F%E6%B4%9E-1"><span class="nav-number">3.1.</span> <span class="nav-text">任意用户漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1%E2%80%93%E5%9B%9B%E4%BD%8D%E6%95%B0%E9%AA%8C%E8%AF%81%E7%A0%81%E5%8F%AF%E7%88%86%E7%A0%B4"><span class="nav-number">3.1.1.</span> <span class="nav-text">案例1–四位数验证码可爆破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2%E2%80%93%E9%AA%8C%E8%AF%81%E7%A0%81%E5%9B%9E%E6%98%BE"><span class="nav-number">3.1.2.</span> <span class="nav-text">案例2–验证码回显</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B3%E2%80%93%E5%8F%AA%E9%AA%8C%E8%AF%81%E4%BA%86%E9%AA%8C%E8%AF%81%E7%A0%81%EF%BC%8C%E6%9C%AA%E5%81%9A%E7%BB%91%E5%AE%9A%E9%AA%8C%E8%AF%81"><span class="nav-number">3.1.3.</span> <span class="nav-text">案例3–只验证了验证码，未做绑定验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B4%E2%80%93%E4%BF%AE%E6%94%B9%E8%BF%94%E5%9B%9E%E5%8C%85"><span class="nav-number">3.1.4.</span> <span class="nav-text">案例4–修改返回包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B5%E2%80%93%E5%8F%8C%E5%86%99"><span class="nav-number">3.1.5.</span> <span class="nav-text">案例5–双写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B6%E2%80%93%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95"><span class="nav-number">3.1.6.</span> <span class="nav-text">案例6–第三方登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B7%E2%80%93%E9%9A%8F%E6%84%8F%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-number">3.1.7.</span> <span class="nav-text">案例7–随意验证码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B8%E2%80%93%E9%AA%8C%E8%AF%81%E7%A0%81%E4%B8%BA%E7%A9%BA"><span class="nav-number">3.1.8.</span> <span class="nav-text">案例8–验证码为空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B9%E2%80%93%E5%A5%87%E8%91%A9%E7%BB%95%E8%BF%87"><span class="nav-number">3.1.9.</span> <span class="nav-text">案例9–奇葩绕过</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B10%E2%80%93%E9%87%8D%E7%BD%AE%E9%93%BE%E6%8E%A5"><span class="nav-number">3.1.10.</span> <span class="nav-text">案例10–重置链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B11%E2%80%93%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81%EF%BC%88%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="nav-number">3.1.11.</span> <span class="nav-text">案例11–万能密码（注入）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B12%E2%80%93%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF"><span class="nav-number">3.1.12.</span> <span class="nav-text">案例12–输入用户名获取当前用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B13%E2%80%93%E4%BF%AE%E6%94%B9url%E8%B7%B3%E8%BF%87%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.1.13.</span> <span class="nav-text">案例13–修改url跳过步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B14%E2%80%93%E5%B9%B3%E5%8F%B0%E5%AD%98%E5%9C%A8%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81%EF%BC%8C%E4%BD%BF%E7%94%A8%E7%88%86%E7%A0%B4%E6%89%8B%E6%AE%B5%E5%B0%86%E5%85%A8%E7%AB%99%E6%9C%AA%E4%BF%AE%E6%94%B9%E5%88%9D%E5%A7%8B%E5%AF%86%E7%A0%81%E7%9A%84%E8%B4%A6%E5%8F%B7%E8%8E%B7%E5%8F%96"><span class="nav-number">3.1.14.</span> <span class="nav-text">案例14–平台存在初始密码，使用爆破手段将全站未修改初始密码的账号获取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B15%E2%80%93%E8%AF%B7%E6%B1%82%E5%8C%85%E4%B8%AD%E5%AD%98%E5%9C%A8userid%E6%88%96%E5%85%B6%E5%AE%83%E5%AD%97%E7%AC%A6%EF%BC%8C%E4%BF%AE%E6%94%B9userid%E8%83%BD%E4%BB%A5%E8%87%AA%E5%B7%B1%E8%B4%A6%E5%8F%B7%E4%BF%AE%E6%94%B9%E4%BB%96%E4%BA%BA%E5%AF%86%E7%A0%81"><span class="nav-number">3.1.15.</span> <span class="nav-text">案例15–请求包中存在userid或其它字符，修改userid能以自己账号修改他人密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B16%E2%80%93%E9%80%9A%E7%94%A8%E6%A1%86%E6%9E%B6%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.1.16.</span> <span class="nav-text">案例16–通用框架漏洞</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E-1"><span class="nav-number">3.2.</span> <span class="nav-text">越权漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1%E2%80%93%E5%B8%B8%E8%A7%81id%E8%B6%8A%E6%9D%83"><span class="nav-number">3.2.1.</span> <span class="nav-text">案例1–常见id越权</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E6%BC%8F%E6%B4%9E%EF%BC%8830%E6%AC%A1%E4%BB%A5%E5%86%85%EF%BC%8C%E9%9C%80%E4%BB%A3%E7%90%86%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">并发漏洞（30次以内，需代理）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1%E2%80%93%E6%88%90%E5%8A%9F%E5%88%B7%E8%B5%9E"><span class="nav-number">3.3.1.</span> <span class="nav-text">案例1–成功刷赞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2%E2%80%93%E7%AD%BE%E5%88%B0"><span class="nav-number">3.3.2.</span> <span class="nav-text">案例2–签到</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B3%E2%80%93%E7%AA%81%E7%A0%B4%E9%99%90%E8%B4%AD"><span class="nav-number">3.3.3.</span> <span class="nav-text">案例3–突破限购</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B4%E2%80%93%E7%AA%81%E7%A0%B4%E5%9C%B0%E5%9D%80%E9%99%90%E5%88%B6"><span class="nav-number">3.3.4.</span> <span class="nav-text">案例4–突破地址限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B5%E2%80%93%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E5%AE%9E%E9%99%85%E7%94%A8%E5%A4%84%E4%B8%8D%E5%A4%A7"><span class="nav-number">3.3.5.</span> <span class="nav-text">案例5–文件上传(实际用处不大)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B6%E2%80%93%E9%A2%86%E5%88%B8"><span class="nav-number">3.3.6.</span> <span class="nav-text">案例6–领券</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B7%E2%80%93%E5%88%B7%E7%A7%AF%E5%88%86"><span class="nav-number">3.3.7.</span> <span class="nav-text">案例7–刷积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B8%E2%80%93%E6%8F%90%E7%8E%B0"><span class="nav-number">3.3.8.</span> <span class="nav-text">案例8–提现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B9%E2%80%93%E6%8A%BD%E5%A5%96"><span class="nav-number">3.3.9.</span> <span class="nav-text">案例9–抽奖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B10%E2%80%93%E4%B8%8B%E5%8D%95"><span class="nav-number">3.3.10.</span> <span class="nav-text">案例10–下单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E-1"><span class="nav-number">3.4.</span> <span class="nav-text">支付漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1%E2%80%93%E8%B4%9F%E6%95%B0%E8%B4%AD%E4%B9%B0"><span class="nav-number">3.4.1.</span> <span class="nav-text">案例1–负数购买</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2%E2%80%93%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9"><span class="nav-number">3.4.2.</span> <span class="nav-text">案例2–修改内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B3%E2%80%93%E4%BF%AE%E6%94%B9%E9%87%91%E9%A2%9D"><span class="nav-number">3.4.3.</span> <span class="nav-text">案例3–修改金额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B4%E2%80%93%E6%97%A0%E9%99%90%E9%87%8D%E6%94%BE-%E5%B9%B6%E5%8F%91"><span class="nav-number">3.4.4.</span> <span class="nav-text">案例4–无限重放(并发)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B5%E2%80%93%E4%BF%AE%E6%94%B9%E8%BF%90%E8%B4%B9"><span class="nav-number">3.4.5.</span> <span class="nav-text">案例5–修改运费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B6%E2%80%93%E4%BF%AE%E6%94%B9%E4%B8%8B%E5%8D%95%E9%87%91%E9%A2%9D"><span class="nav-number">3.4.6.</span> <span class="nav-text">案例6–修改下单金额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B7%E2%80%93%E6%AD%A3%E8%B4%9F%E5%8F%A0%E5%8A%A0"><span class="nav-number">3.4.7.</span> <span class="nav-text">案例7–正负叠加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B8%E2%80%93%E4%BC%98%E6%83%A0%E5%88%B8%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.4.8.</span> <span class="nav-text">案例8–优惠券漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B9%E2%80%93%E4%BC%98%E6%83%A0%E5%88%B8%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.4.9.</span> <span class="nav-text">案例9–优惠券漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B10%E2%80%93%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.4.10.</span> <span class="nav-text">案例10–溢出漏洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B11%E2%80%93%E6%9B%B4%E6%94%B9%E8%B4%AD%E4%B9%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.4.11.</span> <span class="nav-text">案例11–更改购买类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8C%96"><span class="nav-number">4.</span> <span class="nav-text">如何挖</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%96%E6%B4%9E%E5%BF%83%E6%B3%95"><span class="nav-number">4.1.</span> <span class="nav-text">挖洞心法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">191</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">662k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">10:02</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
