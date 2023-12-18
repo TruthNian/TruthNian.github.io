@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言捡漏洞。漏洞课程第5节。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC_course_10">
+<meta property="og:url" content="http://example.com/2023/12/17/SRC_course_10/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言捡漏洞。漏洞课程第5节。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-17T13:13:53.522Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="SRC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/12/17/SRC_course_10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>SRC_course_10 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">81</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">193</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/17/SRC_course_10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SRC_course_10
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-17 00:00:00 / 修改时间：21:13:53" itemprop="dateCreated datePublished" datetime="2023-12-17T00:00:00+08:00">2023-12-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SRC/" itemprop="url" rel="index"><span itemprop="name">SRC</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>捡漏洞。漏洞课程第5节。</p>
+<span id="more"></span>
+<h1 id="信息泄露漏洞"><a href="#信息泄露漏洞" class="headerlink" title="信息泄露漏洞"></a>信息泄露漏洞</h1><h2 id="案例1–目录文件泄露"><a href="#案例1–目录文件泄露" class="headerlink" title="案例1–目录文件泄露"></a>案例1–目录文件泄露</h2><p>直接访问web应用存在的一些目录，如果返回文件列表信息，证明存在此漏洞。（一般需要有敏感文件）</p>
+<p>挖掘方法：Google Hacking 语法: intext:Index of &#x2F;</p>
+<h2 id="案例2–git源码泄露"><a href="#案例2–git源码泄露" class="headerlink" title="案例2–git源码泄露"></a>案例2–git源码泄露</h2><p>利用工具GitHack.py( <code>https://github.com/lijiejie/GitHack</code> )<br><code>python GitHack.py https://ip/.git/</code> 即可将源码下载</p>
+<h2 id="案例3–svn信息泄露"><a href="#案例3–svn信息泄露" class="headerlink" title="案例3–svn信息泄露"></a>案例3–svn信息泄露</h2><p>利用工具: <code>https://github.com/admintony/svnExploit</code><br>示例: <code>xx.com/lab2/.svn/entries</code></p>
+<h2 id="案例4–DS-Store文件泄露-htacess泄露"><a href="#案例4–DS-Store文件泄露-htacess泄露" class="headerlink" title="案例4–DS_Store文件泄露, htacess泄露"></a>案例4–DS_Store文件泄露, htacess泄露</h2><p>利用脚本: <code>https://github.com/lijiejie/ds_store_exp</code></p>
+<p>漏洞示例: <code>https://www.example.com/.DS_Store</code><br><code>https://www.example.com/.htacess</code></p>
+<h2 id="案例5–泄露合集"><a href="#案例5–泄露合集" class="headerlink" title="案例5–泄露合集"></a>案例5–泄露合集</h2><p>druid未授权访问漏洞<br><code>ip/druid/index.html  ## Druid Index</code><br><code>ip/druid/sql.html  ## Druid sql监控页面</code><br><code>ip/druid/weburi.html  ## Druid Web URI监控页面</code><br><code>ip/druid/websession.html  ## Druid Web Session监控页面</code><br><code>json:ip/druid/webrui.json  ## Druid Web URI json</code><br><code>ip/druid/websession.json  ## Druid Web Session json</code><br>Druid 登录接口: <code>ip/druid/login.html  ## Druid登录认证页面Druid未授权访问路径</code></p>
+<p><strong>其它泄露</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/debug/pprof/cmdline</span><br><span class="line">/.DS_Store</span><br><span class="line">/.git/index/</span><br><span class="line">/.svn/entries</span><br><span class="line">/graphql</span><br><span class="line">/tenant</span><br><span class="line">/sources</span><br><span class="line">/actuators/env/</span><br><span class="line">/swagger-ui.html</span><br></pre></td></tr></table></figure>
+
+<p>Spring的env泄露<br><code>/actuator/env</code></p>
+<p>Spring泄露（可测接口）<br><code>/swagger-ui.html</code></p>
+<p><code>/.bashrc</code> 个人配置记录<br><code>/.ssh/authorized_keys</code> 公钥<br><code>/.bash_history 泄露了站点服务器所有的操作记录</code></p>
+<p>sql查询语句泄露（报错即可）</p>
+<h2 id="补充案例1–测试环境"><a href="#补充案例1–测试环境" class="headerlink" title="补充案例1–测试环境"></a>补充案例1–测试环境</h2><p>测试环境漏洞环境<br>资产脆弱点一般在测试环境</p>
+<ol>
+<li>一般的测试开发环境，域名中总会带有一些特别的标记来识别，如常见的一些 <code>dev.xxx.com stc.xxx.com stm.xxx.com cmm..xxx.com test.xxx.com</code> 等等</li>
+<li>某些SRC平台在他们的评分标准中已经整理出一些测试域名，如oppsrc: OSRC OPPO自有业务的测试环境，包括且不限于域名中含有dev、test，或业务为开发测试之用，或域名属于: <code>*.wanyol.com  *.myoas.net</code></li>
+</ol>
+<h2 id="补充案例2–网盘"><a href="#补充案例2–网盘" class="headerlink" title="补充案例2–网盘"></a>补充案例2–网盘</h2><p>威胁情报获取（网盘）<br>通过企业名+关键词的方法进行排查，常见关键词有：<br>合同，设计图纸，身份证，通讯录，花名册，报表，投标文件，入职等。<br>情报提交时说明网盘链接h和截图，方便厂商排查即可。<br>推荐网盘搜索引擎：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://www.lingfengyun.com/</span><br><span class="line">https://www.quzhuanpan.com/</span><br><span class="line">https://www.pansoso.com/</span><br><span class="line">https://wp.soshoulu.com/</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充案例3–浏览器"><a href="#补充案例3–浏览器" class="headerlink" title="补充案例3–浏览器"></a>补充案例3–浏览器</h2><p>威胁情报获取（浏览器）<br>Google搜索payload(文件类型+根域+关键词)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">filetype:xls site:xxx.example.com sfzh</span><br><span class="line">filetype:xls site:xxx.example.com 身份证号</span><br><span class="line">filetype:pdf site:xxx.example.com sfzh</span><br><span class="line">filetype:pdf site:xxx.example.com 身份证号</span><br></pre></td></tr></table></figure>
+<p>bing搜payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">inurl:example inurl:PDF 机密等级 ABC</span><br><span class="line">inurl:/backup intitle:index of backup intext:*sql site:xxx.example.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充案例4–可能错过的漏洞"><a href="#补充案例4–可能错过的漏洞" class="headerlink" title="补充案例4–可能错过的漏洞"></a>补充案例4–可能错过的漏洞</h2><p>需要二次认证的账号（拿到账号密码，虽然进不去，可以直接提交）</p>
+<h2 id="补充案例5–网站被黑信息"><a href="#补充案例5–网站被黑信息" class="headerlink" title="补充案例5–网站被黑信息"></a>补充案例5–网站被黑信息</h2><p>在该URL处：<code>http://xx.com/js/dywe.js</code> ,访问js，在sidmap参数处可以看到很多url，访问发现为与xxx无关的恶意请求</p>
+<h1 id="具体案例"><a href="#具体案例" class="headerlink" title="具体案例"></a>具体案例</h1><h2 id="刷赞"><a href="#刷赞" class="headerlink" title="刷赞"></a>刷赞</h2><p>返回包中出现存在点赞数量，修改数量即可。</p>
+<h2 id="日志泄露"><a href="#日志泄露" class="headerlink" title="日志泄露"></a>日志泄露</h2><p>发现日志记录直接提交</p>
+<h2 id="上传XSS"><a href="#上传XSS" class="headerlink" title="上传XSS"></a>上传XSS</h2><p>除了普通的上传xss文件，还可以上传svg格式的xss</p>
+<h2 id="XXL-JOB-任务调度中心-反弹getshell"><a href="#XXL-JOB-任务调度中心-反弹getshell" class="headerlink" title="XXL-JOB(任务调度中心)-反弹getshell"></a>XXL-JOB(任务调度中心)-反弹getshell</h2><p>xxl-job命令执行<br><code>https://xxx.com/toLogin</code><br>存在弱口令<br>可利用任务调度执行反弹shell</p>
+<h2 id="shiro反序列化漏洞"><a href="#shiro反序列化漏洞" class="headerlink" title="shiro反序列化漏洞"></a>shiro反序列化漏洞</h2><p>利用工具</p>
+<h2 id="app-XSS"><a href="#app-XSS" class="headerlink" title="app XSS"></a>app XSS</h2><p>app的XSS比较多</p>
+<h1 id="场景案例"><a href="#场景案例" class="headerlink" title="场景案例"></a>场景案例</h1><h2 id="抽奖场景"><a href="#抽奖场景" class="headerlink" title="抽奖场景"></a>抽奖场景</h2><p>从“中奖用户”这个点：尝试查看用户敏感信息，如手机号<br>从“抽奖”这个点：尝试并发，重放。还有修改抽奖积分为负值。<br>从“抽奖记录”这个点：尝试越权查看其它用户信息。<br>从“赚积分”这个点：尝试大量赚取积分。</p>
+<p>注意隐藏参数</p>
+<p>在线客服：尝试XSS</p>
+<p>抓包的userId，找到没被加密的id。</p>
+<h2 id="论坛场景"><a href="#论坛场景" class="headerlink" title="论坛场景"></a>论坛场景</h2><p>发布问题添加payload</p>
+<ol>
+<li>利用位置绕过</li>
+<li>app，小程序绕过</li>
+<li>fuzz</li>
+</ol>
+<p>获取匿名用户的真实用户信息</p>
+<h2 id="付费课程场景"><a href="#付费课程场景" class="headerlink" title="付费课程场景"></a>付费课程场景</h2><p>在观看试听课程点“章节”，抓包<br>查找m3u8文件链接。（m3u8是视频流文件）<br>可以直接在m3u8在线网站播放。</p>
+<h2 id="通用思路"><a href="#通用思路" class="headerlink" title="通用思路"></a>通用思路</h2><p>场景：企业邮箱注册。<br>常规注册：利用本公司的公司邮箱注册<br>绕过：抓包，修改邮箱。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/12/17/SRC_course_10/" title="SRC_course_10">http://example.com/2023/12/17/SRC_course_10/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SRC/" rel="tag"><i class="fa fa-tag"></i> SRC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/17/SRC_course_9/" rel="prev" title="SRC_course_9">
+      <i class="fa fa-chevron-left"></i> SRC_course_9
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/12/17/SRC_course_11/" rel="next" title="SRC_course_11">
+      SRC_course_11 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.</span> <span class="nav-text">信息泄露漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1%E2%80%93%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2"><span class="nav-number">2.1.</span> <span class="nav-text">案例1–目录文件泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2%E2%80%93git%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2"><span class="nav-number">2.2.</span> <span class="nav-text">案例2–git源码泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B3%E2%80%93svn%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-number">2.3.</span> <span class="nav-text">案例3–svn信息泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B4%E2%80%93DS-Store%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2-htacess%E6%B3%84%E9%9C%B2"><span class="nav-number">2.4.</span> <span class="nav-text">案例4–DS_Store文件泄露, htacess泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B5%E2%80%93%E6%B3%84%E9%9C%B2%E5%90%88%E9%9B%86"><span class="nav-number">2.5.</span> <span class="nav-text">案例5–泄露合集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A1%88%E4%BE%8B1%E2%80%93%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">2.6.</span> <span class="nav-text">补充案例1–测试环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A1%88%E4%BE%8B2%E2%80%93%E7%BD%91%E7%9B%98"><span class="nav-number">2.7.</span> <span class="nav-text">补充案例2–网盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A1%88%E4%BE%8B3%E2%80%93%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">2.8.</span> <span class="nav-text">补充案例3–浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A1%88%E4%BE%8B4%E2%80%93%E5%8F%AF%E8%83%BD%E9%94%99%E8%BF%87%E7%9A%84%E6%BC%8F%E6%B4%9E"><span class="nav-number">2.9.</span> <span class="nav-text">补充案例4–可能错过的漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A1%88%E4%BE%8B5%E2%80%93%E7%BD%91%E7%AB%99%E8%A2%AB%E9%BB%91%E4%BF%A1%E6%81%AF"><span class="nav-number">2.10.</span> <span class="nav-text">补充案例5–网站被黑信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E6%A1%88%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">具体案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E8%B5%9E"><span class="nav-number">3.1.</span> <span class="nav-text">刷赞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E6%B3%84%E9%9C%B2"><span class="nav-number">3.2.</span> <span class="nav-text">日志泄露</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0XSS"><span class="nav-number">3.3.</span> <span class="nav-text">上传XSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XXL-JOB-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E4%B8%AD%E5%BF%83-%E5%8F%8D%E5%BC%B9getshell"><span class="nav-number">3.4.</span> <span class="nav-text">XXL-JOB(任务调度中心)-反弹getshell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shiro%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="nav-number">3.5.</span> <span class="nav-text">shiro反序列化漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#app-XSS"><span class="nav-number">3.6.</span> <span class="nav-text">app XSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF%E6%A1%88%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">场景案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E5%A5%96%E5%9C%BA%E6%99%AF"><span class="nav-number">4.1.</span> <span class="nav-text">抽奖场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E5%9D%9B%E5%9C%BA%E6%99%AF"><span class="nav-number">4.2.</span> <span class="nav-text">论坛场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%98%E8%B4%B9%E8%AF%BE%E7%A8%8B%E5%9C%BA%E6%99%AF"><span class="nav-number">4.3.</span> <span class="nav-text">付费课程场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%80%9D%E8%B7%AF"><span class="nav-number">4.4.</span> <span class="nav-text">通用思路</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">193</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">666k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">10:05</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
