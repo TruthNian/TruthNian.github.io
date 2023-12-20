@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言隐私合规漏洞第1,2课。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC_course_13">
+<meta property="og:url" content="http://example.com/2023/12/19/SRC_course_13/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言隐私合规漏洞第1,2课。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-20T11:18:42.648Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="SRC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/12/19/SRC_course_13/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>SRC_course_13 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">81</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">195</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/19/SRC_course_13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SRC_course_13
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-12-19 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-19T00:00:00+08:00">2023-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-12-20 19:18:42" itemprop="dateModified" datetime="2023-12-20T19:18:42+08:00">2023-12-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SRC/" itemprop="url" rel="index"><span itemprop="name">SRC</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>隐私合规漏洞第1,2课。</p>
+<span id="more"></span>
+<h1 id="隐私政策"><a href="#隐私政策" class="headerlink" title="隐私政策"></a>隐私政策</h1><p>隐私政策是独立于用户协议的，需要公开APP所有处理规则和基本情况，包括开办主体的基本信息，APP对个人信息收集、使用、共享及披露开办主体的基本信息，APP对个人信息收集、使用、共享及披露的基本情况，用户对于处理自己信息的基本权利，包括查看（无隐私政策或隐私政策无法打开的APP）、删除（能否撤销授权或删除个人相关信息，如地址，身份证等）、注销（能否注销账号）、投诉等以及政策发布、生效或更新日期。</p>
+<p>隐私政策描述的情况也需要符合APP实际情形，例如隐私政策中对于注销、投诉提供的操作方法，需与APP内实际操作路径相一致。（不一致即可提交，最高到严重）</p>
+<p>另外，对于业务开展目标用户为14周岁以下的儿童，需要有专门的儿童个人信息保护规则。过世人员也需留意。</p>
+<h1 id="等级判定"><a href="#等级判定" class="headerlink" title="等级判定"></a>等级判定</h1><p>首先按企业的评分标准，如果在评分标准中未说明，自评高危即可。</p>
+<h1 id="隐私合规漏洞参考标准"><a href="#隐私合规漏洞参考标准" class="headerlink" title="隐私合规漏洞参考标准"></a>隐私合规漏洞参考标准</h1><ol>
+<li>关于印发《App违法违规收集使用个人信息行为认定方法》的通知</li>
+<li>关于印发《常见类型移动互联网应用程序必要个人信息范围规定》的通知</li>
+<li>工业和信息化部关于k开展纵深推进App侵害用户权益专项整治行动的通知</li>
+<li>个人信息安全规范</li>
+<li>App收集使用个人信息最小必要评估规范</li>
+<li>《中华人民共和国个人信息保护法》</li>
+</ol>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><h2 id="用户默认同意隐私政策—违规"><a href="#用户默认同意隐私政策—违规" class="headerlink" title="用户默认同意隐私政策—违规"></a>用户默认同意隐私政策—违规</h2><ol>
+<li>App首次运行</li>
+<li>注册&#x2F;登录环节</li>
+<li>收集使用个人信息的目的、方式、范围发生变化时</li>
+<li>现版本没有主动提醒的（即使文本内容不变）</li>
+</ol>
+<p>弹窗内简要说明《隐私政策》要点</p>
+<ol>
+<li>点击跳转《隐私政策》详情页面</li>
+<li>给予用户2个选择，同意或拒绝。在用户点同意之前，禁止任何的数据收集；用户选择拒绝后，可提示即将退出app（点拒绝直接退出违规，二次确认不违规）</li>
+</ol>
+<p>“注册即同意《用户协议》和《隐私政策》”，如果该方框默认勾上，则违规。<br>此方框需要用户勾选。</p>
+<p>在注册登录环节需要再次提醒用户查看，一般会采用勾选框等形式。也要确保用户进入App后能随时查看隐私政策，一般要求在4次以内点击就能阅读到。所有地方的隐私政策内容需保持一致。</p>
+<h2 id="用户默认同意隐私政策报告—示例（需最新版本）"><a href="#用户默认同意隐私政策报告—示例（需最新版本）" class="headerlink" title="用户默认同意隐私政策报告—示例（需最新版本）"></a>用户默认同意隐私政策报告—示例（需最新版本）</h2><p>标题：xx app 1.1.1版本存在默认用户同意隐私政策漏洞<br>内容：<br>在小米官方商店，下载 xx app最新版，版本xxx<br>打开app，输入手机号注册，发现左下角默认同意了该隐私政策</p>
+<p>【图片证据】</p>
+<p>此行为违反了xx规定的第x条</p>
+<p>修复建议：<br>这个勾选应该由用户自己勾选，并非系统默认代替用户点击同意。</p>
+<h2 id="收集手机号（不挖）"><a href="#收集手机号（不挖）" class="headerlink" title="收集手机号（不挖）"></a>收集手机号（不挖）</h2><p>并不是所有的功能都需要手机号实名。</p>
+<h2 id="用户拒绝提供不必要的信息直接退出app—违规"><a href="#用户拒绝提供不必要的信息直接退出app—违规" class="headerlink" title="用户拒绝提供不必要的信息直接退出app—违规"></a>用户拒绝提供不必要的信息直接退出app—违规</h2><p>用户注册过程所收集的信息应遵循最小必要信息相关要求，当用户拒绝提供非最小必要信息或用户拒绝最小必要权限列表以外的权限时，是不能影响继续注册或使用基本功能服务。当然相对于基本信息外的其它附加功能，也是可以根据产品定位收集额外用户信息。</p>
+<h2 id="注销功能"><a href="#注销功能" class="headerlink" title="注销功能"></a>注销功能</h2><p>有注册功能就对应要有注销功能。<br>App要提供有效并且简单易操作的账号注销功能，同时注销条件限制合理。<br>合理的方式：如注销提供条件不能多于注册时的条件。使用联合登录方式的账号注销，仅应解除关联或匿名化处理本app内账号关联信息。</p>
+<h2 id="权限获取要求"><a href="#权限获取要求" class="headerlink" title="权限获取要求"></a>权限获取要求</h2><ol>
+<li><p>目的声明<br>发起权限申请前，应以弹窗形式提前说明申请权限的场景，目的，将会收集的信息。</p>
+</li>
+<li><p>用户交互<br>若用户同意授权，开始收集对应权限的信息或行使对应权限功能。</p>
+</li>
+<li><p>若用户拒绝授权，则提供一个静态页面说明申请权限的理由引导用户授权。当用户再次主动使用所需权限对应的功能时，触发弹窗申请。否则弹窗申请频率不能低于48小时一次。</p>
+</li>
+</ol>
+<h2 id="APP申请权限"><a href="#APP申请权限" class="headerlink" title="APP申请权限"></a>APP申请权限</h2><ol>
+<li>场景化申请</li>
+<li>申请敏感权限需要向用户明示收集使用的目的和用途。</li>
+<li>敏感权限为可收集个人信息的权限，举例如下：<br>ios系统：IDFA，定位，通讯录，日历，提醒事项，照片，麦克风，相机，健康<br>Android系统：定位，通讯录，日历，存储，相机，麦克风，电话，短信，应用安装列表，身体传感器。</li>
+<li>具体实现可采用弹框，占位页等形式进行说明申请权限的理由。在APP使用中，若用户明确拒绝授权，则不能频繁申请权限。不频繁的申请频率应为超过48小时再次申请。</li>
+</ol>
+<h2 id="身份证号"><a href="#身份证号" class="headerlink" title="身份证号"></a>身份证号</h2><p>实名认证若涉及到人脸识别，需单独告知用户收集使用的方式，目的，范围以及存储时间等。</p>
+<h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><ol>
+<li>应当有关闭“个性化推荐”的按钮，否则违规。</li>
+<li>个人信息保护法中提到“通过自动化决策方式向个人进行信息…”</li>
+<li>涉及到开屏广告，要确保能一键关闭，不可利用文字、整屏图片、视频等方式	欺骗用户跳转，应当在广告内容中显著标明警示语，告知用户点击将跳转至第三方应用，确保用户知情。</li>
+</ol>
+<h2 id="用户投诉"><a href="#用户投诉" class="headerlink" title="用户投诉"></a>用户投诉</h2><p>涉及人工处理的，承诺处理时限应不超过15个工作日。否则违规。</p>
+<h2 id="未成年人用户管理和成年人用户需不同"><a href="#未成年人用户管理和成年人用户需不同" class="headerlink" title="未成年人用户管理和成年人用户需不同"></a>未成年人用户管理和成年人用户需不同</h2><ol>
+<li>未成年和成年管理应有不同。</li>
+<li>需设置青少年模式。</li>
+</ol>
+<h2 id="接入SDK服务的注意事项（初学不建议，需会移动安全抓包）"><a href="#接入SDK服务的注意事项（初学不建议，需会移动安全抓包）" class="headerlink" title="接入SDK服务的注意事项（初学不建议，需会移动安全抓包）"></a>接入SDK服务的注意事项（初学不建议，需会移动安全抓包）</h2><p>SDK的合理合规配置。</p>
+<h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><p>小程序合规和APP基本一致</p>
+<h2 id="小米手机检测自启动跟用户程序检索"><a href="#小米手机检测自启动跟用户程序检索" class="headerlink" title="小米手机检测自启动跟用户程序检索"></a>小米手机检测自启动跟用户程序检索</h2><p>使用小米的应用行为记录。确保用户信息。</p>
+<h2 id="收隐私合规漏洞的企业"><a href="#收隐私合规漏洞的企业" class="headerlink" title="收隐私合规漏洞的企业"></a>收隐私合规漏洞的企业</h2><p>途虎，麦当劳，爱奇艺，小米，金山</p>
+<h2 id="价格"><a href="#价格" class="headerlink" title="价格"></a>价格</h2><ol>
+<li><p>爱奇艺标准：<br>低危：30-50<br>中危：100-300<br>高危：400-600</p>
+</li>
+<li><p>小米标准<br>高危漏洞：300-500（贡献币）<br>中危漏洞：80-120（贡献币）<br>低危漏洞：10-30（贡献币）<br>注：1贡献币&#x3D;10元</p>
+</li>
+</ol>
+<h1 id="隐私合规第2课"><a href="#隐私合规第2课" class="headerlink" title="隐私合规第2课"></a>隐私合规第2课</h1><h2 id="申请相机权限未告知用户目的"><a href="#申请相机权限未告知用户目的" class="headerlink" title="申请相机权限未告知用户目的"></a>申请相机权限未告知用户目的</h2><p>违反了191号文件《App违法违规收集使用个人信息行为认定方法》中第二类第3条</p>
+<p>修复建议：应该在动态申请相机权限时说明使用该权限的目的，例如：用于扫码登录，拍照上传头像等，根据实际业务来写。</p>
+<h2 id="首次运行未经用户阅读并同意隐私政策，申请获取位置权限"><a href="#首次运行未经用户阅读并同意隐私政策，申请获取位置权限" class="headerlink" title="首次运行未经用户阅读并同意隐私政策，申请获取位置权限"></a>首次运行未经用户阅读并同意隐私政策，申请获取位置权限</h2><h2 id="登录页面无主动提供勾选等方式提示用户阅读隐私政策收集使用规则"><a href="#登录页面无主动提供勾选等方式提示用户阅读隐私政策收集使用规则" class="headerlink" title="登录页面无主动提供勾选等方式提示用户阅读隐私政策收集使用规则"></a>登录页面无主动提供勾选等方式提示用户阅读隐私政策收集使用规则</h2><h2 id="打开xx小程序时首次运行未通过弹窗主动勾选等方式体时用户阅读隐私政策"><a href="#打开xx小程序时首次运行未通过弹窗主动勾选等方式体时用户阅读隐私政策" class="headerlink" title="打开xx小程序时首次运行未通过弹窗主动勾选等方式体时用户阅读隐私政策"></a>打开xx小程序时首次运行未通过弹窗主动勾选等方式体时用户阅读隐私政策</h2><h2 id="测试点为工信部164号文重点要求的用户IMEI，IMSI，应用程序列表等个人信息收集合规"><a href="#测试点为工信部164号文重点要求的用户IMEI，IMSI，应用程序列表等个人信息收集合规" class="headerlink" title="测试点为工信部164号文重点要求的用户IMEI，IMSI，应用程序列表等个人信息收集合规"></a>测试点为工信部164号文重点要求的用户IMEI，IMSI，应用程序列表等个人信息收集合规</h2><p>首次APP打开还未登录就开始在后台收集应用程序列表</p>
+<h2 id="个人隐私政策中出现错别字"><a href="#个人隐私政策中出现错别字" class="headerlink" title="个人隐私政策中出现错别字"></a>个人隐私政策中出现错别字</h2><h2 id="小程序未提供有效注销用户账号功能"><a href="#小程序未提供有效注销用户账号功能" class="headerlink" title="小程序未提供有效注销用户账号功能"></a>小程序未提供有效注销用户账号功能</h2><h2 id="强制收集用户联系方式（与隐私政策描述不符）"><a href="#强制收集用户联系方式（与隐私政策描述不符）" class="headerlink" title="强制收集用户联系方式（与隐私政策描述不符）"></a>强制收集用户联系方式（与隐私政策描述不符）</h2><h2 id="字体加粗"><a href="#字体加粗" class="headerlink" title="字体加粗"></a>字体加粗</h2><p>未对重点信息加粗</p>
+<h2 id="无法访问隐私政策"><a href="#无法访问隐私政策" class="headerlink" title="无法访问隐私政策"></a>无法访问隐私政策</h2><h2 id="隐私合规测试清单"><a href="#隐私合规测试清单" class="headerlink" title="隐私合规测试清单"></a>隐私合规测试清单</h2><ol>
+<li>隐私政策文本中未逐一列出App收集使用个人信息目的，类型，收集方式等内容。可制作表格清单，包括APP功能，权限，个人信息类型，目的。<br>共享个人信息和委托处理个人信息的第三方清单（包括嵌入的第三方代码，插件）至少需要在隐私政策中列出1、对外共享，转让，公开披露个人信息的目的2、涉及的个人信息类型3、接收方类型或身份</li>
+<li>隐私政策文本中使用概述文字描述收集的个人信息类型。如：包括但不限于，例如，等</li>
+<li>隐私政策未以单独成文的形式发布，作为用户协议、用户说明，或在其它文件中存在的个人信息保护相关条款文件中的一部分存在</li>
+<li>隐私政策未说明app运营者的基本情况：公司名称，联系地址，个人信息保护联系方式</li>
+<li>隐私政策中未明确政策更新日期</li>
+<li>隐私政策文本中未显著标识个人敏感信息（字体加粗，标型号等）的，视为未对收集个人敏感信息进行充分告知</li>
+<li>隐私政策文本中有关收集使用规则的内容晦涩难懂，冗长繁琐，让用户难以理解，如使用大量专业术语等。（不建议挖）</li>
+<li>隐私政策，未对个人信息的查询，更新，删除，注销以及用户撤回已同意授权等操作方式进行明确说明。</li>
+<li>隐私政策文本中未描述个人信息安全投诉，举报渠道。</li>
+<li>举报渠道不可用，如果是总机电话为提供个人信息保护分机，热线电话未提供菜单键</li>
+<li>未说明个人信息存储期限，超期处理方式</li>
+<li>如使用定向推送，提升用户体验，用户画像等自动化决策功能，隐私政策文本中未明确说明关闭提供关闭选项。</li>
+<li>如果存在个人信息出境，隐私政策文本中未将出境个人信息类型逐项列出并显著标识。若不存在个人信息出境情形也需说明。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/12/19/SRC_course_13/" title="SRC_course_13">http://example.com/2023/12/19/SRC_course_13/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SRC/" rel="tag"><i class="fa fa-tag"></i> SRC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/18/SRC_course_12/" rel="prev" title="SRC_course_12">
+      <i class="fa fa-chevron-left"></i> SRC_course_12
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96"><span class="nav-number">2.</span> <span class="nav-text">隐私政策</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%89%E7%BA%A7%E5%88%A4%E5%AE%9A"><span class="nav-number">3.</span> <span class="nav-text">等级判定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%BC%8F%E6%B4%9E%E5%8F%82%E8%80%83%E6%A0%87%E5%87%86"><span class="nav-number">4.</span> <span class="nav-text">隐私合规漏洞参考标准</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-number">5.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%BB%98%E8%AE%A4%E5%90%8C%E6%84%8F%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E2%80%94%E8%BF%9D%E8%A7%84"><span class="nav-number">5.1.</span> <span class="nav-text">用户默认同意隐私政策—违规</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E9%BB%98%E8%AE%A4%E5%90%8C%E6%84%8F%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E6%8A%A5%E5%91%8A%E2%80%94%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9C%80%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">用户默认同意隐私政策报告—示例（需最新版本）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E9%9B%86%E6%89%8B%E6%9C%BA%E5%8F%B7%EF%BC%88%E4%B8%8D%E6%8C%96%EF%BC%89"><span class="nav-number">5.3.</span> <span class="nav-text">收集手机号（不挖）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8B%92%E7%BB%9D%E6%8F%90%E4%BE%9B%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E4%BF%A1%E6%81%AF%E7%9B%B4%E6%8E%A5%E9%80%80%E5%87%BAapp%E2%80%94%E8%BF%9D%E8%A7%84"><span class="nav-number">5.4.</span> <span class="nav-text">用户拒绝提供不必要的信息直接退出app—违规</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E9%94%80%E5%8A%9F%E8%83%BD"><span class="nav-number">5.5.</span> <span class="nav-text">注销功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96%E8%A6%81%E6%B1%82"><span class="nav-number">5.6.</span> <span class="nav-text">权限获取要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#APP%E7%94%B3%E8%AF%B7%E6%9D%83%E9%99%90"><span class="nav-number">5.7.</span> <span class="nav-text">APP申请权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7"><span class="nav-number">5.8.</span> <span class="nav-text">身份证号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E9%80%81"><span class="nav-number">5.9.</span> <span class="nav-text">推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8A%95%E8%AF%89"><span class="nav-number">5.10.</span> <span class="nav-text">用户投诉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%88%90%E5%B9%B4%E4%BA%BA%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%92%8C%E6%88%90%E5%B9%B4%E4%BA%BA%E7%94%A8%E6%88%B7%E9%9C%80%E4%B8%8D%E5%90%8C"><span class="nav-number">5.11.</span> <span class="nav-text">未成年人用户管理和成年人用户需不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%85%A5SDK%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%88%E5%88%9D%E5%AD%A6%E4%B8%8D%E5%BB%BA%E8%AE%AE%EF%BC%8C%E9%9C%80%E4%BC%9A%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8%E6%8A%93%E5%8C%85%EF%BC%89"><span class="nav-number">5.12.</span> <span class="nav-text">接入SDK服务的注意事项（初学不建议，需会移动安全抓包）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="nav-number">5.13.</span> <span class="nav-text">小程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E6%A3%80%E6%B5%8B%E8%87%AA%E5%90%AF%E5%8A%A8%E8%B7%9F%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E6%A3%80%E7%B4%A2"><span class="nav-number">5.14.</span> <span class="nav-text">小米手机检测自启动跟用户程序检索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B6%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%BC%8F%E6%B4%9E%E7%9A%84%E4%BC%81%E4%B8%9A"><span class="nav-number">5.15.</span> <span class="nav-text">收隐私合规漏洞的企业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%B7%E6%A0%BC"><span class="nav-number">5.16.</span> <span class="nav-text">价格</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E7%AC%AC2%E8%AF%BE"><span class="nav-number">6.</span> <span class="nav-text">隐私合规第2课</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B3%E8%AF%B7%E7%9B%B8%E6%9C%BA%E6%9D%83%E9%99%90%E6%9C%AA%E5%91%8A%E7%9F%A5%E7%94%A8%E6%88%B7%E7%9B%AE%E7%9A%84"><span class="nav-number">6.1.</span> <span class="nav-text">申请相机权限未告知用户目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E6%9C%AA%E7%BB%8F%E7%94%A8%E6%88%B7%E9%98%85%E8%AF%BB%E5%B9%B6%E5%90%8C%E6%84%8F%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%EF%BC%8C%E7%94%B3%E8%AF%B7%E8%8E%B7%E5%8F%96%E4%BD%8D%E7%BD%AE%E6%9D%83%E9%99%90"><span class="nav-number">6.2.</span> <span class="nav-text">首次运行未经用户阅读并同意隐私政策，申请获取位置权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E6%97%A0%E4%B8%BB%E5%8A%A8%E6%8F%90%E4%BE%9B%E5%8B%BE%E9%80%89%E7%AD%89%E6%96%B9%E5%BC%8F%E6%8F%90%E7%A4%BA%E7%94%A8%E6%88%B7%E9%98%85%E8%AF%BB%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E6%94%B6%E9%9B%86%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="nav-number">6.3.</span> <span class="nav-text">登录页面无主动提供勾选等方式提示用户阅读隐私政策收集使用规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%BC%80xx%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%97%B6%E9%A6%96%E6%AC%A1%E8%BF%90%E8%A1%8C%E6%9C%AA%E9%80%9A%E8%BF%87%E5%BC%B9%E7%AA%97%E4%B8%BB%E5%8A%A8%E5%8B%BE%E9%80%89%E7%AD%89%E6%96%B9%E5%BC%8F%E4%BD%93%E6%97%B6%E7%94%A8%E6%88%B7%E9%98%85%E8%AF%BB%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96"><span class="nav-number">6.4.</span> <span class="nav-text">打开xx小程序时首次运行未通过弹窗主动勾选等方式体时用户阅读隐私政策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%82%B9%E4%B8%BA%E5%B7%A5%E4%BF%A1%E9%83%A8164%E5%8F%B7%E6%96%87%E9%87%8D%E7%82%B9%E8%A6%81%E6%B1%82%E7%9A%84%E7%94%A8%E6%88%B7IMEI%EF%BC%8CIMSI%EF%BC%8C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%88%97%E8%A1%A8%E7%AD%89%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%90%88%E8%A7%84"><span class="nav-number">6.5.</span> <span class="nav-text">测试点为工信部164号文重点要求的用户IMEI，IMSI，应用程序列表等个人信息收集合规</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E4%B8%AD%E5%87%BA%E7%8E%B0%E9%94%99%E5%88%AB%E5%AD%97"><span class="nav-number">6.6.</span> <span class="nav-text">个人隐私政策中出现错别字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%9C%AA%E6%8F%90%E4%BE%9B%E6%9C%89%E6%95%88%E6%B3%A8%E9%94%80%E7%94%A8%E6%88%B7%E8%B4%A6%E5%8F%B7%E5%8A%9F%E8%83%BD"><span class="nav-number">6.7.</span> <span class="nav-text">小程序未提供有效注销用户账号功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E6%94%B6%E9%9B%86%E7%94%A8%E6%88%B7%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E4%B8%8E%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96%E6%8F%8F%E8%BF%B0%E4%B8%8D%E7%AC%A6%EF%BC%89"><span class="nav-number">6.8.</span> <span class="nav-text">强制收集用户联系方式（与隐私政策描述不符）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%8A%A0%E7%B2%97"><span class="nav-number">6.9.</span> <span class="nav-text">字体加粗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96"><span class="nav-number">6.10.</span> <span class="nav-text">无法访问隐私政策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%B5%8B%E8%AF%95%E6%B8%85%E5%8D%95"><span class="nav-number">6.11.</span> <span class="nav-text">隐私合规测试清单</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">195</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">671k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">10:10</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
