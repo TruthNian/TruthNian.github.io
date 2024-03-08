@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/simg/firewall1.png">
 <meta property="og:image" content="http://example.com/simg/firewall2.png">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-11T09:13:38.307Z">
+<meta property="article:modified_time" content="2024-02-22T07:54:01.386Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -132,17 +132,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">82</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">84</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">201</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">204</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-11 17:13:38" itemprop="dateModified" datetime="2023-11-11T17:13:38+08:00">2023-11-11</time>
+                <time title="修改时间：2024-02-22 15:54:01" itemprop="dateModified" datetime="2024-02-22T15:54:01+08:00">2024-02-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -494,11 +494,11 @@
 <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><ol>
 <li>@ 说说常见的中间件解析漏洞利用方式。</li>
 </ol>
-<p>中间件解析漏洞利用方式：<br>(1) IIS 解析漏洞：<br>成因：IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。<br>利用方式：<br>IIS 6.0</p>
+<p>中间件解析漏洞利用方式：<br>(1) IIS解析漏洞：<br>成因：IIS 6.0 在处理含有特殊符号的文件路径时会出现逻辑错误，从而造成文件解析漏洞。<br>利用方式：<br>IIS 6.0</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">iis6.0畸形解析：asa、cer</span><br><span class="line">iis6.0目录解析：/test.asp/test.jpg</span><br><span class="line">iis6.0文件解析：test.asp;.jpg</span><br><span class="line">IIS7.5文件解析：test.jpg/.php</span><br></pre></td></tr></table></figure>
 
-<p>(2) Apache 解析漏洞：<br>用户配置不当，如1.php.biubiu会被当成php文件执行</p>
-<p>(3) Nginx 解析漏洞：</p>
+<p>(2) Apache解析漏洞：<br>用户配置不当，如1.php.biubiu会被当成php文件执行</p>
+<p>(3) Nginx解析漏洞：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">用户配置不当，对于任意文件名，在后面加上/任意文件名.php后该文件就会以php格式进行解析，如1.png/.php</span><br></pre></td></tr></table></figure>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/192063.html">Web中间件常见漏洞总结</a><br><a target="_blank" rel="noopener" href="http://47.103.121.189/2022/06/02/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/">常见中间件漏洞总结</a></p>
 <ol start="2">
@@ -828,7 +828,8 @@
 </ol>
 <p>当企业内网当做部署了多台域控制器后，一台域控进行了数据的更改之后，需要与其他域控进行数据的同步，而这个同步是通过Microsoft的远程目录复制服务协议 (MS-DRSR),该协议是基于MSRPC &#x2F; DCE&#x2F;RPC )进行的。并且其 DRS 的 Microsoft API 是DRSUAPI(这个在后面抓包可以看到)。</p>
 <p>DCsync原理：<br>在不同域控制器（DC）之间，每 15 分钟都会有一次域数据的同步。当一个域控制器（DC 1）想从其他域控制器（DC 2）获取数据时，DC 1 会向 DC 2 发起一个 GetNCChanges 请求，该请求的数据包括需要同步的数据。如果需要同步的数据比较多，则会重复上述过程。DCSync通过 DRS(Directory Replication Service) 服务的 GetNCChanges 接口向域控发起数据同步请求，从域控制器复制用户哈希凭据。</p>
-<p>利用DCSync导出域内用户的哈希值，本质上就是利用DRS(Directory Replication Service)协议通过 IDL_DRSGetNCChanges 从域控制器复制用户哈希凭据，以便进一步进行利用。<br>对拥有“复制目录更改（DS-Replication-Get-Changes）、全部复制目录更改 (DS-Replication-Get-Changes-All )、在过滤集中复制目录更改(可有可无)（DS-Replication-Get-Changes-In-Filtered-Set）”三条DACL的域用户，向域控发出数据同步请求，从而去dump域内用户hash。<br>默认本地管理员，域管理员或企业管理员以及域控制器计算机账户得成员默认具有上述权限。<br>注意，默认情况下，DCSync 攻击的对象如果是只读域控制器 (RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的。</p>
+<p>利用DCSync导出域内用户的哈希值，本质上就是利用DRS(Directory Replication Service)协议通过 IDL_DRSGetNCChanges 从域控制器复制用户哈希凭据，以便进一步进行利用。</p>
+<p>对拥有“复制目录更改（DS-Replication-Get-Changes）、全部复制目录更改 (DS-Replication-Get-Changes-All )、在过滤集中复制目录更改(可有可无)（DS-Replication-Get-Changes-In-Filtered-Set）”三条DACL的域用户，向域控发出数据同步请求，从而去dump域内用户hash。<br>默认本地管理员，域管理员或企业管理员以及域控制器计算机账户得成员默认具有上述权限。<br>注意，默认情况下，DCSync 攻击的对象如果是只读域控制器 (RODC)，则会失效，因为 RODC 是不能参与复制同步数据到其他 DC 的。</p>
 <p>DCsync是：DRS(Directory Replication Service)协议。<br><a target="_blank" rel="noopener" href="https://tttang.com/archive/1634/">DCSync 技术的攻击和检测</a><br><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/186924.html">基于AD Event日志识别DCSync攻击</a></p>
 <ol start="37">
 <li>@ 有台Windows域内机器，如何打域控？</li>
@@ -842,12 +843,12 @@
 <ol start="39">
 <li>已经拿到webshell，说说你的内网思路</li>
 </ol>
-<p>拿到webshell，内网思路：<br>探测系统信息，提权，针对Windows想办法开启远程桌面连接，针对Linux想办法使用反弹shell来本地连接。<br>(1) 探测系统信息：whoami(查看当前权限)，netuser(查看用户&#x2F;组)，systeminfo(查看系统补丁修复情况)等常见命令<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1036438">内网渗透测试思路（二）</a></p>
+<p>拿到webshell，内网思路：<br>探测系统信息，提权，针对Windows想办法开启远程桌面连接，针对Linux想办法使用反弹shell来本地连接。<br>(1) 探测系统信息：whoami(查看当前权限)，netuser(查看用户&#x2F;组)，systeminfo(查看系统补丁修复情况)等常见命令<br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1036438">内网渗透。测试思路（二）</a></p>
 <ol start="40">
 <li>不允许扫描，如何横向</li>
 </ol>
-<p>总体思路就是两种：要么不扫描，要么扫描不被发现。<br>如果不扫描，那么就使用无扫描渗透测试工具；侧信道攻击；还有社工和物理渗透。<br>如果扫描不被发现，就需要进行隐藏：使用应用层代理工具，比如SSH隧道；端口转发和端口隧道；DNS隧道；数据编码和隐蔽通信。</p>
-<p>(1) 无扫描渗透测试工具： 一些专门的渗透测试工具允许执行渗透测试而不触发传统的扫描检测。这些工具可能使用更智能的技术，以避免被IDS&#x2F;IPS（入侵检测系统&#x2F;入侵防御系统）检测到，从而进行横向移动。例如，Cobalt Strike 和Metasploit Beacon。<br>(2) 应用层代理：使用应用层代理工具，如SSH隧道或代理工具，可通过目标网络进行横向移动，而不会触发传统扫描检测。这些工具可以将流量伪装成合法的应用层通信，以避免被检测到。<br>(3) 端口转发和端口隧道：使用工具如 <code>ssh -L</code> 或 <code>ssh -R</code> ，可以在目标系统之间建立端口转发或反向隧道，从而使流量通过建立已建立的连接进行传输，而不触发扫描检测。<br>(4) DNS隧道：使用DNS隧道工具，可以通过DNS请求和响应来传输数据，这通常不会被视为扫描活动。工具如Dnscat2或lodine可用于此目的。<br>(5) 数据编码和隐蔽通信：将数据编码为看似正常通信的形式，例如使用Base64编码或其它编码技术。可以在网络上流动而不引起警觉。<br>(6) 侧信道攻击：利用目标系统的侧信道信息，如CPU利用率、电源消耗等，来执行攻击并获取信息，而不触发扫描检测。<br>(7) 社交工程和物理渗透：利用社交工程技巧或物理访问，可以获取目标系统的凭据或物理访问权限，从而进行横向移动。</p>
+<p>总体思路就是两种：要么不扫描，要么扫描不被发现。<br>如果不扫描，那么就使用无扫描渗透。测试工具；侧信道攻击；还有社工和物理渗透。<br>如果扫描不被发现，就需要进行隐藏：使用应用层代理工具，比如SSH隧道；端口转发和端口隧道；DNS隧道；数据编码和隐蔽通信。</p>
+<p>(1) 无扫描渗透。测试工具： 一些专门的渗透。测试工具允许执行渗透。测试而不触发传统的扫描检测。这些工具可能使用更智能的技术，以避免被IDS&#x2F;IPS（入侵检测系统&#x2F;入侵防御系统）检测到，从而进行横向移动。例如，Cobalt Strike 和Metasploit Beacon。<br>(2) 应用层代理：使用应用层代理工具，如SSH隧道或代理工具，可通过目标网络进行横向移动，而不会触发传统扫描检测。这些工具可以将流量伪装成合法的应用层通信，以避免被检测到。<br>(3) 端口转发和端口隧道：使用工具如 <code>ssh -L</code> 或 <code>ssh -R</code> ，可以在目标系统之间建立端口转发或反向隧道，从而使流量通过建立已建立的连接进行传输，而不触发扫描检测。<br>(4) DNS隧道：使用DNS隧道工具，可以通过DNS请求和响应来传输数据，这通常不会被视为扫描活动。工具如Dnscat2或lodine可用于此目的。<br>(5) 数据编码和隐蔽通信：将数据编码为看似正常通信的形式，例如使用Base64编码或其它编码技术。可以在网络上流动而不引起警觉。<br>(6) 侧信道攻击：利用目标系统的侧信道信息，如CPU利用率、电源消耗等，来执行攻击并获取信息，而不触发扫描检测。<br>(7) 社交工程和物理渗透：利用社交工程技巧或物理访问，可以获取目标系统的凭据或物理访问权限，从而进行横向移动。</p>
 <p>侧信道攻击是一种安全漏洞利用技术，它不是通过直接攻击系统的计算能力或漏洞来获取信息，而是通过观察目标系统在执行某些操作时泄露的辅助信息来获取敏感数据。</p>
 <ol start="41">
 <li><p>存在杀软，不允许exe落地，怎么办<br>使用无文件攻击技术：无文件攻击技术不需要将可执行文件写入磁盘，而是利用操作系统和应用程序的功能来执行恶意代码。这种方法可以绕过杀软的检测。例如，可以使用PowerShell或JavaScript来运行脚本，而不需要生成可执行文件。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65152928">无文件攻击的各种姿势</a>, <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/system/263960.html">常见的windows下无文件落地攻击手法</a></p>
@@ -881,7 +882,8 @@
 </li>
 </ol>
 <p>CC攻击：模拟多个正常用户不停地访问如论坛这些需要大量数据操作的页面，造成服务器资源的浪费，CPU长时间处于100%，网络拥塞。</p>
-<p>二者区别：<br>CC攻击网页，DDOS攻击服务器<br>CC门槛较低，DDOS需要大量服务器<br>CC持续时间长，DDOS产生的影响大</p>
+<p>DDOS和CC二者区别：（CC和DDOS</p>
+<p>）<br>CC攻击网页，DDOS攻击服务器<br>CC门槛较低，DDOS需要大量服务器<br>CC持续时间长，DDOS产生的影响大</p>
 <ol start="49">
 <li><p>land攻击<br>land(Local Area Network Denial Attack)，是局域网拒绝服务攻击。DDOS的一种，通过发送精心构造的具有相同源地址和目标地址的欺骗数据包，致使缺乏相应防护机制的目标设备瘫痪。</p>
 </li>
@@ -895,7 +897,7 @@
 </li>
 <li><p>讲一下黄金票据<br>见问题27</p>
 </li>
-<li><p>@ 讲一下APP渗透<br>首先准备阶段：定义安全测试的范围，包括确认适用的安全控制点、受控方的测试目标和敏感数据。同时在开展渗透测试前，应拿到书面盖章授权。<br>然后开始信息收集：<br>包括APP的环境信息、业务用例和架构等信息。<br>应用描绘：确定潜在漏洞风险高低对其进行排序，以便确认渗透测试的攻击路径，制定相应的测试用例。<br>漏洞利用和测试工具开发<br>提交报告<br>Activity组件：</p>
+<li><p>@ 讲一下APP渗透<br>首先准备阶段：定义安全测试的范围，包括确认适用的安全控制点、受控方的测试目标和敏感数据。同时在开展渗透测试前，应拿到书面盖章授权。<br>然后开始信息收集：<br>包括APP的环境信息、业务用例和架构等信息。<br>应用描绘：确定潜在漏洞风险高低对其进行排序，以便确认渗透。测试的攻击路径，制定相应的测试用例。<br>漏洞利用和测试工具开发<br>提交报告<br>Activity组件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">activity绑定browserable与自定义协议</span><br><span class="line">ActivityManager漏洞</span><br></pre></td></tr></table></figure></li>
 </ol>
 <p>Service</p>
@@ -932,11 +934,11 @@
 </li>
 <li><p>不用工具的前提下，如何搜集子域名？<br>google, fofa: site&#x3D;”xxx.com”</p>
 </li>
-<li><p>渗透测试过程中如何信息收集，说一下渗透测试信息收集的办法？<br>见问题51</p>
+<li><p>渗透。测试过程中如何信息收集，说一下渗透。测试信息收集的办法？<br>见问题51</p>
 </li>
 <li><p>在渗透过程中常用的编码有哪些？<br>UTF-8, ASCII</p>
 </li>
-<li><p>渗透测试过程中如何判断对方操作系统是什么系统？<br>Linux大小写敏感，Windows大小写不敏感<br>TTL时间，一般100以上是Windows，100以下是Linux</p>
+<li><p>渗透。测试过程中如何判断对方操作系统是什么系统？<br>Linux大小写敏感，Windows大小写不敏感<br>TTL时间，一般100以上是Windows，100以下是Linux</p>
 </li>
 <li><p>你是怎么知道对方网站使用了哪些常用cms系统搭建的（指纹信息是什么）<br>一般直接使用工具或在线识别：<br>Wappalyzer<br>EHole指纹识别</p>
 </li>
@@ -1232,12 +1234,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%AF%87/" rel="prev" title="面试准备之计算机基础篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之计算机基础篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="prev" title="面试准备之自身方面篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之自身方面篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E8%87%AA%E8%BA%AB%E6%96%B9%E9%9D%A2%E7%AF%87/" rel="next" title="面试准备之自身方面篇">
-      面试准备之自身方面篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E6%B5%81%E9%87%8F%E7%AF%87/" rel="next" title="面试准备之流量篇">
+      面试准备之流量篇 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1313,20 +1315,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">201</span>
+          <span class="site-state-item-count">204</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">84</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1384,13 +1386,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">694k</span>
+    <span title="站点总字数">732k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:31</span>
+    <span title="站点阅读时长">11:05</span>
 </div>
 
 <!--

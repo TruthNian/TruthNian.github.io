@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/simg/captcha1.jpg">
 <meta property="og:image" content="http://example.com/simg/http_smuggling.png">
 <meta property="article:published_time" content="2023-09-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-15T07:03:04.645Z">
+<meta property="article:modified_time" content="2024-02-01T11:59:10.442Z">
 <meta property="article:author" content="Bron">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -131,17 +131,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">61</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">63</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">82</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">84</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">201</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">204</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-11-15 15:03:04" itemprop="dateModified" datetime="2023-11-15T15:03:04+08:00">2023-11-15</time>
+                <time title="修改时间：2024-02-01 19:59:10" itemprop="dateModified" datetime="2024-02-01T19:59:10+08:00">2024-02-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,7 +283,7 @@
 <ol start="2">
 <li>如何判断sql注入漏洞成因？如何防范？注入方式有哪些？除了数据库数据，利用方式还有哪些？注入漏洞防范方法</li>
 </ol>
-<p>当程序执行访问某些表等操作都会执行到sql语句进行调用，如果在此调用过程中，提交了不合法的数据，而数据库无法识别会报错。也就是一切数据都是有害的。<br>注入类型：联合，报错，二次，宽字节，布尔盲注，时间盲注，堆叠注入。<br>注入提交方式：GET, POST, User-Agent, Referer, Cookie, 文  SQL写shell有些执行命令环境要在Linux下。<br>防范：<br>1、使用预编译语句。使用PDO需要注意不要将变量直接拼接到PDO语句中。所有查询语句都使用数据库提供的参数化查询接口，参数化语句使用参数而不是将用户输入变量嵌入到SQL语句中。<br>2、过滤特殊字符。对特殊字符编码或转义。<br>3、代码层要统一。尽量为utf-8，以免由于编码方式不同造成过滤模型被绕过。<br>4、数据类型要严格明确。如果是数字型就不允许输入数字以外的字符，在数据库中类型要明确为int。<br>5、严格限制网站用户的数据库操作权限。给用户提供仅仅能满足其工作的权限，从而最大限度地减少注入攻击对数据库的危害。<br>6、数据长度应该严格规定。能在一定程度上防止比较长的注入语句无法正确执行。<br>7、避免网站显示SQL错误信息，比如类型错误，字段不匹配等，防止攻击者利用这些错误信息进行一些判断。<br>8、过滤危险字符，例如：采用正则表达式匹配union, sleep, and, select, load_file等关键字，如果匹配到则终止运行。<br>加CDN，套waf</p>
+<p>当程序执行访问某些表等操作都会执行到sql语句进行调用，如果在此调用过程中，提交了不合法的数据，而数据库无法识别会报错。也就是一切数据都是有害的。<br>注入类型：联合，报错，二次，宽字节，布尔盲注，时间盲注，堆叠注入。<br>注入提交方式：GET, POST, User-Agent, Referer, Cookie, 文  SQL写shell有些执行命令环境要在Linux下。<br>防范：<br>1、使用预编译语句。所有查询语句都使用数据库提供的参数化查询接口，参数化语句使用参数而不是将用户输入变量嵌入到SQL语句中。<br>2、过滤特殊字符。对特殊字符编码或转义。<br>3、代码层要统一。尽量为utf-8，以免由于编码方式不同造成过滤模型被绕过。<br>4、数据类型要严格明确。如果是数字型就不允许输入数字以外的字符，在数据库中类型要明确为int。<br>5、严格限制网站用户的数据库操作权限。给用户提供仅仅能满足其工作的权限，从而最大限度地减少注入攻击对数据库的危害。<br>6、数据长度应该严格规定。能在一定程度上防止比较长的注入语句无法正确执行。<br>7、避免网站显示SQL错误信息，比如类型错误，字段不匹配等，防止攻击者利用这些错误信息进行一些判断。<br>8、过滤危险字符，例如：采用正则表达式匹配union, sleep, and, select, load_file等关键字，如果匹配到则终止运行。<br>加CDN，套waf</p>
 <ol start="3">
 <li>为什么有的时候没有错误回显？</li>
 </ol>
@@ -291,7 +291,7 @@
 <ol start="4">
 <li>宽字节注入原理？如何利用宽字节注入漏洞？payload如何构造？</li>
 </ol>
-<p>宽字节注入的关键是GBK编码，窄字节占1位，宽字节占2位。利用字符组合形成宽字节，使目标字符逃逸。<br>payload构造方式： <code>?id=1%df&#39;</code><br>根本原因：设置数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
+<p>宽字节注入的关键是GBK编码，窄字节占1位，宽字节占2位。利用字符组合形成宽字节，使目标字符逃逸。<br>payload构造方式： <code>?id=1%df&#39;</code><br>根本原因：数据库编码与PHP编码设置为不同的两个编码格式从而导致产生宽字节注入</p>
 <ol start="5">
 <li>mysql的网站注入，5.0以上与5.0以下有什么区别？</li>
 </ol>
@@ -618,7 +618,7 @@
 <ol start="4">
 <li>你怎么理解XSS攻击？</li>
 </ol>
-<p>XSS攻击是一种跨站脚本攻击，是指攻击者将恶意代码注入到 Web 应用程序中，当用户访问该应用程序时，恶意代码会被执行。XSS攻击的危害性较大，可以窃取用户信息、控制用户浏览器、传播恶意软件等。</p>
+<p>XSS攻击是一种跨站脚本攻击，是指攻击者将恶意代码注入到Web应用程序中，当用户访问该应用程序时，恶意代码会被执行。XSS攻击的危害性较大，可以窃取用户信息、控制用户浏览器、传播恶意软件等。</p>
 <p>XSS攻击分为两种类型：<br>反射型 XSS：攻击者将恶意代码注入到 URL 中，当用户访问该 URL 时，恶意代码会被执行。<br>存储型 XSS：攻击者将恶意代码注入到服务器端数据库中，当用户访问包含恶意代码的页面时，恶意代码会被执行。</p>
 <p>XSS攻击的防范方法主要有：<br>过滤用户输入的数据：对用户输入的数据进行过滤，去除其中的恶意字符和代码。<br>编码输出的数据：对输出到页面的数据进行编码，以使其无法被浏览器执行。<br>使用白名单：只允许特定的字符和代码通过，从而防止恶意代码通过。<br>使用过滤器：使用专业的 XSS 过滤器来检测和过滤恶意代码。</p>
 <ol start="5">
@@ -676,7 +676,7 @@
 <li>xss漏洞测试方法</li>
 </ol>
 <p>手动测试（相对准确，效率较低）：<br>识别可能存在 XSS 漏洞的输入字段。重点考虑数据输入的地方<br>尝试在输入字段中输入各种类型的恶意代码。比如 <code>&lt;, &gt;, ()</code> 等，提交后查看网页源代码的变化以发现输入被输出到什么地方<br>观察浏览器的响应，查看是否存在恶意代码被执行的情况。</p>
-<p>自动测试：<br>选择合适的自动化工具。如：AVWS，BurpSuite，XSSer，XSSF，BeEF，beef-xss，XSStrike<br>配置自动化工具。<br>运行自动化工具。<br>分析自动化测试的结果，查看是否存在 XSS 漏洞。</p>
+<p>自动测试：<br>选择合适的自动化工具。如：AVWS，BurpSuite，XSSer，XSSF，BeEF，beef-xss，XSStrike<br>配置自动化工具。<br>运行自动化工具。<br>分析自动化测试的结果，查看是否存在 XSS 漏洞。<br>XSSform框限制长度的绕过</p>
 <ol start="18">
 <li>xss如何绕过安全防范</li>
 </ol>
@@ -721,7 +721,7 @@
 </ol>
 <p>具体能做：执行任意代码，读取敏感信息，影响应用程序正常执行。<br>绕过方式：<br>本地文件包含漏洞绕过: <code>%00</code> 截断，路径长度截断，点号截断，<br>远程文件包含漏洞绕过: 问号绕过，#号绕过，空格绕过</p>
 <ol start="7">
-<li>导致文件包含的函数</li>
+<li>导致文件包含的函数文件包含函数</li>
 </ol>
 <p>PHP：include(), include_once(), require(), require_once(), fopen(), readfile()<br>JSP&#x2F;Servlet: ava.io.File(), java.io.FileReader()<br>ASP: include file, include virtual</p>
 <h1 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h1><ol>
@@ -1413,12 +1413,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%B7%A5%E5%85%B7%E7%AF%87/" rel="prev" title="面试准备之工具篇">
-      <i class="fa fa-chevron-left"></i> 面试准备之工具篇
+    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="prev" title="面试准备之密码学篇">
+      <i class="fa fa-chevron-left"></i> 面试准备之密码学篇
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/09/03/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E7%AF%87/" rel="next" title="面试准备之密码学篇">
-      面试准备之密码学篇 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/10/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B9%8B%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" rel="next" title="渗透测试之信息收集">
+      渗透测试之信息收集 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -1494,20 +1494,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">201</span>
+          <span class="site-state-item-count">204</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-count">84</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">63</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1565,13 +1565,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">694k</span>
+    <span title="站点总字数">732k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">10:31</span>
+    <span title="站点阅读时长">11:05</span>
 </div>
 
 <!--
