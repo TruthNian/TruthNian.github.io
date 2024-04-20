@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-hacker.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-hacker.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-hacker.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":false,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言因为不太了解硬件安全方面，最近在纠结这个问题。所以写了一篇文章来记录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论有线宽带与无线WiFi的安全性比较">
+<meta property="og:url" content="http://example.com/2024/03/31/%E8%AE%BA%E6%9C%89%E7%BA%BF%E5%AE%BD%E5%B8%A6%E4%B8%8E%E6%97%A0%E7%BA%BFWiFi%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:site_name" content="Scammer">
+<meta property="og:description" content="前言因为不太了解硬件安全方面，最近在纠结这个问题。所以写了一篇文章来记录。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-31T06:29:02.509Z">
+<meta property="article:author" content="Bron">
+<meta property="article:tag" content="硬件安全">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2024/03/31/%E8%AE%BA%E6%9C%89%E7%BA%BF%E5%AE%BD%E5%B8%A6%E4%B8%8E%E6%97%A0%E7%BA%BFWiFi%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E6%AF%94%E8%BE%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<link rel="stylesheet" type="text/css" href="/css/injector/main.css" /><link rel="preload" as="style" href="/css/injector/light.css" /><link rel="preload" as="style" href="/css/injector/dark.css" />
+  <title>论有线宽带与无线WiFi的安全性比较 | Scammer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#000000;--blockquote-color:#bbb;--link-color:#000000;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#ccc;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#161616;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#8a2be2;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="Scammer" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Scammer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">64</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">85</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">207</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/31/%E8%AE%BA%E6%9C%89%E7%BA%BF%E5%AE%BD%E5%B8%A6%E4%B8%8E%E6%97%A0%E7%BA%BFWiFi%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Elaina.png">
+      <meta itemprop="name" content="Bron">
+      <meta itemprop="description" content="原谅我这一生不羁放纵爱自由">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Scammer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论有线宽带与无线WiFi的安全性比较
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-03-31 00:00:00 / 修改时间：14:29:02" itemprop="dateCreated datePublished" datetime="2024-03-31T00:00:00+08:00">2024-03-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">硬件安全</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为不太了解硬件安全方面，最近在纠结这个问题。所以写了一篇文章来记录。</p>
+<span id="more"></span>
+<h1 id="宽带与WiFi概述"><a href="#宽带与WiFi概述" class="headerlink" title="宽带与WiFi概述"></a>宽带与WiFi概述</h1><p>宽带即采用有线的方式传输数据。<br>PPPoE协议的工作流程包含发现和会话两个阶段，发现阶段是无状态的，目的是获得PPPoE终结端（在局端的ADSL设备上）的以太网MAC地址，并建立一个唯一的PPPoE SESSION-ID。发现阶段结束后，就进入标准的PPP会话阶段。</p>
+<p>WiFi即采用无线的方式连接。<br>WiFi普遍的定义是一种允许电子设备连接到一个无线局域网（WLAN）的技术，有些WiFi设置成加密状态，也有些WiFi是开放的、不需要密码即可接入的。最常见的WiFi信号来自于无线路由器，无线路由器如果本身连接到了互联网，那么它也可以被称为热点。<br>AP（Access Point）即相当于无线路由器的作用，有线网络通过无线路由器等设备，自行建立一个无线局域网环境，使得具备无线接入功能的设备以无线方式接入路由器内网，通过路由器实现上网功能。<br>AP以每100ms一次的频率由Beacons（信号台）将无线网络的SSID（Service Set Identifier）发射出去，确保覆盖范围内所有的无线客户端能够收到这个SSID广播封包，并依据无线客户端的需求决定是否要和此AP进行网络连接。</p>
+<h1 id="GPT4对于宽带与WiFi的安全性看法"><a href="#GPT4对于宽带与WiFi的安全性看法" class="headerlink" title="GPT4对于宽带与WiFi的安全性看法"></a>GPT4对于宽带与WiFi的安全性看法</h1><p>在网络安全和保密的角度看，有线宽带和WiFi上网各有其优缺点。以下是从安全性和保密性的角度对两种网络连接方式的详细比较：</p>
+<h3 id="有线宽带上网"><a href="#有线宽带上网" class="headerlink" title="有线宽带上网"></a>有线宽带上网</h3><p><strong>优点</strong>：</p>
+<ol>
+<li><strong>物理安全性</strong>：有线连接需要物理接入点，这意味着攻击者需要实际接触到网络线缆或设备才能访问网络。这增加了未经授权访问的难度。</li>
+<li><strong>更难被拦截</strong>：与无线信号相比，有线信号更难被远程拦截。攻击者需要对物理线路进行接触，才能尝试截取数据传输。</li>
+<li><strong>无需加密</strong>：虽然加密仍然是提高数据传输安全性的好方法，但有线网络由于其物理特性，相对于无线网络来说，即使未加密也更难被外部访问。</li>
+<li><strong>VLAN隔离</strong>：在较大的有线网络中，使用虚拟局域网（VLAN）技术可以提高网络的安全性，通过逻辑上分隔网络来限制广播域和隔离敏感数据流。</li>
+<li><strong>网络隔离和控制</strong>：在有线网络中，更容易通过物理端口和虚拟局域网（VLAN）来实现网络隔离，从而限制攻击者的横向移动。如果入侵被限制在特定的网络段内，那么潜在的损失可能会减少。</li>
+<li><strong>监控和检测</strong>：有线网络可能更容易进行流量监控和异常检测，因为网络管理员可以更精确地控制和审计通过物理端口的流量。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li><strong>灵活性有限</strong>：有线网络的使用受限于物理连接。在需要频繁移动设备或在没有预先布线的区域提供网络接入时，可能会遇到困难。</li>
+<li><strong>部署成本</strong>：对于大型建筑或多层办公楼，布设有线网络可能需要更多的时间和成本，特别是在需要钻孔或铺设大量网络线缆的情况下。</li>
+<li><strong>端口安全</strong>：在有线网络中，物理接入点（如以太网端口）可能成为安全漏洞。未经授权的设备可以通过物理方式接入网络。因此，端口安全（如802.1X认证）对于防止未经授权的接入至关重要。</li>
+<li><strong>物理安全漏洞</strong>：虽然物理接入更难，但不可忽视物理安全漏洞，如未锁好的网络机房或易受攻击的网络基础设施。</li>
+<li><strong>物理访问</strong>：如果攻击者通过钓鱼攻击获得了网络内部主机的控制权，并且能够进一步获得物理访问权限，那么他们可能会尝试对网络设备进行物理篡改，如安装监听设备。</li>
+</ol>
+<h3 id="WiFi上网"><a href="#WiFi上网" class="headerlink" title="WiFi上网"></a>WiFi上网</h3><p><strong>优点</strong>：</p>
+<ol>
+<li><strong>便利性和灵活性</strong>：WiFi提供了无线网络连接，极大地提高了设备的移动性和网络接入的便利性。用户可以在网络覆盖范围内自由移动设备。</li>
+<li><strong>易于部署</strong>：在没有物理网络基础设施的环境中，部署WiFi网络相对简单快捷。</li>
+<li><strong>网络隔离</strong>：使用访客网络（Guest Network）功能可以为访客提供网络接入，同时将其流量与内部网络隔离，保护内部网络不受潜在的恶意行为影响。</li>
+<li><strong>灵活性</strong>：WiFi网络提供了更大的灵活性，使得在发生入侵时，快速变更网络配置（如更改SSID和密码）相对容易，这可能有助于迅速隔离受感染的设备，减少损失。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<ol>
+<li><strong>信号泄露</strong>：无线信号可以穿透墙壁和窗户，可能被建筑物外的未经授权的设备接收到，增加了被监视和攻击的风险。</li>
+<li><strong>加密和安全设置</strong>：为了保护数据传输的安全性，WiFi网络需要配置加密和安全措施（如WPA2或WPA3加密）。不正确或过时的配置可能导致安全漏洞。</li>
+<li><strong>更易受到某些攻击</strong>：WiFi网络相对更容易受到中间人攻击（MITM）、网络钓鱼和邪恶孪生（Evil Twin）等攻击。</li>
+<li><strong>需要额外的安全措施</strong>：为了提高WiFi网络的安全性，可能需要采取额外的安全措施，如设置强密码、定期更换密码、隐藏SSID、限制MAC地址访问等。</li>
+<li><strong>WPS漏洞</strong>：WiFi保护设置（WPS）旨在简化网络的安全设置，但在某些实现中存在安全漏洞，可能允许攻击者绕过WiFi密码。</li>
+<li><strong>信号覆盖控制</strong>：无线信号的覆盖范围应控制在需要服务的区域内，避免信号泄露到不需要的区域（如街道或邻近建筑），减少潜在的攻击面。</li>
+<li><strong>固件更新</strong>：无线路由器和接入点的固件应保持最新，以修补已知的安全漏洞。</li>
+<li><strong>横向移动</strong>：在WiFi网络中，攻击者可能更容易在未经充分隔离的网络内进行横向移动，寻找其他脆弱目标。</li>
+<li><strong>信号泄露</strong>：WiFi信号的泄露可能使得攻击者在没有物理接入的情况下，通过无线方式继续探测和攻击网络内的其他设备。</li>
+</ol>
+<p>当黑客通过钓鱼或其他远程攻击手段成功入侵到主机时，他们获得的访问权限和能够造成的损失通常与网络连接类型（有线宽带或WiFi）关系不大。</p>
+<h1 id="个人看法"><a href="#个人看法" class="headerlink" title="个人看法"></a>个人看法</h1><p>如果说流量控制和隔离的话，有线网络也能通过相应的网络设备和策略来实现类似的功能。<br>如果说是隐藏SSID和白名单mac，想要破解也不是无法做到。</p>
+<ol>
+<li><p>突破MAC地址过滤<br>MAC地址是网络设备的唯一网络地址标示，本意为媒体访问控制，可以理解为网络设备的物理地址，对于每台网络设备，MAC地址是固定且唯一的，采用十六进制数表示，共六个字节。在前篇文章介绍的破解过程中，无线网卡、终端、路由器等设备的MAC地址，都是我们用来进行破解的重要数据。<br>MAC地址过滤防护机制，即通过预先在无线路由器内设定允许或者禁止访问本地网络的设备MAC地址列表，以白名单&#x2F;黑名单的方式来控制网络设备的接入权限。这项安全机制在有线路由器和无线路由器中均存在，并不以连接方式有区别。路由器在接收到网络接入请求后，根据接入终端的MAC地址对照本地过滤设置规则中的MAC地址，判定是否允许网络终端进行接入行为。<br>如果本地网络的网络终端比较固定，最好采用“允许”即白名单的方式，固定化终端MAC地址，也就是本地网络中只允许特定的几个终端进行接入。这种方式比“禁止”的黑名单方式安全性更高，但使用灵活度低。无论是白名单还是黑名单，路由器对接入终端的权限判断都基于MAC地址这单一选项，这就给攻击者创造了一种突破思路。<br>主要的突破思路，就是通过修改本地的网络设备MAC地址，绕过目标路由器的过滤名单达到突破的目的。前文我们讲到，MAC地址虽然理论上唯一，但可以通过软件修改等方式，将本地设备的MAC地址临时修改为所需要的MAC地址。突破的步骤可以分为上图所示的四个步骤：<br>•探测合法无线客户端的MAC地址，可以使用airodump-ng工具实现<br>•修改攻击网卡的MAC地址，这个步骤可以在Windows或Linux中进行<br>•重新装载网卡设备，并检查是否已经更改成功<br>•连接无线接入点，完成突破防护的目的</p>
+</li>
+<li><p>突破隐藏无线网络SSID<br>在无线路由器的设置中，如果目标使用了隐藏SSID选项，那么正常情况下，打开手机、平板的无线网络，是搜索不到目标的网络名称的。这种情况下只有知道了网络SSID名称和密码并且手动添加输入才能够连接。但是要特别强调，关闭SSID广播功能仅仅是关闭了无线路由器广播信标帧中的SSID部分，并不代表无线路由器的无线信号就不发射和接收了。虽然SSID被隐藏，但是无线路由器的MAC地址以及其他信息还是能够探测到的。<br>第一种使用airodump-ng和aireplay-ng进行DeAuth攻击获取SSID。在将无线网卡加载激活至监听模式后，使用airodump-ng进行信号探测。<br>第二种通过被动探测的方式进行SSID获取，比较流行的一种工具就是kismet，这款工具也在Kali中集成了。被动探测相对于主动探测，隐蔽性更好，而且探测通信更加可靠。某些无线路由器对于主动探测，可以配置为不回复将SSID设置为“任意”的探测请求帧，若为被动探测，只有在有合法客户端与无线接入点进行连接时才能探测到SSID，因为只有产生连接认证时，SSID才能以明文方式出现在无线电信号中。</p>
+</li>
+</ol>
+<p>在一个密室里面，人员进出都经过了专门检查，那么即使是近源，也应该接触不到宽带。而WiFi的话因为信号暴露则会更容易。</p>
+<h1 id="措施"><a href="#措施" class="headerlink" title="措施"></a>措施</h1><p>如果使用宽带，则需要在密室，访问人员进出都需要经过验证。需要配置VLAN隔离。<br>如果使用WiFi，则需要修改SSID名称并隐藏SSID，密码设置为包含数字大小写字母特殊字符16位以上（最好每月更改一次密码），白名单MAC地址，使用WPA3协议，启用路由器防火墙。</p>
+<h2 id="启用路由器防火墙方法"><a href="#启用路由器防火墙方法" class="headerlink" title="启用路由器防火墙方法"></a>启用路由器防火墙方法</h2><p>在路由器上启用防火墙通常涉及登录到路由器的管理界面并修改安全设置。不同品牌和型号的路由器可能会有不同的界面和选项，但大多数路由器都提供了某种形式的防火墙功能。以下是一般步骤：</p>
+<h3 id="1-访问路由器管理界面"><a href="#1-访问路由器管理界面" class="headerlink" title="1. 访问路由器管理界面"></a>1. 访问路由器管理界面</h3><ol>
+<li><p><strong>找到路由器的IP地址</strong>：通常是<code>192.168.1.1</code>、<code>192.168.0.1</code>或类似地址。你可以在路由器的底部标签或手册中找到这个信息。如果不确定，也可以通过电脑的网络设置查看默认网关地址。</p>
+</li>
+<li><p><strong>登录</strong>：在浏览器的地址栏输入路由器的IP地址，并按回车键。这将打开路由器的登录页面。输入管理员用户名和密码进行登录。如果你未曾更改过这些信息，它们可能是出厂设置，通常也可以在路由器的手册或底部标签上找到。</p>
+</li>
+</ol>
+<h3 id="2-启用防火墙"><a href="#2-启用防火墙" class="headerlink" title="2. 启用防火墙"></a>2. 启用防火墙</h3><ol>
+<li><p><strong>查找防火墙设置</strong>：登录后，查找安全性或防火墙设置的选项。这可能在“高级设置”、“安全”或“防火墙”等部分。</p>
+</li>
+<li><p><strong>启用防火墙功能</strong>：在防火墙设置中，应该有一个选项来启用或禁用防火墙。确保这个选项被激活。在一些路由器上，防火墙可能默认就是开启的。</p>
+</li>
+<li><p><strong>配置防火墙规则</strong>（可选）：一些高级路由器允许你配置具体的防火墙规则，比如阻止或允许特定的入站和出站流量、端口或IP地址。如果你对网络安全有特定需求，可以根据需要调整这些设置。</p>
+</li>
+<li><p><strong>保存设置</strong>：更改设置后，记得保存更改。路由器可能需要重新启动才能应用新的设置。</p>
+</li>
+</ol>
+<h3 id="3-测试防火墙"><a href="#3-测试防火墙" class="headerlink" title="3. 测试防火墙"></a>3. 测试防火墙</h3><ul>
+<li><strong>测试连接</strong>：更改设置后，测试网络连接确保一切正常工作。你可以尝试访问几个网站，确保防火墙设置没有意外阻止正常的网络流量。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>默认密码</strong>：出于安全考虑，如果你还在使用路由器的默认管理员密码，强烈建议更改为一个强密码。</li>
+<li><strong>固件更新</strong>：确保路由器固件是最新的。旧的固件可能包含未修复的安全漏洞，定期检查并应用固件更新是保持网络安全的重要措施。</li>
+<li><strong>备份配置</strong>：在进行重大更改之前，备份当前的路由器配置是一个好习惯。这样，如果新设置导致问题，你可以恢复到之前的状态。</li>
+</ul>
+<p>通过以上步骤，你可以在路由器上启用并配置防火墙，以增强网络的安全性。如果在配置过程中遇到问题，查阅路由器的用户手册或联系制造商的技术支持可能会有所帮助。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>我很可爱，请给我钱</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Bron
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2024/03/31/%E8%AE%BA%E6%9C%89%E7%BA%BF%E5%AE%BD%E5%B8%A6%E4%B8%8E%E6%97%A0%E7%BA%BFWiFi%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E6%AF%94%E8%BE%83/" title="论有线宽带与无线WiFi的安全性比较">http://example.com/2024/03/31/论有线宽带与无线WiFi的安全性比较/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Elaina_Anime">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://t.me/SelfEnglishWords">
+            <span class="icon">
+              <i class="fab fa-telegram"></i>
+            </span>
+
+            <span class="label">Telegram</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E7%A1%AC%E4%BB%B6%E5%AE%89%E5%85%A8/" rel="tag"><i class="fa fa-tag"></i> 硬件安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/03/18/2024%E5%B9%B41~3%E6%9C%88%E6%84%9F%E6%83%B3/" rel="prev" title="2024年1~3月感想">
+      <i class="fa fa-chevron-left"></i> 2024年1~3月感想
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%BD%E5%B8%A6%E4%B8%8EWiFi%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">宽带与WiFi概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GPT4%E5%AF%B9%E4%BA%8E%E5%AE%BD%E5%B8%A6%E4%B8%8EWiFi%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E7%9C%8B%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">GPT4对于宽带与WiFi的安全性看法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%BA%BF%E5%AE%BD%E5%B8%A6%E4%B8%8A%E7%BD%91"><span class="nav-number">3.0.1.</span> <span class="nav-text">有线宽带上网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WiFi%E4%B8%8A%E7%BD%91"><span class="nav-number">3.0.2.</span> <span class="nav-text">WiFi上网</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E7%9C%8B%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">个人看法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%AA%E6%96%BD"><span class="nav-number">5.</span> <span class="nav-text">措施</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E8%B7%AF%E7%94%B1%E5%99%A8%E9%98%B2%E7%81%AB%E5%A2%99%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">启用路由器防火墙方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%BF%E9%97%AE%E8%B7%AF%E7%94%B1%E5%99%A8%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2"><span class="nav-number">5.1.1.</span> <span class="nav-text">1. 访问路由器管理界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%90%AF%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">5.1.2.</span> <span class="nav-text">2. 启用防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%B5%8B%E8%AF%95%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">5.1.3.</span> <span class="nav-text">3. 测试防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.1.4.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Bron"
+      src="/images/Elaina.png">
+  <p class="site-author-name" itemprop="name">Bron</p>
+  <div class="site-description" itemprop="description">原谅我这一生不羁放纵爱自由</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">207</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/truthnian" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;truthnian" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Elaina_Anime" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Elaina_Anime" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/2CTruth" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;2CTruth" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://truthnian.github.io/" title="https:&#x2F;&#x2F;truthnian.github.io" rel="noopener" target="_blank">世界上最好的网站</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; Thu Nov 03 2022 08:00:00 GMT+0800 (Singapore Standard Time) – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bron</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">745k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">11:17</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+-->
+
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("11/3/2022 00:00:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已存活 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.3s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#FFFFE0',
+  buttonColorLight: '#00BFFF',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div id="moon-menu-item-back2bottom" class="moon-menu-item">
+      <i class='fas fa-chevron-down'></i>    </div>
+    
+    <div id="moon-menu-item-back2top" class="moon-menu-item">
+      <i class='fas fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+    </div>
+</body>
+</html>
+
+
